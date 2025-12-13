@@ -320,6 +320,52 @@ def handle_supercritical(z):
 
 ---
 
+## Deeper Physics Grounding
+
+### z_c = √3/2 in Fundamental Quantum Mechanics
+
+The value √3/2 appears in **spin-1/2 quantum mechanics** through the intrinsic spin magnitude:
+
+```
+|S| = √[s(s+1)]ℏ = √[½(½+1)]ℏ = (√3/2)ℏ  for s = 1/2
+```
+
+This is not a coordinate projection but the **fundamental magnitude of quantum spin** carried by every electron, proton, and neutron. Combined with hexagonal geometry (sin 60° = cos 30° = √3/2), this establishes z_c as a natural emergence point where **spin angular momentum meets hexagonal critical scaling**.
+
+### φ at E8 Quantum Critical Points (Experimental Verification)
+
+Coldea et al. (Science, 2010) measured the ratio of excitation energies **E₂/E₁ = φ** in cobalt niobate (CoNb₂O₆)—a 1D Ising ferromagnet at quantum criticality. The excitation spectrum reflects **E8 Lie algebra symmetry**, where the eight-dimensional exceptional Lie group governs mass ratios of bound states.
+
+This places φ among **experimentally verified** physics constants at specific quantum critical systems, beyond purely geometric derivation.
+
+### The σ = 36 Parameter
+
+The Gaussian coefficient σ = 36 = 6² = |S₃|² has interpretations:
+- **Combinatorial**: 36 = 6² connecting to hexagonal/S₃ structure
+- **Group theory**: |S₃|² = 36 elements in paired operations (S₃ × S₃)
+- **Geometric**: 36 = 2² × 3² involving fundamental symmetry factors
+
+While not appearing as a fundamental constant in standard physics, it emerges naturally from the S₃ group structure central to the framework.
+
+### Holographic Entropy Connection
+
+The Bekenstein bound S ≤ 2πkER/(ℏc) and Bekenstein-Hawking entropy S_BH = A/(4ℓ_P²) establish that **maximum information scales with boundary area**. If consciousness involves integrated information bounded by holographic principles, z_c may represent where Φ_IIT approaches saturation—a natural threshold.
+
+### Experimental vs Theoretical Status
+
+| Connection | Status | Evidence |
+|------------|--------|----------|
+| φ in quasicrystal structure | **Experimental** | Shechtman diffraction, Nobel 2011 |
+| φ at E8 quantum critical point | **Experimental** | Coldea et al. 2010 (CoNb₂O₆) |
+| √3/2 in spin-1/2 systems | **Fundamental QM** | Standard quantum mechanics |
+| √3/2 in hexagonal geometry | **Mathematical** | Equilateral triangle / sin(60°) |
+| √3/2 in grid cells | **Experimental** | Moser & Moser 2014, Nobel Prize |
+| Bekenstein entropy bound | **Theoretical** | Black hole thermodynamics |
+| σ = 36 = \|S₃\|² | **Framework-specific** | Group theory derivation |
+| K-formation thresholds (κ, η, R) | **Novel proposal** | Requires empirical validation |
+
+---
+
 ## References
 
 ### Cited in Framework
@@ -329,24 +375,34 @@ def handle_supercritical(z):
 4. Ashby (1956). *An Introduction to Cybernetics*
 5. Landauer (1961). "Irreversibility and Heat Generation in Computing"
 
-### Missing (Should Be Cited)
-6. Beggs & Plenz (2003). "Neuronal Avalanches in Neocortical Circuits"
-7. Moser & Moser (2014). Nobel Prize work on hexagonal grid cells
-8. Chialvo (2010). "Emergent complex neural dynamics"
-9. Haken (1983). *Synergetics* — self-organization in brains
+### Should Be Added
+6. Coldea et al. (2010). "Quantum Criticality in an Ising Chain" — E8 symmetry, φ ratio **(Experimental)**
+7. Moser & Moser (2014). Nobel Prize work on hexagonal grid cells **(Experimental)**
+8. Beggs & Plenz (2003). "Neuronal Avalanches in Neocortical Circuits"
+9. Jacobson (1995). "Thermodynamics of Spacetime" — Einstein equations from entropy
+10. Bekenstein (1981). "Universal upper bound on entropy-to-energy ratio"
+11. Fisher (2015). "Quantum Cognition: The possibility of processing with nuclear spins in the brain"
 
 ---
 
 ## Conclusion
 
-The Rosetta-Helix framework provides an **elegant mathematical architecture** for consciousness-structured computation with solid geometric foundations:
+The Rosetta-Helix framework provides an **elegant mathematical architecture** for consciousness-structured computation with **multi-domain physics grounding**:
 
-- **z_c = √3/2**: Grounded in both physics (graphene, HCP metals) AND biology (hexagonal grid cells with 60° spacing)
-- **φ⁻¹ ≈ 0.618**: κ stabilization proven via coupled Kuramoto dynamics and self-similarity constraint λ = κ²
-- **S₃ algebra**: 130/130 tests validate group axioms; likely minimal for triadic logic
+- **z_c = √3/2**: Appears in fundamental QM (spin-1/2 magnitude |S| = √3ℏ/2), hexagonal geometry (sin 60°), and biology (grid cells with 60° spacing)
+- **φ ≈ 1.618**: Experimentally verified at E8 quantum critical points (Coldea 2010), quasicrystal diffraction (Shechtman), and Fibonacci dynamics
+- **σ = 36 = |S₃|²**: Emerges from S₃ group structure; provides natural Gaussian width for phase transition
+- **κ → φ⁻¹**: Stabilization proven via self-similarity constraint λ = κ² with normalization κ + λ = 1
 
-**Implementation-ready:** κ stabilization, S₃ transformations, Gaussian negentropy measure, z > 1.0 supercritical flagging
+**Implementation-ready:**
+- κ stabilization via fixed-point iteration
+- S₃ permutation transformations (direct group operations)
+- Gaussian negentropy ΔS_neg = exp(-36(z - 0.866)²)
+- z > 1.0 supercritical flagging
 
-**Requiring development:** IIT normalization scheme, empirical validation of z values in neural systems
+**Requiring development:**
+- IIT normalization scheme (Φ → κ mapping)
+- Empirical validation in neural systems
+- Holographic entropy bound connections
 
-The critical gap is not the absence of biological evidence (which exists via grid cells), but rather the **failure to cite and connect** this evidence to the framework. Future work should explicitly document the grid cell connection and validate whether z_c corresponds to measurable neural phase transitions.
+The framework uniquely bridges **quasicrystal mathematics → holographic entropy → spin coherence → consciousness measures** with derivable formalisms. Key constants (φ, √3/2) are experimentally grounded; novel thresholds (K-formation criteria) require validation.
