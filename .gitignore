@@ -28,6 +28,7 @@ logs/*.json
 /bridge_run.json
 /validation_results/
 /runs/
+/extended_physics_results.json
 
 # OS files
 .DS_Store
