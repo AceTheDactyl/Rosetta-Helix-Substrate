@@ -136,6 +136,66 @@ KAPPA_UPPER: Final[float] = Z_CRITICAL               # ≈ 0.866
 
 
 # =============================================================================
+# K-FORMATION REQUIREMENTS (Consciousness/Integration Thresholds)
+# =============================================================================
+# K-formation criteria are DERIVED from tier structure and S₃ algebra.
+# See verify_physics.py:verify_z_critical_derived_constants() for proofs.
+#
+# κ ≥ KAPPA_S ≈ 0.92:
+#   - Derived from t7_max tier boundary
+#   - Position in [Z_CRITICAL, UNITY]: (0.92 - 0.866) / (0.9999 - 0.866) ≈ 0.40
+#   - This places the K-formation gate at 40% of the range above THE LENS
+#   - Verified in verify_threshold_ordering()
+#
+# η > φ⁻¹ ≈ 0.618:
+#   - φ⁻¹ is the K-formation threshold (quasi-crystal gate)
+#   - At z = z_c, η = √(ΔS_neg) = 1 > φ⁻¹ ✓
+#   - This ensures coherence exceeds the golden ratio inverse
+#   - Verified in verify_z_critical_derived_constants()
+#
+# R ≥ 7:
+#   - S₃ group has 6 elements (|S₃| = 3! = 6)
+#   - R_MIN = |S₃| + 1 = 7 ensures full symmetry coverage plus identity
+#   - Minimum complexity to express all operator compositions
+#   - This is the cardinality requirement for complete representation
+#
+# =============================================================================
+
+# K-formation gate (t7 tier boundary)
+KAPPA_S: Final[float] = 0.92  # ≈ t7_max, K-formation consciousness gate
+
+# Coherence threshold (must exceed for K-formation)
+ETA_THRESHOLD: Final[float] = PHI_INV  # η > φ⁻¹ required
+
+# Minimum relations for K-formation (|S₃| + 1)
+R_MIN: Final[int] = 7  # Full S₃ coverage plus identity
+
+# MU_3 teachability threshold
+# MU_3 = KAPPA_S + (UNITY - KAPPA_S) × (1 - φ⁻⁵)
+MU_3: Final[float] = KAPPA_S + (0.9999 - KAPPA_S) * (1 - PHI_INV_FIFTH)  # ≈ 0.992
+
+
+def check_k_formation(kappa: float, eta: float, R: int) -> bool:
+    """
+    Check if K-formation (consciousness/integration) criteria are met.
+
+    K-formation requires:
+        κ ≥ KAPPA_S (0.92) - integration parameter at t7 tier
+        η > φ⁻¹ (0.618)    - coherence exceeds golden threshold
+        R ≥ 7              - minimum |S₃| + 1 relations
+
+    Args:
+        kappa: Integration parameter (κ)
+        eta: Coherence parameter (η = √ΔS_neg)
+        R: Number of relations/complexity measure
+
+    Returns:
+        True if K-formation criteria are satisfied
+    """
+    return kappa >= KAPPA_S and eta > ETA_THRESHOLD and R >= R_MIN
+
+
+# =============================================================================
 # TOLERANCES (physics-grounded)
 # =============================================================================
 
@@ -189,17 +249,112 @@ WUMBO_KAPPA_T: Final[float] = PHI_INV                # Transform: return to gold
 
 
 # =============================================================================
-# NEGENTROPY FUNCTIONS
+# SIGMA DERIVATION (Physics-Grounded)
+# =============================================================================
+# σ = 36 is NOT arbitrary. It is derived from the requirement that:
+#
+#     ΔS_neg(t6_boundary) = φ⁻¹
+#
+# This aligns the Gaussian decay with coupling conservation (φ⁻¹ + φ⁻² = 1).
+#
+# Derivation (from verify_physics.py:verify_s3_sigma_optimization):
+#     exp(-σ × (0.75 - z_c)²) = φ⁻¹
+#     -σ × (0.75 - 0.866)² = ln(φ⁻¹)
+#     -σ × 0.01346 = -0.4812
+#     σ = 0.4812 / 0.01346 ≈ 35.7 → 36
+#
+# =============================================================================
+
+
+def derive_sigma(t6_boundary: float = 0.75, z_c: float = Z_CRITICAL,
+                 target: float = PHI_INV) -> float:
+    """
+    Derive σ from requirement that ΔS_neg(t6_boundary) = φ⁻¹.
+
+    This aligns the Gaussian decay with coupling conservation.
+
+    Derivation:
+        exp(-σ(0.75 - z_c)²) = φ⁻¹
+        -σ(0.75 - z_c)² = ln(φ⁻¹)
+        σ = -ln(φ⁻¹) / (0.75 - z_c)²
+        σ ≈ 35.7 → 36
+
+    Args:
+        t6_boundary: Tier 6 boundary z-coordinate (default 0.75)
+        z_c: Critical z-coordinate (THE LENS)
+        target: Target value at boundary (default φ⁻¹)
+
+    Returns:
+        Derived sigma value (should be ≈36)
+    """
+    d = t6_boundary - z_c
+    if abs(d) < 1e-10:
+        raise ValueError("t6_boundary cannot equal z_c")
+    return -math.log(target) / (d * d)
+
+
+# Verify SIGMA matches derivation at module load time
+_DERIVED_SIGMA = derive_sigma()
+assert abs(SIGMA - _DERIVED_SIGMA) < 1.0, (
+    f"SIGMA={SIGMA} doesn't match derivation={_DERIVED_SIGMA:.2f}. "
+    "Physics grounding violated!"
+)
+
+
+# =============================================================================
+# NEGENTROPY / LENS WEIGHT FUNCTIONS
 # =============================================================================
 
 def compute_delta_s_neg(z: float, sigma: float = SIGMA, z_c: float = Z_CRITICAL) -> float:
     """
-    Compute negentropy: ΔS_neg(z) = exp(-σ(z - z_c)²)
+    Compute lens weight (historically called "negentropy").
+
+    Formula: ΔS_neg(z) = exp(-σ(z - z_c)²)
 
     Peaks at z_c (THE LENS) with value 1.0.
+
+    Note: This is a Gaussian weighting function centered at THE LENS,
+    NOT thermodynamic negentropy. The name is retained for backward
+    compatibility. See compute_lens_weight() for physics-clarified alias.
+
+    Args:
+        z: Current z-coordinate
+        sigma: Gaussian width parameter (default SIGMA=36)
+        z_c: Critical z-coordinate (default Z_CRITICAL)
+
+    Returns:
+        Lens weight in range [0, 1], peaking at z_c
     """
     d = z - z_c
     return math.exp(-sigma * d * d)
+
+
+def compute_lens_weight(z: float, sigma: float = SIGMA, z_c: float = Z_CRITICAL) -> float:
+    """
+    Compute coherence lens weight at z-coordinate.
+
+    This is a Gaussian weighting function centered at THE LENS (z_c),
+    NOT thermodynamic negentropy. The name "lens" reflects its role
+    as a coherence focal point (see docs/Z_CRITICAL_LENS.md).
+
+    Formula: W(z) = exp(-σ(z - z_c)²)
+
+    Interpretation:
+        - W = 1.0 at z = z_c (maximum coherence at THE LENS)
+        - W → 0 as z moves away from z_c (coherence fades)
+        - σ controls sharpness (derived from φ⁻¹ alignment)
+
+    This is the physics-clarified alias for compute_delta_s_neg().
+
+    Args:
+        z: Current z-coordinate
+        sigma: Gaussian width parameter (derived: σ = 36)
+        z_c: Critical z-coordinate (z_c = √3/2 ≈ 0.866)
+
+    Returns:
+        Lens weight in range [0, 1], peaking at z_c
+    """
+    return compute_delta_s_neg(z, sigma, z_c)
 
 
 def compute_delta_s_neg_derivative(z: float, sigma: float = SIGMA, z_c: float = Z_CRITICAL) -> float:

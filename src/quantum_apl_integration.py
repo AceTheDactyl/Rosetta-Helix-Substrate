@@ -265,6 +265,100 @@ class DensityMatrix:
 
 
 # =============================================================================
+# CPTP VERIFICATION (Completely Positive Trace Preserving)
+# =============================================================================
+
+def verify_cptp(rho: DensityMatrix, tolerance: float = 1e-10) -> Tuple[bool, str]:
+    """
+    Verify density matrix satisfies CPTP (Completely Positive Trace Preserving).
+
+    A valid density matrix must satisfy:
+        1. Trace = 1 (trace preserving)
+        2. Hermitian (ρ = ρ†)
+        3. Positive semidefinite (all eigenvalues ≥ 0)
+
+    These properties ensure the density matrix represents a valid
+    quantum state. Lindblad evolution should preserve these properties.
+
+    Args:
+        rho: Density matrix to verify
+        tolerance: Numerical tolerance for checks
+
+    Returns:
+        (is_valid, message) tuple
+    """
+    # 1. Trace preservation: Tr(ρ) = 1
+    tr = np.real(rho.trace())
+    if abs(tr - 1.0) > tolerance:
+        return False, f"Trace violation: Tr(ρ) = {tr:.6f}, expected 1.0"
+
+    # 2. Hermiticity: ρ = ρ†
+    hermitian_error = np.max(np.abs(rho.data - np.conj(rho.data.T)))
+    if hermitian_error > tolerance:
+        return False, f"Hermiticity violation: max|ρ - ρ†| = {hermitian_error:.2e}"
+
+    # 3. Positive semidefinite: all eigenvalues ≥ 0
+    eigenvalues = np.linalg.eigvalsh(rho.data)
+    min_eigenvalue = np.min(np.real(eigenvalues))
+    if min_eigenvalue < -tolerance:
+        return False, f"Positivity violation: min eigenvalue = {min_eigenvalue:.2e}"
+
+    return True, "CPTP verified: valid quantum state"
+
+
+def verify_cptp_evolution(
+    rho_before: DensityMatrix,
+    rho_after: DensityMatrix,
+    tolerance: float = 1e-10
+) -> Tuple[bool, List[str]]:
+    """
+    Verify that a quantum evolution preserved CPTP properties.
+
+    Checks both input and output states, plus additional evolution constraints.
+
+    Args:
+        rho_before: State before evolution
+        rho_after: State after evolution
+        tolerance: Numerical tolerance
+
+    Returns:
+        (all_valid, list_of_messages)
+    """
+    messages = []
+    all_valid = True
+
+    # Check input state
+    valid_before, msg_before = verify_cptp(rho_before, tolerance)
+    if not valid_before:
+        messages.append(f"Input state: {msg_before}")
+        all_valid = False
+    else:
+        messages.append(f"Input state: OK")
+
+    # Check output state
+    valid_after, msg_after = verify_cptp(rho_after, tolerance)
+    if not valid_after:
+        messages.append(f"Output state: {msg_after}")
+        all_valid = False
+    else:
+        messages.append(f"Output state: OK")
+
+    # Check purity didn't increase (evolution should be dissipative or unitary)
+    purity_before = rho_before.purity()
+    purity_after = rho_after.purity()
+    purity_increase = purity_after - purity_before
+
+    if purity_increase > tolerance:
+        messages.append(
+            f"Warning: Purity increased from {purity_before:.6f} to {purity_after:.6f} "
+            f"(Δ = {purity_increase:.6f})"
+        )
+        # This is a warning, not a hard failure (could be valid for some evolutions)
+
+    return all_valid, messages
+
+
+# =============================================================================
 # LINDBLAD EVOLUTION
 # =============================================================================
 
@@ -536,6 +630,10 @@ class QuantumAPLState:
     Complete quantum state for APL with density matrix and classical variables.
 
     Bridges quantum and classical representations.
+
+    Physics Constraint:
+        κ + λ = 1 (coupling conservation from φ⁻¹ + φ⁻² = 1)
+        This fundamental identity is enforced at initialization.
     """
     # Quantum state
     density_matrix: DensityMatrix = field(default_factory=lambda: DensityMatrix(dim=DIM_TRUTH))
@@ -560,6 +658,37 @@ class QuantumAPLState:
     # History
     operator_history: List[str] = field(default_factory=list)
     measurement_history: List[MeasurementResult] = field(default_factory=list)
+
+    def __post_init__(self):
+        """Enforce physics constraints at initialization."""
+        self._enforce_coupling_conservation()
+
+    def _enforce_coupling_conservation(self):
+        """
+        Enforce coupling conservation: κ + λ = 1.
+
+        This is the physics constraint from the golden ratio identity:
+            φ⁻¹ + φ⁻² = 1
+
+        If violated, λ is adjusted to maintain conservation.
+        """
+        if abs(self.kappa + self.lambda_ - COUPLING_CONSERVATION) > 1e-10:
+            self.lambda_ = COUPLING_CONSERVATION - self.kappa
+
+    def update_kappa(self, new_kappa: float):
+        """
+        Update κ while maintaining coupling conservation.
+
+        Args:
+            new_kappa: New value for κ (clamped to [0, 1])
+        """
+        self.kappa = max(0.0, min(1.0, new_kappa))
+        self.lambda_ = 1.0 - self.kappa
+
+    @property
+    def coupling_conserved(self) -> bool:
+        """Check if coupling conservation holds."""
+        return abs(self.kappa + self.lambda_ - 1.0) < 1e-10
 
     @property
     def negentropy(self) -> float:

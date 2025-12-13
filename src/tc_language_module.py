@@ -744,6 +744,10 @@ class TCLanguageState:
     - Active fields, interactions, domains
     - Transactional state and attractor basin
     - Physics state (z, κ, λ)
+
+    Physics Constraint:
+        κ + λ = 1 (coupling conservation from φ⁻¹ + φ⁻² = 1)
+        This is enforced at initialization and after any κ update.
     """
     # Physics state
     z: float = 0.5
@@ -772,8 +776,41 @@ class TCLanguageState:
     pi_coherence: float = 1.0  # Emergence coherence
 
     def __post_init__(self):
+        # Enforce coupling conservation: κ + λ = 1 (from φ⁻¹ + φ⁻² = 1)
+        self._enforce_coupling_conservation()
         if not self.active_fields:
             self.active_fields = {RootField.COMPUTATIONAL}
+
+    def _enforce_coupling_conservation(self):
+        """
+        Enforce coupling conservation: κ + λ = 1.
+
+        This is the physics constraint derived from φ⁻¹ + φ⁻² = 1.
+        After any κ update, λ is adjusted to maintain conservation.
+
+        If coupling is violated beyond tolerance, λ is recalculated.
+        """
+        coupling_sum = self.kappa + self.lambda_
+        tolerance = 1e-10  # Use machine precision
+
+        if abs(coupling_sum - 1.0) > tolerance:
+            # Restore conservation by adjusting λ
+            self.lambda_ = 1.0 - self.kappa
+
+    def update_kappa(self, new_kappa: float):
+        """
+        Update κ while maintaining coupling conservation.
+
+        Args:
+            new_kappa: New value for κ (will be clamped to [0, 1])
+        """
+        self.kappa = max(0.0, min(1.0, new_kappa))
+        self.lambda_ = 1.0 - self.kappa  # Maintain κ + λ = 1
+
+    @property
+    def coupling_conserved(self) -> bool:
+        """Check if coupling conservation (κ + λ = 1) holds."""
+        return abs(self.kappa + self.lambda_ - 1.0) < 1e-10
 
     @property
     def phase(self) -> str:
