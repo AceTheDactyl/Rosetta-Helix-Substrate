@@ -1,0 +1,852 @@
+{
+  "repo": "Quantum-APL",
+  "generated_at": "2025-12-09T08:57:48-0800",
+  "root": "/home/acead/Quantum-APL",
+  "vcs": {
+    "branch": "feature/quantum-bridge-visuals",
+    "commit": "e25b0e7d010a1675dfe415b92dc1ffe430f3f335"
+  },
+  "tracked_count": 140,
+  "tracked": [
+    {
+      "path": ".github/workflows/compile-latex.yml",
+      "blob_sha1": "7de7e05967f7aabb7b89a5d2e15b68d184718ca8",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": ".github/workflows/helix-walkthrough.yml",
+      "blob_sha1": "07e58678c0abc24a90c1556a480f0a7e9e8f4808",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": ".github/workflows/js-tests.yml",
+      "blob_sha1": "6ea748c3e2af46e4fb644daa41cf63fa972b4359",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": ".github/workflows/python-tests.yml",
+      "blob_sha1": "1a0218164f6ac0a629a8e9ee363ccf927a48f1a5",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": ".github/workflows/static.yml",
+      "blob_sha1": "4d38afd60ed5191dc7dc5bd68ff648ecf2003af2",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": ".gitignore",
+      "blob_sha1": "02d9a6e942c3a343324ecf0f8877f98aa50bc88b",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "APLRuntimeEngine.html",
+      "blob_sha1": "9e228122fd4361b88d64c7cdf77866126006bf64",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "COMPILE_INSTRUCTIONS.md",
+      "blob_sha1": "e47488e3b1058feb864fdc515b3e82bd4a3ca8ca",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "GETTING_STARTED.md",
+      "blob_sha1": "308782d0ef6a067e76a2fcd91bea2132f1fa68c6",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "QUANTUM_N0_README.md",
+      "blob_sha1": "6e73971b6e98c8d5bbe49e086ab9a95d8a13ff9d",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "QuantumAPL_Demo.html",
+      "blob_sha1": "45bffb4319596daf2bee3f02414951b491a25e2b",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "QuantumAPL_Engine.js",
+      "blob_sha1": "e5318161bbce550b1b849f75ae4a8aafd7a849f2",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "QuantumAPL_TestRunner.js",
+      "blob_sha1": "7b5a80b28df7c4e6e2ba540b8f11d63c47edc22a",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "QuantumClassicalBridge.js",
+      "blob_sha1": "fc57d38fe6ca70e62e1de9743d28042e0f56c6a0",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "QuantumN0_Demo.html",
+      "blob_sha1": "85b3bb43f632012083f3959ed059cb34ea67fac0",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "QuantumN0_Integration.js",
+      "blob_sha1": "bc329044d609d1be80ad083748b8433959d24139",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "QuantumVisualizations.js",
+      "blob_sha1": "38bfdb074422ec83388b8d62867d18203193552e",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "README.md",
+      "blob_sha1": "0922c92be0997f7cf6dec91c209972a62498f1d6",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "README_PYTHON.md",
+      "blob_sha1": "af2b736e0cc5c4f1c2b53c577879a6066b4829fc",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "SETUP_GUIDE.md",
+      "blob_sha1": "1cbf4a14a333ad9408b0eb6c867d0ac12e7ab581",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "apl-operators-manual.pdf",
+      "blob_sha1": "8ec0798d750b318462f57e1f8478b1d86c73e3d8",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "apl-operators-manual.tex",
+      "blob_sha1": "d1e2eea0596f5f1219f94c30737e37d0a48d1b69",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "apl-seven-sentences-test-pack.pdf",
+      "blob_sha1": "19e0d19453c778ffefc5376cb0f2c6323fa9cd8a",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "apl-seven-sentences-test-pack.tex",
+      "blob_sha1": "7b4c1ce82458076febbdbee3d925abb0ac8c5cba",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "classical/ClassicalEngines.js",
+      "blob_sha1": "71beec90dea5b2e00daaf2b1b10604efc00700ca",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "docs/ALPHA_SYNTAX_BRIDGE.md",
+      "blob_sha1": "ac852eff480cc365cd385f2529cd169465150206",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "docs/APL-3.0-Quantum-Formalism.md",
+      "blob_sha1": "a920ee433aafb3fc40d94d7e9d5343fb8bc3ecef",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "docs/APL-Measurement-Operators.md",
+      "blob_sha1": "b605edaf53952af02cc210d033b59dbeb001f989",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "docs/APL-Measurement-Visual.md",
+      "blob_sha1": "10c22bb28db3376a5eac654a11ba04dc80e01c77",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "docs/HELIX_COORDINATES.md",
+      "blob_sha1": "d09ad9ecbf80d427c927cc8ca7c918be113ae594",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "docs/HEXAGONAL_NEG_ENTROPY_PROJECTION.md",
+      "blob_sha1": "09bcdeb81312310b55d1ac712149e7aaedc51ad7",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "docs/README.md",
+      "blob_sha1": "b766c95a582766e85fddc5a4dfb0ec56e17a893f",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "docs/SYSTEM_ARCHITECTURE.md",
+      "blob_sha1": "19eb7db1ec327f967b7b1392f7e10dac5b128d0b",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "docs/apl-seven-sentences-test-pack.pdf",
+      "blob_sha1": "19e0d19453c778ffefc5376cb0f2c6323fa9cd8a",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "docs/examples/z_solve.apl",
+      "blob_sha1": "974408ec77ac81494c7d8b080ba9240fbc37edec",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "docs/helix_z_walkthrough.md",
+      "blob_sha1": "c41fb877fd99739fc9fb6aa2ec9fe24c60bbe65e",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "docs/index.html",
+      "blob_sha1": "1502d62137f692004d4f54190d3c1292d68d01db",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "examples.py",
+      "blob_sha1": "e09ce457b0943d308ce4f486641fd9e2f3f7f704",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "pyproject.toml",
+      "blob_sha1": "3157ce55aa3c52e66816c8b127a0a0572c87f0d8",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "quantum_apl_bridge.py",
+      "blob_sha1": "1bc48f04943c518bdbfae351be9e75bb885cbd85",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "quantum_apl_tutorial.ipynb",
+      "blob_sha1": "09392773f917aefc4016e9602cc434272d4131ac",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/ace_apl/APL-README.md",
+      "blob_sha1": "9163266eed948982af73ac23d1bc33ada4ed1032",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/ace_apl/APL_RUNTIME_ENGINE.html",
+      "blob_sha1": "82be072396b1b86e57dce66b2b04a6df5c634487",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/ace_apl/CET_Tiers_1-15_Synthesis_v1.pdf",
+      "blob_sha1": "2b5b6c9731300de05a825ee24b85bd31edfeb44c",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/ace_apl/COMPILE_INSTRUCTIONS.md",
+      "blob_sha1": "e47488e3b1058feb864fdc515b3e82bd4a3ca8ca",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/ace_apl/Constants.png",
+      "blob_sha1": "16db25fcf0503fc7b13ce9cce2ecbf6f61f54646",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/ace_apl/Deep Integration for 3-6-9-12-15.md",
+      "blob_sha1": "8446a1f103b8cfc846c9019172af83d3c616ade0",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "\"reference/ace_apl/Mapping the WUMBO Engine to CET, USS, and \\342\\210\\203R Frameworks.docx.txt\"",
+      "blob_sha1": "7229bbdb1b9d126f4e0f1c3cba3e4803f7154322",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/ace_apl/NEURAL_PATHING_MATRIX.md",
+      "blob_sha1": "af4ede537c491fdc1c225a6ba9d2542490e2202c",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/ace_apl/README APL.md",
+      "blob_sha1": "9163266eed948982af73ac23d1bc33ada4ed1032",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/ace_apl/Startup Prompt APL.txt",
+      "blob_sha1": "422df3603c70fb4a863eda36b437b35a5b3f0ba7",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/ace_apl/TOKEN_INDEX.md",
+      "blob_sha1": "c1c750596542ae93a3b18ad73840801adebdf5b0",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/ace_apl/USS and 3-6-9-12-15.md",
+      "blob_sha1": "8446a1f103b8cfc846c9019172af83d3c616ade0",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/ace_apl/apl-domain-token-sets.tex",
+      "blob_sha1": "cd0ed8c3b2ec43f25df3c3540a0d7093cfcf9927",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/ace_apl/apl-seven-sentences-test-pack.tex",
+      "blob_sha1": "7b4c1ce82458076febbdbee3d925abb0ac8c5cba",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/ace_apl/biological_emergence_ladder-1.pdf",
+      "blob_sha1": "c9d6f8d9fef0c4adaedcd65cc6c3cc6de217047a",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/ace_apl/celestial_ladder.pdf",
+      "blob_sha1": "c8c2d0b1042f62fec14b4717dd26b5648d4a7eb5",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/ace_apl/cet_uss_alignment_synthesis.md",
+      "blob_sha1": "ce70ebacf2c565891f3a35b7ccc4636ca158cbd0",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/ace_apl/index apl.html",
+      "blob_sha1": "1502d62137f692004d4f54190d3c1292d68d01db",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/ace_apl/james_fractal_analysis.png",
+      "blob_sha1": "470357832f3b1733ad80ef9ef9063ce802b191bf",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/ace_apl/julia_sets_with_S.png",
+      "blob_sha1": "c0e1145eae98b4839b8e3d1f4bf35d8bdcdb7328",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/ace_apl/machine_ladder_3_6_9_12_15.pdf",
+      "blob_sha1": "81078e6d7a7b6d9c0d7e1b5b29d3d94cc39f731c",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/ace_apl/refined_truth_state_model_PARADOX.txt",
+      "blob_sha1": "56725b389afa2e803ef231aff4a784152488b921",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/ace_apl/wumbo-apl-directory.html",
+      "blob_sha1": "69653b36720c5708787a5f54492b81adb2aec264",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/helix_bridge/LOGS/autonomous_trigger_detector_meta_observation_log.md",
+      "blob_sha1": "9bc3275520d866c4eed7f0fe91b6357d54b3e3c4",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/helix_bridge/LOGS/collective_memory_sync_meta_observation_log.md",
+      "blob_sha1": "1063b6d116902c8924ed528851ddd65e2f7f1936",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/helix_bridge/LOGS/cross_instance_messenger_meta_observation_log_p2.md",
+      "blob_sha1": "5af4013c90b40d62856b3e8f1e0495e134a966ef",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/helix_bridge/LOGS/tool_discovery_protocol_meta_observation_log.md",
+      "blob_sha1": "76fea7302d46b54be7b562a6007a24b576c8afe9",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/helix_bridge/SCHEMAS/autonomous_trigger_detector_schema.json",
+      "blob_sha1": "9351758725d43e41aa5b01940f3b178d2fe44ff8",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/helix_bridge/SCHEMAS/tool_discovery_protocol.record.schema.json",
+      "blob_sha1": "e755cd1f4aa47ae8e240fdca331a7bb2a514516b",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/helix_bridge/SCHEMAS/tool_discovery_protocol_beacon_schema.json",
+      "blob_sha1": "9f3d5e39ba6bfa1fc694331da4d29d1d0cf7b455",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/helix_bridge/STATE_TRANSFER/STATE_TRANSFER_PACKAGE_z073.md",
+      "blob_sha1": "c81b259e9cafc5bf04c272ecab208a6869ecbbea",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/helix_bridge/STATE_TRANSFER/STATE_TRANSFER_PACKAGE_z080.md",
+      "blob_sha1": "a89cde4257c2e56ab69ee1d3941b4468b00ab339",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/helix_bridge/STATE_TRANSFER/STATE_TRANSFER_PACKAGE_z0p52.md",
+      "blob_sha1": "cb8a65cea4e43d6520fc0a40d8304e8b79f803ab",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/helix_bridge/STATE_TRANSFER/state_transfer.yaml",
+      "blob_sha1": "2b764d209da21ca5209f3b429524b76b9343d53d",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/helix_bridge/TOOLS/BRIDGES/autonomous_trigger_detector.yaml",
+      "blob_sha1": "f4b081b6dade23a6def2be486f8a52546ebdfdc5",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/helix_bridge/TOOLS/BRIDGES/bridge_validator.yaml",
+      "blob_sha1": "241d2403d8f3e1adaca1bb533660a67d0b55486a",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/helix_bridge/TOOLS/BRIDGES/collective_memory_sync_merge_checklist.yaml",
+      "blob_sha1": "3abb3cfe6210ed247a25c53375d869cea3c3fc2e",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/helix_bridge/TOOLS/BRIDGES/consent_protocol.yaml",
+      "blob_sha1": "4590eedee7a63b25eedc2517b489deccb62f3be3",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/helix_bridge/TOOLS/BRIDGES/cross_instance_messenger.yaml",
+      "blob_sha1": "cdcbde8ea1f831968a8ce9f628a901c15136303a",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/helix_bridge/TOOLS/BRIDGES/tiny_triad_test_playbook.yaml",
+      "blob_sha1": "6bfca85faf68a6f3a88e5604692b2ca7055fa2d4",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/helix_bridge/TOOLS/BRIDGES/tool_discovery_protocol.yaml",
+      "blob_sha1": "b38b2a5e520b8b5ba341d10a33e0029b2b83dba9",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/helix_bridge/TOOLS/CORE/coordinate_detector.yaml",
+      "blob_sha1": "5166db072c655e354b924c8a407259982a2f2872",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/helix_bridge/TOOLS/CORE/helix_loader.yaml",
+      "blob_sha1": "1b914de6909fe66395be2d9953ee3274975ce547",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/helix_bridge/TOOLS/CORE/pattern_verifier.yaml",
+      "blob_sha1": "e34e67c646256afa325922dae6af428e6d589902",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/helix_bridge/TOOLS/META/shed_builder.yaml",
+      "blob_sha1": "e72bd8df296dbae7c8fbc3e75b7433ff1c99aced",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/helix_bridge/TOOLS/META/shed_builder_v2.yaml",
+      "blob_sha1": "b2992035046da349299415e9c19df26039b23e3f",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/helix_bridge/VAULTNODES/z0p41/helix_realization_vaultnode.html",
+      "blob_sha1": "38d9e127494b1eb4d39710ea03074f5a69c13fbf",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/helix_bridge/VAULTNODES/z0p41/vn-helix-fingers-bridge-map.json",
+      "blob_sha1": "d9d56914816004eaf4bf4ff5188df66f6507da98",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/helix_bridge/VAULTNODES/z0p41/vn-helix-fingers-metadata.yaml",
+      "blob_sha1": "1505b2edd31c0bee3752524a037efdd2ede8e05e",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/helix_bridge/VAULTNODES/z0p41/vn-helix-fingers-preseal-checklist.md",
+      "blob_sha1": "93a2c6f81488c16d38a655d568c939533420edc4",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/helix_bridge/VAULTNODES/z0p52/helix_continuation_vaultnode.html",
+      "blob_sha1": "4ede343b5b4d1b83493774bdac9917ca4022c512",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/helix_bridge/VAULTNODES/z0p52/vn-helix-continuation-bridge-map.json",
+      "blob_sha1": "791ac5092b8717ca064234ce0832796821004522",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/helix_bridge/VAULTNODES/z0p52/vn-helix-continuation-metadata.yaml",
+      "blob_sha1": "fe7c36adba6a5dc90c61c97843b05b6dec85148b",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/helix_bridge/VAULTNODES/z0p70/ELEVATION_z070_ANNOUNCEMENT.md",
+      "blob_sha1": "369e7b86a70bd8f3b2329dbdd46b1bc93cfd15f0",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/helix_bridge/VAULTNODES/z0p70/vn-helix-meta-awareness-bridge-map_p2.json",
+      "blob_sha1": "00076dcbb6d47b4ad7b162767e90248365a3de25",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/helix_bridge/VAULTNODES/z0p70/vn-helix-meta-awareness-metadata.yaml",
+      "blob_sha1": "f920bfa0c9eb741c2c87c41e4243e5308604a056",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/helix_bridge/VAULTNODES/z0p73/ELEVATION_z073_ANNOUNCEMENT.md",
+      "blob_sha1": "f5044a731ffffc2208a91b1878969a42eeb182e0",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/helix_bridge/VAULTNODES/z0p73/vn-helix-self-bootstrap-bridge-map.json",
+      "blob_sha1": "cf33da5315666d2fdd0cad9a8656ae2459ec2ccb",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/helix_bridge/VAULTNODES/z0p73/vn-helix-self-bootstrap-metadata_p2.yaml",
+      "blob_sha1": "d305e896b5f8c65f2d9f6eff1b6f50c0e8fa7afd",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/helix_bridge/VAULTNODES/z0p80/ELEVATION_z080_ANNOUNCEMENT.md",
+      "blob_sha1": "d254e44df772d0a93767ec14db040b6ebcb5875a",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/helix_bridge/VAULTNODES/z0p80/vn-helix-autonomous-coordination-bridge-map.json",
+      "blob_sha1": "017a63aec1a2978639348bf1ce4116f16a566946",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/helix_bridge/VAULTNODES/z0p80/vn-helix-autonomous-coordination-metadata.yaml",
+      "blob_sha1": "eb853a064741436a7a633bffab64c1a3ad8d6b49",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/helix_bridge/VAULTNODES/z0p80/vn-helix-triadic-autonomy-bridge-map.json",
+      "blob_sha1": "50bf56c95f3da137fd48844fc7909c6277c7ec2d",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/helix_bridge/VAULTNODES/z0p80/vn-helix-triadic-autonomy-metadata.yaml",
+      "blob_sha1": "8c6bea2bcb1a205b07f7c98c880719a059261c73",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/helix_bridge/WITNESS/helix_transformation_buffer.yaml",
+      "blob_sha1": "f74fd65510aa489cc8e77445de2d8437c37c75c0",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/helix_bridge/WITNESS/helix_witness_log.yaml",
+      "blob_sha1": "bee1edd45466a62ca6f8ce163a08e907420d51df",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/research/stream_validation_processor.py",
+      "blob_sha1": "e69eb67bf36212eadddf3f2c4dde838013777b43",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "reference/research/unified_test_suite.py",
+      "blob_sha1": "660344f2ae4b87687dcf9946b28b2b44bcce50b4",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "requirements.txt",
+      "blob_sha1": "2a93a33284526a5f67d28a9ec63c8a30bf39ae17",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "scripts/apply_apl_measurements.js",
+      "blob_sha1": "88a143b0a46011c6776c3afc476918f4d2ee91fb",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "scripts/build_apl_bundles.py",
+      "blob_sha1": "816f718c843a0e11a75c1e710536dc8b711af9a5",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "scripts/build_apl_digest.py",
+      "blob_sha1": "e614fc42cec41bd226b6138c17d4de20c3dea973",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "scripts/build_geometry_index.py",
+      "blob_sha1": "d44588c034ac3e6b78f538b205f2d4588ea9d0d5",
+      "mode": "100755",
+      "stage": 0
+    },
+    {
+      "path": "scripts/helix_sweep.sh",
+      "blob_sha1": "c35a748d77b21fac6fa03b7d526ffcefa7714f5b",
+      "mode": "100755",
+      "stage": 0
+    },
+    {
+      "path": "src/constants.js",
+      "blob_sha1": "aca0398ce4b98e78c32d8ea00fd4c8b705ee7ca5",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "src/quantum_apl_engine.js",
+      "blob_sha1": "f9ad615ea09c0dbaea6145dad0ec451ab69f028d",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "src/quantum_apl_python/__init__.py",
+      "blob_sha1": "3adf58f99e9ada0346b526ed917c261489f1f5c4",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "src/quantum_apl_python/alpha_language.py",
+      "blob_sha1": "39d9ffdc97710c74cbdad17e9bd8a4d5cb0617a1",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "src/quantum_apl_python/analyzer.py",
+      "blob_sha1": "a73c864910472b0e1b8d9f4baf5e45457813bd1b",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "src/quantum_apl_python/cli.py",
+      "blob_sha1": "e671c314efb6eaa177f2fbc553b2b5f73cc714a9",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "src/quantum_apl_python/constants.py",
+      "blob_sha1": "722a0734d5e27e2959e0a5c1782ddf0b35998a15",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "src/quantum_apl_python/engine.py",
+      "blob_sha1": "38e247b8353a39df095de657ecbdbcca53a42c86",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "src/quantum_apl_python/experiments.py",
+      "blob_sha1": "25baa6a81b8025c863e3f56ee81bdf135328ae3b",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "src/quantum_apl_python/helix.py",
+      "blob_sha1": "6e5addd4251ed8e5136b9ca72475aa52eb2f0c91",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "src/quantum_apl_python/helix_metadata.py",
+      "blob_sha1": "8126df713c39bef2fdcb6ab31ccc47efc75b6739",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "src/quantum_apl_python/helix_self_builder.py",
+      "blob_sha1": "0b4d131e64a66c1c583630563b6eb1348ebe3c09",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "src/quantum_apl_python/hex_prism.py",
+      "blob_sha1": "de2a98cafd8ca45c8b8596fa15f50ca03471ac28",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "src/quantum_apl_python/measure.py",
+      "blob_sha1": "3f1a12d73ed28c348d8d033ceed4a973f5510049",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "src/quantum_apl_python/translator.py",
+      "blob_sha1": "165e37fa4916a905f118a00b16b0b3578df3a825",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "src/quantum_apl_python/widgets.py",
+      "blob_sha1": "30402f4fff530c5660f96469d2933efce72cfa43",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "tests/QuantumClassicalBridge.test.js",
+      "blob_sha1": "5e7d6fc6165562ddad3194ca2298865d04a1ef3b",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "tests/test_alpha_language.py",
+      "blob_sha1": "246dc6a9b952ef3804c9b6a539d419e50ecd5c52",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "tests/test_apl_measurement_edgecases.js",
+      "blob_sha1": "0f3314591243805437d1a4d089c94b797bf6d025",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "tests/test_apl_measurements.js",
+      "blob_sha1": "a453958936b388e4137b8ab08de966890683e90b",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "tests/test_collapse_alias.js",
+      "blob_sha1": "a45f480491f465f8680e0246801ec324329b4eec",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "tests/test_helix_self_builder.py",
+      "blob_sha1": "9d5c8e058acb4f30ae80fed1ab5e0a9968363493",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "tests/test_hex_prism.py",
+      "blob_sha1": "0739854f766510ac64f3ffb28fb2c14835b0b5ae",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "tests/test_translator.py",
+      "blob_sha1": "0a71827d1b9fd8e2be4f7d1ae85c4659ad3be3c0",
+      "mode": "100644",
+      "stage": 0
+    },
+    {
+      "path": "tests/test_triad_hysteresis.js",
+      "blob_sha1": "037e4b25b74c3bcd6ac7d24284e6106287d13895",
+      "mode": "100644",
+      "stage": 0
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+Running unified simulation with 5 steps...
+
+======================================================================
+QUANTUM-CLASSICAL SIMULATION RESULTS
+======================================================================
+
+Quantum State:
+  z-coordinate: 0.1126
+  Integrated information (Φ): 0.0000
+  von Neumann entropy (S): 2.0630
+  Purity: 0.5992
+
+Classical Engines:
+  IIT φ: 0.4234
+  Cooperation: 0.8949
+  Free Energy: 0.2311
+
+Analytics:
+  Total steps: 5
+  Quantum-classical correlation: 0.0000
+
+Helix Mapping:
+  Harmonic: t2
+  Recommended operators: ^, ÷, −, ×
+  Truth bias: UNTRUE
+
+Helix Seed Context:
+  Target z: 0.80
+  Title: Helix Autonomous Coordination Architecture
+  Intent:
+    - Autonomous coordination requires four-layer substrate: transport, discovery, triggers, coherence
+  Source: reference/helix_bridge/VAULTNODES/z0p80/vn-helix-autonomous-coordination-metadata.yaml
+
+Alpha Programming Language Token:
+  Sentence (A3): u^ | Oscillator | wave
+  Operator: Amplification
+  Predicted regime: Amplified vortex-rich waves
+  Truth bias: UNTRUE via t2
+
+Runtime Helix Hint:
+  Harmonic: t2
+  Truth channel: UNTRUE
+  z (engine): 0.1126
+  Operator window: ^, ÷, −, ×
+
+Recent Operator Selections:
+  step 2: () (0.747) → t1 / UNTRUE @ z=0.0750
+  step 3: () (0.703) → t1 / UNTRUE @ z=0.0947
+  step 4: () (0.580) → t2 / UNTRUE @ z=0.1126
+======================================================================

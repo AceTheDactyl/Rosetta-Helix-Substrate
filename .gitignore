@@ -1,0 +1,32 @@
+# Python
+.venv/
+.pytest_cache/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+.coverage
+htmlcov/
+dist/
+build/
+
+# Node.js
+node_modules/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs
+*.log
+logs/*.json
+
+# Generated/Output files
+/bridge_run.json
+
+# OS files
+.DS_Store
+Thumbs.db

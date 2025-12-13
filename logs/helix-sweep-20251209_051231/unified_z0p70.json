@@ -1,0 +1,182 @@
+{
+  "quantum": {
+    "dimTotal": 192,
+    "z": 0.11013300684453808,
+    "phi": 0,
+    "entropy": 2.0597075424768687,
+    "purity": 0.5991655210765091,
+    "populations": [
+      0.7738455507459281,
+      6.461324592905398e-05,
+      6.461324592905398e-05,
+      0.00025767500945068623,
+      0.00025767500945068623,
+      0.00025767500945068623,
+      0.0007115380924390805,
+      0.0007115380924390805,
+      0.0007115380924390805,
+      0.0013624677669150324
+    ],
+    "truthProbs": {
+      "TRUE": 0.8491872916666661,
+      "UNTRUE": 0.0754063541666666,
+      "PARADOX": 0.0754063541666666
+    },
+    "helix": {
+      "harmonic": "t2",
+      "operators": [
+        "^",
+        "\u00f7",
+        "\u2212",
+        "\u00d7"
+      ],
+      "truthChannel": "UNTRUE",
+      "z": 0.11013300684453808
+    }
+  },
+  "classical": {
+    "IIT": {
+      "phi": 0.4311346745470952,
+      "integrationSignal": 0.11392000000000005,
+      "recursiveDrive": 0.6885845398377417
+    },
+    "GameTheory": {
+      "cooperation": 0.9194496249999995,
+      "resonance": 0.4187026770555588
+    },
+    "FreeEnergy": {
+      "F": 0.23313869745531146,
+      "tension": -0.4923161975688143,
+      "dissipation": 1.1442722593206842
+    }
+  },
+  "measurement": {
+    "lastMode": "none",
+    "lastProjector": null,
+    "stats": {
+      "eigenstate": 0,
+      "subspace": 0
+    }
+  },
+  "history": {
+    "z": [
+      0,
+      0.02693202360471019,
+      0.05042069096960505,
+      0.07200038306087743,
+      0.0918727786654536
+    ],
+    "phi": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "entropy": [
+      0,
+      0.653447901246476,
+      1.1792513612530602,
+      1.6425461912080441,
+      2.0597075424768687
+    ],
+    "operators": [
+      {
+        "operator": "()",
+        "probability": 0.8852063081676049,
+        "step": 0,
+        "helix": {
+          "harmonic": "t1",
+          "operators": [
+            "()",
+            "\u2212",
+            "\u00f7"
+          ],
+          "truthChannel": "UNTRUE",
+          "z": 0.026932633626586894
+        }
+      },
+      {
+        "operator": "^",
+        "probability": 0.03501368494511379,
+        "step": 1,
+        "helix": {
+          "harmonic": "t1",
+          "operators": [
+            "()",
+            "\u2212",
+            "\u00f7"
+          ],
+          "truthChannel": "UNTRUE",
+          "z": 0.05042165008170713
+        }
+      },
+      {
+        "operator": "+",
+        "probability": 0.029908647440997447,
+        "step": 2,
+        "helix": {
+          "harmonic": "t1",
+          "operators": [
+            "()",
+            "\u2212",
+            "\u00f7"
+          ],
+          "truthChannel": "UNTRUE",
+          "z": 0.07200158592453042
+        }
+      },
+      {
+        "operator": "()",
+        "probability": 0.7109642793241119,
+        "step": 3,
+        "helix": {
+          "harmonic": "t1",
+          "operators": [
+            "()",
+            "\u2212",
+            "\u00f7"
+          ],
+          "truthChannel": "UNTRUE",
+          "z": 0.09187413495404625
+        }
+      },
+      {
+        "operator": "()",
+        "probability": 0.5865989773741792,
+        "step": 4,
+        "helix": {
+          "harmonic": "t2",
+          "operators": [
+            "^",
+            "\u00f7",
+            "\u2212",
+            "\u00d7"
+          ],
+          "truthChannel": "UNTRUE",
+          "z": 0.11013300684453808
+        }
+      }
+    ]
+  },
+  "analytics": {
+    "totalSteps": 5,
+    "measurementCount": 0,
+    "collapseStats": {
+      "eigenstate": 0,
+      "subspace": 0
+    },
+    "avgZ": 0.04824517526012925,
+    "avgPhi": 0,
+    "avgEntropy": 1.1069905992368898,
+    "classicalPhi": 0.4311346745470952,
+    "cooperation": 0.9194496249999995,
+    "freeEnergy": 0.23313869745531146,
+    "operatorDist": {
+      "()": 0.6,
+      "^": 0.2,
+      "+": 0.2
+    },
+    "quantumClassicalCorr": 0
+  }
+}

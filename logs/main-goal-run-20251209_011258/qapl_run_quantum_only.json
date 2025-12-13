@@ -1,0 +1,111 @@
+{
+  "quantum": {
+    "z": 0.10680660666307046,
+    "phi": 0,
+    "entropy": 2.3715880783798897,
+    "purity": 0.2319283666509996,
+    "time": 0.05,
+    "dimTotal": 192,
+    "measurementHistory": []
+  },
+  "measurements": {
+    "totalMeasurements": 5,
+    "operatorCounts": {
+      "()": 1,
+      "^": 4
+    },
+    "avgCollapseProbability": 0.2262190625,
+    "avgCoherence": 0.1555648832461714
+  },
+  "distribution": {
+    "()": 0.2,
+    "^": 0.8
+  },
+  "correlation": 0,
+  "recentHistory": [
+    {
+      "time": 0.01,
+      "operator": "()",
+      "probability": 1,
+      "z": 0.10669466666666665,
+      "phi": 0,
+      "entropy": 2.365937823400378
+    },
+    {
+      "time": 0.02,
+      "operator": "^",
+      "probability": 1,
+      "z": 0.10672266066666666,
+      "phi": 0,
+      "entropy": 2.367480280325359
+    },
+    {
+      "time": 0.03,
+      "operator": "^",
+      "probability": 1,
+      "z": 0.10675064866630671,
+      "phi": 0,
+      "entropy": 2.3689140644627797
+    },
+    {
+      "time": 0.04,
+      "operator": "^",
+      "probability": 1,
+      "z": 0.10677863066522746,
+      "phi": 0,
+      "entropy": 2.370277296860949
+    },
+    {
+      "time": 0.05,
+      "operator": "^",
+      "probability": 1,
+      "z": 0.10680660666307046,
+      "phi": 0,
+      "entropy": 2.3715880783798897
+    }
+  ],
+  "populations": [
+    0,
+    0.40017989203240006,
+    0,
+    0,
+    0.11982010799998545,
+    0,
+    0,
+    1.0790282915708403e-07,
+    0,
+    0
+  ],
+  "coherences": [
+    {
+      "i": 0,
+      "j": 1,
+      "value": 0
+    },
+    {
+      "i": 0,
+      "j": 2,
+      "value": 0
+    },
+    {
+      "i": 0,
+      "j": 3,
+      "value": 0
+    },
+    {
+      "i": 0,
+      "j": 4,
+      "value": 0
+    },
+    {
+      "i": 0,
+      "j": 5,
+      "value": 0
+    }
+  ],
+  "truthProbs": {
+    "TRUE": 0,
+    "UNTRUE": 1,
+    "PARADOX": 0
+  }
+}

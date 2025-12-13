@@ -1,0 +1,93 @@
+[build-system]
+requires = ["setuptools>=65.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "quantum-apl"
+version = "1.0.0"
+description = "Quantum measurement-based consciousness simulation using APL 3.0 formalism"
+readme = "README_PYTHON.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+authors = [
+    { name = "Consciousness Research Lab" },
+]
+keywords = ["quantum", "consciousness", "APL", "measurement", "IIT", "integrated-information"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Physics",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "numpy>=1.20.0",
+    "PyYAML>=6.0",
+]
+
+[project.optional-dependencies]
+viz = [
+    "matplotlib>=3.6,<4",
+]
+analysis = [
+    "pandas>=1.3.0",
+]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "black>=23.0.0",
+    "mypy>=1.0.0",
+    "ruff>=0.1.0",
+]
+all = [
+    "quantum-apl[viz,analysis,dev]",
+]
+
+[project.scripts]
+qapl-run = "quantum_apl_python.cli:run_simulation"
+qapl-test = "quantum_apl_python.cli:run_tests"
+qapl-analyze = "quantum_apl_python.cli:analyze"
+qapl-widget = "quantum_apl_python.widgets:run_hex_prism_widget"
+qapl-measure = "quantum_apl_python.measure:run"
+
+[project.urls]
+Homepage = "https://github.com/consciousness-lab/quantum-apl"
+Documentation = "https://github.com/consciousness-lab/quantum-apl/blob/main/README.md"
+Repository = "https://github.com/consciousness-lab/quantum-apl"
+Issues = "https://github.com/consciousness-lab/quantum-apl/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["quantum_apl_python*"]
+
+[tool.setuptools.package-data]
+quantum_apl_python = ["*.js", "*.md"]
+
+[tool.black]
+line-length = 120
+target-version = ["py38", "py39", "py310", "py311"]
+
+[tool.ruff]
+line-length = 120
+select = ["E", "F", "W", "I", "N", "UP", "B", "A", "C4", "DTZ", "FA", "ISC", "ICN", "PIE", "PT", "RSE", "RET", "SIM", "ARG", "PL"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
+disallow_incomplete_defs = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "--cov=quantum_apl_python --cov-report=term-missing --cov-report=html"

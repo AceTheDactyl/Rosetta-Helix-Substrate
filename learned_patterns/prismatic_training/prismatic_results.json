@@ -1,0 +1,1846 @@
+{
+  "timestamp": "2025-12-13T00:57:40.324269",
+  "config": {
+    "input_dim": 16,
+    "output_dim": 4,
+    "n_oscillators": 50,
+    "n_layers": 4,
+    "batch_size": 32,
+    "learning_rate": 0.001
+  },
+  "training_history": [
+    {
+      "loss": 0.6175199484825135,
+      "coherence": 0.780605924129486,
+      "z": 0.8082356541435726,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.5427898077917966,
+      "cumulative_neg_entropy": 5.290282781532402,
+      "formation_phase": "crystalline",
+      "phase_counts": {
+        "disordered": 5,
+        "quasi_crystal": 7,
+        "crystalline": 13
+      }
+    },
+    {
+      "loss": 0.4949073004722595,
+      "coherence": 0.7073522996902466,
+      "z": 0.6643917343190842,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.3009816914159339,
+      "cumulative_neg_entropy": 8.400958266384842,
+      "formation_phase": "quasi_crystal",
+      "phase_counts": {
+        "disordered": 11,
+        "quasi_crystal": 13,
+        "crystalline": 1
+      }
+    },
+    {
+      "loss": 0.3714255142211914,
+      "coherence": 0.6274404764175415,
+      "z": 0.6950288678578685,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.37879295804330043,
+      "cumulative_neg_entropy": 12.218087793276684,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 3,
+        "quasi_crystal": 22,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.2635823720693588,
+      "coherence": 0.5503567123413086,
+      "z": 0.5575810218451136,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.037808874750516426,
+      "cumulative_neg_entropy": 12.594367703471967,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.16829709827899933,
+      "coherence": 0.4930945634841919,
+      "z": 0.5217702084297181,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.02337376301365187,
+      "cumulative_neg_entropy": 12.838940703887044,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.09665475219488144,
+      "coherence": 0.4470287001132965,
+      "z": 0.4891782893322339,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.006448817601754261,
+      "cumulative_neg_entropy": 12.903397491388217,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.06237450510263443,
+      "coherence": 0.43690598249435425,
+      "z": 0.44855734114879475,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0019191121060820476,
+      "cumulative_neg_entropy": 12.922604679406648,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.047700567841529845,
+      "coherence": 0.4209948134422302,
+      "z": 0.4551262697510289,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.002609259752950574,
+      "cumulative_neg_entropy": 12.949004329400308,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.03917949490249157,
+      "coherence": 0.4202183735370636,
+      "z": 0.45300839379819224,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.002380068640470444,
+      "cumulative_neg_entropy": 12.972584935032689,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.033039373755455015,
+      "coherence": 0.4221086049079895,
+      "z": 0.4334404767533324,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.001224672673912628,
+      "cumulative_neg_entropy": 12.985023339410745,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.029100745096802712,
+      "coherence": 0.4212280809879303,
+      "z": 0.4578067958317316,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0028460775907427445,
+      "cumulative_neg_entropy": 13.013592566970608,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.02596510238945484,
+      "coherence": 0.42519999742507936,
+      "z": 0.43744270879584846,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0018577948347988156,
+      "cumulative_neg_entropy": 13.03144866949746,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.023352517932653426,
+      "coherence": 0.4268103468418121,
+      "z": 0.449519333197869,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0021768172817047547,
+      "cumulative_neg_entropy": 13.053786669966778,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.021709165908396243,
+      "coherence": 0.4290636837482452,
+      "z": 0.4479874052395456,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0018687824150238025,
+      "cumulative_neg_entropy": 13.07234459288138,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.01992378503084183,
+      "coherence": 0.4308547735214233,
+      "z": 0.446657239767689,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0019089102340246686,
+      "cumulative_neg_entropy": 13.091502861377043,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.018704125359654426,
+      "coherence": 0.4314299786090851,
+      "z": 0.46044539680237195,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.002846715801513536,
+      "cumulative_neg_entropy": 13.120103799878052,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.017124398723244668,
+      "coherence": 0.4322654247283936,
+      "z": 0.46262307772770433,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.003022710771416112,
+      "cumulative_neg_entropy": 13.14998889143724,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.016392491459846496,
+      "coherence": 0.4350890290737152,
+      "z": 0.4442959338249552,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0017916499181035422,
+      "cumulative_neg_entropy": 13.168024668006643,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.015542414411902428,
+      "coherence": 0.4329190766811371,
+      "z": 0.4618520830552641,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0034300159405430885,
+      "cumulative_neg_entropy": 13.202688907153934,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.014858442842960357,
+      "coherence": 0.43465680837631226,
+      "z": 0.45957299358189785,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.003017543498054677,
+      "cumulative_neg_entropy": 13.232613416631054,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.014266573414206505,
+      "coherence": 0.43684845566749575,
+      "z": 0.4445454781785323,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0017854901363114897,
+      "cumulative_neg_entropy": 13.250318813092871,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.014005214273929596,
+      "coherence": 0.430439727306366,
+      "z": 0.47733597000164685,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.005248805197311606,
+      "cumulative_neg_entropy": 13.303262192066136,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.013202019371092319,
+      "coherence": 0.4354235780239105,
+      "z": 0.43606465088450336,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0023460985326704373,
+      "cumulative_neg_entropy": 13.325587494584367,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.013337689377367496,
+      "coherence": 0.4323887062072754,
+      "z": 0.4522974027349027,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.004086462847988389,
+      "cumulative_neg_entropy": 13.367612609289594,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.012225877828896045,
+      "coherence": 0.4331435942649841,
+      "z": 0.4689901432347012,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.003797723793481333,
+      "cumulative_neg_entropy": 13.405230768157502,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.012020980939269066,
+      "coherence": 0.4353243660926819,
+      "z": 0.4539944560096687,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.002322121046227449,
+      "cumulative_neg_entropy": 13.4287478801815,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.01151065394282341,
+      "coherence": 0.43420981645584106,
+      "z": 0.45602523315625326,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.002593410914685248,
+      "cumulative_neg_entropy": 13.454294291972758,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.011049248483031989,
+      "coherence": 0.4339031589031219,
+      "z": 0.44766143450149637,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0019443746805314034,
+      "cumulative_neg_entropy": 13.47405284097485,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.010693128705024719,
+      "coherence": 0.4326236391067505,
+      "z": 0.4667006368808124,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0032791482736476995,
+      "cumulative_neg_entropy": 13.506619235036387,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.010397122967988252,
+      "coherence": 0.433473801612854,
+      "z": 0.43921954374137706,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0015151222519479606,
+      "cumulative_neg_entropy": 13.521973660849852,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.009922694209963083,
+      "coherence": 0.43068499326705934,
+      "z": 0.47093790014696396,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.004129500652969334,
+      "cumulative_neg_entropy": 13.56344860132734,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.009785624723881482,
+      "coherence": 0.4337203550338745,
+      "z": 0.44114844415704757,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0017753020817605838,
+      "cumulative_neg_entropy": 13.580649950573536,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.009643381852656603,
+      "coherence": 0.431776762008667,
+      "z": 0.4534381547500804,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0025452681959409716,
+      "cumulative_neg_entropy": 13.606538354977182,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.009477962609380483,
+      "coherence": 0.43014309644699095,
+      "z": 0.47016417532173543,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0039028639522369676,
+      "cumulative_neg_entropy": 13.645705445646232,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.009441419709473849,
+      "coherence": 0.43187960624694827,
+      "z": 0.43257318848881704,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0013328728532485102,
+      "cumulative_neg_entropy": 13.65858077112809,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.00908338189125061,
+      "coherence": 0.42916257500648497,
+      "z": 0.4616941073743628,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0031608619559919697,
+      "cumulative_neg_entropy": 13.690576357956697,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.009060328528285026,
+      "coherence": 0.4292432129383087,
+      "z": 0.4605471850836361,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0028050810787681383,
+      "cumulative_neg_entropy": 13.718637232185092,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.00864826574921608,
+      "coherence": 0.4283554434776306,
+      "z": 0.4401628816694073,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0019943077703262614,
+      "cumulative_neg_entropy": 13.737815444772702,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.009053674470633268,
+      "coherence": 0.4271702992916107,
+      "z": 0.4593596001438365,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0038080676539054346,
+      "cumulative_neg_entropy": 13.776835726174223,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.008414296824485063,
+      "coherence": 0.42729651093482973,
+      "z": 0.45255511753204325,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.002829702438480937,
+      "cumulative_neg_entropy": 13.804654821909384,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.008399125318974257,
+      "coherence": 0.4283293449878693,
+      "z": 0.4446730001816121,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0017438529142162049,
+      "cumulative_neg_entropy": 13.8223866973063,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.008153300154954196,
+      "coherence": 0.42619682669639586,
+      "z": 0.4580388042087135,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0026573637508553395,
+      "cumulative_neg_entropy": 13.849099181005409,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.008036765996366739,
+      "coherence": 0.42551921010017396,
+      "z": 0.4389800115500966,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0017510512365244589,
+      "cumulative_neg_entropy": 13.866104642512072,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.00798346396535635,
+      "coherence": 0.4243303644657135,
+      "z": 0.45678727738787733,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0028574698874361537,
+      "cumulative_neg_entropy": 13.895252926642819,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.007564334506168962,
+      "coherence": 0.4244202470779419,
+      "z": 0.4558977421307361,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0031848250089789453,
+      "cumulative_neg_entropy": 13.926757287626595,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.007780115250498056,
+      "coherence": 0.4253240633010864,
+      "z": 0.4280237713158296,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.001233570982921342,
+      "cumulative_neg_entropy": 13.939045320507597,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.007594175692647695,
+      "coherence": 0.4228030157089233,
+      "z": 0.4575623476536569,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.002768380749892793,
+      "cumulative_neg_entropy": 13.967117765146284,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.007411528676748276,
+      "coherence": 0.42303614974021914,
+      "z": 0.4471654755022138,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0019167204567245258,
+      "cumulative_neg_entropy": 13.986110815309447,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.007347266059368849,
+      "coherence": 0.42134534239768984,
+      "z": 0.43759621044773117,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0013919137737264825,
+      "cumulative_neg_entropy": 14.00018530477412,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.00699603958055377,
+      "coherence": 0.4220999217033386,
+      "z": 0.45677603868283073,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0025179096952121184,
+      "cumulative_neg_entropy": 14.025205432447555,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.006827952843159437,
+      "coherence": 0.4210098958015442,
+      "z": 0.4294494307207002,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0011125138743719278,
+      "cumulative_neg_entropy": 14.036380015354563,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.006980498991906643,
+      "coherence": 0.4178710627555847,
+      "z": 0.4535162749399139,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0023837862124417757,
+      "cumulative_neg_entropy": 14.060376830847991,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.006857744995504618,
+      "coherence": 0.417407329082489,
+      "z": 0.44466891851175205,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0019602700237463357,
+      "cumulative_neg_entropy": 14.079643806249589,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.006554503031075001,
+      "coherence": 0.4166138768196106,
+      "z": 0.4200651812903667,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0010262174811375673,
+      "cumulative_neg_entropy": 14.090095540909212,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.007206483148038388,
+      "coherence": 0.4101171588897705,
+      "z": 0.4771586515519751,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.006147163284104694,
+      "cumulative_neg_entropy": 14.151846435428382,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.006906810160726309,
+      "coherence": 0.41521021008491515,
+      "z": 0.41554579747827775,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.001897457459629068,
+      "cumulative_neg_entropy": 14.16968621950516,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.007164400387555361,
+      "coherence": 0.41223025679588315,
+      "z": 0.43758360571523774,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.002852195975765015,
+      "cumulative_neg_entropy": 14.199352578811517,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.00647659383714199,
+      "coherence": 0.41328344702720643,
+      "z": 0.4521413418104755,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.002438688777658471,
+      "cumulative_neg_entropy": 14.223512029892547,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.0063206060603260995,
+      "coherence": 0.41316766500473023,
+      "z": 0.4179068457681774,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0008178488019942087,
+      "cumulative_neg_entropy": 14.231715324719136,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.0062037168815732005,
+      "coherence": 0.4096226894855499,
+      "z": 0.4568208889775239,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0029071269766810697,
+      "cumulative_neg_entropy": 14.260995977135524,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.006134914401918649,
+      "coherence": 0.4099706029891968,
+      "z": 0.43322683019379055,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0015893352078482689,
+      "cumulative_neg_entropy": 14.276525152263279,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.0060314396396279335,
+      "coherence": 0.409870001077652,
+      "z": 0.4332820245756194,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0012702227211763145,
+      "cumulative_neg_entropy": 14.289544413322055,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.0057541973143816,
+      "coherence": 0.4082426536083221,
+      "z": 0.44140137843409716,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.001616781181333114,
+      "cumulative_neg_entropy": 14.305650289521337,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.005600899932906031,
+      "coherence": 0.4068134081363678,
+      "z": 0.42298718913767436,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0009436664580365606,
+      "cumulative_neg_entropy": 14.315039583328854,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.00547846238128841,
+      "coherence": 0.40586378693580627,
+      "z": 0.4342512548947743,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0012372201780104762,
+      "cumulative_neg_entropy": 14.327446022362745,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.00548640826717019,
+      "coherence": 0.40564392566680907,
+      "z": 0.4286511233988976,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0010701674933974268,
+      "cumulative_neg_entropy": 14.338185404142111,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.005501393098384142,
+      "coherence": 0.4034360241889954,
+      "z": 0.4338824081856969,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0013540987283539479,
+      "cumulative_neg_entropy": 14.351829029178663,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.005371663691475987,
+      "coherence": 0.40309432506561277,
+      "z": 0.4334589249013148,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0012269713034371971,
+      "cumulative_neg_entropy": 14.364010666194483,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.0052015749644488095,
+      "coherence": 0.40163588643074033,
+      "z": 0.42617029114462873,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0010246880426432782,
+      "cumulative_neg_entropy": 14.374348521109699,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.0051101305522024635,
+      "coherence": 0.40131007552146913,
+      "z": 0.4348137086666843,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0013082686345407628,
+      "cumulative_neg_entropy": 14.387235326534494,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.0051245313324034215,
+      "coherence": 0.40102713704109194,
+      "z": 0.4229608335475692,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0009446159016312743,
+      "cumulative_neg_entropy": 14.396795357056387,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.005259412806481123,
+      "coherence": 0.39914427042007444,
+      "z": 0.4306434657555528,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0011187532106873145,
+      "cumulative_neg_entropy": 14.408062133540255,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.004948042090982199,
+      "coherence": 0.397664315700531,
+      "z": 0.4272745906540915,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0009893284808027683,
+      "cumulative_neg_entropy": 14.417949596337696,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.004767357409000397,
+      "coherence": 0.3969975423812866,
+      "z": 0.43603446361090176,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.001354095875661952,
+      "cumulative_neg_entropy": 14.431541211180681,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.004910727962851524,
+      "coherence": 0.39513887524604796,
+      "z": 0.4037145378548338,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0006518708156631897,
+      "cumulative_neg_entropy": 14.437690219537176,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.0048970566503703595,
+      "coherence": 0.392899181842804,
+      "z": 0.4398141564925542,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.002468208636735795,
+      "cumulative_neg_entropy": 14.462812751728418,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.00484079010784626,
+      "coherence": 0.3945326817035675,
+      "z": 0.4281000075558346,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0014283050310276674,
+      "cumulative_neg_entropy": 14.476932262839735,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.004719430766999722,
+      "coherence": 0.3935001993179321,
+      "z": 0.4123915102975802,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.000672257131565174,
+      "cumulative_neg_entropy": 14.483669021769845,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.004845963679254055,
+      "coherence": 0.3923830986022949,
+      "z": 0.42147203637555153,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0008413615937957628,
+      "cumulative_neg_entropy": 14.492113558133205,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.0045550323091447355,
+      "coherence": 0.3915481162071228,
+      "z": 0.42062790760885094,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0008114300927745674,
+      "cumulative_neg_entropy": 14.50024447776642,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.0045504655316472055,
+      "coherence": 0.3913644480705261,
+      "z": 0.4307695605845101,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.00115057773321396,
+      "cumulative_neg_entropy": 14.511827705256135,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.004549689739942551,
+      "coherence": 0.390071941614151,
+      "z": 0.42338606704698983,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0009167450029251968,
+      "cumulative_neg_entropy": 14.52098273826924,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.004497382640838623,
+      "coherence": 0.3890857017040253,
+      "z": 0.4191380305831423,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0007842595716441288,
+      "cumulative_neg_entropy": 14.52879336711716,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.0045933071244508026,
+      "coherence": 0.3888367807865143,
+      "z": 0.4147768455937086,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0007298178550660059,
+      "cumulative_neg_entropy": 14.535998679942589,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.00458895405754447,
+      "coherence": 0.38686481237411496,
+      "z": 0.4159321669280189,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0007441557876594111,
+      "cumulative_neg_entropy": 14.543523288791352,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.004353652466088534,
+      "coherence": 0.38693472266197204,
+      "z": 0.4205597632103524,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0008431689660836586,
+      "cumulative_neg_entropy": 14.551888330935956,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.004385348120704294,
+      "coherence": 0.38586628675460816,
+      "z": 0.41030966696393156,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0006613186200471629,
+      "cumulative_neg_entropy": 14.558635061564306,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.004264543047174812,
+      "coherence": 0.38481453418731687,
+      "z": 0.4330587879677271,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0012188443067280357,
+      "cumulative_neg_entropy": 14.570827974565498,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.004224870773032308,
+      "coherence": 0.38342055678367615,
+      "z": 0.4066338860675062,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0005282889281542394,
+      "cumulative_neg_entropy": 14.576084089129235,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.004347712080925703,
+      "coherence": 0.38214546799659727,
+      "z": 0.41826179595287916,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0007633106189837809,
+      "cumulative_neg_entropy": 14.583782500005775,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.004344190740957856,
+      "coherence": 0.38260873198509215,
+      "z": 0.40598126099508247,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0005269626712633326,
+      "cumulative_neg_entropy": 14.588960062957394,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.004334330819547177,
+      "coherence": 0.38280795693397524,
+      "z": 0.421702460605906,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0008297331954484287,
+      "cumulative_neg_entropy": 14.597298146415378,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.004317980958148837,
+      "coherence": 0.38226622343063354,
+      "z": 0.4099105093416928,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0005615908407676305,
+      "cumulative_neg_entropy": 14.60294914671601,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.003971178885549307,
+      "coherence": 0.3815722692012787,
+      "z": 0.42425904587616997,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0009595048547007205,
+      "cumulative_neg_entropy": 14.612573040328666,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.004033144479617477,
+      "coherence": 0.3801048922538757,
+      "z": 0.3966880317586957,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0003916802219434016,
+      "cumulative_neg_entropy": 14.616402388329972,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.00405584316700697,
+      "coherence": 0.37863550305366517,
+      "z": 0.4241317872065447,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0010312774899835888,
+      "cumulative_neg_entropy": 14.626831166987387,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.0040375590324401855,
+      "coherence": 0.37908313155174256,
+      "z": 0.4044082904718385,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0005935077273594836,
+      "cumulative_neg_entropy": 14.632606923651869,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.004035905236378312,
+      "coherence": 0.37767911672592164,
+      "z": 0.40185808669266826,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.000491298968212067,
+      "cumulative_neg_entropy": 14.637641958895731,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.00383532389998436,
+      "coherence": 0.3786327314376831,
+      "z": 0.4209244105821254,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0008406169007201307,
+      "cumulative_neg_entropy": 14.646065309201637,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    },
+    {
+      "loss": 0.0035305462032556535,
+      "coherence": 0.376847060918808,
+      "z": 0.4015825409384921,
+      "k_formations": 0,
+      "triad_passes": 1,
+      "triad_unlocked": false,
+      "qc_boost": 1.9961710408648279,
+      "delta_s_neg": 0.0004310180722831368,
+      "cumulative_neg_entropy": 14.650336884173731,
+      "formation_phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      }
+    }
+  ],
+  "triad_events": [
+    {
+      "layer": 0,
+      "event": "pass",
+      "z": 0.853976943822125,
+      "epoch": 0
+    },
+    {
+      "layer": 1,
+      "event": "rearm",
+      "z": 0.8164765941117398,
+      "epoch": 1
+    }
+  ],
+  "phase_transitions": [
+    {
+      "epoch": 0,
+      "from_phase": "disordered",
+      "to_phase": "quasi_crystal",
+      "z": 0.6190156401399535,
+      "delta_s_neg": 0.111191911281531
+    },
+    {
+      "epoch": 0,
+      "from_phase": "quasi_crystal",
+      "to_phase": "crystalline",
+      "z": 0.8789443143496526,
+      "delta_s_neg": 0.9940096769538432
+    },
+    {
+      "epoch": 1,
+      "from_phase": "crystalline",
+      "to_phase": "quasi_crystal",
+      "z": 0.8625059607106706,
+      "delta_s_neg": 0.9995541861407619
+    },
+    {
+      "epoch": 1,
+      "from_phase": "quasi_crystal",
+      "to_phase": "disordered",
+      "z": 0.6148245209743896,
+      "delta_s_neg": 0.10314001892367475
+    },
+    {
+      "epoch": 1,
+      "from_phase": "disordered",
+      "to_phase": "quasi_crystal",
+      "z": 0.6214973824727338,
+      "delta_s_neg": 0.116183746979222
+    },
+    {
+      "epoch": 2,
+      "from_phase": "quasi_crystal",
+      "to_phase": "disordered",
+      "z": 0.6170977581447962,
+      "delta_s_neg": 0.10744899388595312
+    }
+  ],
+  "prism_activations": {
+    "0": 10000,
+    "1": 10000,
+    "2": 1961,
+    "3": 619,
+    "4": 224,
+    "5": 317,
+    "6": 543
+  },
+  "final_prism": {
+    "z": 0.4161227885605533,
+    "delta_s_neg": 0.000684484146181534,
+    "radius": 0.8498288789634546,
+    "height": 0.12012320714631267,
+    "phi": 0.0001791975304285491,
+    "z_top": 0.4761843921337096,
+    "z_bot": 0.356061184987397,
+    "vertices": [
+      {
+        "k": 0,
+        "x": 0.8498288653187063,
+        "y": 0.00015228723558207834,
+        "z_top": 0.4761843921337096,
+        "z_bot": 0.356061184987397
+      },
+      {
+        "k": 1,
+        "x": 0.424782548044667,
+        "y": 0.7360495298530949,
+        "z_top": 0.4761843921337096,
+        "z_bot": 0.356061184987397
+      },
+      {
+        "k": 2,
+        "x": -0.42504631727403924,
+        "y": 0.735897242617513,
+        "z_top": 0.4761843921337096,
+        "z_bot": 0.356061184987397
+      },
+      {
+        "k": 3,
+        "x": -0.8498288653187063,
+        "y": -0.00015228723558202584,
+        "z_top": 0.4761843921337096,
+        "z_bot": 0.356061184987397
+      },
+      {
+        "k": 4,
+        "x": -0.42478254804466725,
+        "y": -0.7360495298530949,
+        "z_top": 0.4761843921337096,
+        "z_bot": 0.356061184987397
+      },
+      {
+        "k": 5,
+        "x": 0.42504631727403874,
+        "y": -0.7358972426175132,
+        "z_top": 0.4761843921337096,
+        "z_bot": 0.356061184987397
+      }
+    ]
+  },
+  "summary": {
+    "total_epochs": 100,
+    "final_loss": 0.0035305462032556535,
+    "final_coherence": 0.376847060918808,
+    "final_z": 0.4015825409384921,
+    "triad_passes": 1,
+    "triad_unlocked": false,
+    "qc_boost": 1.9961710408648279,
+    "final_formation_phase": "disordered",
+    "final_delta_s_neg": 0.0004310180722831368,
+    "cumulative_neg_entropy": 14.650336884173731,
+    "phase_transition_count": 6
+  }
+}

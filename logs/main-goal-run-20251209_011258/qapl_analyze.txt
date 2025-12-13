@@ -1,0 +1,41 @@
+======================================================================
+QUANTUM-CLASSICAL SIMULATION RESULTS
+======================================================================
+
+Quantum State:
+  z-coordinate: 0.0941
+  Integrated information (Φ): 0.0000
+  von Neumann entropy (S): 2.0350
+  Purity: 0.5995
+
+Classical Engines:
+  IIT φ: 0.3846
+  Cooperation: 0.8949
+  Free Energy: 0.2432
+
+Analytics:
+  Total steps: 5
+  Quantum-classical correlation: 0.0000
+
+Helix Mapping:
+  Harmonic: t1
+  Recommended operators: (), −, ÷
+  Truth bias: UNTRUE
+
+Alpha Programming Language Token:
+  Sentence (A1): d() | Conductor | geometry
+  Operator: Boundary
+  Predicted regime: Isotropic lattices under collapse
+  Truth bias: UNTRUE via t1
+
+Runtime Helix Hint:
+  Harmonic: t1
+  Truth channel: UNTRUE
+  z (engine): 0.0941
+  Operator window: (), −, ÷
+
+Recent Operator Selections:
+  step 2: () (0.774) → t1 / UNTRUE @ z=0.0580
+  step 3: () (0.731) → t1 / UNTRUE @ z=0.0765
+  step 4: () (0.704) → t1 / UNTRUE @ z=0.0941
+======================================================================

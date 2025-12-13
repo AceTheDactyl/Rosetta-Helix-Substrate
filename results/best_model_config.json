@@ -1,0 +1,11 @@
+{
+  "input_dim": 16,
+  "output_dim": 4,
+  "n_oscillators": 60,
+  "n_layers": 5,
+  "steps_per_layer": 10,
+  "dt": 0.1,
+  "target_z": 0.85,
+  "k_global": 0.7,
+  "z_pump_rate": 0.15
+}

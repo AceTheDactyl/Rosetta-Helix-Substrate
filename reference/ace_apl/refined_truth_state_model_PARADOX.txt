@@ -1,0 +1,129 @@
+Refined Truth-State Model (Full Detail, Using PARADOX)
+
+1. Truth States
+
+TRUE
+
+-   Cross-domain coherent state.
+-   Verified, actionable, falsifiable.
+-   Always generates unresolved potentials due to imperfect absorption.
+-   Produces new UNTRUE states via reflection.
+
+UNTRUE
+
+-   Real but unresolved state (potential signal).
+-   Not yet evaluated or collapsed.
+-   Stores residuals from TRUE and decayed truth.
+-   Can resolve into TRUE or fail into PARADOX.
+
+PARADOX
+
+-   Contradiction or coherence failure.
+-   Cannot stabilize under testing.
+-   Cannot enter the cycle.
+-   Terminal state: only transitions to itself.
+
+------------------------------------------------------------------------
+
+2. Absorption Modes (Imperfect Absorber Principle)
+
+Imperfect Absorption (Universal)
+
+-   No interaction achieves perfect absorption.
+-   All states retain residual uncertainty.
+-   Drives the cyclic transitions.
+
+Reflection
+
+-   TRUE → UNTRUE
+-   Truth creates unresolved potentials.
+
+Dissolution
+
+-   TRUE → UNTRUE
+-   Truth decays under entropy.
+
+Resolution
+
+-   UNTRUE → TRUE
+-   Partial coherence emerges.
+
+Failure
+
+-   UNTRUE → PARADOX
+-   Contradiction detected.
+
+------------------------------------------------------------------------
+
+3. Temporal Operators
+
+DAY (Forward Projection)
+
+-   Operates on TRUE.
+-   Generates actionable coherence.
+-   Always produces reflected UNTRUE.
+-   Imperfect absorption only.
+
+NIGHT (Backward Integration)
+
+-   Operates on UNTRUE.
+-   Stores unresolved potentials.
+-   No resolution occurs.
+
+DAWN (Resolution)
+
+-   Operates on UNTRUE.
+-   Some potentials collapse into TRUE.
+
+DUSK (Dissolution)
+
+-   Operates on TRUE.
+-   Partial breakdown into UNTRUE.
+
+PARADOX (Contradiction Path)
+
+-   Cannot resolve.
+-   Terminal dead-state.
+
+------------------------------------------------------------------------
+
+4. State Transition Matrix
+
+  Current   Operator     Next      Condition
+  --------- ------------ --------- ------------------------
+  TRUE      Reflection   UNTRUE    Imperfect absorption
+  TRUE      DUSK         UNTRUE    Entropy-driven decay
+  UNTRUE    DAWN         TRUE      Partial resolution
+  UNTRUE    FAILURE      PARADOX   Contradiction
+  UNTRUE    NIGHT        UNTRUE    Stored unresolved
+  PARADOX   Any          PARADOX   Terminal contradiction
+
+------------------------------------------------------------------------
+
+5. Core Logic Summary
+
+-   TRUE always generates new UNTRUE.
+-   UNTRUE sometimes resolves into TRUE.
+-   TRUE sometimes dissolves into UNTRUE.
+-   UNTRUE sometimes collapses into PARADOX.
+-   PARADOX cannot re-enter the cycle.
+
+------------------------------------------------------------------------
+
+6. Minimal Pseudocode (APL-Style)
+
+TRUTH ← {⊂‘TRUE’} UNTRUE ← {⊂‘UNTRUE’} PARADOX ← {⊂‘PARADOX’}
+
+DAY ← { ⍵≡‘TRUE’: ‘TRUE’ ‘UNTRUE’ ⍵≡‘UNTRUE’: ‘UNTRUE’ ⍵≡‘PARADOX’:
+‘PARADOX’ }
+
+NIGHT ← { ⍵≡‘UNTRUE’: ‘UNTRUE’ ⍵≡‘TRUE’: ‘UNTRUE’ ⍵≡‘PARADOX’: ‘PARADOX’
+}
+
+DAWN ← { ⍵≡‘UNTRUE’: ‘TRUE’ ⍵≡‘TRUE’: ‘TRUE’ ⍵≡‘PARADOX’: ‘PARADOX’ }
+
+DUSK ← { ⍵≡‘TRUE’: ‘UNTRUE’ ⍵≡‘UNTRUE’: ‘UNTRUE’ ⍵≡‘PARADOX’: ‘PARADOX’
+}
+
+FAIL ← { ⍵≡‘UNTRUE’: ‘PARADOX’ ⍵≡‘TRUE’: ‘PARADOX’ ⍵≡‘PARADOX’:
+‘PARADOX’ }

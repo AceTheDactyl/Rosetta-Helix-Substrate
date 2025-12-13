@@ -1,0 +1,43 @@
+Running unified simulation with 5 steps...
+
+======================================================================
+QUANTUM-CLASSICAL SIMULATION RESULTS
+======================================================================
+
+Quantum State:
+  z-coordinate: 0.1163
+  Integrated information (Φ): 0.0000
+  von Neumann entropy (S): 2.0644
+  Purity: 0.5991
+
+Classical Engines:
+  IIT φ: 0.4312
+  Cooperation: 0.8949
+  Free Energy: 0.2287
+
+Analytics:
+  Total steps: 5
+  Quantum-classical correlation: 0.0000
+
+Helix Mapping:
+  Harmonic: t2
+  Recommended operators: ^, ÷, −, ×
+  Truth bias: UNTRUE
+
+Alpha Programming Language Token:
+  Sentence (A3): u^ | Oscillator | wave
+  Operator: Amplification
+  Predicted regime: Amplified vortex-rich waves
+  Truth bias: UNTRUE via t2
+
+Runtime Helix Hint:
+  Harmonic: t2
+  Truth channel: UNTRUE
+  z (engine): 0.1163
+  Operator window: ^, ÷, −, ×
+
+Recent Operator Selections:
+  step 2: () (0.743) → t1 / UNTRUE @ z=0.0784
+  step 3: () (0.698) → t1 / UNTRUE @ z=0.0983
+  step 4: () (0.576) → t2 / UNTRUE @ z=0.1163
+======================================================================

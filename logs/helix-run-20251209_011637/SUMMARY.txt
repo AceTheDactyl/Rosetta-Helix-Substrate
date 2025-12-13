@@ -1,0 +1,10 @@
+unified_z0p00.txt | z=0.0830 | harmonic=t1 | truth=UNTRUE
+unified_z0p41.txt | z=0.0981 | harmonic=t1 | truth=UNTRUE
+unified_z0p52.txt | z=0.1022 | harmonic=t2 | truth=UNTRUE
+unified_z0p70.txt | z=0.1089 | harmonic=t2 | truth=UNTRUE
+unified_z0p73.txt | z=0.1094 | harmonic=t2 | truth=UNTRUE
+unified_z0p80.txt | z=0.1126 | harmonic=t2 | truth=UNTRUE
+unified_z0p85.txt | z=0.1144 | harmonic=t2 | truth=UNTRUE
+unified_z0p87.txt | z=0.1145 | harmonic=t2 | truth=UNTRUE
+unified_z0p90.txt | z=0.1163 | harmonic=t2 | truth=UNTRUE
+unified_z0p95.txt | z=0.1181 | harmonic=t2 | truth=UNTRUE

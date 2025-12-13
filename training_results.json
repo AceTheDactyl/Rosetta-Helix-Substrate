@@ -1,0 +1,50 @@
+{
+  "timestamp": "2025-12-13T00:42:09.749221",
+  "config": {
+    "n_runs": 5,
+    "cycles_per_run": 3,
+    "n_physical": 3,
+    "n_bridges": 2
+  },
+  "results": {
+    "initial_quality": 0.5,
+    "final_quality": 1.0,
+    "improvement_ratio": 2.0,
+    "total_lessons": 132,
+    "total_sequences": 720,
+    "operator_distribution": {
+      "()": 0,
+      "\u00d7": 0,
+      "^": 0,
+      "\u00f7": 0,
+      "+": 51,
+      "\u2212": 672
+    },
+    "theoretical_improvement": 11.090169943749476,
+    "efficiency": 18.033988749894846
+  },
+  "quality_history": [
+    0.5568194636281414,
+    1.0748635230500405,
+    1.000438258391757,
+    0.9999942241478753,
+    1.0000010246455562,
+    0.9999997828934211,
+    1.0000000287489679,
+    0.9999999988116053,
+    0.9999999999798851,
+    1.000000000000146,
+    0.9999999999999858,
+    1.0000000000000029,
+    0.9999999999999994,
+    1.0,
+    1.0
+  ],
+  "physics_verification": {
+    "PHI_INV_controls_dynamics": true,
+    "tier_gating_active": true,
+    "S3_composition_used": true,
+    "collapse_at_UNITY": true,
+    "Z_CRITICAL_feedback": true
+  }
+}

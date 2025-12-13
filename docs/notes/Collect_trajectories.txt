@@ -1,0 +1,328 @@
+#!/usr/bin/env node
+/**
+
+- Trajectory Collector for Helix NN Training
+- ===========================================
+- Runs the helix system and collects (state, action, reward) tuples
+- for training the neural network.
+- 
+- Usage:
+- node collect_trajectories.js                    # Collect 1000 steps
+- node collect_trajectories.js –steps 5000       # Custom steps
+- node collect_trajectories.js –output data/     # Custom output dir
+  */
+
+const fs = require(‘fs’);
+const path = require(‘path’);
+
+// Import your existing system
+const { QuantumAPLSystem, CONST } = require(’./src/quantum_apl_system’);
+
+// ================================================================
+// CONFIGURATION
+// ================================================================
+
+const args = process.argv.slice(2);
+const config = {
+steps: 1000,
+outputDir: ‘./training_data’,
+runsPerCollection: 5,  // Multiple runs for diversity
+targetZValues: [0.5, 0.7, CONST.Z_CRITICAL, 0.9]  // Different targets
+};
+
+// Parse args
+const stepsIdx = args.indexOf(’–steps’);
+if (stepsIdx !== -1) config.steps = parseInt(args[stepsIdx + 1]) || 1000;
+
+const outputIdx = args.indexOf(’–output’);
+if (outputIdx !== -1) config.outputDir = args[outputIdx + 1] || ‘./training_data’;
+
+// ================================================================
+// TRAJECTORY COLLECTOR
+// ================================================================
+
+class TrajectoryCollector {
+constructor(outputDir) {
+this.outputDir = outputDir;
+this.trajectories = [];
+
+```
+    // Ensure output directory exists
+    if (!fs.existsSync(outputDir)) {
+        fs.mkdirSync(outputDir, { recursive: true });
+    }
+}
+
+/**
+ * Collect a single trajectory from one simulation run
+ */
+collectRun(steps, targetZ) {
+    const system = new QuantumAPLSystem({
+        verbose: false,
+        initialZ: 0.3 + Math.random() * 0.4,  // Random start
+        pumpTarget: targetZ
+    });
+    
+    const trajectory = {
+        targetZ: targetZ,
+        initialZ: system.z,
+        steps: [],
+        metadata: {
+            timestamp: new Date().toISOString(),
+            totalSteps: steps
+        }
+    };
+    
+    let prevZ = system.z;
+    let prevEntropy = system.entropy;
+    
+    for (let i = 0; i < steps; i++) {
+        // Get state BEFORE action
+        const stateBefore = {
+            z: system.z,
+            entropy: system.entropy,
+            phi: system.phi,
+            triadUnlocked: system.triadTracker.unlocked,
+            triadCompletions: system.triadTracker.completions,
+            distanceToTarget: Math.abs(system.z - targetZ),
+            distanceToLens: Math.abs(system.z - CONST.Z_CRITICAL)
+        };
+        
+        // Take step (action is selected internally)
+        const result = system.step();
+        
+        // Compute reward
+        const reward = this._computeReward(stateBefore, result, targetZ);
+        
+        // Record trajectory point
+        trajectory.steps.push({
+            step: i,
+            state: stateBefore,
+            action: this._operatorToIndex(result.operator),
+            actionName: result.operator,
+            reward: reward,
+            nextZ: result.z,
+            harmonic: result.harmonic,
+            truthChannel: result.truthChannel,
+            operatorWindow: result.operatorWindow
+        });
+        
+        prevZ = result.z;
+        prevEntropy = system.entropy;
+    }
+    
+    // Final stats
+    trajectory.metadata.finalZ = system.z;
+    trajectory.metadata.triadUnlocked = system.triadTracker.unlocked;
+    trajectory.metadata.totalReward = trajectory.steps.reduce((sum, s) => sum + s.reward, 0);
+    trajectory.metadata.avgReward = trajectory.metadata.totalReward / steps;
+    
+    return trajectory;
+}
+
+/**
+ * Compute reward for a state transition
+ */
+_computeReward(stateBefore, result, targetZ) {
+    let reward = 0;
+    
+    // 1. Progress toward target z
+    const distBefore = Math.abs(stateBefore.z - targetZ);
+    const distAfter = Math.abs(result.z - targetZ);
+    reward += (distBefore - distAfter) * 10;  // Positive if closer
+    
+    // 2. Approaching the lens (high ΔS_neg region)
+    const lensDistBefore = Math.abs(stateBefore.z - CONST.Z_CRITICAL);
+    const lensDistAfter = Math.abs(result.z - CONST.Z_CRITICAL);
+    if (targetZ >= CONST.Z_CRITICAL * 0.9) {
+        reward += (lensDistBefore - lensDistAfter) * 5;
+    }
+    
+    // 3. TRIAD completion bonus
+    if (result.triadCompletions > stateBefore.triadCompletions) {
+        reward += 5;  // Big bonus for TRIAD progress
+    }
+    
+    // 4. TRIAD unlock bonus
+    if (result.triadUnlocked && !stateBefore.triadUnlocked) {
+        reward += 20;  // Huge bonus for unlock
+    }
+    
+    // 5. Phi (integrated information) increase
+    reward += (result.phi - stateBefore.phi) * 2;
+    
+    // 6. Stability bonus (not oscillating wildly)
+    const zChange = Math.abs(result.z - stateBefore.z);
+    if (zChange < 0.05) {
+        reward += 0.1;  // Small bonus for stability
+    }
+    
+    return reward;
+}
+
+/**
+ * Map operator symbol to index for NN
+ */
+_operatorToIndex(op) {
+    const mapping = {
+        '()': 0,   // Identity
+        '^': 1,    // Amplify
+        '+': 2,    // Exchange
+        '×': 3,    // Inhibit
+        '÷': 4,    // Catalyze
+        '−': 5     // Separate (if used)
+    };
+    return mapping[op] !== undefined ? mapping[op] : 0;
+}
+
+/**
+ * Collect multiple trajectories with different configurations
+ */
+collectBatch(runsPerTarget, stepsPerRun, targetZValues) {
+    console.log('='.repeat(60));
+    console.log('TRAJECTORY COLLECTION');
+    console.log('='.repeat(60));
+    console.log(`Runs per target: ${runsPerTarget}`);
+    console.log(`Steps per run: ${stepsPerRun}`);
+    console.log(`Target z values: ${targetZValues.join(', ')}`);
+    console.log('='.repeat(60));
+    
+    const allTrajectories = [];
+    
+    for (const targetZ of targetZValues) {
+        console.log(`\nCollecting for target z=${targetZ.toFixed(4)}...`);
+        
+        for (let run = 0; run < runsPerTarget; run++) {
+            const traj = this.collectRun(stepsPerRun, targetZ);
+            allTrajectories.push(traj);
+            
+            console.log(`  Run ${run + 1}/${runsPerTarget}: ` +
+                `final_z=${traj.metadata.finalZ.toFixed(4)}, ` +
+                `avg_reward=${traj.metadata.avgReward.toFixed(3)}, ` +
+                `triad=${traj.metadata.triadUnlocked ? 'UNLOCKED' : 'locked'}`);
+        }
+    }
+    
+    return allTrajectories;
+}
+
+/**
+ * Save trajectories to file
+ */
+save(trajectories, filename = null) {
+    const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
+    const fname = filename || `trajectories_${timestamp}.json`;
+    const filepath = path.join(this.outputDir, fname);
+    
+    const data = {
+        collectedAt: new Date().toISOString(),
+        totalTrajectories: trajectories.length,
+        totalSteps: trajectories.reduce((sum, t) => sum + t.steps.length, 0),
+        trajectories: trajectories
+    };
+    
+    fs.writeFileSync(filepath, JSON.stringify(data, null, 2));
+    console.log(`\nSaved ${trajectories.length} trajectories to ${filepath}`);
+    console.log(`Total training samples: ${data.totalSteps}`);
+    
+    return filepath;
+}
+
+/**
+ * Convert trajectories to training format (X, y arrays)
+ */
+toTrainingFormat(trajectories) {
+    const X = [];  // States
+    const y = [];  // Actions (as one-hot or index)
+    const rewards = [];
+    
+    for (const traj of trajectories) {
+        for (const step of traj.steps) {
+            // State vector
+            X.push([
+                step.state.z,
+                step.state.entropy,
+                step.state.phi,
+                step.state.triadUnlocked ? 1 : 0,
+                step.state.triadCompletions / 3,
+                step.state.distanceToTarget,
+                step.state.distanceToLens
+            ]);
+            
+            // Action (index)
+            y.push(step.action);
+            
+            // Reward (for weighting)
+            rewards.push(step.reward);
+        }
+    }
+    
+    return { X, y, rewards };
+}
+
+/**
+ * Save in numpy-compatible format
+ */
+saveNumpy(trajectories, filename = 'training_data.json') {
+    const { X, y, rewards } = this.toTrainingFormat(trajectories);
+    
+    const filepath = path.join(this.outputDir, filename);
+    fs.writeFileSync(filepath, JSON.stringify({ X, y, rewards }));
+    
+    console.log(`\nSaved training data: ${X.length} samples`);
+    console.log(`  State dim: ${X[0].length}`);
+    console.log(`  Actions: ${new Set(y).size} unique`);
+    console.log(`  File: ${filepath}`);
+    
+    return filepath;
+}
+```
+
+}
+
+// ================================================================
+// MAIN
+// ================================================================
+
+function main() {
+const collector = new TrajectoryCollector(config.outputDir);
+
+```
+// Collect trajectories
+const trajectories = collector.collectBatch(
+    config.runsPerCollection,
+    config.steps,
+    config.targetZValues
+);
+
+// Save raw trajectories (for analysis)
+collector.save(trajectories);
+
+// Save in training format (for NN)
+collector.saveNumpy(trajectories);
+
+// Summary
+console.log('\n' + '='.repeat(60));
+console.log('COLLECTION COMPLETE');
+console.log('='.repeat(60));
+
+const totalSteps = trajectories.reduce((sum, t) => sum + t.steps.length, 0);
+const avgReward = trajectories.reduce((sum, t) => sum + t.metadata.avgReward, 0) / trajectories.length;
+const unlockCount = trajectories.filter(t => t.metadata.triadUnlocked).length;
+
+console.log(`Total trajectories: ${trajectories.length}`);
+console.log(`Total training samples: ${totalSteps}`);
+console.log(`Average reward: ${avgReward.toFixed(4)}`);
+console.log(`TRIAD unlocks: ${unlockCount}/${trajectories.length}`);
+console.log('='.repeat(60));
+```
+
+}
+
+// Export for use as module
+module.exports = { TrajectoryCollector };
+
+// Run if called directly
+if (require.main === module) {
+main();
+}

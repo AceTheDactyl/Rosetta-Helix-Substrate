@@ -1,0 +1,23 @@
+Obtaining file:///home/acead/Quantum-APL
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Checking if build backend supports build_editable: started
+  Checking if build backend supports build_editable: finished with status 'done'
+  Getting requirements to build editable: started
+  Getting requirements to build editable: finished with status 'done'
+  Preparing editable metadata (pyproject.toml): started
+  Preparing editable metadata (pyproject.toml): finished with status 'done'
+Requirement already satisfied: numpy>=1.20.0 in ./.venv/lib/python3.12/site-packages (from quantum-apl==1.0.0) (2.3.5)
+Requirement already satisfied: PyYAML>=6.0 in ./.venv/lib/python3.12/site-packages (from quantum-apl==1.0.0) (6.0.3)
+Building wheels for collected packages: quantum-apl
+  Building editable for quantum-apl (pyproject.toml): started
+  Building editable for quantum-apl (pyproject.toml): finished with status 'done'
+  Created wheel for quantum-apl: filename=quantum_apl-1.0.0-0.editable-py3-none-any.whl size=4211 sha256=202801744b369a4c8d403f3f0fa57d1d17c8e70f017cea43e8eefba7a6073e80
+  Stored in directory: /tmp/pip-ephem-wheel-cache-5uh6ol8x/wheels/ef/76/27/6dc0a9477fe7197f7c3f1007c8f6aa8768ac20cbaba0785e56
+Successfully built quantum-apl
+Installing collected packages: quantum-apl
+  Attempting uninstall: quantum-apl
+    Found existing installation: quantum-apl 1.0.0
+    Uninstalling quantum-apl-1.0.0:
+      Successfully uninstalled quantum-apl-1.0.0
+Successfully installed quantum-apl-1.0.0

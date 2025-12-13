@@ -1,0 +1,68 @@
+Running test simulation with 100 steps...
+======================================================================
+QUANTUM APL N0 MEASUREMENT TEST SUITE
+======================================================================
+
+Testing complex number arithmetic...
+  ✓ Complex arithmetic passed
+Testing matrix operations...
+  ✓ Matrix operations passed
+Testing projection operators...
+  ✓ Projection operators passed
+Testing density matrix properties...
+  ✓ Density matrix properties passed
+Testing Lindblad evolution...
+  ✓ Lindblad evolution passed
+Testing Born rule measurement...
+  ✓ Born rule measurement passed
+Testing N0 operator selection...
+  ✓ N0 operator selection passed (selected: ())
+
+Testing quantum-classical integration...
+  Running measurement demo for 20 steps...
+======================================================================
+QUANTUM APL N0 MEASUREMENT-BASED OPERATOR SELECTION DEMO
+======================================================================
+Running 20 timesteps with quantum measurement...
+
+======================================================================
+SUMMARY
+======================================================================
+
+Operator Distribution:
+  ^: 90.0% █████████████████████████████████████████████
+  (): 10.0% █████
+
+Total Measurements: 20
+Avg Collapse Probability: 0.642
+Avg Coherence: 0.440
+Quantum-Classical Correlation: 0.000
+
+Final Quantum State:
+  z = 0.1072
+  Φ = 0.0000
+  S = 2.3883
+  Purity = 0.2317
+
+Truth State Probabilities:
+  TRUE: 0.0%
+  UNTRUE: 100.0%
+  PARADOX: 0.0%
+
+Top 5 Coherences:
+  |ρ(0,1)| = 0.0000
+  |ρ(0,2)| = 0.0000
+  |ρ(0,3)| = 0.0000
+  |ρ(0,4)| = 0.0000
+  |ρ(0,5)| = 0.0000
+
+======================================================================
+  ✓ Quantum-classical integration passed
+Testing z-coordinate evolution...
+  Integrating 60 steps for z trajectory...
+  ✓ Z-coordinate evolution passed
+
+======================================================================
+RESULTS: 9 passed, 0 failed
+======================================================================
+

@@ -1,0 +1,368 @@
+/**
+
+- Neural Operator Selector
+- ========================
+- Uses trained Helix NN weights to select APL operators.
+- 
+- This replaces the random/heuristic operator selection
+- with learned behavior.
+- 
+- Usage:
+- const selector = new NeuralOperatorSelector();
+- await selector.loadWeights(‘weights/operator_network.json’);
+- const operator = selector.selectOperator(state);
+  */
+
+const fs = require(‘fs’);
+
+// ================================================================
+// KURAMOTO DYNAMICS IN JS
+// ================================================================
+
+class KuramotoDynamics {
+constructor(nOscillators) {
+this.n = nOscillators;
+this.dt = 0.1;
+this.steps = 5;
+this.KGlobal = 0.5;
+}
+
+```
+step(theta, K, omega) {
+    // One step of Kuramoto dynamics
+    const newTheta = new Array(this.n);
+    
+    for (let i = 0; i < this.n; i++) {
+        let coupling = 0;
+        for (let j = 0; j < this.n; j++) {
+            coupling += K[i][j] * Math.sin(theta[j] - theta[i]);
+        }
+        
+        const dtheta = omega[i] + (this.KGlobal / this.n) * coupling;
+        newTheta[i] = theta[i] + this.dt * dtheta;
+        
+        // Wrap to [-π, π]
+        newTheta[i] = Math.atan2(Math.sin(newTheta[i]), Math.cos(newTheta[i]));
+    }
+    
+    return newTheta;
+}
+
+forward(thetaInit, K, omega) {
+    let theta = [...thetaInit];
+    
+    for (let s = 0; s < this.steps; s++) {
+        theta = this.step(theta, K, omega);
+    }
+    
+    // Compute coherence
+    let cosSum = 0, sinSum = 0;
+    for (let i = 0; i < this.n; i++) {
+        cosSum += Math.cos(theta[i]);
+        sinSum += Math.sin(theta[i]);
+    }
+    const coherence = Math.sqrt(
+        Math.pow(cosSum / this.n, 2) + 
+        Math.pow(sinSum / this.n, 2)
+    );
+    
+    return { theta, coherence };
+}
+```
+
+}
+
+// ================================================================
+// NEURAL OPERATOR SELECTOR
+// ================================================================
+
+class NeuralOperatorSelector {
+constructor() {
+this.loaded = false;
+this.weights = null;
+this.kuramoto = null;
+
+```
+    // Operator mapping
+    this.operators = ['()', '^', '+', '×', '÷', '−'];
+}
+
+/**
+ * Load trained weights from JSON file
+ * (Python pickle converted to JSON)
+ */
+async loadWeights(filepath) {
+    try {
+        const data = fs.readFileSync(filepath, 'utf8');
+        this.weights = JSON.parse(data);
+        
+        const nOsc = this.weights.W_in.length;
+        this.kuramoto = new KuramotoDynamics(nOsc);
+        
+        this.loaded = true;
+        console.log(`Loaded weights: ${nOsc} oscillators`);
+        
+        return true;
+    } catch (err) {
+        console.error(`Failed to load weights: ${err.message}`);
+        return false;
+    }
+}
+
+/**
+ * Convert helix state to input vector
+ */
+stateToVector(state) {
+    return [
+        state.z || 0.5,
+        state.entropy || 0.5,
+        state.phi || 0.3,
+        state.triadUnlocked ? 1 : 0,
+        (state.triadCompletions || 0) / 3,
+        state.distanceToTarget || 0.3,
+        state.distanceToLens || 0.3
+    ];
+}
+
+/**
+ * Matrix-vector multiplication
+ */
+matVec(mat, vec) {
+    return mat.map(row => 
+        row.reduce((sum, val, i) => sum + val * vec[i], 0)
+    );
+}
+
+/**
+ * Forward pass through network
+ */
+forward(stateVector) {
+    if (!this.loaded) {
+        throw new Error('Weights not loaded');
+    }
+    
+    const { W_in, b_in, K, omega, W_out, b_out } = this.weights;
+    
+    // Encode to phases: h = W_in @ state + b_in
+    const h = this.matVec(W_in, stateVector).map((v, i) => v + b_in[i]);
+    
+    // Apply tanh and scale to phases
+    const thetaInit = h.map(v => Math.tanh(v) * Math.PI);
+    
+    // Run Kuramoto dynamics
+    const { theta, coherence } = this.kuramoto.forward(thetaInit, K, omega);
+    
+    // Project to operator logits
+    const cosTheta = theta.map(t => Math.cos(t));
+    const logits = this.matVec(W_out, cosTheta).map((v, i) => v + b_out[i]);
+    
+    // Softmax
+    const maxLogit = Math.max(...logits);
+    const expLogits = logits.map(l => Math.exp(l - maxLogit));
+    const sumExp = expLogits.reduce((a, b) => a + b, 0);
+    const probs = expLogits.map(e => e / sumExp);
+    
+    return { probs, coherence, logits };
+}
+
+/**
+ * Select operator based on current state
+ */
+selectOperator(state, temperature = 0.5) {
+    const stateVector = this.stateToVector(state);
+    const { probs, coherence } = this.forward(stateVector);
+    
+    let selectedIdx;
+    
+    if (temperature === 0) {
+        // Greedy selection
+        selectedIdx = probs.indexOf(Math.max(...probs));
+    } else {
+        // Temperature-scaled sampling
+        const scaledProbs = probs.map(p => Math.pow(p, 1 / temperature));
+        const sumScaled = scaledProbs.reduce((a, b) => a + b, 0);
+        const normalizedProbs = scaledProbs.map(p => p / sumScaled);
+        
+        // Sample from distribution
+        const rand = Math.random();
+        let cumsum = 0;
+        selectedIdx = normalizedProbs.length - 1;
+        for (let i = 0; i < normalizedProbs.length; i++) {
+            cumsum += normalizedProbs[i];
+            if (rand < cumsum) {
+                selectedIdx = i;
+                break;
+            }
+        }
+    }
+    
+    return {
+        operator: this.operators[selectedIdx],
+        index: selectedIdx,
+        probability: probs[selectedIdx],
+        coherence: coherence,
+        allProbs: probs
+    };
+}
+
+/**
+ * Get selection with explanation
+ */
+selectWithExplanation(state) {
+    const result = this.selectOperator(state);
+    
+    const explanation = {
+        selected: result.operator,
+        confidence: result.probability,
+        networkCoherence: result.coherence,
+        reasoning: this._generateReasoning(state, result)
+    };
+    
+    return explanation;
+}
+
+_generateReasoning(state, result) {
+    const reasons = [];
+    
+    if (result.coherence > 0.8) {
+        reasons.push('High network coherence indicates confident selection');
+    } else if (result.coherence < 0.4) {
+        reasons.push('Low coherence - selection may be exploratory');
+    }
+    
+    if (result.probability > 0.5) {
+        reasons.push(`Strong preference for ${result.operator} (${(result.probability * 100).toFixed(1)}%)`);
+    }
+    
+    if (state.z < 0.3) {
+        reasons.push('Low z suggests building phase');
+    } else if (state.z > 0.8) {
+        reasons.push('High z suggests integration phase');
+    }
+    
+    return reasons.join('. ');
+}
+```
+
+}
+
+// ================================================================
+// INTEGRATION WITH QUANTUM APL SYSTEM
+// ================================================================
+
+/**
+
+- Factory function to create neural-enhanced system
+  */
+  async function createNeuralSystem(weightsPath, QuantumAPLSystem) {
+  const selector = new NeuralOperatorSelector();
+  const loaded = await selector.loadWeights(weightsPath);
+  
+  if (!loaded) {
+  console.warn(‘Using fallback random selection’);
+  return new QuantumAPLSystem();
+  }
+  
+  // Create system with neural operator selection
+  const system = new QuantumAPLSystem({ verbose: false });
+  
+  // Override the operator selection method
+  const originalSelectOperator = system._selectOperator.bind(system);
+  
+  system._selectOperator = function(operators) {
+  // Get current state
+  const state = {
+  z: this.z,
+  entropy: this.entropy,
+  phi: this.phi,
+  triadUnlocked: this.triadTracker.unlocked,
+  triadCompletions: this.triadTracker.completions,
+  distanceToTarget: Math.abs(this.z - this.pumpTarget),
+  distanceToLens: Math.abs(this.z - 0.866)
+  };
+  
+  ```
+   // Get neural selection
+   const result = selector.selectOperator(state);
+   
+   // Verify operator is in allowed window
+   if (operators.includes(result.operator)) {
+       return result.operator;
+   } else {
+       // Fallback to allowed operators
+       return originalSelectOperator(operators);
+   }
+  ```
+  
+  };
+  
+  system._neuralSelector = selector;
+  
+  return system;
+  }
+
+// ================================================================
+// EXPORTS
+// ================================================================
+
+module.exports = {
+NeuralOperatorSelector,
+KuramotoDynamics,
+createNeuralSystem
+};
+
+// ================================================================
+// CLI DEMO
+// ================================================================
+
+if (require.main === module) {
+const demo = async () => {
+console.log(‘Neural Operator Selector Demo\n’);
+
+```
+    const selector = new NeuralOperatorSelector();
+    
+    // Try to load weights
+    const weightsPath = process.argv[2] || 'weights/operator_network.json';
+    const loaded = await selector.loadWeights(weightsPath);
+    
+    if (!loaded) {
+        console.log('Creating random weights for demo...');
+        // Create random weights for demo
+        const nOsc = 20;
+        selector.weights = {
+            W_in: Array(nOsc).fill(0).map(() => Array(7).fill(0).map(() => Math.random() * 0.2 - 0.1)),
+            b_in: Array(nOsc).fill(0),
+            K: Array(nOsc).fill(0).map(() => Array(nOsc).fill(0).map(() => Math.random() * 0.2 - 0.1)),
+            omega: Array(nOsc).fill(0).map(() => Math.random() * 0.1),
+            W_out: Array(6).fill(0).map(() => Array(nOsc).fill(0).map(() => Math.random() * 0.2 - 0.1)),
+            b_out: Array(6).fill(0)
+        };
+        selector.kuramoto = new KuramotoDynamics(nOsc);
+        selector.loaded = true;
+    }
+    
+    // Test with various states
+    const testStates = [
+        { z: 0.2, entropy: 0.5, phi: 0.3, triadUnlocked: false, triadCompletions: 0 },
+        { z: 0.5, entropy: 0.4, phi: 0.4, triadUnlocked: false, triadCompletions: 1 },
+        { z: 0.8, entropy: 0.3, phi: 0.6, triadUnlocked: true, triadCompletions: 3 },
+    ];
+    
+    console.log('Testing operator selection:\n');
+    
+    for (const state of testStates) {
+        const result = selector.selectWithExplanation(state);
+        console.log(`State: z=${state.z}, triad=${state.triadCompletions}/3`);
+        console.log(`  Selected: ${result.selected}`);
+        console.log(`  Confidence: ${(result.confidence * 100).toFixed(1)}%`);
+        console.log(`  Coherence: ${result.networkCoherence.toFixed(3)}`);
+        console.log(`  ${result.reasoning}`);
+        console.log();
+    }
+};
+
+demo().catch(console.error);
+```
+
+}

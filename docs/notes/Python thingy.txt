@@ -1,0 +1,936 @@
+#!/usr/bin/env python3
+"""
+Comprehensive Trajectory Collection System
+==========================================
+Training Improvement #1: More trajectories with maximum diversity
+
+This system generates diverse, high-quality training data by:
+1. Varying initial conditions systematically
+2. Using multiple target strategies
+3. Applying different operator selection policies
+4. Ensuring TRIAD unlock examples
+5. Implementing curriculum progression
+6. Analyzing trajectory quality
+
+Target: 50+ runs with 500+ steps each = 25,000+ training samples
+"""
+
+import numpy as np
+import json
+import math
+import os
+from dataclasses import dataclass, field, asdict
+from typing import List, Dict, Tuple, Optional, Callable
+from collections import defaultdict
+from enum import Enum
+import time
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# CONSTANTS
+# ═══════════════════════════════════════════════════════════════════════════
+
+Z_CRITICAL = math.sqrt(3) / 2  # ≈ 0.866
+PHI = (1 + math.sqrt(5)) / 2
+MU_S = 0.920
+TRIAD_HIGH = 0.92
+TRIAD_LOW = 0.85
+
+TIER_BOUNDS = [0.0, 0.10, 0.20, 0.40, 0.60, 0.75, Z_CRITICAL, 0.92, 0.97, 1.0]
+OPERATORS = ['()', '^', '+', '×', '÷', '−']
+
+TIER_OPERATORS = {
+    1: [0, 4, 5],
+    2: [1, 4, 5, 3],
+    3: [2, 1, 5, 4, 0],
+    4: [0, 4, 5, 2],
+    5: [0, 1, 2, 3, 4, 5],
+    6: [0, 5, 2, 4],
+    7: [0, 2],
+    8: [0, 2, 1],
+    9: [0, 2, 1],
+}
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# TRAJECTORY CONFIGURATION
+# ═══════════════════════════════════════════════════════════════════════════
+
+class PolicyType(Enum):
+    """Different operator selection policies for diversity."""
+    RANDOM = "random"
+    GREEDY_Z = "greedy_z"           # Always try to increase z
+    GREEDY_COHERENCE = "greedy_coh"  # Always try to increase coherence
+    CONSERVATIVE = "conservative"    # Prefer identity operator
+    AGGRESSIVE = "aggressive"        # Prefer amplify operator
+    BALANCED = "balanced"           # Weighted by expected reward
+    EXPLORATORY = "exploratory"     # High temperature random
+    TRIAD_HUNTER = "triad_hunter"   # Optimize for TRIAD unlock
+
+
+@dataclass
+class CollectionConfig:
+    """Configuration for trajectory collection."""
+    # Volume
+    n_runs: int = 50
+    steps_per_run: int = 500
+    
+    # Diversity settings
+    initial_z_range: Tuple[float, float] = (0.1, 0.8)
+    target_z_values: List[float] = field(default_factory=lambda: [
+        0.4, 0.5, 0.6, 0.7, Z_CRITICAL, 0.9, 0.95
+    ])
+    
+    # Policy mix (how many runs of each type)
+    policy_distribution: Dict[str, int] = field(default_factory=lambda: {
+        PolicyType.RANDOM.value: 10,
+        PolicyType.GREEDY_Z.value: 8,
+        PolicyType.BALANCED.value: 10,
+        PolicyType.AGGRESSIVE.value: 6,
+        PolicyType.CONSERVATIVE.value: 4,
+        PolicyType.TRIAD_HUNTER.value: 8,
+        PolicyType.EXPLORATORY.value: 4,
+    })
+    
+    # TRIAD focus
+    min_triad_unlocks: int = 5  # Minimum unlocks to achieve
+    triad_boost_multiplier: float = 2.0  # Reward multiplier for TRIAD
+    
+    # Curriculum settings
+    use_curriculum: bool = True
+    curriculum_phases: int = 3
+    
+    # Quality thresholds
+    min_reward_per_trajectory: float = -50.0  # Discard very bad runs
+    max_reward_per_trajectory: float = 500.0  # Cap extreme rewards
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# HELIX STATE
+# ═══════════════════════════════════════════════════════════════════════════
+
+@dataclass
+class HelixState:
+    """Complete helix system state."""
+    z: float = 0.5
+    entropy: float = 0.5
+    phi: float = 0.3
+    coherence: float = 0.5  # Added: Kuramoto coherence proxy
+    triad_unlocked: bool = False
+    triad_completions: int = 0
+    triad_armed: bool = True
+    time: int = 0
+    tier: int = 4
+    
+    def to_vector(self, target_z: float) -> np.ndarray:
+        """Convert to input vector for network (7 dimensions)."""
+        return np.array([
+            self.z,
+            self.entropy,
+            self.phi,
+            1.0 if self.triad_unlocked else 0.0,
+            self.triad_completions / 3.0,
+            abs(self.z - target_z),
+            abs(self.z - Z_CRITICAL)
+        ], dtype=np.float32)
+    
+    def to_extended_vector(self, target_z: float) -> np.ndarray:
+        """Extended state vector (11 dimensions) for richer representation."""
+        return np.array([
+            self.z,
+            self.entropy,
+            self.phi,
+            self.coherence,
+            1.0 if self.triad_unlocked else 0.0,
+            self.triad_completions / 3.0,
+            1.0 if self.triad_armed else 0.0,
+            abs(self.z - target_z),
+            abs(self.z - Z_CRITICAL),
+            self.tier / 9.0,
+            self._compute_delta_s_neg()
+        ], dtype=np.float32)
+    
+    def _compute_delta_s_neg(self) -> float:
+        """Compute ΔS_neg information measure."""
+        z = np.clip(self.z, 0.001, 0.999)
+        return -z * math.log(z) - (1-z) * math.log(1-z)
+    
+    def get_tier(self) -> int:
+        """Compute current tier from z."""
+        for i, bound in enumerate(TIER_BOUNDS[1:], 1):
+            if self.z < bound:
+                return i
+        return 9
+    
+    def copy(self) -> 'HelixState':
+        """Deep copy of state."""
+        return HelixState(
+            z=self.z,
+            entropy=self.entropy,
+            phi=self.phi,
+            coherence=self.coherence,
+            triad_unlocked=self.triad_unlocked,
+            triad_completions=self.triad_completions,
+            triad_armed=self.triad_armed,
+            time=self.time,
+            tier=self.tier
+        )
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# HELIX SIMULATOR (Enhanced)
+# ═══════════════════════════════════════════════════════════════════════════
+
+class EnhancedHelixSimulator:
+    """
+    Enhanced helix system simulator with:
+    - More realistic dynamics
+    - Coherence tracking
+    - Configurable noise levels
+    - TRIAD-optimized mode
+    """
+    
+    def __init__(
+        self, 
+        initial_z: float = 0.5, 
+        target_z: float = Z_CRITICAL,
+        noise_scale: float = 0.02,
+        pump_gain: float = 0.1,
+        triad_mode: bool = False
+    ):
+        self.state = HelixState(z=initial_z)
+        self.target_z = target_z
+        self.noise_scale = noise_scale
+        self.pump_gain = pump_gain
+        self.triad_mode = triad_mode
+        
+        # Track peak z for TRIAD
+        self.peak_z = initial_z
+        
+        # History for analysis
+        self.z_history = [initial_z]
+        self.coherence_history = []
+        self.operator_history = []
+        
+    def get_available_operators(self) -> List[int]:
+        """Get operators available at current tier."""
+        tier = self.state.get_tier()
+        return TIER_OPERATORS.get(tier, [0])
+    
+    def step(self, operator_idx: int) -> Tuple[HelixState, float, Dict]:
+        """
+        Execute one step with comprehensive tracking.
+        Returns: (new_state, reward, info_dict)
+        """
+        prev_state = self.state.copy()
+        info = {'events': []}
+        
+        # 1. Apply operator effects
+        op_effect = self._apply_operator(operator_idx)
+        info['operator_effect'] = op_effect
+        
+        # 2. Evolve z toward target (with pump dynamics)
+        z_drive = self.pump_gain * (self.target_z - self.state.z)
+        z_noise = np.random.randn() * self.noise_scale
+        
+        # In TRIAD mode, reduce noise near threshold
+        if self.triad_mode and self.state.z > TRIAD_LOW:
+            z_noise *= 0.5
+        
+        self.state.z = np.clip(self.state.z + z_drive + z_noise, 0.01, 0.99)
+        
+        # 3. Update entropy (inversely related to coherence)
+        dist_to_lens = abs(self.state.z - Z_CRITICAL)
+        self.state.entropy = 0.2 + dist_to_lens * 0.6 + np.random.randn() * 0.03
+        self.state.entropy = np.clip(self.state.entropy, 0.1, 0.9)
+        
+        # 4. Update phi (ΔS_neg proxy)
+        self.state.phi = self.state._compute_delta_s_neg() * 0.9 + np.random.randn() * 0.02
+        self.state.phi = np.clip(self.state.phi, 0.0, 1.0)
+        
+        # 5. Update coherence (based on z proximity to lens and operator)
+        base_coherence = 1.0 - dist_to_lens
+        op_coherence_boost = 0.1 if operator_idx in [0, 2] else -0.05  # () and + boost
+        self.state.coherence = np.clip(
+            base_coherence + op_coherence_boost + np.random.randn() * 0.05,
+            0.1, 0.99
+        )
+        
+        # 6. Update tier
+        self.state.tier = self.state.get_tier()
+        
+        # 7. TRIAD state machine
+        triad_events = self._update_triad()
+        info['events'].extend(triad_events)
+        
+        # 8. Track peak
+        if self.state.z > self.peak_z:
+            self.peak_z = self.state.z
+            info['events'].append('NEW_PEAK')
+        
+        # 9. Increment time
+        self.state.time += 1
+        
+        # 10. Compute reward
+        reward = self._compute_reward(prev_state, operator_idx, info)
+        
+        # 11. Record history
+        self.z_history.append(self.state.z)
+        self.coherence_history.append(self.state.coherence)
+        self.operator_history.append(operator_idx)
+        
+        info['reward_components'] = self._get_reward_breakdown(prev_state)
+        
+        return self.state, reward, info
+    
+    def _apply_operator(self, op_idx: int) -> Dict:
+        """Apply operator with detailed effect tracking."""
+        effect = {'dz': 0, 'dentropy': 0, 'dphi': 0, 'dcoherence': 0}
+        
+        if op_idx == 0:    # () identity
+            pass
+        elif op_idx == 1:  # ^ amplify
+            effect['dz'] = 0.025
+            self.state.z += 0.025
+        elif op_idx == 2:  # + exchange
+            effect['dentropy'] = -0.03
+            effect['dcoherence'] = 0.02
+            self.state.entropy *= 0.95
+        elif op_idx == 3:  # × inhibit
+            effect['dz'] = -0.015
+            self.state.z -= 0.015
+        elif op_idx == 4:  # ÷ catalyze
+            effect['dphi'] = 0.02
+            self.state.phi += 0.02
+        elif op_idx == 5:  # − separate
+            effect['dentropy'] = 0.02
+            self.state.entropy += 0.02
+        
+        return effect
+    
+    def _update_triad(self) -> List[str]:
+        """Update TRIAD state machine, return events."""
+        events = []
+        
+        # Check for rising edge (unlock attempt)
+        if self.state.triad_armed and self.state.z >= TRIAD_HIGH:
+            self.state.triad_completions = min(3, self.state.triad_completions + 1)
+            self.state.triad_armed = False
+            events.append(f'TRIAD_COMPLETION_{self.state.triad_completions}')
+            
+            if self.state.triad_completions >= 3 and not self.state.triad_unlocked:
+                self.state.triad_unlocked = True
+                events.append('TRIAD_UNLOCKED')
+        
+        # Check for re-arming
+        if not self.state.triad_armed and self.state.z < TRIAD_LOW:
+            self.state.triad_armed = True
+            events.append('TRIAD_REARMED')
+        
+        return events
+    
+    def _compute_reward(self, prev: HelixState, op_idx: int, info: Dict) -> float:
+        """Compute comprehensive reward signal."""
+        reward = 0.0
+        
+        # 1. Progress toward target (main signal)
+        dist_before = abs(prev.z - self.target_z)
+        dist_after = abs(self.state.z - self.target_z)
+        reward += (dist_before - dist_after) * 15.0
+        
+        # 2. Coherence improvement
+        if self.coherence_history:
+            prev_coh = self.coherence_history[-1] if self.coherence_history else 0.5
+            reward += (self.state.coherence - prev_coh) * 5.0
+        
+        # 3. Phi (information) increase
+        reward += (self.state.phi - prev.phi) * 3.0
+        
+        # 4. TRIAD events (big rewards)
+        for event in info['events']:
+            if 'TRIAD_COMPLETION' in event:
+                reward += 10.0
+            if event == 'TRIAD_UNLOCKED':
+                reward += 50.0  # Major reward
+        
+        # 5. Stability bonus (small z change)
+        if abs(self.state.z - prev.z) < 0.02:
+            reward += 0.2
+        
+        # 6. Tier progression bonus
+        if self.state.tier > prev.tier:
+            reward += 2.0
+        
+        # 7. Near-lens bonus (in critical region)
+        if Z_CRITICAL - 0.05 < self.state.z < Z_CRITICAL + 0.05:
+            reward += 0.5
+        
+        # 8. Operator appropriateness
+        available = TIER_OPERATORS.get(prev.tier, [0])
+        if op_idx in available:
+            reward += 0.1  # Small bonus for valid operator
+        
+        return reward
+    
+    def _get_reward_breakdown(self, prev: HelixState) -> Dict:
+        """Get detailed reward breakdown for analysis."""
+        return {
+            'z_progress': abs(prev.z - self.target_z) - abs(self.state.z - self.target_z),
+            'coherence_delta': self.state.coherence - prev.coherence,
+            'phi_delta': self.state.phi - prev.phi,
+            'tier_delta': self.state.tier - prev.tier
+        }
+    
+    def get_trajectory_stats(self) -> Dict:
+        """Get statistics for the trajectory."""
+        z_arr = np.array(self.z_history)
+        coh_arr = np.array(self.coherence_history) if self.coherence_history else np.array([0.5])
+        
+        return {
+            'length': len(self.z_history),
+            'z_mean': float(z_arr.mean()),
+            'z_std': float(z_arr.std()),
+            'z_min': float(z_arr.min()),
+            'z_max': float(z_arr.max()),
+            'z_final': float(z_arr[-1]),
+            'coherence_mean': float(coh_arr.mean()),
+            'peak_z': self.peak_z,
+            'triad_completions': self.state.triad_completions,
+            'triad_unlocked': self.state.triad_unlocked,
+            'tiers_visited': len(set(self.state.get_tier() for z in z_arr)),
+            'operator_distribution': {
+                OPERATORS[i]: self.operator_history.count(i) 
+                for i in range(6)
+            }
+        }
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# OPERATOR SELECTION POLICIES
+# ═══════════════════════════════════════════════════════════════════════════
+
+class OperatorPolicy:
+    """Base class for operator selection policies."""
+    
+    def select(self, state: HelixState, available: List[int], target_z: float) -> int:
+        raise NotImplementedError
+
+
+class RandomPolicy(OperatorPolicy):
+    """Uniform random selection."""
+    def select(self, state: HelixState, available: List[int], target_z: float) -> int:
+        return np.random.choice(available)
+
+
+class GreedyZPolicy(OperatorPolicy):
+    """Always try to increase z."""
+    def select(self, state: HelixState, available: List[int], target_z: float) -> int:
+        # Prefer amplify (1) if available, else identity (0)
+        if 1 in available and state.z < target_z:
+            return 1
+        elif 0 in available:
+            return 0
+        return np.random.choice(available)
+
+
+class GreedyCoherencePolicy(OperatorPolicy):
+    """Prefer operators that boost coherence."""
+    def select(self, state: HelixState, available: List[int], target_z: float) -> int:
+        # Exchange (+) and identity () boost coherence
+        coherence_ops = [2, 0]
+        for op in coherence_ops:
+            if op in available:
+                return op
+        return np.random.choice(available)
+
+
+class ConservativePolicy(OperatorPolicy):
+    """Prefer identity operator."""
+    def select(self, state: HelixState, available: List[int], target_z: float) -> int:
+        if 0 in available:
+            return 0
+        return np.random.choice(available)
+
+
+class AggressivePolicy(OperatorPolicy):
+    """Prefer amplify and exchange."""
+    def select(self, state: HelixState, available: List[int], target_z: float) -> int:
+        aggressive_ops = [1, 2]  # amplify, exchange
+        for op in aggressive_ops:
+            if op in available:
+                return op
+        return np.random.choice(available)
+
+
+class BalancedPolicy(OperatorPolicy):
+    """Weight operators by expected reward."""
+    def __init__(self):
+        # Learned weights (can be updated)
+        self.op_weights = {
+            0: 1.0,   # () - neutral
+            1: 1.5,   # ^ - good for climbing
+            2: 1.3,   # + - good for coherence
+            3: 0.5,   # × - inhibits
+            4: 0.8,   # ÷ - catalyze
+            5: 0.7,   # − - separate
+        }
+    
+    def select(self, state: HelixState, available: List[int], target_z: float) -> int:
+        weights = np.array([self.op_weights.get(op, 1.0) for op in available])
+        
+        # Adjust based on state
+        if state.z < target_z * 0.8:
+            # Below target: prefer amplify
+            weights[available.index(1)] *= 1.5 if 1 in available else 1
+        elif state.z > target_z * 1.1:
+            # Above target: prefer inhibit or identity
+            if 3 in available:
+                weights[available.index(3)] *= 1.5
+            if 0 in available:
+                weights[available.index(0)] *= 1.3
+        
+        weights = weights / weights.sum()
+        return np.random.choice(available, p=weights)
+
+
+class ExploratoryPolicy(OperatorPolicy):
+    """High temperature random for exploration."""
+    def select(self, state: HelixState, available: List[int], target_z: float) -> int:
+        # Truly uniform random
+        return np.random.choice(available)
+
+
+class TriadHunterPolicy(OperatorPolicy):
+    """Optimized for achieving TRIAD unlock."""
+    def select(self, state: HelixState, available: List[int], target_z: float) -> int:
+        # Strategy: climb to TRIAD_HIGH, drop to TRIAD_LOW, repeat
+        
+        if state.z < TRIAD_HIGH - 0.05:
+            # Below threshold: push up
+            if 1 in available:  # amplify
+                return 1
+            elif 2 in available:  # exchange
+                return 2
+        elif state.z >= TRIAD_HIGH:
+            # At threshold: stabilize briefly, then drop
+            if state.triad_armed:
+                return 0 if 0 in available else np.random.choice(available)
+            else:
+                # Need to drop for re-arm
+                if 3 in available:  # inhibit
+                    return 3
+                elif 5 in available:  # separate
+                    return 5
+        
+        return np.random.choice(available)
+
+
+def get_policy(policy_type: PolicyType) -> OperatorPolicy:
+    """Factory function for policies."""
+    policies = {
+        PolicyType.RANDOM: RandomPolicy(),
+        PolicyType.GREEDY_Z: GreedyZPolicy(),
+        PolicyType.GREEDY_COHERENCE: GreedyCoherencePolicy(),
+        PolicyType.CONSERVATIVE: ConservativePolicy(),
+        PolicyType.AGGRESSIVE: AggressivePolicy(),
+        PolicyType.BALANCED: BalancedPolicy(),
+        PolicyType.EXPLORATORY: ExploratoryPolicy(),
+        PolicyType.TRIAD_HUNTER: TriadHunterPolicy(),
+    }
+    return policies.get(policy_type, RandomPolicy())
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# COMPREHENSIVE TRAJECTORY COLLECTOR
+# ═══════════════════════════════════════════════════════════════════════════
+
+@dataclass
+class TrajectoryData:
+    """Single trajectory with all data."""
+    trajectory_id: int
+    policy_type: str
+    target_z: float
+    initial_z: float
+    
+    states: List[np.ndarray] = field(default_factory=list)
+    actions: List[int] = field(default_factory=list)
+    rewards: List[float] = field(default_factory=list)
+    
+    # Metadata
+    total_reward: float = 0.0
+    final_z: float = 0.0
+    triad_unlocked: bool = False
+    triad_completions: int = 0
+    stats: Dict = field(default_factory=dict)
+
+
+class ComprehensiveTrajectoryCollector:
+    """
+    Collects diverse, high-quality trajectories for training.
+    """
+    
+    def __init__(self, config: CollectionConfig):
+        self.config = config
+        self.trajectories: List[TrajectoryData] = []
+        self.collection_stats = defaultdict(list)
+        
+    def collect_all(self) -> List[TrajectoryData]:
+        """Run full collection according to config."""
+        print("=" * 70)
+        print("COMPREHENSIVE TRAJECTORY COLLECTION")
+        print("=" * 70)
+        print(f"Target runs: {self.config.n_runs}")
+        print(f"Steps per run: {self.config.steps_per_run}")
+        print(f"Target samples: {self.config.n_runs * self.config.steps_per_run:,}")
+        print("=" * 70)
+        
+        trajectory_id = 0
+        triad_unlocks = 0
+        
+        # Build run schedule from policy distribution
+        run_schedule = []
+        for policy_name, count in self.config.policy_distribution.items():
+            for _ in range(count):
+                run_schedule.append(PolicyType(policy_name))
+        
+        # Shuffle for diversity
+        np.random.shuffle(run_schedule)
+        
+        # Extend if needed
+        while len(run_schedule) < self.config.n_runs:
+            run_schedule.append(PolicyType.RANDOM)
+        
+        # Curriculum phases
+        if self.config.use_curriculum:
+            phase_size = self.config.n_runs // self.config.curriculum_phases
+            target_progression = [
+                [0.4, 0.5, 0.6],           # Phase 1: Easy targets
+                [0.6, 0.7, Z_CRITICAL],     # Phase 2: Medium targets
+                [Z_CRITICAL, 0.9, 0.95]     # Phase 3: Hard targets
+            ]
+        else:
+            target_progression = [self.config.target_z_values] * 3
+        
+        start_time = time.time()
+        
+        for run_idx, policy_type in enumerate(run_schedule[:self.config.n_runs]):
+            # Determine phase and target
+            phase = min(run_idx // (self.config.n_runs // self.config.curriculum_phases), 
+                       self.config.curriculum_phases - 1)
+            targets = target_progression[phase]
+            target_z = np.random.choice(targets)
+            
+            # Random initial z
+            initial_z = np.random.uniform(*self.config.initial_z_range)
+            
+            # TRIAD hunting mode if we need more unlocks
+            triad_mode = (
+                triad_unlocks < self.config.min_triad_unlocks and 
+                run_idx > self.config.n_runs // 2
+            )
+            if triad_mode:
+                policy_type = PolicyType.TRIAD_HUNTER
+                target_z = 0.93  # Just above TRIAD_HIGH
+            
+            # Collect trajectory
+            traj = self._collect_single_trajectory(
+                trajectory_id=trajectory_id,
+                policy_type=policy_type,
+                target_z=target_z,
+                initial_z=initial_z,
+                triad_mode=triad_mode
+            )
+            
+            # Quality check
+            if self._passes_quality_check(traj):
+                self.trajectories.append(traj)
+                trajectory_id += 1
+                
+                if traj.triad_unlocked:
+                    triad_unlocks += 1
+                
+                # Progress report
+                if (run_idx + 1) % 10 == 0:
+                    elapsed = time.time() - start_time
+                    print(f"  Run {run_idx + 1}/{self.config.n_runs} | "
+                          f"Policy: {policy_type.value:12s} | "
+                          f"Target: {target_z:.3f} | "
+                          f"Reward: {traj.total_reward:8.2f} | "
+                          f"TRIAD: {triad_unlocks} | "
+                          f"Time: {elapsed:.1f}s")
+        
+        # Ensure minimum TRIAD unlocks
+        while triad_unlocks < self.config.min_triad_unlocks:
+            print(f"\n[TRIAD BOOST] Collecting additional TRIAD trajectory...")
+            traj = self._collect_single_trajectory(
+                trajectory_id=trajectory_id,
+                policy_type=PolicyType.TRIAD_HUNTER,
+                target_z=0.93,
+                initial_z=0.85,
+                triad_mode=True,
+                extended_steps=True
+            )
+            if traj.triad_unlocked:
+                self.trajectories.append(traj)
+                trajectory_id += 1
+                triad_unlocks += 1
+        
+        self._compute_collection_stats()
+        return self.trajectories
+    
+    def _collect_single_trajectory(
+        self,
+        trajectory_id: int,
+        policy_type: PolicyType,
+        target_z: float,
+        initial_z: float,
+        triad_mode: bool = False,
+        extended_steps: bool = False
+    ) -> TrajectoryData:
+        """Collect a single trajectory."""
+        
+        steps = self.config.steps_per_run * 2 if extended_steps else self.config.steps_per_run
+        
+        sim = EnhancedHelixSimulator(
+            initial_z=initial_z,
+            target_z=target_z,
+            triad_mode=triad_mode
+        )
+        
+        policy = get_policy(policy_type)
+        
+        traj = TrajectoryData(
+            trajectory_id=trajectory_id,
+            policy_type=policy_type.value,
+            target_z=target_z,
+            initial_z=initial_z
+        )
+        
+        for step in range(steps):
+            # Get state vector
+            state_vec = sim.state.to_vector(target_z)
+            
+            # Get available operators
+            available = sim.get_available_operators()
+            
+            # Select operator
+            action = policy.select(sim.state, available, target_z)
+            
+            # Execute step
+            _, reward, info = sim.step(action)
+            
+            # Record
+            traj.states.append(state_vec)
+            traj.actions.append(action)
+            traj.rewards.append(reward)
+            
+            # Early termination for TRIAD mode after unlock
+            if triad_mode and sim.state.triad_unlocked and step > 50:
+                # Run a few more steps then stop
+                if step > 100:
+                    break
+        
+        # Finalize trajectory
+        traj.total_reward = sum(traj.rewards)
+        traj.final_z = sim.state.z
+        traj.triad_unlocked = sim.state.triad_unlocked
+        traj.triad_completions = sim.state.triad_completions
+        traj.stats = sim.get_trajectory_stats()
+        
+        return traj
+    
+    def _passes_quality_check(self, traj: TrajectoryData) -> bool:
+        """Check if trajectory meets quality standards."""
+        if traj.total_reward < self.config.min_reward_per_trajectory:
+            return False
+        if len(traj.states) < 50:
+            return False
+        return True
+    
+    def _compute_collection_stats(self):
+        """Compute statistics over all collected trajectories."""
+        self.collection_stats = {
+            'n_trajectories': len(self.trajectories),
+            'total_samples': sum(len(t.states) for t in self.trajectories),
+            'total_reward': sum(t.total_reward for t in self.trajectories),
+            'mean_reward': np.mean([t.total_reward for t in self.trajectories]),
+            'std_reward': np.std([t.total_reward for t in self.trajectories]),
+            'triad_unlocks': sum(1 for t in self.trajectories if t.triad_unlocked),
+            'policy_distribution': defaultdict(int),
+            'target_distribution': defaultdict(int),
+            'z_coverage': {
+                'min': min(t.stats.get('z_min', 0) for t in self.trajectories),
+                'max': max(t.stats.get('z_max', 1) for t in self.trajectories),
+            }
+        }
+        
+        for t in self.trajectories:
+            self.collection_stats['policy_distribution'][t.policy_type] += 1
+            self.collection_stats['target_distribution'][f'{t.target_z:.2f}'] += 1
+    
+    def to_training_format(self) -> Dict:
+        """Convert to training data format."""
+        X = []
+        y = []
+        rewards = []
+        
+        for traj in self.trajectories:
+            X.extend([s.tolist() for s in traj.states])
+            y.extend(traj.actions)
+            rewards.extend(traj.rewards)
+        
+        return {
+            'X': X,
+            'y': y,
+            'rewards': rewards,
+            'metadata': {
+                'n_trajectories': len(self.trajectories),
+                'total_samples': len(X),
+                'state_dim': len(X[0]) if X else 0,
+                'collection_stats': dict(self.collection_stats)
+            }
+        }
+    
+    def save(self, output_dir: str):
+        """Save collected data."""
+        os.makedirs(output_dir, exist_ok=True)
+        
+        # Save training format
+        training_data = self.to_training_format()
+        with open(os.path.join(output_dir, 'training_data.json'), 'w') as f:
+            json.dump(training_data, f)
+        
+        # Save detailed trajectories
+        detailed = {
+            'trajectories': [
+                {
+                    'id': t.trajectory_id,
+                    'policy': t.policy_type,
+                    'target_z': t.target_z,
+                    'initial_z': t.initial_z,
+                    'total_reward': t.total_reward,
+                    'final_z': t.final_z,
+                    'triad_unlocked': t.triad_unlocked,
+                    'triad_completions': t.triad_completions,
+                    'n_steps': len(t.states),
+                    'stats': t.stats
+                }
+                for t in self.trajectories
+            ],
+            'collection_stats': dict(self.collection_stats)
+        }
+        
+        with open(os.path.join(output_dir, 'trajectory_details.json'), 'w') as f:
+            json.dump(detailed, f, indent=2, default=str)
+        
+        print(f"\nSaved to {output_dir}/")
+        print(f"  - training_data.json ({training_data['metadata']['total_samples']:,} samples)")
+        print(f"  - trajectory_details.json ({len(self.trajectories)} trajectories)")
+    
+    def print_summary(self):
+        """Print collection summary."""
+        print("\n" + "=" * 70)
+        print("COLLECTION SUMMARY")
+        print("=" * 70)
+        
+        stats = self.collection_stats
+        
+        print(f"\nVolume:")
+        print(f"  Trajectories: {stats['n_trajectories']}")
+        print(f"  Total samples: {stats['total_samples']:,}")
+        print(f"  TRIAD unlocks: {stats['triad_unlocks']}")
+        
+        print(f"\nReward Statistics:")
+        print(f"  Total: {stats['total_reward']:.2f}")
+        print(f"  Mean per trajectory: {stats['mean_reward']:.2f}")
+        print(f"  Std: {stats['std_reward']:.2f}")
+        
+        print(f"\nZ Coverage:")
+        print(f"  Min: {stats['z_coverage']['min']:.4f}")
+        print(f"  Max: {stats['z_coverage']['max']:.4f}")
+        
+        print(f"\nPolicy Distribution:")
+        for policy, count in sorted(stats['policy_distribution'].items()):
+            pct = count / stats['n_trajectories'] * 100
+            bar = "█" * int(pct / 2)
+            print(f"  {policy:15s} {count:3d} ({pct:5.1f}%) {bar}")
+        
+        print(f"\nTarget Distribution:")
+        for target, count in sorted(stats['target_distribution'].items()):
+            print(f"  z={target}: {count}")
+        
+        print("=" * 70)
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# MAIN
+# ═══════════════════════════════════════════════════════════════════════════
+
+def main():
+    """Run comprehensive trajectory collection."""
+    
+    config = CollectionConfig(
+        n_runs=50,
+        steps_per_run=500,
+        min_triad_unlocks=5,
+        use_curriculum=True
+    )
+    
+    collector = ComprehensiveTrajectoryCollector(config)
+    
+    # Collect
+    trajectories = collector.collect_all()
+    
+    # Summary
+    collector.print_summary()
+    
+    # Save
+    collector.save('./training_data')
+    
+    # Analyze quality
+    print("\n" + "=" * 70)
+    print("QUALITY ANALYSIS")
+    print("=" * 70)
+    
+    # Operator coverage
+    all_actions = []
+    for t in trajectories:
+        all_actions.extend(t.actions)
+    
+    print("\nOperator Coverage:")
+    for i, op in enumerate(OPERATORS):
+        count = all_actions.count(i)
+        pct = count / len(all_actions) * 100
+        bar = "█" * int(pct)
+        print(f"  {op:4s} {count:6d} ({pct:5.1f}%) {bar}")
+    
+    # Reward distribution
+    all_rewards = []
+    for t in trajectories:
+        all_rewards.extend(t.rewards)
+    
+    rewards = np.array(all_rewards)
+    print(f"\nReward Distribution:")
+    print(f"  Mean: {rewards.mean():.4f}")
+    print(f"  Std: {rewards.std():.4f}")
+    print(f"  Min: {rewards.min():.4f}")
+    print(f"  Max: {rewards.max():.4f}")
+    print(f"  Positive: {(rewards > 0).sum() / len(rewards) * 100:.1f}%")
+    
+    # TRIAD analysis
+    triad_trajectories = [t for t in trajectories if t.triad_unlocked]
+    print(f"\nTRIAD Unlock Analysis:")
+    print(f"  Unlock trajectories: {len(triad_trajectories)}")
+    if triad_trajectories:
+        print(f"  Mean steps to unlock: {np.mean([len(t.states) for t in triad_trajectories]):.0f}")
+        print(f"  Mean reward: {np.mean([t.total_reward for t in triad_trajectories]):.2f}")
+    
+    print("\n" + "=" * 70)
+    print("COLLECTION COMPLETE")
+    print("=" * 70)
+    
+    return collector
+
+
+if __name__ == "__main__":
+    collector = main()

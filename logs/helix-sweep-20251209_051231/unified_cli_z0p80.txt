@@ -1,0 +1,64 @@
+Running unified simulation with 5 steps...
+Results saved to logs/helix-sweep-20251209_051231/unified_z0p80.json
+
+======================================================================
+QUANTUM-CLASSICAL SIMULATION RESULTS
+======================================================================
+
+Quantum State:
+  z-coordinate: 0.1132
+  Integrated information (Φ): 0.0000
+  von Neumann entropy (S): 2.0626
+  Purity: 0.5991
+
+Classical Engines:
+  IIT φ: 0.4346
+  Cooperation: 0.8694
+  Free Energy: 0.2310
+
+Analytics:
+  Total steps: 5
+  Quantum-classical correlation: 0.0000
+
+Helix Mapping:
+  Harmonic: t2
+  Recommended operators: ^, ÷, −, ×
+  Truth bias: UNTRUE
+
+Negative Entropy Geometry (engine z):
+  ΔS_neg: 0.0019
+  radius R: 0.8495
+  height H: 0.1203
+  twist φ: 0.0005 rad
+  Vertices (k: x, y, z_bot → z_top):
+    v0: x=0.8495, y=0.0004, z_bot=0.0530, z_top=0.1733
+    v1: x=0.4244, y=0.7359, z_bot=0.0530, z_top=0.1733
+    v2: x=-0.4251, y=0.7355, z_bot=0.0530, z_top=0.1733
+    v3: x=-0.8495, y=-0.0004, z_bot=0.0530, z_top=0.1733
+    v4: x=-0.4244, y=-0.7359, z_bot=0.0530, z_top=0.1733
+    v5: x=0.4251, y=-0.7355, z_bot=0.0530, z_top=0.1733
+
+Helix Seed Context:
+  Target z: 0.80
+  Title: Helix Autonomous Coordination Architecture
+  Intent:
+    - Autonomous coordination requires four-layer substrate: transport, discovery, triggers, coherence
+  Source: reference/helix_bridge/VAULTNODES/z0p80/vn-helix-autonomous-coordination-metadata.yaml
+
+Alpha Programming Language Token:
+  Sentence (A3): u^ | Oscillator | wave
+  Operator: Amplification
+  Predicted regime: Amplified vortex-rich waves
+  Truth bias: UNTRUE via t2
+
+Runtime Helix Hint:
+  Harmonic: t2
+  Truth channel: UNTRUE
+  z (engine): 0.1132
+  Operator window: ^, ÷, −, ×
+
+Recent Operator Selections:
+  step 2: + (0.031) → t1 / UNTRUE @ z=0.0750
+  step 3: () (0.707) → t1 / UNTRUE @ z=0.0949
+  step 4: − (0.124) → t2 / UNTRUE @ z=0.1132
+======================================================================

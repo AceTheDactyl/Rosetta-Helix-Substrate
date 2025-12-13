@@ -1,0 +1,83 @@
+name: js-tests
+
+on:
+  push:
+    paths:
+      - 'src/legacy/*.js'
+      - 'src/quantum_apl_engine.js'
+      - 'src/constants.js'
+      - 'src/utils/*.js'
+      - 'schemas/*.json'
+      - 'tests/*.js'
+      - '.github/workflows/js-tests.yml'
+  pull_request:
+    paths:
+      - 'src/legacy/*.js'
+      - 'src/quantum_apl_engine.js'
+      - 'src/constants.js'
+      - 'src/utils/*.js'
+      - 'schemas/*.json'
+      - 'tests/*.js'
+
+jobs:
+  node-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run APL measurement tests
+        run: node tests/test_apl_measurements.js
+
+      - name: Run bridge tests
+        run: node tests/QuantumClassicalBridge.test.js
+
+      - name: Run TRIAD hysteresis tests
+        run: node tests/test_triad_hysteresis.js
+
+      - name: Run measurement probability edge-case tests
+        run: node tests/test_apl_measurement_edgecases.js
+
+      - name: Run collapse alias emission tests
+        run: node tests/test_collapse_alias.js
+
+      - name: Run constants helper tests
+        run: node tests/test_constants_helpers.js
+
+      - name: Run JS hex prism tests
+        run: node tests/test_hex_prism_js.test.js
+      - name: Run lens sigma env test
+        run: node tests/test_lens_sigma_env.js
+      - name: Run GEOM sigma cohesion test
+        run: node tests/test_geom_sigma_cohesion.js
+      - name: Run GEOM sigma override test
+        run: node tests/test_geom_sigma_override.js
+      - name: Run lens-rate properties test
+        run: node tests/test_lens_rate_props.js
+      - name: Run μ thresholds and invariants tests
+        run: |
+          node tests/test_mu_thresholds.js
+          node tests/test_ordering_invariants.js
+      - name: Run blending gate invariants tests
+        run: |
+          node tests/test_control_blend_invariants.js
+          node tests/test_blend_flag.js
+      - name: Verify bridge default pump target is z_c
+        run: node tests/test_bridge_pump_target.js
+
+      - name: Verify engine default t6 gate is z_c
+        run: node tests/test_engine_gate_default.js
+
+      - name: Run schema validation tests
+        run: node tests/test_schema_validation.js
+
+      - name: Run seeded selection tests
+        run: node tests/test_seeded_selection.js

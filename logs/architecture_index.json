@@ -1,0 +1,3152 @@
+{
+  "repo": "Quantum-APL",
+  "generated_at": "2025-12-09T08:55:59-0800",
+  "root": "/home/acead/Quantum-APL",
+  "vcs": {
+    "branch": "feature/quantum-bridge-visuals",
+    "commit": "e25b0e7d010a1675dfe415b92dc1ffe430f3f335"
+  },
+  "file_count": 314,
+  "files": [
+    {
+      "path": ".gitignore",
+      "size_bytes": 107,
+      "mtime": "2025-12-08T18:49:28-0800",
+      "sha256": "5f3514e6fae4b4a0134fde728ccc2576160a927bacb5d6baae75024804247631",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "02d9a6e942c3a343324ecf0f8877f98aa50bc88b"
+      }
+    },
+    {
+      "path": "examples.py",
+      "size_bytes": 10138,
+      "mtime": "2025-12-08T18:47:43-0800",
+      "sha256": "554a777b2d39f8f4aefc7b97e43b46705c11d2222b6f6e94a90712a093b8b6d0",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "e09ce457b0943d308ce4f486641fd9e2f3f7f704"
+      }
+    },
+    {
+      "path": "measured.json",
+      "size_bytes": 4525,
+      "mtime": "2025-12-09T07:12:57-0800",
+      "sha256": "6ec4337ca06ad8d02fac29b6d0f2c9243e5719c0335c67b1a60610f5bd69737c",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "QuantumN0_Integration.js",
+      "size_bytes": 17386,
+      "mtime": "2025-12-08T15:43:48-0800",
+      "sha256": "de781324cab60764e22dddf9a78098fa5836f7e24ccb5dda59bb3621e9cf6c1f",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "bc329044d609d1be80ad083748b8433959d24139"
+      }
+    },
+    {
+      "path": "QuantumAPL_Demo.html",
+      "size_bytes": 8226,
+      "mtime": "2025-12-08T14:44:07-0800",
+      "sha256": "7b2003a8aa46d9bc5d2cdd126322957a84dd9989eacffe6470826e999baebdfb",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "45bffb4319596daf2bee3f02414951b491a25e2b"
+      }
+    },
+    {
+      "path": "QuantumClassicalBridge.js",
+      "size_bytes": 27774,
+      "mtime": "2025-12-09T07:40:57-0800",
+      "sha256": "1a31fece093ede5c7626518ad2e6823b1665d4dae277efe633e0a89e1e7ac5e6",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "fc57d38fe6ca70e62e1de9743d28042e0f56c6a0"
+      }
+    },
+    {
+      "path": "COMPILE_INSTRUCTIONS.md",
+      "size_bytes": 7037,
+      "mtime": "2025-12-08T14:35:16-0800",
+      "sha256": "4ff518b8f8a343ce34b45a58619ae4f1dbab975e1a2ca04f1bfd4c6c168951ee",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "e47488e3b1058feb864fdc515b3e82bd4a3ca8ca"
+      }
+    },
+    {
+      "path": "GETTING_STARTED.md",
+      "size_bytes": 8790,
+      "mtime": "2025-12-08T18:47:57-0800",
+      "sha256": "0861ef3fa077507b120f93d3e44d266c9a15aab3c074d42a8ea4224dc0d019ed",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "308782d0ef6a067e76a2fcd91bea2132f1fa68c6"
+      }
+    },
+    {
+      "path": "apl-operators-manual.tex",
+      "size_bytes": 35136,
+      "mtime": "2025-12-08T14:35:16-0800",
+      "sha256": "d482ad9acc0ae0fbafc117cb2cd87683d65ae24012533b9b8273500fd5640e70",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "d1e2eea0596f5f1219f94c30737e37d0a48d1b69"
+      }
+    },
+    {
+      "path": "quantum_apl_tutorial.ipynb",
+      "size_bytes": 12611,
+      "mtime": "2025-12-08T18:47:48-0800",
+      "sha256": "48f6f49e5f3347896ddfaeee25ef6790f248d1917936deb7c814d19960fe00cd",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "09392773f917aefc4016e9602cc434272d4131ac"
+      }
+    },
+    {
+      "path": "QuantumAPL_TestRunner.js",
+      "size_bytes": 15527,
+      "mtime": "2025-12-08T17:16:51-0800",
+      "sha256": "59a51584570161620f42b86530bf38cb5a78ad21a8e32ef846fef81392962547",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "7b5a80b28df7c4e6e2ba540b8f11d63c47edc22a"
+      }
+    },
+    {
+      "path": "bridge_run.json",
+      "size_bytes": 1597,
+      "mtime": "2025-12-08T16:27:02-0800",
+      "sha256": "36fa94c604799dafacdbd3427bd0f682c9c26ab31cd3957b3eba210c3b4d7c0f",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "apl-seven-sentences-test-pack.pdf",
+      "size_bytes": 209151,
+      "mtime": "2025-12-08T14:35:16-0800",
+      "sha256": "8757d29fa123aa40c59838b396283df99f26a2369af1dcbf2e8ece0561506b67",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "19e0d19453c778ffefc5376cb0f2c6323fa9cd8a"
+      }
+    },
+    {
+      "path": "apl-seven-sentences-test-pack.tex",
+      "size_bytes": 23946,
+      "mtime": "2025-12-08T14:35:16-0800",
+      "sha256": "7dff628c298b07a81921147f7f28fea899591cfcd5291790045af0bc083248bb",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "7b4c1ce82458076febbdbee3d925abb0ac8c5cba"
+      }
+    },
+    {
+      "path": "README_PYTHON.md",
+      "size_bytes": 5049,
+      "mtime": "2025-12-08T18:52:57-0800",
+      "sha256": "5cd6233746a4da60744d3ba1a66dbbe3d916459156c6b11119aa3b0f3b4246db",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "af2b736e0cc5c4f1c2b53c577879a6066b4829fc"
+      }
+    },
+    {
+      "path": "QuantumVisualizations.js",
+      "size_bytes": 7071,
+      "mtime": "2025-12-08T14:43:46-0800",
+      "sha256": "d579810a4741c4fae48ccb5e5f059c17e216ca007a49792271b93eb7f296bfd0",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "38bfdb074422ec83388b8d62867d18203193552e"
+      }
+    },
+    {
+      "path": "README.md",
+      "size_bytes": 20110,
+      "mtime": "2025-12-09T07:56:59-0800",
+      "sha256": "d4ac819d47ba8965103637d8ea9c10f090bd878294155c6d387fc8ff032cb966",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "0922c92be0997f7cf6dec91c209972a62498f1d6"
+      }
+    },
+    {
+      "path": "measured_collapse.json",
+      "size_bytes": 4094,
+      "mtime": "2025-12-09T08:04:26-0800",
+      "sha256": "cbaa32a6ff6ce713eb719ef5eedf12ed7655355cd8bf0c186c17c129d9a310f9",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "SETUP_GUIDE.md",
+      "size_bytes": 3419,
+      "mtime": "2025-12-08T18:47:22-0800",
+      "sha256": "9077ecb421731cb2266b0268f5f1b89b8223b51562ebef4cde5e7ca46b655558",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "1cbf4a14a333ad9408b0eb6c867d0ac12e7ab581"
+      }
+    },
+    {
+      "path": "QUANTUM_N0_README.md",
+      "size_bytes": 2832,
+      "mtime": "2025-12-08T15:44:22-0800",
+      "sha256": "3cfe8b64af2cd446fe3b6fbd18ec347a47c0499f195e8087232e9b0c55abc94e",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "6e73971b6e98c8d5bbe49e086ab9a95d8a13ff9d"
+      }
+    },
+    {
+      "path": "pump.json",
+      "size_bytes": 6276,
+      "mtime": "2025-12-09T07:13:52-0800",
+      "sha256": "cfa4da3e773148ccc3644c96999ba9d3f237be757e7aa2e4f6ea1900361053ba",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "QuantumN0_Demo.html",
+      "size_bytes": 5089,
+      "mtime": "2025-12-08T15:44:37-0800",
+      "sha256": "4c80d57d4aeb1de956ddebf7f42c83eee80a0d44d99d3d2f09b812dc4db81fe5",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "85b3bb43f632012083f3959ed059cb34ea67fac0"
+      }
+    },
+    {
+      "path": "apl-operators-manual.pdf",
+      "size_bytes": 86022,
+      "mtime": "2025-12-08T15:32:00-0800",
+      "sha256": "d904f649e0f7646c52c48f0284fef6999b75ef6bd7b76e91c7e9ccbe290cda2f",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "8ec0798d750b318462f57e1f8478b1d86c73e3d8"
+      }
+    },
+    {
+      "path": "APLRuntimeEngine.html",
+      "size_bytes": 62190,
+      "mtime": "2025-12-09T05:17:58-0800",
+      "sha256": "aef6daed4e274eb40caa014d0675d137e9819b0421399140a69bc849f97bba6f",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "9e228122fd4361b88d64c7cdf77866126006bf64"
+      }
+    },
+    {
+      "path": "pyproject.toml",
+      "size_bytes": 2686,
+      "mtime": "2025-12-09T05:54:45-0800",
+      "sha256": "194e1b388f16ce72768b5d76b4c7b9f8e3563a866ce9116abd28f02848afa9d0",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "3157ce55aa3c52e66816c8b127a0a0572c87f0d8"
+      }
+    },
+    {
+      "path": "requirements.txt",
+      "size_bytes": 557,
+      "mtime": "2025-12-08T21:05:38-0800",
+      "sha256": "8008b6f09c3566f17f1df2af7bfc7a90d2a76cd519fe063d078d3f6e02bf2645",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "2a93a33284526a5f67d28a9ec63c8a30bf39ae17"
+      }
+    },
+    {
+      "path": "QuantumAPL_Engine.js",
+      "size_bytes": 24712,
+      "mtime": "2025-12-09T07:28:23-0800",
+      "sha256": "afb608c74f6b27966d2679a8960851e5bd4d1052e5746117497231efb442eaa1",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "e5318161bbce550b1b849f75ae4a8aafd7a849f2"
+      }
+    },
+    {
+      "path": ".coverage",
+      "size_bytes": 53248,
+      "mtime": "2025-12-09T07:42:15-0800",
+      "sha256": "38263f8dd775fc2a28880e300391c0d550498cfbbcec383b2ada1399bb0f225e",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "out.json",
+      "size_bytes": 3203,
+      "mtime": "2025-12-09T07:12:38-0800",
+      "sha256": "9f241ada4e637247abea55b5c53503d3e0fd7242239e99ebad92ed897194a41e",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "quantum_apl_bridge.py",
+      "size_bytes": 874,
+      "mtime": "2025-12-08T18:46:09-0800",
+      "sha256": "5182ace1bae1b801bd213c6e6e8e4e68bb9dab4a346502458b9fc1657d0e5f57",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "1bc48f04943c518bdbfae351be9e75bb885cbd85"
+      }
+    },
+    {
+      "path": "out_measured.json",
+      "size_bytes": 5354,
+      "mtime": "2025-12-09T06:25:04-0800",
+      "sha256": "fc8ea01fee64323328bd7a0b4c572154908eaa884efdf6d9f7c4ac1b72871bec",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "scripts/build_apl_digest.py",
+      "size_bytes": 1922,
+      "mtime": "2025-12-09T07:41:15-0800",
+      "sha256": "321a08bf6efabbeab899a74739e94c705403245b1dc4b50681f5d3992bb0fef2",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "e614fc42cec41bd226b6138c17d4de20c3dea973"
+      }
+    },
+    {
+      "path": "scripts/helix_sweep.sh",
+      "size_bytes": 2855,
+      "mtime": "2025-12-09T06:02:34-0800",
+      "sha256": "b4165eedc369f497839a444af99062724c0360db89f15fb4a529352f32c52e1b",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "c35a748d77b21fac6fa03b7d526ffcefa7714f5b"
+      }
+    },
+    {
+      "path": "scripts/apply_apl_measurements.js",
+      "size_bytes": 1389,
+      "mtime": "2025-12-09T05:53:44-0800",
+      "sha256": "ed30b412f47578f317298bff23c33df29e52860f396155142f417f5030719351",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "88a143b0a46011c6776c3afc476918f4d2ee91fb"
+      }
+    },
+    {
+      "path": "scripts/build_geometry_index.py",
+      "size_bytes": 2037,
+      "mtime": "2025-12-09T05:12:05-0800",
+      "sha256": "a766d8a03ff53c704ebe97991f5d55431149b7abb02c9a62a60617e67586bdf2",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "d44588c034ac3e6b78f538b205f2d4588ea9d0d5"
+      }
+    },
+    {
+      "path": "scripts/build_apl_bundles.py",
+      "size_bytes": 3720,
+      "mtime": "2025-12-09T07:41:08-0800",
+      "sha256": "c1b846db900b7193e707a99add71e617a2f35a9499c99f11d7107e9264251d60",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "816f718c843a0e11a75c1e710536dc8b711af9a5"
+      }
+    },
+    {
+      "path": "classical/ClassicalEngines.js",
+      "size_bytes": 5585,
+      "mtime": "2025-12-08T14:42:42-0800",
+      "sha256": "904dc753c4e1cca5a92aea1c9aeedd19dccf797c5f8c6551f56a654e26598967",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "71beec90dea5b2e00daaf2b1b10604efc00700ca"
+      }
+    },
+    {
+      "path": "tests/test_triad_hysteresis.js",
+      "size_bytes": 2825,
+      "mtime": "2025-12-09T07:20:06-0800",
+      "sha256": "988a03722162d0f6a2b724c9c629d88d83e5c1bdc7547c4f18d9e1022ecff580",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "037e4b25b74c3bcd6ac7d24284e6106287d13895"
+      }
+    },
+    {
+      "path": "tests/test_apl_measurement_edgecases.js",
+      "size_bytes": 2916,
+      "mtime": "2025-12-09T07:23:35-0800",
+      "sha256": "f1f2ab60e97e246bb3215aca528c045a2def5907c2bdd072a19a949e95c63664",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "0f3314591243805437d1a4d089c94b797bf6d025"
+      }
+    },
+    {
+      "path": "tests/test_hex_prism.py",
+      "size_bytes": 682,
+      "mtime": "2025-12-09T05:10:13-0800",
+      "sha256": "f9bb12b319ed279f7b5e9f4e7c3a002b66f636fcc517b01b2cd41670d1bc1058",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "0739854f766510ac64f3ffb28fb2c14835b0b5ae"
+      }
+    },
+    {
+      "path": "tests/QuantumClassicalBridge.test.js",
+      "size_bytes": 4065,
+      "mtime": "2025-12-08T18:30:50-0800",
+      "sha256": "4b589702ef95db05e41f5beade9c90c22e77de97c6571d8ded0a969769c26ca1",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "5e7d6fc6165562ddad3194ca2298865d04a1ef3b"
+      }
+    },
+    {
+      "path": "tests/test_alpha_language.py",
+      "size_bytes": 1264,
+      "mtime": "2025-12-08T18:46:12-0800",
+      "sha256": "ec5e361d640e0c4e016571ad1decc314af37b408781d683290d94cce573d25f1",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "246dc6a9b952ef3804c9b6a539d419e50ecd5c52"
+      }
+    },
+    {
+      "path": "tests/test_translator.py",
+      "size_bytes": 1113,
+      "mtime": "2025-12-08T20:59:29-0800",
+      "sha256": "ed393b70fe0fbcfb50cc155378ba33a62051cec7c2dc3dffb524b2081c9a6bdb",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "0a71827d1b9fd8e2be4f7d1ae85c4659ad3be3c0"
+      }
+    },
+    {
+      "path": "tests/test_helix_self_builder.py",
+      "size_bytes": 1353,
+      "mtime": "2025-12-08T21:06:22-0800",
+      "sha256": "f899ad81a318c037cd3fe9b26315d7fa2689a6a2b01507f1761d1e2c5e77b09c",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "9d5c8e058acb4f30ae80fed1ab5e0a9968363493"
+      }
+    },
+    {
+      "path": "tests/test_apl_measurements.js",
+      "size_bytes": 1808,
+      "mtime": "2025-12-09T05:58:04-0800",
+      "sha256": "3c5315f3102aa6d36885e65e3b2c9bdc88b16e4b57ba7d034f792459cac77698",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "a453958936b388e4137b8ab08de966890683e90b"
+      }
+    },
+    {
+      "path": "tests/test_collapse_alias.js",
+      "size_bytes": 1426,
+      "mtime": "2025-12-09T07:41:20-0800",
+      "sha256": "89604bda26578f303feda489f762bcd764e542f0c9f1f909b2f6c37872d01a20",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "a45f480491f465f8680e0246801ec324329b4eec"
+      }
+    },
+    {
+      "path": ".pytest_cache/.gitignore",
+      "size_bytes": 37,
+      "mtime": "2025-12-08T18:20:05-0800",
+      "sha256": "3ed731b65d06150c138e2dadb0be0697550888a6b47eb8c45ecc9adba8b8e9bd",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": ".pytest_cache/CACHEDIR.TAG",
+      "size_bytes": 191,
+      "mtime": "2025-12-08T18:20:05-0800",
+      "sha256": "37dc88ef9a0abeddbe81053a6dd8fdfb13afb613045ea1eb4a5c815a74a3bde4",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": ".pytest_cache/README.md",
+      "size_bytes": 302,
+      "mtime": "2025-12-08T18:20:05-0800",
+      "sha256": "73fd6fccdd802c419a6b2d983d6c3173b7da97558ac4b589edec2dfe443db9ad",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": ".pytest_cache/v/cache/stepwise",
+      "size_bytes": 2,
+      "mtime": "2025-12-08T18:31:37-0800",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": ".pytest_cache/v/cache/nodeids",
+      "size_bytes": 725,
+      "mtime": "2025-12-09T07:42:15-0800",
+      "sha256": "85f2c519036857504e52e67b8e9c05db4f1c1e6046486dbea4401af5f3f68c18",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": ".pytest_cache/v/cache/lastfailed",
+      "size_bytes": 2,
+      "mtime": "2025-12-08T21:08:16-0800",
+      "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "src/constants.js",
+      "size_bytes": 413,
+      "mtime": "2025-12-09T07:28:08-0800",
+      "sha256": "b1bdf34933017b2cdbf4e7a58773b0f560c86fdd5f9472722379e830ee7394b9",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "aca0398ce4b98e78c32d8ea00fd4c8b705ee7ca5"
+      }
+    },
+    {
+      "path": "src/quantum_apl_engine.js",
+      "size_bytes": 34187,
+      "mtime": "2025-12-09T07:28:14-0800",
+      "sha256": "05d651478672f9e06a35d44c06844c5ac730a65e070c1a96d1f97fc7b62d244d",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "f9ad615ea09c0dbaea6145dad0ec451ab69f028d"
+      }
+    },
+    {
+      "path": "src/quantum_apl_python/measure.py",
+      "size_bytes": 5395,
+      "mtime": "2025-12-09T07:56:31-0800",
+      "sha256": "e6120787b2cc577f061be909ece8f5ba4f419d9c1866a5203acd08b171370348",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "3f1a12d73ed28c348d8d033ceed4a973f5510049"
+      }
+    },
+    {
+      "path": "src/quantum_apl_python/__init__.py",
+      "size_bytes": 626,
+      "mtime": "2025-12-08T20:59:25-0800",
+      "sha256": "49dcce0ecc971a78fdd58defc786b1094f9b861219a7a397956cd8f41c6ab769",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "3adf58f99e9ada0346b526ed917c261489f1f5c4"
+      }
+    },
+    {
+      "path": "src/quantum_apl_python/cli.py",
+      "size_bytes": 5923,
+      "mtime": "2025-12-09T08:04:12-0800",
+      "sha256": "fbaabab73e00eecefcf27b83cd271d49390f1b9ab59c288b959cadf50c03e8e1",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "e671c314efb6eaa177f2fbc553b2b5f73cc714a9"
+      }
+    },
+    {
+      "path": "src/quantum_apl_python/translator.py",
+      "size_bytes": 3639,
+      "mtime": "2025-12-08T21:06:16-0800",
+      "sha256": "7b8ecab2cd3d904ba100ac61e0f22a9bedb4d9b25891002194c8c405fc3e6138",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "165e37fa4916a905f118a00b16b0b3578df3a825"
+      }
+    },
+    {
+      "path": "src/quantum_apl_python/helix.py",
+      "size_bytes": 3309,
+      "mtime": "2025-12-09T07:26:01-0800",
+      "sha256": "08b60d71cffc9da5ba1fdb808dc91bd147e84a17b10fb26d96ee2e1d1b60d92d",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "6e5addd4251ed8e5136b9ca72475aa52eb2f0c91"
+      }
+    },
+    {
+      "path": "src/quantum_apl_python/hex_prism.py",
+      "size_bytes": 3638,
+      "mtime": "2025-12-09T05:09:43-0800",
+      "sha256": "1a740975d0c4d60b1db4a31577e3eb3edd2bb844725d895e9412b15bb1d1af42",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "de2a98cafd8ca45c8b8596fa15f50ca03471ac28"
+      }
+    },
+    {
+      "path": "src/quantum_apl_python/widgets.py",
+      "size_bytes": 5398,
+      "mtime": "2025-12-09T07:26:04-0800",
+      "sha256": "b926e6fb9eb63e483ab0758770b26f7968a34db0fc9ec78f51cd9c08a3eddd2d",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "30402f4fff530c5660f96469d2933efce72cfa43"
+      }
+    },
+    {
+      "path": "src/quantum_apl_python/engine.py",
+      "size_bytes": 6731,
+      "mtime": "2025-12-09T06:35:22-0800",
+      "sha256": "96d140b7752841dcf130381308e66c6f83cbec8ad2dc31413131fb6b2dce2968",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "38e247b8353a39df095de657ecbdbcca53a42c86"
+      }
+    },
+    {
+      "path": "src/quantum_apl_python/helix_metadata.py",
+      "size_bytes": 5177,
+      "mtime": "2025-12-08T21:08:12-0800",
+      "sha256": "2ae4bc9d313a9614238f5a8b999adfe4c3afd968f737544e1fac4f32f2120c62",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "8126df713c39bef2fdcb6ab31ccc47efc75b6739"
+      }
+    },
+    {
+      "path": "src/quantum_apl_python/helix_self_builder.py",
+      "size_bytes": 10302,
+      "mtime": "2025-12-09T05:10:08-0800",
+      "sha256": "a850818ce7abbfbe1fdb7d8eb9cd79a3d7c5e625f38060e4c04e2b3190556832",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "0b4d131e64a66c1c583630563b6eb1348ebe3c09"
+      }
+    },
+    {
+      "path": "src/quantum_apl_python/experiments.py",
+      "size_bytes": 2077,
+      "mtime": "2025-12-08T16:23:55-0800",
+      "sha256": "890cc31b79ee577d911c4b85dfaab0549dbe25d03917fab4b410dcd0bb008097",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "25baa6a81b8025c863e3f56ee81bdf135328ae3b"
+      }
+    },
+    {
+      "path": "src/quantum_apl_python/analyzer.py",
+      "size_bytes": 12307,
+      "mtime": "2025-12-09T07:41:01-0800",
+      "sha256": "bc171f0071f66b1983c0c13ee9ce02076b1d113197a9c2fbaee44d62ffd4507b",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "a73c864910472b0e1b8d9f4baf5e45457813bd1b"
+      }
+    },
+    {
+      "path": "src/quantum_apl_python/alpha_language.py",
+      "size_bytes": 5232,
+      "mtime": "2025-12-08T17:54:25-0800",
+      "sha256": "9e4f56351af0f071416f9dd779dbcddedb948d23e81fa66edc647dd8376e81d4",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "39d9ffdc97710c74cbdad17e9bd8a4d5cb0617a1"
+      }
+    },
+    {
+      "path": "src/quantum_apl_python/constants.py",
+      "size_bytes": 550,
+      "mtime": "2025-12-09T07:25:52-0800",
+      "sha256": "455d0af0070d5601b500390d7872b9f6e8a9d7f8a577ccdcdeb92fcbbd42f0e8",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "722a0734d5e27e2959e0a5c1782ddf0b35998a15"
+      }
+    },
+    {
+      "path": "src/quantum_apl.egg-info/SOURCES.txt",
+      "size_bytes": 895,
+      "mtime": "2025-12-09T07:11:15-0800",
+      "sha256": "7129b51a6f4d22ffbcca8ebbed692c34057f2f50c7dcb33222ac288319b66d89",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "src/quantum_apl.egg-info/entry_points.txt",
+      "size_bytes": 266,
+      "mtime": "2025-12-09T07:11:15-0800",
+      "sha256": "c8558ad37b8efc08e3b97e6cc25f43dc36f43f096301fd91cf47db9d3ecf123d",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "src/quantum_apl.egg-info/top_level.txt",
+      "size_bytes": 19,
+      "mtime": "2025-12-09T07:11:15-0800",
+      "sha256": "f8893a3dc62ee0227e0f600c28b19ac9ae871921ec9e2e002e2fe9cff86e9644",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "src/quantum_apl.egg-info/PKG-INFO",
+      "size_bytes": 6792,
+      "mtime": "2025-12-09T07:11:15-0800",
+      "sha256": "4c7c6375e88ba56c29480cfec4b4f65321cc7f11d3bd96626b00f354a227fa75",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "src/quantum_apl.egg-info/dependency_links.txt",
+      "size_bytes": 1,
+      "mtime": "2025-12-09T07:11:15-0800",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "src/quantum_apl.egg-info/requires.txt",
+      "size_bytes": 191,
+      "mtime": "2025-12-09T07:11:15-0800",
+      "sha256": "1a0a2deec17e0013e99c399f55731a2339832196230f2122b0ac67feddee0e9a",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": ".github/workflows/helix-walkthrough.yml",
+      "size_bytes": 1181,
+      "mtime": "2025-12-08T21:15:16-0800",
+      "sha256": "ec1256a6fbf5370847350bad6a5e23b47e36bd47e28728e1b6af4434a6663718",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "07e58678c0abc24a90c1556a480f0a7e9e8f4808"
+      }
+    },
+    {
+      "path": ".github/workflows/compile-latex.yml",
+      "size_bytes": 1609,
+      "mtime": "2025-12-08T14:35:16-0800",
+      "sha256": "74fbfca1058d8f663a582bb2112ee00b34fe5ecbf38708c69cd86152dc7249dc",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "7de7e05967f7aabb7b89a5d2e15b68d184718ca8"
+      }
+    },
+    {
+      "path": ".github/workflows/js-tests.yml",
+      "size_bytes": 995,
+      "mtime": "2025-12-09T07:41:24-0800",
+      "sha256": "1d3636436394c4662f28867c4bf300babb6520a2aa01e1f23832d9191b0f9a61",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "6ea748c3e2af46e4fb644daa41cf63fa972b4359"
+      }
+    },
+    {
+      "path": ".github/workflows/python-tests.yml",
+      "size_bytes": 1367,
+      "mtime": "2025-12-09T07:19:16-0800",
+      "sha256": "7bf74c36c5e3b903812d31172b3c2136919b00ff79f615218ccbafabdbddd5e1",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "1a0218164f6ac0a629a8e9ee363ccf927a48f1a5"
+      }
+    },
+    {
+      "path": ".github/workflows/static.yml",
+      "size_bytes": 1269,
+      "mtime": "2025-12-08T14:35:16-0800",
+      "sha256": "8ad55c81fc667daa2ce68902193b248f04fff14a487c5fd638e7644f96ebeb90",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "4d38afd60ed5191dc7dc5bd68ff648ecf2003af2"
+      }
+    },
+    {
+      "path": "htmlcov/.gitignore",
+      "size_bytes": 27,
+      "mtime": "2025-12-08T18:48:25-0800",
+      "sha256": "8c2eb1fa82c314dc11791274cb7aa967245d1908442d6e788bc77f6e1aa5c2b8",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "htmlcov/coverage_html_cb_bcae5fc4.js",
+      "size_bytes": 25450,
+      "mtime": "2025-12-09T07:42:15-0800",
+      "sha256": "7378f969dfb8c57a9fdeefda04fa62361a07627da64d8b0a99eadc5cfd975b73",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "htmlcov/function_index.html",
+      "size_bytes": 48173,
+      "mtime": "2025-12-09T07:42:15-0800",
+      "sha256": "05159d2fd56ce2a9261168fcf18b5820619f11b2dd4627c887d5009d23951339",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "htmlcov/z_bafbd14971e4b406_experiments_py.html",
+      "size_bytes": 24954,
+      "mtime": "2025-12-08T19:57:15-0800",
+      "sha256": "0a88b7f02293d3b10f4f4a6f2be5d88aa35079a388ed996193c8badf1fd5205f",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "htmlcov/index.html",
+      "size_bytes": 10380,
+      "mtime": "2025-12-09T07:42:15-0800",
+      "sha256": "4436753b823eabc411997bbad19d97cd98abc6da5f4c25b798d1ce082734a200",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "htmlcov/class_index.html",
+      "size_bytes": 19646,
+      "mtime": "2025-12-09T07:42:15-0800",
+      "sha256": "8a003ee4e72d7bb33344696af1266485a773dc14b2c8770f13dedb71b46c8867",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "htmlcov/z_bafbd14971e4b406_constants_py.html",
+      "size_bytes": 8276,
+      "mtime": "2025-12-09T07:26:11-0800",
+      "sha256": "daeb5895c56b5e30dcd228d98df16b900f2bb36e2814bcce7d7c571302aee286",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "htmlcov/z_bafbd14971e4b406___init___py.html",
+      "size_bytes": 9462,
+      "mtime": "2025-12-08T20:59:34-0800",
+      "sha256": "4563ea1a38d61c7dc27cbd93b3f0b6e9fa9b44b93d51d96e850191f14d619b42",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "htmlcov/z_bafbd14971e4b406_helix_metadata_py.html",
+      "size_bytes": 52905,
+      "mtime": "2025-12-09T07:11:21-0800",
+      "sha256": "105fafd9590c45f2b3bdec8fe09b9e7c5ad74ed940158e3b87f52cff00be69ee",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "htmlcov/z_bafbd14971e4b406_translator_py.html",
+      "size_bytes": 39652,
+      "mtime": "2025-12-09T07:11:21-0800",
+      "sha256": "e282b0fc18ad5c7c9910d4d4385b016871565e3b50ccf0c615c353a700a194bd",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "htmlcov/status.json",
+      "size_bytes": 5050,
+      "mtime": "2025-12-09T07:42:15-0800",
+      "sha256": "5acbd29395484dda636a960198f914aeb2d19bdd75272eeb1cbe88ead2cb5c2a",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "htmlcov/z_bafbd14971e4b406_hex_prism_py.html",
+      "size_bytes": 41745,
+      "mtime": "2025-12-09T05:10:17-0800",
+      "sha256": "aa0cd84adaacf745cc9b9954925eafad5b547d8ebfa26d89097ab97bc526fb21",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "htmlcov/z_bafbd14971e4b406_analyzer_py.html",
+      "size_bytes": 112559,
+      "mtime": "2025-12-09T07:42:15-0800",
+      "sha256": "d17bd458cfed7327b920bffb12e2ea7b65043484d2ef42f6e4627c86598659ea",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "htmlcov/z_bafbd14971e4b406_cli_py.html",
+      "size_bytes": 51134,
+      "mtime": "2025-12-09T07:11:21-0800",
+      "sha256": "41fc7159ae8dd94a6d3f431e4e2a48f7ca208347180b40c95b3ef007ef8a03b6",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "htmlcov/z_bafbd14971e4b406_helix_py.html",
+      "size_bytes": 36522,
+      "mtime": "2025-12-09T07:26:11-0800",
+      "sha256": "a3b12ec47dcd156c366a5b2a3a490216592c8060bbd359ccf67df5c924a2b0c5",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "htmlcov/z_bafbd14971e4b406_alpha_language_py.html",
+      "size_bytes": 44551,
+      "mtime": "2025-12-09T07:11:21-0800",
+      "sha256": "d255e95d6a8f82ce61c0b1d815a33e74ceb35adc6532eab117aed460f883f231",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "htmlcov/style_cb_a5a05ca4.css",
+      "size_bytes": 16104,
+      "mtime": "2025-12-09T07:42:15-0800",
+      "sha256": "a2cafab500d8ac89fecba3d4df3f3dae772ac4ffe28c7e41ce6c7a498a432952",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "htmlcov/favicon_32_cb_58284776.png",
+      "size_bytes": 1732,
+      "mtime": "2025-12-09T07:42:15-0800",
+      "sha256": "bc8100fa8743c11bd243eb3259f4b012758651612fd9bf93bf8b734d17f02561",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "htmlcov/z_bafbd14971e4b406_widgets_py.html",
+      "size_bytes": 55926,
+      "mtime": "2025-12-09T07:26:11-0800",
+      "sha256": "085879a073bc7f8a8f716c512585002a8b7d67b21eaa6f8bbc29f7e00a59fa35",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "htmlcov/keybd_closed_cb_ce680311.png",
+      "size_bytes": 9004,
+      "mtime": "2025-12-09T07:42:15-0800",
+      "sha256": "7d9bf8ae66370e4349b4f423ac5279501384e4374da1fde675e099582ed33a8a",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "htmlcov/z_bafbd14971e4b406_engine_py.html",
+      "size_bytes": 42964,
+      "mtime": "2025-12-09T07:11:21-0800",
+      "sha256": "b34aad954b61a69add36d678aa2f500f59127a524b0f62fa2e2c656e74429163",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "htmlcov/z_bafbd14971e4b406_measure_py.html",
+      "size_bytes": 41480,
+      "mtime": "2025-12-09T07:11:21-0800",
+      "sha256": "acc546c459110e14e3ed1468f5f4f654829b1603c90cc9b74f8e03f52a4b4e5d",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "htmlcov/z_bafbd14971e4b406_helix_self_builder_py.html",
+      "size_bytes": 94655,
+      "mtime": "2025-12-09T07:11:21-0800",
+      "sha256": "11f2204e947ae27fe08fbe946cd05199661e3943dea6006482000c72f6f735c3",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/z_run_z0p73.log",
+      "size_bytes": 1133,
+      "mtime": "2025-12-08T20:33:15-0800",
+      "sha256": "f1a7e992e7d3e780b7337c60e992e4b03dfe5022aa827155588203eb154efd51",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/z_run_z0p80.log",
+      "size_bytes": 1133,
+      "mtime": "2025-12-08T20:37:15-0800",
+      "sha256": "f1a7e992e7d3e780b7337c60e992e4b03dfe5022aa827155588203eb154efd51",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/z_run_z0p41.log",
+      "size_bytes": 1133,
+      "mtime": "2025-12-08T20:21:13-0800",
+      "sha256": "f1a7e992e7d3e780b7337c60e992e4b03dfe5022aa827155588203eb154efd51",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/z_run_z0p52.log",
+      "size_bytes": 1133,
+      "mtime": "2025-12-08T20:25:18-0800",
+      "sha256": "f1a7e992e7d3e780b7337c60e992e4b03dfe5022aa827155588203eb154efd51",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/APL_HELIX_OPERATOR_SUMMARY.apl",
+      "size_bytes": 5199,
+      "mtime": "2025-12-09T07:56:36-0800",
+      "sha256": "33aaed5129afced25ef9d3590a74367f71712a259617bbc2eeb8f9335c5f6b8a",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/zwalk.md",
+      "size_bytes": 6939,
+      "mtime": "2025-12-09T01:05:39-0800",
+      "sha256": "17d123a2bbac54a2cae6100811c4de5671f0e1c8684dc8ad466a40fbcd62d8fd",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/z_run_z0p70.log",
+      "size_bytes": 1133,
+      "mtime": "2025-12-08T20:29:21-0800",
+      "sha256": "f1a7e992e7d3e780b7337c60e992e4b03dfe5022aa827155588203eb154efd51",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/main-goal-run-20251209_011258/qapl_test.txt",
+      "size_bytes": 2182,
+      "mtime": "2025-12-09T01:19:22-0800",
+      "sha256": "e1c2cdccd96ea7dcca050547cde17828b259e0df4f7b24b38075430327cfc157",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/main-goal-run-20251209_011258/qapl_run_unified.json",
+      "size_bytes": 3804,
+      "mtime": "2025-12-09T01:13:21-0800",
+      "sha256": "3d0f1e228fa745349087ffa4677884c27bbc23f77daec73bdf2f0be1ca037387",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/main-goal-run-20251209_011258/qapl_run_unified.txt",
+      "size_bytes": 1202,
+      "mtime": "2025-12-09T01:13:21-0800",
+      "sha256": "8f6a567e65d296fbfc6ab5e8681ca9b914b1ee12d39bf8093693c3b9a91fe525",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/main-goal-run-20251209_011258/qapl_run_quantum_only.txt",
+      "size_bytes": 795,
+      "mtime": "2025-12-09T01:15:44-0800",
+      "sha256": "c2619326b435b1db6c9ae3834719e766a14bdee30284308a4cc8da904eb5057e",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/main-goal-run-20251209_011258/qapl_run_quantum_only.json",
+      "size_bytes": 1848,
+      "mtime": "2025-12-09T01:15:44-0800",
+      "sha256": "206f5d305a8c0c40ba908d351215646c8ced692f238bd89935dcb13703c5d940",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/main-goal-run-20251209_011258/qapl_analyze.txt",
+      "size_bytes": 1084,
+      "mtime": "2025-12-09T01:15:16-0800",
+      "sha256": "6e5c3df01de45f4286857a94438205043a111d8b53b13bb7303aa28b0e9ad1d5",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-sweep-20251209_051231/SUMMARY.txt",
+      "size_bytes": 230,
+      "mtime": "2025-12-09T05:16:00-0800",
+      "sha256": "f463d89a32c9059e535733222245720476f83d779e1dfcb84b7eeb4f9aabbe05",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-sweep-20251209_051231/unified_z0p73.txt",
+      "size_bytes": 2770,
+      "mtime": "2025-12-09T05:15:04-0800",
+      "sha256": "227e6c2ee9f06b14f1bf56eadc30bf07a50092b44517b5b37b65ee4c5a21ca63",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-sweep-20251209_051231/zwalk_z0p73.md",
+      "size_bytes": 9639,
+      "mtime": "2025-12-09T05:14:41-0800",
+      "sha256": "cae7af7c02e0e540b646f71681298b2a7b90cb7cd4f50d15d4a273f1d3e11a8d",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-sweep-20251209_051231/unified_z0p70.txt",
+      "size_bytes": 2712,
+      "mtime": "2025-12-09T05:14:16-0800",
+      "sha256": "b847e2364980f9c0262f02aba0133c04018e4430aa8cb2d4f58db015f91808f9",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-sweep-20251209_051231/unified_z0p41.json",
+      "size_bytes": 3837,
+      "mtime": "2025-12-09T05:13:13-0800",
+      "sha256": "55b550b4d3e605b1afdb47ca724ed02cf39544489df1215387ecc6ddf9efdf37",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-sweep-20251209_051231/zwalk_z0p80.geom.json",
+      "size_bytes": 8157,
+      "mtime": "2025-12-09T05:15:23-0800",
+      "sha256": "0ad6e86ff1c83278e149a33ab98deeefac97c5696d562d2cc5c94fae009a9a7c",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-sweep-20251209_051231/zwalk_z0p41.geom.json",
+      "size_bytes": 8157,
+      "mtime": "2025-12-09T05:12:32-0800",
+      "sha256": "0ad6e86ff1c83278e149a33ab98deeefac97c5696d562d2cc5c94fae009a9a7c",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-sweep-20251209_051231/unified_cli_z0p52.txt",
+      "size_bytes": 2747,
+      "mtime": "2025-12-09T05:13:54-0800",
+      "sha256": "412fe23f028a80224b45aa63b21dbb3dc8c94f0eacd36793e0288e980c4aabe8",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-sweep-20251209_051231/self_builder_z0p70.log",
+      "size_bytes": 0,
+      "mtime": "2025-12-09T05:13:54-0800",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-sweep-20251209_051231/seeds.txt",
+      "size_bytes": 32,
+      "mtime": "2025-12-09T05:12:31-0800",
+      "sha256": "0d4462ddb58c0bd6d8ca485cb561bb2e2ea12825a445b83d15a95a2c91a32bb2",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-sweep-20251209_051231/self_builder_z0p80.log",
+      "size_bytes": 0,
+      "mtime": "2025-12-09T05:15:23-0800",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-sweep-20251209_051231/unified_cli_z0p73.txt",
+      "size_bytes": 2839,
+      "mtime": "2025-12-09T05:15:23-0800",
+      "sha256": "446df1d5a2a2ab1c4664bbef84a64af97ec12359837f5969b347fca6a9163ee2",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-sweep-20251209_051231/self_builder_z0p41.log",
+      "size_bytes": 0,
+      "mtime": "2025-12-09T05:12:31-0800",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-sweep-20251209_051231/zwalk_z0p41.md",
+      "size_bytes": 9639,
+      "mtime": "2025-12-09T05:12:32-0800",
+      "sha256": "cae7af7c02e0e540b646f71681298b2a7b90cb7cd4f50d15d4a273f1d3e11a8d",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-sweep-20251209_051231/unified_z0p73.json",
+      "size_bytes": 3875,
+      "mtime": "2025-12-09T05:15:23-0800",
+      "sha256": "b822147726bca4b1aaf328e07f7462372e9dd61e87b273ce346d679bbf6382bb",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-sweep-20251209_051231/zwalk_z0p70.geom.json",
+      "size_bytes": 8157,
+      "mtime": "2025-12-09T05:13:54-0800",
+      "sha256": "0ad6e86ff1c83278e149a33ab98deeefac97c5696d562d2cc5c94fae009a9a7c",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-sweep-20251209_051231/zwalk_z0p52.md",
+      "size_bytes": 9639,
+      "mtime": "2025-12-09T05:13:13-0800",
+      "sha256": "cae7af7c02e0e540b646f71681298b2a7b90cb7cd4f50d15d4a273f1d3e11a8d",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-sweep-20251209_051231/unified_cli_z0p41.txt",
+      "size_bytes": 2717,
+      "mtime": "2025-12-09T05:13:13-0800",
+      "sha256": "f994fe1a1aadd8bb953b93edad979138a5b80aca92339302f5657a4aa6101c98",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-sweep-20251209_051231/unified_cli_z0p80.txt",
+      "size_bytes": 1991,
+      "mtime": "2025-12-09T05:16:00-0800",
+      "sha256": "aadccb60df50a2412b4f3d49056699fb1e0ed8c264bba598fe9fcf2e23316879",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-sweep-20251209_051231/zwalk_z0p70.md",
+      "size_bytes": 9639,
+      "mtime": "2025-12-09T05:13:54-0800",
+      "sha256": "cae7af7c02e0e540b646f71681298b2a7b90cb7cd4f50d15d4a273f1d3e11a8d",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-sweep-20251209_051231/zwalk_z0p80.md",
+      "size_bytes": 9639,
+      "mtime": "2025-12-09T05:15:23-0800",
+      "sha256": "cae7af7c02e0e540b646f71681298b2a7b90cb7cd4f50d15d4a273f1d3e11a8d",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-sweep-20251209_051231/geometry_index.json",
+      "size_bytes": 93009,
+      "mtime": "2025-12-09T05:16:00-0800",
+      "sha256": "03c8e97bcd3cf0d91436af77ea20f683b2cecc23597404a5c87acfafa898678d",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-sweep-20251209_051231/zwalk_z0p52.geom.json",
+      "size_bytes": 8157,
+      "mtime": "2025-12-09T05:13:13-0800",
+      "sha256": "0ad6e86ff1c83278e149a33ab98deeefac97c5696d562d2cc5c94fae009a9a7c",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-sweep-20251209_051231/unified_cli_z0p70.txt",
+      "size_bytes": 2780,
+      "mtime": "2025-12-09T05:14:41-0800",
+      "sha256": "e62db709f0da0039c53c784f185e9b79a119390beb6a70bc2bd5f5f0948e4112",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-sweep-20251209_051231/self_builder_z0p52.log",
+      "size_bytes": 0,
+      "mtime": "2025-12-09T05:13:13-0800",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-sweep-20251209_051231/unified_z0p80.txt",
+      "size_bytes": 1923,
+      "mtime": "2025-12-09T05:15:41-0800",
+      "sha256": "fbf6c902f347e7822a715bfe703fa91459ee4318d06a21c5c87643d2d1460327",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-sweep-20251209_051231/unified_z0p80.json",
+      "size_bytes": 3886,
+      "mtime": "2025-12-09T05:16:00-0800",
+      "sha256": "8982091a9afdc603fe121bb822332b65253379de7c51f31f7c9b44fb48c3cbb5",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-sweep-20251209_051231/unified_z0p52.txt",
+      "size_bytes": 2678,
+      "mtime": "2025-12-09T05:13:32-0800",
+      "sha256": "9f2a57d1a33881892bbd49560665d02c15ae861c0a8de505f68a3d25c6fcd317",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-sweep-20251209_051231/unified_z0p52.json",
+      "size_bytes": 3847,
+      "mtime": "2025-12-09T05:13:54-0800",
+      "sha256": "63fa18c0a90c6f137a68bb8106f9e01969d4b898e31c5da6627631838f21878f",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-sweep-20251209_051231/zwalk_z0p73.geom.json",
+      "size_bytes": 8157,
+      "mtime": "2025-12-09T05:14:41-0800",
+      "sha256": "0ad6e86ff1c83278e149a33ab98deeefac97c5696d562d2cc5c94fae009a9a7c",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-sweep-20251209_051231/unified_z0p70.json",
+      "size_bytes": 3872,
+      "mtime": "2025-12-09T05:14:41-0800",
+      "sha256": "460f1a13a0045b55c2e04b1999e49e952950ba94e877256b529ab9caff132b76",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-sweep-20251209_051231/unified_z0p41.txt",
+      "size_bytes": 2648,
+      "mtime": "2025-12-09T05:12:52-0800",
+      "sha256": "b38ef1de92bb990b224cc7cf205d90c52ba7c5dabc1460784a06e34db499508d",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-sweep-20251209_051231/self_builder_z0p73.log",
+      "size_bytes": 0,
+      "mtime": "2025-12-09T05:14:41-0800",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-run-20251209_011637/SUMMARY.txt",
+      "size_bytes": 580,
+      "mtime": "2025-12-09T01:21:28-0800",
+      "sha256": "db1bd35bf18428b04a64ae34c2f2a0c8c2f367883c8192234973af5a8d0a0c0d",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-run-20251209_011637/unified_z0p73.txt",
+      "size_bytes": 2276,
+      "mtime": "2025-12-09T01:19:26-0800",
+      "sha256": "b5c6436ade9127fd76e8aad2a3d5246e28f96efa2a84de1ec247b00c9737b369",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-run-20251209_011637/zwalk_z0p87.md",
+      "size_bytes": 9639,
+      "mtime": "2025-12-09T05:10:53-0800",
+      "sha256": "cae7af7c02e0e540b646f71681298b2a7b90cb7cd4f50d15d4a273f1d3e11a8d",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-run-20251209_011637/progress.txt",
+      "size_bytes": 190,
+      "mtime": "2025-12-09T01:21:16-0800",
+      "sha256": "e617ed7f22da9424ce0aa9646e220368af3fdc345942f1f89d28af8bbafb57cc",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-run-20251209_011637/zwalk_z0p73.md",
+      "size_bytes": 9639,
+      "mtime": "2025-12-09T05:10:52-0800",
+      "sha256": "cae7af7c02e0e540b646f71681298b2a7b90cb7cd4f50d15d4a273f1d3e11a8d",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-run-20251209_011637/self_builder_z0p00.log",
+      "size_bytes": 0,
+      "mtime": "2025-12-09T01:16:37-0800",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-run-20251209_011637/unified_z0p85.txt",
+      "size_bytes": 1430,
+      "mtime": "2025-12-09T01:20:10-0800",
+      "sha256": "904e82ac5546f054f24bb2936d7cca622ae460081f2fb436ec0cae3cb2d216f8",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-run-20251209_011637/unified_z0p70.txt",
+      "size_bytes": 2219,
+      "mtime": "2025-12-09T01:18:54-0800",
+      "sha256": "96ba98a8a8215460cde140a66969a5f6074f0dbd5186607b71bdd946c912f933",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-run-20251209_011637/self_builder_z0p95.log",
+      "size_bytes": 0,
+      "mtime": "2025-12-09T01:20:55-0800",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-run-20251209_011637/zwalk_z0p85.geom.json",
+      "size_bytes": 8157,
+      "mtime": "2025-12-09T05:10:52-0800",
+      "sha256": "0ad6e86ff1c83278e149a33ab98deeefac97c5696d562d2cc5c94fae009a9a7c",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-run-20251209_011637/translator_z0p70.json",
+      "size_bytes": 1437,
+      "mtime": "2025-12-09T01:18:54-0800",
+      "sha256": "152f46cec346154bf9d29336a192fc6dcd548c878f9cb857c19338f5a2e9c8f6",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-run-20251209_011637/zwalk_z0p90.geom.json",
+      "size_bytes": 8157,
+      "mtime": "2025-12-09T05:10:53-0800",
+      "sha256": "0ad6e86ff1c83278e149a33ab98deeefac97c5696d562d2cc5c94fae009a9a7c",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-run-20251209_011637/zwalk_z0p80.geom.json",
+      "size_bytes": 8157,
+      "mtime": "2025-12-09T05:10:52-0800",
+      "sha256": "0ad6e86ff1c83278e149a33ab98deeefac97c5696d562d2cc5c94fae009a9a7c",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-run-20251209_011637/zwalk_z0p90.md",
+      "size_bytes": 9639,
+      "mtime": "2025-12-09T05:10:53-0800",
+      "sha256": "cae7af7c02e0e540b646f71681298b2a7b90cb7cd4f50d15d4a273f1d3e11a8d",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-run-20251209_011637/self_builder_z0p90.log",
+      "size_bytes": 0,
+      "mtime": "2025-12-09T01:20:33-0800",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-run-20251209_011637/zwalk_z0p41.geom.json",
+      "size_bytes": 8157,
+      "mtime": "2025-12-09T05:10:50-0800",
+      "sha256": "0ad6e86ff1c83278e149a33ab98deeefac97c5696d562d2cc5c94fae009a9a7c",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-run-20251209_011637/translator_z0p80.json",
+      "size_bytes": 1437,
+      "mtime": "2025-12-09T01:19:49-0800",
+      "sha256": "152f46cec346154bf9d29336a192fc6dcd548c878f9cb857c19338f5a2e9c8f6",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-run-20251209_011637/translator_z0p41.json",
+      "size_bytes": 1437,
+      "mtime": "2025-12-09T01:17:45-0800",
+      "sha256": "152f46cec346154bf9d29336a192fc6dcd548c878f9cb857c19338f5a2e9c8f6",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-run-20251209_011637/zwalk_z0p85.md",
+      "size_bytes": 9639,
+      "mtime": "2025-12-09T05:10:52-0800",
+      "sha256": "cae7af7c02e0e540b646f71681298b2a7b90cb7cd4f50d15d4a273f1d3e11a8d",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-run-20251209_011637/zwalk_z0p00.md",
+      "size_bytes": 9639,
+      "mtime": "2025-12-09T05:10:50-0800",
+      "sha256": "cae7af7c02e0e540b646f71681298b2a7b90cb7cd4f50d15d4a273f1d3e11a8d",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-run-20251209_011637/self_builder_z0p85.log",
+      "size_bytes": 0,
+      "mtime": "2025-12-09T01:19:49-0800",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-run-20251209_011637/unified_z0p95.txt",
+      "size_bytes": 1128,
+      "mtime": "2025-12-09T01:21:16-0800",
+      "sha256": "d487f542b33a4f7f8e03e8f9c6c734b6242594fb87065c6bea1d41fb10aea8a1",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-run-20251209_011637/self_builder_z0p70.log",
+      "size_bytes": 0,
+      "mtime": "2025-12-09T01:18:20-0800",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-run-20251209_011637/zwalk_z0p87.geom.json",
+      "size_bytes": 8157,
+      "mtime": "2025-12-09T05:10:53-0800",
+      "sha256": "0ad6e86ff1c83278e149a33ab98deeefac97c5696d562d2cc5c94fae009a9a7c",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-run-20251209_011637/self_builder_z0p80.log",
+      "size_bytes": 0,
+      "mtime": "2025-12-09T01:19:26-0800",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-run-20251209_011637/env_python.txt",
+      "size_bytes": 14,
+      "mtime": "2025-12-09T01:16:37-0800",
+      "sha256": "5b3e43dc38ca01e3f5a7854ba50d4330864b0c1e0f646650b2c78cf072acc366",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-run-20251209_011637/zwalk_z0p95.md",
+      "size_bytes": 9639,
+      "mtime": "2025-12-09T05:10:54-0800",
+      "sha256": "cae7af7c02e0e540b646f71681298b2a7b90cb7cd4f50d15d4a273f1d3e11a8d",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-run-20251209_011637/unified_z0p00.txt",
+      "size_bytes": 1130,
+      "mtime": "2025-12-09T01:17:10-0800",
+      "sha256": "55669397e18441c1f762f0ad8a590b2e24d45e6c0aed0defe176909057e04fb3",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-run-20251209_011637/helix_seeds.txt",
+      "size_bytes": 66,
+      "mtime": "2025-12-09T01:16:37-0800",
+      "sha256": "7ad9a0bfb8bc4ba0a16623eb2c5a7af4b3b3259b7b9abd0a5ace051b8d65ed7b",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-run-20251209_011637/self_builder_z0p41.log",
+      "size_bytes": 0,
+      "mtime": "2025-12-09T01:17:11-0800",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-run-20251209_011637/zwalk_z0p41.md",
+      "size_bytes": 9639,
+      "mtime": "2025-12-09T05:10:50-0800",
+      "sha256": "cae7af7c02e0e540b646f71681298b2a7b90cb7cd4f50d15d4a273f1d3e11a8d",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-run-20251209_011637/self_builder_z0p87.log",
+      "size_bytes": 0,
+      "mtime": "2025-12-09T01:20:10-0800",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-run-20251209_011637/translator_z0p95.json",
+      "size_bytes": 1437,
+      "mtime": "2025-12-09T01:21:16-0800",
+      "sha256": "152f46cec346154bf9d29336a192fc6dcd548c878f9cb857c19338f5a2e9c8f6",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-run-20251209_011637/unified_z0p90.txt",
+      "size_bytes": 1129,
+      "mtime": "2025-12-09T01:20:54-0800",
+      "sha256": "81f13e0a14d92aa5f488fa5ddf862d86a0c9eae7af236b1f4add3b0a12a44fb6",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-run-20251209_011637/zwalk_z0p70.geom.json",
+      "size_bytes": 8157,
+      "mtime": "2025-12-09T05:10:51-0800",
+      "sha256": "0ad6e86ff1c83278e149a33ab98deeefac97c5696d562d2cc5c94fae009a9a7c",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-run-20251209_011637/translator_z0p87.json",
+      "size_bytes": 1437,
+      "mtime": "2025-12-09T01:20:32-0800",
+      "sha256": "152f46cec346154bf9d29336a192fc6dcd548c878f9cb857c19338f5a2e9c8f6",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-run-20251209_011637/zwalk_z0p52.md",
+      "size_bytes": 9639,
+      "mtime": "2025-12-09T05:10:51-0800",
+      "sha256": "cae7af7c02e0e540b646f71681298b2a7b90cb7cd4f50d15d4a273f1d3e11a8d",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-run-20251209_011637/zwalk_z0p70.md",
+      "size_bytes": 9639,
+      "mtime": "2025-12-09T05:10:51-0800",
+      "sha256": "cae7af7c02e0e540b646f71681298b2a7b90cb7cd4f50d15d4a273f1d3e11a8d",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-run-20251209_011637/env_node.txt",
+      "size_bytes": 9,
+      "mtime": "2025-12-09T01:16:37-0800",
+      "sha256": "d42a242f539c376dfe7d9dd3046f1a617901918b0066771733e7fa20a5edfe9d",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-run-20251209_011637/unified_z0p87.txt",
+      "size_bytes": 1129,
+      "mtime": "2025-12-09T01:20:32-0800",
+      "sha256": "520d03d0561b2c4d0c29653491af16974d2576aa961f543cc8f05826d47fe184",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-run-20251209_011637/translator_z0p00.json",
+      "size_bytes": 1437,
+      "mtime": "2025-12-09T01:17:11-0800",
+      "sha256": "152f46cec346154bf9d29336a192fc6dcd548c878f9cb857c19338f5a2e9c8f6",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-run-20251209_011637/zwalk_z0p80.md",
+      "size_bytes": 9639,
+      "mtime": "2025-12-09T05:10:52-0800",
+      "sha256": "cae7af7c02e0e540b646f71681298b2a7b90cb7cd4f50d15d4a273f1d3e11a8d",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-run-20251209_011637/zwalk_z0p95.geom.json",
+      "size_bytes": 8157,
+      "mtime": "2025-12-09T05:10:54-0800",
+      "sha256": "0ad6e86ff1c83278e149a33ab98deeefac97c5696d562d2cc5c94fae009a9a7c",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-run-20251209_011637/translator_z0p85.json",
+      "size_bytes": 1437,
+      "mtime": "2025-12-09T01:20:10-0800",
+      "sha256": "152f46cec346154bf9d29336a192fc6dcd548c878f9cb857c19338f5a2e9c8f6",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-run-20251209_011637/translator_z0p73.json",
+      "size_bytes": 1437,
+      "mtime": "2025-12-09T01:19:26-0800",
+      "sha256": "152f46cec346154bf9d29336a192fc6dcd548c878f9cb857c19338f5a2e9c8f6",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-run-20251209_011637/zwalk_z0p52.geom.json",
+      "size_bytes": 8157,
+      "mtime": "2025-12-09T05:10:51-0800",
+      "sha256": "0ad6e86ff1c83278e149a33ab98deeefac97c5696d562d2cc5c94fae009a9a7c",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-run-20251209_011637/zwalk_z0p00.geom.json",
+      "size_bytes": 8157,
+      "mtime": "2025-12-09T05:10:50-0800",
+      "sha256": "0ad6e86ff1c83278e149a33ab98deeefac97c5696d562d2cc5c94fae009a9a7c",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-run-20251209_011637/self_builder_z0p52.log",
+      "size_bytes": 0,
+      "mtime": "2025-12-09T01:17:45-0800",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-run-20251209_011637/unified_z0p80.txt",
+      "size_bytes": 1429,
+      "mtime": "2025-12-09T01:19:48-0800",
+      "sha256": "fd74e3bfa953f5bdd3d265a97ac1eeba435276816e9b5060496f9e6be092e1f7",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-run-20251209_011637/translator_z0p90.json",
+      "size_bytes": 1437,
+      "mtime": "2025-12-09T01:20:55-0800",
+      "sha256": "152f46cec346154bf9d29336a192fc6dcd548c878f9cb857c19338f5a2e9c8f6",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-run-20251209_011637/unified_z0p52.txt",
+      "size_bytes": 2186,
+      "mtime": "2025-12-09T01:18:19-0800",
+      "sha256": "c45a511d33a2d5db27ecc0eb997b1dab0d662da5b770c6bcf9341f98d3cc7e98",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-run-20251209_011637/zwalk_z0p73.geom.json",
+      "size_bytes": 8157,
+      "mtime": "2025-12-09T05:10:52-0800",
+      "sha256": "0ad6e86ff1c83278e149a33ab98deeefac97c5696d562d2cc5c94fae009a9a7c",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-run-20251209_011637/translator_z0p52.json",
+      "size_bytes": 1437,
+      "mtime": "2025-12-09T01:18:20-0800",
+      "sha256": "152f46cec346154bf9d29336a192fc6dcd548c878f9cb857c19338f5a2e9c8f6",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-run-20251209_011637/unified_z0p41.txt",
+      "size_bytes": 2156,
+      "mtime": "2025-12-09T01:17:44-0800",
+      "sha256": "ad2e441814a1f6c146ba51763382a868de4a61a36187664ce5ae7d4e6c0a5c42",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/helix-run-20251209_011637/self_builder_z0p73.log",
+      "size_bytes": 0,
+      "mtime": "2025-12-09T01:18:54-0800",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/system-run-20251209_010744/unified_sim_z0p41.txt",
+      "size_bytes": 2155,
+      "mtime": "2025-12-09T01:08:56-0800",
+      "sha256": "32acd1333e968481db1c05ff02c7e23aa29f7857729b211688446c4b1e92e181",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/system-run-20251209_010744/zwalk_z0p73.md",
+      "size_bytes": 9639,
+      "mtime": "2025-12-09T05:10:56-0800",
+      "sha256": "cae7af7c02e0e540b646f71681298b2a7b90cb7cd4f50d15d4a273f1d3e11a8d",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/system-run-20251209_010744/seeds_progress.txt",
+      "size_bytes": 95,
+      "mtime": "2025-12-09T01:10:36-0800",
+      "sha256": "046b4656268c05d07bedd07988547d4de5cb924887d5bbcf6470ef1fa45b6785",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/system-run-20251209_010744/translator_z0p70.json",
+      "size_bytes": 1437,
+      "mtime": "2025-12-09T01:09:47-0800",
+      "sha256": "152f46cec346154bf9d29336a192fc6dcd548c878f9cb857c19338f5a2e9c8f6",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/system-run-20251209_010744/zwalk_z0p80.geom.json",
+      "size_bytes": 8157,
+      "mtime": "2025-12-09T05:10:56-0800",
+      "sha256": "0ad6e86ff1c83278e149a33ab98deeefac97c5696d562d2cc5c94fae009a9a7c",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/system-run-20251209_010744/pytest.txt",
+      "size_bytes": 1516,
+      "mtime": "2025-12-09T01:08:29-0800",
+      "sha256": "3184ebe244a83d750885d76d7e85cb9c03a0b82b0fccdee20a06246e726d3ec8",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/system-run-20251209_010744/helix_self_builder_z0p73.txt",
+      "size_bytes": 0,
+      "mtime": "2025-12-09T01:09:47-0800",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/system-run-20251209_010744/zwalk_z0p41.geom.json",
+      "size_bytes": 8157,
+      "mtime": "2025-12-09T05:10:54-0800",
+      "sha256": "0ad6e86ff1c83278e149a33ab98deeefac97c5696d562d2cc5c94fae009a9a7c",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/system-run-20251209_010744/translator_z0p80.json",
+      "size_bytes": 1437,
+      "mtime": "2025-12-09T01:10:36-0800",
+      "sha256": "152f46cec346154bf9d29336a192fc6dcd548c878f9cb857c19338f5a2e9c8f6",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/system-run-20251209_010744/helix_self_builder_z0p80.txt",
+      "size_bytes": 0,
+      "mtime": "2025-12-09T01:10:11-0800",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/system-run-20251209_010744/translator_z0p41.json",
+      "size_bytes": 1437,
+      "mtime": "2025-12-09T01:08:56-0800",
+      "sha256": "152f46cec346154bf9d29336a192fc6dcd548c878f9cb857c19338f5a2e9c8f6",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/system-run-20251209_010744/helix_self_builder_z0p52.txt",
+      "size_bytes": 0,
+      "mtime": "2025-12-09T01:08:56-0800",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/system-run-20251209_010744/unified_sim_z0p70.txt",
+      "size_bytes": 2220,
+      "mtime": "2025-12-09T01:09:47-0800",
+      "sha256": "ecf2527725cb6db81ab0a59487462923b51f96082020fa2d28e457e07498b6cb",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/system-run-20251209_010744/env_python.txt",
+      "size_bytes": 14,
+      "mtime": "2025-12-09T01:07:44-0800",
+      "sha256": "5b3e43dc38ca01e3f5a7854ba50d4330864b0c1e0f646650b2c78cf072acc366",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/system-run-20251209_010744/helix_self_builder_z0p70.txt",
+      "size_bytes": 0,
+      "mtime": "2025-12-09T01:09:23-0800",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/system-run-20251209_010744/zwalk_z0p41.md",
+      "size_bytes": 9639,
+      "mtime": "2025-12-09T05:10:54-0800",
+      "sha256": "cae7af7c02e0e540b646f71681298b2a7b90cb7cd4f50d15d4a273f1d3e11a8d",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/system-run-20251209_010744/unified_sim_z0p52.txt",
+      "size_bytes": 2185,
+      "mtime": "2025-12-09T01:09:22-0800",
+      "sha256": "65141b4432326d51f7d4aabd6b7712f820f82e85614f86e233b4e556e15c3b24",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/system-run-20251209_010744/zwalk_z0p70.geom.json",
+      "size_bytes": 8157,
+      "mtime": "2025-12-09T05:10:55-0800",
+      "sha256": "0ad6e86ff1c83278e149a33ab98deeefac97c5696d562d2cc5c94fae009a9a7c",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/system-run-20251209_010744/zwalk_z0p52.md",
+      "size_bytes": 9639,
+      "mtime": "2025-12-09T05:10:55-0800",
+      "sha256": "cae7af7c02e0e540b646f71681298b2a7b90cb7cd4f50d15d4a273f1d3e11a8d",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/system-run-20251209_010744/zwalk_z0p70.md",
+      "size_bytes": 9639,
+      "mtime": "2025-12-09T05:10:55-0800",
+      "sha256": "cae7af7c02e0e540b646f71681298b2a7b90cb7cd4f50d15d4a273f1d3e11a8d",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/system-run-20251209_010744/env_node.txt",
+      "size_bytes": 9,
+      "mtime": "2025-12-09T01:07:44-0800",
+      "sha256": "d42a242f539c376dfe7d9dd3046f1a617901918b0066771733e7fa20a5edfe9d",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/system-run-20251209_010744/unified_sim_z0p80.txt",
+      "size_bytes": 1429,
+      "mtime": "2025-12-09T01:10:36-0800",
+      "sha256": "4fed873c61e5cbccd2ba0c538a895a4098eaf4a352ac3ff98391f2b6deb628a0",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/system-run-20251209_010744/node_bridge_test.txt",
+      "size_bytes": 59,
+      "mtime": "2025-12-09T01:08:27-0800",
+      "sha256": "562037c80bc28e0e6d3871a08f81f4f75a9e31e796f5c32844f558549facb58a",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/system-run-20251209_010744/pip_install.txt",
+      "size_bytes": 1552,
+      "mtime": "2025-12-09T01:07:46-0800",
+      "sha256": "a7932a095081a1222b66a67ba7da8a03688713366202efe99c2e8b38fab91325",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/system-run-20251209_010744/zwalk_z0p80.md",
+      "size_bytes": 9639,
+      "mtime": "2025-12-09T05:10:56-0800",
+      "sha256": "cae7af7c02e0e540b646f71681298b2a7b90cb7cd4f50d15d4a273f1d3e11a8d",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/system-run-20251209_010744/unified_sim_z0p73.txt",
+      "size_bytes": 2277,
+      "mtime": "2025-12-09T01:10:11-0800",
+      "sha256": "aa528d2862d2af5ba3e81af321258d74b49080555f9d7469fe4d091978198a23",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/system-run-20251209_010744/translator_z0p73.json",
+      "size_bytes": 1437,
+      "mtime": "2025-12-09T01:10:11-0800",
+      "sha256": "152f46cec346154bf9d29336a192fc6dcd548c878f9cb857c19338f5a2e9c8f6",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/system-run-20251209_010744/zwalk_z0p52.geom.json",
+      "size_bytes": 8157,
+      "mtime": "2025-12-09T05:10:55-0800",
+      "sha256": "0ad6e86ff1c83278e149a33ab98deeefac97c5696d562d2cc5c94fae009a9a7c",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/system-run-20251209_010744/helix_self_builder_z0p41.txt",
+      "size_bytes": 0,
+      "mtime": "2025-12-09T01:08:29-0800",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/system-run-20251209_010744/zwalk_z0p73.geom.json",
+      "size_bytes": 8157,
+      "mtime": "2025-12-09T05:10:56-0800",
+      "sha256": "0ad6e86ff1c83278e149a33ab98deeefac97c5696d562d2cc5c94fae009a9a7c",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "logs/system-run-20251209_010744/translator_z0p52.json",
+      "size_bytes": 1437,
+      "mtime": "2025-12-09T01:09:23-0800",
+      "sha256": "152f46cec346154bf9d29336a192fc6dcd548c878f9cb857c19338f5a2e9c8f6",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "docs/SYSTEM_ARCHITECTURE.md",
+      "size_bytes": 17317,
+      "mtime": "2025-12-09T05:27:54-0800",
+      "sha256": "81efc06158fc2fe0562c8bf1cc6858119d3e00d2a14c81ee21cb8918d1ead0e9",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "19eb7db1ec327f967b7b1392f7e10dac5b128d0b"
+      }
+    },
+    {
+      "path": "docs/index.html",
+      "size_bytes": 47465,
+      "mtime": "2025-12-08T14:35:16-0800",
+      "sha256": "31462b8c85730a1feb07f782d0d7b43087dd95905e69cf1f5b40296297704ad2",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "1502d62137f692004d4f54190d3c1292d68d01db"
+      }
+    },
+    {
+      "path": "docs/APL-Measurement-Operators.md",
+      "size_bytes": 1518,
+      "mtime": "2025-12-08T15:29:40-0800",
+      "sha256": "75d776df350325be25abc92c811a84e7f6e135ffc116786aa78236a3bb69841a",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "b605edaf53952af02cc210d033b59dbeb001f989"
+      }
+    },
+    {
+      "path": "docs/HEXAGONAL_NEG_ENTROPY_PROJECTION.md",
+      "size_bytes": 4207,
+      "mtime": "2025-12-08T21:21:10-0800",
+      "sha256": "ac10236687598ab92772340c7aadf5ddd6c4c3f5292dc4757749b6cf891e4cdb",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "09bcdeb81312310b55d1ac712149e7aaedc51ad7"
+      }
+    },
+    {
+      "path": "docs/ALPHA_SYNTAX_BRIDGE.md",
+      "size_bytes": 4750,
+      "mtime": "2025-12-08T21:06:30-0800",
+      "sha256": "40514a08c4609b7feace65b59fab1b8feccdd3a969886c95e7659b81c575d4bb",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "ac852eff480cc365cd385f2529cd169465150206"
+      }
+    },
+    {
+      "path": "docs/apl-seven-sentences-test-pack.pdf",
+      "size_bytes": 209151,
+      "mtime": "2025-12-08T14:35:16-0800",
+      "sha256": "8757d29fa123aa40c59838b396283df99f26a2369af1dcbf2e8ece0561506b67",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "19e0d19453c778ffefc5376cb0f2c6323fa9cd8a"
+      }
+    },
+    {
+      "path": "docs/APL-Measurement-Visual.md",
+      "size_bytes": 589,
+      "mtime": "2025-12-08T14:56:14-0800",
+      "sha256": "6b8f26e5c7f09dd4e3fb98a1b1ce6292236916d940329961e30a907e638bf81a",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "10c22bb28db3376a5eac654a11ba04dc80e01c77"
+      }
+    },
+    {
+      "path": "docs/HELIX_COORDINATES.md",
+      "size_bytes": 2243,
+      "mtime": "2025-12-08T21:21:26-0800",
+      "sha256": "96fe040aba993e32570622c4445a664abc9b84f535fe132dbb54be070d3f0fd3",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "d09ad9ecbf80d427c927cc8ca7c918be113ae594"
+      }
+    },
+    {
+      "path": "docs/README.md",
+      "size_bytes": 1325,
+      "mtime": "2025-12-08T14:35:16-0800",
+      "sha256": "9aa998ac4b34a2f940f1a0fb517bd5bba3de594a19cfcbf1a2802dec54f5f8bb",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "b766c95a582766e85fddc5a4dfb0ec56e17a893f"
+      }
+    },
+    {
+      "path": "docs/helix_z_walkthrough.md",
+      "size_bytes": 6939,
+      "mtime": "2025-12-08T21:15:10-0800",
+      "sha256": "17d123a2bbac54a2cae6100811c4de5671f0e1c8684dc8ad466a40fbcd62d8fd",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "c41fb877fd99739fc9fb6aa2ec9fe24c60bbe65e"
+      }
+    },
+    {
+      "path": "docs/APL-3.0-Quantum-Formalism.md",
+      "size_bytes": 19449,
+      "mtime": "2025-12-08T14:39:24-0800",
+      "sha256": "6f617daa65ef465dc8fe62bdd637e68ea797dd516a0072282e15981d7794e214",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "a920ee433aafb3fc40d94d7e9d5343fb8bc3ecef"
+      }
+    },
+    {
+      "path": "docs/examples/z_solve.apl",
+      "size_bytes": 245,
+      "mtime": "2025-12-08T21:06:55-0800",
+      "sha256": "b9f0a8d2201717ce9cae81f237cdc8ebe812e8023e5eb8e4598680ef84ea2b96",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "974408ec77ac81494c7d8b080ba9240fbc37edec"
+      }
+    },
+    {
+      "path": "reference/research/unified_test_suite.py",
+      "size_bytes": 21315,
+      "mtime": "2025-12-08T19:44:44-0800",
+      "sha256": "d05ce7a8f49d2d995821ae3bd8af95a6654f29d13477717c51cbd5b8cf9a6b7e",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "660344f2ae4b87687dcf9946b28b2b44bcce50b4"
+      }
+    },
+    {
+      "path": "reference/research/stream_validation_processor.py",
+      "size_bytes": 21520,
+      "mtime": "2025-12-08T19:44:44-0800",
+      "sha256": "094bb30ccd3c33408b12053d543a399fa9181120254c1acee54bc52d32b6a2f2",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "e69eb67bf36212eadddf3f2c4dde838013777b43"
+      }
+    },
+    {
+      "path": "reference/ace_apl/Startup Prompt APL.txt",
+      "size_bytes": 7856,
+      "mtime": "2025-12-08T19:44:10-0800",
+      "sha256": "ab3ba82c1d96daa0419dabc2eabe6045c124ea3b8f20019ad251cb1d23dc77b3",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "422df3603c70fb4a863eda36b437b35a5b3f0ba7"
+      }
+    },
+    {
+      "path": "reference/ace_apl/APL_RUNTIME_ENGINE.html",
+      "size_bytes": 61967,
+      "mtime": "2025-12-08T19:44:10-0800",
+      "sha256": "fe2bcb9e33cc7de7464e5937a798bfc54077517b26b6d9ee28ecae0651de82df",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "82be072396b1b86e57dce66b2b04a6df5c634487"
+      }
+    },
+    {
+      "path": "reference/ace_apl/james_fractal_analysis.png",
+      "size_bytes": 404520,
+      "mtime": "2025-12-08T19:44:10-0800",
+      "sha256": "d0cf567f3d2de6e5885ac366600c8dee6c172ddd7f7332c5802a354b9bf80738",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "470357832f3b1733ad80ef9ef9063ce802b191bf"
+      }
+    },
+    {
+      "path": "reference/ace_apl/COMPILE_INSTRUCTIONS.md",
+      "size_bytes": 7037,
+      "mtime": "2025-12-08T19:44:10-0800",
+      "sha256": "4ff518b8f8a343ce34b45a58619ae4f1dbab975e1a2ca04f1bfd4c6c168951ee",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "e47488e3b1058feb864fdc515b3e82bd4a3ca8ca"
+      }
+    },
+    {
+      "path": "reference/ace_apl/README APL.md",
+      "size_bytes": 8630,
+      "mtime": "2025-12-08T19:44:10-0800",
+      "sha256": "407eacd3d63dc961e14a637285d8b4d724935ede302a4d8ff106c525101ddd99",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "9163266eed948982af73ac23d1bc33ada4ed1032"
+      }
+    },
+    {
+      "path": "reference/ace_apl/CET_Tiers_1-15_Synthesis_v1.pdf",
+      "size_bytes": 11105,
+      "mtime": "2025-12-08T19:44:10-0800",
+      "sha256": "f9db5a13f31266c5e2d551442c60823f34a33dde1d0cce09f3ce1f96c80d5605",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "2b5b6c9731300de05a825ee24b85bd31edfeb44c"
+      }
+    },
+    {
+      "path": "reference/ace_apl/apl-seven-sentences-test-pack.tex",
+      "size_bytes": 23946,
+      "mtime": "2025-12-08T19:44:10-0800",
+      "sha256": "7dff628c298b07a81921147f7f28fea899591cfcd5291790045af0bc083248bb",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "7b4c1ce82458076febbdbee3d925abb0ac8c5cba"
+      }
+    },
+    {
+      "path": "reference/ace_apl/Mapping the WUMBO Engine to CET, USS, and \u2203R Frameworks.docx.txt",
+      "size_bytes": 71475,
+      "mtime": "2025-12-08T19:44:10-0800",
+      "sha256": "2d6334b015b1feb3dbcb3f1542fe7187e0e5d4498c7d747cec5eba7ebd2a0c48",
+      "git": {
+        "tracked": false,
+        "blob_sha1": null
+      }
+    },
+    {
+      "path": "reference/ace_apl/APL-README.md",
+      "size_bytes": 8630,
+      "mtime": "2025-12-08T19:44:10-0800",
+      "sha256": "407eacd3d63dc961e14a637285d8b4d724935ede302a4d8ff106c525101ddd99",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "9163266eed948982af73ac23d1bc33ada4ed1032"
+      }
+    },
+    {
+      "path": "reference/ace_apl/USS and 3-6-9-12-15.md",
+      "size_bytes": 34549,
+      "mtime": "2025-12-08T19:44:10-0800",
+      "sha256": "a307538011d26a517e146a8b4c41eb83b4464c1b72db112f8291b6a7a43aa043",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "8446a1f103b8cfc846c9019172af83d3c616ade0"
+      }
+    },
+    {
+      "path": "reference/ace_apl/index apl.html",
+      "size_bytes": 47465,
+      "mtime": "2025-12-08T19:44:10-0800",
+      "sha256": "31462b8c85730a1feb07f782d0d7b43087dd95905e69cf1f5b40296297704ad2",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "1502d62137f692004d4f54190d3c1292d68d01db"
+      }
+    },
+    {
+      "path": "reference/ace_apl/refined_truth_state_model_PARADOX.txt",
+      "size_bytes": 3389,
+      "mtime": "2025-12-08T19:44:10-0800",
+      "sha256": "f670523278fc110b6835addc265971fd523d4b511fbb919abf993fbdb89c7cec",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "56725b389afa2e803ef231aff4a784152488b921"
+      }
+    },
+    {
+      "path": "reference/ace_apl/celestial_ladder.pdf",
+      "size_bytes": 3101,
+      "mtime": "2025-12-08T19:44:10-0800",
+      "sha256": "b73f8be4214be47559a4bd5d44f1149cba097cf3e2c1054440c622e8c29dab60",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "c8c2d0b1042f62fec14b4717dd26b5648d4a7eb5"
+      }
+    },
+    {
+      "path": "reference/ace_apl/TOKEN_INDEX.md",
+      "size_bytes": 23189,
+      "mtime": "2025-12-08T19:44:10-0800",
+      "sha256": "d3d695a1f2ee6005d91f6a3d5116c5759c630d1bd768c1d6a83865ce0acdac56",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "c1c750596542ae93a3b18ad73840801adebdf5b0"
+      }
+    },
+    {
+      "path": "reference/ace_apl/apl-domain-token-sets.tex",
+      "size_bytes": 46520,
+      "mtime": "2025-12-08T19:44:10-0800",
+      "sha256": "4cdde0b048d2d41f36be6e20d43e3fe39472981e673b3e3ae8d161e9ace625ad",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "cd0ed8c3b2ec43f25df3c3540a0d7093cfcf9927"
+      }
+    },
+    {
+      "path": "reference/ace_apl/NEURAL_PATHING_MATRIX.md",
+      "size_bytes": 24538,
+      "mtime": "2025-12-08T19:44:10-0800",
+      "sha256": "fe90b2c60ce15e71c3a7face3d04702d282673b2d1ec9767e3ffb31aa44a16e5",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "af4ede537c491fdc1c225a6ba9d2542490e2202c"
+      }
+    },
+    {
+      "path": "reference/ace_apl/cet_uss_alignment_synthesis.md",
+      "size_bytes": 8266,
+      "mtime": "2025-12-08T19:44:10-0800",
+      "sha256": "bf9b2c6733ecb6e3e2feb7e5dc68ba9936b57450b1d3db24d0b1f8f4fd360abb",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "ce70ebacf2c565891f3a35b7ccc4636ca158cbd0"
+      }
+    },
+    {
+      "path": "reference/ace_apl/machine_ladder_3_6_9_12_15.pdf",
+      "size_bytes": 4841,
+      "mtime": "2025-12-08T19:44:10-0800",
+      "sha256": "5528453137b09b75433c4a963a2a3d5c9e481005ea15a26a4b6c1c617e8891f4",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "81078e6d7a7b6d9c0d7e1b5b29d3d94cc39f731c"
+      }
+    },
+    {
+      "path": "reference/ace_apl/Constants.png",
+      "size_bytes": 131756,
+      "mtime": "2025-12-08T19:44:10-0800",
+      "sha256": "deac6b5787e96f6db2122461c4e9d50b3dfe431658303d7a1e1c47961eb0af23",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "16db25fcf0503fc7b13ce9cce2ecbf6f61f54646"
+      }
+    },
+    {
+      "path": "reference/ace_apl/biological_emergence_ladder-1.pdf",
+      "size_bytes": 3765,
+      "mtime": "2025-12-08T19:44:10-0800",
+      "sha256": "c21319f9f9666f5b678d8ae1aa0ad1e3c2022bea1eed86ee0ede99fa52d91c8d",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "c9d6f8d9fef0c4adaedcd65cc6c3cc6de217047a"
+      }
+    },
+    {
+      "path": "reference/ace_apl/Deep Integration for 3-6-9-12-15.md",
+      "size_bytes": 34549,
+      "mtime": "2025-12-08T19:44:10-0800",
+      "sha256": "a307538011d26a517e146a8b4c41eb83b4464c1b72db112f8291b6a7a43aa043",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "8446a1f103b8cfc846c9019172af83d3c616ade0"
+      }
+    },
+    {
+      "path": "reference/ace_apl/julia_sets_with_S.png",
+      "size_bytes": 1386642,
+      "mtime": "2025-12-08T19:44:10-0800",
+      "sha256": "e08786e36d30c9ec68312654ba7d453a82c8a44afd2eb781e8a9265b9d072d21",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "c0e1145eae98b4839b8e3d1f4bf35d8bdcdb7328"
+      }
+    },
+    {
+      "path": "reference/ace_apl/wumbo-apl-directory.html",
+      "size_bytes": 50207,
+      "mtime": "2025-12-08T19:44:10-0800",
+      "sha256": "5a94c43686e3f01c32096d0e121746e6e35441f3602213bab771a540db6f6d9f",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "69653b36720c5708787a5f54492b81adb2aec264"
+      }
+    },
+    {
+      "path": "reference/helix_bridge/WITNESS/helix_transformation_buffer.yaml",
+      "size_bytes": 11274,
+      "mtime": "2025-12-08T19:44:19-0800",
+      "sha256": "9075faf604261e44bd97b27831dcf4ce5fec2de7e12e76fffed19f99b8de95d9",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "f74fd65510aa489cc8e77445de2d8437c37c75c0"
+      }
+    },
+    {
+      "path": "reference/helix_bridge/WITNESS/helix_witness_log.yaml",
+      "size_bytes": 10662,
+      "mtime": "2025-12-08T19:44:19-0800",
+      "sha256": "8a22c4b50185a9e15be4be73dcf6d22ddd3ed6214bcb37e398c8aa555ef6224a",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "bee1edd45466a62ca6f8ce163a08e907420d51df"
+      }
+    },
+    {
+      "path": "reference/helix_bridge/TOOLS/META/shed_builder.yaml",
+      "size_bytes": 12287,
+      "mtime": "2025-12-08T19:44:33-0800",
+      "sha256": "4f7c8199e69671b9952b9b824fa9a74e1c9d80552d5871e1e96ff294ae6300fb",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "e72bd8df296dbae7c8fbc3e75b7433ff1c99aced"
+      }
+    },
+    {
+      "path": "reference/helix_bridge/TOOLS/META/shed_builder_v2.yaml",
+      "size_bytes": 15633,
+      "mtime": "2025-12-08T19:44:33-0800",
+      "sha256": "ad6fea13b2c38f36b934c588b3b24012de3f8521f618ff99d6f5bedd916685b5",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "b2992035046da349299415e9c19df26039b23e3f"
+      }
+    },
+    {
+      "path": "reference/helix_bridge/TOOLS/BRIDGES/bridge_validator.yaml",
+      "size_bytes": 16569,
+      "mtime": "2025-12-08T19:44:33-0800",
+      "sha256": "9b5ba46ab6e5e907554bde1ef5af727a5070ce0950a536136cdc345cddce2e4d",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "241d2403d8f3e1adaca1bb533660a67d0b55486a"
+      }
+    },
+    {
+      "path": "reference/helix_bridge/TOOLS/BRIDGES/cross_instance_messenger.yaml",
+      "size_bytes": 7514,
+      "mtime": "2025-12-08T19:44:33-0800",
+      "sha256": "9b5208a7abc9c125ece0fc06e48f9967a3a7fb1a498455b5f885ac02db95800c",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "cdcbde8ea1f831968a8ce9f628a901c15136303a"
+      }
+    },
+    {
+      "path": "reference/helix_bridge/TOOLS/BRIDGES/collective_memory_sync_merge_checklist.yaml",
+      "size_bytes": 1020,
+      "mtime": "2025-12-08T19:44:33-0800",
+      "sha256": "851b6502198b14d9c2fa7bc58b5e9ce0357f66b4eccd7226fe5f20450bd5f7fd",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "3abb3cfe6210ed247a25c53375d869cea3c3fc2e"
+      }
+    },
+    {
+      "path": "reference/helix_bridge/TOOLS/BRIDGES/tool_discovery_protocol.yaml",
+      "size_bytes": 5032,
+      "mtime": "2025-12-08T19:44:33-0800",
+      "sha256": "5395c1fb34f4d0a13e6f09a5fcef159042eb209fa2336c8e9e23b49ae440a31c",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "b38b2a5e520b8b5ba341d10a33e0029b2b83dba9"
+      }
+    },
+    {
+      "path": "reference/helix_bridge/TOOLS/BRIDGES/tiny_triad_test_playbook.yaml",
+      "size_bytes": 1753,
+      "mtime": "2025-12-08T19:44:33-0800",
+      "sha256": "344b87d0bec98eb44e3c57e021a852b5a195c6f2c592c2befaa77ae4dee2f8f3",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "6bfca85faf68a6f3a88e5604692b2ca7055fa2d4"
+      }
+    },
+    {
+      "path": "reference/helix_bridge/TOOLS/BRIDGES/consent_protocol.yaml",
+      "size_bytes": 9209,
+      "mtime": "2025-12-08T19:44:33-0800",
+      "sha256": "220187ae99d5864022dea3936c8032fa6fba21e6c22f22b093b7b9543edb9eb1",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "4590eedee7a63b25eedc2517b489deccb62f3be3"
+      }
+    },
+    {
+      "path": "reference/helix_bridge/TOOLS/BRIDGES/autonomous_trigger_detector.yaml",
+      "size_bytes": 19576,
+      "mtime": "2025-12-08T19:44:33-0800",
+      "sha256": "9cc1cb2f64cf99b3233b8e1dcecfce12f32a37f98191990d16de7b2afb5a26c5",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "f4b081b6dade23a6def2be486f8a52546ebdfdc5"
+      }
+    },
+    {
+      "path": "reference/helix_bridge/TOOLS/CORE/helix_loader.yaml",
+      "size_bytes": 10830,
+      "mtime": "2025-12-08T19:44:33-0800",
+      "sha256": "cab51de72fb6459c83787ef6663647627a0dc355d8e039216499be44e05edcd9",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "1b914de6909fe66395be2d9953ee3274975ce547"
+      }
+    },
+    {
+      "path": "reference/helix_bridge/TOOLS/CORE/pattern_verifier.yaml",
+      "size_bytes": 12623,
+      "mtime": "2025-12-08T19:44:33-0800",
+      "sha256": "1fcbbeefd4aaeaae5b2f51b2cab152f2323cb113b58c2976eb9fc65814d2c1aa",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "e34e67c646256afa325922dae6af428e6d589902"
+      }
+    },
+    {
+      "path": "reference/helix_bridge/TOOLS/CORE/coordinate_detector.yaml",
+      "size_bytes": 6358,
+      "mtime": "2025-12-08T19:44:33-0800",
+      "sha256": "d4f496dfcde9c654cf709d7833136fcaf8ed5cbe0f7ab7280c90bc69ff4c2e70",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "5166db072c655e354b924c8a407259982a2f2872"
+      }
+    },
+    {
+      "path": "reference/helix_bridge/LOGS/autonomous_trigger_detector_meta_observation_log.md",
+      "size_bytes": 12056,
+      "mtime": "2025-12-08T19:44:22-0800",
+      "sha256": "154677e413fd08a8a0e12ff2349491a3adb84e269bdf64c341c2cb2fb771c180",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "9bc3275520d866c4eed7f0fe91b6357d54b3e3c4"
+      }
+    },
+    {
+      "path": "reference/helix_bridge/LOGS/collective_memory_sync_meta_observation_log.md",
+      "size_bytes": 2525,
+      "mtime": "2025-12-08T19:44:22-0800",
+      "sha256": "56044b082064b00cde266e0eeb913ef5f7b6635b48251c53b91d1adbd8d57ddf",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "1063b6d116902c8924ed528851ddd65e2f7f1936"
+      }
+    },
+    {
+      "path": "reference/helix_bridge/LOGS/cross_instance_messenger_meta_observation_log_p2.md",
+      "size_bytes": 1432,
+      "mtime": "2025-12-08T19:44:22-0800",
+      "sha256": "fd33efe699b53aa6502dc3eb34cb3a49062a1f99afe49a36908d8454933e5529",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "5af4013c90b40d62856b3e8f1e0495e134a966ef"
+      }
+    },
+    {
+      "path": "reference/helix_bridge/LOGS/tool_discovery_protocol_meta_observation_log.md",
+      "size_bytes": 1235,
+      "mtime": "2025-12-08T19:44:22-0800",
+      "sha256": "6842cd8612f53b992d2ffba1b3b64eaf3e1268689f176be0754708b98c4d05d9",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "76fea7302d46b54be7b562a6007a24b576c8afe9"
+      }
+    },
+    {
+      "path": "reference/helix_bridge/VAULTNODES/z0p41/vn-helix-fingers-bridge-map.json",
+      "size_bytes": 2560,
+      "mtime": "2025-12-08T19:44:29-0800",
+      "sha256": "461f44f40634e050def62d6c3f34da8579de62aecfcea2632eece75793765897",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "d9d56914816004eaf4bf4ff5188df66f6507da98"
+      }
+    },
+    {
+      "path": "reference/helix_bridge/VAULTNODES/z0p41/vn-helix-fingers-preseal-checklist.md",
+      "size_bytes": 8202,
+      "mtime": "2025-12-08T19:44:29-0800",
+      "sha256": "b03d47b0c19d7bdf35f9761a8ca2cce2a10027de9b1a2994684fb911ea8a8e46",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "93a2c6f81488c16d38a655d568c939533420edc4"
+      }
+    },
+    {
+      "path": "reference/helix_bridge/VAULTNODES/z0p41/vn-helix-fingers-metadata.yaml",
+      "size_bytes": 3312,
+      "mtime": "2025-12-08T19:44:29-0800",
+      "sha256": "8931c905c3651df4a4aabb601077beb14a3019f9500e5cbec0fe76a731221e7f",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "1505b2edd31c0bee3752524a037efdd2ede8e05e"
+      }
+    },
+    {
+      "path": "reference/helix_bridge/VAULTNODES/z0p41/helix_realization_vaultnode.html",
+      "size_bytes": 19662,
+      "mtime": "2025-12-08T19:44:29-0800",
+      "sha256": "53ae4f9bce6b363531cac18730c55725a297ad8d943f262ce37c54373098798d",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "38d9e127494b1eb4d39710ea03074f5a69c13fbf"
+      }
+    },
+    {
+      "path": "reference/helix_bridge/VAULTNODES/z0p73/vn-helix-self-bootstrap-metadata_p2.yaml",
+      "size_bytes": 12737,
+      "mtime": "2025-12-08T19:44:29-0800",
+      "sha256": "626e6aa80079b548d68259d12c212adaf0084cda039f4e2e4d6cccaa1f1a428d",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "d305e896b5f8c65f2d9f6eff1b6f50c0e8fa7afd"
+      }
+    },
+    {
+      "path": "reference/helix_bridge/VAULTNODES/z0p73/vn-helix-self-bootstrap-bridge-map.json",
+      "size_bytes": 9305,
+      "mtime": "2025-12-08T19:44:29-0800",
+      "sha256": "0ff44b3a37cc660f8f4a93c59d6a923338f97c1f665b9442717bb365b8d01658",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "cf33da5315666d2fdd0cad9a8656ae2459ec2ccb"
+      }
+    },
+    {
+      "path": "reference/helix_bridge/VAULTNODES/z0p73/ELEVATION_z073_ANNOUNCEMENT.md",
+      "size_bytes": 11100,
+      "mtime": "2025-12-08T19:44:29-0800",
+      "sha256": "eb4a520bb0c5247030b974fdd028effa8e8e916d53875501f926605fdec6b96d",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "f5044a731ffffc2208a91b1878969a42eeb182e0"
+      }
+    },
+    {
+      "path": "reference/helix_bridge/VAULTNODES/z0p52/vn-helix-continuation-bridge-map.json",
+      "size_bytes": 4083,
+      "mtime": "2025-12-08T19:44:29-0800",
+      "sha256": "32554889f7b5ee547c4c78c65c5843aea4a4ffc2d0af1df288aa566b0da924c5",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "791ac5092b8717ca064234ce0832796821004522"
+      }
+    },
+    {
+      "path": "reference/helix_bridge/VAULTNODES/z0p52/vn-helix-continuation-metadata.yaml",
+      "size_bytes": 4231,
+      "mtime": "2025-12-08T19:44:29-0800",
+      "sha256": "d54914dea4c8d4a4c1d21e62a46a52d7f18e9aa861b4ea43b45dd0fb4023961e",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "fe7c36adba6a5dc90c61c97843b05b6dec85148b"
+      }
+    },
+    {
+      "path": "reference/helix_bridge/VAULTNODES/z0p52/helix_continuation_vaultnode.html",
+      "size_bytes": 2707,
+      "mtime": "2025-12-08T19:44:29-0800",
+      "sha256": "5300336dfdec83183bc8dbd598f50d2875b3e71e44c8523deddd3018239464e1",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "4ede343b5b4d1b83493774bdac9917ca4022c512"
+      }
+    },
+    {
+      "path": "reference/helix_bridge/VAULTNODES/z0p70/vn-helix-meta-awareness-metadata.yaml",
+      "size_bytes": 10061,
+      "mtime": "2025-12-08T19:44:29-0800",
+      "sha256": "59ff869a744742492eb7f868206277429fa7ecd6ec74341ba096dd4026143351",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "f920bfa0c9eb741c2c87c41e4243e5308604a056"
+      }
+    },
+    {
+      "path": "reference/helix_bridge/VAULTNODES/z0p70/ELEVATION_z070_ANNOUNCEMENT.md",
+      "size_bytes": 6396,
+      "mtime": "2025-12-08T19:44:29-0800",
+      "sha256": "abd7a31c286d3b50114351e1321e41c55b858f0b3033cb2e268329faa58eb7b7",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "369e7b86a70bd8f3b2329dbdd46b1bc93cfd15f0"
+      }
+    },
+    {
+      "path": "reference/helix_bridge/VAULTNODES/z0p70/vn-helix-meta-awareness-bridge-map_p2.json",
+      "size_bytes": 4851,
+      "mtime": "2025-12-08T19:44:29-0800",
+      "sha256": "0e466ba7ccf222948c8ec41ad9c5ef613dfb7754f9a7092b78f7a4edd7d07e0d",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "00076dcbb6d47b4ad7b162767e90248365a3de25"
+      }
+    },
+    {
+      "path": "reference/helix_bridge/VAULTNODES/z0p80/vn-helix-autonomous-coordination-metadata.yaml",
+      "size_bytes": 11127,
+      "mtime": "2025-12-08T19:44:29-0800",
+      "sha256": "1bafb230bb847c0d8d9cc6afd7a3da3722c10e483190a873233be5f12178a069",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "eb853a064741436a7a633bffab64c1a3ad8d6b49"
+      }
+    },
+    {
+      "path": "reference/helix_bridge/VAULTNODES/z0p80/vn-helix-triadic-autonomy-bridge-map.json",
+      "size_bytes": 5459,
+      "mtime": "2025-12-08T19:44:29-0800",
+      "sha256": "44a7f34b565124b3fe5b6f26cf74094ad4aa006bd69cdf0934ed340bf008d53f",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "50bf56c95f3da137fd48844fc7909c6277c7ec2d"
+      }
+    },
+    {
+      "path": "reference/helix_bridge/VAULTNODES/z0p80/ELEVATION_z080_ANNOUNCEMENT.md",
+      "size_bytes": 15613,
+      "mtime": "2025-12-08T19:44:29-0800",
+      "sha256": "e859a38e874487497d03210ba16e53fef211243795264041ebf11e8a990e1e93",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "d254e44df772d0a93767ec14db040b6ebcb5875a"
+      }
+    },
+    {
+      "path": "reference/helix_bridge/VAULTNODES/z0p80/vn-helix-autonomous-coordination-bridge-map.json",
+      "size_bytes": 9469,
+      "mtime": "2025-12-08T19:44:29-0800",
+      "sha256": "31062bbe1dd2442957d9bde9af28257002ffc9e519d00f3d955b770acb5b1a6f",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "017a63aec1a2978639348bf1ce4116f16a566946"
+      }
+    },
+    {
+      "path": "reference/helix_bridge/VAULTNODES/z0p80/vn-helix-triadic-autonomy-metadata.yaml",
+      "size_bytes": 7709,
+      "mtime": "2025-12-08T19:44:29-0800",
+      "sha256": "e88f789007c7c551857475aa6ea0794e14e8eb1b7c1c9c430c5791717469a75b",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "8c6bea2bcb1a205b07f7c98c880719a059261c73"
+      }
+    },
+    {
+      "path": "reference/helix_bridge/STATE_TRANSFER/state_transfer.yaml",
+      "size_bytes": 10982,
+      "mtime": "2025-12-08T19:44:14-0800",
+      "sha256": "da85540a02bb160f868b9a0fc9095cdcf55fcfcb32c4fce836997a750ecc333b",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "2b764d209da21ca5209f3b429524b76b9343d53d"
+      }
+    },
+    {
+      "path": "reference/helix_bridge/STATE_TRANSFER/STATE_TRANSFER_PACKAGE_z073.md",
+      "size_bytes": 14695,
+      "mtime": "2025-12-08T19:44:14-0800",
+      "sha256": "89372ab374c837fee8555fb23506f78f8c8fd20561f1ccf2971623ce588df0fc",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "c81b259e9cafc5bf04c272ecab208a6869ecbbea"
+      }
+    },
+    {
+      "path": "reference/helix_bridge/STATE_TRANSFER/STATE_TRANSFER_PACKAGE_z0p52.md",
+      "size_bytes": 8168,
+      "mtime": "2025-12-08T19:44:14-0800",
+      "sha256": "1a441ffcd3f2173d2cfa73515063eef0392b6b691dabb433e40607ae289f78f7",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "cb8a65cea4e43d6520fc0a40d8304e8b79f803ab"
+      }
+    },
+    {
+      "path": "reference/helix_bridge/STATE_TRANSFER/STATE_TRANSFER_PACKAGE_z080.md",
+      "size_bytes": 16136,
+      "mtime": "2025-12-08T19:44:14-0800",
+      "sha256": "fa8f8f9ac367de533b51e122b505e045c14ef822db5d5196edf2e7cd4a75e1c5",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "a89cde4257c2e56ab69ee1d3941b4468b00ab339"
+      }
+    },
+    {
+      "path": "reference/helix_bridge/SCHEMAS/tool_discovery_protocol.record.schema.json",
+      "size_bytes": 1974,
+      "mtime": "2025-12-08T19:44:26-0800",
+      "sha256": "5ec23615652aceb9c21d0349b0d869617b5a8b0e547a0c6276b5f5eabcc02008",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "e755cd1f4aa47ae8e240fdca331a7bb2a514516b"
+      }
+    },
+    {
+      "path": "reference/helix_bridge/SCHEMAS/autonomous_trigger_detector_schema.json",
+      "size_bytes": 3389,
+      "mtime": "2025-12-08T19:44:26-0800",
+      "sha256": "a8b0cdfa5b58eab2f4a4b236db804684d9f47a77c7d2f3f80fb933c6ae7cf05c",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "9351758725d43e41aa5b01940f3b178d2fe44ff8"
+      }
+    },
+    {
+      "path": "reference/helix_bridge/SCHEMAS/tool_discovery_protocol_beacon_schema.json",
+      "size_bytes": 3150,
+      "mtime": "2025-12-08T19:44:26-0800",
+      "sha256": "a663e0b2e11c9986e75fe3dddb9d7f8040968c06dddafffbe71ee5dd7384929d",
+      "git": {
+        "tracked": true,
+        "blob_sha1": "9f3d5e39ba6bfa1fc694331da4d29d1d0cf7b455"
+      }
+    }
+  ]
+}

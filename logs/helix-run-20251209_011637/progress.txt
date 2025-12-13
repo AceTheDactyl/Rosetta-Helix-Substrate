@@ -1,0 +1,10 @@
+seed 0.00 complete
+seed 0.41 complete
+seed 0.52 complete
+seed 0.70 complete
+seed 0.73 complete
+seed 0.80 complete
+seed 0.85 complete
+seed 0.87 complete
+seed 0.90 complete
+seed 0.95 complete

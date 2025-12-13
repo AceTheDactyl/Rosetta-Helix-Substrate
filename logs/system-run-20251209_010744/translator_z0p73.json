@@ -1,0 +1,73 @@
+<frozen runpy>:128: RuntimeWarning: 'quantum_apl_python.translator' found in sys.modules after import of package 'quantum_apl_python', but prior to execution of 'quantum_apl_python.translator'; this may result in unpredictable behaviour
+[
+  {
+    "subject": "\u03a6",
+    "operator": "M",
+    "intent": "stabilize",
+    "truth": "PARADOX",
+    "tier": 2
+  },
+  {
+    "subject": "\u03a6\u2192e",
+    "operator": "Mod",
+    "intent": "cohere",
+    "truth": "PARADOX",
+    "tier": 2
+  },
+  {
+    "subject": "e",
+    "operator": "U",
+    "intent": "excite",
+    "truth": "TRUE",
+    "tier": 3
+  },
+  {
+    "subject": "e",
+    "operator": "\u00d7",
+    "intent": "fuse",
+    "truth": "TRUE",
+    "tier": 3
+  },
+  {
+    "subject": "\u03c0",
+    "operator": "D",
+    "intent": "consolidate",
+    "truth": "TRUE",
+    "tier": 4
+  },
+  {
+    "subject": "\u03c0",
+    "operator": "+",
+    "intent": "integrate",
+    "truth": "PARADOX",
+    "tier": 4
+  },
+  {
+    "subject": "\u03a6\u2194\u03c0",
+    "operator": "Mod",
+    "intent": "resonance",
+    "truth": "PARADOX",
+    "tier": 3
+  },
+  {
+    "subject": "(\u03a6,e,\u03c0)",
+    "operator": "M",
+    "intent": "lock",
+    "truth": "TRUE",
+    "tier": 5
+  },
+  {
+    "subject": "Truth",
+    "operator": "()",
+    "intent": "boundary",
+    "truth": "PARADOX",
+    "tier": 5
+  },
+  {
+    "subject": "Helix",
+    "operator": "z^",
+    "intent": "amplify",
+    "truth": "TRUE",
+    "tier": 5
+  }
+]

@@ -1,0 +1,52 @@
+name: Compile LaTeX Documents
+
+on:
+  push:
+    paths:
+      - '**.tex'
+      - '.github/workflows/compile-latex.yml'
+  workflow_dispatch:
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    # Prevent infinite loop: skip if last commit was from github-actions bot
+    if: github.event.head_commit.author.name != 'github-actions[bot]'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install LaTeX
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y texlive-latex-base texlive-latex-extra texlive-fonts-recommended
+
+      - name: Compile APL Operators Manual
+        run: |
+          pdflatex -interaction=nonstopmode apl-operators-manual.tex
+          pdflatex -interaction=nonstopmode apl-operators-manual.tex
+
+      - name: Move PDF to docs directory
+        run: |
+          mkdir -p docs
+          cp apl-operators-manual.pdf docs/
+
+      - name: Upload PDF artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: apl-operators-manual
+          path: docs/apl-operators-manual.pdf
+          overwrite: true
+
+      - name: Commit compiled PDF
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add docs/apl-operators-manual.pdf
+          git diff --staged --quiet || git commit -m "Auto-compile: Update APL Operators Manual PDF [skip ci]"
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}

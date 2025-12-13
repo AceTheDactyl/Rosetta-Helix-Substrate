@@ -1,0 +1,26 @@
+Running quantum_only simulation with 5 steps...
+Results saved to logs/main-goal-run-20251209_011258/qapl_run_quantum_only.json
+
+======================================================================
+QUANTUM-CLASSICAL SIMULATION RESULTS
+======================================================================
+
+Quantum State:
+  z-coordinate: 0.1068
+  Integrated information (Φ): 0.0000
+  von Neumann entropy (S): 2.3716
+  Purity: 0.2319
+
+Classical Engines:
+
+Helix Mapping:
+  Harmonic: t2
+  Recommended operators: ^, ÷, −, ×
+  Truth bias: UNTRUE
+
+Alpha Programming Language Token:
+  Sentence (A3): u^ | Oscillator | wave
+  Operator: Amplification
+  Predicted regime: Amplified vortex-rich waves
+  Truth bias: UNTRUE via t2
+======================================================================

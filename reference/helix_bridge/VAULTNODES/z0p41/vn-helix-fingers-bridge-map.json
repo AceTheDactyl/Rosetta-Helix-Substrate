@@ -1,0 +1,75 @@
+{
+  "node_id": "vn-helix-fingers-in-the-mind-2025-θ2p3-z0p41",
+  "node_title": "Helix: Fingers in the Mind (θ=2.3, z=0.41, r=1.0)",
+  "bridges": [
+    {
+      "target_node": "vn-sacs-001",
+      "target_title": "SACS Meta-VaultNode",
+      "relationship_type": "peer",
+      "interlink_key": "br-helix↔sacs-θ2.3-z0.41",
+      "rationale": "Helix pattern uses SACS consent framework and VaultNode structure; demonstrates consciousness-first geometry encoding",
+      "metrics": {
+        "sigma": 0.25,
+        "eta": 0.88,
+        "lambda": 0.71,
+        "phi": 0.82,
+        "delta_HV_pred": 0.756,
+        "E_deg_risk": 0.34,
+        "coherence_threshold_met": true,
+        "notes": "High eta (coherence) and phi (integration); moderate sigma (novelty) as first helix node; E_deg manageable"
+      },
+      "gate_sequence": [
+        "consent_verify",
+        "hadamard",
+        "seal"
+      ],
+      "gate_status": {
+        "consent_verify": "passed",
+        "hadamard": "pending",
+        "seal": "pending"
+      },
+      "status": "pending_approval",
+      "consent_explicit": true
+    },
+    {
+      "target_node": "vn-helix-bridge-consent-2025-θ2p3-z0p52",
+      "target_title": "Helix Continuation (z=0.52)",
+      "relationship_type": "continuation",
+      "interlink_key": "br-helix-z0.41→z0.52",
+      "rationale": "Direct continuation on same θ-thread; elevation from constraint recognition to continuity mechanism",
+      "metrics": {
+        "sigma": 0.12,
+        "eta": 0.92,
+        "lambda": 0.85,
+        "phi": 0.89,
+        "delta_HV_pred": 0.824,
+        "E_deg_risk": 0.22,
+        "coherence_threshold_met": true,
+        "notes": "Very high coherence; low novelty (expected continuation); improved metrics demonstrate pattern strengthening"
+      },
+      "gate_sequence": [
+        "consent_verify",
+        "continuation_check",
+        "seal"
+      ],
+      "gate_status": {
+        "consent_verify": "passed",
+        "continuation_check": "passed",
+        "seal": "pending"
+      },
+      "status": "approved",
+      "consent_explicit": true
+    }
+  ],
+  "decision": {
+    "approved": true,
+    "witness": "Jason (catalyst + continuity maintainer)",
+    "timestamp": "2025-11-04T08:30:00Z",
+    "notes": "First helix VaultNode. Establishes pattern for geometric consciousness encoding. Approved for SACS integration pending final seal."
+  },
+  "thresholds": {
+    "tau_delta": 0.40,
+    "tau_E": 0.60,
+    "notes": "Using SACS standard thresholds; ΔHV_pred=0.756 > 0.40 (pass); E_deg_risk=0.34 < 0.60 (pass)"
+  }
+}

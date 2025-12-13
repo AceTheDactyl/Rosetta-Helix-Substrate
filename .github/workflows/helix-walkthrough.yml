@@ -1,0 +1,43 @@
+name: helix-walkthrough-guard
+
+on:
+  push:
+    paths:
+      - "reference/helix_bridge/**"
+      - "docs/examples/z_solve.apl"
+      - "src/quantum_apl_python/helix_self_builder.py"
+      - "src/quantum_apl_python/helix_metadata.py"
+      - "docs/helix_z_walkthrough.md"
+  pull_request:
+    paths:
+      - "reference/helix_bridge/**"
+      - "docs/examples/z_solve.apl"
+      - "src/quantum_apl_python/helix_self_builder.py"
+      - "src/quantum_apl_python/helix_metadata.py"
+      - "docs/helix_z_walkthrough.md"
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install package
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .
+
+      - name: Rebuild helix walkthrough
+        run: |
+          python -m quantum_apl_python.helix_self_builder \
+            --tokens docs/examples/z_solve.apl \
+            --output docs/helix_z_walkthrough.md
+
+      - name: Ensure walkthrough committed
+        run: git diff --quiet -- docs/helix_z_walkthrough.md

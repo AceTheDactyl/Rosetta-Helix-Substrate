@@ -1,0 +1,193 @@
+# .github/workflows/helix-nn-training.yml
+# 
+# Nightly Helix Neural Network Training Pipeline
+# ==============================================
+# 1. Run helix system to collect trajectories
+# 2. Train neural network on collected data
+# 3. Commit updated weights to repo
+# 4. (Optional) Update operator selection to use trained network
+
+name: Helix NN Training
+
+on:
+  # Run nightly at 2 AM UTC
+  schedule:
+    - cron: '0 2 * * *'
+  
+  # Manual trigger
+  workflow_dispatch:
+    inputs:
+      steps:
+        description: 'Steps per trajectory'
+        required: false
+        default: '1000'
+      epochs:
+        description: 'Training epochs'
+        required: false
+        default: '50'
+
+jobs:
+  collect-and-train:
+    runs-on: ubuntu-latest
+    
+    steps:
+      # ════════════════════════════════════════════════════════════
+      # SETUP
+      # ════════════════════════════════════════════════════════════
+      
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Install Node dependencies
+        run: npm install
+      
+      - name: Install Python dependencies
+        run: pip install numpy
+      
+      # ════════════════════════════════════════════════════════════
+      # COLLECT TRAJECTORIES
+      # ════════════════════════════════════════════════════════════
+      
+      - name: Collect training trajectories
+        run: |
+          echo "=== Collecting Trajectories ==="
+          mkdir -p training_data
+          node helix-nn/collect_trajectories.js \
+            --steps ${{ github.event.inputs.steps || '1000' }} \
+            --output training_data/
+      
+      # ════════════════════════════════════════════════════════════
+      # ACCUMULATE DATA
+      # ════════════════════════════════════════════════════════════
+      
+      - name: Load previous training data
+        run: |
+          # If previous data exists, we'll combine it
+          if [ -f "training_data/accumulated.json" ]; then
+            echo "Found existing training data"
+            cp training_data/accumulated.json training_data/accumulated_prev.json
+          fi
+      
+      - name: Combine training data
+        run: |
+          python3 << 'EOF'
+          import json
+          import os
+          from glob import glob
+          
+          data_dir = 'training_data'
+          files = glob(f'{data_dir}/training_data*.json')
+          
+          all_X, all_y, all_rewards = [], [], []
+          
+          # Load previous accumulated data
+          acc_path = f'{data_dir}/accumulated.json'
+          if os.path.exists(acc_path):
+              with open(acc_path) as f:
+                  prev = json.load(f)
+                  all_X = prev['X']
+                  all_y = prev['y']
+                  all_rewards = prev['rewards']
+                  print(f"Loaded {len(all_X)} previous samples")
+          
+          # Add new data
+          for filepath in files:
+              if 'accumulated' in filepath:
+                  continue
+              with open(filepath) as f:
+                  data = json.load(f)
+                  all_X.extend(data['X'])
+                  all_y.extend(data['y'])
+                  all_rewards.extend(data['rewards'])
+              # Remove processed file
+              os.remove(filepath)
+          
+          # Keep last 50000 samples max
+          max_samples = 50000
+          if len(all_X) > max_samples:
+              all_X = all_X[-max_samples:]
+              all_y = all_y[-max_samples:]
+              all_rewards = all_rewards[-max_samples:]
+          
+          # Save accumulated
+          with open(acc_path, 'w') as f:
+              json.dump({'X': all_X, 'y': all_y, 'rewards': all_rewards}, f)
+          
+          print(f"Total accumulated samples: {len(all_X)}")
+          EOF
+      
+      # ════════════════════════════════════════════════════════════
+      # TRAIN NETWORK
+      # ════════════════════════════════════════════════════════════
+      
+      - name: Train operator network
+        run: |
+          echo "=== Training Network ==="
+          python helix-nn/train_from_trajectories.py \
+            --data training_data/accumulated.json \
+            --epochs ${{ github.event.inputs.epochs || '50' }} \
+            --oscillators 30 \
+            --save weights/operator_network.pkl
+      
+      # ════════════════════════════════════════════════════════════
+      # SAVE RESULTS
+      # ════════════════════════════════════════════════════════════
+      
+      - name: Save training artifacts
+        run: |
+          mkdir -p weights
+          mkdir -p logs
+          
+          # Copy weights
+          if [ -f "operator_network.pkl" ]; then
+            mv operator_network.pkl weights/
+          fi
+          
+          # Save training log
+          DATE=$(date +%Y-%m-%d)
+          echo "Training completed: $DATE" >> logs/training_log.txt
+          echo "Samples: $(python3 -c "import json; d=json.load(open('training_data/accumulated.json')); print(len(d['X']))")" >> logs/training_log.txt
+      
+      # ════════════════════════════════════════════════════════════
+      # COMMIT WEIGHTS
+      # ════════════════════════════════════════════════════════════
+      
+      - name: Commit updated weights
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          
+          git add weights/ training_data/accumulated.json logs/
+          
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore: update helix-nn weights [skip ci]"
+            git push
+          fi
+      
+      # ════════════════════════════════════════════════════════════
+      # UPLOAD ARTIFACTS (for debugging)
+      # ════════════════════════════════════════════════════════════
+      
+      - name: Upload training artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: helix-nn-training-${{ github.run_number }}
+          path: |
+            weights/
+            logs/
+            training_data/accumulated.json
+          retention-days: 30

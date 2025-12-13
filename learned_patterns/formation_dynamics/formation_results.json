@@ -1,0 +1,1449 @@
+{
+  "timestamp": "2025-12-13T01:02:08.270524",
+  "config": {
+    "input_dim": 16,
+    "output_dim": 4,
+    "n_oscillators": 50,
+    "n_layers": 4,
+    "batch_size": 32,
+    "learning_rate": 0.001
+  },
+  "training_history": [
+    {
+      "loss": 0.6437042260169983,
+      "coherence": 0.7990146923065186,
+      "z": 0.7466348586306146,
+      "delta_s_neg": 0.4113448226770139,
+      "cumulative_neg_entropy": 4.0290169037102235,
+      "phase": "crystalline",
+      "phase_counts": {
+        "disordered": 9,
+        "quasi_crystal": 4,
+        "crystalline": 12
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.5452092635631561,
+      "coherence": 0.7646981000900268,
+      "z": 0.7873802096462049,
+      "delta_s_neg": 0.5550554088861809,
+      "cumulative_neg_entropy": 9.647248849365772,
+      "phase": "quasi_crystal",
+      "phase_counts": {
+        "disordered": 0,
+        "quasi_crystal": 16,
+        "crystalline": 9
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.4375185883045197,
+      "coherence": 0.6952598929405213,
+      "z": 0.7107793011298058,
+      "delta_s_neg": 0.44551054106749455,
+      "cumulative_neg_entropy": 14.045122801557987,
+      "phase": "quasi_crystal",
+      "phase_counts": {
+        "disordered": 0,
+        "quasi_crystal": 25,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.32865205526351926,
+      "coherence": 0.6073464357852936,
+      "z": 0.5931382301025507,
+      "delta_s_neg": 0.11824600364042719,
+      "cumulative_neg_entropy": 15.300124667615462,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 16,
+        "quasi_crystal": 9,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.2520594024658203,
+      "coherence": 0.5515646064281463,
+      "z": 0.5704169373117552,
+      "delta_s_neg": 0.04406577342326059,
+      "cumulative_neg_entropy": 15.738337715597627,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.21035020768642426,
+      "coherence": 0.5151180446147918,
+      "z": 0.5203135493999244,
+      "delta_s_neg": 0.014740079447026795,
+      "cumulative_neg_entropy": 15.890229530030696,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.1858717095851898,
+      "coherence": 0.4958039391040802,
+      "z": 0.49862470803473513,
+      "delta_s_neg": 0.007775449526068433,
+      "cumulative_neg_entropy": 15.968184701541055,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.16939671456813812,
+      "coherence": 0.4796062529087067,
+      "z": 0.48382792426343924,
+      "delta_s_neg": 0.005240343912734234,
+      "cumulative_neg_entropy": 16.020745412539533,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.15728830337524413,
+      "coherence": 0.4683473324775696,
+      "z": 0.46923578446420605,
+      "delta_s_neg": 0.0035847646227870826,
+      "cumulative_neg_entropy": 16.05706499773297,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.14807831823825837,
+      "coherence": 0.46069586753845215,
+      "z": 0.4726917090515388,
+      "delta_s_neg": 0.003942067136996344,
+      "cumulative_neg_entropy": 16.096203012466113,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.14047342509031296,
+      "coherence": 0.4556011068820953,
+      "z": 0.46357982529146874,
+      "delta_s_neg": 0.002968230657787419,
+      "cumulative_neg_entropy": 16.126246264139372,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.13397772431373597,
+      "coherence": 0.4521392810344696,
+      "z": 0.446157729591565,
+      "delta_s_neg": 0.0018892418539576343,
+      "cumulative_neg_entropy": 16.14491058641133,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.12812356650829315,
+      "coherence": 0.45263298869132995,
+      "z": 0.4565344215590828,
+      "delta_s_neg": 0.0025708843704041954,
+      "cumulative_neg_entropy": 16.17092505866458,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.12221262782812119,
+      "coherence": 0.4546918821334839,
+      "z": 0.4615448665318608,
+      "delta_s_neg": 0.0028992206105999123,
+      "cumulative_neg_entropy": 16.19975239016995,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.11625776767730713,
+      "coherence": 0.4560152041912079,
+      "z": 0.4606148425694901,
+      "delta_s_neg": 0.0027482863103246978,
+      "cumulative_neg_entropy": 16.227219152961396,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.10950470954179764,
+      "coherence": 0.4581369566917419,
+      "z": 0.4530028390986399,
+      "delta_s_neg": 0.002164340397335016,
+      "cumulative_neg_entropy": 16.248865340157224,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.10177645236253738,
+      "coherence": 0.45784576416015627,
+      "z": 0.46584265960293175,
+      "delta_s_neg": 0.003203069747356591,
+      "cumulative_neg_entropy": 16.281007840793208,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.09311197787523269,
+      "coherence": 0.4585131859779358,
+      "z": 0.45728168047276474,
+      "delta_s_neg": 0.002541028242199132,
+      "cumulative_neg_entropy": 16.30647682690788,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.08460707977414131,
+      "coherence": 0.4593151867389679,
+      "z": 0.45319719095375,
+      "delta_s_neg": 0.0023671405832813687,
+      "cumulative_neg_entropy": 16.329695464079688,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.07591584280133247,
+      "coherence": 0.45939961314201355,
+      "z": 0.469507137407254,
+      "delta_s_neg": 0.0038777385453168116,
+      "cumulative_neg_entropy": 16.368952526080296,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.06773207947611809,
+      "coherence": 0.4617628622055054,
+      "z": 0.46007318944839015,
+      "delta_s_neg": 0.002982611020839665,
+      "cumulative_neg_entropy": 16.398239575167338,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.06060144454240799,
+      "coherence": 0.46386773347854615,
+      "z": 0.4574644268545184,
+      "delta_s_neg": 0.002554145394554268,
+      "cumulative_neg_entropy": 16.42410732425741,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.05459162779152393,
+      "coherence": 0.4652121412754059,
+      "z": 0.47364725520443085,
+      "delta_s_neg": 0.003974501092486892,
+      "cumulative_neg_entropy": 16.463831646076095,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.049420549497008325,
+      "coherence": 0.4674954652786255,
+      "z": 0.45475539668026355,
+      "delta_s_neg": 0.002374076280812546,
+      "cumulative_neg_entropy": 16.48733298701935,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.044595342278480526,
+      "coherence": 0.4671179986000061,
+      "z": 0.4722899068131884,
+      "delta_s_neg": 0.003909489180340627,
+      "cumulative_neg_entropy": 16.526739462696604,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.04054242514073849,
+      "coherence": 0.46809064626693725,
+      "z": 0.4684390957301868,
+      "delta_s_neg": 0.0035938733252990425,
+      "cumulative_neg_entropy": 16.562067122749784,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.037194511666893956,
+      "coherence": 0.46679307222366334,
+      "z": 0.4702223961517752,
+      "delta_s_neg": 0.0038052086592938322,
+      "cumulative_neg_entropy": 16.600724422647648,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.0337982739508152,
+      "coherence": 0.46745911836624143,
+      "z": 0.461820143188301,
+      "delta_s_neg": 0.0028088243138940676,
+      "cumulative_neg_entropy": 16.628631058975184,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.03138071693480015,
+      "coherence": 0.4656023836135864,
+      "z": 0.4670529465631035,
+      "delta_s_neg": 0.0034100439851747436,
+      "cumulative_neg_entropy": 16.662937536239248,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.02901834584772587,
+      "coherence": 0.46529141545295716,
+      "z": 0.46525244486085804,
+      "delta_s_neg": 0.003218870516530376,
+      "cumulative_neg_entropy": 16.694684846645536,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.026696510538458826,
+      "coherence": 0.4629659926891327,
+      "z": 0.45917322153122014,
+      "delta_s_neg": 0.002936513666106127,
+      "cumulative_neg_entropy": 16.724544498915044,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.02484550192952156,
+      "coherence": 0.4591862380504608,
+      "z": 0.4784557070223841,
+      "delta_s_neg": 0.004843557419989775,
+      "cumulative_neg_entropy": 16.77283993155743,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.023235531747341154,
+      "coherence": 0.462449049949646,
+      "z": 0.44447040109232594,
+      "delta_s_neg": 0.0017024917827625973,
+      "cumulative_neg_entropy": 16.789854733191277,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.021809204407036306,
+      "coherence": 0.45694706797599793,
+      "z": 0.4775721427007835,
+      "delta_s_neg": 0.004898508326989708,
+      "cumulative_neg_entropy": 16.839051701663514,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.02083591815084219,
+      "coherence": 0.46074309706687927,
+      "z": 0.45181728189723924,
+      "delta_s_neg": 0.002433401335808526,
+      "cumulative_neg_entropy": 16.862897126468074,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.01919958185404539,
+      "coherence": 0.4570536553859711,
+      "z": 0.4478030462783789,
+      "delta_s_neg": 0.0019753245364523934,
+      "cumulative_neg_entropy": 16.882985998155164,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.018053008466958998,
+      "coherence": 0.45616536021232607,
+      "z": 0.46164308484962746,
+      "delta_s_neg": 0.0028048628659283663,
+      "cumulative_neg_entropy": 16.910867961974407,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.016958572901785374,
+      "coherence": 0.4557333898544311,
+      "z": 0.462596707668428,
+      "delta_s_neg": 0.0029821202088217307,
+      "cumulative_neg_entropy": 16.940582513096448,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.016109658442437648,
+      "coherence": 0.45559915065765383,
+      "z": 0.45256343026685486,
+      "delta_s_neg": 0.002176196894462179,
+      "cumulative_neg_entropy": 16.96264909564675,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.014768749698996544,
+      "coherence": 0.454553142786026,
+      "z": 0.45422566048458557,
+      "delta_s_neg": 0.0022864376632533785,
+      "cumulative_neg_entropy": 16.985394085710393,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.014237547293305397,
+      "coherence": 0.45260926127433776,
+      "z": 0.4619497602051405,
+      "delta_s_neg": 0.002805234685857543,
+      "cumulative_neg_entropy": 17.013529755206072,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.013690533936023713,
+      "coherence": 0.45361473321914675,
+      "z": 0.4410729122547451,
+      "delta_s_neg": 0.0015700609436658387,
+      "cumulative_neg_entropy": 17.02915756540283,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.013344753235578537,
+      "coherence": 0.45126559257507326,
+      "z": 0.45580469207974406,
+      "delta_s_neg": 0.0024548637938953373,
+      "cumulative_neg_entropy": 17.053896907648927,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.012193452417850494,
+      "coherence": 0.4506598615646362,
+      "z": 0.4456899669816687,
+      "delta_s_neg": 0.0017916453446383115,
+      "cumulative_neg_entropy": 17.07150169188517,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.012251852974295617,
+      "coherence": 0.45016817092895506,
+      "z": 0.4579607808571852,
+      "delta_s_neg": 0.0026328436240512206,
+      "cumulative_neg_entropy": 17.098118332729598,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.011271766871213913,
+      "coherence": 0.4512054359912872,
+      "z": 0.4455760215030024,
+      "delta_s_neg": 0.001727084638214267,
+      "cumulative_neg_entropy": 17.115317994338362,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.010776171460747719,
+      "coherence": 0.448898606300354,
+      "z": 0.4539638022041739,
+      "delta_s_neg": 0.0022583703919902202,
+      "cumulative_neg_entropy": 17.137994994363172,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.010961244907230138,
+      "coherence": 0.44896329641342164,
+      "z": 0.43274731606771205,
+      "delta_s_neg": 0.001214185271701434,
+      "cumulative_neg_entropy": 17.14992496268919,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.010573159754276275,
+      "coherence": 0.44446315288543703,
+      "z": 0.4708598774405256,
+      "delta_s_neg": 0.003976699293846798,
+      "cumulative_neg_entropy": 17.18994564948494,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.010246004723012448,
+      "coherence": 0.44766042232513426,
+      "z": 0.4285817700045441,
+      "delta_s_neg": 0.0012818293917570458,
+      "cumulative_neg_entropy": 17.20230137357342,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.010289441496133804,
+      "coherence": 0.444430855512619,
+      "z": 0.457996587006187,
+      "delta_s_neg": 0.002951469939085909,
+      "cumulative_neg_entropy": 17.23232894547169,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.009569484740495682,
+      "coherence": 0.44733110785484315,
+      "z": 0.4364544161361776,
+      "delta_s_neg": 0.0015605207026511087,
+      "cumulative_neg_entropy": 17.247493094375685,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.009249964766204356,
+      "coherence": 0.44696764469146727,
+      "z": 0.4398755865589397,
+      "delta_s_neg": 0.0016582591386892548,
+      "cumulative_neg_entropy": 17.264353508501067,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.008810156490653753,
+      "coherence": 0.44296234250068667,
+      "z": 0.46897414054276665,
+      "delta_s_neg": 0.00360901165523354,
+      "cumulative_neg_entropy": 17.30046437642149,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.008521456867456437,
+      "coherence": 0.4452481961250305,
+      "z": 0.42365796068529527,
+      "delta_s_neg": 0.00091950908762316,
+      "cumulative_neg_entropy": 17.309624050149953,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.008374326825141908,
+      "coherence": 0.442430784702301,
+      "z": 0.4525277670888358,
+      "delta_s_neg": 0.0021785001305285705,
+      "cumulative_neg_entropy": 17.331477238196427,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.007978578880429268,
+      "coherence": 0.4436116480827332,
+      "z": 0.43754922331038393,
+      "delta_s_neg": 0.0014647597266402757,
+      "cumulative_neg_entropy": 17.345934736413458,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.00763090156018734,
+      "coherence": 0.44237033486366273,
+      "z": 0.4476327200945595,
+      "delta_s_neg": 0.0018985862206670145,
+      "cumulative_neg_entropy": 17.365137414004852,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.00765371773391962,
+      "coherence": 0.44323804378509524,
+      "z": 0.4288886923892152,
+      "delta_s_neg": 0.0010864628076300389,
+      "cumulative_neg_entropy": 17.37580305311057,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.007563204541802406,
+      "coherence": 0.44108054280281067,
+      "z": 0.44876762332674036,
+      "delta_s_neg": 0.0020485858332993916,
+      "cumulative_neg_entropy": 17.39649820356013,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.007496268637478352,
+      "coherence": 0.4417213070392609,
+      "z": 0.4439522804873261,
+      "delta_s_neg": 0.0016722981238995334,
+      "cumulative_neg_entropy": 17.413061609360643,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.007152119576931,
+      "coherence": 0.4414023780822754,
+      "z": 0.43118284745039964,
+      "delta_s_neg": 0.00116341231539417,
+      "cumulative_neg_entropy": 17.424787563466047,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.007157278284430504,
+      "coherence": 0.4395530140399933,
+      "z": 0.4510971859215685,
+      "delta_s_neg": 0.002074690848308208,
+      "cumulative_neg_entropy": 17.44551415999825,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.006864331513643265,
+      "coherence": 0.44046409368515016,
+      "z": 0.4474820872611269,
+      "delta_s_neg": 0.0018824333413053418,
+      "cumulative_neg_entropy": 17.464370232531344,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.0070078977942466735,
+      "coherence": 0.44043332934379575,
+      "z": 0.41648021075842523,
+      "delta_s_neg": 0.0007639039720523746,
+      "cumulative_neg_entropy": 17.471923529689995,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.007826436553150415,
+      "coherence": 0.4360801374912262,
+      "z": 0.4632971289869216,
+      "delta_s_neg": 0.0034693808814049735,
+      "cumulative_neg_entropy": 17.506819685970427,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.00837832972407341,
+      "coherence": 0.4398147892951965,
+      "z": 0.42408641165940153,
+      "delta_s_neg": 0.0014212960718472418,
+      "cumulative_neg_entropy": 17.52047974622062,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.007625609077513218,
+      "coherence": 0.43772663950920104,
+      "z": 0.44395652865003826,
+      "delta_s_neg": 0.0018207532813118046,
+      "cumulative_neg_entropy": 17.539187226558784,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.006600398179143667,
+      "coherence": 0.43896677732467654,
+      "z": 0.4266036626229385,
+      "delta_s_neg": 0.000985197591982053,
+      "cumulative_neg_entropy": 17.548910883457708,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.006208039056509733,
+      "coherence": 0.435304319858551,
+      "z": 0.4435565557787085,
+      "delta_s_neg": 0.0017362919012518397,
+      "cumulative_neg_entropy": 17.566421625236472,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.0062981522269546985,
+      "coherence": 0.435732399225235,
+      "z": 0.44150531622888145,
+      "delta_s_neg": 0.0017405326931464972,
+      "cumulative_neg_entropy": 17.58371215895943,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.0064589278586208825,
+      "coherence": 0.4367994236946106,
+      "z": 0.42162066867736736,
+      "delta_s_neg": 0.0009132267716381334,
+      "cumulative_neg_entropy": 17.59275290863993,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.006489939521998167,
+      "coherence": 0.43182769179344177,
+      "z": 0.4572150113499214,
+      "delta_s_neg": 0.002601577084801522,
+      "cumulative_neg_entropy": 17.61896714676032,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.006665488667786121,
+      "coherence": 0.4343218719959259,
+      "z": 0.39390887921225065,
+      "delta_s_neg": 0.00047475160483934645,
+      "cumulative_neg_entropy": 17.623448738041706,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.00840490909293294,
+      "coherence": 0.4306151270866394,
+      "z": 0.46509383899864204,
+      "delta_s_neg": 0.004397362715174498,
+      "cumulative_neg_entropy": 17.66773895519154,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.0072519413754343984,
+      "coherence": 0.4355727434158325,
+      "z": 0.4091715697659443,
+      "delta_s_neg": 0.0008905532672364692,
+      "cumulative_neg_entropy": 17.676140493012134,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.007033095732331276,
+      "coherence": 0.4328831970691681,
+      "z": 0.4432472403856286,
+      "delta_s_neg": 0.0026461842785586763,
+      "cumulative_neg_entropy": 17.703108274760762,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.006717162393033505,
+      "coherence": 0.4340533399581909,
+      "z": 0.4301037965150711,
+      "delta_s_neg": 0.0011920852769165809,
+      "cumulative_neg_entropy": 17.714768639624747,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.005964898820966482,
+      "coherence": 0.432386394739151,
+      "z": 0.44358461077970335,
+      "delta_s_neg": 0.0018421821635999063,
+      "cumulative_neg_entropy": 17.733425825732912,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.005696146953850984,
+      "coherence": 0.4326372742652893,
+      "z": 0.4216676571023894,
+      "delta_s_neg": 0.0009772404854969572,
+      "cumulative_neg_entropy": 17.742903079741087,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.005520602185279131,
+      "coherence": 0.43044860124588014,
+      "z": 0.4328277720704279,
+      "delta_s_neg": 0.0013432604039353149,
+      "cumulative_neg_entropy": 17.756614097157403,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.005371587397530675,
+      "coherence": 0.4304959070682526,
+      "z": 0.43263857790845706,
+      "delta_s_neg": 0.0012475888588210295,
+      "cumulative_neg_entropy": 17.768917667561652,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.005369881484657526,
+      "coherence": 0.4318265688419342,
+      "z": 0.4188254666977016,
+      "delta_s_neg": 0.000826041239347424,
+      "cumulative_neg_entropy": 17.777187454248857,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.0053577150590717795,
+      "coherence": 0.42988227963447573,
+      "z": 0.4397457036181444,
+      "delta_s_neg": 0.0015740545002092933,
+      "cumulative_neg_entropy": 17.79304416112764,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.005319801215082407,
+      "coherence": 0.42881993770599364,
+      "z": 0.4350694821469328,
+      "delta_s_neg": 0.0012886539920921862,
+      "cumulative_neg_entropy": 17.80592798671332,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.005298011153936386,
+      "coherence": 0.43039476275444033,
+      "z": 0.41700200150575745,
+      "delta_s_neg": 0.000718234088634671,
+      "cumulative_neg_entropy": 17.813064682519393,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.00528972115367651,
+      "coherence": 0.42583426117897033,
+      "z": 0.4465274438716389,
+      "delta_s_neg": 0.001886000114015063,
+      "cumulative_neg_entropy": 17.83198940243146,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.00542342621833086,
+      "coherence": 0.4284800326824188,
+      "z": 0.40544308216324326,
+      "delta_s_neg": 0.0005780687031890664,
+      "cumulative_neg_entropy": 17.837605976379752,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.00561912564560771,
+      "coherence": 0.4267435169219971,
+      "z": 0.4385379991885055,
+      "delta_s_neg": 0.0014535663150283373,
+      "cumulative_neg_entropy": 17.852280294414424,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.0053646143618971106,
+      "coherence": 0.42679577589035034,
+      "z": 0.4165201404219804,
+      "delta_s_neg": 0.0007620535240800185,
+      "cumulative_neg_entropy": 17.85974307900259,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.005846175625920296,
+      "coherence": 0.42563690900802614,
+      "z": 0.43634312686954374,
+      "delta_s_neg": 0.0015477387694750025,
+      "cumulative_neg_entropy": 17.875434285828668,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.005437589576467871,
+      "coherence": 0.4261144864559174,
+      "z": 0.42027426839017745,
+      "delta_s_neg": 0.0008368428584286748,
+      "cumulative_neg_entropy": 17.88364236187766,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.0050684063509106635,
+      "coherence": 0.423376624584198,
+      "z": 0.4339161741110381,
+      "delta_s_neg": 0.0012497756247407546,
+      "cumulative_neg_entropy": 17.89627170112754,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.00493726217187941,
+      "coherence": 0.42571731090545656,
+      "z": 0.4131351372200035,
+      "delta_s_neg": 0.0006864170135542698,
+      "cumulative_neg_entropy": 17.90299882450085,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.0050717262737452985,
+      "coherence": 0.42290818572044375,
+      "z": 0.43346329353352253,
+      "delta_s_neg": 0.001441713829794198,
+      "cumulative_neg_entropy": 17.9175941765148,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.005392766669392586,
+      "coherence": 0.42374652266502383,
+      "z": 0.42052076692185225,
+      "delta_s_neg": 0.0009079320308819268,
+      "cumulative_neg_entropy": 17.926486026985074,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.005237888414412737,
+      "coherence": 0.4225253987312317,
+      "z": 0.43423948705394394,
+      "delta_s_neg": 0.0012797370429643144,
+      "cumulative_neg_entropy": 17.939452388619674,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.004841061066836119,
+      "coherence": 0.4248439621925354,
+      "z": 0.41978858572056266,
+      "delta_s_neg": 0.0008663690085746939,
+      "cumulative_neg_entropy": 17.947992932225333,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.0047359086759388444,
+      "coherence": 0.4232854151725769,
+      "z": 0.4173455504009972,
+      "delta_s_neg": 0.0007288267592410958,
+      "cumulative_neg_entropy": 17.9553781171256,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    },
+    {
+      "loss": 0.004494018573313952,
+      "coherence": 0.4215089988708496,
+      "z": 0.4214173970291996,
+      "delta_s_neg": 0.0008181102070630448,
+      "cumulative_neg_entropy": 17.963504216060638,
+      "phase": "disordered",
+      "phase_counts": {
+        "disordered": 25,
+        "quasi_crystal": 0,
+        "crystalline": 0
+      },
+      "qc_boost": 1.9961710408648279
+    }
+  ],
+  "phase_transitions": [
+    {
+      "epoch": 0,
+      "from_phase": "disordered",
+      "to_phase": "quasi_crystal",
+      "z": 0.6733833406242546
+    },
+    {
+      "epoch": 0,
+      "from_phase": "quasi_crystal",
+      "to_phase": "crystalline",
+      "z": 0.8923080992292921
+    },
+    {
+      "epoch": 1,
+      "from_phase": "crystalline",
+      "to_phase": "quasi_crystal",
+      "z": 0.843575696824759
+    },
+    {
+      "epoch": 3,
+      "from_phase": "quasi_crystal",
+      "to_phase": "disordered",
+      "z": 0.6061466673371093
+    }
+  ],
+  "summary": {
+    "total_epochs": 100,
+    "final_loss": 0.004494018573313952,
+    "final_z": 0.4214173970291996,
+    "final_phase": "disordered",
+    "final_delta_s_neg": 0.0008181102070630448,
+    "cumulative_neg_entropy": 17.963504216060638,
+    "qc_boost": 1.9961710408648279,
+    "phase_transition_count": 4
+  }
+}
