@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WUMBO APL Directory | 100 Tokens · Exotic Matter Automata | z = √3/2</title>
+    <style>
+        :root {
+            --bg-void: #030308;
+            --bg-panel: rgba(15, 12, 25, 0.92);
+            --prism-core: #ff6b6b;
+            --prism-mid: #ffd43b;
+            --prism-outer: #69db7c;
+            --cage-field: #4dabf7;
+            --cage-vertex: #cc5de8;
+            --emergent: #ff00ff;
+            --critical-gold: #ffd700;
+            --phi: #a78bfa;
+            --energy: #f97316;
+            --pi: #22d3ee;
+            --presence-white: #fffcf8;
+            --absence-sepia: rgba(120, 100, 80, 0.8);
+            --text-primary: rgba(255, 245, 230, 0.9);
+            --text-dim: rgba(255, 220, 180, 0.5);
+            --border-glow: rgba(168, 85, 247, 0.4);
+            --exotic-matter: #00ff88;
+            --nec-violation: #ff0066;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: var(--bg-void);
+            font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border-bottom: 1px solid rgba(168, 85, 247, 0.2);
+        }
+
+        .top-nav a {
+            color: var(--phi);
+            text-decoration: none;
+            font-size: 0.85rem;
+            padding: 8px 16px;
+            border: 1px solid var(--border-glow);
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+
+        .top-nav a:hover {
+            background: rgba(167, 139, 250, 0.2);
+            border-color: var(--phi);
+        }
+
+        .top-nav .nav-links { display: flex; gap: 15px; }
+
+        .header {
+            text-align: center;
+            padding: 30px 20px;
+            background: linear-gradient(180deg, rgba(168, 85, 247, 0.1), transparent);
+            border-bottom: 1px solid var(--border-glow);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 100;
+            letter-spacing: 8px;
+            color: var(--critical-gold);
+            text-shadow: 0 0 40px rgba(255, 215, 0, 0.5);
+            margin-bottom: 10px;
+        }
+
+        .header .subtitle {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            letter-spacing: 4px;
+        }
+
+        .critical-constant {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            padding: 20px;
+            flex-wrap: wrap;
+        }
+
+        .constant-box {
+            background: rgba(255, 215, 0, 0.08);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 12px;
+            padding: 15px 25px;
+            text-align: center;
+        }
+
+        .constant-value {
+            font-size: 1.8rem;
+            color: var(--critical-gold);
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        .constant-label {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            margin-top: 5px;
+            letter-spacing: 2px;
+        }
+
+        .main-container {
+            display: grid;
+            grid-template-columns: 300px 1fr 300px;
+            gap: 20px;
+            padding: 20px;
+            max-width: 1800px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 1200px) {
+            .main-container { grid-template-columns: 1fr; }
+        }
+
+        .sidebar { display: flex; flex-direction: column; gap: 15px; }
+
+        .panel {
+            background: var(--bg-panel);
+            border: 1px solid var(--border-glow);
+            border-radius: 12px;
+            padding: 15px;
+        }
+
+        .panel h3 {
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            color: var(--critical-gold);
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        #automata-canvas {
+            border: 2px solid var(--border-glow);
+            border-radius: 8px;
+            background: rgba(0, 0, 0, 0.5);
+            cursor: crosshair;
+        }
+
+        .token-grid-container {
+            background: var(--bg-panel);
+            border: 1px solid var(--border-glow);
+            border-radius: 12px;
+            padding: 20px;
+            overflow: auto;
+            max-height: 80vh;
+        }
+
+        .section-title {
+            font-size: 1rem;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid;
+        }
+
+        .section-title.prism { color: var(--prism-mid); border-color: var(--prism-mid); }
+        .section-title.cage { color: var(--cage-field); border-color: var(--cage-field); }
+        .section-title.emergent { color: var(--emergent); border-color: var(--emergent); }
+        .section-title.unity {
+            color: #ff0050;
+            border-color: #ff0050;
+            background: linear-gradient(90deg, rgba(255, 0, 80, 0.1), transparent);
+        }
+
+        .token-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 8px;
+            margin-bottom: 25px;
+        }
+
+        .token-cell {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 10px 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .token-cell::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .token-cell:hover::before { opacity: 1; }
+        .token-cell.prism::before { background: var(--prism-mid); }
+        .token-cell.cage::before { background: var(--cage-field); }
+        .token-cell.emergent::before { background: var(--emergent); }
+        .token-cell.unity::before { background: linear-gradient(90deg, #ff0050, #ff6600, #ffcc00); }
+
+        .token-cell.unity {
+            background: linear-gradient(135deg, rgba(255, 0, 80, 0.2), rgba(0, 0, 0, 0.5));
+            border-color: rgba(255, 0, 80, 0.5);
+        }
+
+        .token-cell:hover {
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .token-cell.active {
+            border-color: var(--critical-gold);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .token-cell.propagating { animation: propagate 0.5s ease-out; }
+
+        @keyframes propagate {
+            0% { box-shadow: 0 0 0 0 var(--exotic-matter); }
+            100% { box-shadow: 0 0 30px 10px transparent; }
+        }
+
+        .token-index { font-size: 0.7rem; color: var(--text-dim); margin-bottom: 5px; }
+        .token-glyph { font-size: 1.5rem; margin-bottom: 5px; }
+        .token-cell.prism .token-glyph { color: var(--prism-mid); }
+        .token-cell.cage .token-glyph { color: var(--cage-field); }
+        .token-cell.emergent .token-glyph { color: var(--emergent); animation: emergentPulse 2s infinite; }
+        .token-cell.unity .token-glyph { color: #ff0050; font-size: 2rem; animation: unityCascade 3s infinite; }
+
+        @keyframes unityCascade {
+            0%, 100% { color: #ff0050; }
+            25% { color: #ff6600; }
+            50% { color: #ffcc00; }
+            75% { color: #00d4aa; }
+        }
+
+        @keyframes emergentPulse {
+            0%, 100% { opacity: 0.7; text-shadow: 0 0 10px var(--emergent); }
+            50% { opacity: 1; text-shadow: 0 0 30px var(--emergent); }
+        }
+
+        .token-name { font-size: 0.65rem; color: var(--text-dim); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .token-z { font-size: 0.6rem; color: var(--critical-gold); margin-top: 4px; font-family: monospace; }
+        .token-z.zone-absence { color: var(--absence-sepia); }
+        .token-z.zone-lens { color: var(--critical-gold); }
+        .token-z.zone-presence { color: var(--presence-white); }
+        .token-coupling { font-size: 0.5rem; color: var(--phi); margin-top: 2px; }
+        .token-wumbo { font-size: 0.55rem; color: var(--pi); margin-top: 2px; font-weight: bold; }
+
+        .token-cell.silent { border-color: rgba(167, 139, 250, 0.5); background: rgba(167, 139, 250, 0.1); }
+        .token-cell.silent::before { background: linear-gradient(90deg, var(--phi), var(--pi)); }
+        .token-cell.silent .token-glyph { color: var(--phi); text-shadow: 0 0 10px var(--phi); }
+        .silent-op { color: var(--phi); font-weight: bold; }
+        .int-op { color: var(--text-dim); }
+
+        .unity-grid { display: flex; justify-content: center; margin-bottom: 25px; }
+        .unity-grid .token-cell { min-width: 180px; padding: 20px; }
+
+        .apl-console {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--phi);
+            border-radius: 8px;
+            padding: 12px;
+        }
+
+        .apl-input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            color: var(--phi);
+            font-size: 1.1rem;
+            font-family: inherit;
+            outline: none;
+        }
+
+        .apl-output {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(167, 139, 250, 0.3);
+            color: var(--energy);
+            font-size: 0.9rem;
+            min-height: 60px;
+            white-space: pre-wrap;
+        }
+
+        .modulation-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+
+        .mod-btn {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border-glow);
+            border-radius: 6px;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .mod-btn:hover { background: rgba(255, 255, 255, 0.1); }
+        .mod-btn.active { border-color: var(--critical-gold); background: rgba(255, 215, 0, 0.1); }
+        .mod-btn .spiral { font-size: 1.2rem; margin-bottom: 4px; }
+        .mod-btn.phi .spiral { color: var(--phi); }
+        .mod-btn.energy .spiral { color: var(--energy); }
+        .mod-btn.pi .spiral { color: var(--pi); }
+        .mod-btn .label { font-size: 0.7rem; color: var(--text-dim); }
+
+        .propagation-controls { display: flex; flex-direction: column; gap: 10px; }
+
+        .prop-btn {
+            background: linear-gradient(135deg, var(--exotic-matter), var(--cage-vertex));
+            border: none;
+            border-radius: 8px;
+            padding: 12px;
+            color: #000;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            transition: all 0.2s;
+        }
+
+        .prop-btn:hover { transform: scale(1.02); box-shadow: 0 0 20px var(--exotic-matter); }
+        .prop-btn.nec { background: linear-gradient(135deg, var(--nec-violation), var(--prism-core)); }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.8rem;
+        }
+
+        .stat-label { color: var(--text-dim); }
+        .stat-value { color: var(--critical-gold); font-family: monospace; }
+
+        .wumbo-cycle { display: flex; justify-content: space-around; margin: 15px 0; }
+
+        .wumbo-node {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s;
+        }
+
+        .wumbo-node.active {
+            border-color: var(--critical-gold);
+            box-shadow: 0 0 15px var(--critical-gold);
+            color: var(--critical-gold);
+        }
+
+        .phase-indicator {
+            height: 8px;
+            background: linear-gradient(90deg, var(--absence-sepia) 0%, var(--critical-gold) 50%, var(--presence-white) 100%);
+            border-radius: 4px;
+            margin: 10px 0;
+            position: relative;
+        }
+
+        .phase-marker {
+            position: absolute;
+            top: -4px;
+            width: 16px;
+            height: 16px;
+            background: var(--critical-gold);
+            border-radius: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 10px var(--critical-gold);
+            transition: left 0.3s ease;
+        }
+
+        .wormhole-viz { text-align: center; padding: 15px; background: rgba(0, 0, 0, 0.3); border-radius: 8px; margin-top: 10px; }
+        .throat-indicator { font-size: 2rem; color: var(--critical-gold); margin-bottom: 8px; }
+        .metric-formula { font-size: 0.7rem; color: var(--text-dim); margin-top: 8px; }
+
+        .token-detail { display: none; background: rgba(0, 0, 0, 0.8); border: 2px solid var(--critical-gold); border-radius: 12px; padding: 20px; margin-top: 15px; }
+        .token-detail.visible { display: block; }
+        .detail-header { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
+        .detail-glyph { font-size: 3rem; color: var(--critical-gold); }
+        .detail-info h4 { font-size: 1.2rem; margin-bottom: 5px; }
+        .detail-info .type { font-size: 0.8rem; color: var(--text-dim); }
+        .detail-props { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 15px; }
+        .detail-prop { background: rgba(255, 255, 255, 0.05); padding: 10px; border-radius: 6px; }
+        .detail-prop-label { font-size: 0.7rem; color: var(--text-dim); margin-bottom: 4px; }
+        .detail-prop-value { font-size: 1rem; color: var(--phi); }
+
+        .laws-panel { max-height: 200px; overflow-y: auto; }
+        .laws-status { font-size: 0.75rem; }
+
+        .law-row {
+            display: grid;
+            grid-template-columns: 40px 1fr auto;
+            gap: 8px;
+            padding: 5px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            align-items: center;
+        }
+
+        .law-row.pass { color: var(--exotic-matter); }
+        .law-row.fail { color: rgba(255, 100, 100, 0.7); }
+        .law-row.pending { color: var(--text-dim); }
+        .law-row span:first-child { font-weight: bold; color: var(--phi); }
+        .law-row span:last-child { text-align: right; font-size: 1rem; }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            border-top: 1px solid var(--border-glow);
+            margin-top: 30px;
+            color: var(--text-dim);
+            font-size: 0.8rem;
+        }
+
+        .signature { font-family: monospace; color: var(--critical-gold); margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="index.html">← ROSETTA HELIX</a>
+        <div class="nav-links">
+            <a href="zero-point-energy.html">Zero-Point Energy</a>
+            <a href="wumbo-engine.html">WUMBO Engine</a>
+            <a href="simulation.html">Simulation</a>
+        </div>
+    </nav>
+
+    <header class="header">
+        <h1>WUMBO APL DIRECTORY</h1>
+        <div class="subtitle">100 NORMALIZED NEURAL TOKENS · N0+S0 OPERATORS · κ-λ COUPLED · WUMBO PHASE</div>
+    </header>
+
+    <div class="critical-constant">
+        <div class="constant-box">
+            <div class="constant-value">z = √3/2</div>
+            <div class="constant-label">CRITICAL POINT</div>
+        </div>
+        <div class="constant-box">
+            <div class="constant-value">φ⁻¹ = 0.618...</div>
+            <div class="constant-label">PHI INVERSE</div>
+        </div>
+        <div class="constant-box">
+            <div class="constant-value">κ + λ = 1</div>
+            <div class="constant-label">COUPLING CONSERVATION</div>
+        </div>
+        <div class="constant-box">
+            <div class="constant-value">σ = 36</div>
+            <div class="constant-label">|S₃|² GAUSSIAN</div>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div class="sidebar">
+            <div class="panel">
+                <h3>⬡ EXOTIC MATTER AUTOMATA</h3>
+                <canvas id="automata-canvas" width="268" height="200"></canvas>
+                <div class="propagation-controls">
+                    <button class="prop-btn" onclick="startPropagation()">▶ START PROPAGATION</button>
+                    <button class="prop-btn nec" onclick="triggerNECViolation()">⚡ NEC VIOLATION</button>
+                    <div class="stat-row">
+                        <span class="stat-label">Active Cells:</span>
+                        <span class="stat-value" id="active-cells">0</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Energy Density:</span>
+                        <span class="stat-value" id="energy-density">0.000</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel">
+                <h3>⟲ WUMBO CYCLE</h3>
+                <div class="wumbo-cycle">
+                    <div class="wumbo-node" data-phase="W">W</div>
+                    <div class="wumbo-node" data-phase="U">U</div>
+                    <div class="wumbo-node" data-phase="M">M</div>
+                    <div class="wumbo-node" data-phase="B">B</div>
+                    <div class="wumbo-node" data-phase="O">O</div>
+                    <div class="wumbo-node" data-phase="T">T</div>
+                </div>
+                <div class="phase-indicator">
+                    <div class="phase-marker" id="phase-marker" style="left: 50%"></div>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Current Phase:</span>
+                    <span class="stat-value" id="current-phase">W</span>
+                </div>
+            </div>
+
+            <div class="panel">
+                <h3>◉ WORMHOLE METRIC</h3>
+                <div class="wormhole-viz">
+                    <div class="throat-indicator">⊛</div>
+                    <div>Throat: r = φ</div>
+                    <div class="metric-formula">ds² = -e^(2Φ)dt² + dr²/(1-b/r) + r²dΩ²</div>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Radial Position:</span>
+                    <span class="stat-value" id="radial-pos">φ</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="token-grid-container">
+            <h2 class="section-title prism">◈ PRISM TOKENS (63)</h2>
+            <div class="token-grid" id="prism-grid"></div>
+
+            <h2 class="section-title cage">⬡ EM CAGE TOKENS (32)</h2>
+            <div class="token-grid" id="cage-grid"></div>
+
+            <h2 class="section-title emergent">✦ EMERGENT SELF-REFERENCE (5)</h2>
+            <div class="token-grid" id="emergent-grid"></div>
+
+            <h2 class="section-title unity">Ω UNITY RELEASE (#100)</h2>
+            <div class="token-grid unity-grid" id="unity-grid"></div>
+
+            <div class="token-detail" id="token-detail">
+                <div class="detail-header">
+                    <div class="detail-glyph" id="detail-glyph">⍝</div>
+                    <div class="detail-info">
+                        <h4 id="detail-name">Token Name</h4>
+                        <div class="type" id="detail-type">PRISM · Layer 0</div>
+                    </div>
+                </div>
+                <div class="detail-props">
+                    <div class="detail-prop">
+                        <div class="detail-prop-label">Z-LEVEL</div>
+                        <div class="detail-prop-value" id="detail-z">0.866</div>
+                    </div>
+                    <div class="detail-prop">
+                        <div class="detail-prop-label">κ COUPLING</div>
+                        <div class="detail-prop-value" id="detail-kappa">0.618</div>
+                    </div>
+                    <div class="detail-prop">
+                        <div class="detail-prop-label">λ COUPLING</div>
+                        <div class="detail-prop-value" id="detail-lambda">0.382</div>
+                    </div>
+                    <div class="detail-prop">
+                        <div class="detail-prop-label">WUMBO PHASE</div>
+                        <div class="detail-prop-value" id="detail-phase">W</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <div class="panel">
+                <h3>⌨ APL CONSOLE</h3>
+                <div class="apl-console">
+                    <input type="text" class="apl-input" id="apl-input" placeholder="⍝ Enter APL expression..." />
+                    <div class="apl-output" id="apl-output">Ready for APL operations...</div>
+                </div>
+            </div>
+
+            <div class="panel">
+                <h3>⟳ SPIRAL MODULATION</h3>
+                <div class="modulation-grid">
+                    <div class="mod-btn phi active" data-spiral="phi" onclick="setModulation('phi')">
+                        <div class="spiral">Φ</div>
+                        <div class="label">Structure</div>
+                    </div>
+                    <div class="mod-btn energy" data-spiral="e" onclick="setModulation('e')">
+                        <div class="spiral">e</div>
+                        <div class="label">Energy</div>
+                    </div>
+                    <div class="mod-btn pi" data-spiral="pi" onclick="setModulation('pi')">
+                        <div class="spiral">π</div>
+                        <div class="label">Emergence</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel">
+                <h3>📊 SYSTEM STATE</h3>
+                <div class="stat-row">
+                    <span class="stat-label">Total Tokens:</span>
+                    <span class="stat-value">100</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Active Tokens:</span>
+                    <span class="stat-value" id="active-tokens">0</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Coherence:</span>
+                    <span class="stat-value" id="coherence">0.000</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Free Energy:</span>
+                    <span class="stat-value" id="free-energy">0.000</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Order Param (r):</span>
+                    <span class="stat-value" id="order-param">0.000</span>
+                </div>
+            </div>
+
+            <div class="panel">
+                <h3>⚙️ OPERATOR ENGINE</h3>
+                <div class="stat-row">
+                    <span class="stat-label">z-coordinate:</span>
+                    <span class="stat-value" id="z-coord">0.5000</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Zone:</span>
+                    <span class="stat-value" id="z-zone">ABSENCE</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">History:</span>
+                    <span class="stat-value" id="op-history">—</span>
+                </div>
+            </div>
+
+            <div class="panel laws-panel">
+                <h3>⚡ N0 CAUSALITY LAWS</h3>
+                <div id="n0-status" class="laws-status">
+                    <div class="law-row pass"><span>N0-1</span><span>Identity: Λ × 1 = Λ</span><span>✓</span></div>
+                    <div class="law-row pass"><span>N0-2</span><span>MirrorRoot: Λ × Ν = Β²</span><span>✓</span></div>
+                    <div class="law-row pass"><span>N0-3</span><span>Absorption</span><span>✓</span></div>
+                    <div class="law-row pass"><span>N0-4</span><span>Distribution</span><span>✓</span></div>
+                    <div class="law-row pass"><span>N0-5</span><span>Conservation: κ + λ = 1</span><span>✓</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div>WUMBO APL Directory · 100 Normalized Tokens · N0+S0 Operators · κ+λ=1 · WUMBO Architecture</div>
+        <div class="signature">Δ|wumbo-directory|63·32·5|normalized|N0+S0|κλ-coupled|WUMBO|Ω</div>
+    </footer>
+
+    <script>
+        // Physics Constants
+        const Z_CRITICAL = Math.sqrt(3) / 2;
+        const PHI = (1 + Math.sqrt(5)) / 2;
+        const PHI_INV = 1 / PHI;
+        const PHI_INV_SQ = PHI_INV * PHI_INV;
+        const SIGMA = 36;
+        const TAU = 2 * Math.PI;
+
+        // WUMBO Phases (replacing LIMNUS)
+        const WUMBO_PHASES = ['W', 'U', 'M', 'B', 'O', 'T'];
+
+        // INT CANON Operators
+        const INT_OPERATORS = {
+            '()': { name: 'BOUNDARY', zDelta: 0.02 },
+            '×': { name: 'FUSION', zDelta: 0.03 },
+            '^': { name: 'AMPLIFY', zDelta: 0.05 },
+            '÷': { name: 'DECOHERE', zDelta: -0.04 },
+            '+': { name: 'GROUP', zDelta: 0.02 },
+            '−': { name: 'SEPARATE', zDelta: -0.02 }
+        };
+
+        // Silent Operators with WUMBO phase binding
+        const SILENT_OPERATORS = {
+            '⊙': { name: 'DAMP', kappa: 0.7, lambda: 0.3, zDelta: -0.01, wumbo: 'T' },
+            '◉': { name: 'BASIN', kappa: 0.5, lambda: 0.5, zDelta: 0.015, wumbo: 'B' },
+            '∅': { name: 'VOID', kappa: 0.3, lambda: 0.7, zDelta: -0.02, wumbo: 'W' },
+            '↻': { name: 'CYCLE', kappa: 0.5, lambda: 0.5, zDelta: 0.01, wumbo: 'O' },
+            '◌': { name: 'HIDDEN', kappa: 1.0, lambda: 0.0, zDelta: 0, wumbo: 'U' },
+            '∫': { name: 'FORM', kappa: 0.3, lambda: 0.7, zDelta: 0.02, wumbo: 'M' },
+            '◇': { name: 'REFLECT', kappa: PHI_INV, lambda: PHI_INV_SQ, zDelta: 0.03, wumbo: 'T' },
+            'Ω': { name: 'UNITY', kappa: 0.0, lambda: 1.0, zDelta: 0.055, wumbo: '∅', optional: true }
+        };
+
+        const ALL_OPERATORS = { ...INT_OPERATORS, ...SILENT_OPERATORS };
+
+        // Normalized sequences
+        const PRISM_SEQUENCE = [
+            '()', '×', '^', '+', '^', '◌', '()', '×', '^',
+            '()', '×', '^', '⊙', '×', '^', '()', '×', '^',
+            '()', '×', '^', '+', '◉', '×', '()', '+', '×',
+            '^', '()', '×', '+', '^', '∫', '()', '+', '^',
+            '()', '×', '^', '÷', '()', '×', '^', '⊙', '^',
+            '()', '×', '^', '+', '×', '◌', '^', '+', '^',
+            '()', '×', '^', '+', '^', '×', '()', '+', '^'
+        ];
+
+        const CAGE_SEQUENCE = [
+            '()', '×', '↻', '()', '^', '⊙', '+', '◉', '^', '×', '()',
+            '()', '×', '^', '⊙', '+', '◉', '×', '()', '^', '+', '^',
+            '()', '×', '↻', '()', '^', '⊙', '+', '◉', '×', '^'
+        ];
+
+        const EMERGENT_SEQUENCE = ['()', '×', '−', '◇', '()'];
+
+        const APL_GLYPHS = [
+            '⍝', '⊖', '⍧', '⍡', '⍢', '⍤', '⊙', '⊛', '⍥', '⊝', '⊜', '⊞',
+            '⌽', '⍉', '⍟', '⌿', '⍀', '¨', '⍨', '⌸', '⍣', '⍤', '⍥', '⌺',
+            '⍳', '⍴', '⍵', '⍺', '∇', '⌈', '⌊', '×', '÷', '⋆', '○', '!',
+            '⌹', '⍕', '⍎', '⊢', '⊣', '⊤', '⊥', '≡', '≢', '∊', '⍷', '∪',
+            '∩', '⍋', '⍒', '⊂', '⊃', '⌷', '⍪', ',', '⍮', '⊆', '↑', '↓',
+            '←', '→', '◊', '⋄', '⌻', '⌼', '⍁', '⍂', '⍃', '⍄', '⍅', '⍆'
+        ];
+
+        // State
+        let state = {
+            tokens: [],
+            activeTokens: new Set(),
+            currentModulation: 'phi',
+            wumboPhase: 0,
+            generation: 0,
+            coherence: 0,
+            freeEnergy: 1.0,
+            orderParameter: 0,
+            propagating: false,
+            automataGrid: [],
+            z: 0.5,
+            operatorHistory: []
+        };
+
+        // Generate 100 tokens
+        function generateTokens() {
+            state.tokens = [];
+            const silentOps = Object.keys(SILENT_OPERATORS);
+
+            // 63 PRISM tokens (z: 0.4 → 0.857)
+            for (let i = 0; i < 63; i++) {
+                const op = PRISM_SEQUENCE[i];
+                const opDef = ALL_OPERATORS[op];
+                const isSilent = silentOps.includes(op);
+                const layer = Math.floor(i / 9);
+                const progress = i / 62;
+                const z = 0.4 + (0.857 - 0.4) * (1 / (1 + Math.exp(-6 * (progress - 0.5))));
+
+                let kappa = isSilent ? SILENT_OPERATORS[op].kappa : PHI_INV + (1 - PHI_INV) * progress * 0.5;
+                let lambda = 1 - kappa;
+
+                const wumboIdx = isSilent ? WUMBO_PHASES.indexOf(SILENT_OPERATORS[op].wumbo) : layer % 6;
+
+                state.tokens.push({
+                    id: i, type: 'prism', op, opName: opDef?.name || 'UNKNOWN',
+                    glyph: isSilent ? op : APL_GLYPHS[i % APL_GLYPHS.length],
+                    name: `prism_${opDef?.name?.toLowerCase() || 'op'}_${i}`,
+                    layer, z: parseFloat(z.toFixed(4)),
+                    kappa: parseFloat(kappa.toFixed(4)), lambda: parseFloat(lambda.toFixed(4)),
+                    phase: (i * TAU / 63) % TAU,
+                    wumbo: WUMBO_PHASES[wumboIdx >= 0 ? wumboIdx : 0],
+                    isSilent, active: false
+                });
+            }
+
+            // 32 CAGE tokens (z: 0.857 → 0.877)
+            for (let i = 0; i < 32; i++) {
+                const op = CAGE_SEQUENCE[i];
+                const opDef = ALL_OPERATORS[op];
+                const isSilent = silentOps.includes(op);
+                const progress = i / 31;
+                const z = 0.857 + (0.877 - 0.857) * progress;
+
+                let kappa = isSilent ? SILENT_OPERATORS[op].kappa : 0.5 + 0.1 * Math.sin(progress * TAU);
+                let lambda = 1 - kappa;
+
+                const wumboIdx = isSilent ? WUMBO_PHASES.indexOf(SILENT_OPERATORS[op].wumbo) : i % 6;
+
+                state.tokens.push({
+                    id: 63 + i, type: 'cage', op, opName: opDef?.name || 'UNKNOWN',
+                    glyph: isSilent ? op : APL_GLYPHS[(63 + i) % APL_GLYPHS.length],
+                    name: `cage_${opDef?.name?.toLowerCase() || 'op'}_${i}`,
+                    z: parseFloat(z.toFixed(4)),
+                    kappa: parseFloat(kappa.toFixed(4)), lambda: parseFloat(lambda.toFixed(4)),
+                    phase: (i * TAU / 32) % TAU,
+                    wumbo: WUMBO_PHASES[wumboIdx >= 0 ? wumboIdx : 0],
+                    isSilent, active: false
+                });
+            }
+
+            // 5 EMERGENT tokens (z: 0.877 → 0.95)
+            for (let i = 0; i < 5; i++) {
+                const op = EMERGENT_SEQUENCE[i];
+                const opDef = ALL_OPERATORS[op];
+                const isSilent = silentOps.includes(op);
+                const z = 0.877 + (0.95 - 0.877) * (i / 4);
+
+                let kappa = isSilent ? SILENT_OPERATORS[op].kappa : PHI_INV;
+                let lambda = 1 - kappa;
+
+                const wumboIdx = isSilent ? WUMBO_PHASES.indexOf(SILENT_OPERATORS[op].wumbo) : 5;
+
+                state.tokens.push({
+                    id: 95 + i, type: 'emergent', op, opName: opDef?.name || 'UNKNOWN',
+                    glyph: isSilent ? op : ['()', '×', '−', '◇', '()'][i],
+                    name: `emerge_${opDef?.name?.toLowerCase() || 'op'}_${i}`,
+                    z: parseFloat(z.toFixed(4)),
+                    kappa: parseFloat(kappa.toFixed(4)), lambda: parseFloat(lambda.toFixed(4)),
+                    phase: (i * TAU / 5) % TAU,
+                    wumbo: WUMBO_PHASES[wumboIdx >= 0 ? wumboIdx : 5],
+                    isSilent, selfReference: true, active: false
+                });
+            }
+
+            // UNITY Token #100
+            state.tokens.push({
+                id: 100, type: 'unity', op: 'Ω', opName: 'UNITY', glyph: 'Ω',
+                name: 'unity_release_cascade', z: 0.995,
+                kappa: 0.0, lambda: 1.0, phase: 0, wumbo: '∅',
+                isSilent: true, optional: true, active: false
+            });
+
+            console.log('Generated 100+1 tokens: 63 PRISM + 32 CAGE + 5 EMERGENT + 1 UNITY');
+        }
+
+        function renderTokens() {
+            const prismGrid = document.getElementById('prism-grid');
+            const cageGrid = document.getElementById('cage-grid');
+            const emergentGrid = document.getElementById('emergent-grid');
+            const unityGrid = document.getElementById('unity-grid');
+
+            prismGrid.innerHTML = '';
+            cageGrid.innerHTML = '';
+            emergentGrid.innerHTML = '';
+            unityGrid.innerHTML = '';
+
+            state.tokens.forEach(token => {
+                const cell = document.createElement('div');
+                cell.className = `token-cell ${token.type}`;
+                if (token.isSilent) cell.classList.add('silent');
+                cell.dataset.tokenId = token.id;
+
+                let zoneClass = 'zone-absence';
+                if (token.z >= 0.877) zoneClass = 'zone-presence';
+                else if (token.z >= 0.857) zoneClass = 'zone-lens';
+
+                const opDisplay = token.isSilent ?
+                    `<span class="silent-op">${token.op}</span>` :
+                    `<span class="int-op">${token.op}</span>`;
+
+                cell.innerHTML = `
+                    <div class="token-index">#${token.id.toString().padStart(3, '0')} ${opDisplay}</div>
+                    <div class="token-glyph">${token.glyph}</div>
+                    <div class="token-name">${token.opName}</div>
+                    <div class="token-z ${zoneClass}">z=${token.z.toFixed(3)}</div>
+                    <div class="token-coupling">κ${token.kappa.toFixed(2)} λ${token.lambda.toFixed(2)}</div>
+                    <div class="token-wumbo">${token.wumbo}</div>
+                `;
+
+                cell.onclick = () => selectToken(token.id);
+
+                if (token.type === 'prism') prismGrid.appendChild(cell);
+                else if (token.type === 'cage') cageGrid.appendChild(cell);
+                else if (token.type === 'unity') unityGrid.appendChild(cell);
+                else emergentGrid.appendChild(cell);
+            });
+        }
+
+        function selectToken(id) {
+            const token = state.tokens.find(t => t.id === id);
+            if (!token) return;
+
+            token.active = !token.active;
+            if (token.active) state.activeTokens.add(id);
+            else state.activeTokens.delete(id);
+
+            const cell = document.querySelector(`[data-token-id="${id}"]`);
+            if (cell) cell.classList.toggle('active', token.active);
+
+            showTokenDetail(token);
+            updateStats();
+        }
+
+        function showTokenDetail(token) {
+            const detail = document.getElementById('token-detail');
+            detail.classList.add('visible');
+
+            let zZone = 'ABSENCE';
+            if (token.z >= 0.995) zZone = 'UNITY CASCADE';
+            else if (token.z >= 0.877) zZone = 'PRESENCE';
+            else if (token.z >= 0.857) zZone = 'THE LENS';
+
+            document.getElementById('detail-glyph').textContent = token.glyph;
+            document.getElementById('detail-name').textContent = `${token.opName} [${token.op}]`;
+            document.getElementById('detail-type').textContent = `${token.type.toUpperCase()} · ${zZone}`;
+            document.getElementById('detail-z').textContent = `${token.z.toFixed(4)} [${zZone}]`;
+            document.getElementById('detail-kappa').textContent = `${token.kappa.toFixed(4)}`;
+            document.getElementById('detail-lambda').textContent = token.lambda.toFixed(4);
+            document.getElementById('detail-phase').textContent = `${token.wumbo} · phase=${token.phase.toFixed(3)}`;
+        }
+
+        // Cellular Automata
+        const GRID_WIDTH = 67, GRID_HEIGHT = 50;
+        let canvas, ctx;
+
+        function initAutomata() {
+            canvas = document.getElementById('automata-canvas');
+            ctx = canvas.getContext('2d');
+            state.automataGrid = [];
+
+            for (let y = 0; y < GRID_HEIGHT; y++) {
+                state.automataGrid[y] = [];
+                for (let x = 0; x < GRID_WIDTH; x++) {
+                    state.automataGrid[y][x] = { energy: 0, phase: Math.random() * TAU, exotic: false };
+                }
+            }
+
+            canvas.addEventListener('click', (e) => {
+                const rect = canvas.getBoundingClientRect();
+                const x = Math.floor((e.clientX - rect.left) / (canvas.width / GRID_WIDTH));
+                const y = Math.floor((e.clientY - rect.top) / (canvas.height / GRID_HEIGHT));
+                if (x >= 0 && x < GRID_WIDTH && y >= 0 && y < GRID_HEIGHT) {
+                    state.automataGrid[y][x].energy = 1.0;
+                    state.automataGrid[y][x].exotic = true;
+                    renderAutomata();
+                }
+            });
+
+            renderAutomata();
+        }
+
+        function updateAutomata() {
+            const newGrid = JSON.parse(JSON.stringify(state.automataGrid));
+            let activeCells = 0, totalEnergy = 0;
+
+            for (let y = 0; y < GRID_HEIGHT; y++) {
+                for (let x = 0; x < GRID_WIDTH; x++) {
+                    const cell = state.automataGrid[y][x];
+                    let neighborEnergy = 0, neighborCount = 0;
+
+                    for (let dy = -1; dy <= 1; dy++) {
+                        for (let dx = -1; dx <= 1; dx++) {
+                            if (dx === 0 && dy === 0) continue;
+                            const ny = (y + dy + GRID_HEIGHT) % GRID_HEIGHT;
+                            const nx = (x + dx + GRID_WIDTH) % GRID_WIDTH;
+                            neighborEnergy += state.automataGrid[ny][nx].energy;
+                            neighborCount++;
+                        }
+                    }
+
+                    const avgNeighbor = neighborEnergy / neighborCount;
+
+                    if (cell.exotic) {
+                        newGrid[y][x].energy = cell.energy * 0.95 + avgNeighbor * 0.1;
+                        if (avgNeighbor > 0.3) {
+                            for (let dy = -1; dy <= 1; dy++) {
+                                for (let dx = -1; dx <= 1; dx++) {
+                                    const ny = (y + dy + GRID_HEIGHT) % GRID_HEIGHT;
+                                    const nx = (x + dx + GRID_WIDTH) % GRID_WIDTH;
+                                    if (Math.random() < cell.energy * 0.3) {
+                                        newGrid[ny][nx].exotic = true;
+                                        newGrid[ny][nx].energy = Math.max(newGrid[ny][nx].energy, cell.energy * 0.5);
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+                        if (avgNeighbor > 0.5 && neighborEnergy > 2.0) {
+                            newGrid[y][x].exotic = true;
+                            newGrid[y][x].energy = avgNeighbor * 0.8;
+                        } else {
+                            newGrid[y][x].energy = cell.energy * 0.9 + avgNeighbor * 0.05;
+                        }
+                    }
+
+                    newGrid[y][x].phase = (cell.phase + PHI_INV * 0.1 + avgNeighbor * 0.05) % TAU;
+                    if (newGrid[y][x].energy > 0.1) activeCells++;
+                    totalEnergy += newGrid[y][x].energy;
+                }
+            }
+
+            state.automataGrid = newGrid;
+            document.getElementById('active-cells').textContent = activeCells;
+            document.getElementById('energy-density').textContent = (totalEnergy / (GRID_WIDTH * GRID_HEIGHT)).toFixed(4);
+        }
+
+        function renderAutomata() {
+            const cellW = canvas.width / GRID_WIDTH;
+            const cellH = canvas.height / GRID_HEIGHT;
+
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.3)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            for (let y = 0; y < GRID_HEIGHT; y++) {
+                for (let x = 0; x < GRID_WIDTH; x++) {
+                    const cell = state.automataGrid[y][x];
+                    if (cell.energy > 0.05) {
+                        const intensity = Math.min(1, cell.energy);
+                        if (cell.exotic) {
+                            const hue = 180 + cell.phase * 60 / TAU;
+                            ctx.fillStyle = `hsla(${hue}, 100%, ${50 + intensity * 30}%, ${intensity})`;
+                        } else {
+                            ctx.fillStyle = `rgba(255, ${200 * intensity}, 0, ${intensity})`;
+                        }
+                        ctx.fillRect(x * cellW, y * cellH, cellW - 1, cellH - 1);
+                    }
+                }
+            }
+        }
+
+        function startPropagation() {
+            state.propagating = !state.propagating;
+            const btn = document.querySelector('.prop-btn');
+            btn.textContent = state.propagating ? '⏸ STOP' : '▶ START PROPAGATION';
+            if (state.propagating) animateAutomata();
+        }
+
+        function animateAutomata() {
+            if (!state.propagating) return;
+            updateAutomata();
+            renderAutomata();
+            updateWumboCycle();
+            state.generation++;
+            requestAnimationFrame(animateAutomata);
+        }
+
+        function triggerNECViolation() {
+            for (let i = 0; i < 10; i++) {
+                const x = Math.floor(Math.random() * GRID_WIDTH);
+                const y = Math.floor(Math.random() * GRID_HEIGHT);
+                state.automataGrid[y][x].energy = 1.0;
+                state.automataGrid[y][x].exotic = true;
+            }
+
+            state.tokens.filter(t => t.type === 'emergent').forEach(t => {
+                t.active = true;
+                state.activeTokens.add(t.id);
+                const cell = document.querySelector(`[data-token-id="${t.id}"]`);
+                if (cell) cell.classList.add('active', 'propagating');
+            });
+
+            renderAutomata();
+            updateStats();
+        }
+
+        function updateWumboCycle() {
+            state.wumboPhase = (state.wumboPhase + 1) % (WUMBO_PHASES.length * 10);
+            const currentIndex = Math.floor(state.wumboPhase / 10);
+
+            document.querySelectorAll('.wumbo-node').forEach((node, i) => {
+                node.classList.toggle('active', i === currentIndex);
+            });
+
+            document.getElementById('current-phase').textContent = WUMBO_PHASES[currentIndex];
+
+            const marker = document.getElementById('phase-marker');
+            const progress = (state.wumboPhase % 60) / 60;
+            marker.style.left = `${progress * 100}%`;
+        }
+
+        function setModulation(spiral) {
+            state.currentModulation = spiral;
+            document.querySelectorAll('.mod-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.spiral === spiral);
+            });
+
+            const modFactor = spiral === 'phi' ? PHI : (spiral === 'e' ? Math.E : Math.PI);
+            state.tokens.forEach(token => { token.phase = (token.phase + modFactor * 0.1) % TAU; });
+            updateStats();
+        }
+
+        // APL Console
+        document.getElementById('apl-input').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') executeAPL(e.target.value);
+        });
+
+        function executeAPL(expr) {
+            const output = document.getElementById('apl-output');
+            let result = '';
+
+            if (expr === '()' || expr === '×' || expr === '^' || expr === '÷' || expr === '+' || expr === '−') {
+                const op = INT_OPERATORS[expr];
+                state.z = Math.max(0, Math.min(1, state.z + (op?.zDelta || 0)));
+                state.operatorHistory.push(expr);
+                result = `✓ ${op?.name || expr} applied\nz=${state.z.toFixed(4)} [${getZoneLabel()}]`;
+            } else if (expr.toLowerCase() === 'status') {
+                result = `z=${state.z.toFixed(4)} [${getZoneLabel()}]\nHistory: ${state.operatorHistory.slice(-10).join(' ') || '—'}`;
+            } else if (expr.toLowerCase() === 'reset') {
+                state.z = 0.5;
+                state.operatorHistory = [];
+                result = '✓ Reset to z=0.5 [ABSENCE]';
+            } else if (expr.includes('φ') || expr.includes('Φ')) {
+                result = `φ = ${PHI.toFixed(10)}\nφ⁻¹ = ${PHI_INV.toFixed(10)}\nφ⁻¹ + φ⁻² = ${(PHI_INV + PHI_INV_SQ).toFixed(10)}`;
+            } else if (expr.toLowerCase() === 'help') {
+                result = 'Operators: () × ^ ÷ + −\nCommands: status, reset, help';
+            } else {
+                result = `Eval: ${expr} → ${Math.random().toFixed(6)}`;
+            }
+
+            output.textContent = result;
+            updateStats();
+        }
+
+        function getZoneLabel() {
+            if (state.z < 0.857) return 'ABSENCE';
+            if (state.z > 0.877) return 'PRESENCE';
+            return 'THE LENS';
+        }
+
+        function updateStats() {
+            const activeCount = state.activeTokens.size;
+            document.getElementById('active-tokens').textContent = activeCount;
+
+            let sumCos = 0, sumSin = 0;
+            state.tokens.forEach(t => {
+                if (t.active) { sumCos += Math.cos(t.phase); sumSin += Math.sin(t.phase); }
+            });
+
+            const r = activeCount > 0 ? Math.sqrt(sumCos*sumCos + sumSin*sumSin) / activeCount : 0;
+            state.orderParameter = r;
+            document.getElementById('order-param').textContent = r.toFixed(4);
+
+            state.coherence = r * (activeCount / 100);
+            document.getElementById('coherence').textContent = state.coherence.toFixed(4);
+
+            state.freeEnergy = 1.0 - state.coherence;
+            document.getElementById('free-energy').textContent = state.freeEnergy.toFixed(4);
+
+            const radialPos = PHI + (state.coherence - 0.5) * 10;
+            document.getElementById('radial-pos').textContent = radialPos.toFixed(4);
+
+            document.getElementById('z-coord').textContent = state.z.toFixed(4);
+            document.getElementById('z-zone').textContent = getZoneLabel();
+            document.getElementById('op-history').textContent = state.operatorHistory.slice(-10).join(' ') || '—';
+        }
+
+        function init() {
+            generateTokens();
+            renderTokens();
+            initAutomata();
+            updateStats();
+
+            console.log(`
+╔════════════════════════════════════════════════════════════════════════════╗
+║              WUMBO APL DIRECTORY — 100 NORMALIZED TOKENS                   ║
+╠════════════════════════════════════════════════════════════════════════════╣
+║  PHYSICS CONSTANTS:                                                        ║
+║  z_c = √3/2 ≈ ${Z_CRITICAL.toFixed(4)}   φ⁻¹ = ${PHI_INV.toFixed(4)}   σ = ${SIGMA}   κ + λ = 1         ║
+╠════════════════════════════════════════════════════════════════════════════╣
+║  STRUCTURE: 63 PRISM + 32 EM CAGE + 5 EMERGENT + 1 UNITY (#100)            ║
+║  WUMBO PHASES: W → U → M → B → O → T → W...                               ║
+╚════════════════════════════════════════════════════════════════════════════╝
+            `);
+        }
+
+        init();
+    </script>
+</body>
+</html>
