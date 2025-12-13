@@ -1,0 +1,48 @@
+{
+  "timestamp": "2025-12-13T16:20:56.278874",
+  "z_critical": 0.8660254037844386,
+  "phi_inv": 0.6180339887498949,
+  "sigma": 36.0,
+  "validations": [
+    {
+      "z": 0.618,
+      "phase": "ABSENCE",
+      "delta_s_neg": 0.10919744283497909,
+      "distance_to_lens": 0.2480254037844386,
+      "at_lens": false,
+      "icon": "\u26aa"
+    },
+    {
+      "z": 0.8660254037844386,
+      "phase": "PRESENCE",
+      "delta_s_neg": 1.0,
+      "distance_to_lens": 0.0,
+      "at_lens": true,
+      "icon": "\ud83d\udd37"
+    },
+    {
+      "z": 0.9,
+      "phase": "PRESENCE",
+      "delta_s_neg": 0.9592976903823723,
+      "distance_to_lens": 0.033974596215561426,
+      "at_lens": false,
+      "icon": "\ud83d\udd37"
+    },
+    {
+      "z": 0.92,
+      "phase": "PRESENCE",
+      "delta_s_neg": 0.9004350412161889,
+      "distance_to_lens": 0.05397459621556144,
+      "at_lens": false,
+      "icon": "\ud83d\udd37"
+    },
+    {
+      "z": 0.859249,
+      "phase": "PARADOX",
+      "delta_s_neg": 0.9983482582923284,
+      "distance_to_lens": 0.006776403784438556,
+      "at_lens": true,
+      "icon": "\ud83d\udd36"
+    }
+  ]
+}
