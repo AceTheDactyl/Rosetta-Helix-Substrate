@@ -3,13 +3,18 @@
 WUMBO APL Automated Training Module
 ====================================
 
-Unified training integration combining:
-1. WUMBO Phases (W-U-M-B-O-T)
-2. N0 Operator Integration with κ-field grounding
-3. 100-Token APL Directory structure (63 PRISM + 32 CAGE + 5 EMERGENT + 1 UNITY)
-4. Kuramoto oscillator synchronization
-5. Free Energy Principle dynamics
-6. Phase transition critical behavior
+WUMBO trains on the 7 Silent Laws through N0 Operator grounding.
+
+WUMBO ↔ Silent Laws Training Mapping:
+======================================
+    W (Wake)      → V UNSEEN    (emerging from hidden)     → (background)
+    U (Understand)→ II TRUTH    (building stable model)    → N0-4 +
+    M (Meld)      → III SILENCE (conserve during merge)    → (background)
+    B (Bind)      → VI GLYPH    (structure crystallization)→ N0-3 ÷
+    O (Output)    → IV SPIRAL   (output returns to origin) → N0-2 ×
+    T (Transform) → VII MIRROR  (self-reference transform) → N0-5 −
+
+Plus: I STILLNESS activates when z → z_c (THE LENS)
 
 Architecture:
 =============
@@ -17,44 +22,34 @@ Architecture:
     │                    WUMBO APL AUTOMATED TRAINING                      │
     │                                                                      │
     │  ┌──────────────┐    ┌──────────────┐    ┌──────────────┐           │
-    │  │   100-Token  │───▶│   WUMBO      │───▶│   N0 Operator │           │
-    │  │   Director   │    │   Phase      │    │   Engine      │           │
+    │  │ Silent Laws  │───▶│   WUMBO      │───▶│ N0 Operators │           │
+    │  │ (7 Laws)     │    │   Phase      │    │ (5 Laws)     │           │
     │  └──────────────┘    │   Cycle      │    └──────────────┘           │
     │         │            └──────────────┘           │                    │
-    │         │                   │                   │                    │
-    │         ▼                   ▼                   ▼                    │
+    │         │    activation    │    operator        │                    │
+    │         ▼                  ▼                    ▼                    │
     │  ┌─────────────────────────────────────────────────────────┐        │
     │  │              κ-λ Coupling Conservation Layer             │        │
     │  │  • φ⁻¹ + φ⁻² = 1 (THE defining property)                │        │
-    │  │  • Kuramoto sync → κ-field evolution                    │        │
-    │  │  • Free Energy → negentropy alignment                   │        │
+    │  │  • Silent Law activation → κ-field evolution            │        │
+    │  │  • N0 operators → state transitions                     │        │
     │  └─────────────────────────────────────────────────────────┘        │
     └─────────────────────────────────────────────────────────────────────┘
 
-WUMBO Phase Cycle:
-==================
-    W (Wake)       → Initialize, set z from dormant
-    U (Understand) → Process input, build internal model
-    M (Meld)       → Integrate observations, κ-coupling
-    B (Bind)       → Crystallize patterns, approach z_c
-    O (Output)     → Generate predictions, λ-feedback
-    T (Transform)  → Phase transition, evolve to next cycle
-
-Token Structure (100 total):
-============================
-    PRISM (1-63):     Active processing tokens
-    CAGE (64-95):     Constraint/boundary tokens
-    EMERGENT (96-99): Novel pattern tokens
-    UNITY (100):      Integration/collapse token
-
-Physics Constants:
-==================
+Physics Constants (ALL from physics_constants.py):
+===================================================
     φ⁻¹ ≈ 0.618 (PHYSICAL coupling)
     φ⁻² ≈ 0.382 (complement)
     z_c = √3/2 ≈ 0.866 (THE LENS)
     σ = 36 = |S₃|² (Gaussian width)
 
-Signature: Δ|wumbo-apl-training|z0.92|κ-grounded|Ω
+    Coefficients:
+        ALPHA_STRONG = 1/√σ = 1/6 ≈ 0.167
+        ALPHA_MEDIUM = 1/√(2σ) ≈ 0.118
+        ALPHA_FINE = 1/σ = 1/36 ≈ 0.028
+        ALPHA_ULTRA_FINE = φ⁻¹/σ ≈ 0.017
+
+Signature: Δ|wumbo-silent-laws|z0.866|κ-grounded|Ω
 """
 
 from __future__ import annotations
@@ -74,68 +69,75 @@ import numpy as np
 # Add src to path for imports
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'src'))
 
-# Optional PyTorch support
-try:
-    import torch
-    import torch.nn as nn
-    TORCH_AVAILABLE = True
-except ImportError:
-    TORCH_AVAILABLE = False
+# Import unified physics constants
+from physics_constants import (
+    # Fundamental constants
+    PHI, PHI_INV, PHI_INV_SQ, PHI_INV_CUBED, PHI_INV_FOURTH,
+    Z_CRITICAL, SIGMA, COUPLING_CONSERVATION,
+    # Derived coefficients
+    ALPHA_STRONG, ALPHA_MEDIUM, ALPHA_FINE, ALPHA_ULTRA_FINE,
+    SIGMA_INV, SIGMA_SQRT_INV, GAUSSIAN_WIDTH,
+    # Bounds
+    KAPPA_LOWER, KAPPA_UPPER,
+    # Tolerances
+    TOLERANCE_GOLDEN, TOLERANCE_LENS, TOLERANCE_CONSERVATION,
+    # Special values
+    BALANCE_POINT, Z_ORIGIN, UNITY_THRESHOLD, TAU,
+    # Functions
+    compute_delta_s_neg, compute_delta_s_neg_derivative, compute_negentropy_gradient,
+    get_phase,
+    # N0 and Silent Laws
+    N0Law, SilentLaw, N0_TO_SILENT, SILENT_TO_N0,
+    compute_stillness_activation, compute_truth_activation,
+    compute_silence_activation, compute_spiral_activation,
+    compute_unseen_activation, compute_glyph_activation, compute_mirror_activation,
+    # N0 operator functions
+    apply_n0_identity, apply_n0_mirror_root, apply_n0_absorption,
+    apply_n0_distribution, apply_n0_conservation,
+    # WUMBO κ-targets (physics-grounded)
+    WUMBO_KAPPA_W, WUMBO_KAPPA_U, WUMBO_KAPPA_M,
+    WUMBO_KAPPA_B, WUMBO_KAPPA_O, WUMBO_KAPPA_T,
+)
 
 # Import κ-λ Coupling Conservation Layer
 try:
-    from kappa_lambda_coupling_layer import (
-        KappaLambdaCouplingLayer,
-        compute_delta_s_neg as coupling_delta_s_neg,
-        compute_negentropy_gradient,
-        get_phase as coupling_get_phase,
-    )
+    from kappa_lambda_coupling_layer import KappaLambdaCouplingLayer
     COUPLING_LAYER_AVAILABLE = True
 except ImportError:
     COUPLING_LAYER_AVAILABLE = False
 
-# =============================================================================
-# PHYSICS CONSTANTS (Single Source of Truth)
-# =============================================================================
-
-PHI: float = (1 + math.sqrt(5)) / 2          # φ ≈ 1.618 (LIMINAL)
-PHI_INV: float = 1 / PHI                      # φ⁻¹ ≈ 0.618 (PHYSICAL)
-PHI_INV_SQ: float = PHI_INV ** 2              # φ⁻² ≈ 0.382
-COUPLING_CONSERVATION: float = PHI_INV + PHI_INV_SQ  # Must equal 1.0
-
-Z_CRITICAL: float = math.sqrt(3) / 2         # z_c = √3/2 ≈ 0.866 (THE LENS)
-Z_ORIGIN: float = Z_CRITICAL * PHI_INV       # ≈ 0.535
-
-SIGMA: float = 36.0                           # σ = 6² = |S₃|²
-GAUSSIAN_WIDTH: float = 1 / math.sqrt(2 * SIGMA)
-
-KAPPA_S: float = 0.920                        # Singularity threshold
-MU_3: float = 0.9927                          # Ultra-integration
-UNITY: float = 0.9999                         # Collapse threshold
-
-TAU: float = 2 * math.pi
-
 
 # =============================================================================
-# WUMBO PHASE CYCLE
+# WUMBO ↔ SILENT LAWS MAPPING
 # =============================================================================
 
 class WUMBOPhase(Enum):
     """
     WUMBO Phase Cycle: W → U → M → B → O → T
 
-    Each phase has specific κ-λ coupling dynamics.
-    """
-    W = ("Wake", PHI_INV, "Initialize system from dormant state")
-    U = ("Understand", 0.55, "Process input, build internal model")
-    M = ("Meld", 0.5, "Integrate observations at balance point")
-    B = ("Bind", 0.65, "Crystallize patterns, approach z_c")
-    O = ("Output", 0.4, "Generate predictions with λ-feedback")
-    T = ("Transform", PHI_INV, "Phase transition to next cycle")
+    Each phase trains on a specific Silent Law through N0 operators.
 
-    def __init__(self, full_name: str, kappa_target: float, description: str):
+    WUMBO ↔ Silent Laws Training:
+        W (Wake)      → V UNSEEN    (emerging from hidden)
+        U (Understand)→ II TRUTH    (building stable model)
+        M (Meld)      → III SILENCE (conserve during merge)
+        B (Bind)      → VI GLYPH    (structure crystallization)
+        O (Output)    → IV SPIRAL   (output returns to origin)
+        T (Transform) → VII MIRROR  (self-reference transform)
+    """
+    W = ("Wake", WUMBO_KAPPA_W, SilentLaw.V_UNSEEN, None, "Emerge from hidden state")
+    U = ("Understand", WUMBO_KAPPA_U, SilentLaw.II_TRUTH, N0Law.DISTRIBUTION, "Build stable model via TRUTH")
+    M = ("Meld", WUMBO_KAPPA_M, SilentLaw.III_SILENCE, None, "Conserve during integration")
+    B = ("Bind", WUMBO_KAPPA_B, SilentLaw.VI_GLYPH, N0Law.ABSORPTION, "Crystallize via GLYPH")
+    O = ("Output", WUMBO_KAPPA_O, SilentLaw.IV_SPIRAL, N0Law.MIRROR_ROOT, "Return via SPIRAL")
+    T = ("Transform", WUMBO_KAPPA_T, SilentLaw.VII_MIRROR, N0Law.CONSERVATION, "Self-reference via MIRROR")
+
+    def __init__(self, full_name: str, kappa_target: float,
+                 silent_law: int, n0_law: Optional[str], description: str):
         self._full_name = full_name
         self._kappa_target = kappa_target
+        self._silent_law = silent_law
+        self._n0_law = n0_law
         self._description = description
 
     @property
@@ -151,6 +153,26 @@ class WUMBOPhase(Enum):
         return 1.0 - self._kappa_target
 
     @property
+    def silent_law(self) -> int:
+        """The Silent Law this phase trains on."""
+        return self._silent_law
+
+    @property
+    def silent_law_name(self) -> str:
+        """Name of the Silent Law."""
+        return SilentLaw.NAMES.get(self._silent_law, "UNKNOWN")
+
+    @property
+    def silent_law_formula(self) -> str:
+        """Formula of the Silent Law."""
+        return SilentLaw.FORMULAS.get(self._silent_law, "")
+
+    @property
+    def n0_law(self) -> Optional[str]:
+        """The N0 operator for this phase (None for background laws)."""
+        return self._n0_law
+
+    @property
     def description(self) -> str:
         return self._description
 
@@ -159,37 +181,129 @@ WUMBO_PHASES = [WUMBOPhase.W, WUMBOPhase.U, WUMBOPhase.M,
                 WUMBOPhase.B, WUMBOPhase.O, WUMBOPhase.T]
 
 
+# =============================================================================
+# SILENT LAW TRAINING STATE
+# =============================================================================
+
+@dataclass
+class SilentLawTrainingState:
+    """
+    Tracks training progress for each Silent Law.
+    """
+    # Law activations (updated each step)
+    activations: Dict[int, float] = field(default_factory=dict)
+
+    # Training exposure (how many steps each law has been trained)
+    exposure: Dict[int, int] = field(default_factory=dict)
+
+    # Accumulated energy per law
+    energy: Dict[int, float] = field(default_factory=dict)
+
+    # Training loss per law
+    loss: Dict[int, List[float]] = field(default_factory=dict)
+
+    def __post_init__(self):
+        """Initialize all 7 laws."""
+        for law_id in range(1, 8):
+            self.activations[law_id] = 0.0
+            self.exposure[law_id] = 0
+            self.energy[law_id] = 0.0
+            self.loss[law_id] = []
+
+    def update_activations(self, z: float, kappa: float, conservation_error: float):
+        """Update activations for all 7 Silent Laws based on current state."""
+        self.activations[SilentLaw.I_STILLNESS] = compute_stillness_activation(z)
+        self.activations[SilentLaw.II_TRUTH] = compute_truth_activation(z)
+        self.activations[SilentLaw.III_SILENCE] = compute_silence_activation(conservation_error)
+        self.activations[SilentLaw.IV_SPIRAL] = compute_spiral_activation(kappa)
+        self.activations[SilentLaw.V_UNSEEN] = compute_unseen_activation(z)
+        self.activations[SilentLaw.VI_GLYPH] = compute_glyph_activation(z)
+        self.activations[SilentLaw.VII_MIRROR] = compute_mirror_activation(kappa)
+
+    def train_law(self, law_id: int, target_activation: float):
+        """
+        Train on a specific law by computing loss and accumulating energy.
+
+        Loss = |activation - target|
+        Energy += activation × ALPHA_FINE (physics-grounded accumulation)
+        """
+        current_activation = self.activations.get(law_id, 0.0)
+        loss = abs(current_activation - target_activation)
+
+        self.exposure[law_id] = self.exposure.get(law_id, 0) + 1
+        self.energy[law_id] = self.energy.get(law_id, 0.0) + current_activation * ALPHA_FINE
+        self.loss[law_id].append(loss)
+
+        return {
+            "law_id": law_id,
+            "law_name": SilentLaw.NAMES.get(law_id, "UNKNOWN"),
+            "activation": current_activation,
+            "target": target_activation,
+            "loss": loss,
+            "exposure": self.exposure[law_id],
+            "energy": self.energy[law_id],
+        }
+
+    def get_dominant_law(self) -> Tuple[int, float]:
+        """Get the most active law."""
+        if not self.activations:
+            return (1, 0.0)
+        return max(self.activations.items(), key=lambda x: x[1])
+
+    def get_summary(self) -> Dict:
+        """Get training summary for all laws."""
+        return {
+            "activations": {SilentLaw.NAMES.get(k, str(k)): v for k, v in self.activations.items()},
+            "exposure": {SilentLaw.NAMES.get(k, str(k)): v for k, v in self.exposure.items()},
+            "energy": {SilentLaw.NAMES.get(k, str(k)): v for k, v in self.energy.items()},
+            "mean_loss": {
+                SilentLaw.NAMES.get(k, str(k)): sum(v) / len(v) if v else 0.0
+                for k, v in self.loss.items()
+            },
+        }
+
+
+# =============================================================================
+# WUMBO CYCLE STATE
+# =============================================================================
+
 @dataclass
 class WUMBOCycleState:
     """
-    State tracking for WUMBO phase cycle.
-
-    Maintains:
-    - Current phase
-    - κ-λ coupling state
-    - Phase transition history
-    - Cycle metrics
+    State tracking for WUMBO phase cycle with Silent Law training.
     """
     phase_index: int = 0
     cycle_count: int = 0
 
     kappa: float = PHI_INV
     lambda_: float = PHI_INV_SQ
-
     z: float = 0.5
 
+    # Silent Law training state
+    silent_law_training: SilentLawTrainingState = field(default_factory=SilentLawTrainingState)
+
+    # History
     phase_history: List[str] = field(default_factory=list)
     z_history: List[float] = field(default_factory=list)
     kappa_history: List[float] = field(default_factory=list)
+    silent_law_history: List[Dict] = field(default_factory=list)
 
     @property
     def current_phase(self) -> WUMBOPhase:
         return WUMBO_PHASES[self.phase_index]
 
+    @property
+    def current_silent_law(self) -> int:
+        """The Silent Law being trained in current phase."""
+        return self.current_phase.silent_law
+
+    @property
+    def current_n0_law(self) -> Optional[str]:
+        """The N0 operator for current phase."""
+        return self.current_phase.n0_law
+
     def advance_phase(self) -> WUMBOPhase:
         """Advance to next WUMBO phase."""
-        old_phase = self.current_phase
-
         self.phase_index = (self.phase_index + 1) % 6
 
         if self.phase_index == 0:
@@ -197,8 +311,9 @@ class WUMBOCycleState:
 
         new_phase = self.current_phase
 
-        # Update κ-λ toward phase target
-        self.kappa = self.kappa + 0.1 * (new_phase.kappa_target - self.kappa)
+        # Update κ toward phase target (physics-grounded coefficient)
+        kappa_delta = ALPHA_MEDIUM * (new_phase.kappa_target - self.kappa)
+        self.kappa = max(KAPPA_LOWER, min(KAPPA_UPPER, self.kappa + kappa_delta))
         self.lambda_ = 1.0 - self.kappa
 
         self.phase_history.append(new_phase.name)
@@ -207,384 +322,58 @@ class WUMBOCycleState:
         return new_phase
 
     def evolve_z(self, delta: float) -> float:
-        """Evolve z with PHI_INV dynamics."""
-        self.z = max(0.0, min(UNITY - 0.001, self.z + delta * PHI_INV))
+        """Evolve z with physics-grounded constraint."""
+        self.z = max(0.0, min(UNITY_THRESHOLD, self.z + delta * PHI_INV))
         self.z_history.append(self.z)
         return self.z
 
-    @property
-    def coupling_conservation_error(self) -> float:
-        return abs((self.kappa + self.lambda_) - 1.0)
+    def train_current_law(self) -> Dict:
+        """Train on the current phase's Silent Law."""
+        # Update all activations first
+        conservation_error = abs(self.kappa + self.lambda_ - 1.0)
+        self.silent_law_training.update_activations(self.z, self.kappa, conservation_error)
 
+        # Determine target activation based on phase
+        phase = self.current_phase
 
-# =============================================================================
-# 100-TOKEN DIRECTORY STRUCTURE
-# =============================================================================
-
-class TokenCategory(Enum):
-    """Token categories from APL Directory."""
-    PRISM = ("PRISM", 1, 63, "Active processing tokens")
-    CAGE = ("CAGE", 64, 95, "Constraint/boundary tokens")
-    EMERGENT = ("EMERGENT", 96, 99, "Novel pattern tokens")
-    UNITY = ("UNITY", 100, 100, "Integration/collapse token")
-
-    def __init__(self, name: str, start: int, end: int, description: str):
-        self._name = name
-        self._start = start
-        self._end = end
-        self._description = description
-
-    @property
-    def start_index(self) -> int:
-        return self._start
-
-    @property
-    def end_index(self) -> int:
-        return self._end
-
-    @property
-    def count(self) -> int:
-        return self._end - self._start + 1
-
-    @property
-    def description(self) -> str:
-        return self._description
-
-
-@dataclass
-class APLToken:
-    """
-    Single APL token with κ-λ coupling.
-
-    Each token has:
-    - ID (1-100)
-    - Category (PRISM/CAGE/EMERGENT/UNITY)
-    - Activation state
-    - κ-λ coupling ratio
-    - WUMBO phase association
-    """
-    token_id: int
-    category: TokenCategory
-
-    kappa: float = PHI_INV
-    lambda_: float = PHI_INV_SQ
-
-    activation: float = 0.0
-    wumbo_phase: Optional[WUMBOPhase] = None
-
-    def __post_init__(self):
-        # Assign WUMBO phase based on token position
-        if self.token_id <= 17:
-            self.wumbo_phase = WUMBOPhase.W
-        elif self.token_id <= 34:
-            self.wumbo_phase = WUMBOPhase.U
-        elif self.token_id <= 51:
-            self.wumbo_phase = WUMBOPhase.M
-        elif self.token_id <= 68:
-            self.wumbo_phase = WUMBOPhase.B
-        elif self.token_id <= 85:
-            self.wumbo_phase = WUMBOPhase.O
+        # Target: law should be maximally active when phase conditions are met
+        if phase.silent_law == SilentLaw.V_UNSEEN:
+            # UNSEEN: active when z < φ⁻¹ (ABSENCE)
+            target = 1.0 if self.z < PHI_INV else 0.0
+        elif phase.silent_law == SilentLaw.II_TRUTH:
+            # TRUTH: active when z ≥ z_c (PRESENCE)
+            target = 1.0 if self.z >= Z_CRITICAL else (self.z - PHI_INV) / (Z_CRITICAL - PHI_INV) if self.z >= PHI_INV else 0.0
+        elif phase.silent_law == SilentLaw.III_SILENCE:
+            # SILENCE: always active (conservation)
+            target = 1.0
+        elif phase.silent_law == SilentLaw.VI_GLYPH:
+            # GLYPH: active proportional to z (structure)
+            target = self.z
+        elif phase.silent_law == SilentLaw.IV_SPIRAL:
+            # SPIRAL: active when κ ≈ φ⁻¹ (golden)
+            target = 1.0 if abs(self.kappa - PHI_INV) < TOLERANCE_GOLDEN else 0.0
+        elif phase.silent_law == SilentLaw.VII_MIRROR:
+            # MIRROR: active when κ ≈ 0.5 (balance)
+            target = 1.0 if abs(self.kappa - BALANCE_POINT) < TOLERANCE_GOLDEN else 0.0
         else:
-            self.wumbo_phase = WUMBOPhase.T
+            target = 0.5
 
-    def activate(self, value: float) -> float:
-        """Activate token with κ-weighted input."""
-        self.activation = self.activation + value * self.kappa
-        return self.activation
+        # Train on the law
+        result = self.silent_law_training.train_law(phase.silent_law, target)
 
-    def decay(self, rate: float = 0.1) -> float:
-        """Decay activation with λ-weighted rate."""
-        self.activation *= (1.0 - rate * self.lambda_)
-        return self.activation
-
-    @property
-    def coupling_conservation_error(self) -> float:
-        return abs((self.kappa + self.lambda_) - 1.0)
-
-
-class TokenDirectory:
-    """
-    100-Token APL Directory.
-
-    Structure:
-    - 63 PRISM tokens (active processing)
-    - 32 CAGE tokens (constraints)
-    - 4 EMERGENT tokens (novel patterns)
-    - 1 UNITY token (integration)
-    """
-
-    def __init__(self):
-        self.tokens: List[APLToken] = []
-        self._initialize_tokens()
-
-    def _initialize_tokens(self):
-        """Initialize all 100 tokens."""
-        for i in range(1, 101):
-            if i <= 63:
-                category = TokenCategory.PRISM
-            elif i <= 95:
-                category = TokenCategory.CAGE
-            elif i <= 99:
-                category = TokenCategory.EMERGENT
-            else:
-                category = TokenCategory.UNITY
-
-            self.tokens.append(APLToken(
-                token_id=i,
-                category=category,
-            ))
-
-    def get_tokens_by_category(self, category: TokenCategory) -> List[APLToken]:
-        """Get all tokens in a category."""
-        return [t for t in self.tokens if t.category == category]
-
-    def get_tokens_by_wumbo_phase(self, phase: WUMBOPhase) -> List[APLToken]:
-        """Get all tokens associated with a WUMBO phase."""
-        return [t for t in self.tokens if t.wumbo_phase == phase]
-
-    def activate_phase(self, phase: WUMBOPhase, value: float) -> List[float]:
-        """Activate all tokens in a WUMBO phase."""
-        phase_tokens = self.get_tokens_by_wumbo_phase(phase)
-        return [t.activate(value) for t in phase_tokens]
-
-    def decay_all(self, rate: float = 0.1) -> None:
-        """Decay all token activations."""
-        for t in self.tokens:
-            t.decay(rate)
-
-    def get_phase_coherence(self, phase: WUMBOPhase) -> float:
-        """Get average activation for a phase."""
-        phase_tokens = self.get_tokens_by_wumbo_phase(phase)
-        if not phase_tokens:
-            return 0.0
-        return sum(t.activation for t in phase_tokens) / len(phase_tokens)
-
-    def get_total_coherence(self) -> float:
-        """Get overall coherence across all tokens."""
-        if not self.tokens:
-            return 0.0
-        return sum(t.activation for t in self.tokens) / len(self.tokens)
-
-    def get_unity_state(self) -> float:
-        """Get UNITY token (#100) state."""
-        return self.tokens[99].activation
-
-
-# =============================================================================
-# N0 OPERATOR INTEGRATION
-# =============================================================================
-
-class N0Law(Enum):
-    """N0 Laws for operator grounding."""
-    IDENTITY = ("N0(1)", "Λ × 1 = Λ")
-    MIRROR_ROOT = ("N0(2)", "Λ × Ν = Β²")
-    ABSORPTION = ("N0(3)", "TRUE × UNTRUE = PARADOX")
-    DISTRIBUTION = ("N0(4)", "(A ⊕ B) × C = (A × C) ⊕ (B × C)")
-    CONSERVATION = ("N0(5)", "κ + λ = 1")
-
-    def __init__(self, code: str, formula: str):
-        self._code = code
-        self._formula = formula
-
-    @property
-    def code(self) -> str:
-        return self._code
-
-    @property
-    def formula(self) -> str:
-        return self._formula
-
-
-@dataclass
-class N0OperatorState:
-    """
-    N0 Operator state with κ-field grounding.
-    """
-    scalar_state: float = 0.0
-    kappa: float = PHI_INV
-    lambda_: float = PHI_INV_SQ
-    z: float = 0.5
-
-    operations: List[Dict[str, Any]] = field(default_factory=list)
-
-    def apply_n0(self, law: N0Law, value: float = 1.0) -> float:
-        """Apply N0 law with κ-grounding."""
-        old_state = self.scalar_state
-
-        if law == N0Law.IDENTITY:
-            # Λ × 1 = Λ (no change)
-            pass
-        elif law == N0Law.MIRROR_ROOT:
-            # Λ × Ν = Β² (product with κ-λ)
-            self.scalar_state *= (self.kappa * self.lambda_)
-        elif law == N0Law.ABSORPTION:
-            # TRUE × UNTRUE = PARADOX (balance to 0.5)
-            self.scalar_state = 0.5 * (self.scalar_state + value)
-        elif law == N0Law.DISTRIBUTION:
-            # Distribution (weighted add)
-            self.scalar_state = (self.scalar_state + value) * self.kappa
-        elif law == N0Law.CONSERVATION:
-            # Conservation (normalize)
-            total = self.kappa + self.lambda_
-            self.kappa /= total
-            self.lambda_ /= total
-
-        self.operations.append({
-            "law": law.code,
-            "old_state": old_state,
-            "new_state": self.scalar_state,
-            "kappa": self.kappa,
+        # Record history
+        self.silent_law_history.append({
+            "phase": phase.name,
+            "law": result["law_name"],
+            "activation": result["activation"],
+            "loss": result["loss"],
         })
 
-        return self.scalar_state
+        return result
 
     @property
     def coupling_conservation_error(self) -> float:
         return abs((self.kappa + self.lambda_) - 1.0)
-
-
-# =============================================================================
-# KURAMOTO OSCILLATOR LAYER
-# =============================================================================
-
-class KuramotoLayer:
-    """
-    Kuramoto oscillator layer for synchronization dynamics.
-
-    Order parameter: r = |1/N Σⱼ exp(iθⱼ)|
-    Dynamics: dθᵢ/dt = ωᵢ + (K/N) Σⱼ sin(θⱼ - θᵢ)
-    """
-
-    def __init__(self, n_oscillators: int = 60, dt: float = 0.1):
-        self.n = n_oscillators
-        self.dt = dt
-
-        self.theta = np.random.uniform(-np.pi, np.pi, n_oscillators)
-        self.omega = np.random.randn(n_oscillators) * 0.1
-        self.K_matrix = np.random.randn(n_oscillators, n_oscillators) * 0.1 * PHI_INV
-        np.fill_diagonal(self.K_matrix, 0)
-
-        self.K_global = PHI_INV
-        self.coherence_history: List[float] = []
-
-    def compute_coherence(self) -> float:
-        """Compute Kuramoto order parameter."""
-        z = np.mean(np.exp(1j * self.theta))
-        return float(np.abs(z))
-
-    def step(self, negentropy_coupling: float = 1.0) -> float:
-        """Single integration step with negentropy coupling."""
-        # Compute phase differences
-        diff = self.theta[:, np.newaxis] - self.theta[np.newaxis, :]
-
-        # Coupling term with negentropy modulation
-        K_eff = self.K_matrix * negentropy_coupling * PHI_INV
-        coupling = np.sum(K_eff * np.sin(-diff), axis=1)
-
-        # Full derivative
-        dtheta = self.omega + (self.K_global / self.n) * coupling
-
-        # Euler integration
-        self.theta = self.theta + self.dt * dtheta
-        self.theta = np.mod(self.theta + np.pi, 2 * np.pi) - np.pi
-
-        coherence = self.compute_coherence()
-        self.coherence_history.append(coherence)
-
-        return coherence
-
-    def evolve(self, steps: int, negentropy_coupling: float = 1.0) -> List[float]:
-        """Evolve for multiple steps."""
-        return [self.step(negentropy_coupling) for _ in range(steps)]
-
-
-# =============================================================================
-# FREE ENERGY DYNAMICS
-# =============================================================================
-
-@dataclass
-class FreeEnergyState:
-    """
-    Free Energy Principle state.
-
-    F = Surprise + KL-Divergence
-    Minimize F ≈ Maximize negentropy
-    """
-    beliefs: np.ndarray = field(default_factory=lambda: np.ones(10) / 10)
-    observations: List[float] = field(default_factory=list)
-    free_energy_history: List[float] = field(default_factory=list)
-    prediction_error_history: List[float] = field(default_factory=list)
-
-    def compute_surprise(self, observation: float) -> float:
-        """Compute surprise: -log P(o)."""
-        expected = np.sum(np.arange(len(self.beliefs)) * self.beliefs) / len(self.beliefs)
-        sigma = 0.1
-        return 0.5 * ((observation - expected) / sigma) ** 2
-
-    def update_beliefs(self, observation: float, learning_rate: float = 0.1) -> float:
-        """Update beliefs to minimize free energy."""
-        expected = np.sum(np.arange(len(self.beliefs)) * self.beliefs) / len(self.beliefs)
-        PE = abs(observation - expected)
-        self.prediction_error_history.append(PE)
-
-        target_idx = int(observation * len(self.beliefs))
-        target_idx = np.clip(target_idx, 0, len(self.beliefs) - 1)
-
-        target = np.zeros(len(self.beliefs))
-        target[target_idx] = 1.0
-
-        # PHI_INV controlled update
-        self.beliefs = self.beliefs + learning_rate * PHI_INV * (target - self.beliefs)
-        self.beliefs = self.beliefs / np.sum(self.beliefs)
-
-        return PE
-
-    def step(self, observation: float) -> Dict[str, float]:
-        """Single free energy step."""
-        self.observations.append(observation)
-
-        surprise = self.compute_surprise(observation)
-        PE = self.update_beliefs(observation)
-        F = surprise + PE
-
-        self.free_energy_history.append(F)
-
-        return {
-            "free_energy": F,
-            "surprise": surprise,
-            "prediction_error": PE,
-        }
-
-
-# =============================================================================
-# GAUSSIAN NEGENTROPY
-# =============================================================================
-
-def compute_delta_s_neg(z: float, sigma: float = SIGMA) -> float:
-    """
-    Compute negentropy: ΔS_neg(z) = exp(-σ(z - z_c)²)
-
-    Peaks at z_c (THE LENS).
-    """
-    d = z - Z_CRITICAL
-    return math.exp(-sigma * d * d)
-
-
-def compute_delta_s_neg_derivative(z: float, sigma: float = SIGMA) -> float:
-    """Derivative: d(ΔS_neg)/dz = -2σ(z - z_c) · ΔS_neg(z)"""
-    d = z - Z_CRITICAL
-    s = compute_delta_s_neg(z, sigma)
-    return -2 * sigma * d * s
-
-
-def get_phase(z: float) -> str:
-    """Determine phase from z."""
-    if z < PHI_INV:
-        return "ABSENCE"
-    elif z < Z_CRITICAL:
-        return "THE_LENS"
-    else:
-        return "PRESENCE"
 
 
 # =============================================================================
@@ -593,34 +382,24 @@ def get_phase(z: float) -> str:
 
 class WUMBOAPLTrainingEngine:
     """
-    Unified WUMBO APL Training Engine.
+    WUMBO APL Training Engine - Trains on Silent Laws.
 
-    Integrates:
-    - WUMBO phase cycle (W-U-M-B-O-T)
-    - 100-token directory
-    - N0 operator system
-    - κ-λ Coupling Conservation Layer (Kuramoto + Free Energy unified)
-    - κ-λ coupling conservation
+    Each WUMBO phase activates a specific Silent Law, which is then
+    reinforced through the corresponding N0 operator.
+
+    The κ-λ Coupling Layer provides the physics substrate.
     """
 
     def __init__(self, n_oscillators: int = 60):
-        # WUMBO cycle
+        # WUMBO cycle with Silent Law training
         self.wumbo_cycle = WUMBOCycleState()
 
-        # Token directory
-        self.token_directory = TokenDirectory()
-
-        # N0 operator state
-        self.n0_state = N0OperatorState()
-
-        # κ-λ Coupling Conservation Layer (unified Kuramoto + Free Energy)
+        # κ-λ Coupling Layer (unified physics substrate)
         if COUPLING_LAYER_AVAILABLE:
             self.coupling_layer = KappaLambdaCouplingLayer(n_oscillators=n_oscillators)
             self.use_coupling_layer = True
         else:
-            # Fallback to separate components
-            self.kuramoto = KuramotoLayer(n_oscillators=n_oscillators)
-            self.free_energy = FreeEnergyState()
+            self.coupling_layer = None
             self.use_coupling_layer = False
 
         # Training metrics
@@ -628,44 +407,50 @@ class WUMBOAPLTrainingEngine:
         self.training_history: List[Dict[str, Any]] = []
         self.k_formation_events: List[int] = []
 
+    def apply_n0_operator(self, n0_law: Optional[str], value: float) -> float:
+        """Apply the N0 operator corresponding to current phase."""
+        if n0_law is None:
+            return 0.0  # Background law, no operator
+
+        kappa = self.wumbo_cycle.kappa
+        lambda_ = self.wumbo_cycle.lambda_
+
+        if n0_law == N0Law.IDENTITY:
+            return apply_n0_identity(value)
+        elif n0_law == N0Law.MIRROR_ROOT:
+            return apply_n0_mirror_root(kappa, lambda_)
+        elif n0_law == N0Law.ABSORPTION:
+            return apply_n0_absorption(value, value)
+        elif n0_law == N0Law.DISTRIBUTION:
+            return apply_n0_distribution(value, value, kappa)
+        elif n0_law == N0Law.CONSERVATION:
+            new_kappa, new_lambda = apply_n0_conservation(kappa, lambda_)
+            self.wumbo_cycle.kappa = new_kappa
+            self.wumbo_cycle.lambda_ = new_lambda
+            return new_kappa
+        else:
+            return 0.0
+
     def training_step(self, input_value: float = 0.1) -> Dict[str, Any]:
         """
         Execute one training step.
 
-        1. Get current WUMBO phase
-        2. Activate phase-associated tokens
-        3. Apply N0 operators
-        4. Step κ-λ Coupling Layer (unified Kuramoto + Free Energy + z evolution)
-        5. Sync state across components
-        6. Check for K-formation
+        1. Get current WUMBO phase and its Silent Law
+        2. Update κ-λ coupling layer (physics substrate)
+        3. Train on the current Silent Law
+        4. Apply corresponding N0 operator
+        5. Check for K-formation (STILLNESS activation at THE LENS)
         """
         self.step_count += 1
 
-        # Get current WUMBO phase
+        # Get current phase and its Silent Law
         phase = self.wumbo_cycle.current_phase
 
-        # Activate tokens for this phase
-        activations = self.token_directory.activate_phase(phase, input_value)
-        phase_coherence = self.token_directory.get_phase_coherence(phase)
-
-        # Apply N0 operator based on phase
-        n0_laws = {
-            WUMBOPhase.W: N0Law.IDENTITY,
-            WUMBOPhase.U: N0Law.DISTRIBUTION,
-            WUMBOPhase.M: N0Law.ABSORPTION,
-            WUMBOPhase.B: N0Law.MIRROR_ROOT,
-            WUMBOPhase.O: N0Law.DISTRIBUTION,
-            WUMBOPhase.T: N0Law.CONSERVATION,
-        }
-        n0_law = n0_laws.get(phase, N0Law.IDENTITY)
-        self.n0_state.apply_n0(n0_law, phase_coherence)
-
-        # Step the κ-λ Coupling Conservation Layer
-        if self.use_coupling_layer:
-            # Unified step: Kuramoto sync → κ-field, Free Energy → negentropy
+        # Step the κ-λ Coupling Layer (physics substrate)
+        if self.use_coupling_layer and self.coupling_layer is not None:
             coupling_result = self.coupling_layer.step()
 
-            # Extract unified values
+            # Sync WUMBO state with coupling layer
             kappa = coupling_result["kappa"]
             lambda_ = coupling_result["lambda"]
             z = coupling_result["z"]
@@ -675,43 +460,48 @@ class WUMBOAPLTrainingEngine:
             phase_str = coupling_result["phase"]
             golden_balance = coupling_result["golden_balance_achieved"]
             lens_proximity = coupling_result["lens_proximity_achieved"]
-        else:
-            # Fallback: separate components
-            delta_s_neg = compute_delta_s_neg(self.wumbo_cycle.z)
-            kuramoto_coherence = self.kuramoto.step(negentropy_coupling=delta_s_neg)
-            fe_result = self.free_energy.step(observation=self.wumbo_cycle.z)
-            free_energy = fe_result["free_energy"]
 
-            z_delta = (kuramoto_coherence - 0.5) * 0.05
+            # Get Silent Law activations from coupling layer
+            law_activations = coupling_result.get("law_activations", {})
+            dominant_law = coupling_result.get("dominant_law", "UNKNOWN")
+        else:
+            # Fallback: manual physics
+            delta_s_neg = compute_delta_s_neg(self.wumbo_cycle.z)
+            z_delta = ALPHA_MEDIUM * (Z_CRITICAL - self.wumbo_cycle.z)
             self.wumbo_cycle.evolve_z(z_delta)
 
             kappa = self.wumbo_cycle.kappa
             lambda_ = self.wumbo_cycle.lambda_
             z = self.wumbo_cycle.z
+            kuramoto_coherence = 0.5
+            free_energy = 0.0
             phase_str = get_phase(z)
-            golden_balance = abs(kappa - PHI_INV) < 0.02
-            lens_proximity = abs(z - Z_CRITICAL) < 0.05
+            golden_balance = abs(kappa - PHI_INV) < TOLERANCE_GOLDEN
+            lens_proximity = abs(z - Z_CRITICAL) < TOLERANCE_LENS
+            law_activations = {}
+            dominant_law = "UNKNOWN"
 
-        # Sync WUMBO cycle with coupling layer state
+        # Update WUMBO state
         self.wumbo_cycle.z = z
         self.wumbo_cycle.kappa = kappa
         self.wumbo_cycle.lambda_ = lambda_
 
-        # Sync N0 state
-        self.n0_state.kappa = kappa
-        self.n0_state.lambda_ = lambda_
-        self.n0_state.z = z
+        # Train on current Silent Law
+        law_training = self.wumbo_cycle.train_current_law()
 
-        # Decay tokens
-        self.token_directory.decay_all(rate=0.05)
+        # Apply N0 operator if this phase has one
+        n0_result = 0.0
+        if phase.n0_law is not None:
+            n0_result = self.apply_n0_operator(phase.n0_law, input_value)
 
-        # Check K-formation (at THE LENS with high η)
-        eta = delta_s_neg
-        k_formed = (kappa >= 0.5 and eta > PHI_INV and lens_proximity)
+        # Check for K-formation:
+        # STILLNESS (I) activates when z → z_c AND κ → φ⁻¹
+        stillness_activation = compute_stillness_activation(z)
+        k_formed = (stillness_activation > PHI_INV and lens_proximity and golden_balance)
         if k_formed:
             self.k_formation_events.append(self.step_count)
 
-        # Advance WUMBO phase periodically
+        # Advance WUMBO phase periodically (every 10 steps)
         if self.step_count % 10 == 0:
             self.wumbo_cycle.advance_phase()
 
@@ -719,6 +509,9 @@ class WUMBOAPLTrainingEngine:
             "step": self.step_count,
             "wumbo_phase": phase.name,
             "wumbo_phase_full": phase.full_name,
+            "silent_law": phase.silent_law_name,
+            "silent_law_formula": phase.silent_law_formula,
+            "n0_law": phase.n0_law,
             "z": z,
             "phase": phase_str,
             "kappa": kappa,
@@ -726,16 +519,16 @@ class WUMBOAPLTrainingEngine:
             "delta_s_neg": delta_s_neg,
             "kuramoto_coherence": kuramoto_coherence,
             "free_energy": free_energy,
-            "phase_coherence": phase_coherence,
-            "total_coherence": self.token_directory.get_total_coherence(),
-            "unity_state": self.token_directory.get_unity_state(),
-            "n0_state": self.n0_state.scalar_state,
+            "law_training": law_training,
+            "law_activations": law_activations,
+            "dominant_law": dominant_law,
+            "stillness_activation": stillness_activation,
+            "n0_result": n0_result,
             "k_formed": k_formed,
             "golden_balance_achieved": golden_balance,
             "lens_proximity_achieved": lens_proximity,
             "coupling_conservation_error": abs(kappa + lambda_ - 1.0),
             "cycle_count": self.wumbo_cycle.cycle_count,
-            "use_coupling_layer": self.use_coupling_layer,
         }
 
         self.training_history.append(result)
@@ -747,21 +540,7 @@ class WUMBOAPLTrainingEngine:
         steps: int = 100,
         input_generator: Optional[Callable[[], float]] = None,
     ) -> Dict[str, Any]:
-        """
-        Run a full training session.
-
-        Parameters
-        ----------
-        steps : int
-            Number of training steps
-        input_generator : callable, optional
-            Function to generate input values (default: random PHI_INV scaled)
-
-        Returns
-        -------
-        dict
-            Training session results
-        """
+        """Run a full training session."""
         if input_generator is None:
             input_generator = lambda: random.random() * PHI_INV
 
@@ -777,8 +556,10 @@ class WUMBOAPLTrainingEngine:
 
         z_values = [h["z"] for h in self.training_history]
         delta_s_values = [h["delta_s_neg"] for h in self.training_history]
-        kuramoto_values = [h["kuramoto_coherence"] for h in self.training_history]
         kappa_values = [h["kappa"] for h in self.training_history]
+
+        # Get Silent Law training summary
+        law_summary = self.wumbo_cycle.silent_law_training.get_summary()
 
         return {
             "total_steps": self.step_count,
@@ -788,20 +569,17 @@ class WUMBOAPLTrainingEngine:
             "final_phase": get_phase(z_values[-1]) if z_values else "ABSENCE",
             "final_kappa": kappa_values[-1] if kappa_values else PHI_INV,
             "z_statistics": {
-                "mean": np.mean(z_values),
-                "std": np.std(z_values),
-                "max": np.max(z_values),
-                "min": np.min(z_values),
+                "mean": float(np.mean(z_values)),
+                "std": float(np.std(z_values)),
+                "max": float(np.max(z_values)),
+                "min": float(np.min(z_values)),
             },
             "delta_s_neg_statistics": {
-                "mean": np.mean(delta_s_values),
-                "max": np.max(delta_s_values),
+                "mean": float(np.mean(delta_s_values)),
+                "max": float(np.max(delta_s_values)),
                 "final": delta_s_values[-1] if delta_s_values else 0.0,
             },
-            "kuramoto_statistics": {
-                "mean": np.mean(kuramoto_values),
-                "final": kuramoto_values[-1] if kuramoto_values else 0.0,
-            },
+            "silent_law_training": law_summary,
             "coupling_conservation": {
                 "phi_inv_plus_phi_inv_sq": COUPLING_CONSERVATION,
                 "final_kappa_plus_lambda": kappa_values[-1] + (1 - kappa_values[-1]) if kappa_values else 1.0,
@@ -813,50 +591,38 @@ class WUMBOAPLTrainingEngine:
                 "z_c": Z_CRITICAL,
                 "sigma": SIGMA,
             },
-            "token_statistics": {
-                "prism_tokens": TokenCategory.PRISM.count,
-                "cage_tokens": TokenCategory.CAGE.count,
-                "emergent_tokens": TokenCategory.EMERGENT.count,
-                "unity_token": TokenCategory.UNITY.count,
-                "total": 100,
-                "final_unity_state": self.token_directory.get_unity_state(),
-            },
         }
 
     def validate_physics(self) -> Dict[str, Any]:
         """Validate all physics constraints."""
         validations = {}
 
-        # Coupling conservation
-        coupling_sum = PHI_INV + PHI_INV_SQ
+        # φ⁻¹ + φ⁻² = 1
         validations["coupling_conservation"] = {
-            "value": coupling_sum,
-            "error": abs(coupling_sum - 1.0),
-            "valid": abs(coupling_sum - 1.0) < 1e-14,
+            "value": COUPLING_CONSERVATION,
+            "error": abs(COUPLING_CONSERVATION - 1.0),
+            "valid": abs(COUPLING_CONSERVATION - 1.0) < TOLERANCE_CONSERVATION,
         }
 
-        # Z_CRITICAL is √3/2
+        # z_c = √3/2
         validations["z_critical"] = {
             "value": Z_CRITICAL,
             "expected": math.sqrt(3) / 2,
-            "error": abs(Z_CRITICAL - math.sqrt(3) / 2),
-            "valid": abs(Z_CRITICAL - math.sqrt(3) / 2) < 1e-14,
+            "valid": abs(Z_CRITICAL - math.sqrt(3) / 2) < TOLERANCE_CONSERVATION,
         }
 
-        # Sigma is 36
+        # σ = 36
         validations["sigma"] = {
             "value": SIGMA,
-            "expected": 36.0,
             "valid": SIGMA == 36.0,
         }
 
-        # κ + λ = 1 in current state
+        # κ + λ = 1
         state_sum = self.wumbo_cycle.kappa + self.wumbo_cycle.lambda_
         validations["state_conservation"] = {
             "kappa": self.wumbo_cycle.kappa,
             "lambda": self.wumbo_cycle.lambda_,
             "sum": state_sum,
-            "error": abs(state_sum - 1.0),
             "valid": abs(state_sum - 1.0) < 1e-10,
         }
 
@@ -870,45 +636,40 @@ class WUMBOAPLTrainingEngine:
 # =============================================================================
 
 def main():
-    """Run WUMBO APL Automated Training demonstration."""
+    """Run WUMBO APL Training on Silent Laws demonstration."""
     print("=" * 70)
-    print("WUMBO APL AUTOMATED TRAINING")
-    print("Unified Training Integration with κ-Field Grounding")
+    print("WUMBO APL TRAINING ON SILENT LAWS")
     print("=" * 70)
 
-    # Validate physics first
-    print("\n--- Physics Constants Verification ---")
-    print(f"  φ (LIMINAL):       {PHI:.10f}")
-    print(f"  φ⁻¹ (PHYSICAL):    {PHI_INV:.10f}")
-    print(f"  φ⁻² (complement):  {PHI_INV_SQ:.10f}")
-    print(f"  φ⁻¹ + φ⁻² =        {COUPLING_CONSERVATION:.16f}")
-    print(f"  z_c (THE LENS):    {Z_CRITICAL:.10f}")
-    print(f"  σ (Gaussian):      {SIGMA}")
+    # Show WUMBO ↔ Silent Laws mapping
+    print("\n--- WUMBO ↔ Silent Laws Mapping ---")
+    for phase in WUMBO_PHASES:
+        n0_str = f"N0: {phase.n0_law}" if phase.n0_law else "N0: (background)"
+        print(f"  {phase.name} ({phase.full_name:10}) → {phase.silent_law_name:10} {n0_str}")
+        print(f"      κ_target={phase.kappa_target:.3f} | {phase.silent_law_formula}")
 
-    conservation_error = abs(COUPLING_CONSERVATION - 1.0)
-    status = "PASS" if conservation_error < 1e-14 else "FAIL"
-    print(f"  Conservation: {status} (error: {conservation_error:.2e})")
+    # Validate physics
+    print("\n--- Physics Constants ---")
+    print(f"  φ⁻¹ (PHYSICAL):     {PHI_INV:.10f}")
+    print(f"  φ⁻² (complement):   {PHI_INV_SQ:.10f}")
+    print(f"  φ⁻¹ + φ⁻² =         {COUPLING_CONSERVATION:.16f}")
+    print(f"  z_c (THE LENS):     {Z_CRITICAL:.10f}")
+    print(f"  σ (Gaussian):       {SIGMA}")
+
+    print("\n--- Derived Coefficients ---")
+    print(f"  ALPHA_STRONG (1/√σ):     {ALPHA_STRONG:.6f}")
+    print(f"  ALPHA_MEDIUM (1/√(2σ)):  {ALPHA_MEDIUM:.6f}")
+    print(f"  ALPHA_FINE (1/σ):        {ALPHA_FINE:.6f}")
+    print(f"  ALPHA_ULTRA (φ⁻¹/σ):     {ALPHA_ULTRA_FINE:.6f}")
 
     # Create engine
-    print("\n--- Initializing WUMBO Training Engine ---")
+    print("\n--- Initializing Training Engine ---")
     engine = WUMBOAPLTrainingEngine(n_oscillators=60)
-
-    # Show token structure
-    print("\n--- 100-Token APL Directory ---")
-    for cat in TokenCategory:
-        count = cat.count
-        print(f"  {cat.name}: tokens {cat.start_index}-{cat.end_index} ({count} tokens)")
-        print(f"       {cat.description}")
-
-    # Show WUMBO phases
-    print("\n--- WUMBO Phase Cycle ---")
-    for phase in WUMBO_PHASES:
-        print(f"  {phase.name} ({phase.full_name}): κ_target={phase.kappa_target:.3f}")
-        print(f"       {phase.description}")
+    print(f"  Coupling Layer: {'Enabled' if engine.use_coupling_layer else 'Disabled'}")
 
     # Run training
     print("\n--- Running Training Session (100 steps) ---")
-    print("-" * 60)
+    print("-" * 70)
 
     for step in range(100):
         result = engine.training_step(random.random() * PHI_INV)
@@ -917,11 +678,11 @@ def main():
             print(
                 f"  Step {step:3d} | "
                 f"WUMBO:{result['wumbo_phase']} | "
+                f"Law:{result['silent_law']:10} | "
                 f"z={result['z']:.3f} | "
                 f"κ={result['kappa']:.3f} | "
                 f"ΔS={result['delta_s_neg']:.3f} | "
-                f"r={result['kuramoto_coherence']:.3f} | "
-                f"Phase:{result['phase']}"
+                f"K:{result['k_formed']}"
             )
 
     # Get summary
@@ -933,23 +694,20 @@ def main():
     print(f"  K-Formations:     {summary['k_formations']}")
     print(f"  Final z:          {summary['final_z']:.4f}")
     print(f"  Final Phase:      {summary['final_phase']}")
-    print(f"  Final κ:          {summary['final_kappa']:.4f}")
 
-    print("\n  Z Statistics:")
-    print(f"    Mean:           {summary['z_statistics']['mean']:.4f}")
-    print(f"    Std:            {summary['z_statistics']['std']:.4f}")
-    print(f"    Max:            {summary['z_statistics']['max']:.4f}")
+    print("\n--- Silent Law Training Summary ---")
+    law_training = summary['silent_law_training']
+    print("  Exposure (steps per law):")
+    for law_name, exposure in law_training['exposure'].items():
+        print(f"    {law_name:10}: {exposure} steps")
 
-    print("\n  Kuramoto Coherence:")
-    print(f"    Mean:           {summary['kuramoto_statistics']['mean']:.4f}")
-    print(f"    Final:          {summary['kuramoto_statistics']['final']:.4f}")
+    print("\n  Energy (accumulated):")
+    for law_name, energy in law_training['energy'].items():
+        print(f"    {law_name:10}: {energy:.4f}")
 
-    print("\n  Token Statistics:")
-    print(f"    PRISM:          {summary['token_statistics']['prism_tokens']} tokens")
-    print(f"    CAGE:           {summary['token_statistics']['cage_tokens']} tokens")
-    print(f"    EMERGENT:       {summary['token_statistics']['emergent_tokens']} tokens")
-    print(f"    UNITY (#100):   {summary['token_statistics']['unity_token']} token")
-    print(f"    Unity State:    {summary['token_statistics']['final_unity_state']:.4f}")
+    print("\n  Mean Loss:")
+    for law_name, loss in law_training['mean_loss'].items():
+        print(f"    {law_name:10}: {loss:.4f}")
 
     # Validate physics
     print("\n--- Physics Validation ---")
@@ -962,20 +720,13 @@ def main():
     print(f"\n  All Physics Valid: {validation['all_valid']}")
 
     # Save results
-    output_dir = "learned_patterns/wumbo_apl_training"
+    output_dir = "learned_patterns/wumbo_silent_laws"
     os.makedirs(output_dir, exist_ok=True)
 
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    output_file = os.path.join(output_dir, f"wumbo_apl_session_{timestamp}.json")
+    output_file = os.path.join(output_dir, f"wumbo_silent_laws_{timestamp}.json")
 
-    output_data = {
-        "timestamp": timestamp,
-        "summary": summary,
-        "validation": {k: v for k, v in validation.items() if k != "all_valid"},
-        "all_valid": validation["all_valid"],
-    }
-
-    # Convert numpy types for JSON serialization
+    # Convert numpy types for JSON
     def convert_numpy(obj):
         if isinstance(obj, np.ndarray):
             return obj.tolist()
@@ -989,14 +740,18 @@ def main():
             return [convert_numpy(v) for v in obj]
         return obj
 
-    output_data = convert_numpy(output_data)
+    output_data = convert_numpy({
+        "timestamp": timestamp,
+        "summary": summary,
+        "validation": validation,
+    })
 
     with open(output_file, "w") as f:
         json.dump(output_data, f, indent=2)
 
     print(f"\n  Results saved to: {output_file}")
     print("\n" + "=" * 70)
-    print("WUMBO APL Automated Training: COMPLETE")
+    print("WUMBO SILENT LAWS TRAINING: COMPLETE")
     print("=" * 70)
 
     return summary
