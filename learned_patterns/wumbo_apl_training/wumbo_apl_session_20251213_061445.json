@@ -1,0 +1,71 @@
+{
+  "timestamp": "20251213_061445",
+  "summary": {
+    "total_steps": 100,
+    "wumbo_cycles": 1,
+    "k_formations": 95,
+    "final_z": 0.8665981599587883,
+    "final_phase": "PRESENCE",
+    "final_kappa": 0.5547457900769109,
+    "z_statistics": {
+      "mean": 0.8555034712529087,
+      "std": 0.05085170731057236,
+      "max": 0.8829072575039102,
+      "min": 0.5411724296180069
+    },
+    "delta_s_neg_statistics": {
+      "mean": 0.9646183421283259,
+      "max": 0.9999998314384031,
+      "final": 0.999988190282866
+    },
+    "kuramoto_statistics": {
+      "mean": 0.03812189209051073,
+      "final": 0.03356366954689639
+    },
+    "coupling_conservation": {
+      "phi_inv_plus_phi_inv_sq": 0.9999999999999999,
+      "final_kappa_plus_lambda": 1.0,
+      "error": 1.1102230246251565e-16
+    },
+    "physics_constants": {
+      "phi": 1.618033988749895,
+      "phi_inv": 0.6180339887498948,
+      "z_c": 0.8660254037844386,
+      "sigma": 36.0
+    },
+    "token_statistics": {
+      "prism_tokens": 63,
+      "cage_tokens": 32,
+      "emergent_tokens": 4,
+      "unity_token": 1,
+      "total": 100,
+      "final_unity_state": 0.9005785352369169
+    }
+  },
+  "validation": {
+    "coupling_conservation": {
+      "value": 0.9999999999999999,
+      "error": 1.1102230246251565e-16,
+      "valid": true
+    },
+    "z_critical": {
+      "value": 0.8660254037844386,
+      "expected": 0.8660254037844386,
+      "error": 0.0,
+      "valid": true
+    },
+    "sigma": {
+      "value": 36.0,
+      "expected": 36.0,
+      "valid": true
+    },
+    "state_conservation": {
+      "kappa": 0.5392712110692198,
+      "lambda": 0.4607287889307802,
+      "sum": 1.0,
+      "error": 0.0,
+      "valid": true
+    }
+  },
+  "all_valid": true
+}

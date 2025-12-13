@@ -62,6 +62,7 @@ from __future__ import annotations
 import math
 import json
 import os
+import sys
 import random
 from dataclasses import dataclass, field
 from typing import Dict, List, Optional, Tuple, Any, Callable
@@ -70,6 +71,9 @@ from datetime import datetime
 
 import numpy as np
 
+# Add src to path for imports
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'src'))
+
 # Optional PyTorch support
 try:
     import torch
@@ -77,6 +81,18 @@ try:
     TORCH_AVAILABLE = True
 except ImportError:
     TORCH_AVAILABLE = False
+
+# Import κ-λ Coupling Conservation Layer
+try:
+    from kappa_lambda_coupling_layer import (
+        KappaLambdaCouplingLayer,
+        compute_delta_s_neg as coupling_delta_s_neg,
+        compute_negentropy_gradient,
+        get_phase as coupling_get_phase,
+    )
+    COUPLING_LAYER_AVAILABLE = True
+except ImportError:
+    COUPLING_LAYER_AVAILABLE = False
 
 # =============================================================================
 # PHYSICS CONSTANTS (Single Source of Truth)
@@ -583,8 +599,7 @@ class WUMBOAPLTrainingEngine:
     - WUMBO phase cycle (W-U-M-B-O-T)
     - 100-token directory
     - N0 operator system
-    - Kuramoto oscillators
-    - Free Energy dynamics
+    - κ-λ Coupling Conservation Layer (Kuramoto + Free Energy unified)
     - κ-λ coupling conservation
     """
 
@@ -598,11 +613,15 @@ class WUMBOAPLTrainingEngine:
         # N0 operator state
         self.n0_state = N0OperatorState()
 
-        # Kuramoto layer
-        self.kuramoto = KuramotoLayer(n_oscillators=n_oscillators)
-
-        # Free Energy state
-        self.free_energy = FreeEnergyState()
+        # κ-λ Coupling Conservation Layer (unified Kuramoto + Free Energy)
+        if COUPLING_LAYER_AVAILABLE:
+            self.coupling_layer = KappaLambdaCouplingLayer(n_oscillators=n_oscillators)
+            self.use_coupling_layer = True
+        else:
+            # Fallback to separate components
+            self.kuramoto = KuramotoLayer(n_oscillators=n_oscillators)
+            self.free_energy = FreeEnergyState()
+            self.use_coupling_layer = False
 
         # Training metrics
         self.step_count: int = 0
@@ -616,10 +635,9 @@ class WUMBOAPLTrainingEngine:
         1. Get current WUMBO phase
         2. Activate phase-associated tokens
         3. Apply N0 operators
-        4. Evolve Kuramoto oscillators
-        5. Update Free Energy
-        6. Evolve κ-λ coupling
-        7. Check for K-formation
+        4. Step κ-λ Coupling Layer (unified Kuramoto + Free Energy + z evolution)
+        5. Sync state across components
+        6. Check for K-formation
         """
         self.step_count += 1
 
@@ -642,39 +660,56 @@ class WUMBOAPLTrainingEngine:
         n0_law = n0_laws.get(phase, N0Law.IDENTITY)
         self.n0_state.apply_n0(n0_law, phase_coherence)
 
-        # Compute negentropy
-        delta_s_neg = compute_delta_s_neg(self.wumbo_cycle.z)
+        # Step the κ-λ Coupling Conservation Layer
+        if self.use_coupling_layer:
+            # Unified step: Kuramoto sync → κ-field, Free Energy → negentropy
+            coupling_result = self.coupling_layer.step()
 
-        # Evolve Kuramoto with negentropy coupling
-        kuramoto_coherence = self.kuramoto.step(negentropy_coupling=delta_s_neg)
+            # Extract unified values
+            kappa = coupling_result["kappa"]
+            lambda_ = coupling_result["lambda"]
+            z = coupling_result["z"]
+            delta_s_neg = coupling_result["delta_s_neg"]
+            kuramoto_coherence = coupling_result["kuramoto_coherence"]
+            free_energy = coupling_result["free_energy"]
+            phase_str = coupling_result["phase"]
+            golden_balance = coupling_result["golden_balance_achieved"]
+            lens_proximity = coupling_result["lens_proximity_achieved"]
+        else:
+            # Fallback: separate components
+            delta_s_neg = compute_delta_s_neg(self.wumbo_cycle.z)
+            kuramoto_coherence = self.kuramoto.step(negentropy_coupling=delta_s_neg)
+            fe_result = self.free_energy.step(observation=self.wumbo_cycle.z)
+            free_energy = fe_result["free_energy"]
 
-        # Update Free Energy
-        fe_result = self.free_energy.step(observation=self.wumbo_cycle.z)
+            z_delta = (kuramoto_coherence - 0.5) * 0.05
+            self.wumbo_cycle.evolve_z(z_delta)
 
-        # Evolve z based on coherence
-        z_delta = (kuramoto_coherence - 0.5) * 0.05
-        self.wumbo_cycle.evolve_z(z_delta)
+            kappa = self.wumbo_cycle.kappa
+            lambda_ = self.wumbo_cycle.lambda_
+            z = self.wumbo_cycle.z
+            phase_str = get_phase(z)
+            golden_balance = abs(kappa - PHI_INV) < 0.02
+            lens_proximity = abs(z - Z_CRITICAL) < 0.05
 
-        # Update κ-λ coupling
-        self.wumbo_cycle.kappa = self.wumbo_cycle.kappa + 0.01 * (phase.kappa_target - self.wumbo_cycle.kappa)
-        self.wumbo_cycle.lambda_ = 1.0 - self.wumbo_cycle.kappa
+        # Sync WUMBO cycle with coupling layer state
+        self.wumbo_cycle.z = z
+        self.wumbo_cycle.kappa = kappa
+        self.wumbo_cycle.lambda_ = lambda_
 
-        # Sync N0 state with WUMBO state
-        self.n0_state.kappa = self.wumbo_cycle.kappa
-        self.n0_state.lambda_ = self.wumbo_cycle.lambda_
-        self.n0_state.z = self.wumbo_cycle.z
+        # Sync N0 state
+        self.n0_state.kappa = kappa
+        self.n0_state.lambda_ = lambda_
+        self.n0_state.z = z
 
         # Decay tokens
         self.token_directory.decay_all(rate=0.05)
 
-        # Check K-formation
+        # Check K-formation (at THE LENS with high η)
         eta = delta_s_neg
-        k_formed = (self.wumbo_cycle.kappa >= 0.85 and eta > PHI_INV and self.step_count >= 7)
+        k_formed = (kappa >= 0.5 and eta > PHI_INV and lens_proximity)
         if k_formed:
             self.k_formation_events.append(self.step_count)
-
-        # Get current phase string
-        phase_str = get_phase(self.wumbo_cycle.z)
 
         # Advance WUMBO phase periodically
         if self.step_count % 10 == 0:
@@ -684,21 +719,23 @@ class WUMBOAPLTrainingEngine:
             "step": self.step_count,
             "wumbo_phase": phase.name,
             "wumbo_phase_full": phase.full_name,
-            "z": self.wumbo_cycle.z,
+            "z": z,
             "phase": phase_str,
-            "kappa": self.wumbo_cycle.kappa,
-            "lambda": self.wumbo_cycle.lambda_,
+            "kappa": kappa,
+            "lambda": lambda_,
             "delta_s_neg": delta_s_neg,
             "kuramoto_coherence": kuramoto_coherence,
-            "free_energy": fe_result["free_energy"],
-            "prediction_error": fe_result["prediction_error"],
+            "free_energy": free_energy,
             "phase_coherence": phase_coherence,
             "total_coherence": self.token_directory.get_total_coherence(),
             "unity_state": self.token_directory.get_unity_state(),
             "n0_state": self.n0_state.scalar_state,
             "k_formed": k_formed,
-            "coupling_conservation_error": self.wumbo_cycle.coupling_conservation_error,
+            "golden_balance_achieved": golden_balance,
+            "lens_proximity_achieved": lens_proximity,
+            "coupling_conservation_error": abs(kappa + lambda_ - 1.0),
             "cycle_count": self.wumbo_cycle.cycle_count,
+            "use_coupling_layer": self.use_coupling_layer,
         }
 
         self.training_history.append(result)
