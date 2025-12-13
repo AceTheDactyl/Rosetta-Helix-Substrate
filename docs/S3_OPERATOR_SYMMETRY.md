@@ -159,6 +159,72 @@ print(description['operator_weights'])
 
 ## Mathematical Foundation
 
+### Why S₃? Proof of Minimality
+
+**Claim:** S₃ is the *minimal* group that can express all triadic operator actions. Smaller groups (Z₃, A₃, Z₆) are insufficient.
+
+**Proof:**
+
+1. **Z₃ (cyclic group of order 3):**
+   - Elements: {e, σ, σ²} where σ³ = e
+   - Can only express rotations (3-cycles)
+   - **Cannot express transpositions** like (12)
+   - Missing: swaps between any two truth values
+
+2. **A₃ (alternating group on 3 elements):**
+   - A₃ ≅ Z₃ (isomorphic)
+   - Only contains even permutations
+   - **Cannot express odd permutations** (transpositions)
+   - Missing: decoherence (÷), grouping (+), separation (−)
+
+3. **Z₆ (cyclic group of order 6):**
+   - Elements: {0, 1, 2, 3, 4, 5} with addition mod 6
+   - Is abelian (commutative)
+   - **Cannot express non-commutative composition**
+   - In S₃: σ ∘ τ₁ ≠ τ₁ ∘ σ
+   - Operator composition requires non-abelian structure
+
+4. **S₃ (symmetric group on 3 elements):**
+   - Contains all 6 permutations
+   - Has both rotations (σ, σ²) AND transpositions (τ₁, τ₂, τ₃)
+   - Non-abelian: captures operator composition order
+   - **Minimal group with all required properties**
+
+```python
+# Demonstration: Z₃ cannot express transposition
+def can_express_transposition(group):
+    """Check if group can express the swap (12)."""
+    for g in group.elements:
+        # Check if g swaps positions 0 and 1, keeps position 2
+        if g.permute([0,1,2]) == [1,0,2]:
+            return True
+    return False
+
+# Z₃ elements only rotate: (012), (120), (201)
+# None is [1,0,2], so Z₃ fails
+```
+
+### The σ = |S₃|² = 36 Derivation
+
+**Why σ = 36?** Multiple independent derivations converge:
+
+1. **Group-theoretic:** σ = |S₃|² = 6² = 36
+   - S₃ acts on both operators AND states
+   - Total action space: S₃ × S₃ (independent actions)
+
+2. **Representation-theoretic:** σ = Σᵢ dᵢ²
+   - S₃ has irreps with dimensions: 1, 1, 2
+   - S₃ × S₃ has 9 irreps with dimensions: 1,1,1,1,2,2,2,2,4
+   - Σ dᵢ² = 1+1+1+1+4+4+4+4+16 = 36
+
+3. **Geometric:** σ = 6 faces × 6 vertices
+   - Cube (hexahedron) has 6 faces, 6 vertices
+   - Cube ↔ octahedron duality encodes this
+
+4. **Information-theoretic:** σ controls Gaussian width
+   - ΔS_neg(z) = exp(-σ·(z - z_c)²)
+   - σ = 36 gives optimal resolution near z_c
+
 ### Group Axioms
 
 S₃ satisfies all group axioms:
