@@ -1,0 +1,98 @@
+# Helix Nightly Training
+# ======================
+# Full training + eval gates + publish artifacts + diff vs last known-good
+
+name: Helix Nightly
+
+on:
+  schedule:
+    # Run at 2am UTC every day
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+    inputs:
+      config:
+        description: 'Config file to use'
+        required: false
+        default: 'configs/nightly.yaml'
+
+jobs:
+  nightly-train:
+    name: Nightly Training
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install -e .
+          pip install torch  # Optional, for full training
+
+      - name: Run nightly training
+        id: train
+        run: |
+          CONFIG="${{ github.event.inputs.config || 'configs/nightly.yaml' }}"
+          python -m helix_engine.cli.main nightly \
+            --config "$CONFIG" \
+            --report nightly_report.json
+
+      - name: Check gates
+        id: gates
+        run: |
+          # Parse report and check gates
+          GATES_PASSED=$(python -c "import json; print(json.load(open('nightly_report.json'))['gates_passed'])")
+          echo "gates_passed=$GATES_PASSED" >> $GITHUB_OUTPUT
+          if [ "$GATES_PASSED" != "True" ]; then
+            echo "::warning::Training gates did not pass"
+          fi
+
+      - name: Upload run artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: nightly-run-${{ github.run_number }}
+          path: |
+            runs/
+            nightly_report.json
+          retention-days: 30
+
+      - name: Upload to model registry
+        if: steps.gates.outputs.gates_passed == 'True'
+        run: |
+          # Find the run ID
+          RUN_ID=$(python -c "import json; print(json.load(open('nightly_report.json'))['run_id'])")
+
+          # Promote to nightly model
+          python -m helix_engine.cli.main promote \
+            --run "$RUN_ID" \
+            --name nightly \
+            --tags nightly,automated,ci \
+            --description "Automated nightly build ${{ github.run_number }}"
+
+      - name: Create nightly report summary
+        run: |
+          python -c "
+          import json
+          report = json.load(open('nightly_report.json'))
+
+          print('## Nightly Training Report')
+          print(f\"**Run ID:** {report['run_id']}\")
+          print(f\"**Status:** {report['status']}\")
+          print(f\"**Gates Passed:** {'✓' if report['gates_passed'] else '✗'}\")
+          print(f\"**Duration:** {report['duration_seconds']:.1f}s\")
+          print()
+          print('### Final Metrics')
+          for k, v in report.get('final_metrics', {}).items():
+              print(f'- {k}: {v:.6f}')
+          " >> $GITHUB_STEP_SUMMARY
+
+      - name: Fail if gates not passed
+        if: steps.gates.outputs.gates_passed != 'True'
+        run: |
+          echo "Nightly training gates did not pass"
+          exit 1

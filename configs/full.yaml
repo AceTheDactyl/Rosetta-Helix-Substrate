@@ -1,0 +1,48 @@
+# Full Training Configuration
+# ===========================
+# Complete training run with all modules enabled.
+
+_base: base.yaml
+
+run_name: full_training
+
+# Extended training
+total_steps: 2000
+checkpoint_steps: 500
+
+# All modules enabled
+modules:
+  wumbo:
+    name: wumbo_silent_laws
+    enabled: true
+    steps: 100
+    params:
+      phases: [W, U, M, B, O, T]
+
+  helix:
+    name: helix_projection
+    enabled: true
+    steps: 60
+    params:
+      target_z: 0.866025  # z_c = sqrt(3)/2
+
+  substrate:
+    name: substrate_grounding
+    enabled: true
+    steps: 30
+    params:
+      target_kappa: 0.618034  # phi_inv
+
+  kuramoto:
+    name: kuramoto_coupling
+    enabled: true
+    steps: 50
+    params:
+      coupling_strength: 0.1
+
+# Stricter gates for full training
+gates:
+  min_negentropy: 0.6
+  min_k_formations: 3
+  max_conservation_error: 1.0e-8
+  min_final_z: 0.8
