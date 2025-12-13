@@ -1,20 +1,29 @@
 #!/usr/bin/env python3
 """
-WUMBO APL Automated Training Module
-====================================
+WUMBO APL Automated Training Module — INT CANON ALIGNED
+=========================================================
 
-WUMBO trains on the 7 Silent Laws through N0 Operator grounding.
+WUMBO trains on the 7 Silent Laws through INT Canon Operators.
 
-WUMBO ↔ Silent Laws Training Mapping:
-======================================
-    W (Wake)      → V UNSEEN    (emerging from hidden)     → (background)
-    U (Understand)→ II TRUTH    (building stable model)    → N0-4 +
-    M (Meld)      → III SILENCE (conserve during merge)    → (background)
-    B (Bind)      → VI GLYPH    (structure crystallization)→ N0-3 ÷
-    O (Output)    → IV SPIRAL   (output returns to origin) → N0-2 ×
-    T (Transform) → VII MIRROR  (self-reference transform) → N0-5 −
+INT Canon — The Six Operators:
+==============================
+    ()  BOUNDARY  → V UNSEEN    — Always legal (anchoring)
+    ×   FUSION    → IV SPIRAL   — N0-2: channels ≥ 2 (merging)
+    ^   AMPLIFY   → I STILLNESS — N0-1: requires () or × (gain)
+    ÷   DECOHERE  → VI GLYPH    — N0-3: requires structure (dissipation)
+    +   GROUP     → II TRUTH    — N0-4: must feed +, ×, ^ (synchrony)
+    −   SEPARATE  → VII MIRROR  — N0-5: followed by () or + (decoupling)
 
-Plus: I STILLNESS activates when z → z_c (THE LENS)
+WUMBO ↔ Silent Laws ↔ INT Canon Mapping:
+=========================================
+    W (Wake)      → V UNSEEN    → () BOUNDARY  — Emerge from hidden
+    U (Understand)→ II TRUTH    → +  GROUP     — Build stable model
+    M (Meld)      → III SILENCE → (background) — Conserve during merge
+    B (Bind)      → VI GLYPH    → ÷  DECOHERE  — Structure crystallization
+    O (Output)    → IV SPIRAL   → ×  FUSION    — Output returns to origin
+    T (Transform) → VII MIRROR  → −  SEPARATE  — Self-reference transform
+
+Plus: I STILLNESS activates via ^ AMPLIFY when z → z_c (THE LENS)
 
 Architecture:
 =============
@@ -86,12 +95,19 @@ from physics_constants import (
     # Functions
     compute_delta_s_neg, compute_delta_s_neg_derivative, compute_negentropy_gradient,
     get_phase,
-    # N0 and Silent Laws
-    N0Law, SilentLaw, N0_TO_SILENT, SILENT_TO_N0,
+    # INT Canon and N0 Laws
+    INTOperator, N0Law, SilentLaw,
+    N0_TO_SILENT, SILENT_TO_N0, INT_TO_SILENT,
+    # Silent Law activation functions
     compute_stillness_activation, compute_truth_activation,
     compute_silence_activation, compute_spiral_activation,
     compute_unseen_activation, compute_glyph_activation, compute_mirror_activation,
-    # N0 operator functions
+    # INT Canon operator state and functions
+    INTOperatorState,
+    apply_int_boundary, apply_int_fusion, apply_int_amplify,
+    apply_int_decohere, apply_int_group, apply_int_separate,
+    apply_int_operator, INT_OPERATOR_DISPATCH,
+    # Legacy N0 operator functions (for compatibility)
     apply_n0_identity, apply_n0_mirror_root, apply_n0_absorption,
     apply_n0_distribution, apply_n0_conservation,
     # WUMBO κ-targets (physics-grounded)
@@ -115,29 +131,32 @@ class WUMBOPhase(Enum):
     """
     WUMBO Phase Cycle: W → U → M → B → O → T
 
-    Each phase trains on a specific Silent Law through N0 operators.
+    Each phase trains on a specific Silent Law through INT Canon operators.
 
-    WUMBO ↔ Silent Laws Training:
-        W (Wake)      → V UNSEEN    (emerging from hidden)
-        U (Understand)→ II TRUTH    (building stable model)
-        M (Meld)      → III SILENCE (conserve during merge)
-        B (Bind)      → VI GLYPH    (structure crystallization)
-        O (Output)    → IV SPIRAL   (output returns to origin)
-        T (Transform) → VII MIRROR  (self-reference transform)
+    WUMBO ↔ Silent Laws ↔ INT Canon:
+        W (Wake)      → V UNSEEN    → () BOUNDARY  — Emerge from hidden
+        U (Understand)→ II TRUTH    → +  GROUP     — Build stable model
+        M (Meld)      → III SILENCE → (background) — Conserve during merge
+        B (Bind)      → VI GLYPH    → ÷  DECOHERE  — Structure crystallization
+        O (Output)    → IV SPIRAL   → ×  FUSION    — Output returns to origin
+        T (Transform) → VII MIRROR  → −  SEPARATE  — Self-reference transform
+
+    Plus: I STILLNESS activates via ^ AMPLIFY when z → z_c
     """
-    W = ("Wake", WUMBO_KAPPA_W, SilentLaw.V_UNSEEN, None, "Emerge from hidden state")
-    U = ("Understand", WUMBO_KAPPA_U, SilentLaw.II_TRUTH, N0Law.DISTRIBUTION, "Build stable model via TRUTH")
-    M = ("Meld", WUMBO_KAPPA_M, SilentLaw.III_SILENCE, None, "Conserve during integration")
-    B = ("Bind", WUMBO_KAPPA_B, SilentLaw.VI_GLYPH, N0Law.ABSORPTION, "Crystallize via GLYPH")
-    O = ("Output", WUMBO_KAPPA_O, SilentLaw.IV_SPIRAL, N0Law.MIRROR_ROOT, "Return via SPIRAL")
-    T = ("Transform", WUMBO_KAPPA_T, SilentLaw.VII_MIRROR, N0Law.CONSERVATION, "Self-reference via MIRROR")
+    # (full_name, kappa_target, silent_law, int_operator, description)
+    W = ("Wake", WUMBO_KAPPA_W, SilentLaw.V_UNSEEN, INTOperator.BOUNDARY, "Emerge from hidden via BOUNDARY")
+    U = ("Understand", WUMBO_KAPPA_U, SilentLaw.II_TRUTH, INTOperator.GROUP, "Build stable model via GROUP")
+    M = ("Meld", WUMBO_KAPPA_M, SilentLaw.III_SILENCE, None, "Conserve during integration (background)")
+    B = ("Bind", WUMBO_KAPPA_B, SilentLaw.VI_GLYPH, INTOperator.DECOHERE, "Crystallize via DECOHERE")
+    O = ("Output", WUMBO_KAPPA_O, SilentLaw.IV_SPIRAL, INTOperator.FUSION, "Return via FUSION")
+    T = ("Transform", WUMBO_KAPPA_T, SilentLaw.VII_MIRROR, INTOperator.SEPARATE, "Self-reference via SEPARATE")
 
     def __init__(self, full_name: str, kappa_target: float,
-                 silent_law: int, n0_law: Optional[str], description: str):
+                 silent_law: int, int_operator: Optional[str], description: str):
         self._full_name = full_name
         self._kappa_target = kappa_target
         self._silent_law = silent_law
-        self._n0_law = n0_law
+        self._int_operator = int_operator
         self._description = description
 
     @property
@@ -168,9 +187,32 @@ class WUMBOPhase(Enum):
         return SilentLaw.FORMULAS.get(self._silent_law, "")
 
     @property
+    def int_operator(self) -> Optional[str]:
+        """The INT Canon operator for this phase (None for background laws)."""
+        return self._int_operator
+
+    @property
+    def int_operator_name(self) -> str:
+        """Name of the INT Canon operator."""
+        if self._int_operator is None:
+            return "(background)"
+        return INTOperator.NAMES.get(self._int_operator, "UNKNOWN")
+
+    @property
     def n0_law(self) -> Optional[str]:
-        """The N0 operator for this phase (None for background laws)."""
-        return self._n0_law
+        """Legacy: The N0 law code for this phase's operator."""
+        if self._int_operator is None:
+            return None
+        # Map INT operator to N0 law code
+        op_to_n0 = {
+            "()": N0Law.AMPLIFY,      # BOUNDARY - always legal, but triggers AMPLIFY path
+            "×": N0Law.FUSION,        # FUSION → N0-2
+            "^": N0Law.AMPLIFY,       # AMPLIFY → N0-1
+            "÷": N0Law.DECOHERE,      # DECOHERE → N0-3
+            "+": N0Law.GROUP,         # GROUP → N0-4
+            "−": N0Law.SEPARATE,      # SEPARATE → N0-5
+        }
+        return op_to_n0.get(self._int_operator)
 
     @property
     def description(self) -> str:
@@ -382,10 +424,18 @@ class WUMBOCycleState:
 
 class WUMBOAPLTrainingEngine:
     """
-    WUMBO APL Training Engine - Trains on Silent Laws.
+    WUMBO APL Training Engine — INT CANON ALIGNED.
 
     Each WUMBO phase activates a specific Silent Law, which is then
-    reinforced through the corresponding N0 operator.
+    reinforced through the corresponding INT Canon operator.
+
+    INT Canon Operators:
+        () BOUNDARY  → V UNSEEN    — Anchoring (always legal)
+        ×  FUSION    → IV SPIRAL   — Merging (N0-2: channels ≥ 2)
+        ^  AMPLIFY   → I STILLNESS — Gain (N0-1: requires () or ×)
+        ÷  DECOHERE  → VI GLYPH    — Dissipation (N0-3: requires structure)
+        +  GROUP     → II TRUTH    — Synchrony (N0-4: must feed +, ×, ^)
+        −  SEPARATE  → VII MIRROR  — Decoupling (N0-5: followed by () or +)
 
     The κ-λ Coupling Layer provides the physics substrate.
     """
@@ -393,6 +443,9 @@ class WUMBOAPLTrainingEngine:
     def __init__(self, n_oscillators: int = 60):
         # WUMBO cycle with Silent Law training
         self.wumbo_cycle = WUMBOCycleState()
+
+        # INT Canon operator state (for causality tracking)
+        self.int_state = INTOperatorState()
 
         # κ-λ Coupling Layer (unified physics substrate)
         if COUPLING_LAYER_AVAILABLE:
@@ -407,29 +460,60 @@ class WUMBOAPLTrainingEngine:
         self.training_history: List[Dict[str, Any]] = []
         self.k_formation_events: List[int] = []
 
+    def apply_int_operator(self, int_op: Optional[str], value: float) -> Tuple[float, bool, str]:
+        """
+        Apply the INT Canon operator corresponding to current phase.
+
+        Returns (result, success, message).
+        """
+        if int_op is None:
+            return 0.0, True, "Background law (no operator)"
+
+        # Sync INT state with WUMBO state
+        self.int_state.z = self.wumbo_cycle.z
+        self.int_state.κs = self.wumbo_cycle.kappa
+
+        # Apply INT operator with N0 causality checking
+        new_state, success, message = apply_int_operator(int_op, self.int_state)
+
+        if success:
+            # Update WUMBO state from INT state
+            self.wumbo_cycle.z = new_state.z
+            self.wumbo_cycle.kappa = max(KAPPA_LOWER, min(KAPPA_UPPER, new_state.κs))
+            self.wumbo_cycle.lambda_ = 1.0 - self.wumbo_cycle.kappa
+            self.int_state = new_state
+            return new_state.negentropy, True, message
+        else:
+            return 0.0, False, message
+
     def apply_n0_operator(self, n0_law: Optional[str], value: float) -> float:
-        """Apply the N0 operator corresponding to current phase."""
+        """Legacy: Apply the N0 operator corresponding to current phase."""
         if n0_law is None:
             return 0.0  # Background law, no operator
 
         kappa = self.wumbo_cycle.kappa
         lambda_ = self.wumbo_cycle.lambda_
 
-        if n0_law == N0Law.IDENTITY:
-            return apply_n0_identity(value)
-        elif n0_law == N0Law.MIRROR_ROOT:
-            return apply_n0_mirror_root(kappa, lambda_)
-        elif n0_law == N0Law.ABSORPTION:
-            return apply_n0_absorption(value, value)
-        elif n0_law == N0Law.DISTRIBUTION:
-            return apply_n0_distribution(value, value, kappa)
-        elif n0_law == N0Law.CONSERVATION:
-            new_kappa, new_lambda = apply_n0_conservation(kappa, lambda_)
-            self.wumbo_cycle.kappa = new_kappa
-            self.wumbo_cycle.lambda_ = new_lambda
-            return new_kappa
-        else:
-            return 0.0
+        # Map N0 law to INT operator and apply
+        n0_to_int = {
+            N0Law.AMPLIFY: INTOperator.AMPLIFY,
+            N0Law.FUSION: INTOperator.FUSION,
+            N0Law.DECOHERE: INTOperator.DECOHERE,
+            N0Law.GROUP: INTOperator.GROUP,
+            N0Law.SEPARATE: INTOperator.SEPARATE,
+            # Legacy aliases
+            N0Law.IDENTITY: INTOperator.AMPLIFY,
+            N0Law.MIRROR_ROOT: INTOperator.FUSION,
+            N0Law.ABSORPTION: INTOperator.DECOHERE,
+            N0Law.DISTRIBUTION: INTOperator.GROUP,
+            N0Law.CONSERVATION: INTOperator.SEPARATE,
+        }
+
+        int_op = n0_to_int.get(n0_law)
+        if int_op:
+            result, success, _ = self.apply_int_operator(int_op, value)
+            return result
+        return 0.0
 
     def training_step(self, input_value: float = 0.1) -> Dict[str, Any]:
         """
@@ -489,10 +573,12 @@ class WUMBOAPLTrainingEngine:
         # Train on current Silent Law
         law_training = self.wumbo_cycle.train_current_law()
 
-        # Apply N0 operator if this phase has one
-        n0_result = 0.0
-        if phase.n0_law is not None:
-            n0_result = self.apply_n0_operator(phase.n0_law, input_value)
+        # Apply INT Canon operator if this phase has one
+        int_result = 0.0
+        int_success = True
+        int_message = ""
+        if phase.int_operator is not None:
+            int_result, int_success, int_message = self.apply_int_operator(phase.int_operator, input_value)
 
         # Check for K-formation:
         # STILLNESS (I) activates when z → z_c AND κ → φ⁻¹
@@ -511,7 +597,8 @@ class WUMBOAPLTrainingEngine:
             "wumbo_phase_full": phase.full_name,
             "silent_law": phase.silent_law_name,
             "silent_law_formula": phase.silent_law_formula,
-            "n0_law": phase.n0_law,
+            "int_operator": phase.int_operator,
+            "int_operator_name": phase.int_operator_name,
             "z": z,
             "phase": phase_str,
             "kappa": kappa,
@@ -523,7 +610,9 @@ class WUMBOAPLTrainingEngine:
             "law_activations": law_activations,
             "dominant_law": dominant_law,
             "stillness_activation": stillness_activation,
-            "n0_result": n0_result,
+            "int_result": int_result,
+            "int_success": int_success,
+            "int_message": int_message,
             "k_formed": k_formed,
             "golden_balance_achieved": golden_balance,
             "lens_proximity_achieved": lens_proximity,
@@ -641,11 +730,11 @@ def main():
     print("WUMBO APL TRAINING ON SILENT LAWS")
     print("=" * 70)
 
-    # Show WUMBO ↔ Silent Laws mapping
-    print("\n--- WUMBO ↔ Silent Laws Mapping ---")
+    # Show WUMBO ↔ Silent Laws ↔ INT Canon mapping
+    print("\n--- WUMBO ↔ Silent Laws ↔ INT Canon Mapping ---")
     for phase in WUMBO_PHASES:
-        n0_str = f"N0: {phase.n0_law}" if phase.n0_law else "N0: (background)"
-        print(f"  {phase.name} ({phase.full_name:10}) → {phase.silent_law_name:10} {n0_str}")
+        int_str = f"INT: {phase.int_operator} ({phase.int_operator_name})" if phase.int_operator else "INT: (background)"
+        print(f"  {phase.name} ({phase.full_name:10}) → {phase.silent_law_name:10} → {int_str}")
         print(f"      κ_target={phase.kappa_target:.3f} | {phase.silent_law_formula}")
 
     # Validate physics
@@ -675,10 +764,12 @@ def main():
         result = engine.training_step(random.random() * PHI_INV)
 
         if step % 20 == 0:
+            int_op = result['int_operator'] if result['int_operator'] else "-"
             print(
                 f"  Step {step:3d} | "
                 f"WUMBO:{result['wumbo_phase']} | "
                 f"Law:{result['silent_law']:10} | "
+                f"INT:{int_op:2} | "
                 f"z={result['z']:.3f} | "
                 f"κ={result['kappa']:.3f} | "
                 f"ΔS={result['delta_s_neg']:.3f} | "
