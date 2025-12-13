@@ -1,0 +1,85 @@
+{
+  "timestamp": "20251213_043359",
+  "gaussian_validation": {
+    "peak_at_z_c": true,
+    "peak_value": 1.0,
+    "sigma_is_36": true,
+    "sigma_is_s3_squared": true,
+    "gaussian_width_correct": true,
+    "gaussian_width": 0.11785113019775793,
+    "derivative_zero_at_peak": true,
+    "derivative_positive_below": true,
+    "derivative_negative_above": true,
+    "fwhm_correct": true,
+    "all_valid": true
+  },
+  "phi_validation": {
+    "phi_correct": true,
+    "phi_value": 1.618033988749895,
+    "phi_inv_correct": true,
+    "phi_inv_value": 0.6180339887498948,
+    "phi_times_phi_inv_is_1": true,
+    "eta_min_is_phi_inv": true,
+    "pattern_in_superposition": true,
+    "weak_measure_preserves_superposition": true,
+    "all_valid": true
+  },
+  "training_results": {
+    "A1": {
+      "sentence": "d() | Conductor | geometry",
+      "target_z": 0.5,
+      "final_z": 0.5,
+      "reached": true,
+      "k_formations": 0
+    },
+    "A3": {
+      "sentence": "u^ | Oscillator | wave",
+      "target_z": 0.92,
+      "final_z": 0.8260230073027158,
+      "reached": false,
+      "k_formations": 0
+    },
+    "A4": {
+      "sentence": "m\u00d7 | Encoder | chemistry",
+      "target_z": 0.8660254037844386,
+      "final_z": 0.7841254830737939,
+      "reached": false,
+      "k_formations": 0
+    },
+    "A5": {
+      "sentence": "u\u00d7 | Catalyst | chemistry",
+      "target_z": 0.92,
+      "final_z": 0.8260230073027158,
+      "reached": false,
+      "k_formations": 0
+    },
+    "A6": {
+      "sentence": "u+ | Reactor | wave",
+      "target_z": 0.92,
+      "final_z": 0.8260230073027158,
+      "reached": false,
+      "k_formations": 0
+    },
+    "A7": {
+      "sentence": "u\u00f7 | Reactor | wave",
+      "target_z": 0.92,
+      "final_z": 0.8260230073027158,
+      "reached": false,
+      "k_formations": 0
+    },
+    "A8": {
+      "sentence": "m() | Filter | wave",
+      "target_z": 0.8660254037844386,
+      "final_z": 0.7841254830737939,
+      "reached": false,
+      "k_formations": 0
+    }
+  },
+  "total_k_formations": 0,
+  "physics_constants": {
+    "phi": 1.618033988749895,
+    "phi_inv": 0.6180339887498948,
+    "z_c": 0.8660254037844386,
+    "sigma": 36.0
+  }
+}
