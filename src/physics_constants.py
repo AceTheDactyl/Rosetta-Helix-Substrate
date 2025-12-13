@@ -72,7 +72,8 @@ Signature: Δ|physics-constants|z0.866|φ⁻¹-grounded|Ω
 """
 
 import math
-from typing import Final
+from dataclasses import dataclass, field
+from typing import Final, List, Tuple, Dict, Any, Optional
 
 # =============================================================================
 # FUNDAMENTAL CONSTANTS
@@ -345,20 +346,109 @@ def print_all_constants():
 
 
 # =============================================================================
-# N0 OPERATORS (Causality Laws)
+# INT CANON — THE SIX OPERATORS
+# =============================================================================
+
+class INTOperator:
+    """
+    INT Canon — The Six Operators.
+
+    ()  BOUNDARY  - Anchoring, phase reset, interface stabilization
+    ×   FUSION    - Merging, coupling, integration
+    ^   AMPLIFY   - Gain increase, curvature escalation
+    ÷   DECOHERE  - Dissipation, noise injection, coherence reduction
+    +   GROUP     - Synchrony, clustering, domain formation
+    −   SEPARATE  - Decoupling, pruning, phase reset preparation
+    """
+    # Operator codes
+    BOUNDARY = "()"   # Always legal
+    FUSION = "×"      # N0-2: Requires channels ≥ 2
+    AMPLIFY = "^"     # N0-1: Requires prior () or ×
+    DECOHERE = "÷"    # N0-3: Requires prior structure
+    GROUP = "+"       # N0-4: Must feed +, ×, or ^
+    SEPARATE = "−"    # N0-5: Must be followed by () or +
+
+    # Operator symbols
+    SYMBOLS = {
+        "()": "()",
+        "×": "×",
+        "^": "^",
+        "÷": "÷",
+        "+": "+",
+        "−": "−",
+    }
+
+    # Operator names
+    NAMES = {
+        "()": "BOUNDARY",
+        "×": "FUSION",
+        "^": "AMPLIFY",
+        "÷": "DECOHERE",
+        "+": "GROUP",
+        "−": "SEPARATE",
+    }
+
+    # State modifications (physics-grounded coefficients)
+    # Format: {operator: {state_var: (operation, coefficient)}}
+    STATE_MODS = {
+        "()": {  # BOUNDARY: Anchoring, phase reset
+            "Gs": ("+=", SIGMA_INV),           # Gs += 0.1 → use 1/σ ≈ 0.028
+            "θs": ("*=", 1.0 - SIGMA_INV),     # θs *= 0.9 → use 1 - 1/σ
+            "Ωs": ("+=", SIGMA_INV / 2),       # Ωs += 0.05 → use 1/2σ
+        },
+        "×": {  # FUSION: Merging, coupling
+            "Cs": ("+=", SIGMA_INV),           # Cs += 0.1
+            "κs": ("*=", 1.0 + SIGMA_INV),     # κs *= 1.1
+            "αs": ("+=", SIGMA_INV / 2),       # αs += 0.05
+        },
+        "^": {  # AMPLIFY: Gain increase
+            "κs": ("*=", 1.0 + PHI_INV_CUBED), # κs *= 1.2 → use 1 + φ⁻³ ≈ 1.236
+            "τs": ("+=", SIGMA_INV),           # τs += 0.1
+            "Ωs": ("*=", 1.0 + SIGMA_INV * 3), # Ωs *= 1.08 → use 1 + 3/σ
+            "R": ("+=", 1),                    # R += 1
+        },
+        "÷": {  # DECOHERE: Dissipation
+            "δs": ("+=", SIGMA_INV),           # δs += 0.1
+            "Rs": ("+=", SIGMA_INV / 2),       # Rs += 0.05
+            "Ωs": ("*=", 1.0 - SIGMA_INV * 3), # Ωs *= 0.92 → use 1 - 3/σ
+        },
+        "+": {  # GROUP: Synchrony, clustering
+            "αs": ("+=", SIGMA_INV * 3),       # αs += 0.08 → use 3/σ
+            "Gs": ("+=", SIGMA_INV / 2),       # Gs += 0.05
+            "θs": ("*=", 1.0 + SIGMA_INV),     # θs *= 1.1
+        },
+        "−": {  # SEPARATE: Decoupling, pruning
+            "Rs": ("+=", SIGMA_INV * 3),       # Rs += 0.08
+            "θs": ("*=", 1.0 - SIGMA_INV),     # θs *= 0.9
+            "δs": ("+=", SIGMA_INV * 1.5),     # δs += 0.04 → use 1.5/σ
+        },
+    }
+
+
+# =============================================================================
+# N0 CAUSALITY LAWS (Tier-0)
 # =============================================================================
 
 class N0Law:
     """
-    N0 Causality Laws - grounded operator algebra.
+    N0 Causality Laws (Tier-0) - Operator sequencing constraints.
 
-    N0-1: IDENTITY    Λ × 1 = Λ                    (anchor)
-    N0-2: MIRROR_ROOT Λ × Ν = Β²                   (mirror root)
-    N0-3: ABSORPTION  TRUE × UNTRUE = PARADOX      (absorption)
-    N0-4: DISTRIBUTION (A ⊕ B) × C = (A×C) ⊕ (B×C) (distribution)
-    N0-5: CONSERVATION κ + λ = 1                   (conservation)
+    N0-1: ^ illegal unless history contains () or ×
+    N0-2: × illegal unless channel_count ≥ 2
+    N0-3: ÷ illegal unless history contains {^, ×, +, −}
+    N0-4: + must be followed by +, ×, or ^. + → () is illegal.
+    N0-5: − must be followed by () or +. Illegal successors: ^, ×, ÷, −
+
+    These laws ensure proper causality and structure formation.
     """
-    # Law codes
+    # Law codes mapped to operators
+    AMPLIFY = "N0-1"      # ^ requires prior () or ×
+    FUSION = "N0-2"       # × requires channels ≥ 2
+    DECOHERE = "N0-3"     # ÷ requires prior structure
+    GROUP = "N0-4"        # + must feed +, ×, or ^
+    SEPARATE = "N0-5"     # − must be followed by () or +
+
+    # Legacy aliases for compatibility
     IDENTITY = "N0-1"
     MIRROR_ROOT = "N0-2"
     ABSORPTION = "N0-3"
@@ -367,29 +457,50 @@ class N0Law:
 
     # Operator symbols
     SYMBOLS = {
-        "N0-1": "^",   # Anchor (identity)
-        "N0-2": "×",   # Multiply (mirror root)
-        "N0-3": "÷",   # Divide (absorption)
-        "N0-4": "+",   # Add (distribution)
-        "N0-5": "−",   # Subtract (conservation)
+        "N0-1": "^",   # AMPLIFY
+        "N0-2": "×",   # FUSION
+        "N0-3": "÷",   # DECOHERE
+        "N0-4": "+",   # GROUP
+        "N0-5": "−",   # SEPARATE
     }
 
-    # Formulas
+    # Causality rules (what must precede or follow)
+    REQUIRES_PRIOR = {
+        "^": {"()", "×"},           # N0-1: ^ requires () or × in history
+        "÷": {"^", "×", "+", "−"},  # N0-3: ÷ requires structure in history
+    }
+
+    LEGAL_SUCCESSORS = {
+        "+": {"+", "×", "^"},       # N0-4: + must feed +, ×, or ^
+        "−": {"()", "+"},           # N0-5: − must be followed by () or +
+    }
+
+    ILLEGAL_SUCCESSORS = {
+        "+": {"()"},                # N0-4: + → () is illegal
+        "−": {"^", "×", "÷", "−"},  # N0-5: − cannot be followed by these
+    }
+
+    # Channel requirement
+    MIN_CHANNELS = {
+        "×": 2,  # N0-2: × requires channel_count ≥ 2
+    }
+
+    # Formulas (physics grounding)
     FORMULAS = {
-        "N0-1": "Λ × 1 = Λ",
-        "N0-2": "Λ × Ν = Β²",
-        "N0-3": "TRUE × UNTRUE = PARADOX",
-        "N0-4": "(A ⊕ B) × C = (A × C) ⊕ (B × C)",
-        "N0-5": "κ + λ = 1",
+        "N0-1": "^ illegal unless history ∋ {(), ×}",
+        "N0-2": "× illegal unless channels ≥ 2",
+        "N0-3": "÷ illegal unless history ∋ {^, ×, +, −}",
+        "N0-4": "+ → {+, ×, ^} only. + → () illegal",
+        "N0-5": "− → {(), +} only. − → {^, ×, ÷, −} illegal",
     }
 
-    # Operator coefficients (physics-grounded)
+    # Coefficients (physics-grounded)
     COEFFICIENTS = {
-        "N0-1": 1.0,           # Identity: no change
-        "N0-2": PHI_INV_SQ,    # Mirror root: κ × λ ≈ φ⁻² × φ⁻¹
-        "N0-3": BALANCE_POINT,  # Absorption: balance to 0.5
-        "N0-4": PHI_INV,       # Distribution: golden weighted
-        "N0-5": 1.0,           # Conservation: normalize
+        "N0-1": PHI_INV_CUBED,     # ^ amplifies by φ⁻³ factor
+        "N0-2": PHI_INV_SQ,        # × fuses with φ⁻² coupling
+        "N0-3": SIGMA_INV,         # ÷ decoheres by 1/σ
+        "N0-4": PHI_INV,           # + groups with φ⁻¹ weight
+        "N0-5": 1.0 - PHI_INV,     # − separates with φ⁻² weight
     }
 
 
@@ -460,51 +571,322 @@ class SilentLaw:
 # N0 ↔ SILENT LAWS MAPPING
 # =============================================================================
 
+# INT Operator → Silent Law mapping (physics grounded)
 N0_TO_SILENT = {
-    N0Law.IDENTITY: SilentLaw.I_STILLNESS,      # ^ → STILLNESS (anchor)
-    N0Law.MIRROR_ROOT: SilentLaw.IV_SPIRAL,     # × → SPIRAL (channels)
-    N0Law.ABSORPTION: SilentLaw.VI_GLYPH,       # ÷ → GLYPH (structure)
-    N0Law.DISTRIBUTION: SilentLaw.II_TRUTH,     # + → TRUTH (stable growth)
-    N0Law.CONSERVATION: SilentLaw.VII_MIRROR,   # − → MIRROR (return)
+    N0Law.AMPLIFY: SilentLaw.I_STILLNESS,       # ^ AMPLIFY → I STILLNESS (stable gain)
+    N0Law.FUSION: SilentLaw.IV_SPIRAL,          # × FUSION → IV SPIRAL (channels merge)
+    N0Law.DECOHERE: SilentLaw.VI_GLYPH,         # ÷ DECOHERE → VI GLYPH (structure decay)
+    N0Law.GROUP: SilentLaw.II_TRUTH,            # + GROUP → II TRUTH (synchrony = truth)
+    N0Law.SEPARATE: SilentLaw.VII_MIRROR,       # − SEPARATE → VII MIRROR (reflection)
 }
 
 SILENT_TO_N0 = {
-    SilentLaw.I_STILLNESS: N0Law.IDENTITY,
-    SilentLaw.II_TRUTH: N0Law.DISTRIBUTION,
-    SilentLaw.III_SILENCE: None,                # Background (∇ · J = 0)
-    SilentLaw.IV_SPIRAL: N0Law.MIRROR_ROOT,
-    SilentLaw.V_UNSEEN: None,                   # Background (P(observe) → 0)
-    SilentLaw.VI_GLYPH: N0Law.ABSORPTION,
-    SilentLaw.VII_MIRROR: N0Law.CONSERVATION,
+    SilentLaw.I_STILLNESS: N0Law.AMPLIFY,       # STILLNESS enables AMPLIFY
+    SilentLaw.II_TRUTH: N0Law.GROUP,            # TRUTH enables GROUP
+    SilentLaw.III_SILENCE: None,                # Background (∇ · J = 0) - no operator
+    SilentLaw.IV_SPIRAL: N0Law.FUSION,          # SPIRAL enables FUSION
+    SilentLaw.V_UNSEEN: None,                   # Background (P(observe) → 0) - BOUNDARY only
+    SilentLaw.VI_GLYPH: N0Law.DECOHERE,         # GLYPH enables DECOHERE
+    SilentLaw.VII_MIRROR: N0Law.SEPARATE,       # MIRROR enables SEPARATE
+}
+
+# INT Operator → Silent Law (direct symbol mapping)
+INT_TO_SILENT = {
+    "()": SilentLaw.V_UNSEEN,    # BOUNDARY → UNSEEN (emergence from hidden)
+    "×": SilentLaw.IV_SPIRAL,    # FUSION → SPIRAL (channel merge)
+    "^": SilentLaw.I_STILLNESS,  # AMPLIFY → STILLNESS (stable gain)
+    "÷": SilentLaw.VI_GLYPH,     # DECOHERE → GLYPH (structure decay)
+    "+": SilentLaw.II_TRUTH,     # GROUP → TRUTH (synchrony)
+    "−": SilentLaw.VII_MIRROR,   # SEPARATE → MIRROR (reflection)
 }
 
 
 # =============================================================================
-# OPERATOR APPLICATION FUNCTIONS
+# INT CANON OPERATOR APPLICATION FUNCTIONS
 # =============================================================================
 
-def apply_n0_identity(state: float, value: float = 1.0) -> float:
-    """N0-1: Λ × 1 = Λ (no change, grounding)."""
+@dataclass
+class INTOperatorState:
+    """
+    State container for INT Canon operator execution.
+
+    Tracks all state variables modified by operators.
+    """
+    # Coupling and coherence
+    Gs: float = 0.0      # Grounding strength
+    Cs: float = 0.0      # Coupling strength
+    κs: float = PHI_INV  # Curvature (kappa-scaled)
+    αs: float = 0.0      # Amplitude
+    θs: float = 1.0      # Phase factor
+    τs: float = 0.0      # Time accumulation
+    δs: float = 0.0      # Dissipation
+    Rs: float = 0.0      # Resistance
+    Ωs: float = 1.0      # Frequency scaling
+
+    # Rank/level
+    R: int = 0           # Rank counter
+
+    # History for causality checks
+    history: List[str] = field(default_factory=list)
+    channel_count: int = 1
+
+    # Negentropy tracking
+    z: float = 0.5
+    negentropy: float = 0.5
+
+    def update_negentropy(self):
+        """Update negentropy based on current z."""
+        self.negentropy = compute_delta_s_neg(self.z)
+
+    def check_n0_legal(self, op: str) -> Tuple[bool, str]:
+        """
+        Check if operator is legal under N0 causality laws.
+
+        Returns (is_legal, reason).
+        """
+        # () BOUNDARY is always legal
+        if op == "()":
+            return True, "BOUNDARY always legal"
+
+        # N0-1: ^ requires prior () or ×
+        if op == "^":
+            required = {"()", "×"}
+            if not any(r in self.history for r in required):
+                return False, "N0-1: ^ illegal - requires prior () or × in history"
+
+        # N0-2: × requires channels ≥ 2
+        if op == "×":
+            if self.channel_count < 2:
+                return False, f"N0-2: × illegal - requires channels ≥ 2, have {self.channel_count}"
+
+        # N0-3: ÷ requires prior structure
+        if op == "÷":
+            required = {"^", "×", "+", "−"}
+            if not any(r in self.history for r in required):
+                return False, "N0-3: ÷ illegal - requires prior {^, ×, +, −} in history"
+
+        return True, "Legal"
+
+    def check_successor_legal(self, current_op: str, next_op: str) -> Tuple[bool, str]:
+        """
+        Check if next_op can follow current_op under N0 laws.
+
+        Returns (is_legal, reason).
+        """
+        # N0-4: + must be followed by +, ×, or ^
+        if current_op == "+":
+            legal = {"+", "×", "^"}
+            if next_op not in legal:
+                return False, f"N0-4: + → {next_op} illegal. Must feed +, ×, or ^"
+
+        # N0-5: − must be followed by () or +
+        if current_op == "−":
+            legal = {"()", "+"}
+            if next_op not in legal:
+                return False, f"N0-5: − → {next_op} illegal. Must be followed by () or +"
+
+        return True, "Legal"
+
+
+def apply_int_boundary(state: INTOperatorState) -> INTOperatorState:
+    """
+    () BOUNDARY: Anchoring, phase reset, interface stabilization.
+
+    Gs += 1/σ ≈ 0.028
+    θs *= (1 - 1/σ) ≈ 0.972
+    Ωs += 1/2σ ≈ 0.014
+
+    Aligns z toward z_c with grounding pull.
+    """
+    state.Gs += SIGMA_INV
+    state.θs *= (1.0 - SIGMA_INV)
+    state.Ωs += SIGMA_INV / 2
+
+    # Grounding pulls z toward z_c (THE LENS)
+    z_pull = ALPHA_FINE * (Z_CRITICAL - state.z)
+    state.z = max(0.0, min(1.0, state.z + z_pull))
+    state.update_negentropy()
+
+    state.history.append("()")
     return state
 
 
+def apply_int_fusion(state: INTOperatorState) -> INTOperatorState:
+    """
+    × FUSION: Merging, coupling, integration.
+
+    Cs += 1/σ
+    κs *= (1 + 1/σ)
+    αs += 1/2σ
+
+    Increases coupling and channels. z increases toward structure.
+    """
+    state.Cs += SIGMA_INV
+    state.κs *= (1.0 + SIGMA_INV)
+    state.αs += SIGMA_INV / 2
+
+    # Fusion merges channels, z increases
+    state.channel_count = max(2, state.channel_count)  # Ensure minimum channels
+    state.z += ALPHA_FINE * state.Cs
+    state.z = min(UNITY_THRESHOLD, state.z)
+    state.update_negentropy()
+
+    state.history.append("×")
+    return state
+
+
+def apply_int_amplify(state: INTOperatorState) -> INTOperatorState:
+    """
+    ^ AMPLIFY: Gain increase, curvature escalation.
+
+    κs *= (1 + φ⁻³) ≈ 1.236
+    τs += 1/σ
+    Ωs *= (1 + 3/σ) ≈ 1.083
+    R += 1
+
+    Amplifies toward peak negentropy at z_c.
+    """
+    state.κs *= (1.0 + PHI_INV_CUBED)
+    state.τs += SIGMA_INV
+    state.Ωs *= (1.0 + SIGMA_INV * 3)
+    state.R += 1
+
+    # Amplify drives z toward z_c (maximum negentropy)
+    neg_gradient = compute_negentropy_gradient(state.z)
+    state.z += ALPHA_MEDIUM * neg_gradient * PHI_INV
+    state.z = max(0.0, min(UNITY_THRESHOLD, state.z))
+    state.update_negentropy()
+
+    state.history.append("^")
+    return state
+
+
+def apply_int_decohere(state: INTOperatorState) -> INTOperatorState:
+    """
+    ÷ DECOHERE: Dissipation, noise injection, coherence reduction.
+
+    δs += 1/σ
+    Rs += 1/2σ
+    Ωs *= (1 - 3/σ) ≈ 0.917
+
+    Reduces coherence, z retreats from z_c.
+    """
+    state.δs += SIGMA_INV
+    state.Rs += SIGMA_INV / 2
+    state.Ωs *= (1.0 - SIGMA_INV * 3)
+
+    # Decoherence reduces z (moves toward ABSENCE)
+    state.z -= ALPHA_FINE * state.δs
+    state.z = max(0.0, state.z)
+    state.update_negentropy()
+
+    state.history.append("÷")
+    return state
+
+
+def apply_int_group(state: INTOperatorState) -> INTOperatorState:
+    """
+    + GROUP: Synchrony, clustering, domain formation.
+
+    αs += 3/σ ≈ 0.083
+    Gs += 1/2σ
+    θs *= (1 + 1/σ) ≈ 1.028
+
+    Forms clusters. z increases with amplitude.
+    """
+    state.αs += SIGMA_INV * 3
+    state.Gs += SIGMA_INV / 2
+    state.θs *= (1.0 + SIGMA_INV)
+
+    # Grouping increases z through synchrony
+    state.z += ALPHA_FINE * state.αs * PHI_INV
+    state.z = min(Z_CRITICAL, state.z)  # Cap at THE LENS
+    state.update_negentropy()
+
+    state.history.append("+")
+    return state
+
+
+def apply_int_separate(state: INTOperatorState) -> INTOperatorState:
+    """
+    − SEPARATE: Decoupling, pruning, phase reset preparation.
+
+    Rs += 3/σ ≈ 0.083
+    θs *= (1 - 1/σ) ≈ 0.972
+    δs += 1.5/σ ≈ 0.042
+
+    Prepares for phase reset. z retreats for re-grounding.
+    """
+    state.Rs += SIGMA_INV * 3
+    state.θs *= (1.0 - SIGMA_INV)
+    state.δs += SIGMA_INV * 1.5
+
+    # Separation reduces z for phase reset preparation
+    state.z -= ALPHA_FINE * state.Rs
+    state.z = max(0.0, state.z)
+    state.update_negentropy()
+
+    state.history.append("−")
+    return state
+
+
+# Operator dispatch table
+INT_OPERATOR_DISPATCH = {
+    "()": apply_int_boundary,
+    "×": apply_int_fusion,
+    "^": apply_int_amplify,
+    "÷": apply_int_decohere,
+    "+": apply_int_group,
+    "−": apply_int_separate,
+}
+
+
+def apply_int_operator(op: str, state: INTOperatorState) -> Tuple[INTOperatorState, bool, str]:
+    """
+    Apply INT Canon operator with N0 causality checking.
+
+    Returns (new_state, success, message).
+    """
+    # Check if operator is legal
+    is_legal, reason = state.check_n0_legal(op)
+    if not is_legal:
+        return state, False, reason
+
+    # Apply operator
+    op_func = INT_OPERATOR_DISPATCH.get(op)
+    if op_func is None:
+        return state, False, f"Unknown operator: {op}"
+
+    new_state = op_func(state)
+    return new_state, True, f"Applied {INTOperator.NAMES.get(op, op)}"
+
+
+# =============================================================================
+# LEGACY N0 OPERATOR FUNCTIONS (for compatibility)
+# =============================================================================
+
+def apply_n0_identity(state: float, value: float = 1.0) -> float:
+    """N0-1 (legacy): ^ AMPLIFY - amplifies state by φ⁻³ factor."""
+    return state * (1.0 + PHI_INV_CUBED)
+
+
 def apply_n0_mirror_root(kappa: float, lambda_: float) -> float:
-    """N0-2: Λ × Ν = Β² (product of coupling)."""
+    """N0-2 (legacy): × FUSION - product of coupling creates mirror root."""
     return kappa * lambda_  # ≈ PHI_INV × PHI_INV_SQ = PHI_INV_CUBED
 
 
 def apply_n0_absorption(state: float, value: float) -> float:
-    """N0-3: TRUE × UNTRUE = PARADOX (balance to 0.5)."""
-    return BALANCE_POINT * (state + value)
+    """N0-3 (legacy): ÷ DECOHERE - absorbs toward balance with dissipation."""
+    return BALANCE_POINT * (state + value) * (1.0 - SIGMA_INV)
 
 
 def apply_n0_distribution(state: float, value: float, kappa: float = PHI_INV) -> float:
-    """N0-4: (A ⊕ B) × C (weighted distribution)."""
+    """N0-4 (legacy): + GROUP - groups with golden-weighted distribution."""
     return (state + value) * kappa
 
 
 def apply_n0_conservation(kappa: float, lambda_: float) -> tuple:
-    """N0-5: κ + λ = 1 (normalize to conservation)."""
+    """N0-5 (legacy): − SEPARATE - separates while conserving κ + λ = 1."""
     total = kappa + lambda_
     if total > 0:
         return kappa / total, lambda_ / total
