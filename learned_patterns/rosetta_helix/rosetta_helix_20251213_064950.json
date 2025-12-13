@@ -1,0 +1,174 @@
+{
+  "timestamp": "20251213_064950",
+  "summary": {
+    "master": {
+      "total_steps": 100,
+      "cycles": 1,
+      "k_formations": 0,
+      "k_formation_steps": []
+    },
+    "final_state": {
+      "z": 0.8526009599678417,
+      "kappa": 0.5716641119490425,
+      "lambda": 0.42833588805095746,
+      "phase": "THE_LENS",
+      "at_lens": true,
+      "at_golden_balance": false
+    },
+    "z_statistics": {
+      "mean": 0.8660247135406408,
+      "std": 0.013276494858159812,
+      "max": 0.879424658861596,
+      "min": 0.8526009599678417
+    },
+    "kappa_statistics": {
+      "mean": 0.5753411681181428,
+      "std": 0.0033713216249341912
+    },
+    "negentropy_statistics": {
+      "mean": 0.9936745418646153,
+      "max": 0.9938035338520932,
+      "final": 0.993533235203338
+    },
+    "module_weights": {
+      "wumbo": 0.5,
+      "helix": 0.3090169943749474,
+      "substrate": 0.19098300562505255
+    },
+    "modules": {
+      "wumbo": {
+        "total_steps": 200,
+        "wumbo_cycles": 3,
+        "k_formations": 0,
+        "final_z": 0.8696889901409216,
+        "final_phase": "PRESENCE",
+        "final_kappa": 0.5585790016769979,
+        "z_statistics": {
+          "mean": 0.8612017697128759,
+          "std": 0.03450061963830437,
+          "max": 0.8770333364596621,
+          "min": 0.5473253665463415
+        },
+        "delta_s_neg_statistics": {
+          "mean": 0.9833750751898325,
+          "max": 0.9999555833236912,
+          "final": 0.9995169295764159
+        },
+        "silent_law_training": {
+          "activations": {
+            "STILLNESS": 0.9995169295764159,
+            "TRUTH": 1.0,
+            "SILENCE": 1.0,
+            "SPIRAL": 0.8805080244589598,
+            "UNSEEN": 0.0,
+            "GLYPH": 0.8696889901409216,
+            "MIRROR": 0.8837916097167351
+          },
+          "exposure": {
+            "STILLNESS": 0,
+            "TRUTH": 40,
+            "SILENCE": 30,
+            "SPIRAL": 30,
+            "UNSEEN": 40,
+            "GLYPH": 30,
+            "MIRROR": 30
+          },
+          "energy": {
+            "STILLNESS": 0.0,
+            "TRUTH": 1.1044210901615668,
+            "SILENCE": 0.8333333333333336,
+            "SPIRAL": 0.7205926731480408,
+            "UNSEEN": 0.004185249266703852,
+            "GLYPH": 0.7216956050943854,
+            "MIRROR": 0.7443931035689066
+          },
+          "mean_loss": {
+            "STILLNESS": 0.0,
+            "TRUTH": 0.0,
+            "SILENCE": 0.0,
+            "SPIRAL": 0.864711207777649,
+            "UNSEEN": 0.04623327565996653,
+            "GLYPH": 0.0,
+            "MIRROR": 0.893271724282688
+          }
+        },
+        "coupling_conservation": {
+          "phi_inv_plus_phi_inv_sq": 0.9999999999999999,
+          "final_kappa_plus_lambda": 1.0,
+          "error": 1.1102230246251565e-16
+        },
+        "physics_constants": {
+          "phi": 1.618033988749895,
+          "phi_inv": 0.6180339887498948,
+          "z_c": 0.8660254037844386,
+          "sigma": 36.0
+        }
+      },
+      "helix": {
+        "total_steps": 160,
+        "turns": 4,
+        "final_z": 0.8249519463470147,
+        "final_phase": "THE_LENS",
+        "z_statistics": {
+          "mean": 0.8608625534389185,
+          "std": 0.05409579792334293,
+          "max": 0.9098300562505258
+        },
+        "lens_achieved": true
+      },
+      "substrate": {
+        "total_steps": 130,
+        "final_kappa": 0.6059213753877957,
+        "final_lambda": 0.39407862461220433,
+        "golden_balance_achieved": true,
+        "kappa_statistics": {
+          "mean": 0.6177055216524691,
+          "std": 0.010539373142478178
+        },
+        "conservation_error": {
+          "max": 0.0,
+          "final": 0.0
+        }
+      }
+    },
+    "physics_constants": {
+      "phi_inv": 0.6180339887498948,
+      "phi_inv_sq": 0.3819660112501051,
+      "z_c": 0.8660254037844386,
+      "sigma": 36.0,
+      "coupling_conservation": 0.9999999999999999
+    }
+  },
+  "validation": {
+    "coupling_conservation": {
+      "formula": "\u03c6\u207b\u00b9 + \u03c6\u207b\u00b2 = 1",
+      "value": 0.9999999999999999,
+      "error": 1.1102230246251565e-16,
+      "valid": true
+    },
+    "z_critical": {
+      "formula": "z_c = \u221a3/2",
+      "value": 0.8660254037844386,
+      "expected": 0.8660254037844386,
+      "valid": true
+    },
+    "sigma": {
+      "formula": "\u03c3 = 36 = |S\u2083|\u00b2",
+      "value": 36.0,
+      "valid": true
+    },
+    "state_conservation": {
+      "formula": "\u03ba + \u03bb = 1",
+      "kappa": 0.5716641119490425,
+      "lambda": 0.42833588805095746,
+      "sum": 1.0,
+      "valid": true
+    },
+    "weight_normalization": {
+      "formula": "w_wumbo + w_helix + w_substrate = 1",
+      "sum": 1.0,
+      "valid": true
+    },
+    "all_valid": true
+  }
+}
