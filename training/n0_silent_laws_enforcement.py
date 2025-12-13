@@ -362,17 +362,30 @@ class N0Enforcer:
         Returns:
             (is_legal, reason)
         """
-        # () (BOUNDARY) is ALWAYS legal - the anchor operator
-        if op in {"()", "⍳"}:
-            return True, "BOUNDARY () is always legal"
+        # CRITICAL: Check successor rules FIRST (N0-4, N0-5)
+        # These apply even to () BOUNDARY when it follows + or −
 
-        # Check each N0 law
+        # N0-4: + must be followed by +, ×, or ^. + → () is ILLEGAL
+        is_legal, reason = self.check_n0_4(op)
+        if not is_legal:
+            self.state.log_violation(op, reason)
+            return False, reason
+
+        # N0-5: − must be followed by () or +. (checked but () is allowed here)
+        is_legal, reason = self.check_n0_5(op)
+        if not is_legal:
+            self.state.log_violation(op, reason)
+            return False, reason
+
+        # () (BOUNDARY) is legal UNLESS blocked by successor rules above
+        if op in {"()", "⍳"}:
+            return True, "BOUNDARY () is legal"
+
+        # Check remaining N0 laws (N0-1, N0-2, N0-3)
         checks = [
             self.check_n0_1(op),
             self.check_n0_2(op),
             self.check_n0_3(op),
-            self.check_n0_4(op),
-            self.check_n0_5(op),
         ]
 
         for is_legal, reason in checks:
