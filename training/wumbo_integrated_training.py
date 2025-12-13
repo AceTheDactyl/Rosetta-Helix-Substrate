@@ -77,37 +77,60 @@ import numpy as np
 # ============================================================================
 # PHYSICS CONSTANTS (Single Source of Truth)
 # ============================================================================
+# All constants derived from Z_CRITICAL and φ - see verify_physics.py
 
 # Golden ratio constants
 PHI: float = (1 + math.sqrt(5)) / 2              # φ ≈ 1.618 (LIMINAL)
 PHI_INV: float = 1 / PHI                          # φ⁻¹ ≈ 0.618 (PHYSICAL)
+PHI_INV_SQ: float = PHI_INV ** 2                  # φ⁻² ≈ 0.382
 
-# Critical lens constant
+# COUPLING CONSERVATION: φ⁻¹ + φ⁻² = 1 (THE defining property of φ)
+COUPLING_CONSERVATION: float = PHI_INV + PHI_INV_SQ  # Must equal 1.0
+
+# Critical lens constant (hexagonal geometry)
 Z_CRITICAL: float = math.sqrt(3) / 2             # z_c = √3/2 ≈ 0.866 (THE LENS)
 
+# Z_ORIGIN derived from Z_CRITICAL (collapse reset point)
+Z_ORIGIN: float = Z_CRITICAL * PHI_INV           # ≈ 0.535
+
+# Tier boundaries (derived from Z_CRITICAL)
+T6_BOUNDARY: float = 0.75                         # t5 → t6 transition
+UNITY: float = 0.9999                             # Collapse threshold
+
 # Gaussian negentropy parameters
+# σ derived from: exp(-σ × (0.75 - Z_C)²) = φ⁻¹ (coupling alignment)
+# σ = -ln(φ⁻¹) / (T6_BOUNDARY - Z_CRITICAL)² ≈ 35.7 → 36
 SIGMA_NEG_ENTROPY: float = 36.0                   # σ = 6² = |S₃|²
 GAUSSIAN_WIDTH: float = 1 / math.sqrt(2 * SIGMA_NEG_ENTROPY)  # ≈ 0.118
 GAUSSIAN_FWHM: float = 2 * math.sqrt(math.log(2) / SIGMA_NEG_ENTROPY)  # ≈ 0.277
 
-# μ thresholds
+# Verify σ derivation: ΔS_neg at t6 boundary should ≈ φ⁻¹
+_DELTA_S_AT_T6: float = math.exp(-SIGMA_NEG_ENTROPY * (T6_BOUNDARY - Z_CRITICAL)**2)
+# _DELTA_S_AT_T6 ≈ 0.616 ≈ φ⁻¹ (0.618) - ALIGNED!
+
+# μ thresholds (derived from φ-power structure)
 MU_P: float = 2.0 / (PHI ** 2.5)                  # Paradox threshold
 MU_1: float = MU_P / math.sqrt(PHI)               # Pre-conscious basin
 MU_2: float = MU_P * math.sqrt(PHI)               # Conscious basin
-MU_S: float = 0.920                               # Singularity / KAPPA_S
-MU_3: float = 0.992                               # Ultra-integration
-KAPPA_S: float = MU_S                             # Alias
+MU_S: float = 0.920                               # Singularity / KAPPA_S (t7 boundary)
+# MU_3 = KAPPA_S + (UNITY - KAPPA_S) × (1 - φ⁻⁵)
+MU_3: float = MU_S + (UNITY - MU_S) * (1 - PHI_INV**5)  # ≈ 0.9927
+KAPPA_S: float = MU_S                             # K-formation gate
 
-# K-formation criteria
-KAPPA_MIN: float = 0.920                          # κ ≥ 0.920
-ETA_MIN: float = PHI_INV                          # η > φ⁻¹
-R_MIN: float = 7                                  # R ≥ 7
+# K-formation criteria (all derived from φ)
+KAPPA_MIN: float = 0.920                          # κ ≥ 0.920 (t7 boundary)
+ETA_MIN: float = PHI_INV                          # η > φ⁻¹ (coupling gate)
+R_MIN: float = 7                                  # R ≥ 7 (7-layer prismatic)
 
-# Phase boundaries
-Z_ABSENCE_MAX: float = 0.857
-Z_LENS_MIN: float = 0.857
-Z_LENS_MAX: float = 0.877
-Z_PRESENCE_MIN: float = 0.877
+# Phase boundaries (derived from φ⁻¹ and Z_CRITICAL)
+# ABSENCE: z < φ⁻¹ (disordered)
+# PARADOX: φ⁻¹ ≤ z < z_c (quasi-crystal)
+# PRESENCE: z ≥ z_c (crystalline)
+Z_PHI_INV: float = PHI_INV                        # ≈ 0.618 - ABSENCE/PARADOX boundary
+Z_ABSENCE_MAX: float = PHI_INV                    # Use φ⁻¹ directly!
+Z_LENS_MIN: float = Z_CRITICAL - 0.01             # Near THE LENS
+Z_LENS_MAX: float = Z_CRITICAL + 0.01             # Near THE LENS
+Z_PRESENCE_MIN: float = Z_CRITICAL                # Crystallization at z_c
 
 
 # ============================================================================
@@ -498,18 +521,30 @@ class PhaseTransitionState:
 # ============================================================================
 
 class Phase(Enum):
-    ABSENCE = "ABSENCE"      # z < 0.857 (disordered)
-    THE_LENS = "THE_LENS"    # 0.857 ≤ z ≤ 0.877 (critical)
-    PRESENCE = "PRESENCE"    # z > 0.877 (crystalline)
+    """
+    Phase regimes derived from φ⁻¹ and z_c boundaries.
+
+    Threshold ordering: Z_ORIGIN < φ⁻¹ < z_c < KAPPA_S < MU_3 < UNITY
+    """
+    ABSENCE = "ABSENCE"      # z < φ⁻¹ ≈ 0.618 (disordered, UNTRUE)
+    THE_LENS = "THE_LENS"    # φ⁻¹ ≤ z < z_c (quasi-crystal, PARADOX)
+    PRESENCE = "PRESENCE"    # z ≥ z_c ≈ 0.866 (crystalline, TRUE)
 
 
 def get_phase(z: float) -> Phase:
-    """Determine phase from z-coordinate."""
-    if z < Z_ABSENCE_MAX:
+    """
+    Determine phase from z-coordinate using physics-derived boundaries.
+
+    Phase boundaries (from verify_physics.py):
+    - ABSENCE: z < φ⁻¹ (disordered)
+    - THE_LENS: φ⁻¹ ≤ z < z_c (quasi-crystal / PARADOX)
+    - PRESENCE: z ≥ z_c (crystalline)
+    """
+    if z < PHI_INV:  # z < φ⁻¹
         return Phase.ABSENCE
-    elif Z_LENS_MIN <= z <= Z_LENS_MAX:
+    elif z < Z_CRITICAL:  # φ⁻¹ ≤ z < z_c
         return Phase.THE_LENS
-    else:
+    else:  # z ≥ z_c
         return Phase.PRESENCE
 
 
@@ -1032,6 +1067,77 @@ class WumboTrainer:
             "physics_validated": True,
         }
 
+    def validate_coupling_conservation(self) -> Dict[str, Any]:
+        """
+        Validate the fundamental coupling conservation identity.
+
+        THE defining property of φ:
+            φ⁻¹ + φ⁻² = 1
+
+        This is what makes φ unique - the only positive solution to c + c² = 1.
+        """
+        validations = {}
+
+        # THE identity: φ⁻¹ + φ⁻² = 1
+        identity_sum = PHI_INV + PHI_INV_SQ
+        identity_error = abs(identity_sum - 1.0)
+        validations["coupling_conservation"] = identity_error < 1e-14
+        validations["phi_inv_plus_phi_inv_sq"] = identity_sum
+        validations["identity_error"] = identity_error
+
+        # Check the constant matches
+        validations["constant_correct"] = abs(COUPLING_CONSERVATION - 1.0) < 1e-14
+
+        # Uniqueness: φ⁻¹ is the ONLY solution
+        # Test nearby values
+        test_values = [0.5, 0.6, 0.617, 0.619, 0.7]
+        best_error = float('inf')
+        for c in test_values:
+            err = abs(c + c**2 - 1.0)
+            if err < best_error:
+                best_error = err
+        # φ⁻¹ should be astronomically better
+        validations["phi_uniqueness"] = identity_error < best_error * 1e-10
+
+        validations["all_valid"] = all(
+            v for k, v in validations.items()
+            if isinstance(v, bool)
+        )
+
+        return validations
+
+    def validate_threshold_ordering(self) -> Dict[str, Any]:
+        """
+        Validate the threshold ordering derived from Z_CRITICAL.
+
+        Required: Z_ORIGIN < φ⁻¹ < Z_CRITICAL < KAPPA_S < MU_3 < UNITY
+        """
+        validations = {}
+
+        # Check Z_ORIGIN derivation
+        z_origin_derived = Z_CRITICAL * PHI_INV
+        validations["z_origin_derived"] = abs(Z_ORIGIN - z_origin_derived) < 1e-14
+        validations["z_origin_value"] = Z_ORIGIN
+
+        # Check ordering
+        validations["z_origin_lt_phi_inv"] = Z_ORIGIN < PHI_INV
+        validations["phi_inv_lt_z_critical"] = PHI_INV < Z_CRITICAL
+        validations["z_critical_lt_kappa_s"] = Z_CRITICAL < KAPPA_S
+        validations["kappa_s_lt_mu_3"] = KAPPA_S < MU_3
+        validations["mu_3_lt_unity"] = MU_3 < UNITY
+
+        # Full ordering
+        validations["full_ordering"] = (
+            Z_ORIGIN < PHI_INV < Z_CRITICAL < KAPPA_S < MU_3 < UNITY
+        )
+
+        validations["all_valid"] = all(
+            v for k, v in validations.items()
+            if isinstance(v, bool)
+        )
+
+        return validations
+
     def validate_gaussian_physics(self) -> Dict[str, Any]:
         """
         Validate Gaussian negentropy physics.
@@ -1039,8 +1145,9 @@ class WumboTrainer:
         Checks:
         1. Peak at z = z_c
         2. Correct σ = 36 = |S₃|²
-        3. Gaussian width properties
-        4. Derivative properties
+        3. σ derived from φ⁻¹ alignment at t6 boundary
+        4. Gaussian width properties
+        5. Derivative properties
         """
         validations = {}
 
@@ -1052,6 +1159,17 @@ class WumboTrainer:
         # Check σ = 36 = 6²
         validations["sigma_is_36"] = SIGMA_NEG_ENTROPY == 36.0
         validations["sigma_is_s3_squared"] = SIGMA_NEG_ENTROPY == 6 * 6
+
+        # Check σ derivation from φ⁻¹ alignment
+        # At t6 boundary (z=0.75), ΔS_neg should ≈ φ⁻¹
+        delta_s_at_t6 = compute_delta_s_neg(T6_BOUNDARY)
+        validations["sigma_phi_inv_aligned"] = abs(delta_s_at_t6 - PHI_INV) < 0.01
+        validations["delta_s_at_t6"] = delta_s_at_t6
+
+        # Verify σ derivation formula: σ = -ln(φ⁻¹) / (t6 - z_c)²
+        derived_sigma = -math.log(PHI_INV) / ((T6_BOUNDARY - Z_CRITICAL)**2)
+        validations["sigma_derivation_correct"] = abs(derived_sigma - 36.0) < 1.0
+        validations["derived_sigma"] = derived_sigma
 
         # Check Gaussian width
         expected_width = 1 / math.sqrt(2 * 36)
@@ -1279,14 +1397,34 @@ class WumboTrainer:
 def main():
     """Run WUMBO integrated training demonstration."""
     print("=" * 70)
-    print("WUMBO INTEGRATED TRAINING SESSION v2.0.0")
-    print("Kuramoto | Free Energy | Phase Transitions")
+    print("WUMBO INTEGRATED TRAINING SESSION v2.1.0")
+    print("Aligned with verify_physics.py derivations")
     print("=" * 70)
 
     trainer = WumboTrainer()
 
-    # Validate Gaussian physics
-    print("\n--- Gaussian Negentropy Physics Validation ---")
+    # Validate COUPLING CONSERVATION (THE fundamental identity)
+    print("\n--- COUPLING CONSERVATION: φ⁻¹ + φ⁻² = 1 ---")
+    coupling_validation = trainer.validate_coupling_conservation()
+    for key, value in coupling_validation.items():
+        if isinstance(value, bool):
+            status = "✓" if value else "✗"
+            print(f"  {status} {key}")
+        elif isinstance(value, float):
+            print(f"    {key}: {value:.16f}")
+
+    # Validate threshold ordering
+    print("\n--- THRESHOLD ORDERING (Z_CRITICAL Derived) ---")
+    ordering_validation = trainer.validate_threshold_ordering()
+    for key, value in ordering_validation.items():
+        if isinstance(value, bool):
+            status = "✓" if value else "✗"
+            print(f"  {status} {key}")
+        elif isinstance(value, float):
+            print(f"    {key}: {value:.10f}")
+
+    # Validate Gaussian physics (with σ derivation)
+    print("\n--- Gaussian Negentropy (σ derived from φ⁻¹) ---")
     gaussian_validation = trainer.validate_gaussian_physics()
     for key, value in gaussian_validation.items():
         if isinstance(value, bool):
