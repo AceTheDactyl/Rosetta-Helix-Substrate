@@ -1,0 +1,32 @@
+# Smoke Test Configuration
+# =========================
+# Fast config for CI smoke tests.
+
+_base: base.yaml
+
+run_name: smoke_test
+tags:
+  - smoke
+  - ci
+
+# Minimal training
+total_steps: 50
+warmup_steps: 10
+checkpoint_steps: 25
+log_steps: 5
+
+# Only essential modules
+use_wumbo: true
+use_helix: true
+use_substrate: true
+use_kuramoto: false
+use_feedback_loop: false
+
+# Relaxed gates for smoke tests
+gates:
+  min_negentropy: 0.3
+  min_k_formations: 0
+  max_conservation_error: 1.0e-4
+  min_final_z: 0.5
+
+log_level: WARNING

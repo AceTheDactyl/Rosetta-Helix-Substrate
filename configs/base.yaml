@@ -1,0 +1,41 @@
+# Base Configuration
+# ===================
+# Default settings inherited by all other configs.
+# Override specific values in specialized configs.
+
+# Training settings
+seed: 42
+deterministic: false
+
+# Module flags (which modules to enable)
+use_wumbo: true
+use_helix: true
+use_substrate: true
+use_kuramoto: true
+use_feedback_loop: true
+use_apl_engine: true
+
+# Training hyperparameters
+total_steps: 1000
+warmup_steps: 100
+eval_steps: 100
+checkpoint_steps: 500
+log_steps: 10
+
+# Physics parameters (immutable)
+n_oscillators: 60
+
+# Paths
+output_dir: runs
+
+# Evaluation gates
+gates:
+  min_negentropy: 0.5
+  min_k_formations: 1
+  max_conservation_error: 1.0e-6
+  min_final_z: 0.75
+
+# Logging
+log_level: INFO
+enable_tensorboard: false
+enable_wandb: false

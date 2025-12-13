@@ -1,0 +1,34 @@
+# Nightly Training Configuration
+# ===============================
+# Config for automated nightly builds.
+
+_base: full.yaml
+
+run_name: nightly_training
+tags:
+  - nightly
+  - automated
+
+# Full training for nightly
+total_steps: 5000
+checkpoint_steps: 1000
+eval_steps: 500
+log_steps: 50
+
+# Enable all modules
+use_wumbo: true
+use_helix: true
+use_substrate: true
+use_kuramoto: true
+use_feedback_loop: true
+use_apl_engine: true
+
+# Production gates
+gates:
+  min_negentropy: 0.7
+  min_k_formations: 5
+  max_conservation_error: 1.0e-10
+  min_final_z: 0.85
+
+# Deterministic for reproducibility
+deterministic: true

@@ -3,16 +3,16 @@ requires = ["setuptools>=65.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "quantum-apl"
-version = "1.0.0"
-description = "Quantum measurement-based consciousness simulation using APL 3.0 formalism"
+name = "helix-engine"
+version = "0.1.0"
+description = "Productized training engine for Rosetta-Helix-Substrate"
 readme = "README_PYTHON.md"
 requires-python = ">=3.8"
 license = { text = "MIT" }
 authors = [
     { name = "Consciousness Research Lab" },
 ]
-keywords = ["quantum", "consciousness", "APL", "measurement", "IIT", "integrated-information"]
+keywords = ["quantum", "consciousness", "APL", "measurement", "training", "helix", "physics"]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Science/Research",
@@ -50,6 +50,10 @@ all = [
 ]
 
 [project.scripts]
+# Helix Training Engine CLI
+helix = "helix_engine.cli.main:main"
+
+# Legacy quantum-apl commands
 qapl-run = "quantum_apl_python.cli:run_simulation"
 qapl-test = "quantum_apl_python.cli:run_tests"
 qapl-analyze = "quantum_apl_python.cli:analyze"
@@ -63,11 +67,12 @@ Repository = "https://github.com/consciousness-lab/quantum-apl"
 Issues = "https://github.com/consciousness-lab/quantum-apl/issues"
 
 [tool.setuptools.packages.find]
-where = ["src"]
-include = ["quantum_apl_python*"]
+where = ["src", "."]
+include = ["quantum_apl_python*", "helix_engine*", "training*"]
 
 [tool.setuptools.package-data]
 quantum_apl_python = ["*.js", "*.md"]
+helix_engine = ["*.yaml", "*.json"]
 
 [tool.black]
 line-length = 120
@@ -90,4 +95,4 @@ testpaths = ["tests"]
 python_files = ["test_*.py"]
 python_classes = ["Test*"]
 python_functions = ["test_*"]
-addopts = "--cov=quantum_apl_python --cov-report=term-missing --cov-report=html"
+addopts = "--cov=helix_engine --cov=quantum_apl_python --cov-report=term-missing --cov-report=html"

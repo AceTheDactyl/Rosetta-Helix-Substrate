@@ -1,0 +1,113 @@
+# Helix Release
+# =============
+# Build wheels + build docker image + attach golden run references
+
+name: Helix Release
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to release'
+        required: true
+
+jobs:
+  build-package:
+    name: Build Python Package
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install build tools
+        run: pip install build twine
+
+      - name: Build package
+        run: python -m build
+
+      - name: Check package
+        run: twine check dist/*
+
+      - name: Upload wheel
+        uses: actions/upload-artifact@v4
+        with:
+          name: python-package
+          path: dist/
+
+  build-docker:
+    name: Build Docker Image
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract version
+        id: version
+        run: |
+          VERSION="${{ github.event.inputs.version || github.event.release.tag_name }}"
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: |
+            ghcr.io/${{ github.repository_owner }}/helix-engine:${{ steps.version.outputs.version }}
+            ghcr.io/${{ github.repository_owner }}/helix-engine:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  golden-run:
+    name: Create Golden Reference
+    runs-on: ubuntu-latest
+    needs: [build-package]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install package
+        run: pip install -e .
+
+      - name: Run golden training
+        run: |
+          python -m helix_engine.cli.main train \
+            --config configs/full.yaml \
+            --seed 42
+
+      - name: Create golden reference
+        run: |
+          RUN_DIR=$(ls -d runs/run_* | head -1)
+          python -m helix_engine.cli.main promote \
+            --run "$(basename $RUN_DIR)" \
+            --name golden \
+            --tags golden,release,${{ github.event.release.tag_name || github.event.inputs.version }} \
+            --description "Golden reference for release"
+
+      - name: Upload golden artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: golden-reference
+          path: |
+            runs/
+            models/
+          retention-days: 90

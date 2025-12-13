@@ -1,0 +1,95 @@
+# Helix Training Engine CI
+# =========================
+# PR: lint + unit + smoke train
+# Push: Full CI with artifact storage
+
+name: Helix CI
+
+on:
+  pull_request:
+    branches: [main, master]
+  push:
+    branches: [main, master]
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install ruff black mypy
+          pip install -e .
+
+      - name: Run ruff
+        run: ruff check src/ helix_engine/ training/
+
+      - name: Run black --check
+        run: black --check src/ helix_engine/ training/
+
+  test:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install pytest pytest-cov
+          pip install -e .
+
+      - name: Run tests
+        run: pytest tests/ -v --cov=helix_engine --cov-report=xml
+
+      - name: Upload coverage
+        uses: codecov/codecov-action@v4
+        with:
+          file: coverage.xml
+          fail_ci_if_error: false
+
+  smoke-train:
+    name: Smoke Training
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -e .
+
+      - name: Run smoke training
+        run: |
+          python -m helix_engine.cli.main train --config configs/smoke.yaml
+
+      - name: Verify run artifacts
+        run: |
+          # Check that run was created
+          ls -la runs/
+          # Check for required files
+          RUN_DIR=$(ls -d runs/run_* | head -1)
+          test -f "$RUN_DIR/resolved_config.yaml"
+          test -f "$RUN_DIR/env.json"
+          test -f "$RUN_DIR/report.json"
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: smoke-run-artifacts
+          path: runs/
+          retention-days: 7

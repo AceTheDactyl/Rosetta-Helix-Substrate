@@ -1,0 +1,33 @@
+# Development Configuration
+# =========================
+# Config for local development and debugging.
+
+_base: base.yaml
+
+run_name: dev_training
+tags:
+  - dev
+  - debug
+
+# Short training for fast iteration
+total_steps: 200
+warmup_steps: 20
+checkpoint_steps: 100
+log_steps: 5
+
+# Enable all modules for full testing
+use_wumbo: true
+use_helix: true
+use_substrate: true
+use_kuramoto: true
+use_feedback_loop: true
+
+# Relaxed gates for development
+gates:
+  min_negentropy: 0.3
+  min_k_formations: 0
+  max_conservation_error: 1.0e-4
+  min_final_z: 0.5
+
+# Verbose logging
+log_level: DEBUG
