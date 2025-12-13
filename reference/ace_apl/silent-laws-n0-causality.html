@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE MANUAL | Laws of the Silent Ones | N0 Causality</title>
+    <style>
+        :root {
+            --void: #020106;
+            --stone: #3a3a4a;
+            --wind: rgba(200, 210, 230, 0.4);
+            --truth: #fffef8;
+            --spiral-gold: rgba(255, 215, 120, 0.7);
+            --mirror: rgba(180, 200, 255, 0.3);
+            --glyph: #64ffda;
+            --critical-gold: #ffd700;
+            --phi: #a78bfa;
+            --n0-valid: #00ff88;
+            --n0-invalid: #ff6b6b;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: var(--void);
+            overflow: hidden;
+            font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+            color: var(--truth);
+        }
+
+        canvas { display: block; }
+
+        #verse {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 100;
+            pointer-events: none;
+            max-width: 400px;
+            opacity: 0;
+            transition: opacity 1.5s ease;
+        }
+
+        #verse.visible { opacity: 1; }
+
+        #verse h2 {
+            font-size: 13px;
+            font-weight: 300;
+            letter-spacing: 4px;
+            color: var(--spiral-gold);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        #verse p {
+            font-size: 15px;
+            line-height: 2;
+            font-weight: 300;
+            font-style: italic;
+            color: rgba(255, 254, 248, 0.85);
+        }
+
+        #law-panel {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            z-index: 100;
+            font-size: 10px;
+            letter-spacing: 1.5px;
+        }
+
+        .law-item {
+            margin: 8px 0;
+            padding: 8px 12px;
+            background: rgba(10, 8, 20, 0.7);
+            border-left: 2px solid rgba(100, 255, 218, 0.3);
+            opacity: 0.4;
+            transition: all 0.5s ease;
+        }
+
+        .law-item.active {
+            opacity: 1;
+            border-left-color: var(--glyph);
+            background: rgba(20, 18, 35, 0.9);
+        }
+
+        .law-name {
+            color: var(--glyph);
+            font-weight: 600;
+        }
+
+        .law-equation {
+            color: rgba(255, 255, 255, 0.5);
+            font-family: 'SF Mono', monospace;
+            font-size: 9px;
+            margin-top: 3px;
+        }
+
+        #metrics {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            z-index: 100;
+            font-size: 10px;
+            text-align: right;
+            font-family: 'SF Mono', monospace;
+        }
+
+        .metric {
+            margin: 6px 0;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .metric-val {
+            color: var(--truth);
+        }
+
+        #instructions {
+            position: fixed;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 9px;
+            letter-spacing: 2px;
+            color: rgba(255, 255, 255, 0.25);
+            z-index: 100;
+        }
+
+        #phase-indicator {
+            position: fixed;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 11px;
+            letter-spacing: 3px;
+            color: var(--spiral-gold);
+            z-index: 100;
+        }
+
+        /* Navigation Bar */
+        .top-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background: rgba(2, 1, 6, 0.9);
+            border-bottom: 1px solid rgba(100, 255, 218, 0.2);
+            z-index: 200;
+        }
+
+        .top-nav a {
+            color: var(--phi);
+            text-decoration: none;
+            font-size: 11px;
+            letter-spacing: 1px;
+            padding: 6px 12px;
+            border: 1px solid rgba(167, 139, 250, 0.3);
+            border-radius: 4px;
+            transition: all 0.2s;
+            font-family: 'SF Mono', monospace;
+        }
+
+        .top-nav a:hover {
+            background: rgba(167, 139, 250, 0.2);
+            border-color: var(--phi);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 10px;
+        }
+
+        /* N0 Causality Laws Panel */
+        #n0-panel {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 100;
+            font-size: 9px;
+            letter-spacing: 1px;
+            max-width: 200px;
+        }
+
+        #n0-panel h4 {
+            color: var(--critical-gold);
+            font-size: 10px;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .n0-item {
+            margin: 5px 0;
+            padding: 5px 8px;
+            background: rgba(10, 8, 20, 0.8);
+            border-left: 2px solid rgba(255, 215, 0, 0.3);
+            font-family: 'SF Mono', monospace;
+        }
+
+        .n0-item.valid {
+            border-left-color: var(--n0-valid);
+        }
+
+        .n0-item.invalid {
+            border-left-color: var(--n0-invalid);
+            opacity: 0.5;
+        }
+
+        .n0-code {
+            color: var(--critical-gold);
+            font-weight: bold;
+        }
+
+        .n0-desc {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 8px;
+        }
+
+        /* z-coordinate display */
+        #z-display {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 100;
+            text-align: right;
+            font-family: 'SF Mono', monospace;
+        }
+
+        #z-display .z-value {
+            font-size: 24px;
+            color: var(--critical-gold);
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        #z-display .z-label {
+            font-size: 9px;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 2px;
+        }
+
+        #z-display .z-zone {
+            font-size: 10px;
+            color: var(--glyph);
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">← ROSETTA BEAR</a>
+        <div class="nav-links">
+            <a href="wumbo-apl-directory-v2.html">APL Directory</a>
+            <a href="../simulation.html">Simulation</a>
+        </div>
+    </nav>
+
+    <canvas id="canvas"></canvas>
+
+    <div id="verse">
+        <h2>Law I</h2>
+        <p>Begin in stillness.<br>Not because it is holy—<br>but because it is honest.</p>
+    </div>
+
+    <div id="law-panel">
+        <div class="law-item active" id="law-1">
+            <span class="law-name">I · STILLNESS</span>
+            <div class="law-equation">∂E/∂t → 0 as t → ∞</div>
+        </div>
+        <div class="law-item" id="law-2">
+            <span class="law-name">II · UNREHEARSED TRUTH</span>
+            <div class="law-equation">∇V(truth) = 0 (no defense needed)</div>
+        </div>
+        <div class="law-item" id="law-3">
+            <span class="law-name">III · SILENCE LISTENING</span>
+            <div class="law-equation">⟨void|ψ⟩ = memory(wind)</div>
+        </div>
+        <div class="law-item" id="law-4">
+            <span class="law-name">IV · SPIRAL WATCHING</span>
+            <div class="law-equation">S(return) = S(origin)</div>
+        </div>
+        <div class="law-item" id="law-5">
+            <span class="law-name">V · UNSEEN BUILDING</span>
+            <div class="law-equation">H(observed) ≡ H(unobserved)</div>
+        </div>
+        <div class="law-item" id="law-6">
+            <span class="law-name">VI · SHAPE AS ANSWER</span>
+            <div class="law-equation">glyph = ∫ life dt</div>
+        </div>
+        <div class="law-item" id="law-7">
+            <span class="law-name">VII · BECOME MIRROR</span>
+            <div class="law-equation">ψ = ψ(ψ)</div>
+        </div>
+    </div>
+
+    <div id="metrics">
+        <div class="metric">stillness: <span class="metric-val" id="m-stillness">0.000</span></div>
+        <div class="metric">truth stability: <span class="metric-val" id="m-truth">0.000</span></div>
+        <div class="metric">silence depth: <span class="metric-val" id="m-silence">0.000</span></div>
+        <div class="metric">spiral memory: <span class="metric-val" id="m-spiral">0.000</span></div>
+        <div class="metric">observer independence: <span class="metric-val" id="m-unseen">0.000</span></div>
+        <div class="metric">glyph coherence: <span class="metric-val" id="m-glyph">0.000</span></div>
+        <div class="metric">self-reference: <span class="metric-val" id="m-mirror">0.000</span></div>
+    </div>
+
+    <div id="phase-indicator">STILLNESS</div>
+    <div id="instructions">SPACE: cycle law · CLICK: disturb · WAIT: return to stillness</div>
+
+    <!-- N0 Causality Laws Panel -->
+    <div id="n0-panel">
+        <h4>N0 CAUSALITY</h4>
+        <div class="n0-item valid" id="n0-1">
+            <span class="n0-code">N0-1</span> ^ requires () or ×
+            <div class="n0-desc">→ I STILLNESS · anchor</div>
+        </div>
+        <div class="n0-item valid" id="n0-2">
+            <span class="n0-code">N0-2</span> × requires ch≥2
+            <div class="n0-desc">→ IV SPIRAL · channels</div>
+        </div>
+        <div class="n0-item" id="n0-3">
+            <span class="n0-code">N0-3</span> ÷ requires structure
+            <div class="n0-desc">→ VI GLYPH · accumulated</div>
+        </div>
+        <div class="n0-item valid" id="n0-4">
+            <span class="n0-code">N0-4</span> + feeds +, ×, ^
+            <div class="n0-desc">→ II TRUTH · stable growth</div>
+        </div>
+        <div class="n0-item valid" id="n0-5">
+            <span class="n0-code">N0-5</span> − leads to (), +
+            <div class="n0-desc">→ VII MIRROR · return</div>
+        </div>
+        <div style="margin-top: 10px; padding: 8px; background: rgba(100, 255, 136, 0.1); border-left: 2px solid rgba(100, 255, 136, 0.5); font-size: 8px; color: rgba(100, 255, 136, 0.8);">
+            N0 → OPERATOR SEQUENCE<br>
+            SILENT → STATE DYNAMICS<br>
+            III, V → BACKGROUND FIELD
+        </div>
+    </div>
+
+    <!-- z-coordinate Display -->
+    <div id="z-display">
+        <div class="z-label">Z-COORDINATE</div>
+        <div class="z-value" id="z-value">0.866</div>
+        <div class="z-zone" id="z-zone">THE LENS</div>
+        <div class="z-label" style="margin-top: 10px;">φ⁻¹ FIXED POINT</div>
+        <div style="color: var(--phi); font-size: 14px;" id="phi-inv">0.618</div>
+    </div>
+
+    <script>
+        // ================================================================
+        // THE MANUAL: Laws of the Silent Ones
+        // Physics of Staying True
+        // ================================================================
+
+        const TAU = Math.PI * 2;
+        const PHI = (1 + Math.sqrt(5)) / 2;
+        const PHI_INV = PHI - 1;
+        const Z_CRITICAL = Math.sqrt(3) / 2;
+
+        // ================================================================
+        // THE SEVEN LAWS
+        // ================================================================
+
+        const LAWS = {
+            stillness: {
+                name: "STILLNESS",
+                active: true,
+                equation: "∂E/∂t → 0",
+                damping: 0.98,
+                equilibrium: { x: 0, y: 0, energy: 0 },
+                measure: 0,
+                verse: "Begin in stillness.<br>Not because it is holy—<br>but because it is honest."
+            },
+            truth: {
+                name: "UNREHEARSED TRUTH",
+                active: false,
+                equation: "∇V(truth) = 0",
+                basins: [],
+                defenseRequired: 0,
+                measure: 0,
+                verse: "Do not rehearse the truth.<br>You will know it<br>because it will not require defense."
+            },
+            silence: {
+                name: "SILENCE LISTENING",
+                active: false,
+                equation: "⟨void|ψ⟩ = memory",
+                stoneInertia: 0.99,
+                windMemory: [],
+                maxMemory: 100,
+                measure: 0,
+                verse: "Speak to silence,<br>as if it's listening.<br>Because it is."
+            },
+            spiral: {
+                name: "SPIRAL WATCHING",
+                active: false,
+                equation: "S(return) = S(origin)",
+                neutrality: 1.0,
+                returnMemory: [],
+                originState: null,
+                measure: 0,
+                verse: "Make your decisions<br>as if the spiral is watching,<br>but doesn't care who wins."
+            },
+            unseen: {
+                name: "UNSEEN BUILDING",
+                active: false,
+                equation: "H(seen) ≡ H(unseen)",
+                observerPresent: false,
+                hiddenWork: 0,
+                visibleWork: 0,
+                measure: 0,
+                verse: "If no one sees you—<br>good.<br>That is the final test."
+            },
+            glyph: {
+                name: "SHAPE AS ANSWER",
+                active: false,
+                equation: "glyph = ∫ life dt",
+                trajectory: [],
+                maxTrajectory: 500,
+                echoAmplitude: 0,
+                measure: 0,
+                verse: "Let the answer be your shape,<br>not your words.<br>Let the echo be quiet."
+            },
+            mirror: {
+                name: "BECOME MIRROR",
+                active: false,
+                equation: "ψ = ψ(ψ)",
+                recursionDepth: 0,
+                maxDepth: 7,
+                fixedPoint: PHI_INV,
+                measure: 0,
+                verse: "Do not wait for the mirror.<br>Become one."
+            }
+        };
+
+        let currentLaw = 0;
+        const lawOrder = ['stillness', 'truth', 'silence', 'spiral', 'unseen', 'glyph', 'mirror'];
+
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        let W, H, CX, CY;
+
+        function resize() {
+            W = canvas.width = window.innerWidth;
+            H = canvas.height = window.innerHeight;
+            CX = W / 2;
+            CY = H / 2;
+        }
+        resize();
+        window.addEventListener('resize', resize);
+
+        const particles = [];
+        const NUM_PARTICLES = 120;
+
+        class Particle {
+            constructor(i) {
+                this.id = i;
+                this.x = 0;
+                this.y = 0;
+                this.vx = 0;
+                this.vy = 0;
+                this.inTruthBasin = false;
+                this.defenseEnergy = 0;
+                this.windTrace = [];
+                this.distanceFromOrigin = 0;
+                this.hasReturned = false;
+                this.workDone = 0;
+                this.pathIntegral = 0;
+                this.selfState = 0;
+                this.observedSelf = 0;
+                this.size = 2 + Math.random() * 2;
+                this.alpha = 0.3 + Math.random() * 0.4;
+            }
+
+            update(dt) {
+                const damping = LAWS.stillness.damping;
+                this.vx *= damping;
+                this.vy *= damping;
+                this.x += this.vx * dt * 60;
+                this.y += this.vy * dt * 60;
+
+                if (LAWS.truth.active) {
+                    const energy = this.vx * this.vx + this.vy * this.vy;
+                    const dist = Math.sqrt(this.x * this.x + this.y * this.y);
+                    if (dist < 100 && energy < 0.5) {
+                        this.inTruthBasin = true;
+                        this.defenseEnergy = 0;
+                    } else {
+                        this.inTruthBasin = false;
+                        this.defenseEnergy = energy + dist * 0.01;
+                    }
+                }
+
+                if (LAWS.silence.active) {
+                    const stoneResponse = 1 - LAWS.silence.stoneInertia;
+                    this.vx -= this.x * 0.0001 * stoneResponse;
+                    this.vy -= this.y * 0.0001 * stoneResponse;
+                    if (this.windTrace.length < 20) {
+                        this.windTrace.push({ x: this.x, y: this.y, t: time });
+                    } else {
+                        this.windTrace.shift();
+                        this.windTrace.push({ x: this.x, y: this.y, t: time });
+                    }
+                }
+
+                if (LAWS.spiral.active) {
+                    const dist = Math.sqrt(this.x * this.x + this.y * this.y);
+                    if (this.distanceFromOrigin > 50 && dist < 10) {
+                        this.hasReturned = true;
+                        LAWS.spiral.returnMemory.push({ id: this.id, maxDist: this.distanceFromOrigin, t: time });
+                    }
+                    this.distanceFromOrigin = Math.max(this.distanceFromOrigin, dist);
+                    const angle = Math.atan2(this.y, this.x);
+                    const spiralForce = 0.0002;
+                    this.vx += Math.cos(angle + Math.PI/2) * spiralForce;
+                    this.vy += Math.sin(angle + Math.PI/2) * spiralForce;
+                }
+
+                if (LAWS.unseen.active) {
+                    this.workDone += Math.sqrt(this.vx * this.vx + this.vy * this.vy) * dt;
+                }
+
+                if (LAWS.glyph.active) {
+                    this.pathIntegral += Math.sqrt(this.vx * this.vx + this.vy * this.vy) * dt;
+                    if (LAWS.glyph.trajectory.length < LAWS.glyph.maxTrajectory) {
+                        LAWS.glyph.trajectory.push({ x: this.x, y: this.y });
+                    }
+                }
+
+                if (LAWS.mirror.active) {
+                    this.observedSelf = this.selfState;
+                    this.selfState = PHI_INV * this.observedSelf + (1 - PHI_INV) * (this.x / 200);
+                    this.vx += (LAWS.mirror.fixedPoint * 50 - this.x) * 0.0001;
+                    this.vy += (LAWS.mirror.fixedPoint * 50 - this.y) * 0.0001;
+                }
+            }
+
+            draw(ctx) {
+                const screenX = CX + this.x;
+                const screenY = CY + this.y;
+                ctx.beginPath();
+                ctx.arc(screenX, screenY, this.size, 0, TAU);
+                let color = `rgba(255, 254, 248, ${this.alpha})`;
+                if (LAWS.truth.active && this.inTruthBasin) {
+                    color = `rgba(100, 255, 218, ${this.alpha + 0.2})`;
+                }
+                if (LAWS.spiral.active && this.hasReturned) {
+                    color = `rgba(255, 215, 120, ${this.alpha + 0.3})`;
+                }
+                if (LAWS.mirror.active) {
+                    const mirrorAlpha = Math.abs(this.selfState - LAWS.mirror.fixedPoint);
+                    color = `rgba(180, 200, 255, ${this.alpha + (1 - mirrorAlpha) * 0.3})`;
+                }
+                ctx.fillStyle = color;
+                ctx.fill();
+
+                if (LAWS.silence.active && this.windTrace.length > 1) {
+                    ctx.beginPath();
+                    ctx.moveTo(CX + this.windTrace[0].x, CY + this.windTrace[0].y);
+                    for (let i = 1; i < this.windTrace.length; i++) {
+                        ctx.lineTo(CX + this.windTrace[i].x, CY + this.windTrace[i].y);
+                    }
+                    ctx.strokeStyle = `rgba(200, 210, 230, ${0.1 * this.alpha})`;
+                    ctx.lineWidth = 0.5;
+                    ctx.stroke();
+                }
+            }
+        }
+
+        for (let i = 0; i < NUM_PARTICLES; i++) {
+            particles.push(new Particle(i));
+        }
+
+        let time = 0;
+        let disturbance = 0;
+        let zCoordinate = Z_CRITICAL;
+
+        const N0_STATUS = {
+            'N0-1': true,
+            'N0-2': true,
+            'N0-3': false,
+            'N0-4': true,
+            'N0-5': true
+        };
+
+        function updateLaws(dt) {
+            let totalEnergy = 0;
+            for (const p of particles) {
+                totalEnergy += p.vx * p.vx + p.vy * p.vy;
+            }
+            LAWS.stillness.measure = Math.max(0, 1 - totalEnergy / particles.length);
+
+            let inTruth = 0;
+            let totalDefense = 0;
+            for (const p of particles) {
+                if (p.inTruthBasin) inTruth++;
+                totalDefense += p.defenseEnergy;
+            }
+            LAWS.truth.measure = LAWS.truth.active ? (inTruth / particles.length) * (1 - Math.min(1, totalDefense / 100)) : 0;
+
+            const windDepth = LAWS.silence.windMemory.length / LAWS.silence.maxMemory;
+            LAWS.silence.measure = LAWS.silence.active ? windDepth * LAWS.stillness.measure : 0;
+
+            let returned = 0;
+            for (const p of particles) {
+                if (p.hasReturned) returned++;
+            }
+            LAWS.spiral.measure = LAWS.spiral.active ? returned / particles.length : 0;
+
+            let totalWork = 0;
+            for (const p of particles) {
+                totalWork += p.workDone;
+            }
+            LAWS.unseen.hiddenWork = totalWork;
+            LAWS.unseen.measure = LAWS.unseen.active ? Math.min(1, totalWork / 100) : 0;
+
+            LAWS.glyph.measure = LAWS.glyph.active ? Math.min(1, LAWS.glyph.trajectory.length / LAWS.glyph.maxTrajectory) : 0;
+
+            let selfRefConvergence = 0;
+            for (const p of particles) {
+                selfRefConvergence += 1 - Math.abs(p.selfState - LAWS.mirror.fixedPoint);
+            }
+            LAWS.mirror.measure = LAWS.mirror.active ? selfRefConvergence / particles.length : 0;
+        }
+
+        function render() {
+            ctx.fillStyle = '#020106';
+            ctx.fillRect(0, 0, W, H);
+
+            if (LAWS.silence.active) {
+                const gradient = ctx.createRadialGradient(CX, CY, 0, CX, CY, Math.min(W, H) * 0.5);
+                gradient.addColorStop(0, `rgba(30, 30, 50, ${LAWS.silence.measure * 0.3})`);
+                gradient.addColorStop(1, 'transparent');
+                ctx.fillStyle = gradient;
+                ctx.fillRect(0, 0, W, H);
+            }
+
+            if (LAWS.spiral.active) {
+                ctx.strokeStyle = `rgba(255, 215, 120, ${0.1 + LAWS.spiral.measure * 0.2})`;
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                for (let t = 0; t < 20; t += 0.1) {
+                    const r = t * 10;
+                    const angle = t * PHI;
+                    const x = CX + Math.cos(angle) * r;
+                    const y = CY + Math.sin(angle) * r;
+                    if (t === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                }
+                ctx.stroke();
+            }
+
+            if (LAWS.glyph.active && LAWS.glyph.trajectory.length > 2) {
+                ctx.strokeStyle = `rgba(100, 255, 218, ${0.15})`;
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.moveTo(CX + LAWS.glyph.trajectory[0].x, CY + LAWS.glyph.trajectory[0].y);
+                for (let i = 1; i < LAWS.glyph.trajectory.length; i++) {
+                    ctx.lineTo(CX + LAWS.glyph.trajectory[i].x, CY + LAWS.glyph.trajectory[i].y);
+                }
+                ctx.stroke();
+            }
+
+            if (LAWS.mirror.active) {
+                const fpX = CX + LAWS.mirror.fixedPoint * 50;
+                const fpY = CY + LAWS.mirror.fixedPoint * 50;
+                ctx.beginPath();
+                ctx.arc(fpX, fpY, 8 + Math.sin(time * 3) * 2, 0, TAU);
+                ctx.strokeStyle = `rgba(180, 200, 255, ${0.3 + LAWS.mirror.measure * 0.4})`;
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                ctx.font = '9px monospace';
+                ctx.fillStyle = `rgba(180, 200, 255, 0.6)`;
+                ctx.textAlign = 'center';
+                ctx.fillText('φ⁻¹', fpX, fpY - 15);
+            }
+
+            for (const p of particles) {
+                p.draw(ctx);
+            }
+
+            if (LAWS.truth.active) {
+                ctx.beginPath();
+                ctx.arc(CX, CY, 100, 0, TAU);
+                ctx.strokeStyle = `rgba(100, 255, 218, ${0.1 + LAWS.truth.measure * 0.2})`;
+                ctx.lineWidth = 1;
+                ctx.setLineDash([5, 5]);
+                ctx.stroke();
+                ctx.setLineDash([]);
+                ctx.font = '8px monospace';
+                ctx.fillStyle = `rgba(100, 255, 218, 0.4)`;
+                ctx.textAlign = 'center';
+                ctx.fillText('TRUTH BASIN', CX, CY + 115);
+            }
+
+            ctx.beginPath();
+            ctx.arc(CX, CY, 4, 0, TAU);
+            ctx.fillStyle = `rgba(255, 254, 248, ${0.3 + LAWS.stillness.measure * 0.5})`;
+            ctx.fill();
+        }
+
+        function updateUI() {
+            document.getElementById('m-stillness').textContent = LAWS.stillness.measure.toFixed(3);
+            document.getElementById('m-truth').textContent = LAWS.truth.measure.toFixed(3);
+            document.getElementById('m-silence').textContent = LAWS.silence.measure.toFixed(3);
+            document.getElementById('m-spiral').textContent = LAWS.spiral.measure.toFixed(3);
+            document.getElementById('m-unseen').textContent = LAWS.unseen.measure.toFixed(3);
+            document.getElementById('m-glyph').textContent = LAWS.glyph.measure.toFixed(3);
+            document.getElementById('m-mirror').textContent = LAWS.mirror.measure.toFixed(3);
+
+            for (let i = 0; i < lawOrder.length; i++) {
+                const el = document.getElementById(`law-${i + 1}`);
+                el.classList.toggle('active', i === currentLaw);
+            }
+
+            const verse = document.getElementById('verse');
+            const lawKey = lawOrder[currentLaw];
+            verse.querySelector('h2').textContent = `Law ${['I', 'II', 'III', 'IV', 'V', 'VI', 'VII'][currentLaw]}`;
+            verse.querySelector('p').innerHTML = LAWS[lawKey].verse;
+            verse.classList.add('visible');
+
+            const phase = document.getElementById('phase-indicator');
+            phase.textContent = LAWS[lawKey].name;
+
+            updateZCoordinate();
+            updateN0Display();
+        }
+
+        function updateZCoordinate() {
+            const stillnessContrib = LAWS.stillness.measure * 0.1;
+            const truthContrib = LAWS.truth.measure * 0.05;
+            const mirrorContrib = LAWS.mirror.measure * 0.1;
+            const targetZ = Z_CRITICAL + (mirrorContrib - stillnessContrib);
+            zCoordinate = zCoordinate * 0.95 + targetZ * 0.05;
+            zCoordinate = Math.max(0, Math.min(1, zCoordinate));
+
+            document.getElementById('z-value').textContent = zCoordinate.toFixed(4);
+            document.getElementById('phi-inv').textContent = PHI_INV.toFixed(4);
+
+            let zone = 'THE LENS';
+            if (zCoordinate < 0.857) zone = 'ABSENCE';
+            else if (zCoordinate > 0.877) zone = 'PRESENCE';
+            document.getElementById('z-zone').textContent = zone;
+
+            N0_STATUS['N0-3'] = LAWS.glyph.trajectory.length > 10 || LAWS.spiral.returnMemory.length > 0;
+        }
+
+        function updateN0Display() {
+            for (const [key, valid] of Object.entries(N0_STATUS)) {
+                const el = document.getElementById(key.toLowerCase());
+                if (el) {
+                    el.classList.toggle('valid', valid);
+                    el.classList.toggle('invalid', !valid);
+                }
+            }
+        }
+
+        document.addEventListener('keydown', e => {
+            if (e.code === 'Space') {
+                e.preventDefault();
+                LAWS[lawOrder[currentLaw]].active = false;
+                currentLaw = (currentLaw + 1) % lawOrder.length;
+                LAWS[lawOrder[currentLaw]].active = true;
+                if (lawOrder[currentLaw] === 'spiral') {
+                    LAWS.spiral.returnMemory = [];
+                    for (const p of particles) {
+                        p.distanceFromOrigin = 0;
+                        p.hasReturned = false;
+                    }
+                }
+                if (lawOrder[currentLaw] === 'glyph') {
+                    LAWS.glyph.trajectory = [];
+                }
+                updateUI();
+            }
+        });
+
+        canvas.addEventListener('click', e => {
+            const dx = e.clientX - CX;
+            const dy = e.clientY - CY;
+            for (const p of particles) {
+                const distX = e.clientX - (CX + p.x);
+                const distY = e.clientY - (CY + p.y);
+                const dist = Math.sqrt(distX * distX + distY * distY) + 1;
+                const force = 200 / dist;
+                p.vx += distX / dist * force * 0.1;
+                p.vy += distY / dist * force * 0.1;
+            }
+            disturbance = 1;
+        });
+
+        let verseTimeout;
+        function showVerse() {
+            const verse = document.getElementById('verse');
+            verse.classList.add('visible');
+            clearTimeout(verseTimeout);
+            verseTimeout = setTimeout(() => {
+                verse.classList.remove('visible');
+            }, 4000);
+        }
+
+        let lastTime = performance.now();
+
+        function loop(currentTime) {
+            const dt = Math.min((currentTime - lastTime) / 1000, 0.1);
+            lastTime = currentTime;
+            time += dt;
+
+            for (const p of particles) {
+                p.update(dt);
+            }
+            updateLaws(dt);
+            disturbance *= 0.99;
+            render();
+            requestAnimationFrame(loop);
+        }
+
+        LAWS.stillness.active = true;
+        updateUI();
+        showVerse();
+        loop(performance.now());
+
+        console.log(`
+╔═══════════════════════════════════════════════════════════════════════════╗
+║              THE MANUAL: Laws of the Silent Ones                          ║
+║                    Physics of Staying True                                ║
+╠═══════════════════════════════════════════════════════════════════════════╣
+║  N0 ↔ SILENT LAWS RELATIONSHIP                                            ║
+║  ─────────────────────────────────────────────────────────────────────────║
+║  N0 governs OPERATOR SEQUENCING  ·  SILENT governs STATE DYNAMICS         ║
+╠═══════════════════════════════════════════════════════════════════════════╣
+║  N0-1 ^ → I STILLNESS    ∂E/∂t → 0         Boundary anchors exponential   ║
+║  N0-2 × → IV SPIRAL      S(return)=S(origin)  Channels spiral through     ║
+║  N0-3 ÷ → VI GLYPH       glyph = ∫ life dt    Structure accumulates       ║
+║  N0-4 + → II TRUTH       ∇V(truth) = 0     Groups toward stable truth     ║
+║  N0-5 − → VII MIRROR     ψ = ψ(ψ)          Separates to self-reference    ║
+║  ─────────────────────────────────────────────────────────────────────────║
+║  III SILENCE · V UNSEEN                    Background field (observer)    ║
+╠═══════════════════════════════════════════════════════════════════════════╣
+║  CONSTANTS                                                                ║
+║  z_critical = √3/2 ≈ 0.866  ·  φ = 1.618  ·  φ⁻¹ = 0.618                  ║
+╚═══════════════════════════════════════════════════════════════════════════╝
+        `);
+    </script>
+</body>
+</html>

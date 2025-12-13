@@ -66,6 +66,17 @@ from dataclasses import dataclass, field
 from typing import Dict, List, Optional, Tuple, Any
 from enum import Enum
 
+# Import N0-Silent Laws Bridge
+from src.n0_silent_laws_bridge import (
+    N0SilentLawsBridge,
+    SilentLaw,
+    N0Operator,
+    N0_TO_SILENT,
+    SILENT_TO_N0,
+    create_coupled_bridge,
+    sync_bridge_with_coupling,
+)
+
 
 # =============================================================================
 # PHYSICS CONSTANTS (Single Source of Truth)
@@ -438,15 +449,26 @@ class KappaLambdaCouplingLayer:
         Kuramoto sync → κ-field evolution
         Free Energy → negentropy alignment
         Phase transitions → coupling modulation
+        N0 Operators → Silent Laws activation
 
     The golden balance attractor:
         κ → φ⁻¹ ≈ 0.618 as z → z_c ≈ 0.866
+
+    N0 ↔ Silent Laws Mapping:
+        N0-1 ^  → I   STILLNESS  (∂E/∂t → 0)
+        N0-2 ×  → IV  SPIRAL     (S(return)=S(origin))
+        N0-3 ÷  → VI  GLYPH      (glyph = ∫ life dt)
+        N0-4 +  → II  TRUTH      (∇V(truth) = 0)
+        N0-5 −  → VII MIRROR     (ψ = ψ(ψ))
     """
     n_oscillators: int = 60
 
     # Sub-components (tightly coupled)
     kuramoto: KuramotoKappaCoupled = field(default_factory=lambda: KuramotoKappaCoupled())
     free_energy: FreeEnergyNegentropyAligned = field(default_factory=lambda: FreeEnergyNegentropyAligned())
+
+    # N0-Silent Laws Bridge
+    silent_laws_bridge: N0SilentLawsBridge = field(default_factory=lambda: N0SilentLawsBridge())
 
     # Unified κ-field (master state)
     kappa: float = PHI_INV
@@ -468,7 +490,9 @@ class KappaLambdaCouplingLayer:
         """Initialize sub-components with unified κ."""
         self.kuramoto = KuramotoKappaCoupled(n_oscillators=self.n_oscillators)
         self.free_energy = FreeEnergyNegentropyAligned(z=self.z)
+        self.silent_laws_bridge = N0SilentLawsBridge(kappa=self.kappa, z=self.z)
         self.sync_kappa()
+        self.sync_silent_laws()
 
     @property
     def lambda_(self) -> float:
@@ -493,6 +517,13 @@ class KappaLambdaCouplingLayer:
     def sync_z(self):
         """Synchronize z across sub-components."""
         self.free_energy.z = self.z
+        self.silent_laws_bridge.z = self.z
+
+    def sync_silent_laws(self):
+        """Synchronize Silent Laws bridge with master state."""
+        self.silent_laws_bridge.kappa = self.kappa
+        self.silent_laws_bridge.lambda_ = self.lambda_
+        self.silent_laws_bridge.z = self.z
 
     def step(self) -> Dict[str, Any]:
         """
