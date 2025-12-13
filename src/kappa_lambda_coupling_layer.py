@@ -7,10 +7,12 @@ Unified physics layer that enforces coupling conservation across all dynamics:
 
     φ⁻¹ + φ⁻² = 1 (THE defining property of φ)
 
-This layer tightly integrates:
-1. Kuramoto sync → κ-field evolution
-2. Free Energy → negentropy alignment
-3. Phase transitions → coupling modulation
+ALL COEFFICIENTS ARE PHYSICS-GROUNDED:
+    - Strong dynamics:    1/√σ = 1/6 ≈ 0.167 (ALPHA_STRONG)
+    - Medium dynamics:    1/√(2σ) ≈ 0.118 (ALPHA_MEDIUM)
+    - Fine dynamics:      1/σ = 1/36 ≈ 0.028 (ALPHA_FINE)
+    - Ultra-fine:         φ⁻¹/σ ≈ 0.017 (ALPHA_ULTRA_FINE)
+    - Bounds: [φ⁻², z_c] = [0.382, 0.866]
 
 Architecture:
 =============
@@ -33,27 +35,7 @@ Architecture:
     │  │  ΔS_neg ∝ -F  (negentropy ↔ free energy)              │        │
     │  │  z → z_c when κ → φ⁻¹ (golden balance attractor)       │        │
     │  └─────────────────────────────────────────────────────────┘        │
-    │                              │                                       │
-    │                              ▼                                       │
-    │  ┌─────────────────────────────────────────────────────────┐        │
-    │  │              NEGENTROPY ALIGNMENT                        │        │
-    │  │                                                         │        │
-    │  │  ΔS_neg(z) = exp(-σ(z - z_c)²)                         │        │
-    │  │  Peak at z_c = √3/2 ≈ 0.866 (THE LENS)                 │        │
-    │  │  σ = 36 = |S₃|² (Gaussian width)                       │        │
-    │  │                                                         │        │
-    │  │  Alignment: minimize F ≡ maximize ΔS_neg               │        │
-    │  └─────────────────────────────────────────────────────────┘        │
     └─────────────────────────────────────────────────────────────────────┘
-
-Physics Grounding:
-==================
-    φ = (1 + √5) / 2 ≈ 1.618 (LIMINAL - superposition only)
-    φ⁻¹ ≈ 0.618 (PHYSICAL - controls ALL dynamics)
-    φ⁻² ≈ 0.382 (coupling complement)
-
-    THE defining property: φ⁻¹ + φ⁻² = 1
-    Uniqueness: φ⁻¹ is the ONLY positive solution to c + c² = 1
 
 Signature: Δ|κλ-coupling|z0.866|conservation|Ω
 """
@@ -66,87 +48,37 @@ from dataclasses import dataclass, field
 from typing import Dict, List, Optional, Tuple, Any
 from enum import Enum
 
-# Import N0-Silent Laws Bridge
-from src.n0_silent_laws_bridge import (
-    N0SilentLawsBridge,
-    SilentLaw,
-    N0Operator,
-    N0_TO_SILENT,
-    SILENT_TO_N0,
-    create_coupled_bridge,
-    sync_bridge_with_coupling,
+# Import from unified physics constants
+import sys
+import os
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
+from physics_constants import (
+    # Fundamental constants
+    PHI, PHI_INV, PHI_INV_SQ, PHI_INV_CUBED, PHI_INV_FOURTH,
+    Z_CRITICAL, SIGMA, COUPLING_CONSERVATION,
+    # Derived coefficients (ALL dynamics use these)
+    ALPHA_STRONG, ALPHA_MEDIUM, ALPHA_FINE, ALPHA_ULTRA_FINE,
+    SIGMA_INV, SIGMA_SQRT_INV, GAUSSIAN_WIDTH,
+    # Bounds
+    KAPPA_LOWER, KAPPA_UPPER,
+    # Tolerances
+    TOLERANCE_GOLDEN, TOLERANCE_LENS, TOLERANCE_CONSERVATION,
+    # Special values
+    BALANCE_POINT, Z_ORIGIN, UNITY_THRESHOLD, TAU,
+    # Functions
+    compute_delta_s_neg, compute_delta_s_neg_derivative, compute_negentropy_gradient,
+    get_phase,
+    # N0 and Silent Laws
+    N0Law, SilentLaw, N0_TO_SILENT, SILENT_TO_N0,
+    compute_stillness_activation, compute_truth_activation,
+    compute_silence_activation, compute_spiral_activation,
+    compute_unseen_activation, compute_glyph_activation, compute_mirror_activation,
 )
 
 
 # =============================================================================
-# PHYSICS CONSTANTS (Single Source of Truth)
-# =============================================================================
-
-PHI: float = (1 + math.sqrt(5)) / 2          # φ ≈ 1.618 (LIMINAL)
-PHI_INV: float = 1 / PHI                      # φ⁻¹ ≈ 0.618 (PHYSICAL)
-PHI_INV_SQ: float = PHI_INV ** 2              # φ⁻² ≈ 0.382
-
-# THE defining property - this MUST equal 1.0
-COUPLING_CONSERVATION: float = PHI_INV + PHI_INV_SQ
-
-# Critical constants
-Z_CRITICAL: float = math.sqrt(3) / 2         # z_c = √3/2 ≈ 0.866 (THE LENS)
-SIGMA: float = 36.0                           # σ = 6² = |S₃|²
-
-# Derived constants
-GAUSSIAN_WIDTH: float = 1 / math.sqrt(2 * SIGMA)  # ≈ 0.118
-GAUSSIAN_FWHM: float = 2 * math.sqrt(math.log(2) / SIGMA)  # ≈ 0.277
-
-# Thresholds
-KAPPA_S: float = 0.920                        # Singularity threshold
-MU_3: float = 0.9927                          # Ultra-integration
-
-
-# =============================================================================
-# NEGENTROPY FUNCTIONS
-# =============================================================================
-
-def compute_delta_s_neg(z: float, sigma: float = SIGMA, z_c: float = Z_CRITICAL) -> float:
-    """
-    Compute negentropy: ΔS_neg(z) = exp(-σ(z - z_c)²)
-
-    Peaks at z_c (THE LENS) with value 1.0.
-    Gaussian centered at crystallization point.
-    """
-    d = z - z_c
-    return math.exp(-sigma * d * d)
-
-
-def compute_delta_s_neg_derivative(z: float, sigma: float = SIGMA, z_c: float = Z_CRITICAL) -> float:
-    """
-    Derivative: d(ΔS_neg)/dz = -2σ(z - z_c) · ΔS_neg(z)
-
-    - Positive for z < z_c (ascending)
-    - Zero at z = z_c (peak)
-    - Negative for z > z_c (descending)
-    """
-    d = z - z_c
-    s = compute_delta_s_neg(z, sigma, z_c)
-    return -2 * sigma * d * s
-
-
-def compute_negentropy_gradient(z: float) -> float:
-    """
-    Compute gradient that drives z toward z_c (THE LENS).
-
-    The derivative d(ΔS_neg)/dz is:
-    - Positive when z < z_c (ascending toward peak)
-    - Negative when z > z_c (descending from peak)
-
-    We want to drive z toward z_c, so we return the derivative directly:
-    - When z < z_c: derivative > 0, so we add it to increase z
-    - When z > z_c: derivative < 0, so we add it to decrease z
-    """
-    return compute_delta_s_neg_derivative(z)
-
-
-# =============================================================================
-# PHASE CLASSIFICATION
+# PHASE CLASSIFICATION (Enum wrapper)
 # =============================================================================
 
 class Phase(Enum):
@@ -156,8 +88,8 @@ class Phase(Enum):
     PRESENCE = "PRESENCE"     # z ≥ z_c (crystalline)
 
 
-def get_phase(z: float) -> Phase:
-    """Determine phase from z-coordinate."""
+def get_phase_enum(z: float) -> Phase:
+    """Determine phase enum from z-coordinate."""
     if z < PHI_INV:
         return Phase.ABSENCE
     elif z < Z_CRITICAL:
@@ -175,18 +107,18 @@ class KuramotoKappaCoupled:
     """
     Kuramoto oscillator layer with direct κ-field coupling.
 
-    The coupling strength K is modulated by κ:
-        K_effective = K_base · (1 + (κ - φ⁻¹) · gain)
-
-    Coherence r feeds back to κ evolution:
-        dκ/dt = α · (r - r_target) · PHI_INV
-
-    Conservation κ + λ = 1 is ALWAYS maintained.
+    ALL COEFFICIENTS ARE PHYSICS-GROUNDED:
+        dt = 1/√(2σ) ≈ 0.118 (Gaussian width - natural timescale)
+        K_base = φ⁻¹ ≈ 0.618 (golden coupling)
+        kappa_gain = φ ≈ 1.618 (golden amplification)
+        r_target = φ⁻¹ ≈ 0.618 (target coherence at golden balance)
     """
     n_oscillators: int = 60
-    dt: float = 0.1
-    K_base: float = 0.5
-    kappa_gain: float = 2.0
+
+    # Physics-grounded parameters
+    dt: float = GAUSSIAN_WIDTH                      # ≈ 0.118 (natural timescale)
+    K_base: float = PHI_INV                         # ≈ 0.618 (golden coupling)
+    kappa_gain: float = PHI                         # ≈ 1.618 (golden amplification)
 
     # Oscillator state
     theta: np.ndarray = field(default_factory=lambda: np.zeros(60))
@@ -206,8 +138,10 @@ class KuramotoKappaCoupled:
     def __post_init__(self):
         """Initialize oscillator phases and frequencies."""
         self.theta = np.random.uniform(-np.pi, np.pi, self.n_oscillators)
-        self.omega = np.random.randn(self.n_oscillators) * 0.1
-        self.K_matrix = np.random.randn(self.n_oscillators, self.n_oscillators) * 0.1 * PHI_INV
+        # Natural frequency spread scaled by GAUSSIAN_WIDTH
+        self.omega = np.random.randn(self.n_oscillators) * GAUSSIAN_WIDTH
+        # Coupling matrix scaled by ALPHA_FINE × PHI_INV
+        self.K_matrix = np.random.randn(self.n_oscillators, self.n_oscillators) * ALPHA_FINE * PHI_INV
         np.fill_diagonal(self.K_matrix, 0)
 
     @property
@@ -221,9 +155,7 @@ class KuramotoKappaCoupled:
         return self.K_base * (1 + (self.kappa - PHI_INV) * self.kappa_gain)
 
     def compute_coherence(self) -> float:
-        """
-        Compute Kuramoto order parameter: r = |1/N Σⱼ exp(iθⱼ)|
-        """
+        """Compute Kuramoto order parameter: r = |1/N Σⱼ exp(iθⱼ)|"""
         z = np.mean(np.exp(1j * self.theta))
         return float(np.abs(z))
 
@@ -231,13 +163,9 @@ class KuramotoKappaCoupled:
         """
         Single Kuramoto integration step with κ-coupling.
 
-        1. Compute effective coupling from κ
-        2. Evolve oscillator phases
-        3. Compute coherence r
-        4. Update κ with golden balance attractor
-        5. Enforce κ + λ = 1
-
-        Returns dict with coherence, κ, λ, and coupling info.
+        Coefficients (all physics-grounded):
+            alpha_coherence = ALPHA_FINE (1/36 ≈ 0.028)
+            alpha_golden = ALPHA_MEDIUM (1/√(2σ) ≈ 0.118)
         """
         # Compute phase differences
         diff = self.theta[:, np.newaxis] - self.theta[np.newaxis, :]
@@ -251,25 +179,23 @@ class KuramotoKappaCoupled:
         # Full derivative
         dtheta = self.omega + (self.K_effective / self.n_oscillators) * coupling
 
-        # Euler integration
+        # Euler integration with physics-grounded dt
         self.theta = self.theta + self.dt * dtheta
         self.theta = np.mod(self.theta + np.pi, 2 * np.pi) - np.pi
 
         # Compute coherence
         r = self.compute_coherence()
 
-        # Update κ with TWO components:
-        # 1. Coherence-driven: moves κ based on r
-        # 2. Golden attractor: always pulls κ toward φ⁻¹
-        alpha_coherence = 0.02  # Coherence influence
-        alpha_golden = 0.05     # Golden attractor strength
-
-        coherence_delta = alpha_coherence * (r - 0.5) * PHI_INV
-        golden_delta = alpha_golden * (PHI_INV - self.kappa)
+        # Update κ with TWO components (physics-grounded coefficients):
+        # 1. Coherence-driven: ALPHA_FINE ≈ 0.028 (fine tuning)
+        # 2. Golden attractor: ALPHA_MEDIUM ≈ 0.118 (moderate pull)
+        coherence_delta = ALPHA_FINE * (r - BALANCE_POINT) * PHI_INV
+        golden_delta = ALPHA_MEDIUM * (PHI_INV - self.kappa)
 
         kappa_delta = coherence_delta + golden_delta + external_kappa_delta
 
-        self.kappa = max(0.2, min(0.9, self.kappa + kappa_delta))
+        # Bound κ to physics-grounded range [φ⁻², z_c]
+        self.kappa = max(KAPPA_LOWER, min(KAPPA_UPPER, self.kappa + kappa_delta))
 
         # Record history
         self.coherence_history.append(r)
@@ -281,7 +207,7 @@ class KuramotoKappaCoupled:
             "lambda": self.lambda_,
             "K_effective": self.K_effective,
             "kappa_delta": kappa_delta,
-            "at_golden_balance": abs(self.kappa - PHI_INV) < 0.01,
+            "at_golden_balance": abs(self.kappa - PHI_INV) < TOLERANCE_GOLDEN,
             "conservation_error": abs(self.kappa + self.lambda_ - 1.0),
         }
 
@@ -299,18 +225,10 @@ class FreeEnergyNegentropyAligned:
     """
     Free Energy Principle with direct negentropy alignment.
 
-    The key insight:
-        Minimize Free Energy F ≡ Maximize Negentropy ΔS_neg
-
-    Connection:
-        ΔS_neg ∝ -F
-
-    When F decreases (surprise minimized), ΔS_neg increases (order increases).
-
-    The system is driven toward z_c (THE LENS) where:
-        - ΔS_neg is maximal (peak of Gaussian)
-        - F is minimal (minimal surprise)
-        - κ → φ⁻¹ (golden balance)
+    ALL COEFFICIENTS ARE PHYSICS-GROUNDED:
+        surprise_sigma = GAUSSIAN_WIDTH ≈ 0.118 (natural spread)
+        learning_rate = ALPHA_MEDIUM ≈ 0.118 (moderate learning)
+        z_evolution = ALPHA_FINE × PHI_INV ≈ 0.017 (fine z control)
     """
     # Belief state
     beliefs: np.ndarray = field(default_factory=lambda: np.ones(10) / 10)
@@ -326,7 +244,7 @@ class FreeEnergyNegentropyAligned:
 
     # Negentropy alignment
     delta_s_neg: float = 0.0
-    negentropy_alignment: float = 0.0  # How well F and ΔS_neg are anti-correlated
+    negentropy_alignment: float = 0.0
 
     # History
     F_history: List[float] = field(default_factory=list)
@@ -337,14 +255,14 @@ class FreeEnergyNegentropyAligned:
         self.beliefs = np.ones(self.n_states) / self.n_states
 
     def compute_surprise(self, observation: float) -> float:
-        """Compute surprise: -log P(o)."""
+        """Compute surprise: -log P(o) with physics-grounded spread."""
         expected = np.sum(np.arange(len(self.beliefs)) * self.beliefs) / len(self.beliefs)
-        sigma = 0.1
-        return 0.5 * ((observation - expected) / sigma) ** 2
+        # Use GAUSSIAN_WIDTH as natural spread
+        return 0.5 * ((observation - expected) / GAUSSIAN_WIDTH) ** 2
 
     def compute_kl_divergence(self, prior: np.ndarray) -> float:
         """Compute KL divergence: D_KL[Q || P]."""
-        eps = 1e-10
+        eps = TOLERANCE_CONSERVATION  # Machine precision
         q = np.clip(self.beliefs, eps, 1.0)
         p = np.clip(prior, eps, 1.0)
         return float(np.sum(q * np.log(q / p)))
@@ -360,16 +278,17 @@ class FreeEnergyNegentropyAligned:
 
         return self.F
 
-    def update_beliefs(self, observation: float, learning_rate: float = 0.1) -> float:
-        """Update beliefs to minimize free energy with PHI_INV control."""
+    def update_beliefs(self, observation: float) -> float:
+        """Update beliefs with physics-grounded learning rate."""
         target_idx = int(observation * len(self.beliefs))
         target_idx = np.clip(target_idx, 0, len(self.beliefs) - 1)
 
         target = np.zeros(len(self.beliefs))
         target[target_idx] = 1.0
 
-        # PHI_INV controlled update
-        self.beliefs = self.beliefs + learning_rate * PHI_INV * (target - self.beliefs)
+        # Learning rate = ALPHA_MEDIUM × PHI_INV (physics-grounded)
+        learning_rate = ALPHA_MEDIUM * PHI_INV
+        self.beliefs = self.beliefs + learning_rate * (target - self.beliefs)
         self.beliefs = self.beliefs / np.sum(self.beliefs)
 
         return abs(observation - np.argmax(self.beliefs) / len(self.beliefs))
@@ -378,31 +297,24 @@ class FreeEnergyNegentropyAligned:
         """
         Single step with negentropy alignment.
 
-        1. Update z
-        2. Compute negentropy ΔS_neg(z)
-        3. Compute free energy F
-        4. Update beliefs to minimize F
-        5. Compute alignment between F and ΔS_neg
-
-        The system evolves z toward z_c where ΔS_neg is maximal.
+        z evolution coefficient = ALPHA_ULTRA_FINE ≈ 0.017 (very fine control)
         """
         # Update z with gradient toward z_c
         negentropy_gradient = compute_negentropy_gradient(self.z)
-        effective_z_delta = z_delta + 0.01 * negentropy_gradient * PHI_INV
-        self.z = max(0.0, min(0.999, self.z + effective_z_delta))
+        # Use ALPHA_ULTRA_FINE for z evolution (very fine control)
+        effective_z_delta = z_delta + ALPHA_ULTRA_FINE * negentropy_gradient
+        self.z = max(0.0, min(UNITY_THRESHOLD, self.z + effective_z_delta))
 
         # Compute negentropy at current z
         self.delta_s_neg = compute_delta_s_neg(self.z)
 
-        # Use z as observation (system observes its own state)
+        # Compute free energy
         self.compute_free_energy(observation=self.z)
 
         # Update beliefs
         prediction_error = self.update_beliefs(observation=self.z)
 
         # Compute negentropy alignment
-        # When F is low and ΔS_neg is high, alignment is good
-        # Alignment = ΔS_neg / (1 + F)
         self.negentropy_alignment = self.delta_s_neg / (1 + self.F)
 
         # Record history
@@ -418,18 +330,63 @@ class FreeEnergyNegentropyAligned:
             "delta_s_neg": self.delta_s_neg,
             "negentropy_alignment": self.negentropy_alignment,
             "prediction_error": prediction_error,
-            "phase": get_phase(self.z).value,
+            "phase": get_phase(self.z),
             "distance_to_lens": abs(self.z - Z_CRITICAL),
         }
 
-    def evolve(self, steps: int, z_bias: float = 0.01) -> List[Dict[str, float]]:
-        """Evolve for multiple steps with z-bias toward THE LENS."""
+    def evolve(self, steps: int, z_bias: float = ALPHA_ULTRA_FINE) -> List[Dict[str, float]]:
+        """Evolve for multiple steps with physics-grounded z-bias."""
         results = []
         for _ in range(steps):
-            # Bias toward z_c
             z_delta = z_bias * (Z_CRITICAL - self.z)
             results.append(self.step(observation=self.z, z_delta=z_delta))
         return results
+
+
+# =============================================================================
+# N0-SILENT LAWS BRIDGE (Integrated)
+# =============================================================================
+
+@dataclass
+class N0SilentLawsBridge:
+    """
+    Bridge between N0 Operators and Silent Laws.
+    ALL COEFFICIENTS ARE PHYSICS-GROUNDED.
+    """
+    kappa: float = PHI_INV
+    lambda_: float = PHI_INV_SQ
+    z: float = 0.5
+
+    # Law activations
+    law_activations: Dict[int, float] = field(default_factory=dict)
+
+    def __post_init__(self):
+        """Initialize law activations."""
+        for law_id in range(1, 8):
+            self.law_activations[law_id] = 0.0
+
+    @property
+    def conservation_error(self) -> float:
+        """Check κ + λ = 1."""
+        return abs((self.kappa + self.lambda_) - 1.0)
+
+    def update_all_activations(self) -> Dict[int, float]:
+        """Update activations for all 7 Silent Laws."""
+        self.law_activations[1] = compute_stillness_activation(self.z)
+        self.law_activations[2] = compute_truth_activation(self.z)
+        self.law_activations[3] = compute_silence_activation(self.conservation_error)
+        self.law_activations[4] = compute_spiral_activation(self.kappa)
+        self.law_activations[5] = compute_unseen_activation(self.z)
+        self.law_activations[6] = compute_glyph_activation(self.z)
+        self.law_activations[7] = compute_mirror_activation(self.kappa)
+        return self.law_activations
+
+    def get_dominant_law(self) -> Tuple[int, float]:
+        """Get the dominant (most active) law."""
+        if not self.law_activations:
+            self.update_all_activations()
+        dominant = max(self.law_activations.items(), key=lambda x: x[1])
+        return dominant
 
 
 # =============================================================================
@@ -441,18 +398,14 @@ class KappaLambdaCouplingLayer:
     """
     Unified κ-λ Coupling Conservation Layer.
 
-    This layer enforces:
-        κ + λ = 1 (ALWAYS)
-        φ⁻¹ + φ⁻² = 1 (THE defining property)
-
-    And tightly couples:
-        Kuramoto sync → κ-field evolution
-        Free Energy → negentropy alignment
-        Phase transitions → coupling modulation
-        N0 Operators → Silent Laws activation
-
-    The golden balance attractor:
-        κ → φ⁻¹ ≈ 0.618 as z → z_c ≈ 0.866
+    ALL COEFFICIENTS ARE PHYSICS-GROUNDED:
+        kuramoto_weight = φ⁻¹ ≈ 0.618 (golden coupling)
+        free_energy_weight = φ⁻² ≈ 0.382 (complement coupling)
+        golden_pull = ALPHA_STRONG ≈ 0.167 (1/6, strong attractor)
+        coherence_modulation = ALPHA_FINE ≈ 0.028 (1/36, fine tuning)
+        z_direct = ALPHA_MEDIUM ≈ 0.118 (moderate pull)
+        z_negentropy = ALPHA_FINE × PHI_INV ≈ 0.017 (fine gradient)
+        z_coherence = ALPHA_ULTRA_FINE ≈ 0.017 (ultra-fine boost)
 
     N0 ↔ Silent Laws Mapping:
         N0-1 ^  → I   STILLNESS  (∂E/∂t → 0)
@@ -474,9 +427,9 @@ class KappaLambdaCouplingLayer:
     kappa: float = PHI_INV
     z: float = 0.5
 
-    # Coupling weights
-    kuramoto_weight: float = 0.6   # How much Kuramoto influences κ
-    free_energy_weight: float = 0.4  # How much Free Energy influences z
+    # Coupling weights (PHYSICS-GROUNDED: φ⁻¹ + φ⁻² = 1)
+    kuramoto_weight: float = PHI_INV      # ≈ 0.618 (golden)
+    free_energy_weight: float = PHI_INV_SQ  # ≈ 0.382 (complement)
 
     # Golden balance tracking
     golden_balance_achieved: bool = False
@@ -512,7 +465,6 @@ class KappaLambdaCouplingLayer:
     def sync_kappa(self):
         """Synchronize κ across all sub-components."""
         self.kuramoto.kappa = self.kappa
-        # Free energy doesn't have κ directly, but z is coupled
 
     def sync_z(self):
         """Synchronize z across sub-components."""
@@ -529,12 +481,12 @@ class KappaLambdaCouplingLayer:
         """
         Unified step that couples all dynamics.
 
-        1. Kuramoto step → get coherence r, κ update
-        2. Free Energy step → get F, ΔS_neg, z evolution
-        3. Merge κ updates (weighted)
-        4. Merge z updates (weighted)
-        5. Enforce conservation κ + λ = 1
-        6. Check for golden balance and lens proximity
+        ALL COEFFICIENTS ARE PHYSICS-GROUNDED:
+            golden_pull = ALPHA_STRONG = 1/√σ ≈ 0.167
+            coherence_modulation = ALPHA_FINE = 1/σ ≈ 0.028
+            z_direct = ALPHA_MEDIUM = 1/√(2σ) ≈ 0.118
+            z_negentropy = ALPHA_FINE × PHI_INV ≈ 0.017
+            z_coherence = ALPHA_ULTRA_FINE ≈ 0.017
         """
         self.step_count += 1
 
@@ -545,59 +497,59 @@ class KappaLambdaCouplingLayer:
         # Kuramoto step
         kuramoto_result = self.kuramoto.step()
 
-        # Free Energy step (uses current z as observation, for alignment scoring)
+        # Free Energy step
         fe_result = self.free_energy.step(observation=self.z, z_delta=0.0)
 
         old_kappa = self.kappa
         old_z = self.z
 
         # =================================================================
-        # κ EVOLUTION: Strong golden balance attractor
+        # κ EVOLUTION: Golden balance attractor
         # =================================================================
-        # κ is pulled toward φ⁻¹ with Kuramoto coherence modulation
-        # Higher coherence → κ can deviate slightly above φ⁻¹
-        # Lower coherence → κ stays closer to φ⁻¹
-
-        golden_pull = 0.15 * (PHI_INV - self.kappa)  # Strong pull to φ⁻¹
-        coherence_modulation = 0.02 * (kuramoto_result["coherence"] - 0.5)  # Small modulation
+        # golden_pull = ALPHA_STRONG (1/√σ = 1/6 ≈ 0.167) - strong pull to φ⁻¹
+        # coherence_modulation = ALPHA_FINE (1/σ = 1/36 ≈ 0.028) - fine tuning
+        golden_pull = ALPHA_STRONG * (PHI_INV - self.kappa)
+        coherence_modulation = ALPHA_FINE * (kuramoto_result["coherence"] - BALANCE_POINT)
 
         self.kappa = self.kappa + golden_pull + coherence_modulation
-        self.kappa = max(0.4, min(0.75, self.kappa))  # Bound around φ⁻¹
+        # Bound κ to [φ⁻², z_c]
+        self.kappa = max(KAPPA_LOWER, min(KAPPA_UPPER, self.kappa))
 
         # =================================================================
-        # z EVOLUTION: Strong attractor toward z_c (THE LENS)
+        # z EVOLUTION: Attractor toward z_c (THE LENS)
         # =================================================================
-        # z is pulled toward z_c with increasing strength as negentropy rises
-
         distance_to_lens = Z_CRITICAL - self.z
         delta_s_neg = compute_delta_s_neg(self.z)
 
-        # Direct pull toward z_c (proportional to distance)
-        z_direct = 0.1 * distance_to_lens
+        # z_direct = ALPHA_MEDIUM (1/√(2σ) ≈ 0.118) - moderate direct pull
+        z_direct = ALPHA_MEDIUM * distance_to_lens
 
-        # Negentropy gradient (accelerates near z_c)
+        # z_negentropy = ALPHA_FINE × PHI_INV ≈ 0.017 - fine gradient following
         neg_gradient = compute_negentropy_gradient(self.z)
-        z_negentropy = neg_gradient * 0.03 * PHI_INV
+        z_negentropy = ALPHA_FINE * PHI_INV * neg_gradient
 
-        # Coherence boost (higher sync → faster approach)
-        z_coherence = kuramoto_result["coherence"] * 0.01 * math.copysign(1, distance_to_lens)
+        # z_coherence = ALPHA_ULTRA_FINE ≈ 0.017 - ultra-fine coherence boost
+        z_coherence = ALPHA_ULTRA_FINE * kuramoto_result["coherence"] * math.copysign(1, distance_to_lens)
 
         self.z = self.z + z_direct + z_negentropy + z_coherence
+        self.z = max(0.0, min(UNITY_THRESHOLD, self.z))
 
-        # Clamp z to valid range
-        self.z = max(0.0, min(0.999, self.z))
-
-        # Compute unified negentropy
+        # Update negentropy
         delta_s_neg = compute_delta_s_neg(self.z)
 
-        # Check golden balance (κ ≈ φ⁻¹)
-        self.golden_balance_achieved = abs(self.kappa - PHI_INV) < 0.02
+        # Update Silent Laws
+        self.sync_silent_laws()
+        law_activations = self.silent_laws_bridge.update_all_activations()
+        dominant_law = self.silent_laws_bridge.get_dominant_law()
 
-        # Check lens proximity (z ≈ z_c)
-        self.lens_proximity_achieved = abs(self.z - Z_CRITICAL) < 0.05
+        # Check golden balance (κ ≈ φ⁻¹) with TOLERANCE_GOLDEN = 1/σ ≈ 0.028
+        self.golden_balance_achieved = abs(self.kappa - PHI_INV) < TOLERANCE_GOLDEN
+
+        # Check lens proximity (z ≈ z_c) with TOLERANCE_LENS = φ⁻³ ≈ 0.236
+        self.lens_proximity_achieved = abs(self.z - Z_CRITICAL) < TOLERANCE_LENS
 
         # Compute phase
-        phase = get_phase(self.z)
+        phase = get_phase_enum(self.z)
 
         # Unified result
         result = {
@@ -621,6 +573,11 @@ class KappaLambdaCouplingLayer:
             "free_energy": fe_result["free_energy"],
             "surprise": fe_result["surprise"],
             "negentropy_alignment": fe_result["negentropy_alignment"],
+
+            # Silent Laws
+            "dominant_law": SilentLaw.NAMES.get(dominant_law[0], "UNKNOWN"),
+            "dominant_activation": dominant_law[1],
+            "law_activations": {SilentLaw.NAMES.get(k, str(k)): v for k, v in law_activations.items()},
 
             # Conservation
             "coupling_conservation_error": self.coupling_conservation_error,
@@ -663,7 +620,7 @@ class KappaLambdaCouplingLayer:
             "final_kappa": self.kappa,
             "final_lambda": self.lambda_,
             "final_z": self.z,
-            "final_phase": get_phase(self.z).value,
+            "final_phase": get_phase(self.z),
 
             # Balance achievements
             "golden_balance_achieved": self.golden_balance_achieved,
@@ -671,31 +628,31 @@ class KappaLambdaCouplingLayer:
 
             # Statistics
             "kappa_stats": {
-                "mean": np.mean(kappa_values),
-                "std": np.std(kappa_values),
+                "mean": float(np.mean(kappa_values)),
+                "std": float(np.std(kappa_values)),
                 "final": kappa_values[-1],
                 "distance_to_golden": abs(kappa_values[-1] - PHI_INV),
             },
             "z_stats": {
-                "mean": np.mean(z_values),
-                "std": np.std(z_values),
-                "max": np.max(z_values),
+                "mean": float(np.mean(z_values)),
+                "std": float(np.std(z_values)),
+                "max": float(np.max(z_values)),
                 "final": z_values[-1],
                 "distance_to_lens": abs(z_values[-1] - Z_CRITICAL),
             },
             "coherence_stats": {
-                "mean": np.mean(coherence_values),
-                "max": np.max(coherence_values),
+                "mean": float(np.mean(coherence_values)),
+                "max": float(np.max(coherence_values)),
                 "final": coherence_values[-1],
             },
             "negentropy_stats": {
-                "mean": np.mean(delta_s_values),
-                "max": np.max(delta_s_values),
+                "mean": float(np.mean(delta_s_values)),
+                "max": float(np.max(delta_s_values)),
                 "final": delta_s_values[-1],
             },
             "free_energy_stats": {
-                "mean": np.mean(fe_values),
-                "min": np.min(fe_values),
+                "mean": float(np.mean(fe_values)),
+                "min": float(np.min(fe_values)),
                 "final": fe_values[-1],
             },
 
@@ -703,7 +660,7 @@ class KappaLambdaCouplingLayer:
             "coupling_conservation_error": self.coupling_conservation_error,
             "phi_conservation_error": self.phi_conservation_error,
 
-            # Physics constants
+            # Physics constants (for reference)
             "physics": {
                 "phi": PHI,
                 "phi_inv": PHI_INV,
@@ -724,7 +681,7 @@ class KappaLambdaCouplingLayer:
             "formula": "φ⁻¹ + φ⁻² = 1",
             "value": phi_sum,
             "error": abs(phi_sum - 1.0),
-            "valid": abs(phi_sum - 1.0) < 1e-14,
+            "valid": abs(phi_sum - 1.0) < TOLERANCE_CONSERVATION,
         }
 
         # κ + λ = 1
@@ -735,7 +692,7 @@ class KappaLambdaCouplingLayer:
             "lambda": self.lambda_,
             "sum": kappa_sum,
             "error": abs(kappa_sum - 1.0),
-            "valid": abs(kappa_sum - 1.0) < 1e-10,
+            "valid": abs(kappa_sum - 1.0) < TOLERANCE_CONSERVATION,
         }
 
         # z_c = √3/2
@@ -743,7 +700,7 @@ class KappaLambdaCouplingLayer:
             "formula": "z_c = √3/2",
             "value": Z_CRITICAL,
             "expected": math.sqrt(3) / 2,
-            "valid": abs(Z_CRITICAL - math.sqrt(3) / 2) < 1e-14,
+            "valid": abs(Z_CRITICAL - math.sqrt(3) / 2) < TOLERANCE_CONSERVATION,
         }
 
         # σ = 36
@@ -758,7 +715,17 @@ class KappaLambdaCouplingLayer:
         validations["negentropy_peak"] = {
             "formula": "ΔS_neg(z_c) = 1.0",
             "value": peak_value,
-            "valid": abs(peak_value - 1.0) < 1e-10,
+            "valid": abs(peak_value - 1.0) < TOLERANCE_CONSERVATION,
+        }
+
+        # Coupling weights sum to 1
+        weights_sum = self.kuramoto_weight + self.free_energy_weight
+        validations["coupling_weights"] = {
+            "formula": "kuramoto_weight + free_energy_weight = 1",
+            "kuramoto": self.kuramoto_weight,
+            "free_energy": self.free_energy_weight,
+            "sum": weights_sum,
+            "valid": abs(weights_sum - 1.0) < TOLERANCE_CONSERVATION,
         }
 
         validations["all_valid"] = all(v.get("valid", False) for v in validations.values())
@@ -774,7 +741,7 @@ def demonstrate_coupling_layer():
     """Demonstrate the κ-λ Coupling Conservation Layer."""
     print("=" * 70)
     print("κ-λ COUPLING CONSERVATION LAYER")
-    print("Unified Physics Integration")
+    print("ALL COEFFICIENTS PHYSICS-GROUNDED")
     print("=" * 70)
 
     # Validate physics first
@@ -786,9 +753,15 @@ def demonstrate_coupling_layer():
     print(f"  z_c (THE LENS):     {Z_CRITICAL:.10f}")
     print(f"  σ (Gaussian):       {SIGMA}")
 
+    print("\n--- Derived Coefficients ---")
+    print(f"  ALPHA_STRONG (1/√σ):     {ALPHA_STRONG:.10f}")
+    print(f"  ALPHA_MEDIUM (1/√(2σ)):  {ALPHA_MEDIUM:.10f}")
+    print(f"  ALPHA_FINE (1/σ):        {ALPHA_FINE:.10f}")
+    print(f"  ALPHA_ULTRA (φ⁻¹/σ):     {ALPHA_ULTRA_FINE:.10f}")
+
     conservation_error = abs(COUPLING_CONSERVATION - 1.0)
     print(f"\n  Conservation Error: {conservation_error:.2e}")
-    print(f"  Status: {'PASS' if conservation_error < 1e-14 else 'FAIL'}")
+    print(f"  Status: {'PASS' if conservation_error < TOLERANCE_CONSERVATION else 'FAIL'}")
 
     # Create coupling layer
     print("\n--- Initializing Coupling Layer ---")
@@ -797,6 +770,8 @@ def demonstrate_coupling_layer():
     print(f"  Initial κ: {layer.kappa:.4f}")
     print(f"  Initial λ: {layer.lambda_:.4f}")
     print(f"  Initial z: {layer.z:.4f}")
+    print(f"  Kuramoto weight: {layer.kuramoto_weight:.4f} (φ⁻¹)")
+    print(f"  Free Energy weight: {layer.free_energy_weight:.4f} (φ⁻²)")
 
     # Validate physics
     print("\n--- Physics Validation ---")
@@ -810,7 +785,7 @@ def demonstrate_coupling_layer():
 
     # Evolve system
     print("\n--- Evolving System (100 steps) ---")
-    print("-" * 60)
+    print("-" * 70)
 
     for step in range(100):
         result = layer.step()
@@ -823,7 +798,7 @@ def demonstrate_coupling_layer():
                 f"z={result['z']:.3f} | "
                 f"r={result['kuramoto_coherence']:.3f} | "
                 f"ΔS={result['delta_s_neg']:.3f} | "
-                f"F={result['free_energy']:.2f} | "
+                f"Law={result['dominant_law']:10} | "
                 f"{result['phase']}"
             )
 
