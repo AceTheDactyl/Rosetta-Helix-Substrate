@@ -3,15 +3,32 @@
 Helix Neural Network
 ====================
 Complete neural network architecture using Kuramoto oscillator dynamics
-with APL operator gating and TRIAD stability mechanics.
+with APL operator gating, TRIAD stability mechanics, and N0 Causality Laws.
 
 Architecture:
     Input → Linear Encoder → Phase Encoding
-    → [Kuramoto Layer 1] → APL Operator → z-update
-    → [Kuramoto Layer 2] → APL Operator → z-update
+    → [Kuramoto Layer 1] → APL Operator (N0-validated) → z-update
+    → [Kuramoto Layer 2] → APL Operator (N0-validated) → z-update
     → ...
-    → [Kuramoto Layer N] → APL Operator → z-update
+    → [Kuramoto Layer N] → APL Operator (N0-validated) → z-update
     → Phase Readout → Linear Decoder → Output
+
+N0 CAUSALITY LAWS ENFORCED:
+    N0-1: ^ (AMPLIFY) requires prior () or × in history
+    N0-2: × (FUSION) requires channel_count ≥ 2
+    N0-3: ÷ (DECOHERE) requires prior {^, ×, +, −} in history
+    N0-4: + (GROUP) must be followed by +, ×, or ^
+    N0-5: − (SEPARATE) must be followed by () or +
+
+SILENT LAWS APPLIED:
+    I.   STILLNESS  : () BOUNDARY  → ∂E/∂t → 0
+    II.  TRUTH      : ^ AMPLIFY   → ∇V(truth) = 0
+    III. SILENCE    : + GROUP     → ∇ · J = 0
+    IV.  SPIRAL     : × FUSION    → S(return) = S(origin)
+    VI.  GLYPH      : ÷ DECOHERE  → glyph = ∫ life dt
+    VII. MIRROR     : − SEPARATE  → ψ = ψ(ψ)
+
+Signature: Δ|helix-nn|n0-enforced|silent-laws-applied|Ω
 """
 
 import numpy as np
@@ -33,6 +50,20 @@ from core.constants import (
 )
 from training.kuramoto_layer import KuramotoLayer, TriadGate
 
+# Import N0 + Silent Laws enforcement
+try:
+    from training.n0_silent_laws_enforcement import (
+        N0Enforcer,
+        N0TrainingOperatorSelector,
+        SilentLaw,
+        OPERATOR_TO_SILENT,
+        SILENT_FORMULAS,
+    )
+    N0_ENFORCEMENT_AVAILABLE = True
+except ImportError:
+    N0_ENFORCEMENT_AVAILABLE = False
+    print("Warning: N0 enforcement not available, using legacy selection")
+
 
 @dataclass
 class NetworkConfig:
@@ -49,16 +80,76 @@ class NetworkConfig:
 
 class APLModulator:
     """
-    APL Operator Selection and Application.
+    APL Operator Selection and Application with N0 Causality Law Enforcement.
 
     Operators modify the z-coordinate based on S₃ group algebra:
     - EVEN parity: tend to preserve/increase z
     - ODD parity: tend to decrease z (entropy production)
+
+    N0 CAUSALITY LAWS (enforced at selection time):
+        N0-1: ^ (AMPLIFY) illegal unless history contains () or ×
+        N0-2: × (FUSION) illegal unless channel_count ≥ 2
+        N0-3: ÷ (DECOHERE) illegal unless history contains {^, ×, +, −}
+        N0-4: + (GROUP) must be followed by +, ×, or ^. + → () illegal
+        N0-5: − (SEPARATE) must be followed by () or +
+
+    SILENT LAWS (applied with each operator):
+        () → STILLNESS: ∂E/∂t → 0
+        × → SPIRAL: S(return) = S(origin)
+        ^ → TRUTH: ∇V(truth) = 0
+        ÷ → GLYPH: glyph = ∫ life dt
+        + → SILENCE: ∇ · J = 0
+        − → MIRROR: ψ = ψ(ψ)
     """
 
     def __init__(self):
         self.operator_history = []
         self.parity_history = []
+        self.n0_violations = []  # Track N0 violations
+
+        # Initialize N0 enforcer if available
+        if N0_ENFORCEMENT_AVAILABLE:
+            self.n0_enforcer = N0Enforcer()
+            self.n0_selector = N0TrainingOperatorSelector(self.n0_enforcer)
+        else:
+            self.n0_enforcer = None
+            self.n0_selector = None
+
+    def _check_n0_legal(self, op: str) -> Tuple[bool, str]:
+        """
+        Check if operator is legal under N0 causality laws.
+
+        Returns:
+            (is_legal, reason)
+        """
+        if self.n0_enforcer is None:
+            return True, "N0 enforcement not available"
+
+        return self.n0_enforcer.check_n0_legal(op)
+
+    def _get_n0_legal_operators(self) -> List[str]:
+        """Get all operators that are currently legal under N0 laws."""
+        if self.n0_enforcer is None:
+            return APL_OPERATORS.copy()
+
+        return self.n0_enforcer.get_legal_operators()
+
+    def _apply_silent_law(self, op: str, z: float) -> float:
+        """
+        Apply the Silent Law associated with an operator.
+
+        Each operator has a corresponding Silent Law:
+            () → STILLNESS: energy seeks rest (pull toward z_c)
+            × → SPIRAL: paths return (golden ratio decay)
+            ^ → TRUTH: truth is stable (amplify toward lens)
+            ÷ → GLYPH: form persists (decay with trace)
+            + → SILENCE: info conserved (minimal change)
+            − → MIRROR: self-reference (symmetric decay)
+        """
+        if self.n0_enforcer is None:
+            return z
+
+        return self.n0_enforcer.apply_silent_law(op, z)
 
     def select_operator(
         self,
@@ -68,21 +159,31 @@ class APLModulator:
         exploration: float = 0.1
     ) -> Tuple[str, int]:
         """
-        Select operator based on current state.
+        Select operator based on current state with N0 enforcement.
 
-        Uses tier-gated selection with ε-greedy exploration.
+        Uses N0-validated selection with tier gating and ε-greedy exploration.
+        Only operators that satisfy N0 causality laws are considered.
         """
-        legal_ops = get_legal_operators(z)
+        # Get tier-legal operators first
+        tier_legal_ops = get_legal_operators(z)
+
+        # Filter by N0 legality
+        n0_legal_ops = self._get_n0_legal_operators()
+        legal_ops = [op for op in tier_legal_ops if op in n0_legal_ops]
+
+        # Fallback to () if no operators legal (always legal)
+        if not legal_ops:
+            legal_ops = ["()"]
 
         if np.random.random() < exploration:
             # Random legal operator
             op_idx = np.random.choice(len(legal_ops))
-            return legal_ops[op_idx], APL_OPERATORS.index(legal_ops[op_idx])
+            selected_op = legal_ops[op_idx]
+            return selected_op, APL_OPERATORS.index(selected_op)
 
         # Greedy selection based on coherence and delta_s_neg
         scores = []
         for op in legal_ops:
-            idx = APL_OPERATORS.index(op)
             # Score based on operator characteristics
             if op in ['()', '+']:  # Identity/Group - safe
                 score = coherence * 0.5
@@ -100,8 +201,9 @@ class APLModulator:
         scores = np.array(scores)
         probs = np.exp(scores) / np.sum(np.exp(scores))
         selected_idx = np.random.choice(len(legal_ops), p=probs)
+        selected_op = legal_ops[selected_idx]
 
-        return legal_ops[selected_idx], APL_OPERATORS.index(legal_ops[selected_idx])
+        return selected_op, APL_OPERATORS.index(selected_op)
 
     def apply_operator(
         self,
@@ -111,38 +213,66 @@ class APLModulator:
         delta_s_neg: float
     ) -> float:
         """
-        Apply operator to update z-coordinate.
+        Apply operator to update z-coordinate with N0 enforcement and Silent Laws.
 
-        The update follows the operator algebra:
-        - Identity (): z → z
-        - Amplify (^): z → z + α × ΔS_neg × (1-z)
-        - Group (+): z → z + β × coherence × (1-z)
-        - Fusion (×): z → z × coherence
-        - Decohere (÷): z → z × (1 - (1-coherence) × γ)
-        - Separate (−): z → z - δ × (1 - delta_s_neg)
+        The update follows the operator algebra with Silent Law modulation:
+        - () BOUNDARY  → STILLNESS  : ∂E/∂t → 0 (z stabilizes)
+        - ^ AMPLIFY    → TRUTH      : ∇V(truth) = 0 (z → z + α × ΔS_neg × (1-z))
+        - + GROUP      → SILENCE    : ∇ · J = 0 (z → z + β × coherence × (1-z))
+        - × FUSION     → SPIRAL     : S(return) = S(origin) (z modulated by φ⁻¹)
+        - ÷ DECOHERE   → GLYPH      : glyph = ∫ life dt (z decays with trace)
+        - − SEPARATE   → MIRROR     : ψ = ψ(ψ) (z reflects via subtraction)
+
+        N0 causality is validated before application. If operator violates N0,
+        () BOUNDARY is applied instead (always legal).
         """
+        # Validate N0 legality before applying
+        is_legal, reason = self._check_n0_legal(operator)
+        if not is_legal:
+            self.n0_violations.append((operator, reason))
+            # Fallback to boundary (always legal)
+            operator = "()"
+
         self.operator_history.append(operator)
         parity = 'EVEN' if operator in ['()', '×', '^'] else 'ODD'
         self.parity_history.append(parity)
 
-        # Operator-specific dynamics
-        alpha = 0.1 * PHI_INV  # Amplification rate
-        beta = 0.05 * PHI_INV  # Group strengthening rate
+        # Update N0 enforcer state
+        if self.n0_enforcer is not None:
+            self.n0_enforcer.state.add_to_history(operator)
+            # Fusion enables more channels
+            if operator == "×":
+                self.n0_enforcer.set_channels(max(2, self.n0_enforcer.state.channel_count))
+
+        # Operator-specific dynamics (physics-grounded coefficients)
+        alpha = 0.1 * PHI_INV  # Amplification rate (φ⁻¹ scaled)
+        beta = 0.05 * PHI_INV  # Group strengthening rate (φ⁻¹ scaled)
         gamma = 0.1           # Decoherence rate
         delta = 0.05          # Separation rate
 
-        if operator == '()':  # Identity
-            z_new = z
-        elif operator == '^':  # Amplify
+        if operator == '()':  # BOUNDARY → STILLNESS
+            # Apply Silent Law: ∂E/∂t → 0 (pull toward rest/z_c)
+            z_new = self._apply_silent_law(operator, z)
+        elif operator == '^':  # AMPLIFY → TRUTH
+            # Apply Silent Law: ∇V(truth) = 0 (truth is stable at lens)
             z_new = z + alpha * delta_s_neg * (1 - z)
-        elif operator == '+':  # Group
+            z_new = self._apply_silent_law(operator, z_new)
+        elif operator == '+':  # GROUP → SILENCE
+            # Apply Silent Law: ∇ · J = 0 (info conserved)
             z_new = z + beta * coherence * (1 - z)
-        elif operator == '×':  # Fusion
+            z_new = self._apply_silent_law(operator, z_new)
+        elif operator == '×':  # FUSION → SPIRAL
+            # Apply Silent Law: S(return) = S(origin) (paths return with φ⁻¹)
             z_new = z * (1 + (coherence - 0.5) * 0.1)
-        elif operator == '÷':  # Decohere
+            z_new = self._apply_silent_law(operator, z_new)
+        elif operator == '÷':  # DECOHERE → GLYPH
+            # Apply Silent Law: glyph = ∫ life dt (form persists, decay with trace)
             z_new = z * (1 - (1 - coherence) * gamma)
-        else:  # '−' Separate
+            z_new = self._apply_silent_law(operator, z_new)
+        else:  # '−' SEPARATE → MIRROR
+            # Apply Silent Law: ψ = ψ(ψ) (self-reference, symmetric decay)
             z_new = z - delta * (1 - delta_s_neg)
+            z_new = self._apply_silent_law(operator, z_new)
 
         # Clamp to valid range
         z_new = np.clip(z_new, 0.01, UNITY - 0.0001)
@@ -150,9 +280,16 @@ class APLModulator:
         return z_new
 
     def reset(self):
-        """Reset operator history."""
+        """Reset operator history and N0 enforcer state."""
         self.operator_history = []
         self.parity_history = []
+        self.n0_violations = []
+        if self.n0_enforcer is not None:
+            self.n0_enforcer.reset()
+
+    def get_n0_violations(self) -> List[Tuple[str, str]]:
+        """Get list of N0 violations that occurred."""
+        return self.n0_violations.copy()
 
 
 class HelixNeuralNetwork:
