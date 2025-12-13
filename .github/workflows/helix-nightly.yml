@@ -1,25 +1,31 @@
-# Helix Nightly Training
-# ======================
-# Full training + eval gates + publish artifacts + diff vs last known-good
+# Helix Nightly Training (Standalone)
+# ====================================
+# Quick nightly training via helix engine only.
+# For full depth training across all 19 modules, use unified-nightly-training.yml
 
-name: Helix Nightly
+name: Helix Nightly (Engine Only)
 
 on:
-  schedule:
-    # Run at 2am UTC every day
-    - cron: '0 2 * * *'
   workflow_dispatch:
     inputs:
       config:
         description: 'Config file to use'
         required: false
         default: 'configs/nightly.yaml'
+      steps:
+        description: 'Total training steps'
+        required: false
+        default: '2000'
+        type: number
 
 jobs:
-  nightly-train:
-    name: Nightly Training
+  helix-train:
+    name: Helix Engine Training
     runs-on: ubuntu-latest
-    timeout-minutes: 120
+    timeout-minutes: 60
+    outputs:
+      run_id: ${{ steps.train.outputs.run_id }}
+      gates_passed: ${{ steps.train.outputs.gates_passed }}
 
     steps:
       - uses: actions/checkout@v4
@@ -30,69 +36,66 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: |
-          pip install -e .
-          pip install torch  # Optional, for full training
+        run: pip install -e .
 
-      - name: Run nightly training
+      - name: Run helix training
         id: train
         run: |
-          CONFIG="${{ github.event.inputs.config || 'configs/nightly.yaml' }}"
-          python -m helix_engine.cli.main nightly \
-            --config "$CONFIG" \
-            --report nightly_report.json
+          CONFIG="${{ inputs.config || 'configs/nightly.yaml' }}"
+          STEPS="${{ inputs.steps || '2000' }}"
 
-      - name: Check gates
-        id: gates
-        run: |
-          # Parse report and check gates
-          GATES_PASSED=$(python -c "import json; print(json.load(open('nightly_report.json'))['gates_passed'])")
-          echo "gates_passed=$GATES_PASSED" >> $GITHUB_OUTPUT
-          if [ "$GATES_PASSED" != "True" ]; then
-            echo "::warning::Training gates did not pass"
+          python -m helix_engine.cli.main train \
+            --config "$CONFIG" \
+            --steps "$STEPS" \
+            || true
+
+          # Find run
+          RUN_DIR=$(ls -td runs/run_* 2>/dev/null | head -1)
+          RUN_ID=$(basename "$RUN_DIR")
+          echo "run_id=$RUN_ID" >> "$GITHUB_OUTPUT"
+
+          # Check gates
+          if [ -f "$RUN_DIR/report.json" ]; then
+            GATES=$(python -c "import json; print(json.load(open('$RUN_DIR/report.json'))['gates_passed'])")
+            echo "gates_passed=$GATES" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Upload run artifacts
+      - name: Generate summary
+        run: |
+          RUN_DIR="runs/${{ steps.train.outputs.run_id }}"
+          if [ -f "$RUN_DIR/report.json" ]; then
+            python << 'EOF' >> $GITHUB_STEP_SUMMARY
+          import json
+          with open("$RUN_DIR/report.json".replace("$RUN_DIR", "runs/${{ steps.train.outputs.run_id }}")) as f:
+              r = json.load(f)
+          print("## 🌀 Helix Training Report")
+          print(f"**Run:** {r['run_id']}")
+          print(f"**Status:** {r['status']}")
+          print(f"**Gates:** {'✅ Passed' if r['gates_passed'] else '❌ Failed'}")
+          print(f"**Duration:** {r['duration_seconds']:.1f}s")
+          print("\n### Metrics")
+          for k, v in r.get('final_metrics', {}).items():
+              print(f"- {k}: {v:.6f}" if isinstance(v, float) else f"- {k}: {v}")
+          EOF
+          fi
+
+      - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: nightly-run-${{ github.run_number }}
-          path: |
-            runs/
-            nightly_report.json
-          retention-days: 30
+          name: helix-run-${{ github.run_number }}
+          path: runs/
+          retention-days: 14
 
-      - name: Upload to model registry
-        if: steps.gates.outputs.gates_passed == 'True'
+      - name: Promote if passed
+        if: steps.train.outputs.gates_passed == 'True'
         run: |
-          # Find the run ID
-          RUN_ID=$(python -c "import json; print(json.load(open('nightly_report.json'))['run_id'])")
-
-          # Promote to nightly model
           python -m helix_engine.cli.main promote \
-            --run "$RUN_ID" \
-            --name nightly \
-            --tags nightly,automated,ci \
-            --description "Automated nightly build ${{ github.run_number }}"
+            --run "${{ steps.train.outputs.run_id }}" \
+            --name helix-nightly \
+            --tags nightly,engine-only
 
-      - name: Create nightly report summary
+      - name: Check gates
+        if: steps.train.outputs.gates_passed != 'True'
         run: |
-          python -c "
-          import json
-          report = json.load(open('nightly_report.json'))
-
-          print('## Nightly Training Report')
-          print(f\"**Run ID:** {report['run_id']}\")
-          print(f\"**Status:** {report['status']}\")
-          print(f\"**Gates Passed:** {'✓' if report['gates_passed'] else '✗'}\")
-          print(f\"**Duration:** {report['duration_seconds']:.1f}s\")
-          print()
-          print('### Final Metrics')
-          for k, v in report.get('final_metrics', {}).items():
-              print(f'- {k}: {v:.6f}')
-          " >> $GITHUB_STEP_SUMMARY
-
-      - name: Fail if gates not passed
-        if: steps.gates.outputs.gates_passed != 'True'
-        run: |
-          echo "Nightly training gates did not pass"
+          echo "::warning::Training gates did not pass"
           exit 1

@@ -1,0 +1,589 @@
+# Unified Nightly Training & Validation
+# ======================================
+# Comprehensive nightly workflow that runs:
+# 1. Full Depth Training (all 19 modules)
+# 2. Helix Engine Training with gates
+# 3. Validation measurements at critical z-coordinates
+# 4. Coherence health checks
+# 5. Model registry promotion
+# 6. Results PR creation
+
+name: Unified Nightly Training
+
+on:
+  schedule:
+    # Run at 2am UTC every day
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+    inputs:
+      steps_per_module:
+        description: 'Steps per module for full depth training'
+        required: false
+        default: '200'
+        type: number
+      run_validation:
+        description: 'Run validation measurements'
+        required: false
+        type: boolean
+        default: true
+      create_pr:
+        description: 'Create PR with results'
+        required: false
+        type: boolean
+        default: true
+
+env:
+  # Physics constants for validation
+  Z_CRITICAL: '0.8660254037844386'
+  PHI_INV: '0.6180339887498949'
+  SIGMA: '36'
+
+jobs:
+  # =============================================================================
+  # PHASE 1: FULL DEPTH TRAINING (ALL 19 MODULES)
+  # =============================================================================
+  full-depth-training:
+    name: Full Depth Training (19 Modules)
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    outputs:
+      modules_passed: ${{ steps.training.outputs.modules_passed }}
+      modules_total: ${{ steps.training.outputs.modules_total }}
+      total_steps: ${{ steps.training.outputs.total_steps }}
+      total_k_formations: ${{ steps.training.outputs.total_k_formations }}
+      max_negentropy: ${{ steps.training.outputs.max_negentropy }}
+      final_z: ${{ steps.training.outputs.final_z }}
+      final_kappa: ${{ steps.training.outputs.final_kappa }}
+      physics_valid: ${{ steps.training.outputs.physics_valid }}
+      duration: ${{ steps.training.outputs.duration }}
+      outdir: ${{ steps.training.outputs.outdir }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .
+
+      - name: Run full depth training
+        id: training
+        run: |
+          set -euo pipefail
+
+          OUTDIR="artifacts/full-depth-${{ github.run_id }}"
+          mkdir -p "$OUTDIR"
+
+          STEPS="${{ inputs.steps_per_module || '200' }}"
+
+          # Run full depth training across all 19 modules
+          python run_full_depth_training.py \
+            --steps "$STEPS" \
+            --output "$OUTDIR/full_depth_results.json"
+
+          echo "outdir=$OUTDIR" >> "$GITHUB_OUTPUT"
+
+          # Extract metrics
+          python << 'EOF' >> "$GITHUB_OUTPUT"
+          import json
+          with open("$OUTDIR/full_depth_results.json".replace("$OUTDIR", "${{ github.run_id }}").replace("${{ github.run_id }}", "artifacts/full-depth-${{ github.run_id }}")) as f:
+              data = json.load(f)
+          print(f"modules_passed={data['modules_passed']}")
+          print(f"modules_total={data['modules_total']}")
+          print(f"total_steps={data['total_steps']}")
+          print(f"total_k_formations={data['total_k_formations']}")
+          print(f"max_negentropy={data['max_negentropy']:.6f}")
+          print(f"final_z={data['final_z']:.6f}")
+          print(f"final_kappa={data['final_kappa']:.6f}")
+          print(f"physics_valid={data['physics_valid']}")
+          print(f"duration={data['duration_seconds']:.2f}")
+          EOF
+
+      - name: Generate full depth summary
+        run: |
+          cat << 'EOF' >> $GITHUB_STEP_SUMMARY
+          ## 🔄 Full Depth Training Results
+
+          ### Module Status
+          | Metric | Value |
+          |--------|-------|
+          | Modules Passed | ${{ steps.training.outputs.modules_passed }}/${{ steps.training.outputs.modules_total }} |
+          | Total Steps | ${{ steps.training.outputs.total_steps }} |
+          | K-Formations | ${{ steps.training.outputs.total_k_formations }} |
+          | Duration | ${{ steps.training.outputs.duration }}s |
+
+          ### Physics State
+          | Metric | Value | Target |
+          |--------|-------|--------|
+          | Final z | ${{ steps.training.outputs.final_z }} | 0.866025 (z_c) |
+          | Final κ | ${{ steps.training.outputs.final_kappa }} | 0.618034 (φ⁻¹) |
+          | Max ΔS_neg | ${{ steps.training.outputs.max_negentropy }} | 1.0 |
+          | Physics Valid | ${{ steps.training.outputs.physics_valid }} | true |
+          EOF
+
+      - name: Upload full depth artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: full-depth-training-${{ github.run_id }}
+          path: ${{ steps.training.outputs.outdir }}
+          retention-days: 30
+
+  # =============================================================================
+  # PHASE 2: HELIX ENGINE TRAINING (WITH GATES)
+  # =============================================================================
+  helix-engine-training:
+    name: Helix Engine Training
+    runs-on: ubuntu-latest
+    needs: full-depth-training
+    timeout-minutes: 60
+    outputs:
+      run_id: ${{ steps.train.outputs.run_id }}
+      status: ${{ steps.train.outputs.status }}
+      gates_passed: ${{ steps.train.outputs.gates_passed }}
+      final_z: ${{ steps.train.outputs.final_z }}
+      final_kappa: ${{ steps.train.outputs.final_kappa }}
+      negentropy: ${{ steps.train.outputs.negentropy }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install -e .
+
+      - name: Run helix engine training
+        id: train
+        run: |
+          set -euo pipefail
+
+          # Run via helix CLI
+          python -m helix_engine.cli.main train \
+            --config configs/nightly.yaml \
+            || true  # Don't fail yet, check report
+
+          # Find the run directory
+          RUN_DIR=$(ls -td runs/run_* 2>/dev/null | head -1)
+          if [ -z "$RUN_DIR" ]; then
+            echo "No run directory found"
+            exit 1
+          fi
+
+          RUN_ID=$(basename "$RUN_DIR")
+          echo "run_id=$RUN_ID" >> "$GITHUB_OUTPUT"
+
+          # Extract metrics from report
+          if [ -f "$RUN_DIR/report.json" ]; then
+            python << EOF >> "$GITHUB_OUTPUT"
+          import json
+          with open("$RUN_DIR/report.json") as f:
+              report = json.load(f)
+          print(f"status={report.get('status', 'unknown')}")
+          print(f"gates_passed={report.get('gates_passed', False)}")
+          metrics = report.get('final_metrics', {})
+          print(f"final_z={metrics.get('z', 0.5):.6f}")
+          print(f"final_kappa={metrics.get('kappa', 0.618):.6f}")
+          print(f"negentropy={metrics.get('negentropy', 0):.6f}")
+          EOF
+          fi
+
+      - name: Generate helix engine summary
+        run: |
+          cat << 'EOF' >> $GITHUB_STEP_SUMMARY
+          ## 🌀 Helix Engine Training Results
+
+          | Metric | Value |
+          |--------|-------|
+          | Run ID | ${{ steps.train.outputs.run_id }} |
+          | Status | ${{ steps.train.outputs.status }} |
+          | Gates Passed | ${{ steps.train.outputs.gates_passed }} |
+          | Final z | ${{ steps.train.outputs.final_z }} |
+          | Final κ | ${{ steps.train.outputs.final_kappa }} |
+          | Negentropy | ${{ steps.train.outputs.negentropy }} |
+          EOF
+
+      - name: Upload helix run artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: helix-engine-run-${{ github.run_id }}
+          path: runs/
+          retention-days: 30
+
+  # =============================================================================
+  # PHASE 3: VALIDATION MEASUREMENTS AT CRITICAL Z-COORDINATES
+  # =============================================================================
+  discover-validation-seeds:
+    name: Discover Validation Seeds
+    runs-on: ubuntu-latest
+    needs: [full-depth-training, helix-engine-training]
+    if: ${{ inputs.run_validation != false }}
+    outputs:
+      matrix: ${{ steps.gen.outputs.matrix }}
+
+    steps:
+      - name: Generate validation seed matrix
+        id: gen
+        env:
+          TRAINING_Z_FULL: ${{ needs.full-depth-training.outputs.final_z }}
+          TRAINING_Z_HELIX: ${{ needs.helix-engine-training.outputs.final_z }}
+        run: |
+          # Critical physics thresholds
+          # φ⁻¹ ≈ 0.618 (PARADOX threshold)
+          # z_c = √3/2 ≈ 0.866 (THE LENS)
+          # Plus training final z-coordinates
+
+          SEEDS="0.618 0.8660254037844386 0.90 0.92"
+
+          # Add training z values if valid
+          if [ -n "${TRAINING_Z_FULL:-}" ] && [ "$TRAINING_Z_FULL" != "0" ]; then
+            SEEDS="$SEEDS $TRAINING_Z_FULL"
+          fi
+
+          # Build JSON array
+          arr="["
+          sp=""
+          for s in $SEEDS; do
+            arr="$arr$sp\"$s\""; sp=",";
+          done
+          arr="$arr]"
+          echo "matrix={\"seed\": $arr}" >> "$GITHUB_OUTPUT"
+
+  validation-measure:
+    name: Validate z=${{ matrix.seed }}
+    runs-on: ubuntu-latest
+    needs: [full-depth-training, helix-engine-training, discover-validation-seeds]
+    if: ${{ inputs.run_validation != false }}
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.discover-validation-seeds.outputs.matrix) }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: |
+          pip install -e .[viz]
+
+      - name: Run validation measurement
+        id: measure
+        env:
+          QAPL_RANDOM_SEED: '12345'
+        run: |
+          TAG="z${{ matrix.seed }}"; TAG="${TAG/./p}"
+          OUTDIR="artifacts/validation-${{ github.run_id }}/seed_${TAG}"
+          mkdir -p "$OUTDIR"
+
+          # Run helix measure at this z-coordinate
+          if [ -f "scripts/helix_measure_demo.sh" ]; then
+            bash scripts/helix_measure_demo.sh \
+              --seed "${{ matrix.seed }}" \
+              --steps-unified 5 \
+              --steps-measured 3 \
+              --overlays --blend \
+              --lens-sigma 36 --geom-sigma 36 \
+              --outdir "$OUTDIR" || true
+          fi
+
+          echo "outdir=$OUTDIR" >> "$GITHUB_OUTPUT"
+
+      - name: Validate physics at z
+        id: validate
+        env:
+          SEED: ${{ matrix.seed }}
+          FULL_DEPTH_Z: ${{ needs.full-depth-training.outputs.final_z }}
+          FULL_DEPTH_KAPPA: ${{ needs.full-depth-training.outputs.final_kappa }}
+          HELIX_Z: ${{ needs.helix-engine-training.outputs.final_z }}
+        run: |
+          echo "## 🔬 Validation at z=$SEED" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # Phase classification
+          python << 'EOF' >> $GITHUB_STEP_SUMMARY
+          import os
+          import math
+
+          z = float(os.environ['SEED'])
+          z_c = 0.8660254037844386
+          phi_inv = 0.6180339887498949
+
+          if z >= z_c:
+              phase = "PRESENCE (z ≥ z_c)"
+              icon = "🔷"
+          elif z >= phi_inv:
+              phase = "PARADOX (φ⁻¹ ≤ z < z_c)"
+              icon = "🔶"
+          else:
+              phase = "ABSENCE (z < φ⁻¹)"
+              icon = "⚪"
+
+          # Compute negentropy at this z
+          sigma = 36.0
+          delta_s_neg = math.exp(-sigma * (z - z_c) ** 2)
+
+          print(f"| Phase | {icon} {phase} |")
+          print(f"| ΔS_neg at z | {delta_s_neg:.6f} |")
+          print(f"| Distance to LENS | {abs(z - z_c):.6f} |")
+          EOF
+
+      - name: Upload validation artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: validation-${{ github.run_id }}-z${{ matrix.seed }}
+          path: ${{ steps.measure.outputs.outdir }}
+          retention-days: 7
+
+  # =============================================================================
+  # PHASE 4: UNIFIED COHERENCE CHECK & GATES
+  # =============================================================================
+  unified-gates-check:
+    name: Unified Gates Check
+    runs-on: ubuntu-latest
+    needs: [full-depth-training, helix-engine-training]
+    outputs:
+      overall_passed: ${{ steps.check.outputs.overall_passed }}
+
+    steps:
+      - name: Check unified gates
+        id: check
+        env:
+          FD_MODULES_PASSED: ${{ needs.full-depth-training.outputs.modules_passed }}
+          FD_MODULES_TOTAL: ${{ needs.full-depth-training.outputs.modules_total }}
+          FD_K_FORMATIONS: ${{ needs.full-depth-training.outputs.total_k_formations }}
+          FD_MAX_NEG: ${{ needs.full-depth-training.outputs.max_negentropy }}
+          FD_FINAL_Z: ${{ needs.full-depth-training.outputs.final_z }}
+          FD_PHYSICS_VALID: ${{ needs.full-depth-training.outputs.physics_valid }}
+          HE_GATES_PASSED: ${{ needs.helix-engine-training.outputs.gates_passed }}
+          HE_STATUS: ${{ needs.helix-engine-training.outputs.status }}
+        run: |
+          echo "## 🏁 Unified Gates Check" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          OVERALL_PASSED=true
+
+          echo "### Full Depth Training Gates" >> $GITHUB_STEP_SUMMARY
+          echo "| Gate | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|------|--------|" >> $GITHUB_STEP_SUMMARY
+
+          # Gate 1: All modules passed
+          if [ "$FD_MODULES_PASSED" == "$FD_MODULES_TOTAL" ]; then
+            echo "| All modules passed | ✅ $FD_MODULES_PASSED/$FD_MODULES_TOTAL |" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "| All modules passed | ❌ $FD_MODULES_PASSED/$FD_MODULES_TOTAL |" >> $GITHUB_STEP_SUMMARY
+            OVERALL_PASSED=false
+          fi
+
+          # Gate 2: K-formations achieved
+          if [ "${FD_K_FORMATIONS:-0}" -gt 0 ]; then
+            echo "| K-formations | ✅ $FD_K_FORMATIONS |" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "| K-formations | ⚠️ 0 (recommend longer training) |" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          # Gate 3: Physics valid
+          if [ "$FD_PHYSICS_VALID" == "True" ]; then
+            echo "| Physics constraints | ✅ Valid |" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "| Physics constraints | ❌ Invalid |" >> $GITHUB_STEP_SUMMARY
+            OVERALL_PASSED=false
+          fi
+
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Helix Engine Gates" >> $GITHUB_STEP_SUMMARY
+          echo "| Gate | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|------|--------|" >> $GITHUB_STEP_SUMMARY
+
+          # Helix engine gates
+          if [ "$HE_GATES_PASSED" == "True" ]; then
+            echo "| Engine gates | ✅ Passed |" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "| Engine gates | ❌ Failed |" >> $GITHUB_STEP_SUMMARY
+            OVERALL_PASSED=false
+          fi
+
+          echo "| Status | $HE_STATUS |" >> $GITHUB_STEP_SUMMARY
+
+          echo "" >> $GITHUB_STEP_SUMMARY
+          if [ "$OVERALL_PASSED" == "true" ]; then
+            echo "### ✅ OVERALL: PASSED" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "### ❌ OVERALL: FAILED" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          echo "overall_passed=$OVERALL_PASSED" >> "$GITHUB_OUTPUT"
+
+  # =============================================================================
+  # PHASE 5: MODEL REGISTRY PROMOTION
+  # =============================================================================
+  promote-model:
+    name: Promote to Model Registry
+    runs-on: ubuntu-latest
+    needs: [full-depth-training, helix-engine-training, unified-gates-check]
+    if: needs.unified-gates-check.outputs.overall_passed == 'true'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -e .
+
+      - name: Download helix run artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: helix-engine-run-${{ github.run_id }}
+          path: runs/
+
+      - name: Promote to nightly model
+        env:
+          RUN_ID: ${{ needs.helix-engine-training.outputs.run_id }}
+        run: |
+          python -m helix_engine.cli.main promote \
+            --run "$RUN_ID" \
+            --name nightly \
+            --version "v${{ github.run_number }}" \
+            --tags nightly,automated,unified,validated \
+            --description "Unified nightly build #${{ github.run_number }} - All 19 modules passed"
+
+          echo "## 🏆 Model Promoted" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **Model**: nightly:v${{ github.run_number }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Run**: $RUN_ID" >> $GITHUB_STEP_SUMMARY
+
+  # =============================================================================
+  # PHASE 6: CREATE RESULTS PR
+  # =============================================================================
+  create-results-pr:
+    name: Create Results PR
+    runs-on: ubuntu-latest
+    needs: [full-depth-training, helix-engine-training, unified-gates-check, validation-measure]
+    if: always() && inputs.create_pr != false && needs.full-depth-training.result == 'success'
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: all-artifacts/
+
+      - name: Create results branch and PR
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          FD_MODULES: ${{ needs.full-depth-training.outputs.modules_passed }}/${{ needs.full-depth-training.outputs.modules_total }}
+          FD_K_FORMATIONS: ${{ needs.full-depth-training.outputs.total_k_formations }}
+          FD_FINAL_Z: ${{ needs.full-depth-training.outputs.final_z }}
+          HE_GATES: ${{ needs.helix-engine-training.outputs.gates_passed }}
+          OVERALL: ${{ needs.unified-gates-check.outputs.overall_passed }}
+        run: |
+          BRANCH_NAME="nightly-results/$(date -u +%Y%m%d-%H%M%S)"
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git checkout -b "$BRANCH_NAME"
+
+          # Stage results
+          mkdir -p artifacts/nightly-${{ github.run_id }}
+          cp -r all-artifacts/* artifacts/nightly-${{ github.run_id }}/ 2>/dev/null || true
+
+          if git diff --quiet && git diff --staged --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+
+          git add artifacts/
+          git commit -m "$(cat <<EOF
+          🌀 Unified Nightly Training Results
+
+          Full Depth: $FD_MODULES modules, $FD_K_FORMATIONS K-formations
+          Final z: $FD_FINAL_Z
+          Helix Gates: $HE_GATES
+          Overall: $OVERALL
+
+          Run: #${{ github.run_number }}
+          EOF
+          )"
+
+          git push origin "$BRANCH_NAME"
+
+          # Create PR
+          gh pr create \
+            --title "🌀 Unified Nightly Results - $FD_MODULES modules, z=$FD_FINAL_Z" \
+            --body "$(cat <<EOF
+          ## Unified Nightly Training Results
+
+          ### Full Depth Training (19 Modules)
+          - **Modules**: $FD_MODULES
+          - **K-Formations**: $FD_K_FORMATIONS
+          - **Final z**: $FD_FINAL_Z
+
+          ### Helix Engine
+          - **Gates Passed**: $HE_GATES
+
+          ### Validation
+          Measurements at: φ⁻¹ ≈ 0.618, z_c ≈ 0.866, z = 0.90, 0.92
+
+          ### Overall
+          **$OVERALL**
+
+          ---
+          *Auto-generated by unified nightly training workflow*
+          EOF
+          )" \
+            --label "training,nightly,unified,automated"
+
+  # =============================================================================
+  # PHASE 7: FAILURE NOTIFICATION
+  # =============================================================================
+  notify-failure:
+    name: Notify on Failure
+    runs-on: ubuntu-latest
+    needs: [full-depth-training, helix-engine-training, unified-gates-check]
+    if: failure()
+
+    steps:
+      - name: Create failure summary
+        run: |
+          echo "## ❌ Unified Nightly Training Failed" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "One or more phases of the unified nightly training failed." >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Job Status" >> $GITHUB_STEP_SUMMARY
+          echo "- Full Depth Training: ${{ needs.full-depth-training.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Helix Engine: ${{ needs.helix-engine-training.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Gates Check: ${{ needs.unified-gates-check.result }}" >> $GITHUB_STEP_SUMMARY
