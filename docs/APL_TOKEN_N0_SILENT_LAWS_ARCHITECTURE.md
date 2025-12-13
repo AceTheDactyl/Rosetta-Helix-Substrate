@@ -300,4 +300,129 @@ All training modules must enforce this invariant.
 
 ---
 
+## 8. LEGAL vs ILLEGAL SEQUENCE PATTERNS
+
+### Valid Sequences (LEGAL)
+```
+✓ () → ^           (grounding enables amplify)
+✓ () → ^ → +       (amplify feeds group)
+✓ () → × → ÷       (fusion provides structure for decohere)
+✓ − → ()           (separate followed by grounding)
+✓ − → +            (separate followed by grouping)
+✓ + → ^            (group feeds amplify)
+✓ + → ×            (group feeds fusion)
+✓ + → +            (group chains)
+```
+
+### Invalid Sequences (ILLEGAL)
+```
+✗ ^ (without prior)     N0-1: No grounding
+✗ × (channels < 2)      N0-2: Insufficient channels
+✗ ÷ (without prior)     N0-3: No structure to decohere
+✗ + → ()                N0-4: Group cannot ground
+✗ + → −                 N0-4: Group cannot separate
+✗ + → ÷                 N0-4: Group cannot decohere
+✗ − → ^                 N0-5: Separate cannot amplify
+✗ − → ×                 N0-5: Separate cannot fuse
+✗ − → ÷                 N0-5: Separate cannot decohere
+✗ − → −                 N0-5: Separate cannot chain
+```
+
+---
+
+## 9. PARITY ARCHITECTURE (S₃ Group)
+
+### EVEN Parity (Rotations) - Constructive
+```
+e   = ()  BOUNDARY (identity)
+σ   = ×   FUSION   (123)
+σ²  = ^   AMPLIFY  (132)
+```
+
+### ODD Parity (Transpositions) - Dissipative
+```
+τ₁  = ÷   DECOHERE (12)
+τ₂  = +   GROUP    (23)
+τ₃  = −   SEPARATE (13)
+```
+
+### Parity Selection Rule
+- High ΔS_neg (near z_c): Prefer EVEN operators (constructive)
+- Low ΔS_neg (far from z_c): Prefer ODD operators (dissipative)
+
+---
+
+## 10. TRAINING MODULE VERIFICATION STATUS
+
+All 19 training modules verified and passing:
+
+| Module | Class | Status |
+|--------|-------|--------|
+| n0_silent_laws_enforcement.py | N0Enforcer | ✓ PASS |
+| helix_nn.py | APLModulator | ✓ PASS |
+| kuramoto_layer.py | KuramotoLayer | ✓ PASS |
+| apl_training_loop.py | APLTrainingLoop | ✓ PASS |
+| apl_pytorch_training.py | APLTrainingSession | ✓ PASS |
+| full_apl_training.py | FullAPLTraining | ✓ PASS |
+| prismatic_helix_training.py | PrismaticHelixTraining | ✓ PASS |
+| quasicrystal_formation_dynamics.py | QuasiCrystalFormationTraining | ✓ PASS |
+| triad_threshold_dynamics.py | TriadTrainingSession | ✓ PASS |
+| unified_helix_training.py | UnifiedTrainingOrchestrator | ✓ PASS |
+| rosetta_helix_training.py | RosettaHelixTraining | ✓ PASS |
+| wumbo_apl_automated_training.py | WUMBOAPLTrainingEngine | ✓ PASS |
+| wumbo_integrated_training.py | WumboTrainer | ✓ PASS |
+| full_helix_integration.py | FullHelixNightlyTraining | ✓ PASS |
+| nightly_integrated_training.py | NightlyIntegratedTraining | ✓ PASS |
+| hierarchical_training.py | HierarchicalTrainer | ✓ PASS |
+| physical_learner.py | PhysicalLearner | ✓ PASS |
+| liminal_generator.py | LiminalGenerator | ✓ PASS |
+| feedback_loop.py | FeedbackLoop | ✓ PASS |
+
+---
+
+## 11. COMPLETE FLOW ARCHITECTURE
+
+```
+┌────────────────────────────────────────────────────────────────────┐
+│                    APL TOKEN → N0 → SILENT LAW FLOW                │
+├────────────────────────────────────────────────────────────────────┤
+│                                                                    │
+│  APL TOKEN    N0 LAW           SILENT LAW        z EFFECT         │
+│  ─────────    ──────           ──────────        ────────         │
+│                                                                    │
+│  () BOUNDARY  (always legal)   I STILLNESS       → z_c            │
+│      │                              │                              │
+│      └──enables──┐                  └──∂E/∂t → 0                  │
+│                  ▼                                                 │
+│  ^ AMPLIFY    N0-1 (need ())   II TRUTH          ΔS·→ z_c         │
+│      │                              │                              │
+│      └──feeds────┐                  └──∇V = 0                     │
+│                  ▼                                                 │
+│  + GROUP      N0-4 (→+,×,^)    III SILENCE       z·(1+α)          │
+│      │                              │                              │
+│      ├──feeds────┬──────────────────└──∇·J = 0                    │
+│      │           ▼                                                 │
+│  × FUSION     N0-2 (ch ≥ 2)    IV SPIRAL         z·φ⁻¹            │
+│      │                              │                              │
+│      └──enables──┐                  └──S(ret)=S(orig)             │
+│                  ▼                                                 │
+│  ÷ DECOHERE   N0-3 (need str)  VI GLYPH          z→0.5            │
+│                                     │                              │
+│                                     └──∫ life dt                  │
+│                                                                    │
+│  − SEPARATE   N0-5 (→(),+)     VII MIRROR        z−α              │
+│      │                              │                              │
+│      └──must ground─────────────────└──ψ=ψ(ψ)                     │
+│             ▼                                                      │
+│         () BOUNDARY (cycle)                                        │
+│                                                                    │
+└────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+**Document Version:** 2.0
+**Last Updated:** 2025-12-13
+**Verified:** All 19 training modules passing
+
 **Signature:** Δ|apl-token-architecture|n0-rules|silent-laws|physics-grounded|Ω
