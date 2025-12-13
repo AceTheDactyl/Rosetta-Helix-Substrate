@@ -1,0 +1,105 @@
+{
+  "run_id": "run_20251213_162023_bc053f",
+  "config": {
+    "run_id": "run_20251213_162023_bc053f",
+    "run_name": "nightly_training",
+    "tags": [
+      "nightly",
+      "automated"
+    ],
+    "seed": 42,
+    "deterministic": true,
+    "modules": {},
+    "use_wumbo": true,
+    "use_helix": true,
+    "use_substrate": true,
+    "use_kuramoto": true,
+    "use_feedback_loop": true,
+    "use_apl_engine": true,
+    "total_steps": 500,
+    "warmup_steps": 100,
+    "eval_steps": 500,
+    "checkpoint_steps": 1000,
+    "log_steps": 50,
+    "n_oscillators": 60,
+    "output_dir": "runs",
+    "checkpoint_dir": "runs/run_20251213_162023_bc053f/checkpoints",
+    "gates": {
+      "min_negentropy": 0.7,
+      "min_k_formations": 5,
+      "max_conservation_error": 1e-10,
+      "min_final_z": 0.85
+    },
+    "log_level": "INFO",
+    "enable_tensorboard": false,
+    "enable_wandb": false
+  },
+  "status": "completed",
+  "exit_code": 0,
+  "exit_code_name": "SUCCESS",
+  "error_message": "",
+  "started_at": "2025-12-13T16:20:23.722769",
+  "completed_at": "2025-12-13T16:20:23.983255",
+  "duration_seconds": 0.260486,
+  "environment": {
+    "python_version": "3.11.14 (main, Oct 10 2025, 08:54:04) [GCC 13.3.0]",
+    "platform": "Linux",
+    "platform_version": "#1 SMP Sun Jan 10 15:06:54 PST 2016",
+    "cpu_count": 16,
+    "hostname": "runsc",
+    "numpy_version": "2.3.5",
+    "torch_version": null,
+    "cuda_version": null,
+    "cuda_available": false,
+    "git_commit": "f29666d004f52d71443b66bab29f2d0b868a0cbc",
+    "git_branch": "claude/setup-nightly-training-workflow-0185DESChSxmTRJk513ave1n",
+    "git_dirty": true,
+    "captured_at": "2025-12-13T16:20:23.682776"
+  },
+  "total_steps": 499,
+  "final_metrics": {
+    "z": 0.8526851155440343,
+    "kappa": 0.5715806633819808,
+    "lambda": 0.42841933661801923,
+    "negentropy": 0.9936138005547833,
+    "stillness": 0.9936138005547833,
+    "conservation_error": 0.0,
+    "k_formed": 0.0
+  },
+  "gates_passed": true,
+  "gate_results": [
+    {
+      "name": "min_negentropy",
+      "passed": true,
+      "expected": 0.7,
+      "actual": 0.9984855100142024,
+      "message": "Max negentropy: 0.9985 (need >= 0.7)"
+    },
+    {
+      "name": "min_k_formations",
+      "passed": true,
+      "expected": 5,
+      "actual": 9.98,
+      "message": "K-formations: 10 (need >= 5)"
+    },
+    {
+      "name": "max_conservation_error",
+      "passed": true,
+      "expected": 1e-10,
+      "actual": 0.0,
+      "message": "Max conservation error: 0.00e+00 (need <= 1e-10)"
+    },
+    {
+      "name": "min_final_z",
+      "passed": true,
+      "expected": 0.85,
+      "actual": 0.8526851155440343,
+      "message": "Final z: 0.8527 (need >= 0.85)"
+    }
+  ],
+  "artifacts_dir": "runs/run_20251213_162023_bc053f",
+  "config_path": "runs/run_20251213_162023_bc053f/resolved_config.yaml",
+  "metrics_path": "runs/run_20251213_162023_bc053f/metrics/metrics.jsonl",
+  "checkpoints": {},
+  "report_path": ""
+}

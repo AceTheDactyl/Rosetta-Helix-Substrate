@@ -1,0 +1,30 @@
+checkpoint_dir: runs/run_20251213_162023_bc053f/checkpoints
+checkpoint_steps: 1000
+deterministic: true
+enable_tensorboard: false
+enable_wandb: false
+eval_steps: 500
+gates:
+  max_conservation_error: 1.0e-10
+  min_final_z: 0.85
+  min_k_formations: 5
+  min_negentropy: 0.7
+log_level: INFO
+log_steps: 50
+modules: {}
+n_oscillators: 60
+output_dir: runs
+run_id: run_20251213_162023_bc053f
+run_name: nightly_training
+seed: 42
+tags:
+- nightly
+- automated
+total_steps: 500
+use_apl_engine: true
+use_feedback_loop: true
+use_helix: true
+use_kuramoto: true
+use_substrate: true
+use_wumbo: true
+warmup_steps: 100
