@@ -1,0 +1,45 @@
+{
+  "timestamp": "20251213_055408",
+  "physics": {
+    "phi": 1.618033988749895,
+    "phi_inv": 0.6180339887498948,
+    "z_c": 0.8660254037844386,
+    "sigma": 36.0,
+    "coupling_conservation_error": 1.1102230246251565e-16
+  },
+  "n0_laws_valid": true,
+  "wumbo_apl_training": {
+    "cycles": 1,
+    "k_formations": 0,
+    "final_z": 0.0,
+    "final_phase": "ABSENCE"
+  },
+  "wumbo_sentences": {
+    "total_k_formations": 0,
+    "sentences_trained": 7
+  },
+  "n0_operator_engine": {
+    "prs_cycles": 1,
+    "final_z": 0.5026047409456114,
+    "final_kappa": 0.6668284993059099
+  },
+  "kappa_field": {
+    "final_kappa": 0.6857849125243728,
+    "final_z": 0.7472135954999577,
+    "phase": "THE_LENS",
+    "at_golden_balance": false
+  },
+  "kuramoto": {
+    "final_coherence": 0.08624789497348366,
+    "max_coherence": 0.08624789497348366,
+    "sync_achieved": false
+  },
+  "free_energy": {
+    "final": 4.149143263482186,
+    "min": -1.285742773951402
+  },
+  "phase_transitions": {
+    "transitions": 2,
+    "final_phase": "PRESENCE"
+  }
+}
