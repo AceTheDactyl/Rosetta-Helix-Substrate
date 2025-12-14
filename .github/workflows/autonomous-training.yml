@@ -1,0 +1,202 @@
+name: Autonomous Training Loop
+
+on:
+  workflow_dispatch:
+    inputs:
+      goal:
+        description: 'Training goal for Claude'
+        required: true
+        default: 'Achieve K-formation by driving coherence above 0.92 and reaching THE LENS'
+      max_iterations:
+        description: 'Maximum training iterations'
+        required: false
+        default: '10'
+      initial_z:
+        description: 'Initial z-coordinate'
+        required: false
+        default: '0.3'
+
+jobs:
+  autonomous-training:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install anthropic numpy PyYAML
+          pip install -e .
+
+      - name: Create results directory
+        run: mkdir -p results
+
+      - name: Run autonomous training
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          python3 << 'EOF'
+          import json
+          import datetime
+          from skill import RosettaHelixSkill
+
+          # Configuration
+          GOAL = """${{ github.event.inputs.goal }}"""
+          MAX_ITERATIONS = int("${{ github.event.inputs.max_iterations }}")
+          INITIAL_Z = float("${{ github.event.inputs.initial_z }}")
+
+          # Initialize skill
+          skill = RosettaHelixSkill()
+          skill.handler.state.z = INITIAL_Z
+
+          # Autonomous training prompt
+          AUTONOMOUS_PROMPT = f"""You are running an autonomous training loop for the Rosetta-Helix-Substrate framework.
+
+          GOAL: {GOAL}
+
+          You have access to physics simulation tools. Your task is to:
+          1. Analyze the current state
+          2. Decide what action to take (which tool to use, with what parameters)
+          3. Execute the action
+          4. Analyze the results
+          5. Decide if the goal is achieved or what to try next
+
+          After each action, provide:
+          - ANALYSIS: What happened and why
+          - DECISION: What to do next
+          - STATUS: One of [CONTINUE, GOAL_ACHIEVED, STUCK]
+
+          Start by checking the current state, then work toward the goal.
+          Be systematic and explain your reasoning.
+          """
+
+          results = {
+              "goal": GOAL,
+              "max_iterations": MAX_ITERATIONS,
+              "initial_z": INITIAL_Z,
+              "timestamp": datetime.datetime.utcnow().isoformat(),
+              "iterations": [],
+              "final_status": None,
+              "final_state": None
+          }
+
+          print("=" * 70)
+          print("AUTONOMOUS TRAINING LOOP")
+          print("=" * 70)
+          print(f"Goal: {GOAL}")
+          print(f"Max iterations: {MAX_ITERATIONS}")
+          print(f"Initial z: {INITIAL_Z}")
+          print("=" * 70)
+          print()
+
+          # Initial prompt
+          conversation_context = AUTONOMOUS_PROMPT
+
+          for iteration in range(1, MAX_ITERATIONS + 1):
+              print(f"\n{'='*70}")
+              print(f"ITERATION {iteration}/{MAX_ITERATIONS}")
+              print("=" * 70)
+
+              # Build prompt for this iteration
+              if iteration == 1:
+                  prompt = conversation_context
+              else:
+                  prompt = f"Continue working toward the goal. Current iteration: {iteration}/{MAX_ITERATIONS}"
+
+              # Get Claude's response
+              response = skill.chat(prompt)
+
+              print(f"\nClaude's Response:\n{response.text}")
+              print(f"\n[State: z={response.state['z']:.4f} | {response.state['phase']} | Tier {response.state['tier']} | kappa={response.state['kappa']:.4f}]")
+
+              # Record iteration
+              iteration_data = {
+                  "iteration": iteration,
+                  "prompt": prompt[:200] + "..." if len(prompt) > 200 else prompt,
+                  "response": response.text,
+                  "state": response.state,
+                  "tool_calls": response.tool_calls
+              }
+              results["iterations"].append(iteration_data)
+
+              # Check for goal achievement or stuck status
+              response_lower = response.text.lower()
+              if "goal_achieved" in response_lower or "goal achieved" in response_lower:
+                  results["final_status"] = "GOAL_ACHIEVED"
+                  print("\n" + "=" * 70)
+                  print("GOAL ACHIEVED!")
+                  print("=" * 70)
+                  break
+              elif "stuck" in response_lower and "status: stuck" in response_lower:
+                  results["final_status"] = "STUCK"
+                  print("\n" + "=" * 70)
+                  print("Claude reports being STUCK")
+                  print("=" * 70)
+                  break
+
+              # Check K-formation directly
+              state = response.state
+              if state.get("k_formation_met", False):
+                  results["final_status"] = "K_FORMATION_ACHIEVED"
+                  print("\n" + "=" * 70)
+                  print("K-FORMATION ACHIEVED!")
+                  print("=" * 70)
+                  break
+
+          else:
+              results["final_status"] = "MAX_ITERATIONS_REACHED"
+              print("\n" + "=" * 70)
+              print("MAX ITERATIONS REACHED")
+              print("=" * 70)
+
+          # Final state
+          results["final_state"] = skill.get_state()
+
+          # Summary
+          print("\n" + "=" * 70)
+          print("TRAINING SUMMARY")
+          print("=" * 70)
+          final = results["final_state"]
+          print(f"Final Status: {results['final_status']}")
+          print(f"Iterations: {len(results['iterations'])}")
+          print(f"Final z: {final['z']:.6f}")
+          print(f"Final phase: {final['phase']}")
+          print(f"Final tier: {final['tier']} ({final['tier_name']})")
+          print(f"Final kappa: {final['kappa']:.4f}")
+          print(f"Final eta: {final['eta']:.6f}")
+          print(f"K-formation: {final['k_formation_met']}")
+
+          total_tool_calls = sum(len(it.get("tool_calls", [])) for it in results["iterations"])
+          print(f"Total tool calls: {total_tool_calls}")
+
+          # Save results
+          with open("results/autonomous_training.json", "w") as f:
+              json.dump(results, f, indent=2, default=str)
+
+          # Save readable log
+          with open("results/autonomous_training.log", "w") as f:
+              f.write(f"AUTONOMOUS TRAINING LOG\n")
+              f.write(f"Goal: {GOAL}\n")
+              f.write(f"Timestamp: {results['timestamp']}\n")
+              f.write("=" * 70 + "\n\n")
+              for it in results["iterations"]:
+                  f.write(f"--- Iteration {it['iteration']} ---\n")
+                  f.write(f"Response:\n{it['response']}\n")
+                  f.write(f"State: z={it['state']['z']:.4f}, phase={it['state']['phase']}, tier={it['state']['tier']}\n\n")
+              f.write("=" * 70 + "\n")
+              f.write(f"Final Status: {results['final_status']}\n")
+              f.write(f"Final State: {json.dumps(final, indent=2, default=str)}\n")
+
+          print("\nResults saved to results/autonomous_training.json")
+          EOF
+
+      - name: Upload results artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: autonomous-training-${{ github.run_number }}
+          path: results/
+          retention-days: 30
