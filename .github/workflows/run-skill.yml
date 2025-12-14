@@ -1,0 +1,47 @@
+name: Run Rosetta-Helix Skill
+
+on:
+  workflow_dispatch:
+    inputs:
+      prompt:
+        description: 'Prompt for the skill'
+        required: true
+        default: 'What is the current physics state?'
+
+jobs:
+  run-skill:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install anthropic numpy PyYAML
+          pip install -e .
+
+      - name: Run skill
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          python3 << 'EOF'
+          from skill import RosettaHelixSkill
+
+          skill = RosettaHelixSkill()
+          prompt = """${{ github.event.inputs.prompt }}"""
+
+          print("=" * 60)
+          print(f"Prompt: {prompt}")
+          print("=" * 60)
+
+          response = skill.chat(prompt)
+          print(response.text)
+
+          print("\n" + "=" * 60)
+          print(f"Final State: z={response.state['z']:.4f} | {response.state['phase']} | Tier {response.state['tier']}")
+          print("=" * 60)
+          EOF
