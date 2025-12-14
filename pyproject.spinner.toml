@@ -1,0 +1,97 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nuclear-spinner-rosetta-helix"
+version = "1.0.0"
+description = "Unified system coupling Nuclear Spinner (physical) with Rosetta-Helix (computational) through z_c = √3/2"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.9"
+authors = [
+    {name = "Rosetta-Helix Project"}
+]
+keywords = [
+    "physics",
+    "kuramoto",
+    "oscillators",
+    "synchronization",
+    "golden-ratio",
+    "neural-coupling",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Physics",
+]
+
+dependencies = [
+    "numpy>=1.20.0",
+    "websockets>=10.0",
+    "pyserial>=3.5",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-asyncio>=0.20",
+    "black>=23.0",
+    "mypy>=1.0",
+    "ruff>=0.1",
+]
+docs = [
+    "sphinx>=5.0",
+    "sphinx-rtd-theme>=1.0",
+]
+analysis = [
+    "matplotlib>=3.5",
+    "scipy>=1.9",
+    "pandas>=1.5",
+]
+all = [
+    "nuclear-spinner-rosetta-helix[dev,docs,analysis]",
+]
+
+[project.urls]
+Homepage = "https://github.com/project/nuclear-spinner-rosetta-helix"
+Documentation = "https://nuclear-spinner-rosetta-helix.readthedocs.io"
+Repository = "https://github.com/project/nuclear-spinner-rosetta-helix.git"
+
+[project.scripts]
+rosetta-node = "rosetta_helix.node:main"
+spinner-bridge = "bridge.spinner_bridge:main"
+unified-workflow = "training.src.unified_workflow:main"
+
+[tool.setuptools]
+packages = ["rosetta_helix", "bridge", "training.src"]
+package-dir = {"rosetta_helix" = "rosetta-helix/src", "bridge" = "bridge", "training.src" = "training/src"}
+
+[tool.setuptools.package-data]
+"*" = ["*.yaml", "*.yml", "*.json"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+
+[tool.black]
+line-length = 100
+target-version = ["py39", "py310", "py311", "py312"]
+
+[tool.ruff]
+line-length = 100
+select = ["E", "F", "I", "N", "W", "UP"]
+ignore = ["E501"]  # Line too long (handled by black)
+
+[tool.mypy]
+python_version = "3.9"
+warn_return_any = true
+warn_unused_configs = true
+ignore_missing_imports = true

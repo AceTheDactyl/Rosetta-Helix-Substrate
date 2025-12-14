@@ -1,0 +1,16 @@
+{
+  "name": "quantum-apl",
+  "version": "1.0.0",
+  "description": "Alpha-Physical Language (APL) quantum simulation framework",
+  "main": "src/quantum_apl_engine.js",
+  "scripts": {
+    "test": "node tests/test_apl_measurements.js && node tests/test_schema_validation.js && node tests/test_seeded_selection.js",
+    "test:schema": "node tests/test_schema_validation.js",
+    "test:seed": "node tests/test_seeded_selection.js"
+  },
+  "devDependencies": {
+    "ajv": "^8.12.0"
+  },
+  "keywords": ["quantum", "apl", "simulation", "physics"],
+  "license": "MIT"
+}
