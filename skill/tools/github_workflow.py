@@ -25,7 +25,7 @@ except ImportError:
     sys.exit(1)
 
 
-GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
+GITHUB_TOKEN = os.environ.get("CLAUDE_SKILL_GITHUB_TOKEN") or os.environ.get("GITHUB_TOKEN")
 REPO_OWNER = "AceTheDactyl"  # Update with your GitHub username
 REPO_NAME = "Rosetta-Helix-Substrate"
 WORKFLOW_FILE = "autonomous-training.yml"
