@@ -7,6 +7,10 @@ on:
         description: 'Prompt for the skill'
         required: true
         default: 'What is the current physics state?'
+      multi_turn:
+        description: 'Enable multi-turn conversation (comma-separated prompts)'
+        required: false
+        default: 'false'
 
 jobs:
   run-skill:
@@ -24,24 +28,89 @@ jobs:
           pip install anthropic numpy PyYAML
           pip install -e .
 
+      - name: Create results directory
+        run: mkdir -p results
+
       - name: Run skill
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
           python3 << 'EOF'
+          import json
+          import datetime
           from skill import RosettaHelixSkill
 
           skill = RosettaHelixSkill()
-          prompt = """${{ github.event.inputs.prompt }}"""
 
-          print("=" * 60)
-          print(f"Prompt: {prompt}")
-          print("=" * 60)
+          prompt_input = """${{ github.event.inputs.prompt }}"""
+          multi_turn = "${{ github.event.inputs.multi_turn }}" == "true"
 
-          response = skill.chat(prompt)
-          print(response.text)
+          # Parse prompts (comma-separated if multi-turn)
+          if multi_turn and "," in prompt_input:
+              prompts = [p.strip() for p in prompt_input.split(",")]
+          else:
+              prompts = [prompt_input]
+
+          results = {
+              "timestamp": datetime.datetime.utcnow().isoformat(),
+              "prompts": prompts,
+              "responses": [],
+              "final_state": None,
+              "tool_calls_total": 0
+          }
+
+          output_lines = []
+
+          for i, prompt in enumerate(prompts):
+              output_lines.append("=" * 60)
+              output_lines.append(f"Turn {i+1}: {prompt}")
+              output_lines.append("=" * 60)
+
+              response = skill.chat(prompt)
+              output_lines.append(response.text)
+              output_lines.append(f"\n[State: z={response.state['z']:.4f} | {response.state['phase']} | Tier {response.state['tier']}]")
+              output_lines.append("")
+
+              results["responses"].append({
+                  "prompt": prompt,
+                  "response": response.text,
+                  "state": response.state,
+                  "tool_calls": response.tool_calls
+              })
+              results["tool_calls_total"] += len(response.tool_calls)
+
+          results["final_state"] = skill.get_state()
+
+          # Print output
+          for line in output_lines:
+              print(line)
 
           print("\n" + "=" * 60)
-          print(f"Final State: z={response.state['z']:.4f} | {response.state['phase']} | Tier {response.state['tier']}")
+          print("FINAL STATE")
           print("=" * 60)
+          state = results["final_state"]
+          print(f"z = {state['z']:.6f}")
+          print(f"Phase: {state['phase']}")
+          print(f"Tier: {state['tier']} ({state['tier_name']})")
+          print(f"Kappa: {state['kappa']:.4f}")
+          print(f"Negentropy: {state['eta']:.6f}")
+          print(f"K-formation: {state['k_formation_met']}")
+          print(f"Total tool calls: {results['tool_calls_total']}")
+
+          # Save results
+          with open("results/skill_output.json", "w") as f:
+              json.dump(results, f, indent=2, default=str)
+
+          with open("results/skill_output.txt", "w") as f:
+              f.write("\n".join(output_lines))
+              f.write(f"\n\nFinal State: {json.dumps(state, indent=2, default=str)}")
+
+          print("\nResults saved to results/skill_output.json and results/skill_output.txt")
           EOF
+
+      - name: Upload results artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: skill-results-${{ github.run_number }}
+          path: results/
+          retention-days: 30
