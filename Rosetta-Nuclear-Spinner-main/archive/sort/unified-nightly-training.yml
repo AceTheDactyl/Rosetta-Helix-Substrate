@@ -1,0 +1,203 @@
+name: Unified Nightly Training & Validation
+
+on:
+  schedule:
+    - cron: '0 3 * * *'  # 3 AM UTC daily
+  workflow_dispatch:
+    inputs:
+      steps_per_module:
+        description: 'Steps per module for full depth training'
+        default: '200'
+        type: string
+      helix_steps:
+        description: 'Steps for helix engine training'
+        default: '2000'
+        type: string
+      skip_validation:
+        description: 'Skip validation phase'
+        default: false
+        type: boolean
+
+env:
+  PYTHON_VERSION: '3.11'
+
+jobs:
+  full-depth-training:
+    name: Full Depth Training (19 modules)
+    runs-on: ubuntu-latest
+    outputs:
+      modules_passed: ${{ steps.train.outputs.modules_passed }}
+      k_formations: ${{ steps.train.outputs.k_formations }}
+      final_z: ${{ steps.train.outputs.final_z }}
+      physics_valid: ${{ steps.train.outputs.physics_valid }}
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      
+      - name: Install dependencies
+        run: pip install numpy
+      
+      - name: Run Full Depth Training
+        id: train
+        run: |
+          python unified_nightly_workflow.py \
+            --steps ${{ inputs.steps_per_module || '200' }} \
+            --helix-steps ${{ inputs.helix_steps || '2000' }} \
+            ${{ inputs.skip_validation && '--skip-validation' || '' }}
+          
+          # Extract outputs from workflow_result.json
+          echo "modules_passed=$(jq -r '.full_depth.modules_passed' runs/*/workflow_result.json)" >> $GITHUB_OUTPUT
+          echo "k_formations=$(jq -r '.full_depth.total_k_formations' runs/*/workflow_result.json)" >> $GITHUB_OUTPUT
+          echo "final_z=$(jq -r '.full_depth.final_z' runs/*/workflow_result.json)" >> $GITHUB_OUTPUT
+          echo "physics_valid=$(jq -r '.full_depth.physics_valid' runs/*/workflow_result.json)" >> $GITHUB_OUTPUT
+      
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: full-depth-results
+          path: runs/
+
+  helix-engine-training:
+    name: Helix Engine Training
+    runs-on: ubuntu-latest
+    needs: full-depth-training
+    outputs:
+      gates_passed: ${{ steps.helix.outputs.gates_passed }}
+      negentropy: ${{ steps.helix.outputs.negentropy }}
+      final_z: ${{ steps.helix.outputs.final_z }}
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Download full depth results
+        uses: actions/download-artifact@v4
+        with:
+          name: full-depth-results
+          path: runs/
+      
+      - name: Extract Helix metrics
+        id: helix
+        run: |
+          echo "gates_passed=$(jq -r '.helix_engine.gates_passed' runs/*/workflow_result.json)" >> $GITHUB_OUTPUT
+          echo "negentropy=$(jq -r '.helix_engine.negentropy' runs/*/workflow_result.json)" >> $GITHUB_OUTPUT
+          echo "final_z=$(jq -r '.helix_engine.final_z' runs/*/workflow_result.json)" >> $GITHUB_OUTPUT
+
+  gates-check:
+    name: Unified Gates Check
+    runs-on: ubuntu-latest
+    needs: [full-depth-training, helix-engine-training]
+    outputs:
+      overall_passed: ${{ steps.check.outputs.overall_passed }}
+    steps:
+      - name: Check Gates
+        id: check
+        run: |
+          # Full Depth Gates
+          FD_MODULES=${{ needs.full-depth-training.outputs.modules_passed }}
+          FD_K=${{ needs.full-depth-training.outputs.k_formations }}
+          FD_PHYSICS=${{ needs.full-depth-training.outputs.physics_valid }}
+          
+          # Helix Engine Gates
+          HE_GATES=${{ needs.helix-engine-training.outputs.gates_passed }}
+          HE_NEG=${{ needs.helix-engine-training.outputs.negentropy }}
+          HE_Z=${{ needs.helix-engine-training.outputs.final_z }}
+          
+          # Evaluate
+          OVERALL=true
+          
+          if [[ "$FD_MODULES" -lt 19 ]]; then OVERALL=false; fi
+          if [[ "$FD_K" -lt 1 ]]; then OVERALL=false; fi
+          if [[ "$FD_PHYSICS" != "true" ]]; then OVERALL=false; fi
+          if [[ "$HE_GATES" != "true" ]]; then OVERALL=false; fi
+          
+          echo "overall_passed=$OVERALL" >> $GITHUB_OUTPUT
+          
+          echo "### Gates Check Results" >> $GITHUB_STEP_SUMMARY
+          echo "| Gate | Value | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|------|-------|--------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Modules Passed | $FD_MODULES/19 | $([[ $FD_MODULES -eq 19 ]] && echo '✅' || echo '❌') |" >> $GITHUB_STEP_SUMMARY
+          echo "| K-Formations | $FD_K | $([[ $FD_K -ge 1 ]] && echo '✅' || echo '❌') |" >> $GITHUB_STEP_SUMMARY
+          echo "| Physics Valid | $FD_PHYSICS | $([[ $FD_PHYSICS == 'true' ]] && echo '✅' || echo '❌') |" >> $GITHUB_STEP_SUMMARY
+          echo "| HE Gates | $HE_GATES | $([[ $HE_GATES == 'true' ]] && echo '✅' || echo '❌') |" >> $GITHUB_STEP_SUMMARY
+          echo "| Negentropy | $HE_NEG | ≥0.7 |" >> $GITHUB_STEP_SUMMARY
+          echo "| Final z | $HE_Z | ≥0.85 |" >> $GITHUB_STEP_SUMMARY
+
+  model-promotion:
+    name: Model Promotion
+    runs-on: ubuntu-latest
+    needs: gates-check
+    if: needs.gates-check.outputs.overall_passed == 'true'
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: full-depth-results
+          path: runs/
+      
+      - name: Promote Model
+        run: |
+          RUN_ID=$(ls runs/ | head -1)
+          VERSION="v${{ github.run_number }}"
+          
+          echo "Promoting run $RUN_ID as nightly:$VERSION"
+          
+          cat > runs/$RUN_ID/promotion.json << EOF
+          {
+            "name": "nightly",
+            "version": "$VERSION",
+            "run_id": "$RUN_ID",
+            "tags": ["nightly", "automated", "unified", "validated"],
+            "promoted_at": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          }
+          EOF
+          
+          echo "### Model Promoted" >> $GITHUB_STEP_SUMMARY
+          echo "- Name: nightly" >> $GITHUB_STEP_SUMMARY
+          echo "- Version: $VERSION" >> $GITHUB_STEP_SUMMARY
+          echo "- Run ID: $RUN_ID" >> $GITHUB_STEP_SUMMARY
+
+  create-pr:
+    name: Create Results PR
+    runs-on: ubuntu-latest
+    needs: [gates-check, model-promotion]
+    if: always() && needs.gates-check.outputs.overall_passed == 'true'
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: full-depth-results
+          path: runs/
+      
+      - name: Create branch and PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          BRANCH="nightly-results/$(date +%Y%m%d-%H%M%S)"
+          git checkout -b $BRANCH
+          git add runs/
+          git commit -m "Nightly training results - Run #${{ github.run_number }}"
+          git push origin $BRANCH
+          
+          gh pr create \
+            --title "Nightly Training Results - $(date +%Y-%m-%d)" \
+            --body-file runs/*/pr_body.md \
+            --label "automated,nightly"
+
+  notify-failure:
+    name: Failure Notification
+    runs-on: ubuntu-latest
+    needs: [full-depth-training, helix-engine-training, gates-check]
+    if: failure()
+    steps:
+      - name: Notify Failure
+        run: |
+          echo "### ❌ Nightly Training Failed" >> $GITHUB_STEP_SUMMARY
+          echo "Run: #${{ github.run_number }}" >> $GITHUB_STEP_SUMMARY
+          echo "Time: $(date -u)" >> $GITHUB_STEP_SUMMARY

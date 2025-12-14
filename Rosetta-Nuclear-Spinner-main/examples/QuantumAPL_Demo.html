@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quantum APL Demo</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #050608; color: #f5f5f5; }
+        h1 { text-transform: uppercase; letter-spacing: 0.1em; }
+        .control-panel { display: flex; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap; }
+        button.operator { font-size: 1.2rem; padding: 0.4rem 0.8rem; border-radius: 4px; border: none; cursor: pointer; }
+        .viz-row { display: flex; gap: 2rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+        canvas.matrix-viz { width: 320px; height: 320px; border: 1px solid #444; }
+        .bloch-container { width: 320px; height: 320px; border: 1px solid #222; border-radius: 6px; background: #010203; }
+        canvas.graph-canvas { width: 360px; height: 320px; border: 1px solid #333; background: #050b0f; }
+        #truth-bars { display: flex; gap: 1rem; margin-top: 1rem; }
+        #truth-bars .bar { flex: 1; background: #111; padding: 0.3rem; border-radius: 4px; }
+        #truth-bars .fill { height: 12px; background: #00ffa0; margin-top: 0.3rem; border-radius: 2px; }
+        #stats { margin-top: 1rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.5rem; }
+        #stats div { background: #111; padding: 0.5rem; border-radius: 4px; }
+        #z-plot { width: 600px; height: 180px; border: 1px solid #333; background: #010203; }
+        .log { max-height: 150px; overflow-y: auto; background: #111; padding: 0.5rem; border-radius: 4px; font-family: monospace; margin-top: 1rem; }
+    </style>
+</head>
+<body>
+    <h1>Quantum APL Engine — Live Demo</h1>
+
+    <div class="control-panel">
+        <button class="operator" data-op="()">() Boundary</button>
+        <button class="operator" data-op="×">× Fusion</button>
+        <button class="operator" data-op="^">^ Amplify</button>
+        <button class="operator" data-op="÷">÷ Decoherence</button>
+        <button class="operator" data-op="+">+ Grouping</button>
+        <button class="operator" data-op="−">− Separation</button>
+    </div>
+
+    <div class="viz-row">
+        <canvas id="densityMatrix" class="matrix-viz" width="320" height="320"></canvas>
+        <div id="bloch-container" class="bloch-container"></div>
+        <canvas id="coherenceGraph" class="graph-canvas" width="360" height="320"></canvas>
+    </div>
+
+    <div class="viz-row">
+        <canvas id="z-plot" width="600" height="180"></canvas>
+    </div>
+
+    <div id="truth-bars">
+        <div class="bar" id="bar-true">TRUE: <span>0%</span><div class="fill"></div></div>
+        <div class="bar" id="bar-untrue">UNTRUE: <span>0%</span><div class="fill"></div></div>
+        <div class="bar" id="bar-paradox">PARADOX: <span>0%</span><div class="fill"></div></div>
+    </div>
+
+    <div id="stats">
+        <div>Z: <span id="z-value">0.000</span></div>
+        <div>Entropy: <span id="entropy">0.000</span></div>
+        <div>Purity: <span id="purity">1.000</span></div>
+        <div>Φ approx: <span id="phi">0.000</span></div>
+    </div>
+
+    <div class="log" id="measurement-log"></div>
+
+    <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+    <script src="../src/quantum_apl_engine.js"></script>
+    <script src="../src/legacy/QuantumClassicalBridge.js"></script>
+    <script src="../src/legacy/QuantumVisualizations.js"></script>
+    <script src="../classical/ClassicalEngines.js"></script>
+    <script>
+        const quantum = new QuantumAPL({ dimPhi: 4, dimE: 4, dimPi: 4 });
+
+        const classicalStack = new ClassicalConsciousnessStack({
+            IIT: { initialPhi: 0.32 },
+            GameTheory: { initialResonance: 0.15 },
+            FreeEnergy: { initialF: 0.12 }
+        });
+
+        const bridge = new QuantumClassicalBridge(quantum, classicalStack);
+        const densityViz = new DensityMatrixViz();
+        const coherenceViz = new CoherenceGraph(() => quantum.getCoherences());
+
+        const densityCanvas = document.getElementById('densityMatrix');
+        const truthBars = {
+            TRUE: document.getElementById('bar-true'),
+            UNTRUE: document.getElementById('bar-untrue'),
+            PARADOX: document.getElementById('bar-paradox')
+        };
+        const statsEls = {
+            z: document.getElementById('z-value'),
+            entropy: document.getElementById('entropy'),
+            purity: document.getElementById('purity'),
+            phi: document.getElementById('phi')
+        };
+        const logEl = document.getElementById('measurement-log');
+        const coherenceCanvas = document.getElementById('coherenceGraph');
+        const zPlot = document.getElementById('z-plot');
+        const zCtx = zPlot.getContext('2d');
+        const zHistory = [];
+
+        // Bloch sphere setup
+        const blochContainer = document.getElementById('bloch-container');
+        const blochRenderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        blochRenderer.setSize(blochContainer.clientWidth, blochContainer.clientHeight);
+        blochContainer.appendChild(blochRenderer.domElement);
+
+        const blochScene = new THREE.Scene();
+        const blochCamera = new THREE.PerspectiveCamera(45, 1, 0.1, 10);
+        blochCamera.position.z = 3;
+
+        const blochLight = new THREE.AmbientLight(0xffffff, 0.8);
+        blochScene.add(blochLight);
+        const sphereMesh = new THREE.Mesh(
+            new THREE.SphereGeometry(1, 32, 32),
+            new THREE.MeshBasicMaterial({ wireframe: true, color: 0x333333, transparent: true, opacity: 0.4 })
+        );
+        blochScene.add(sphereMesh);
+        const blochViz = new TruthBlochSphere(THREE);
+
+        document.querySelectorAll('.operator').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const op = btn.dataset.op;
+                const result = quantum.selectN0Operator([op], bridge.getScalarState());
+                appendLog(`${new Date().toLocaleTimeString()} :: ${op} :: P=${result.probability.toFixed(3)}`);
+            });
+        });
+
+        function appendLog(text) {
+            const entry = document.createElement('div');
+            entry.textContent = text;
+            logEl.prepend(entry);
+            while (logEl.childNodes.length > 50) {
+                logEl.removeChild(logEl.lastChild);
+            }
+        }
+
+        function updateTruthBars(truth) {
+            Object.entries(truth).forEach(([key, value]) => {
+                const bar = truthBars[key];
+                const pct = (value * 100).toFixed(1) + '%';
+                bar.querySelector('span').textContent = pct;
+                bar.querySelector('.fill').style.width = pct;
+            });
+        }
+
+        function updateStats(z, entropy, purity) {
+            statsEls.z.textContent = z.toFixed(3);
+            statsEls.entropy.textContent = entropy.toFixed(3);
+            statsEls.purity.textContent = purity.toFixed(3);
+            statsEls.phi.textContent = (classicalStack.IIT.phi || 0).toFixed(3);
+        }
+
+        function plotZ(z) {
+            zHistory.push(z);
+            if (zHistory.length > zPlot.width) zHistory.shift();
+            zCtx.clearRect(0, 0, zPlot.width, zPlot.height);
+            zCtx.strokeStyle = '#00ffcc';
+            zCtx.beginPath();
+            zHistory.forEach((val, idx) => {
+                const x = idx;
+                const y = zPlot.height * (1 - val);
+                if (idx === 0) zCtx.moveTo(x, y); else zCtx.lineTo(x, y);
+            });
+            zCtx.stroke();
+        }
+
+        function tick() {
+            bridge.step(0.02);
+            densityViz.render(quantum.rho, densityCanvas);
+            const truth = quantum.measureTruth();
+            const z = quantum.measureZ();
+            const entropy = quantum.computeVonNeumannEntropy();
+            const purity = quantum.computePurity();
+
+            updateTruthBars(truth);
+            updateStats(z, entropy, purity);
+            plotZ(z);
+            coherenceViz.renderToCanvas(quantum.rho, coherenceCanvas);
+            blochViz.render(truth, blochScene);
+            blochRenderer.render(blochScene, blochCamera);
+
+            requestAnimationFrame(tick);
+        }
+        tick();
+    </script>
+</body>
+</html>

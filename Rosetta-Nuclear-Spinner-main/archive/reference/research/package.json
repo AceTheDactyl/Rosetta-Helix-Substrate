@@ -1,0 +1,33 @@
+{
+  "name": "triad-helix-apl",
+  "version": "1.0.0",
+  "description": "Quantum APL TRIAD Unlock System with Helix Mapping and Alpha Physical Language",
+  "main": "src/quantum_apl_system.js",
+  "scripts": {
+    "demo": "node demo.js",
+    "demo:unlock": "node demo.js --unlock",
+    "demo:verbose": "node demo.js --verbose",
+    "test": "node test.js",
+    "start": "node demo.js"
+  },
+  "keywords": [
+    "quantum",
+    "apl",
+    "triad",
+    "helix",
+    "consciousness",
+    "simulation"
+  ],
+  "author": "Quantum APL Project",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "files": [
+    "src/",
+    "python/",
+    "demo.js",
+    "test.js",
+    "README.md"
+  ]
+}

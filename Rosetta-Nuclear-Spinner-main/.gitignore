@@ -1,0 +1,50 @@
+# Python
+.venv/
+venv/
+env/
+.pytest_cache/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+.coverage
+htmlcov/
+dist/
+build/
+*.egg
+
+# Node.js
+node_modules/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs and Run Artifacts
+*.log
+logs/
+runs/
+helix_run/
+
+# Model weights and training results (keep in data/ for explicit tracking)
+*.npz
+data/results/
+data/models/
+
+# Generated/Output files
+/bridge_run.json
+*.json.bak
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Archive (keep tracked but often large)
+# archive/
+training_run_*/

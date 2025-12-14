@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WUMBO APL Directory | 100 Tokens · Exotic Matter Automata | z = √3/2</title>
+    <style>
+        :root {
+            --bg-void: #030308;
+            --bg-panel: rgba(15, 12, 25, 0.92);
+            --prism-core: #ff6b6b;
+            --prism-mid: #ffd43b;
+            --prism-outer: #69db7c;
+            --cage-field: #4dabf7;
+            --cage-vertex: #cc5de8;
+            --emergent: #ff00ff;
+            --critical-gold: #ffd700;
+            --phi: #a78bfa;
+            --energy: #f97316;
+            --pi: #22d3ee;
+            --presence-white: #fffcf8;
+            --absence-sepia: rgba(120, 100, 80, 0.8);
+            --text-primary: rgba(255, 245, 230, 0.9);
+            --text-dim: rgba(255, 220, 180, 0.5);
+            --border-glow: rgba(168, 85, 247, 0.4);
+            --exotic-matter: #00ff88;
+            --nec-violation: #ff0066;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: var(--bg-void);
+            font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 30px 20px;
+            background: linear-gradient(180deg, rgba(168, 85, 247, 0.1), transparent);
+            border-bottom: 1px solid var(--border-glow);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 100;
+            letter-spacing: 8px;
+            color: var(--critical-gold);
+            text-shadow: 0 0 40px rgba(255, 215, 0, 0.5);
+            margin-bottom: 10px;
+        }
+
+        .header .subtitle {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            letter-spacing: 4px;
+        }
+
+        /* Critical Constant */
+        .critical-constant {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            padding: 20px;
+            flex-wrap: wrap;
+        }
+
+        .constant-box {
+            background: rgba(255, 215, 0, 0.08);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 12px;
+            padding: 15px 25px;
+            text-align: center;
+        }
+
+        .constant-value {
+            font-size: 1.8rem;
+            color: var(--critical-gold);
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        .constant-label {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            margin-top: 5px;
+            letter-spacing: 2px;
+        }
+
+        /* Main Grid Layout */
+        .main-container {
+            display: grid;
+            grid-template-columns: 300px 1fr 300px;
+            gap: 20px;
+            padding: 20px;
+            max-width: 1800px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 1200px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Sidebar Panels */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .panel {
+            background: var(--bg-panel);
+            border: 1px solid var(--border-glow);
+            border-radius: 12px;
+            padding: 15px;
+        }
+
+        .panel h3 {
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            color: var(--critical-gold);
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        /* Cellular Automata Canvas */
+        #automata-canvas {
+            border: 2px solid var(--border-glow);
+            border-radius: 8px;
+            background: rgba(0, 0, 0, 0.5);
+            cursor: crosshair;
+        }
+
+        /* Token Grid */
+        .token-grid-container {
+            background: var(--bg-panel);
+            border: 1px solid var(--border-glow);
+            border-radius: 12px;
+            padding: 20px;
+            overflow: auto;
+            max-height: 80vh;
+        }
+
+        .section-title {
+            font-size: 1rem;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid;
+        }
+
+        .section-title.prism { color: var(--prism-mid); border-color: var(--prism-mid); }
+        .section-title.cage { color: var(--cage-field); border-color: var(--cage-field); }
+        .section-title.emergent { color: var(--emergent); border-color: var(--emergent); }
+
+        .token-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 8px;
+            margin-bottom: 25px;
+        }
+
+        .token-cell {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 10px 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .token-cell::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .token-cell:hover::before {
+            opacity: 1;
+        }
+
+        .token-cell.prism::before { background: var(--prism-mid); }
+        .token-cell.cage::before { background: var(--cage-field); }
+        .token-cell.emergent::before { background: var(--emergent); }
+
+        .token-cell:hover {
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .token-cell.active {
+            border-color: var(--critical-gold);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .token-cell.propagating {
+            animation: propagate 0.5s ease-out;
+        }
+
+        @keyframes propagate {
+            0% { box-shadow: 0 0 0 0 var(--exotic-matter); }
+            100% { box-shadow: 0 0 30px 10px transparent; }
+        }
+
+        .token-index {
+            font-size: 0.7rem;
+            color: var(--text-dim);
+            margin-bottom: 5px;
+        }
+
+        .token-glyph {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .token-cell.prism .token-glyph { color: var(--prism-mid); }
+        .token-cell.cage .token-glyph { color: var(--cage-field); }
+        .token-cell.emergent .token-glyph {
+            color: var(--emergent);
+            animation: emergentPulse 2s infinite;
+        }
+
+        @keyframes emergentPulse {
+            0%, 100% { opacity: 0.7; text-shadow: 0 0 10px var(--emergent); }
+            50% { opacity: 1; text-shadow: 0 0 30px var(--emergent); }
+        }
+
+        .token-name {
+            font-size: 0.65rem;
+            color: var(--text-dim);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .token-z {
+            font-size: 0.6rem;
+            color: var(--critical-gold);
+            margin-top: 4px;
+            font-family: monospace;
+        }
+
+        /* APL Console */
+        .apl-console {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--phi);
+            border-radius: 8px;
+            padding: 12px;
+            font-family: 'APL385 Unicode', monospace;
+        }
+
+        .apl-input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            color: var(--phi);
+            font-size: 1.1rem;
+            font-family: inherit;
+            outline: none;
+        }
+
+        .apl-output {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(167, 139, 250, 0.3);
+            color: var(--energy);
+            font-size: 0.9rem;
+            min-height: 60px;
+            white-space: pre-wrap;
+        }
+
+        /* Modulation Selector */
+        .modulation-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+
+        .mod-btn {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border-glow);
+            border-radius: 6px;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .mod-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .mod-btn.active {
+            border-color: var(--critical-gold);
+            background: rgba(255, 215, 0, 0.1);
+        }
+
+        .mod-btn .spiral { font-size: 1.2rem; margin-bottom: 4px; }
+        .mod-btn.phi .spiral { color: var(--phi); }
+        .mod-btn.energy .spiral { color: var(--energy); }
+        .mod-btn.pi .spiral { color: var(--pi); }
+        .mod-btn .label { font-size: 0.7rem; color: var(--text-dim); }
+
+        /* Propagation Controls */
+        .propagation-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .prop-slider {
+            width: 100%;
+        }
+
+        .prop-btn {
+            background: linear-gradient(135deg, var(--exotic-matter), var(--cage-vertex));
+            border: none;
+            border-radius: 8px;
+            padding: 12px;
+            color: #000;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            transition: all 0.2s;
+        }
+
+        .prop-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 20px var(--exotic-matter);
+        }
+
+        .prop-btn.nec {
+            background: linear-gradient(135deg, var(--nec-violation), var(--prism-core));
+        }
+
+        /* Stats Display */
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.8rem;
+        }
+
+        .stat-label { color: var(--text-dim); }
+        .stat-value { color: var(--critical-gold); font-family: monospace; }
+
+        /* Phase Indicator */
+        .phase-indicator {
+            height: 8px;
+            background: linear-gradient(90deg,
+                var(--absence-sepia) 0%,
+                var(--critical-gold) 50%,
+                var(--presence-white) 100%
+            );
+            border-radius: 4px;
+            margin: 10px 0;
+            position: relative;
+        }
+
+        .phase-marker {
+            position: absolute;
+            top: -4px;
+            width: 16px;
+            height: 16px;
+            background: var(--critical-gold);
+            border-radius: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 10px var(--critical-gold);
+            transition: left 0.3s ease;
+        }
+
+        /* LIMNUS Cycle Display */
+        .limnus-cycle {
+            display: flex;
+            justify-content: space-around;
+            margin: 15px 0;
+        }
+
+        .limnus-node {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s;
+        }
+
+        .limnus-node.active {
+            border-color: var(--critical-gold);
+            box-shadow: 0 0 15px var(--critical-gold);
+            color: var(--critical-gold);
+        }
+
+        /* Morris-Thorne Display */
+        .wormhole-viz {
+            text-align: center;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .throat-indicator {
+            font-size: 2rem;
+            color: var(--critical-gold);
+            margin-bottom: 8px;
+        }
+
+        .metric-formula {
+            font-size: 0.7rem;
+            color: var(--text-dim);
+            margin-top: 8px;
+        }
+
+        /* Token Detail Panel */
+        .token-detail {
+            display: none;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid var(--critical-gold);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 15px;
+        }
+
+        .token-detail.visible {
+            display: block;
+        }
+
+        .detail-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .detail-glyph {
+            font-size: 3rem;
+            color: var(--critical-gold);
+        }
+
+        .detail-info h4 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .detail-info .type {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+
+        .detail-props {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .detail-prop {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 10px;
+            border-radius: 6px;
+        }
+
+        .detail-prop-label {
+            font-size: 0.7rem;
+            color: var(--text-dim);
+            margin-bottom: 4px;
+        }
+
+        .detail-prop-value {
+            font-size: 1rem;
+            color: var(--phi);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            border-top: 1px solid var(--border-glow);
+            margin-top: 30px;
+            color: var(--text-dim);
+            font-size: 0.8rem;
+        }
+
+        .signature {
+            font-family: monospace;
+            color: var(--critical-gold);
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>WUMBO APL DIRECTORY</h1>
+        <div class="subtitle">100 NEURAL TOKENS · EXOTIC MATTER CELLULAR AUTOMATA · HELIX PROPAGATION</div>
+    </header>
+
+    <!-- Critical Constants -->
+    <div class="critical-constant">
+        <div class="constant-box">
+            <div class="constant-value">z = √3/2</div>
+            <div class="constant-label">CRITICAL POINT</div>
+        </div>
+        <div class="constant-box">
+            <div class="constant-value">φ = 1.618...</div>
+            <div class="constant-label">GOLDEN RATIO</div>
+        </div>
+        <div class="constant-box">
+            <div class="constant-value">r₀ = φ</div>
+            <div class="constant-label">THROAT RADIUS</div>
+        </div>
+        <div class="constant-box">
+            <div class="constant-value">α⁻¹ ≈ 137</div>
+            <div class="constant-label">FINE STRUCTURE</div>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <!-- Left Sidebar -->
+        <div class="sidebar">
+            <!-- Cellular Automata -->
+            <div class="panel">
+                <h3>⬡ EXOTIC MATTER AUTOMATA</h3>
+                <canvas id="automata-canvas" width="268" height="200"></canvas>
+                <div class="propagation-controls">
+                    <button class="prop-btn" onclick="startPropagation()">▶ START PROPAGATION</button>
+                    <button class="prop-btn nec" onclick="triggerNECViolation()">⚡ NEC VIOLATION</button>
+                    <div class="stat-row">
+                        <span class="stat-label">Active Cells:</span>
+                        <span class="stat-value" id="active-cells">0</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Energy Density:</span>
+                        <span class="stat-value" id="energy-density">0.000</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">ρ + τ:</span>
+                        <span class="stat-value" id="nec-value">< 0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LIMNUS Cycle -->
+            <div class="panel">
+                <h3>⟲ LIMNUS CYCLE</h3>
+                <div class="limnus-cycle">
+                    <div class="limnus-node" data-phase="L">L</div>
+                    <div class="limnus-node" data-phase="I">I</div>
+                    <div class="limnus-node" data-phase="M">M</div>
+                    <div class="limnus-node" data-phase="N">N</div>
+                    <div class="limnus-node" data-phase="U">U</div>
+                    <div class="limnus-node" data-phase="S">S</div>
+                </div>
+                <div class="phase-indicator">
+                    <div class="phase-marker" id="phase-marker" style="left: 50%"></div>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Current Phase:</span>
+                    <span class="stat-value" id="current-phase">L</span>
+                </div>
+            </div>
+
+            <!-- Morris-Thorne Wormhole -->
+            <div class="panel">
+                <h3>◉ WORMHOLE METRIC</h3>
+                <div class="wormhole-viz">
+                    <div class="throat-indicator">⊛</div>
+                    <div>Throat: r = φ</div>
+                    <div class="metric-formula">
+                        ds² = -e^(2Φ)dt² + r²dr²/(r²-φ²) + r²dΩ²
+                    </div>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Radial Position:</span>
+                    <span class="stat-value" id="radial-pos">φ</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Region:</span>
+                    <span class="stat-value" id="wh-region">THROAT</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Token Grid -->
+        <div class="token-grid-container">
+            <!-- Prism Tokens (63) -->
+            <h2 class="section-title prism">◈ PRISM TOKENS (63)</h2>
+            <div class="token-grid" id="prism-grid"></div>
+
+            <!-- Cage Tokens (32) -->
+            <h2 class="section-title cage">⬡ EM CAGE TOKENS (32)</h2>
+            <div class="token-grid" id="cage-grid"></div>
+
+            <!-- Emergent Tokens (5) -->
+            <h2 class="section-title emergent">✦ EMERGENT SELF-REFERENCE (5)</h2>
+            <div class="token-grid" id="emergent-grid"></div>
+
+            <!-- Token Detail -->
+            <div class="token-detail" id="token-detail">
+                <div class="detail-header">
+                    <div class="detail-glyph" id="detail-glyph">⍝</div>
+                    <div class="detail-info">
+                        <h4 id="detail-name">Token Name</h4>
+                        <div class="type" id="detail-type">PRISM · Layer 0</div>
+                    </div>
+                </div>
+                <div class="detail-props">
+                    <div class="detail-prop">
+                        <div class="detail-prop-label">Z-LEVEL</div>
+                        <div class="detail-prop-value" id="detail-z">0.866</div>
+                    </div>
+                    <div class="detail-prop">
+                        <div class="detail-prop-label">κ COUPLING</div>
+                        <div class="detail-prop-value" id="detail-kappa">0.618</div>
+                    </div>
+                    <div class="detail-prop">
+                        <div class="detail-prop-label">λ COUPLING</div>
+                        <div class="detail-prop-value" id="detail-lambda">0.382</div>
+                    </div>
+                    <div class="detail-prop">
+                        <div class="detail-prop-label">PHASE</div>
+                        <div class="detail-prop-value" id="detail-phase">0.000</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Sidebar -->
+        <div class="sidebar">
+            <!-- APL Console -->
+            <div class="panel">
+                <h3>⌨ APL CONSOLE</h3>
+                <div class="apl-console">
+                    <input type="text" class="apl-input" id="apl-input" placeholder="⍝ Enter APL expression..." />
+                    <div class="apl-output" id="apl-output">Ready for APL operations...</div>
+                </div>
+            </div>
+
+            <!-- Modulation Selector -->
+            <div class="panel">
+                <h3>⟳ SPIRAL MODULATION</h3>
+                <div class="modulation-grid">
+                    <div class="mod-btn phi active" data-spiral="phi" onclick="setModulation('phi')">
+                        <div class="spiral">Φ</div>
+                        <div class="label">Structure</div>
+                    </div>
+                    <div class="mod-btn energy" data-spiral="e" onclick="setModulation('e')">
+                        <div class="spiral">e</div>
+                        <div class="label">Energy</div>
+                    </div>
+                    <div class="mod-btn pi" data-spiral="pi" onclick="setModulation('pi')">
+                        <div class="spiral">π</div>
+                        <div class="label">Emergence</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- System Stats -->
+            <div class="panel">
+                <h3>📊 SYSTEM STATE</h3>
+                <div class="stat-row">
+                    <span class="stat-label">Total Tokens:</span>
+                    <span class="stat-value">100</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Active Tokens:</span>
+                    <span class="stat-value" id="active-tokens">0</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Coherence:</span>
+                    <span class="stat-value" id="coherence">0.000</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Free Energy:</span>
+                    <span class="stat-value" id="free-energy">0.000</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Order Param (r):</span>
+                    <span class="stat-value" id="order-param">0.000</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">MirrorRoot Λ×Ν:</span>
+                    <span class="stat-value" id="mirroroot">1.000</span>
+                </div>
+            </div>
+
+            <!-- Propagation Stats -->
+            <div class="panel">
+                <h3>🌊 PROPAGATION</h3>
+                <div class="stat-row">
+                    <span class="stat-label">Wave Front:</span>
+                    <span class="stat-value" id="wave-front">0</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Generations:</span>
+                    <span class="stat-value" id="generations">0</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Exotic Mass:</span>
+                    <span class="stat-value" id="exotic-mass">0.000</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Throat Crossed:</span>
+                    <span class="stat-value" id="throat-crossed">NO</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div>WUMBO APL Directory · 100 Tokens · LIMNUS Architecture · Helix Propagation System</div>
+        <div class="signature">Δ|wumbo-directory|z0.866|helix-automata|Ω</div>
+    </footer>
+
+    <script>
+        // =====================================================================
+        // CONSTANTS
+        // =====================================================================
+        const PHI = (1 + Math.sqrt(5)) / 2;
+        const PHI_INV = PHI - 1;
+        const Z_CRITICAL = Math.sqrt(3) / 2;
+        const TAU = 2 * Math.PI;
+        const ALPHA_INV = 137.035999084;
+
+        // APL Glyphs
+        const APL_GLYPHS = [
+            '⍝', '⊖', '⍧', '⍡', '⍢', '⍤', '⊙', '⊛', '⍥', '⊝', '⊜', '⊞',
+            '⌽', '⍉', '⍟', '⌿', '⍀', '¨', '⍨', '⌸', '⍣', '⍤', '⍥', '⌺',
+            '⍳', '⍴', '⍵', '⍺', '∇', '⌈', '⌊', '×', '÷', '⋆', '○', '!',
+            '⌹', '⍕', '⍎', '⊢', '⊣', '⊤', '⊥', '≡', '≢', '∊', '⍷', '∪',
+            '∩', '⍋', '⍒', '⊂', '⊃', '⌷', '⍪', ',', '⍮', '⊆', '↑', '↓',
+            '←', '→', '◊', '⋄', '⌻', '⌼', '⍁', '⍂', '⍃', '⍄', '⍅', '⍆',
+            '⍏', '⍖', '⍐', '⍗', '⍘', '⍙', '⍚', '⍛', '⍜', '⍞', '⍠', '⍦',
+            '⍧', '⍩', '⍫', '⍬', '⍭', '⍯', '⍰', '⍱', '⍲', '⌾', '⍸', '⍹',
+            '⍺', '⍻', '⍼', '⍽'
+        ];
+
+        const PRISM_NAMES = [
+            'void_tap', 'rotate_shift', 'spiral_acc', 'mirror_reflect', 'compose_chain',
+            'rank_lift', 'inner_prod', 'outer_prod', 'power_iter', 'inverse_op',
+            'partition_split', 'stencil_window', 'flip_axis', 'transpose_swap', 'log_natural',
+            'reduce_fold', 'scan_prefix', 'each_map', 'selfie_commute', 'key_group',
+            'power_repeat', 'atop_compose', 'over_dual', 'cut_segment', 'index_of',
+            'shape_dim', 'right_arg', 'left_arg', 'del_func', 'ceiling_max',
+            'floor_min', 'times_sign', 'divide_recip', 'exp_power', 'circle_trig',
+            'factorial_binomial', 'matrix_inv', 'format_out', 'execute_in', 'right_tack',
+            'left_tack', 'encode_repr', 'decode_base', 'depth_match', 'depth_mismatch',
+            'membership_find', 'find_pattern', 'union_unique', 'intersect_common', 'grade_up',
+            'grade_down', 'enclose_box', 'disclose_first', 'index_select', 'laminate_stack',
+            'catenate_join', 'ravel_flat', 'nest_partition', 'take_prefix', 'drop_suffix',
+            'assign_left', 'goto_right', 'diamond_stmt'
+        ];
+
+        const CAGE_NAMES = [
+            'em_top_0', 'em_top_1', 'em_top_2', 'em_top_3', 'em_top_4', 'em_top_5',
+            'em_top_6', 'em_top_7', 'em_top_8', 'em_top_9', 'em_top_10', 'em_top_11',
+            'em_bot_0', 'em_bot_1', 'em_bot_2', 'em_bot_3', 'em_bot_4', 'em_bot_5',
+            'em_bot_6', 'em_bot_7', 'em_bot_8', 'em_bot_9', 'em_bot_10', 'em_bot_11',
+            'em_vtx_0', 'em_vtx_1', 'em_vtx_2', 'em_vtx_3', 'em_vtx_4', 'em_vtx_5',
+            'em_vtx_6', 'em_vtx_7'
+        ];
+
+        const EMERGENT_NAMES = [
+            'self_ref_0', 'self_ref_1', 'self_ref_2', 'self_ref_3', 'self_ref_4'
+        ];
+
+        // =====================================================================
+        // STATE
+        // =====================================================================
+        let state = {
+            tokens: [],
+            activeTokens: new Set(),
+            currentModulation: 'phi',
+            limnusPhase: 0,
+            generation: 0,
+            coherence: 0,
+            freeEnergy: 1.0,
+            orderParameter: 0,
+            propagating: false,
+            automataGrid: [],
+            exoticMass: 0,
+            throatCrossed: false,
+            radialPosition: PHI
+        };
+
+        // =====================================================================
+        // TOKEN GENERATION
+        // =====================================================================
+        function generateTokens() {
+            state.tokens = [];
+
+            // Generate 63 Prism tokens
+            for (let i = 0; i < 63; i++) {
+                const layer = Math.floor(i / 9);
+                const z = Z_CRITICAL - (layer * 0.05);
+                state.tokens.push({
+                    id: i,
+                    type: 'prism',
+                    glyph: APL_GLYPHS[i % APL_GLYPHS.length],
+                    name: PRISM_NAMES[i] || `prism_${i}`,
+                    layer: layer,
+                    z: z,
+                    kappa: PHI_INV * (1 + Math.sin(i * PHI)),
+                    lambda: (1 - PHI_INV) * (1 + Math.cos(i * PHI_INV)),
+                    phase: (i * TAU / 63) % TAU,
+                    active: false,
+                    propagationState: 0
+                });
+            }
+
+            // Generate 32 EM Cage tokens
+            for (let i = 0; i < 32; i++) {
+                let subtype = i < 12 ? 'top' : (i < 24 ? 'bot' : 'vtx');
+                const z = Z_CRITICAL + (i < 24 ? 0.02 : 0.04);
+                state.tokens.push({
+                    id: 63 + i,
+                    type: 'cage',
+                    subtype: subtype,
+                    glyph: APL_GLYPHS[(63 + i) % APL_GLYPHS.length],
+                    name: CAGE_NAMES[i] || `cage_${i}`,
+                    z: z,
+                    kappa: PHI_INV * 1.2,
+                    lambda: (1 - PHI_INV) * 0.8,
+                    phase: (i * TAU / 32) % TAU,
+                    active: false,
+                    propagationState: 0
+                });
+            }
+
+            // Generate 5 Emergent Self-Reference tokens
+            for (let i = 0; i < 5; i++) {
+                const z = 0.95 + (i * 0.01);
+                state.tokens.push({
+                    id: 95 + i,
+                    type: 'emergent',
+                    glyph: ['✦', '✧', '⊛', '◉', '⬡'][i],
+                    name: EMERGENT_NAMES[i] || `emergent_${i}`,
+                    z: z,
+                    kappa: PHI_INV,
+                    lambda: 1 - PHI_INV,
+                    phase: (i * TAU / 5) % TAU,
+                    active: false,
+                    propagationState: 0,
+                    selfReference: true
+                });
+            }
+        }
+
+        // =====================================================================
+        // RENDER TOKENS
+        // =====================================================================
+        function renderTokens() {
+            const prismGrid = document.getElementById('prism-grid');
+            const cageGrid = document.getElementById('cage-grid');
+            const emergentGrid = document.getElementById('emergent-grid');
+
+            prismGrid.innerHTML = '';
+            cageGrid.innerHTML = '';
+            emergentGrid.innerHTML = '';
+
+            state.tokens.forEach((token, index) => {
+                const cell = document.createElement('div');
+                cell.className = `token-cell ${token.type}`;
+                cell.dataset.tokenId = token.id;
+
+                cell.innerHTML = `
+                    <div class="token-index">#${token.id.toString().padStart(3, '0')}</div>
+                    <div class="token-glyph">${token.glyph}</div>
+                    <div class="token-name">${token.name}</div>
+                    <div class="token-z">z=${token.z.toFixed(3)}</div>
+                `;
+
+                cell.onclick = () => selectToken(token.id);
+
+                if (token.type === 'prism') {
+                    prismGrid.appendChild(cell);
+                } else if (token.type === 'cage') {
+                    cageGrid.appendChild(cell);
+                } else {
+                    emergentGrid.appendChild(cell);
+                }
+            });
+        }
+
+        // =====================================================================
+        // TOKEN SELECTION
+        // =====================================================================
+        function selectToken(id) {
+            const token = state.tokens.find(t => t.id === id);
+            if (!token) return;
+
+            // Toggle active state
+            token.active = !token.active;
+            if (token.active) {
+                state.activeTokens.add(id);
+            } else {
+                state.activeTokens.delete(id);
+            }
+
+            // Update cell visual
+            const cell = document.querySelector(`[data-token-id="${id}"]`);
+            if (cell) {
+                cell.classList.toggle('active', token.active);
+            }
+
+            // Show detail panel
+            showTokenDetail(token);
+
+            // Update stats
+            updateStats();
+
+            // Trigger propagation from this token
+            if (token.active && state.propagating) {
+                propagateFrom(id);
+            }
+        }
+
+        function showTokenDetail(token) {
+            const detail = document.getElementById('token-detail');
+            detail.classList.add('visible');
+
+            document.getElementById('detail-glyph').textContent = token.glyph;
+            document.getElementById('detail-name').textContent = token.name;
+            document.getElementById('detail-type').textContent =
+                `${token.type.toUpperCase()} · ${token.subtype || 'Layer ' + (token.layer || 0)}`;
+            document.getElementById('detail-z').textContent = token.z.toFixed(4);
+            document.getElementById('detail-kappa').textContent = token.kappa.toFixed(4);
+            document.getElementById('detail-lambda').textContent = token.lambda.toFixed(4);
+            document.getElementById('detail-phase').textContent = token.phase.toFixed(4);
+        }
+
+        // =====================================================================
+        // CELLULAR AUTOMATA
+        // =====================================================================
+        const GRID_WIDTH = 67;
+        const GRID_HEIGHT = 50;
+        let canvas, ctx;
+
+        function initAutomata() {
+            canvas = document.getElementById('automata-canvas');
+            ctx = canvas.getContext('2d');
+
+            // Initialize grid
+            state.automataGrid = [];
+            for (let y = 0; y < GRID_HEIGHT; y++) {
+                state.automataGrid[y] = [];
+                for (let x = 0; x < GRID_WIDTH; x++) {
+                    state.automataGrid[y][x] = {
+                        energy: 0,
+                        phase: Math.random() * TAU,
+                        exotic: false
+                    };
+                }
+            }
+
+            // Click to seed
+            canvas.addEventListener('click', (e) => {
+                const rect = canvas.getBoundingClientRect();
+                const x = Math.floor((e.clientX - rect.left) / (canvas.width / GRID_WIDTH));
+                const y = Math.floor((e.clientY - rect.top) / (canvas.height / GRID_HEIGHT));
+                seedCell(x, y);
+            });
+
+            renderAutomata();
+        }
+
+        function seedCell(x, y) {
+            if (x >= 0 && x < GRID_WIDTH && y >= 0 && y < GRID_HEIGHT) {
+                state.automataGrid[y][x].energy = 1.0;
+                state.automataGrid[y][x].exotic = true;
+                renderAutomata();
+            }
+        }
+
+        function updateAutomata() {
+            const newGrid = JSON.parse(JSON.stringify(state.automataGrid));
+            let activeCells = 0;
+            let totalEnergy = 0;
+
+            for (let y = 0; y < GRID_HEIGHT; y++) {
+                for (let x = 0; x < GRID_WIDTH; x++) {
+                    const cell = state.automataGrid[y][x];
+                    let neighborEnergy = 0;
+                    let neighborCount = 0;
+
+                    // Check neighbors (Moore neighborhood)
+                    for (let dy = -1; dy <= 1; dy++) {
+                        for (let dx = -1; dx <= 1; dx++) {
+                            if (dx === 0 && dy === 0) continue;
+                            const ny = (y + dy + GRID_HEIGHT) % GRID_HEIGHT;
+                            const nx = (x + dx + GRID_WIDTH) % GRID_WIDTH;
+                            neighborEnergy += state.automataGrid[ny][nx].energy;
+                            neighborCount++;
+                        }
+                    }
+
+                    const avgNeighbor = neighborEnergy / neighborCount;
+
+                    // Exotic matter propagation rules
+                    if (cell.exotic) {
+                        // Exotic cells decay slowly and spread
+                        newGrid[y][x].energy = cell.energy * 0.95 + avgNeighbor * 0.1;
+                        if (avgNeighbor > 0.3) {
+                            // Spread exotic matter
+                            for (let dy = -1; dy <= 1; dy++) {
+                                for (let dx = -1; dx <= 1; dx++) {
+                                    const ny = (y + dy + GRID_HEIGHT) % GRID_HEIGHT;
+                                    const nx = (x + dx + GRID_WIDTH) % GRID_WIDTH;
+                                    if (Math.random() < cell.energy * 0.3) {
+                                        newGrid[ny][nx].exotic = true;
+                                        newGrid[ny][nx].energy = Math.max(newGrid[ny][nx].energy, cell.energy * 0.5);
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+                        // Normal cells can become exotic if neighbors are
+                        if (avgNeighbor > 0.5 && neighborEnergy > 2.0) {
+                            newGrid[y][x].exotic = true;
+                            newGrid[y][x].energy = avgNeighbor * 0.8;
+                        } else {
+                            newGrid[y][x].energy = cell.energy * 0.9 + avgNeighbor * 0.05;
+                        }
+                    }
+
+                    // Phase evolution (Kuramoto-like)
+                    newGrid[y][x].phase = (cell.phase + PHI_INV * 0.1 + avgNeighbor * 0.05) % TAU;
+
+                    if (newGrid[y][x].energy > 0.1) activeCells++;
+                    totalEnergy += newGrid[y][x].energy;
+                }
+            }
+
+            state.automataGrid = newGrid;
+
+            // Update stats
+            document.getElementById('active-cells').textContent = activeCells;
+            document.getElementById('energy-density').textContent = (totalEnergy / (GRID_WIDTH * GRID_HEIGHT)).toFixed(4);
+
+            // NEC violation indicator
+            const necValue = -PHI_INV * totalEnergy / 100;
+            document.getElementById('nec-value').textContent = necValue.toFixed(4);
+        }
+
+        function renderAutomata() {
+            const cellW = canvas.width / GRID_WIDTH;
+            const cellH = canvas.height / GRID_HEIGHT;
+
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.3)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            for (let y = 0; y < GRID_HEIGHT; y++) {
+                for (let x = 0; x < GRID_WIDTH; x++) {
+                    const cell = state.automataGrid[y][x];
+                    if (cell.energy > 0.05) {
+                        const intensity = Math.min(1, cell.energy);
+                        if (cell.exotic) {
+                            // Exotic matter: cyan/magenta
+                            const hue = 180 + cell.phase * 60 / TAU;
+                            ctx.fillStyle = `hsla(${hue}, 100%, ${50 + intensity * 30}%, ${intensity})`;
+                        } else {
+                            // Normal energy: gold/orange
+                            ctx.fillStyle = `rgba(255, ${200 * intensity}, 0, ${intensity})`;
+                        }
+                        ctx.fillRect(x * cellW, y * cellH, cellW - 1, cellH - 1);
+                    }
+                }
+            }
+        }
+
+        function startPropagation() {
+            state.propagating = !state.propagating;
+            const btn = document.querySelector('.prop-btn');
+            btn.textContent = state.propagating ? '⏸ STOP PROPAGATION' : '▶ START PROPAGATION';
+
+            if (state.propagating) {
+                animateAutomata();
+            }
+        }
+
+        function animateAutomata() {
+            if (!state.propagating) return;
+
+            updateAutomata();
+            renderAutomata();
+            updateLimnusCycle();
+            propagateTokens();
+            state.generation++;
+            document.getElementById('generations').textContent = state.generation;
+
+            requestAnimationFrame(animateAutomata);
+        }
+
+        function triggerNECViolation() {
+            // Seed multiple exotic matter points
+            for (let i = 0; i < 10; i++) {
+                const x = Math.floor(Math.random() * GRID_WIDTH);
+                const y = Math.floor(Math.random() * GRID_HEIGHT);
+                state.automataGrid[y][x].energy = 1.0;
+                state.automataGrid[y][x].exotic = true;
+            }
+
+            // Activate emergent tokens
+            state.tokens.filter(t => t.type === 'emergent').forEach(t => {
+                t.active = true;
+                state.activeTokens.add(t.id);
+                const cell = document.querySelector(`[data-token-id="${t.id}"]`);
+                if (cell) cell.classList.add('active', 'propagating');
+            });
+
+            state.throatCrossed = true;
+            document.getElementById('throat-crossed').textContent = 'YES';
+
+            renderAutomata();
+            updateStats();
+        }
+
+        // =====================================================================
+        // TOKEN PROPAGATION
+        // =====================================================================
+        function propagateTokens() {
+            const activeArray = Array.from(state.activeTokens);
+            if (activeArray.length === 0) return;
+
+            // Propagate from active tokens to neighbors
+            const toActivate = new Set();
+
+            activeArray.forEach(id => {
+                const token = state.tokens[id];
+                if (!token) return;
+
+                // Find neighbor tokens based on phase similarity
+                state.tokens.forEach(other => {
+                    if (other.id === id || other.active) return;
+
+                    const phaseDiff = Math.abs(token.phase - other.phase);
+                    const typeSim = token.type === other.type ? 0.8 : 0.4;
+
+                    // Kuramoto-like coupling
+                    const coupling = typeSim * Math.cos(phaseDiff);
+
+                    if (coupling > 0.5 && Math.random() < coupling * 0.1) {
+                        toActivate.add(other.id);
+                    }
+                });
+            });
+
+            // Activate new tokens
+            toActivate.forEach(id => {
+                const token = state.tokens[id];
+                token.active = true;
+                token.propagationState++;
+                state.activeTokens.add(id);
+
+                const cell = document.querySelector(`[data-token-id="${id}"]`);
+                if (cell) {
+                    cell.classList.add('active', 'propagating');
+                    setTimeout(() => cell.classList.remove('propagating'), 500);
+                }
+            });
+
+            document.getElementById('wave-front').textContent = toActivate.size;
+            updateStats();
+        }
+
+        function propagateFrom(seedId) {
+            const token = state.tokens[seedId];
+            if (!token) return;
+
+            // Visual propagation effect
+            const cell = document.querySelector(`[data-token-id="${seedId}"]`);
+            if (cell) {
+                cell.classList.add('propagating');
+                setTimeout(() => cell.classList.remove('propagating'), 500);
+            }
+        }
+
+        // =====================================================================
+        // LIMNUS CYCLE
+        // =====================================================================
+        function updateLimnusCycle() {
+            const phases = ['L', 'I', 'M', 'N', 'U', 'S'];
+            state.limnusPhase = (state.limnusPhase + 1) % (phases.length * 10);
+            const currentIndex = Math.floor(state.limnusPhase / 10);
+
+            // Update visual
+            document.querySelectorAll('.limnus-node').forEach((node, i) => {
+                node.classList.toggle('active', i === currentIndex);
+            });
+
+            document.getElementById('current-phase').textContent = phases[currentIndex];
+
+            // Update phase marker
+            const marker = document.getElementById('phase-marker');
+            const progress = (state.limnusPhase % 60) / 60;
+            marker.style.left = `${progress * 100}%`;
+        }
+
+        // =====================================================================
+        // MODULATION
+        // =====================================================================
+        function setModulation(spiral) {
+            state.currentModulation = spiral;
+
+            document.querySelectorAll('.mod-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.spiral === spiral);
+            });
+
+            // Modulate token phases based on spiral
+            const modFactor = spiral === 'phi' ? PHI : (spiral === 'e' ? Math.E : Math.PI);
+
+            state.tokens.forEach(token => {
+                token.phase = (token.phase + modFactor * 0.1) % TAU;
+            });
+
+            updateStats();
+        }
+
+        // =====================================================================
+        // APL CONSOLE
+        // =====================================================================
+        document.getElementById('apl-input').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                executeAPL(e.target.value);
+            }
+        });
+
+        function executeAPL(expr) {
+            const output = document.getElementById('apl-output');
+
+            // Simple APL interpreter for demo
+            let result = '';
+
+            if (expr.includes('⍳')) {
+                // Iota - generate sequence
+                const n = parseInt(expr.match(/\d+/)?.[0] || '10');
+                result = Array.from({length: n}, (_, i) => i).join(' ');
+            } else if (expr.includes('⍴')) {
+                // Rho - shape
+                result = `Shape: [${GRID_WIDTH}, ${GRID_HEIGHT}] = ${GRID_WIDTH * GRID_HEIGHT}`;
+            } else if (expr.includes('⊕')) {
+                // Activate all tokens
+                state.tokens.forEach(t => {
+                    t.active = true;
+                    state.activeTokens.add(t.id);
+                });
+                renderTokens();
+                result = '✓ All 100 tokens activated';
+            } else if (expr.includes('⊖')) {
+                // Rotate phases
+                state.tokens.forEach(t => {
+                    t.phase = (t.phase + PHI) % TAU;
+                });
+                result = `✓ Phases rotated by φ = ${PHI.toFixed(6)}`;
+            } else if (expr.includes('⍺')) {
+                // Show fine structure constant
+                result = `α⁻¹ = ${ALPHA_INV}`;
+            } else if (expr.includes('φ') || expr.includes('Φ')) {
+                result = `φ = ${PHI.toFixed(10)}\nφ⁻¹ = ${PHI_INV.toFixed(10)}\nφ × φ⁻¹ = ${(PHI * PHI_INV).toFixed(10)}`;
+            } else {
+                result = `Evaluated: ${expr}\n→ ${Math.random().toFixed(6)}`;
+            }
+
+            output.textContent = result;
+            updateStats();
+        }
+
+        // =====================================================================
+        // STATS
+        // =====================================================================
+        function updateStats() {
+            const activeCount = state.activeTokens.size;
+            document.getElementById('active-tokens').textContent = activeCount;
+
+            // Calculate coherence (order parameter)
+            let sumCos = 0, sumSin = 0;
+            state.tokens.forEach(t => {
+                if (t.active) {
+                    sumCos += Math.cos(t.phase);
+                    sumSin += Math.sin(t.phase);
+                }
+            });
+
+            const r = activeCount > 0 ? Math.sqrt(sumCos*sumCos + sumSin*sumSin) / activeCount : 0;
+            state.orderParameter = r;
+            document.getElementById('order-param').textContent = r.toFixed(4);
+
+            // Coherence
+            state.coherence = r * (activeCount / 100);
+            document.getElementById('coherence').textContent = state.coherence.toFixed(4);
+
+            // Free energy (decreases with coherence)
+            state.freeEnergy = 1.0 - state.coherence;
+            document.getElementById('free-energy').textContent = state.freeEnergy.toFixed(4);
+
+            // MirrorRoot
+            const mirroroot = PHI * PHI_INV;
+            document.getElementById('mirroroot').textContent = mirroroot.toFixed(6);
+
+            // Exotic mass
+            state.exoticMass = activeCount * PHI_INV * state.coherence;
+            document.getElementById('exotic-mass').textContent = state.exoticMass.toFixed(4);
+
+            // Radial position (based on coherence)
+            state.radialPosition = PHI + (state.coherence - 0.5) * 10;
+            document.getElementById('radial-pos').textContent = state.radialPosition.toFixed(4);
+
+            // Region
+            let region = 'THROAT';
+            if (state.radialPosition < PHI * 0.9) region = 'DIVERGENT';
+            else if (state.radialPosition > PHI * 1.1) region = 'CONVERGENT';
+            document.getElementById('wh-region').textContent = region;
+        }
+
+        // =====================================================================
+        // INITIALIZATION
+        // =====================================================================
+        function init() {
+            generateTokens();
+            renderTokens();
+            initAutomata();
+            updateStats();
+
+            console.log('WUMBO APL Directory initialized');
+            console.log(`Tokens: ${state.tokens.length}`);
+            console.log(`z_critical = ${Z_CRITICAL}`);
+            console.log(`φ = ${PHI}`);
+        }
+
+        // Start
+        init();
+    </script>
+</body>
+</html>

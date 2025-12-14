@@ -1,0 +1,23 @@
+# Host-side simulation build (no ARM toolchain required)
+
+CC = gcc
+CFLAGS = -std=c11 -O2 -Wall -Wextra -Werror -Iinclude -Isim
+LDFLAGS = -lm
+
+HOST_BUILD = build_host
+
+SRC = \
+  sim/main_sim.c \
+  sim/hal_hardware_sim.c \
+  src/pulse_control.c \
+  src/rotor_control.c \
+  src/threshold_logic.c
+
+all: $(HOST_BUILD)/nuclear_spinner_sim
+
+$(HOST_BUILD)/nuclear_spinner_sim: $(SRC)
+	@mkdir -p $(HOST_BUILD)
+	$(CC) $(CFLAGS) -o $@ $(SRC) $(LDFLAGS)
+
+clean:
+	rm -rf $(HOST_BUILD)

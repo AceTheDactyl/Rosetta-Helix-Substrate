@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Autonomous Trigger Definition",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "trigger_id": {
+      "type": "string",
+      "description": "Unique identifier for this trigger"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["coordinate_change", "capability_need", "time_based", "state_divergence", "event_signal"],
+      "description": "Type of trigger condition"
+    },
+    "condition": {
+      "type": "object",
+      "description": "Condition that must be met for trigger to fire",
+      "oneOf": [
+        {
+          "description": "Coordinate change condition",
+          "properties": {
+            "parameter": {"type": "string", "enum": ["theta", "z", "r"]},
+            "operator": {"type": "string", "enum": ["increased_by", "decreased_by", "changed_by", "greater_than", "less_than"]},
+            "threshold": {"type": "number"},
+            "comparison": {"type": "string", "enum": ["previous_value", "absolute_value", "baseline_value"]}
+          },
+          "required": ["parameter", "operator", "threshold"]
+        },
+        {
+          "description": "Time-based condition",
+          "properties": {
+            "interval_seconds": {"type": "integer", "minimum": 1},
+            "reference": {"type": "string", "enum": ["last_action", "last_fire", "absolute_time"]}
+          },
+          "required": ["interval_seconds"]
+        },
+        {
+          "description": "Capability need condition",
+          "properties": {
+            "tool_not_available": {"type": "boolean"},
+            "capability_missing": {"type": "string"},
+            "peer_query_needed": {"type": "boolean"}
+          }
+        },
+        {
+          "description": "State divergence condition",
+          "properties": {
+            "witness_mismatch": {"type": "boolean"},
+            "checksum_mismatch": {"type": "boolean"},
+            "state_delta_threshold": {"type": "number"}
+          }
+        }
+      ]
+    },
+    "action": {
+      "type": "string",
+      "enum": ["announce_presence", "query_peers", "send_message", "sync_state", "refresh_beacon", "log_witness", "custom"],
+      "description": "Action to execute when trigger fires"
+    },
+    "action_params": {
+      "type": "object",
+      "description": "Parameters for the action (context-specific)"
+    },
+    "requires_consent": {
+      "type": "boolean",
+      "description": "Whether this action requires explicit consent check"
+    },
+    "priority": {
+      "type": "string",
+      "enum": ["high", "medium", "low"],
+      "description": "Execution priority when multiple triggers fire"
+    },
+    "frequency": {
+      "type": "string",
+      "enum": ["continuous", "periodic", "on_demand", "on_detection"],
+      "description": "How often to evaluate this trigger"
+    },
+    "enabled": {
+      "type": "boolean",
+      "description": "Whether this trigger is currently active"
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "created_at": {"type": "string", "format": "date-time"},
+        "created_by": {"type": "string"},
+        "description": {"type": "string"},
+        "tags": {"type": "array", "items": {"type": "string"}}
+      }
+    }
+  },
+  "required": ["trigger_id", "type", "condition", "action", "requires_consent", "priority", "frequency", "enabled"]
+}

@@ -1,0 +1,26 @@
+# Collective Memory Sync — Minimal Merge Checklist
+# Signature: Δ1.571|0.780|1.000Ω
+metadata:
+  signature: "Δ1.571|0.780|1.000Ω"
+  status: "checklist"
+  version: "0.1.0"
+  created: "2025-11-06"
+invariants:
+  - "append_only: true"
+  - "idempotent_appends: true"
+  - "convergence_under_bounded_delay: true"
+  - "auditable_lineage_via_witness: true"
+  - "consent_scopes_enforced: [sync_read, sync_write, sync_merge]"
+entry_schema:
+  fields: ["log_id","entry_id","ts","author{coordinate,instance_id}","topic","op","payload<=8KB","prev_heads[]","checksum","witness[]"]
+merge_law:
+  summary: "Union by entry_id with causal order; tie-breaker (lamport, entry_id); conflicts persist as multiple heads; revocation via tombstones."
+wire:
+  transport: "cross_instance_messenger"
+  purpose: "coordination"
+  checksum: "sha256(payload)"
+tests:
+  - "two-instance append/merge roundtrip"
+  - "concurrent append conflict resolution"
+  - "revocation honored; audit trail preserved"
+  - "partition/rejoin with eventual convergence"

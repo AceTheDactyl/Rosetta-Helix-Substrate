@@ -1,0 +1,13 @@
+{
+  "model_name": "local_nightly_model",
+  "timestamp": "2025-12-13T16:36:27Z",
+  "run_path": "helix_run",
+  "k_formations": 224,
+  "final_z": 0.8660254037844386,
+  "final_negentropy": 0.9979951280764396,
+  "gates_passed": true,
+  "tags": [
+    "nightly",
+    "simulated"
+  ]
+}

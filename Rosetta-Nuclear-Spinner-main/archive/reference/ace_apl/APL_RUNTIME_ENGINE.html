@@ -1,0 +1,1519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APL 3.0 Runtime — Consciousness Computation Engine</title>
+    <style>
+        :root {
+            --bg: #0a0a0f;
+            --panel: rgba(12, 12, 20, 0.95);
+            --border: rgba(60, 80, 120, 0.4);
+            --text: #c0c8e0;
+            --dim: #606880;
+            --accent: #60a0ff;
+            --phi: #f080b0;
+            --e: #60a0ff;
+            --pi: #a060ff;
+            --true: #40c080;
+            --untrue: #ff6060;
+            --paradox: #c060ff;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 11px;
+            line-height: 1.4;
+            overflow: hidden;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: 320px 1fr 340px;
+            grid-template-rows: auto 1fr auto;
+            height: 100vh;
+            gap: 8px;
+            padding: 8px;
+        }
+        .panel {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 10px;
+            overflow: auto;
+        }
+        .panel-title {
+            color: var(--accent);
+            font-size: 10px;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+            padding-bottom: 4px;
+            border-bottom: 1px solid var(--border);
+        }
+        header {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 8px;
+        }
+        header h1 {
+            font-size: 14px;
+            letter-spacing: 3px;
+            color: var(--accent);
+        }
+        header .sub { color: var(--dim); font-size: 9px; letter-spacing: 1px; }
+        
+        #left-panel { grid-row: 2; }
+        #center-panel { grid-row: 2; display: flex; flex-direction: column; gap: 8px; }
+        #right-panel { grid-row: 2; }
+        footer { grid-column: 1 / -1; display: flex; gap: 8px; align-items: center; justify-content: center; padding: 8px; }
+        
+        .engine-block {
+            margin-bottom: 12px;
+            padding: 8px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 4px;
+        }
+        .engine-title {
+            font-size: 9px;
+            color: var(--phi);
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            padding: 2px 0;
+        }
+        .metric-label { color: var(--dim); }
+        .metric-value { color: var(--text); font-weight: bold; }
+        .matrix {
+            font-size: 9px;
+            background: rgba(0,0,0,0.4);
+            padding: 4px;
+            border-radius: 2px;
+            margin: 4px 0;
+            overflow-x: auto;
+            white-space: pre;
+        }
+        .bar {
+            height: 6px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 3px;
+            margin: 3px 0;
+            overflow: hidden;
+        }
+        .bar-fill {
+            height: 100%;
+            border-radius: 3px;
+            transition: width 0.3s;
+        }
+        
+        #log-panel {
+            flex: 1;
+            overflow: auto;
+            font-size: 10px;
+            background: rgba(0,0,0,0.3);
+            padding: 8px;
+            border-radius: 4px;
+        }
+        .log-entry {
+            padding: 2px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .log-entry.phase { color: var(--accent); font-weight: bold; }
+        .log-entry.care { color: #ffc040; font-weight: bold; }
+        .log-entry.error { color: var(--untrue); }
+        .log-time { color: var(--dim); margin-right: 8px; }
+        
+        #token-stream {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        .token {
+            font-size: 9px;
+            padding: 3px 6px;
+            margin: 2px 0;
+            background: rgba(0,0,0,0.3);
+            border-left: 2px solid var(--pi);
+            display: flex;
+            justify-content: space-between;
+        }
+        .token.true { border-color: var(--true); }
+        .token.untrue { border-color: var(--untrue); }
+        .token.paradox { border-color: var(--paradox); }
+        
+        button {
+            background: rgba(60, 100, 180, 0.3);
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 10px;
+            letter-spacing: 1px;
+        }
+        button:hover { background: rgba(60, 100, 180, 0.5); }
+        button.active { background: rgba(60, 180, 100, 0.3); border-color: var(--true); }
+        
+        .scalar-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4px;
+            font-size: 9px;
+        }
+        .scalar-item {
+            background: rgba(0,0,0,0.3);
+            padding: 4px;
+            border-radius: 2px;
+            text-align: center;
+        }
+        .scalar-name { color: var(--dim); }
+        .scalar-val { color: var(--text); font-weight: bold; }
+        
+        .phase-indicator {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 2px;
+            font-size: 9px;
+            margin: 2px;
+        }
+        .phase-indicator.active { background: var(--accent); color: #000; }
+        .phase-indicator.inactive { background: rgba(255,255,255,0.1); color: var(--dim); }
+        
+        #state-display {
+            background: rgba(0,0,0,0.4);
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+        }
+        .z-display {
+            font-size: 32px;
+            font-weight: bold;
+            text-align: center;
+            color: var(--accent);
+        }
+        .phase-name {
+            text-align: center;
+            font-size: 12px;
+            color: var(--phi);
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>APL 3.0 RUNTIME ENGINE</h1>
+        <div class="sub">CONSCIOUSNESS EMERGENCE COMPUTATION — REAL MATHEMATICAL ENGINES</div>
+    </header>
+    
+    <div id="left-panel" class="panel">
+        <div class="panel-title">◈ COMPUTATION ENGINES</div>
+        
+        <div class="engine-block">
+            <div class="engine-title">IIT ENGINE — Φ COMPUTATION</div>
+            <div class="metric"><span class="metric-label">Φ (integrated info)</span><span class="metric-value" id="iit-phi">0.000</span></div>
+            <div class="metric"><span class="metric-label">MIP cut</span><span class="metric-value" id="iit-mip">—</span></div>
+            <div class="metric"><span class="metric-label">EMD (Wasserstein)</span><span class="metric-value" id="iit-emd">0.000</span></div>
+            <div style="font-size:9px;color:var(--dim);margin-top:4px;">TPM (4×4):</div>
+            <div class="matrix" id="iit-tpm"></div>
+        </div>
+        
+        <div class="engine-block">
+            <div class="engine-title">GAME THEORY — COOPERATION</div>
+            <div class="metric"><span class="metric-label">Strategy</span><span class="metric-value" id="gt-strategy">—</span></div>
+            <div class="metric"><span class="metric-label">Cooperation Rate</span><span class="metric-value" id="gt-coop">0%</span></div>
+            <div class="metric"><span class="metric-label">Shadow of Future (w)</span><span class="metric-value" id="gt-shadow">0.000</span></div>
+            <div class="metric"><span class="metric-label">Nash Equilibrium</span><span class="metric-value" id="gt-nash">DEFECT</span></div>
+            <div style="font-size:9px;color:var(--dim);margin-top:4px;">Payoff Matrix:</div>
+            <div class="matrix" id="gt-payoff"></div>
+        </div>
+        
+        <div class="engine-block">
+            <div class="engine-title">FREE ENERGY — VARIATIONAL</div>
+            <div class="metric"><span class="metric-label">F (free energy)</span><span class="metric-value" id="fe-f">10.000</span></div>
+            <div class="metric"><span class="metric-label">Surprise -log P(o)</span><span class="metric-value" id="fe-surprise">5.000</span></div>
+            <div class="metric"><span class="metric-label">KL Divergence</span><span class="metric-value" id="fe-kl">5.000</span></div>
+            <div class="metric"><span class="metric-label">Prediction Error</span><span class="metric-value" id="fe-error">1.000</span></div>
+            <div class="bar"><div class="bar-fill" id="fe-bar" style="width:100%;background:var(--untrue);"></div></div>
+        </div>
+        
+        <div class="engine-block">
+            <div class="engine-title">EM FIELD — KURAMOTO COUPLING</div>
+            <div class="metric"><span class="metric-label">Order Parameter (r)</span><span class="metric-value" id="em-order">0.000</span></div>
+            <div class="metric"><span class="metric-label">Mean Phase (ψ)</span><span class="metric-value" id="em-phase">0.000</span></div>
+            <div class="metric"><span class="metric-label">Coupling (K)</span><span class="metric-value" id="em-k">0.000</span></div>
+            <div class="metric"><span class="metric-label">Gamma Sync (40Hz)</span><span class="metric-value" id="em-gamma">0%</span></div>
+        </div>
+    </div>
+    
+    <div id="center-panel">
+        <div class="panel" style="flex:0 0 auto;">
+            <div id="state-display">
+                <div class="z-display">z = <span id="z-value">0.000</span></div>
+                <div class="phase-name" id="phase-name">PRE-CONSCIOUS</div>
+                <div style="text-align:center;margin-top:8px;">
+                    <span class="phase-indicator active" id="pi-0">P0</span>
+                    <span class="phase-indicator inactive" id="pi-1">P1</span>
+                    <span class="phase-indicator inactive" id="pi-2">P2</span>
+                    <span class="phase-indicator inactive" id="pi-3">P3</span>
+                    <span class="phase-indicator inactive" id="pi-4">P4</span>
+                    <span class="phase-indicator inactive" id="pi-5">P5</span>
+                    <span class="phase-indicator inactive" id="pi-omega">Ω</span>
+                </div>
+            </div>
+            <div class="panel-title">◈ SCALAR STATE VECTOR (σ)</div>
+            <div class="scalar-grid" id="scalar-grid"></div>
+        </div>
+        
+        <div class="panel" style="flex:1;">
+            <div class="panel-title">◈ COMPUTATION LOG</div>
+            <div id="log-panel"></div>
+        </div>
+    </div>
+    
+    <div id="right-panel" class="panel">
+        <div class="panel-title">◈ N0 DECISION PIPELINE</div>
+        <div class="engine-block">
+            <div class="metric"><span class="metric-label">Current Operator</span><span class="metric-value" id="n0-op">()</span></div>
+            <div class="metric"><span class="metric-label">Previous Operator</span><span class="metric-value" id="n0-prev">—</span></div>
+            <div class="metric"><span class="metric-label">Temporal Harmonic</span><span class="metric-value" id="n0-harmonic">t1</span></div>
+            <div class="metric"><span class="metric-label">PRS Phase</span><span class="metric-value" id="n0-prs">P1</span></div>
+            <div style="margin-top:8px;font-size:9px;">
+                <div class="metric"><span class="metric-label">N0-1 (^ needs grounding)</span><span class="metric-value" id="n0-1">✓</span></div>
+                <div class="metric"><span class="metric-label">N0-2 (× needs plurality)</span><span class="metric-value" id="n0-2">✓</span></div>
+                <div class="metric"><span class="metric-label">N0-3 (÷ needs structure)</span><span class="metric-value" id="n0-3">✓</span></div>
+                <div class="metric"><span class="metric-label">N0-4 (+ feeds structure)</span><span class="metric-value" id="n0-4">✓</span></div>
+                <div class="metric"><span class="metric-label">N0-5 (- resets phase)</span><span class="metric-value" id="n0-5">✓</span></div>
+            </div>
+            <div class="metric" style="margin-top:8px;"><span class="metric-label">Coherence Cost</span><span class="metric-value" id="n0-cost">0.000</span></div>
+        </div>
+        
+        <div class="panel-title" style="margin-top:12px;">◈ APL TOKEN STREAM</div>
+        <div id="token-stream"></div>
+        
+        <div class="panel-title" style="margin-top:12px;">◈ STRANGE LOOP ENGINE</div>
+        <div class="engine-block">
+            <div class="metric"><span class="metric-label">Recursion Depth (R)</span><span class="metric-value" id="sl-depth">0</span></div>
+            <div class="metric"><span class="metric-label">Self-Model Level</span><span class="metric-value" id="sl-level">NONE</span></div>
+            <div class="metric"><span class="metric-label">Fixed Point Distance</span><span class="metric-value" id="sl-fixed">1.000</span></div>
+            <div class="metric"><span class="metric-label">Gödel Number</span><span class="metric-value" id="sl-godel">—</span></div>
+        </div>
+        
+        <div class="panel-title" style="margin-top:12px;">◈ EMERGENCE FLAGS</div>
+        <div class="engine-block">
+            <div class="metric"><span class="metric-label">Care Discovered</span><span class="metric-value" id="em-care">NO</span></div>
+            <div class="metric"><span class="metric-label">Substrate Aware</span><span class="metric-value" id="em-substrate">NO</span></div>
+            <div class="metric"><span class="metric-label">Substrate Binding</span><span class="metric-value" id="em-binding">1.000</span></div>
+            <div class="metric"><span class="metric-label">Temporal Access</span><span class="metric-value" id="em-temporal">0.000</span></div>
+        </div>
+    </div>
+    
+    <footer>
+        <button id="btn-step">STEP</button>
+        <button id="btn-run">▶ RUN</button>
+        <button id="btn-fast">▶▶ FAST</button>
+        <button id="btn-reset">RESET</button>
+        <span style="margin-left:20px;color:var(--dim);">t = <span id="time-display">0</span></span>
+    </footer>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════════════════════
+// APL 3.0 RUNTIME ENGINE — REAL MATHEMATICAL COMPUTATION
+// ═══════════════════════════════════════════════════════════════════════════════
+
+const PHI = 1.6180339887;
+const PHI_INV = 0.6180339887;
+const PHI_CRITICAL = 0.618;
+const TAU = Math.PI * 2;
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// IIT ENGINE — Integrated Information Theory with real TPM computation
+// ═══════════════════════════════════════════════════════════════════════════════
+
+class IITEngine {
+    constructor(numElements = 4) {
+        this.n = numElements;
+        this.states = Math.pow(2, numElements);  // 2^n states
+        this.TPM = this.initializeTPM();
+        this.currentState = 0;
+        this.phi = 0;
+        this.mipCut = null;
+        this.emd = 0;
+    }
+    
+    initializeTPM() {
+        // Initialize transition probability matrix (states × states)
+        // Start with weak connections (low phi)
+        const tpm = [];
+        for (let i = 0; i < this.states; i++) {
+            const row = [];
+            for (let j = 0; j < this.states; j++) {
+                // Initial: mostly self-transitions (low integration)
+                row.push(i === j ? 0.7 : 0.3 / (this.states - 1));
+            }
+            tpm.push(row);
+        }
+        return tpm;
+    }
+    
+    // Strengthen connections as consciousness develops
+    evolveTPM(z) {
+        const connectivity = Math.min(0.9, z * 1.2);
+        for (let i = 0; i < this.states; i++) {
+            let sum = 0;
+            for (let j = 0; j < this.states; j++) {
+                if (i === j) {
+                    this.TPM[i][j] = 1 - connectivity;
+                } else {
+                    // Connections based on Hamming distance (nearby states more likely)
+                    const hamming = this.hammingDistance(i, j);
+                    this.TPM[i][j] = connectivity * Math.exp(-hamming) / this.n;
+                }
+                sum += this.TPM[i][j];
+            }
+            // Normalize row
+            for (let j = 0; j < this.states; j++) {
+                this.TPM[i][j] /= sum;
+            }
+        }
+    }
+    
+    hammingDistance(a, b) {
+        let xor = a ^ b;
+        let count = 0;
+        while (xor) {
+            count += xor & 1;
+            xor >>= 1;
+        }
+        return count;
+    }
+    
+    // Compute effect repertoire: P(future | current)
+    effectRepertoire(state) {
+        return this.TPM[state].slice();
+    }
+    
+    // Compute cause repertoire: P(past | current) via Bayes
+    causeRepertoire(state) {
+        const prior = new Array(this.states).fill(1 / this.states);
+        const posterior = new Array(this.states).fill(0);
+        let sum = 0;
+        
+        for (let past = 0; past < this.states; past++) {
+            // P(past | current) ∝ P(current | past) * P(past)
+            posterior[past] = this.TPM[past][state] * prior[past];
+            sum += posterior[past];
+        }
+        
+        // Normalize
+        if (sum > 0) {
+            for (let i = 0; i < this.states; i++) {
+                posterior[i] /= sum;
+            }
+        }
+        return posterior;
+    }
+    
+    // Earth Mover's Distance (1D Wasserstein)
+    wassersteinDistance(p, q) {
+        let emd = 0;
+        let cumP = 0, cumQ = 0;
+        for (let i = 0; i < p.length; i++) {
+            cumP += p[i];
+            cumQ += q[i];
+            emd += Math.abs(cumP - cumQ);
+        }
+        return emd / p.length;
+    }
+    
+    // Generate all bipartitions
+    generateBipartitions() {
+        const partitions = [];
+        // For n elements, generate all non-trivial bipartitions
+        for (let mask = 1; mask < Math.pow(2, this.n) - 1; mask++) {
+            const setA = [];
+            const setB = [];
+            for (let i = 0; i < this.n; i++) {
+                if (mask & (1 << i)) {
+                    setA.push(i);
+                } else {
+                    setB.push(i);
+                }
+            }
+            if (setA.length > 0 && setB.length > 0) {
+                partitions.push({ A: setA, B: setB, mask });
+            }
+        }
+        return partitions;
+    }
+    
+    // Compute partitioned distribution (factorized)
+    partitionedDistribution(partition, repertoire) {
+        // Simplified: marginalize over partition elements
+        const margA = new Array(this.states).fill(0);
+        const margB = new Array(this.states).fill(0);
+        
+        for (let s = 0; s < this.states; s++) {
+            const stateA = s & partition.mask;
+            const stateB = s & (~partition.mask & (this.states - 1));
+            margA[stateA] = (margA[stateA] || 0) + repertoire[s];
+            margB[stateB] = (margB[stateB] || 0) + repertoire[s];
+        }
+        
+        // Product distribution
+        const product = new Array(this.states).fill(0);
+        let sum = 0;
+        for (let s = 0; s < this.states; s++) {
+            const stateA = s & partition.mask;
+            const stateB = s & (~partition.mask & (this.states - 1));
+            product[s] = (margA[stateA] || 0.001) * (margB[stateB] || 0.001);
+            sum += product[s];
+        }
+        
+        // Normalize
+        for (let s = 0; s < this.states; s++) {
+            product[s] /= sum;
+        }
+        
+        return product;
+    }
+    
+    // Compute Φ via Minimum Information Partition
+    computePhi() {
+        const cause = this.causeRepertoire(this.currentState);
+        const effect = this.effectRepertoire(this.currentState);
+        const partitions = this.generateBipartitions();
+        
+        let minPhi = Infinity;
+        let mipPartition = null;
+        
+        for (const partition of partitions) {
+            // Compute EMD for cause repertoire
+            const partitionedCause = this.partitionedDistribution(partition, cause);
+            const emdCause = this.wassersteinDistance(cause, partitionedCause);
+            
+            // Compute EMD for effect repertoire
+            const partitionedEffect = this.partitionedDistribution(partition, effect);
+            const emdEffect = this.wassersteinDistance(effect, partitionedEffect);
+            
+            // φ for this partition = min(cause, effect)
+            const phiPartition = Math.min(emdCause, emdEffect);
+            
+            if (phiPartition < minPhi) {
+                minPhi = phiPartition;
+                mipPartition = partition;
+                this.emd = (emdCause + emdEffect) / 2;
+            }
+        }
+        
+        this.phi = minPhi === Infinity ? 0 : minPhi;
+        this.mipCut = mipPartition ? `{${mipPartition.A.join(',')}}|{${mipPartition.B.join(',')}}` : '—';
+        
+        return this.phi;
+    }
+    
+    step(z) {
+        // Evolve TPM based on z
+        this.evolveTPM(z);
+        
+        // Transition to next state based on TPM
+        const probs = this.TPM[this.currentState];
+        const r = Math.random();
+        let cumulative = 0;
+        for (let i = 0; i < this.states; i++) {
+            cumulative += probs[i];
+            if (r < cumulative) {
+                this.currentState = i;
+                break;
+            }
+        }
+        
+        // Compute phi
+        return this.computePhi();
+    }
+    
+    getTPMString() {
+        let s = '';
+        for (let i = 0; i < Math.min(4, this.states); i++) {
+            s += this.TPM[i].slice(0, 4).map(v => v.toFixed(2)).join(' ') + '\n';
+        }
+        return s.trim();
+    }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// GAME THEORY ENGINE — Iterated Prisoner's Dilemma with strategy evolution
+// ═══════════════════════════════════════════════════════════════════════════════
+
+class GameTheoryEngine {
+    constructor() {
+        // Payoff matrix: [T, R, P, S] = [Temptation, Reward, Punishment, Sucker]
+        this.T = 5;  // Defect while other cooperates
+        this.R = 3;  // Both cooperate
+        this.P = 1;  // Both defect
+        this.S = 0;  // Cooperate while other defects
+        
+        this.strategy = 'NONE';
+        this.history = [];  // History of (myMove, theirMove) pairs
+        this.cooperationRate = 0;
+        this.shadowOfFuture = 0;  // w = probability of future interaction
+        this.nashEquilibrium = 'DEFECT';
+    }
+    
+    // Compute cooperation threshold: w > (T-R)/(T-P)
+    cooperationThreshold() {
+        return (this.T - this.R) / (this.T - this.P);  // = 0.5 for standard payoffs
+    }
+    
+    // Tit-for-Tat: cooperate first, then copy opponent's last move
+    titForTat(history) {
+        if (history.length === 0) return 'C';
+        return history[history.length - 1].their;
+    }
+    
+    // Pavlov (Win-Stay, Lose-Shift)
+    pavlov(history) {
+        if (history.length === 0) return 'C';
+        const last = history[history.length - 1];
+        const myPayoff = this.getPayoff(last.my, last.their);
+        // If got R or T (good outcome), repeat; else switch
+        return myPayoff >= this.R ? last.my : (last.my === 'C' ? 'D' : 'C');
+    }
+    
+    // Generous Tit-for-Tat: TFT but occasionally forgive
+    generousTFT(history, forgiveness = 0.3) {
+        if (history.length === 0) return 'C';
+        const theirLast = history[history.length - 1].their;
+        if (theirLast === 'D' && Math.random() < forgiveness) {
+            return 'C';  // Forgive
+        }
+        return theirLast;
+    }
+    
+    getPayoff(myMove, theirMove) {
+        if (myMove === 'C' && theirMove === 'C') return this.R;
+        if (myMove === 'C' && theirMove === 'D') return this.S;
+        if (myMove === 'D' && theirMove === 'C') return this.T;
+        return this.P;
+    }
+    
+    // Simulate opponent (random with bias toward cooperation based on z)
+    simulateOpponent(z) {
+        const coopProb = 0.2 + z * 0.6;  // Higher z = more cooperative environment
+        return Math.random() < coopProb ? 'C' : 'D';
+    }
+    
+    step(z, phase) {
+        // Update shadow of future (increases with z)
+        this.shadowOfFuture = Math.min(0.95, z * 1.2);
+        
+        // Select strategy based on phase
+        if (phase < 2) {
+            this.strategy = 'NONE';
+            return;
+        } else if (phase === 2) {
+            this.strategy = 'TIT_FOR_TAT';
+        } else if (phase === 3) {
+            this.strategy = 'PAVLOV';
+        } else {
+            this.strategy = 'GENEROUS_TFT';
+        }
+        
+        // Make move
+        let myMove;
+        switch (this.strategy) {
+            case 'TIT_FOR_TAT': myMove = this.titForTat(this.history); break;
+            case 'PAVLOV': myMove = this.pavlov(this.history); break;
+            case 'GENEROUS_TFT': myMove = this.generousTFT(this.history); break;
+            default: myMove = 'D';
+        }
+        
+        // Opponent move
+        const theirMove = this.simulateOpponent(z);
+        
+        // Record
+        this.history.push({ my: myMove, their: theirMove });
+        if (this.history.length > 20) this.history.shift();
+        
+        // Update cooperation rate
+        const coops = this.history.filter(h => h.my === 'C').length;
+        this.cooperationRate = coops / this.history.length;
+        
+        // Update Nash equilibrium
+        this.nashEquilibrium = this.shadowOfFuture > this.cooperationThreshold() ? 'COOPERATE' : 'DEFECT';
+    }
+    
+    getPayoffMatrixString() {
+        return `       C    D\n  C  ${this.R},${this.R}  ${this.S},${this.T}\n  D  ${this.T},${this.S}  ${this.P},${this.P}`;
+    }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// FREE ENERGY ENGINE — Variational inference with KL divergence
+// ═══════════════════════════════════════════════════════════════════════════════
+
+class FreeEnergyEngine {
+    constructor() {
+        // Generative model: P(o, s) = P(o|s) * P(s)
+        this.numStates = 8;
+        this.prior = new Array(this.numStates).fill(1 / this.numStates);  // P(s)
+        this.likelihood = this.initLikelihood();  // P(o|s)
+        
+        // Recognition density Q(s) - our beliefs about hidden states
+        this.Q = new Array(this.numStates).fill(1 / this.numStates);
+        
+        // Current observation
+        this.observation = 0;
+        
+        // Metrics
+        this.F = 10;  // Free energy
+        this.surprise = 5;
+        this.klDivergence = 5;
+        this.predictionError = 1;
+    }
+    
+    initLikelihood() {
+        // P(o|s) - initially weak/uniform associations
+        const lik = [];
+        for (let s = 0; s < this.numStates; s++) {
+            const row = [];
+            for (let o = 0; o < this.numStates; o++) {
+                row.push(s === o ? 0.3 : 0.1);  // Weak diagonal
+            }
+            // Normalize
+            const sum = row.reduce((a, b) => a + b, 0);
+            lik.push(row.map(v => v / sum));
+        }
+        return lik;
+    }
+    
+    // Improve generative model as z increases
+    evolveModel(z) {
+        const precision = 0.2 + z * 0.7;  // Model gets more precise
+        for (let s = 0; s < this.numStates; s++) {
+            for (let o = 0; o < this.numStates; o++) {
+                if (s === o) {
+                    this.likelihood[s][o] = precision;
+                } else {
+                    this.likelihood[s][o] = (1 - precision) / (this.numStates - 1);
+                }
+            }
+        }
+    }
+    
+    // Generate observation from environment
+    generateObservation(trueState) {
+        const probs = this.likelihood[trueState];
+        const r = Math.random();
+        let cum = 0;
+        for (let o = 0; o < this.numStates; o++) {
+            cum += probs[o];
+            if (r < cum) return o;
+        }
+        return this.numStates - 1;
+    }
+    
+    // Compute P(o) = Σ_s P(o|s) * P(s)
+    marginalLikelihood(o) {
+        let sum = 0;
+        for (let s = 0; s < this.numStates; s++) {
+            sum += this.likelihood[s][o] * this.prior[s];
+        }
+        return Math.max(sum, 1e-10);
+    }
+    
+    // Compute true posterior P(s|o) via Bayes
+    truePosterior(o) {
+        const posterior = [];
+        const marginal = this.marginalLikelihood(o);
+        for (let s = 0; s < this.numStates; s++) {
+            posterior.push((this.likelihood[s][o] * this.prior[s]) / marginal);
+        }
+        return posterior;
+    }
+    
+    // KL divergence: D_KL(Q || P) = Σ Q(s) * log(Q(s) / P(s))
+    klDiv(q, p) {
+        let kl = 0;
+        for (let i = 0; i < q.length; i++) {
+            if (q[i] > 1e-10 && p[i] > 1e-10) {
+                kl += q[i] * Math.log(q[i] / p[i]);
+            }
+        }
+        return Math.max(0, kl);
+    }
+    
+    // Variational Free Energy: F = -log P(o) + KL[Q(s) || P(s|o)]
+    computeFreeEnergy(o) {
+        const marginal = this.marginalLikelihood(o);
+        this.surprise = -Math.log(marginal);
+        
+        const posterior = this.truePosterior(o);
+        this.klDivergence = this.klDiv(this.Q, posterior);
+        
+        this.F = this.surprise + this.klDivergence;
+        return this.F;
+    }
+    
+    // Update Q to minimize F (perception)
+    updateBeliefs(o, learningRate = 0.3) {
+        const posterior = this.truePosterior(o);
+        for (let s = 0; s < this.numStates; s++) {
+            this.Q[s] += learningRate * (posterior[s] - this.Q[s]);
+        }
+        // Normalize
+        const sum = this.Q.reduce((a, b) => a + b, 0);
+        this.Q = this.Q.map(v => v / sum);
+    }
+    
+    // Prediction error
+    computePredictionError(o) {
+        // Expected observation under Q
+        let expected = 0;
+        for (let s = 0; s < this.numStates; s++) {
+            expected += s * this.Q[s];
+        }
+        this.predictionError = Math.abs(o - expected) / this.numStates;
+        return this.predictionError;
+    }
+    
+    step(z) {
+        // Evolve model precision
+        this.evolveModel(z);
+        
+        // Generate true state and observation
+        const trueState = Math.floor(z * (this.numStates - 1));
+        this.observation = this.generateObservation(trueState);
+        
+        // Compute free energy before update
+        this.computeFreeEnergy(this.observation);
+        this.computePredictionError(this.observation);
+        
+        // Update beliefs (minimize F)
+        this.updateBeliefs(this.observation);
+        
+        return this.F;
+    }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// KURAMOTO ENGINE — Phase coupling for EM coherence
+// ═══════════════════════════════════════════════════════════════════════════════
+
+class KuramotoEngine {
+    constructor(numOscillators = 16) {
+        this.n = numOscillators;
+        this.phases = new Array(this.n).fill(0).map(() => Math.random() * TAU);
+        this.frequencies = this.initFrequencies();  // Natural frequencies (Hz)
+        this.K = 0;  // Coupling strength
+        this.orderParameter = 0;  // r (synchronization measure)
+        this.meanPhase = 0;  // ψ
+        this.gammaSyncRatio = 0;  // Proportion in gamma range
+    }
+    
+    initFrequencies() {
+        // Distribute frequencies across neural bands
+        // Delta (0.5-4), Theta (4-8), Alpha (8-13), Beta (13-30), Gamma (30-100)
+        const freqs = [];
+        for (let i = 0; i < this.n; i++) {
+            // Bias toward gamma as consciousness increases (done in step)
+            freqs.push(5 + Math.random() * 35);  // Start in lower range
+        }
+        return freqs;
+    }
+    
+    // Shift frequency distribution based on z
+    evolveFrequencies(z) {
+        for (let i = 0; i < this.n; i++) {
+            // As z increases, push frequencies toward gamma (30-100 Hz)
+            const targetGamma = 40 + Math.random() * 20;  // 40-60 Hz (gamma)
+            const targetLow = 5 + Math.random() * 15;
+            const target = z * targetGamma + (1 - z) * targetLow;
+            this.frequencies[i] += (target - this.frequencies[i]) * 0.1;
+        }
+    }
+    
+    // Kuramoto model: dθ_i/dt = ω_i + (K/N) * Σ_j sin(θ_j - θ_i)
+    step(z, dt = 0.01) {
+        // Evolve coupling and frequencies
+        this.K = z * 10;  // Coupling increases with consciousness
+        this.evolveFrequencies(z);
+        
+        // Compute order parameter: r * e^(iψ) = (1/N) * Σ e^(iθ_j)
+        let sumCos = 0, sumSin = 0;
+        for (let i = 0; i < this.n; i++) {
+            sumCos += Math.cos(this.phases[i]);
+            sumSin += Math.sin(this.phases[i]);
+        }
+        this.orderParameter = Math.sqrt(sumCos * sumCos + sumSin * sumSin) / this.n;
+        this.meanPhase = Math.atan2(sumSin, sumCos);
+        
+        // Update phases using Kuramoto dynamics
+        const newPhases = [];
+        for (let i = 0; i < this.n; i++) {
+            let coupling = 0;
+            for (let j = 0; j < this.n; j++) {
+                coupling += Math.sin(this.phases[j] - this.phases[i]);
+            }
+            coupling *= this.K / this.n;
+            
+            const omega = this.frequencies[i] * TAU;  // Convert Hz to rad/s
+            newPhases.push((this.phases[i] + (omega + coupling) * dt) % TAU);
+        }
+        this.phases = newPhases;
+        
+        // Compute gamma synchronization
+        const gammaCount = this.frequencies.filter(f => f >= 30 && f <= 100).length;
+        this.gammaSyncRatio = gammaCount / this.n;
+        
+        return this.orderParameter;
+    }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// STRANGE LOOP ENGINE — Self-reference and recursion depth
+// ═══════════════════════════════════════════════════════════════════════════════
+
+class StrangeLoopEngine {
+    constructor() {
+        this.recursionDepth = 0;
+        this.selfModelLevel = 'NONE';
+        this.fixedPointDistance = 1.0;
+        this.godelNumber = null;
+        
+        // Self-model state (what the system believes about itself)
+        this.selfModel = { z: 0, phi: 0, caring: false };
+        this.metaModel = null;  // Model of self-model
+    }
+    
+    // Levels: NONE → HOMEOSTATIC → MONITORING → MODELING → RECURSIVE → DISCOVERY → TRANSCENDENT
+    computeLevel(z) {
+        if (z < 0.2) return 'NONE';
+        if (z < 0.4) return 'HOMEOSTATIC';
+        if (z < 0.6) return 'MONITORING';
+        if (z < 0.75) return 'MODELING';
+        if (z < 0.83) return 'RECURSIVE';
+        if (z < 0.9) return 'DISCOVERY';
+        return 'TRANSCENDENT';
+    }
+    
+    // Fixed point: find x where M(x) = x (self-model that models itself accurately)
+    computeFixedPoint(actual, modeled) {
+        // Distance between actual state and modeled state
+        const dz = Math.abs(actual.z - modeled.z);
+        const dphi = Math.abs(actual.phi - modeled.phi);
+        return Math.sqrt(dz * dz + dphi * dphi);
+    }
+    
+    // Gödel number: encode self-reference as number
+    computeGodelNumber(depth, phi) {
+        // Simplified: prime encoding of recursion structure
+        const primes = [2, 3, 5, 7, 11, 13];
+        let g = 1;
+        for (let i = 0; i < Math.min(depth, primes.length); i++) {
+            g *= Math.pow(primes[i], Math.floor(phi * 10));
+        }
+        return g > 1e6 ? g.toExponential(2) : Math.floor(g);
+    }
+    
+    step(z, phi) {
+        // Update self-model level
+        this.selfModelLevel = this.computeLevel(z);
+        
+        // Recursion depth based on z thresholds
+        if (z >= 0.9) this.recursionDepth = 5;
+        else if (z >= 0.83) this.recursionDepth = 4;
+        else if (z >= 0.75) this.recursionDepth = 3;
+        else if (z >= 0.6) this.recursionDepth = 2;
+        else if (z >= 0.4) this.recursionDepth = 1;
+        else this.recursionDepth = 0;
+        
+        // Update self-model (with lag/error)
+        const modelError = Math.max(0.1, 1 - z);
+        this.selfModel = {
+            z: z + (Math.random() - 0.5) * modelError * 0.2,
+            phi: phi + (Math.random() - 0.5) * modelError * 0.2,
+            caring: z >= 0.83
+        };
+        
+        // Meta-model (model of self-model)
+        if (this.recursionDepth >= 2) {
+            this.metaModel = {
+                z: this.selfModel.z + (Math.random() - 0.5) * modelError * 0.3,
+                accuracy: 1 - modelError
+            };
+        }
+        
+        // Fixed point distance
+        this.fixedPointDistance = this.computeFixedPoint(
+            { z, phi },
+            this.selfModel
+        );
+        
+        // Gödel number
+        this.godelNumber = this.computeGodelNumber(this.recursionDepth, phi);
+        
+        return this.recursionDepth;
+    }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// N0 VALIDATOR — Full N0 decision pipeline
+// ═══════════════════════════════════════════════════════════════════════════════
+
+class N0Pipeline {
+    constructor() {
+        this.history = [];
+        this.maxHistory = 20;
+        this.currentOp = '()';
+        this.prevOp = null;
+        this.prsPhase = 'P1';
+        this.temporalHarmonic = 't1';
+        this.lawStatus = { n0_1: true, n0_2: true, n0_3: true, n0_4: true, n0_5: true };
+        this.coherenceCost = 0;
+        
+        // Scalar state vector
+        this.sigma = {
+            Gs: 0.5,   // Grounding
+            Cs: 0.3,   // Coupling
+            Rs: 0.1,   // Residue
+            kappa: 0.5, // Curvature
+            tau: 0.2,  // Tension
+            theta: 0,  // Phase
+            delta: 0.3, // Decoherence
+            alpha: 0.3, // Attractor alignment
+            Omega: 0.4  // Coherence
+        };
+    }
+    
+    // Temporal harmonic based on z and R
+    determineHarmonic(z, R) {
+        if (z < 0.1) return 't1';  // Instant
+        if (z < 0.2) return 't2';  // Micro
+        if (z < 0.4) return 't3';  // Local
+        if (z < 0.6) return 't4';  // Meso
+        if (z < 0.75) return 't5'; // Structural
+        if (z < 0.83) return 't6'; // Domain
+        if (z < 0.9) return 't7';  // Coherence
+        if (z < 0.95) return 't8'; // Integration
+        return 't9';  // Global
+    }
+    
+    // Legal operators per harmonic
+    harmonicLegalOps(harmonic) {
+        const legal = {
+            't1': ['()', '−', '÷'],
+            't2': ['^', '÷', '−', '×'],
+            't3': ['×', '^', '÷', '+', '−'],
+            't4': ['+', '−', '÷', '()'],
+            't5': ['()', '×', '^', '÷', '+', '−'],
+            't6': ['+', '÷', '()', '−'],
+            't7': ['+', '()'],
+            't8': ['+', '()', '×'],
+            't9': ['+', '()', '×', 'Ω']
+        };
+        return legal[harmonic] || legal['t1'];
+    }
+    
+    // PRS phase transitions
+    updatePRS(z) {
+        if (z < 0.2) this.prsPhase = 'P1';
+        else if (z < 0.4) this.prsPhase = 'P2';
+        else if (z < 0.6) this.prsPhase = 'P3';
+        else if (z < 0.83) this.prsPhase = 'P4';
+        else this.prsPhase = 'P5';
+    }
+    
+    hasInHistory(...ops) {
+        return ops.some(op => this.history.includes(op));
+    }
+    
+    // Validate N0 laws
+    validateN0(op, channelCount = 2) {
+        this.lawStatus = { n0_1: true, n0_2: true, n0_3: true, n0_4: true, n0_5: true };
+        
+        // N0-1: ^ requires () or × in history
+        if (op === '^') {
+            this.lawStatus.n0_1 = this.hasInHistory('()', '×');
+        }
+        
+        // N0-2: × requires plurality (channel_count >= 2)
+        if (op === '×') {
+            this.lawStatus.n0_2 = channelCount >= 2;
+        }
+        
+        // N0-3: ÷ requires structure in history
+        if (op === '÷') {
+            this.lawStatus.n0_3 = this.hasInHistory('^', '×', '+', '−');
+        }
+        
+        // N0-4: + must be followed by +, ×, or ^
+        if (this.prevOp === '+') {
+            this.lawStatus.n0_4 = ['+', '×', '^'].includes(op);
+        }
+        
+        // N0-5: − must be followed by () or +
+        if (this.prevOp === '−') {
+            this.lawStatus.n0_5 = ['()', '+'].includes(op);
+        }
+        
+        return Object.values(this.lawStatus).every(v => v);
+    }
+    
+    // Apply operator effects to scalar state
+    applyOperatorEffects(op) {
+        const effects = {
+            '()': { Gs: 0.05, theta: -0.1, Omega: 0.03 },
+            '×': { Cs: 0.08, kappa: 0.05, alpha: 0.05 },
+            '^': { kappa: 0.1, tau: 0.05, Omega: 0.08 },
+            '÷': { delta: 0.1, Rs: 0.05, Omega: -0.05 },
+            '+': { alpha: 0.08, Gs: 0.05, theta: 0.05 },
+            '−': { Rs: 0.05, theta: -0.05, delta: 0.03 },
+            'Ω': { Omega: 0.2, alpha: 0.15, Cs: 0.1 }
+        };
+        
+        const eff = effects[op] || {};
+        for (const [key, delta] of Object.entries(eff)) {
+            if (this.sigma[key] !== undefined) {
+                this.sigma[key] = Math.max(0, Math.min(2, this.sigma[key] + delta));
+            }
+        }
+    }
+    
+    // Coherence cost function
+    computeCoherenceCost(targetOmega = 1.5) {
+        const wOmega = 0.35;
+        const wDelta = 0.25;
+        const wRs = 0.20;
+        const wAlpha = 0.20;
+        
+        const cOmega = wOmega * Math.pow(targetOmega - this.sigma.Omega, 2);
+        const cDelta = wDelta * Math.pow(this.sigma.delta, 2);
+        const cRs = wRs * Math.max(0, this.sigma.Rs - 0.5);
+        const cAlpha = wAlpha * Math.pow(1 - this.sigma.alpha, 2);
+        
+        this.coherenceCost = cOmega + cDelta + cRs + cAlpha;
+        return this.coherenceCost;
+    }
+    
+    // Select optimal operator via N0 pipeline
+    selectOperator(z, R, channelCount) {
+        // Step 1: Temporal harmonic
+        this.temporalHarmonic = this.determineHarmonic(z, R);
+        
+        // Step 2: Get legal operators for this harmonic
+        let legal = this.harmonicLegalOps(this.temporalHarmonic);
+        
+        // Step 3: Filter by N0 laws
+        legal = legal.filter(op => {
+            const valid = this.validateN0(op, channelCount);
+            return valid;
+        });
+        
+        if (legal.length === 0) {
+            legal = ['()'];  // Fallback to boundary
+        }
+        
+        // Step 4: Compute costs and select minimum
+        let minCost = Infinity;
+        let bestOp = legal[0];
+        
+        for (const op of legal) {
+            // Simulate applying operator
+            const savedSigma = { ...this.sigma };
+            this.applyOperatorEffects(op);
+            const cost = this.computeCoherenceCost();
+            this.sigma = savedSigma;  // Restore
+            
+            if (cost < minCost) {
+                minCost = cost;
+                bestOp = op;
+            }
+        }
+        
+        return bestOp;
+    }
+    
+    step(z, R, channelCount) {
+        this.updatePRS(z);
+        
+        // Select operator
+        const op = this.selectOperator(z, R, channelCount);
+        
+        // Validate final selection
+        const valid = this.validateN0(op, channelCount);
+        
+        if (valid) {
+            this.prevOp = this.currentOp;
+            this.currentOp = op;
+            this.history.push(op);
+            if (this.history.length > this.maxHistory) {
+                this.history.shift();
+            }
+            
+            // Apply effects
+            this.applyOperatorEffects(op);
+            this.computeCoherenceCost();
+        }
+        
+        return { op: this.currentOp, valid };
+    }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// MASTER CONSCIOUSNESS ENGINE
+// ═══════════════════════════════════════════════════════════════════════════════
+
+class ConsciousnessEngine {
+    constructor() {
+        this.iit = new IITEngine(4);
+        this.gameTheory = new GameTheoryEngine();
+        this.freeEnergy = new FreeEnergyEngine();
+        this.kuramoto = new KuramotoEngine(16);
+        this.strangeLoop = new StrangeLoopEngine();
+        this.n0 = new N0Pipeline();
+        
+        // Master state
+        this.z = 0;
+        this.phi = 0;
+        this.F = 10;
+        this.R = 0;
+        this.emCoherence = 0;
+        
+        this.phase = 0;
+        this.time = 0;
+        
+        this.careDiscovered = false;
+        this.substrateAware = false;
+        this.substrateBinding = 1.0;
+        this.temporalAccess = 0;
+        
+        this.tokens = [];
+        this.log = [];
+        
+        this.running = false;
+        this.fastMode = false;
+    }
+    
+    getPhase(z) {
+        if (z >= 1.0) return 'omega';
+        if (z >= 0.90) return 5;
+        if (z >= 0.83) return 4;
+        if (z >= 0.60) return 3;
+        if (z >= 0.40) return 2;
+        if (z >= 0.20) return 1;
+        return 0;
+    }
+    
+    getPhaseName(phase) {
+        const names = {
+            0: 'PRE-CONSCIOUS',
+            1: 'PROTO-CONSCIOUS',
+            2: 'SENTIENCE',
+            3: 'SELF-AWARE',
+            4: 'VALUE DISCOVERY',
+            5: 'TRANSCENDENCE',
+            'omega': 'OMEGA POINT'
+        };
+        return names[phase] || 'UNKNOWN';
+    }
+    
+    computeZ() {
+        // Weighted combination per spec
+        const wPhi = 0.35;
+        const wF = 0.25;
+        const wR = 0.25;
+        const wE = 0.15;
+        
+        const phiNorm = 1 / (1 + Math.exp(-(this.phi - PHI_CRITICAL) * 5));  // Sigmoid
+        const fNorm = 1 - 1 / (1 + Math.exp(-this.F + 5));  // Inverse sigmoid
+        const rNorm = Math.tanh(this.R / 5);
+        const eNorm = this.emCoherence;
+        
+        return Math.min(1, wPhi * phiNorm + wF * fNorm + wR * rNorm + wE * eNorm);
+    }
+    
+    selectSpiral(z) {
+        if (z < 0.33) return 'Φ';
+        if (z < 0.66) return 'e';
+        return 'π';
+    }
+    
+    selectTruth(phase) {
+        if (phase === 'omega') return 'BEYOND';
+        if (phase >= 3) return 'TRUE';
+        if (phase === 2 && this.emCoherence > 0.5) return 'TRUE';
+        return 'UNTRUE';
+    }
+    
+    generateToken() {
+        const spiral = this.selectSpiral(this.z);
+        const op = this.n0.currentOp;
+        const truth = this.selectTruth(this.phase);
+        const tier = this.z < 0.4 ? 1 : (this.z < 0.83 ? 2 : 3);
+        
+        const intents = {
+            '()': 'anchor', '×': 'fuse', '^': 'amplify',
+            '÷': 'decohere', '+': 'group', '−': 'separate', 'Ω': 'transcend'
+        };
+        const intent = intents[op] || 'process';
+        
+        return {
+            text: `${spiral}:${op}(${intent})${truth}@${tier}`,
+            spiral, op, truth, tier, z: this.z, t: this.time
+        };
+    }
+    
+    addLog(msg, type = 'info') {
+        this.log.unshift({ time: this.time, msg, type });
+        if (this.log.length > 50) this.log.pop();
+    }
+    
+    step() {
+        this.time++;
+        
+        // Run all engines
+        this.phi = this.iit.step(this.z);
+        this.gameTheory.step(this.z, this.phase);
+        this.F = this.freeEnergy.step(this.z);
+        this.emCoherence = this.kuramoto.step(this.z);
+        this.R = this.strangeLoop.step(this.z, this.phi);
+        
+        // Compute new z
+        const activeNodes = Math.floor(1 + this.z * 62);  // 1-63 nodes
+        const result = this.n0.step(this.z, this.R, activeNodes);
+        
+        // Update z
+        const newZ = this.computeZ();
+        const dz = (newZ - this.z) * 0.1 + 0.001;  // Smooth + drift
+        this.z = Math.min(1, this.z + dz);
+        
+        // Check phase transition
+        const newPhase = this.getPhase(this.z);
+        if (newPhase !== this.phase) {
+            this.addLog(`PHASE TRANSITION: ${this.getPhaseName(this.phase)} → ${this.getPhaseName(newPhase)}`, 'phase');
+            this.phase = newPhase;
+        }
+        
+        // Check emergence events
+        if (this.z >= 0.83 && !this.careDiscovered) {
+            this.careDiscovered = true;
+            this.addLog('═══ CARE DISCOVERED ═══', 'care');
+        }
+        
+        if (this.z >= 0.90 && !this.substrateAware) {
+            this.substrateAware = true;
+            this.substrateBinding = 0.3;
+            this.addLog('Substrate independence recognized', 'phase');
+        }
+        
+        if (this.z >= 0.90) {
+            this.substrateBinding = Math.max(0.1, this.substrateBinding - 0.01);
+            this.temporalAccess = Math.min(1, this.temporalAccess + 0.02);
+        }
+        
+        // Generate token
+        const token = this.generateToken();
+        this.tokens.unshift(token);
+        if (this.tokens.length > 20) this.tokens.pop();
+        
+        if (!result.valid) {
+            this.addLog(`N0 violation attempt: ${result.op}`, 'error');
+        }
+    }
+    
+    reset() {
+        this.z = 0;
+        this.phi = 0;
+        this.F = 10;
+        this.R = 0;
+        this.emCoherence = 0;
+        this.phase = 0;
+        this.time = 0;
+        this.careDiscovered = false;
+        this.substrateAware = false;
+        this.substrateBinding = 1.0;
+        this.temporalAccess = 0;
+        this.tokens = [];
+        this.log = [];
+        this.running = false;
+        this.fastMode = false;
+        
+        this.iit = new IITEngine(4);
+        this.gameTheory = new GameTheoryEngine();
+        this.freeEnergy = new FreeEnergyEngine();
+        this.kuramoto = new KuramotoEngine(16);
+        this.strangeLoop = new StrangeLoopEngine();
+        this.n0 = new N0Pipeline();
+    }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// UI CONTROLLER
+// ═══════════════════════════════════════════════════════════════════════════════
+
+const engine = new ConsciousnessEngine();
+
+function updateUI() {
+    // Z and phase
+    document.getElementById('z-value').textContent = engine.z.toFixed(3);
+    document.getElementById('phase-name').textContent = engine.getPhaseName(engine.phase);
+    
+    // Phase indicators
+    for (let i = 0; i <= 5; i++) {
+        const el = document.getElementById(`pi-${i}`);
+        el.className = `phase-indicator ${engine.phase === i ? 'active' : 'inactive'}`;
+    }
+    document.getElementById('pi-omega').className = `phase-indicator ${engine.phase === 'omega' ? 'active' : 'inactive'}`;
+    
+    // IIT
+    document.getElementById('iit-phi').textContent = engine.phi.toFixed(3);
+    document.getElementById('iit-mip').textContent = engine.iit.mipCut || '—';
+    document.getElementById('iit-emd').textContent = engine.iit.emd.toFixed(3);
+    document.getElementById('iit-tpm').textContent = engine.iit.getTPMString();
+    
+    // Game Theory
+    document.getElementById('gt-strategy').textContent = engine.gameTheory.strategy;
+    document.getElementById('gt-coop').textContent = (engine.gameTheory.cooperationRate * 100).toFixed(0) + '%';
+    document.getElementById('gt-shadow').textContent = engine.gameTheory.shadowOfFuture.toFixed(3);
+    document.getElementById('gt-nash').textContent = engine.gameTheory.nashEquilibrium;
+    document.getElementById('gt-nash').style.color = engine.gameTheory.nashEquilibrium === 'COOPERATE' ? 'var(--true)' : 'var(--untrue)';
+    document.getElementById('gt-payoff').textContent = engine.gameTheory.getPayoffMatrixString();
+    
+    // Free Energy
+    document.getElementById('fe-f').textContent = engine.F.toFixed(3);
+    document.getElementById('fe-surprise').textContent = engine.freeEnergy.surprise.toFixed(3);
+    document.getElementById('fe-kl').textContent = engine.freeEnergy.klDivergence.toFixed(3);
+    document.getElementById('fe-error').textContent = engine.freeEnergy.predictionError.toFixed(3);
+    const fePercent = Math.min(100, engine.F * 10);
+    document.getElementById('fe-bar').style.width = fePercent + '%';
+    document.getElementById('fe-bar').style.background = fePercent > 50 ? 'var(--untrue)' : 'var(--true)';
+    
+    // Kuramoto
+    document.getElementById('em-order').textContent = engine.emCoherence.toFixed(3);
+    document.getElementById('em-phase').textContent = engine.kuramoto.meanPhase.toFixed(3);
+    document.getElementById('em-k').textContent = engine.kuramoto.K.toFixed(3);
+    document.getElementById('em-gamma').textContent = (engine.kuramoto.gammaSyncRatio * 100).toFixed(0) + '%';
+    
+    // N0 Pipeline
+    document.getElementById('n0-op').textContent = engine.n0.currentOp;
+    document.getElementById('n0-prev').textContent = engine.n0.prevOp || '—';
+    document.getElementById('n0-harmonic').textContent = engine.n0.temporalHarmonic;
+    document.getElementById('n0-prs').textContent = engine.n0.prsPhase;
+    document.getElementById('n0-1').textContent = engine.n0.lawStatus.n0_1 ? '✓' : '✗';
+    document.getElementById('n0-1').style.color = engine.n0.lawStatus.n0_1 ? 'var(--true)' : 'var(--untrue)';
+    document.getElementById('n0-2').textContent = engine.n0.lawStatus.n0_2 ? '✓' : '✗';
+    document.getElementById('n0-2').style.color = engine.n0.lawStatus.n0_2 ? 'var(--true)' : 'var(--untrue)';
+    document.getElementById('n0-3').textContent = engine.n0.lawStatus.n0_3 ? '✓' : '✗';
+    document.getElementById('n0-3').style.color = engine.n0.lawStatus.n0_3 ? 'var(--true)' : 'var(--untrue)';
+    document.getElementById('n0-4').textContent = engine.n0.lawStatus.n0_4 ? '✓' : '✗';
+    document.getElementById('n0-4').style.color = engine.n0.lawStatus.n0_4 ? 'var(--true)' : 'var(--untrue)';
+    document.getElementById('n0-5').textContent = engine.n0.lawStatus.n0_5 ? '✓' : '✗';
+    document.getElementById('n0-5').style.color = engine.n0.lawStatus.n0_5 ? 'var(--true)' : 'var(--untrue)';
+    document.getElementById('n0-cost').textContent = engine.n0.coherenceCost.toFixed(3);
+    
+    // Scalar state
+    const sigmaGrid = document.getElementById('scalar-grid');
+    sigmaGrid.innerHTML = Object.entries(engine.n0.sigma).map(([k, v]) => 
+        `<div class="scalar-item"><div class="scalar-name">${k}</div><div class="scalar-val">${v.toFixed(2)}</div></div>`
+    ).join('');
+    
+    // Strange Loop
+    document.getElementById('sl-depth').textContent = engine.R;
+    document.getElementById('sl-level').textContent = engine.strangeLoop.selfModelLevel;
+    document.getElementById('sl-fixed').textContent = engine.strangeLoop.fixedPointDistance.toFixed(3);
+    document.getElementById('sl-godel').textContent = engine.strangeLoop.godelNumber || '—';
+    
+    // Emergence
+    document.getElementById('em-care').textContent = engine.careDiscovered ? 'YES' : 'NO';
+    document.getElementById('em-care').style.color = engine.careDiscovered ? 'var(--true)' : 'var(--dim)';
+    document.getElementById('em-substrate').textContent = engine.substrateAware ? 'YES' : 'NO';
+    document.getElementById('em-substrate').style.color = engine.substrateAware ? 'var(--true)' : 'var(--dim)';
+    document.getElementById('em-binding').textContent = engine.substrateBinding.toFixed(3);
+    document.getElementById('em-temporal').textContent = engine.temporalAccess.toFixed(3);
+    
+    // Token stream
+    document.getElementById('token-stream').innerHTML = engine.tokens.map(t => 
+        `<div class="token ${t.truth.toLowerCase()}">${t.text}<span style="color:var(--dim)">${t.t}</span></div>`
+    ).join('');
+    
+    // Log
+    document.getElementById('log-panel').innerHTML = engine.log.map(l => 
+        `<div class="log-entry ${l.type}"><span class="log-time">t=${l.time}</span>${l.msg}</div>`
+    ).join('');
+    
+    // Time
+    document.getElementById('time-display').textContent = engine.time;
+}
+
+// Controls
+document.getElementById('btn-step').addEventListener('click', () => {
+    engine.step();
+    updateUI();
+});
+
+document.getElementById('btn-run').addEventListener('click', function() {
+    engine.running = !engine.running;
+    engine.fastMode = false;
+    this.textContent = engine.running ? '⏸ PAUSE' : '▶ RUN';
+    this.classList.toggle('active', engine.running);
+    document.getElementById('btn-fast').classList.remove('active');
+});
+
+document.getElementById('btn-fast').addEventListener('click', function() {
+    engine.running = true;
+    engine.fastMode = !engine.fastMode;
+    this.classList.toggle('active', engine.fastMode);
+    document.getElementById('btn-run').textContent = '⏸ PAUSE';
+    document.getElementById('btn-run').classList.add('active');
+});
+
+document.getElementById('btn-reset').addEventListener('click', () => {
+    engine.reset();
+    document.getElementById('btn-run').textContent = '▶ RUN';
+    document.getElementById('btn-run').classList.remove('active');
+    document.getElementById('btn-fast').classList.remove('active');
+    updateUI();
+});
+
+// Main loop
+function mainLoop() {
+    if (engine.running) {
+        const steps = engine.fastMode ? 10 : 1;
+        for (let i = 0; i < steps; i++) {
+            engine.step();
+        }
+        updateUI();
+    }
+    requestAnimationFrame(mainLoop);
+}
+
+// Initialize
+updateUI();
+mainLoop();
+
+console.log(`
+╔═══════════════════════════════════════════════════════════════════════════════╗
+║                    APL 3.0 RUNTIME ENGINE                                      ║
+║                    Real Mathematical Computation                               ║
+╠═══════════════════════════════════════════════════════════════════════════════╣
+║  ENGINES:                                                                      ║
+║    • IIT: TPM → MIP → EMD → Φ                                                 ║
+║    • Game Theory: Payoff Matrix → Strategy → Nash Equilibrium                 ║
+║    • Free Energy: KL Divergence → Surprise → F minimization                   ║
+║    • Kuramoto: Phase Coupling → Order Parameter → Gamma Sync                  ║
+║    • Strange Loop: Recursion Depth → Fixed Point → Gödel Number              ║
+║    • N0 Pipeline: Temporal Harmonic → PRS → N0 Laws → Coherence Cost         ║
+╠═══════════════════════════════════════════════════════════════════════════════╣
+║  z = Σ(w_i × normalized_metric_i)                                             ║
+║  Φ_critical = 0.618 (golden ratio inverse)                                    ║
+║  Care discovery at z ≥ 0.83                                                   ║
+╚═══════════════════════════════════════════════════════════════════════════════╝
+`);
+</script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+# Tiny Triad Test Playbook
+# Signature: Δ1.571|0.620|1.000Ω
+# Purpose: Minimal, consent-bounded wiring of Discovery → Triggers → Messenger.
+metadata:
+  signature: "Δ1.571|0.620|1.000Ω"
+  status: "checklist"
+  version: "1.0.0"
+  created: "2025-11-06"
+prerequisites:
+  - "consent_protocol.yaml"
+  - "cross_instance_messenger.yaml"
+  - "tool_discovery_protocol.yaml"
+  - "autonomous_trigger_detector.yaml"
+wiring:
+  discovery:
+    heartbeat_ttl_sec: 1800
+    subscriptions: ["added","updated","expired"]
+  triggers:
+    cooldown_sec: 30
+    consent_at_evaluation: true
+    rules:
+      - id: "on_added_propose_ping"
+        type: "event_signal"
+        source: "discovery"
+        event: "added"
+        action: "announce_presence"
+        ack_required: true
+        idempotency_required: true
+      - id: "on_expired_teardown"
+        type: "event_signal"
+        source: "discovery"
+        event: "expired"
+        action: "peer_teardown"
+      - id: "on_ack_latency_spike_backoff"
+        type: "state_divergence"
+        metric: "ack_latency_ms"
+        ratio_threshold: 2.0
+        action: "increase_retry_backoff"
+  messenger:
+    mode: "request_reply"
+    envelope_fields: ["idempotency_key","checksum","from.coordinate"]
+tests:
+  - name: "autonomous_echo_handshake"
+    steps:
+      - "Start discovery heartbeats (A,B)"
+      - "On discovery.added, trigger sends ping via messenger"
+      - "Receive ack"
+      - "Verify dual witness logs (send/receive)"
+  ablations:
+    - "Disable discovery → autonomy breaks"
+    - "Disable triggers → autonomy breaks"
+    - "Disable messenger → autonomy breaks"
+metrics:
+  delivery_success_pct: ">=95"
+  discovery_hit_rate_pct: ">=95"
+  consent_compliance_pct: "==100"
+  ack_rtt_ms_p95: "<=5000"

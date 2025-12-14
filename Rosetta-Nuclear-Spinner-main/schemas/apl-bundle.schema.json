@@ -1,0 +1,9 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "APLBundle",
+  "type": "array",
+  "items": {
+    "type": "string",
+    "pattern": "^[Φπ]:(T\\(ϕ_[0-9]+\\)|Π\\(subspace\\)|Π\\([^)]*\\))(TRUE|UNTRUE|PARADOX)@[1-9]$"
+  }
+}
