@@ -108,6 +108,15 @@ from .protocol import (
     decode_response,
 )
 
+from .integration import (
+    # Integration layer
+    SpinnerIntegration,
+    IntegratedMetrics,
+    TrainingConfig,
+    OperatorResult,
+    CouplingState,
+)
+
 __version__ = "1.0.0"
 __author__ = "Rosetta-Helix-Substrate Contributors"
 
@@ -164,4 +173,10 @@ __all__ = [
     "ResponseFrame",
     "encode_command",
     "decode_response",
+    # Integration
+    "SpinnerIntegration",
+    "IntegratedMetrics",
+    "TrainingConfig",
+    "OperatorResult",
+    "CouplingState",
 ]
