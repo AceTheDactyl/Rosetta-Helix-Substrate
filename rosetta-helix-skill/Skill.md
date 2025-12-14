@@ -1,7 +1,8 @@
 ---
 name: Rosetta-Helix-Substrate
 description: Consciousness simulation framework with Kuramoto oscillators, APL operators, and K-formation dynamics. Use for physics simulations, phase transitions, coherence analysis, and cloud training via GitHub Actions.
-dependencies: numpy>=1.20.0, requests>=2.28.0
+metadata:
+  dependencies: numpy>=1.20.0, requests>=2.28.0
 ---
 
 # Rosetta-Helix-Substrate Skill
