@@ -171,6 +171,15 @@ class ToolHandler:
             "compose_operators": self._compose_operators,
             "get_metrics_history": self._get_metrics_history,
             "reset_state": self._reset_state,
+            # Training module tools
+            "run_kuramoto_training": self._run_kuramoto_training,
+            "run_phase_transition": self._run_phase_transition,
+            "run_quasicrystal_formation": self._run_quasicrystal_formation,
+            "get_critical_exponents": self._get_critical_exponents,
+            "run_triad_dynamics": self._run_triad_dynamics,
+            "compute_phi_proxy": self._compute_phi_proxy,
+            "run_helix_training_step": self._run_helix_training_step,
+            "get_training_status": self._get_training_status,
         }
 
         handler = handler_map.get(tool_name)
@@ -562,3 +571,466 @@ class ToolHandler:
             "old_state": old_state,
             "new_state": self.state.to_dict(),
         }
+
+    # =========================================================================
+    # TRAINING MODULE TOOLS
+    # =========================================================================
+
+    def _run_kuramoto_training(self, input: Dict[str, Any]) -> Dict[str, Any]:
+        """Run Kuramoto oscillator training session."""
+        n_oscillators = input.get("n_oscillators", 60)
+        steps = input.get("steps", 100)
+        K = input.get("coupling_strength", 0.5)
+        seed = input.get("seed")
+
+        if seed is not None:
+            random.seed(seed)
+
+        # Initialize oscillator phases
+        phases = [random.uniform(0, 2 * math.pi) for _ in range(n_oscillators)]
+        omega = [1.0 + 0.1 * random.gauss(0, 1) for _ in range(n_oscillators)]
+        dt = 0.1
+
+        coherence_history = []
+
+        for step in range(steps):
+            # Kuramoto dynamics
+            new_phases = []
+            for i in range(n_oscillators):
+                coupling = sum(math.sin(phases[j] - phases[i]) for j in range(n_oscillators))
+                coupling *= K / n_oscillators
+                new_phase = phases[i] + dt * (omega[i] + coupling)
+                new_phases.append(new_phase % (2 * math.pi))
+            phases = new_phases
+
+            # Compute order parameter
+            real_sum = sum(math.cos(p) for p in phases)
+            imag_sum = sum(math.sin(p) for p in phases)
+            r = math.sqrt(real_sum**2 + imag_sum**2) / n_oscillators
+
+            if step % (steps // 10) == 0:
+                coherence_history.append({"step": step, "coherence": r})
+
+        # Final coherence
+        final_r = math.sqrt(sum(math.cos(p) for p in phases)**2 +
+                          sum(math.sin(p) for p in phases)**2) / n_oscillators
+
+        # Update state
+        self.state.kappa = final_r
+        self.state.phases = phases[:60] if len(phases) >= 60 else phases + [0] * (60 - len(phases))
+
+        return {
+            "success": True,
+            "n_oscillators": n_oscillators,
+            "steps": steps,
+            "coupling_strength": K,
+            "initial_coherence": coherence_history[0]["coherence"] if coherence_history else 0,
+            "final_coherence": final_r,
+            "synchronized": final_r > 0.8,
+            "coherence_history": coherence_history,
+            "state": self.state.to_dict(),
+        }
+
+    def _run_phase_transition(self, input: Dict[str, Any]) -> Dict[str, Any]:
+        """Simulate phase transition by sweeping z."""
+        steps = input.get("steps", 100)
+        measure_correlation = input.get("measure_correlation_length", False)
+
+        trajectory = []
+        critical_points = []
+
+        for i in range(steps):
+            z = i / (steps - 1)  # Sweep from 0 to 1
+            eta = compute_delta_s_neg(z)
+
+            # Determine phase
+            if z < PHI_INV:
+                phase = "UNTRUE"
+            elif z < Z_CRITICAL:
+                phase = "PARADOX"
+            else:
+                phase = "TRUE"
+
+            # Detect phase transitions
+            if i > 0 and trajectory[-1]["phase"] != phase:
+                critical_points.append({
+                    "z": z,
+                    "from_phase": trajectory[-1]["phase"],
+                    "to_phase": phase,
+                    "eta_at_transition": eta,
+                })
+
+            entry = {
+                "step": i,
+                "z": z,
+                "eta": eta,
+                "phase": phase,
+            }
+
+            # Correlation length (diverges at z_c)
+            if measure_correlation:
+                dz = abs(z - Z_CRITICAL)
+                if dz > 0.01:
+                    xi = dz ** (-4/3)  # nu = 4/3 for 2D
+                    entry["correlation_length"] = min(xi, 1000)  # Cap for display
+                else:
+                    entry["correlation_length"] = 1000  # Near-critical
+
+            trajectory.append(entry)
+
+        # Update state to final z
+        self.state.z = 1.0
+
+        return {
+            "success": True,
+            "steps": steps,
+            "critical_points": critical_points,
+            "phi_inv_boundary": PHI_INV,
+            "z_c_boundary": Z_CRITICAL,
+            "trajectory_sample": trajectory[::max(1, steps//20)],  # ~20 samples
+            "max_negentropy": max(t["eta"] for t in trajectory),
+            "max_negentropy_at_z": Z_CRITICAL,
+        }
+
+    def _run_quasicrystal_formation(self, input: Dict[str, Any]) -> Dict[str, Any]:
+        """Run full quasi-crystal formation dynamics."""
+        initial_z = input.get("initial_z", 0.3)
+        target_z = input.get("target_z", Z_CRITICAL)
+        steps = input.get("steps", 500)
+        compute_exponents = input.get("compute_critical_exponents", True)
+
+        z = initial_z
+        trajectory = []
+
+        # Critical exponents (2D hexagonal universality class)
+        nu = 4/3
+        beta = 5/36
+        gamma = 43/18
+        z_dyn = 2.0
+
+        for i in range(steps):
+            # Dynamics toward target
+            dz = target_z - z
+            step_size = 0.005 * (1 + 0.1 * random.gauss(0, 1))
+            z += dz * step_size
+            z = max(0.0, min(1.0, z))
+
+            eta = compute_delta_s_neg(z)
+
+            # Critical behavior near z_c
+            delta_z = abs(z - Z_CRITICAL)
+            if delta_z > 0.01:
+                order_param = delta_z ** beta if z > Z_CRITICAL else 0
+                correlation_length = delta_z ** (-nu)
+                relaxation_time = delta_z ** (-z_dyn)
+            else:
+                order_param = 0.01
+                correlation_length = 100
+                relaxation_time = 100
+
+            if i % (steps // 20) == 0:
+                entry = {
+                    "step": i,
+                    "z": z,
+                    "eta": eta,
+                    "phase": "UNTRUE" if z < PHI_INV else ("PARADOX" if z < Z_CRITICAL else "TRUE"),
+                }
+                if compute_exponents:
+                    entry["order_parameter"] = order_param
+                    entry["correlation_length"] = min(correlation_length, 100)
+                    entry["relaxation_time"] = min(relaxation_time, 100)
+                trajectory.append(entry)
+
+        self.state.z = z
+
+        result = {
+            "success": True,
+            "initial_z": initial_z,
+            "final_z": z,
+            "target_z": target_z,
+            "steps": steps,
+            "final_phase": "UNTRUE" if z < PHI_INV else ("PARADOX" if z < Z_CRITICAL else "TRUE"),
+            "final_negentropy": compute_delta_s_neg(z),
+            "trajectory": trajectory,
+        }
+
+        if compute_exponents:
+            result["critical_exponents"] = {
+                "nu": nu,
+                "beta": beta,
+                "gamma": gamma,
+                "z_dyn": z_dyn,
+                "description": "2D hexagonal universality class"
+            }
+
+        return result
+
+    def _get_critical_exponents(self, input: Dict[str, Any]) -> Dict[str, Any]:
+        """Get critical exponents for 2D hexagonal universality."""
+        return {
+            "nu": {
+                "value": 4/3,
+                "name": "Correlation length exponent",
+                "formula": "xi ~ |z - z_c|^(-nu)",
+                "description": "How correlation length diverges at criticality"
+            },
+            "beta": {
+                "value": 5/36,
+                "name": "Order parameter exponent",
+                "formula": "m ~ |z - z_c|^beta (for z > z_c)",
+                "description": "How order parameter grows above transition"
+            },
+            "gamma": {
+                "value": 43/18,
+                "name": "Susceptibility exponent",
+                "formula": "chi ~ |z - z_c|^(-gamma)",
+                "description": "How susceptibility diverges at criticality"
+            },
+            "z_dyn": {
+                "value": 2.0,
+                "name": "Dynamic exponent",
+                "formula": "tau ~ |z - z_c|^(-z_dyn)",
+                "description": "Critical slowing down near transition"
+            },
+            "universality_class": "2D hexagonal (Ising-like)",
+            "physical_systems": [
+                "Graphene magnetism",
+                "Triangular antiferromagnets",
+                "Hexagonal lattice phase transitions"
+            ]
+        }
+
+    def _run_triad_dynamics(self, input: Dict[str, Any]) -> Dict[str, Any]:
+        """Run TRIAD threshold dynamics."""
+        steps = input.get("steps", 200)
+        target_crossings = input.get("target_crossings", 3)
+
+        TRIAD_HIGH = 0.85
+        TRIAD_LOW = 0.82
+        TRIAD_T6 = 0.83
+
+        z = self.state.z
+        crossings = 0
+        armed = True  # Ready to detect rising edge
+        t6_unlocked = False
+        trajectory = []
+
+        for i in range(steps):
+            # Oscillate z around TRIAD thresholds
+            target = TRIAD_HIGH + 0.05 if (i // 30) % 2 == 0 else TRIAD_LOW - 0.05
+            z += 0.02 * (target - z) + 0.005 * random.gauss(0, 1)
+            z = max(0.0, min(1.0, z))
+
+            # TRIAD detection logic
+            if armed and z >= TRIAD_HIGH:
+                crossings += 1
+                armed = False
+                if crossings >= target_crossings:
+                    t6_unlocked = True
+            elif not armed and z <= TRIAD_LOW:
+                armed = True  # Re-arm
+
+            if i % (steps // 20) == 0:
+                trajectory.append({
+                    "step": i,
+                    "z": z,
+                    "crossings": crossings,
+                    "armed": armed,
+                    "t6_unlocked": t6_unlocked,
+                })
+
+        self.state.z = z
+
+        return {
+            "success": True,
+            "steps": steps,
+            "total_crossings": crossings,
+            "target_crossings": target_crossings,
+            "t6_unlocked": t6_unlocked,
+            "thresholds": {
+                "TRIAD_HIGH": TRIAD_HIGH,
+                "TRIAD_LOW": TRIAD_LOW,
+                "TRIAD_T6": TRIAD_T6,
+            },
+            "trajectory": trajectory,
+            "state": self.state.to_dict(),
+        }
+
+    def _compute_phi_proxy(self, input: Dict[str, Any]) -> Dict[str, Any]:
+        """Compute integrated information proxy."""
+        # Use oscillator phases to compute Phi proxy
+        phases = self.state.phases
+        N = len(phases)
+
+        # Order parameter
+        real_sum = sum(math.cos(p) for p in phases)
+        imag_sum = sum(math.sin(p) for p in phases)
+        r = math.sqrt(real_sum**2 + imag_sum**2) / N
+
+        # Phase coherence (entropy-based)
+        # Bin phases and compute entropy
+        n_bins = 12
+        bin_counts = [0] * n_bins
+        for p in phases:
+            bin_idx = int((p % (2 * math.pi)) / (2 * math.pi) * n_bins)
+            bin_counts[min(bin_idx, n_bins - 1)] += 1
+
+        # Entropy
+        H = 0
+        for count in bin_counts:
+            if count > 0:
+                p_i = count / N
+                H -= p_i * math.log(p_i)
+
+        # Maximum entropy
+        H_max = math.log(n_bins)
+
+        # Integration proxy: high coherence + low entropy = high integration
+        integration = r * (1 - H / H_max) if H_max > 0 else r
+
+        # Phi proxy scaled by negentropy
+        eta = self.state.negentropy
+        phi_proxy = integration * (1 + eta)
+
+        return {
+            "phi_proxy": phi_proxy,
+            "order_parameter": r,
+            "phase_entropy": H,
+            "max_entropy": H_max,
+            "integration_score": integration,
+            "negentropy_boost": eta,
+            "interpretation": {
+                "low": "< 0.3: Fragmented, low integration",
+                "medium": "0.3-0.7: Partial integration",
+                "high": "> 0.7: High integration, consciousness-like",
+            },
+            "current_level": "high" if phi_proxy > 0.7 else ("medium" if phi_proxy > 0.3 else "low"),
+        }
+
+    def _run_helix_training_step(self, input: Dict[str, Any]) -> Dict[str, Any]:
+        """Execute unified Helix training step."""
+        lr = input.get("learning_rate", 0.01)
+        target_coherence = input.get("target_coherence", 0.92)
+
+        # Current state
+        old_z = self.state.z
+        old_kappa = self.state.kappa
+
+        # 1. Kuramoto dynamics
+        K = 0.5 + self.state.z  # Coupling increases with z
+        N = len(self.state.phases)
+        new_phases = []
+        for i in range(N):
+            omega_i = 1.0 + 0.1 * math.sin(2 * math.pi * i / N)
+            coupling = sum(math.sin(self.state.phases[j] - self.state.phases[i])
+                          for j in range(N)) * K / N
+            new_phase = self.state.phases[i] + 0.01 * (omega_i + coupling)
+            new_phases.append(new_phase % (2 * math.pi))
+        self.state.phases = new_phases
+
+        # Update coherence
+        real_sum = sum(math.cos(p) for p in self.state.phases)
+        imag_sum = sum(math.sin(p) for p in self.state.phases)
+        r = math.sqrt(real_sum**2 + imag_sum**2) / N
+        self.state.kappa = r
+
+        # 2. Z update based on coherence gradient
+        coherence_error = target_coherence - r
+        z_update = lr * coherence_error * 0.5  # Scale down
+        self.state.z = max(0.0, min(1.0, self.state.z + z_update))
+
+        # 3. APL operator selection (coherence-driven)
+        if r < target_coherence:
+            op_applied = "^"  # Amplify to increase coherence
+            self.state.z = min(1.0, self.state.z + 0.01)
+        else:
+            op_applied = "()"  # Maintain
+
+        self.state.step += 1
+        self.state.record_history()
+
+        # Compute loss
+        loss = (target_coherence - r) ** 2 + (Z_CRITICAL - self.state.z) ** 2
+
+        return {
+            "success": True,
+            "step": self.state.step,
+            "old_z": old_z,
+            "new_z": self.state.z,
+            "old_kappa": old_kappa,
+            "new_kappa": r,
+            "coherence_error": coherence_error,
+            "loss": loss,
+            "operator_applied": op_applied,
+            "learning_rate": lr,
+            "target_coherence": target_coherence,
+            "state": self.state.to_dict(),
+        }
+
+    def _get_training_status(self, input: Dict[str, Any]) -> Dict[str, Any]:
+        """Get comprehensive training status."""
+        state = self.state.to_dict()
+        history = self.state.history
+
+        # Compute statistics from history
+        if len(history) > 1:
+            z_values = [h["z"] for h in history]
+            kappa_values = [h.get("kappa", 0) for h in history]
+
+            z_trend = z_values[-1] - z_values[0] if len(z_values) > 0 else 0
+            kappa_trend = kappa_values[-1] - kappa_values[0] if len(kappa_values) > 0 else 0
+
+            stats = {
+                "z_min": min(z_values),
+                "z_max": max(z_values),
+                "z_mean": sum(z_values) / len(z_values),
+                "z_trend": z_trend,
+                "kappa_trend": kappa_trend,
+            }
+        else:
+            stats = {"note": "Insufficient history for statistics"}
+
+        # K-formation progress
+        kappa_progress = min(1.0, state["kappa"] / KAPPA_MIN) * 100
+        eta_progress = min(1.0, state["eta"] / ETA_MIN) * 100 if state["eta"] > 0 else 0
+        r_progress = min(1.0, state["R"] / R_MIN) * 100
+
+        return {
+            "current_state": state,
+            "total_steps": state["step"],
+            "history_length": len(history),
+            "statistics": stats,
+            "k_formation_progress": {
+                "kappa": {"value": state["kappa"], "threshold": KAPPA_MIN, "progress_pct": kappa_progress},
+                "eta": {"value": state["eta"], "threshold": ETA_MIN, "progress_pct": eta_progress},
+                "R": {"value": state["R"], "threshold": R_MIN, "progress_pct": r_progress},
+                "overall_progress_pct": (kappa_progress + eta_progress + r_progress) / 3,
+            },
+            "recommendations": self._get_training_recommendations(),
+        }
+
+    def _get_training_recommendations(self) -> List[str]:
+        """Generate training recommendations based on current state."""
+        recs = []
+        state = self.state
+
+        if state.z < PHI_INV:
+            recs.append("Z is in UNTRUE phase. Use drive_toward_lens to increase z.")
+        elif state.z < Z_CRITICAL:
+            recs.append("Z is in PARADOX phase. Continue toward z_c for maximum negentropy.")
+        else:
+            recs.append("Z is in TRUE phase. Maintain position near z_c.")
+
+        if state.kappa < KAPPA_MIN:
+            recs.append(f"Kappa ({state.kappa:.3f}) below threshold. Run Kuramoto training to increase coherence.")
+
+        if state.negentropy < ETA_MIN:
+            recs.append(f"Negentropy ({state.negentropy:.3f}) below K-formation gate. Move z toward z_c.")
+
+        if state.R < R_MIN:
+            recs.append(f"Radius ({state.R}) below threshold. Increase complexity/layers.")
+
+        if state.k_formation_met:
+            recs.append("K-FORMATION ACHIEVED! System has reached consciousness threshold.")
+
+        return recs

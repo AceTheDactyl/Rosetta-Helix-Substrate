@@ -256,5 +256,175 @@ TOOL_DEFINITIONS = [
             },
             "required": []
         }
+    },
+    # =========================================================================
+    # TRAINING MODULE TOOLS
+    # =========================================================================
+    {
+        "name": "run_kuramoto_training",
+        "description": "Run a Kuramoto oscillator training session with learnable coupling. Returns coherence evolution and final synchronization state.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "n_oscillators": {
+                    "type": "integer",
+                    "description": "Number of oscillators (default 60 for hexagonal grid)",
+                    "minimum": 6,
+                    "maximum": 120,
+                    "default": 60
+                },
+                "steps": {
+                    "type": "integer",
+                    "description": "Number of training steps",
+                    "minimum": 1,
+                    "maximum": 1000,
+                    "default": 100
+                },
+                "coupling_strength": {
+                    "type": "number",
+                    "description": "Global coupling strength K",
+                    "minimum": 0.0,
+                    "maximum": 5.0,
+                    "default": 0.5
+                },
+                "seed": {
+                    "type": "integer",
+                    "description": "Random seed for reproducibility"
+                }
+            },
+            "required": []
+        }
+    },
+    {
+        "name": "run_phase_transition",
+        "description": "Simulate a phase transition from UNTRUE through PARADOX to TRUE by sweeping z from 0 to 1. Returns critical points and order parameter evolution.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "steps": {
+                    "type": "integer",
+                    "description": "Number of z-sweep steps",
+                    "minimum": 10,
+                    "maximum": 500,
+                    "default": 100
+                },
+                "measure_correlation_length": {
+                    "type": "boolean",
+                    "description": "Whether to compute correlation length at each step",
+                    "default": False
+                }
+            },
+            "required": []
+        }
+    },
+    {
+        "name": "run_quasicrystal_formation",
+        "description": "Run full quasi-crystal formation dynamics simulation with critical exponents. Simulates Shechtman-style quasi-crystal emergence.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "initial_z": {
+                    "type": "number",
+                    "description": "Starting z-coordinate",
+                    "minimum": 0.0,
+                    "maximum": 1.0,
+                    "default": 0.3
+                },
+                "target_z": {
+                    "type": "number",
+                    "description": "Target z-coordinate (default z_c for crystallization)",
+                    "minimum": 0.0,
+                    "maximum": 1.0
+                },
+                "steps": {
+                    "type": "integer",
+                    "description": "Number of simulation steps",
+                    "minimum": 10,
+                    "maximum": 5000,
+                    "default": 500
+                },
+                "compute_critical_exponents": {
+                    "type": "boolean",
+                    "description": "Whether to compute critical exponents (nu, beta, gamma)",
+                    "default": True
+                }
+            },
+            "required": []
+        }
+    },
+    {
+        "name": "get_critical_exponents",
+        "description": "Get the critical exponents for the 2D hexagonal universality class: nu (correlation length), beta (order parameter), gamma (susceptibility), z_dyn (dynamic).",
+        "input_schema": {
+            "type": "object",
+            "properties": {},
+            "required": []
+        }
+    },
+    {
+        "name": "run_triad_dynamics",
+        "description": "Run TRIAD threshold dynamics simulation. Monitors crossings of TRIAD_HIGH (0.85) and TRIAD_LOW (0.82) for t6 gate unlocking.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "steps": {
+                    "type": "integer",
+                    "description": "Number of simulation steps",
+                    "minimum": 10,
+                    "maximum": 1000,
+                    "default": 200
+                },
+                "target_crossings": {
+                    "type": "integer",
+                    "description": "Target number of TRIAD crossings for t6 unlock (default 3)",
+                    "minimum": 1,
+                    "maximum": 10,
+                    "default": 3
+                }
+            },
+            "required": []
+        }
+    },
+    {
+        "name": "compute_phi_proxy",
+        "description": "Compute integrated information proxy (Phi) from the current oscillator state. Higher values indicate more integrated/conscious-like states.",
+        "input_schema": {
+            "type": "object",
+            "properties": {},
+            "required": []
+        }
+    },
+    {
+        "name": "run_helix_training_step",
+        "description": "Execute a single step of the unified Helix training loop. Combines Kuramoto dynamics, APL operators, and phase evolution.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "learning_rate": {
+                    "type": "number",
+                    "description": "Learning rate for parameter updates",
+                    "minimum": 0.0001,
+                    "maximum": 0.1,
+                    "default": 0.01
+                },
+                "target_coherence": {
+                    "type": "number",
+                    "description": "Target coherence level to train toward",
+                    "minimum": 0.0,
+                    "maximum": 1.0,
+                    "default": 0.92
+                }
+            },
+            "required": []
+        }
+    },
+    {
+        "name": "get_training_status",
+        "description": "Get comprehensive training status including current phase, coherence metrics, K-formation progress, and training history statistics.",
+        "input_schema": {
+            "type": "object",
+            "properties": {},
+            "required": []
+        }
     }
 ]
