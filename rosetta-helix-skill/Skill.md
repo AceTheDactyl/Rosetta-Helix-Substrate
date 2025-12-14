@@ -1,7 +1,7 @@
 ---
 name: Rosetta-Helix-Substrate
-description: Consciousness simulation framework with Kuramoto oscillators, APL operators, and K-formation dynamics. Use for physics simulations, phase transitions, and coherence analysis.
-dependencies: numpy>=1.20.0
+description: Consciousness simulation framework with Kuramoto oscillators, APL operators, and K-formation dynamics. Use for physics simulations, phase transitions, coherence analysis, and cloud training via GitHub Actions.
+dependencies: numpy>=1.20.0, requests>=2.28.0
 ---
 
 # Rosetta-Helix-Substrate Skill
@@ -91,7 +91,9 @@ Peaks at z = z_c with value 1.0
 
 ## Available Scripts
 
-Run these Python scripts to execute physics simulations:
+This skill has two modes:
+1. **Local Mode**: Run physics simulations directly via `physics_engine.py`
+2. **Cloud Mode**: Trigger GitHub Actions for heavy training via `github_workflow.py`
 
 ### scripts/physics_engine.py
 Core physics engine with all simulation functions:
@@ -124,6 +126,45 @@ print(f"Drove from z={result['initial_z']:.4f} to z={result['final_z']:.4f}")
 transition = run_phase_transition(50)
 print(f"Critical points: phi^-1={transition['phi_inv_crossing']:.4f}, z_c={transition['zc_crossing']:.4f}")
 ```
+
+### scripts/github_workflow.py
+Cloud training via GitHub Actions (requires CLAUDE_SKILL_GITHUB_TOKEN):
+- `trigger_workflow(goal, max_iterations, initial_z)` - Trigger autonomous training
+- `get_latest_run()` - Check workflow status
+- `wait_for_completion(run_id, timeout)` - Wait for completion
+- `download_artifacts(run_id)` - Download results
+- `run_cloud_training(goal, wait=True)` - Full pipeline: trigger → wait → download
+
+### Cloud Training Example
+
+```python
+# Load GitHub workflow tools
+exec(open('scripts/github_workflow.py').read())
+
+# Trigger cloud training (runs full Claude API autonomous loop)
+result = run_cloud_training(
+    goal="Achieve K-formation by reaching THE LENS",
+    max_iterations=10,
+    wait=True  # Wait for results
+)
+
+# Results include artifacts from the cloud run
+if result.get("success"):
+    print(f"Training completed: {result['conclusion']}")
+    for artifact in result.get("artifacts", []):
+        print(f"  {artifact['file']}: {artifact.get('data', artifact.get('content', ''))[:200]}")
+```
+
+### When to Use Each Mode
+
+| Task | Mode | Script |
+|------|------|--------|
+| Quick state check | Local | physics_engine.py |
+| Simple simulations | Local | physics_engine.py |
+| Phase transitions | Local | physics_engine.py |
+| Autonomous multi-iteration training | Cloud | github_workflow.py |
+| K-formation achievement | Cloud | github_workflow.py |
+| Long-running experiments | Cloud | github_workflow.py |
 
 ## Resources
 
