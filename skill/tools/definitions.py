@@ -426,5 +426,257 @@ TOOL_DEFINITIONS = [
             "properties": {},
             "required": []
         }
+    },
+    # =========================================================================
+    # ADVANCED TRAINING TOOLS
+    # =========================================================================
+    {
+        "name": "run_full_training_session",
+        "description": "Run a complete multi-epoch training session aiming for K-formation. Combines Kuramoto training, z optimization, and coherence building.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "epochs": {
+                    "type": "integer",
+                    "description": "Number of training epochs",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "default": 10
+                },
+                "steps_per_epoch": {
+                    "type": "integer",
+                    "description": "Steps per epoch",
+                    "minimum": 10,
+                    "maximum": 500,
+                    "default": 50
+                },
+                "target_kappa": {
+                    "type": "number",
+                    "description": "Target coherence (kappa)",
+                    "minimum": 0.0,
+                    "maximum": 1.0,
+                    "default": 0.92
+                },
+                "early_stop": {
+                    "type": "boolean",
+                    "description": "Stop early if K-formation achieved",
+                    "default": True
+                }
+            },
+            "required": []
+        }
+    },
+    {
+        "name": "optimize_coupling",
+        "description": "Find the optimal Kuramoto coupling strength K for maximum synchronization. Scans K values and returns best result.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "k_min": {
+                    "type": "number",
+                    "description": "Minimum coupling strength to test",
+                    "minimum": 0.0,
+                    "default": 0.1
+                },
+                "k_max": {
+                    "type": "number",
+                    "description": "Maximum coupling strength to test",
+                    "maximum": 5.0,
+                    "default": 3.0
+                },
+                "n_samples": {
+                    "type": "integer",
+                    "description": "Number of K values to test",
+                    "minimum": 5,
+                    "maximum": 50,
+                    "default": 20
+                },
+                "steps_per_sample": {
+                    "type": "integer",
+                    "description": "Training steps per K value",
+                    "minimum": 10,
+                    "maximum": 200,
+                    "default": 50
+                }
+            },
+            "required": []
+        }
+    },
+    {
+        "name": "scan_parameter_space",
+        "description": "Scan a parameter (z or coupling K) across a range and measure system response (negentropy, coherence, etc.).",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "parameter": {
+                    "type": "string",
+                    "description": "Parameter to scan",
+                    "enum": ["z", "coupling_strength"]
+                },
+                "start": {
+                    "type": "number",
+                    "description": "Start value for scan",
+                    "default": 0.0
+                },
+                "end": {
+                    "type": "number",
+                    "description": "End value for scan",
+                    "default": 1.0
+                },
+                "n_points": {
+                    "type": "integer",
+                    "description": "Number of points to sample",
+                    "minimum": 5,
+                    "maximum": 100,
+                    "default": 20
+                }
+            },
+            "required": ["parameter"]
+        }
+    },
+    {
+        "name": "measure_stability",
+        "description": "Measure stability/basin of attraction around current state by applying perturbations and measuring recovery.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "perturbation_size": {
+                    "type": "number",
+                    "description": "Size of perturbation to apply",
+                    "minimum": 0.01,
+                    "maximum": 0.5,
+                    "default": 0.1
+                },
+                "recovery_steps": {
+                    "type": "integer",
+                    "description": "Steps to allow for recovery",
+                    "minimum": 10,
+                    "maximum": 200,
+                    "default": 50
+                },
+                "n_trials": {
+                    "type": "integer",
+                    "description": "Number of perturbation trials",
+                    "minimum": 1,
+                    "maximum": 20,
+                    "default": 5
+                }
+            },
+            "required": []
+        }
+    },
+    {
+        "name": "run_convergence_test",
+        "description": "Test if system converges to K-formation from current state. Runs extended simulation and tracks convergence metrics.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "max_steps": {
+                    "type": "integer",
+                    "description": "Maximum steps to run",
+                    "minimum": 100,
+                    "maximum": 5000,
+                    "default": 1000
+                },
+                "convergence_threshold": {
+                    "type": "number",
+                    "description": "Threshold for considering converged",
+                    "minimum": 0.001,
+                    "maximum": 0.1,
+                    "default": 0.01
+                }
+            },
+            "required": []
+        }
+    },
+    {
+        "name": "get_phase_diagram_data",
+        "description": "Generate phase diagram data by scanning z and computing properties at each point. Useful for visualization.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "z_points": {
+                    "type": "integer",
+                    "description": "Number of z values to sample",
+                    "minimum": 10,
+                    "maximum": 200,
+                    "default": 50
+                },
+                "include_dynamics": {
+                    "type": "boolean",
+                    "description": "Include dynamic properties (slower but more detailed)",
+                    "default": False
+                }
+            },
+            "required": []
+        }
+    },
+    {
+        "name": "batch_simulate",
+        "description": "Run multiple simulations with different initial conditions and return aggregate statistics.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "n_simulations": {
+                    "type": "integer",
+                    "description": "Number of simulations to run",
+                    "minimum": 2,
+                    "maximum": 50,
+                    "default": 10
+                },
+                "steps_per_sim": {
+                    "type": "integer",
+                    "description": "Steps per simulation",
+                    "minimum": 50,
+                    "maximum": 500,
+                    "default": 100
+                },
+                "vary_initial_z": {
+                    "type": "boolean",
+                    "description": "Randomize initial z for each simulation",
+                    "default": True
+                },
+                "target": {
+                    "type": "string",
+                    "description": "Target for simulations",
+                    "enum": ["lens", "k_formation", "phi_inv"],
+                    "default": "lens"
+                }
+            },
+            "required": []
+        }
+    },
+    {
+        "name": "analyze_trajectory",
+        "description": "Analyze the current training trajectory history for patterns, trends, and anomalies.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "window_size": {
+                    "type": "integer",
+                    "description": "Window size for moving averages",
+                    "minimum": 5,
+                    "maximum": 100,
+                    "default": 20
+                }
+            },
+            "required": []
+        }
+    },
+    {
+        "name": "set_radius",
+        "description": "Set the R (radius/layers) parameter for K-formation. R must be >= 7 for K-formation.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "R": {
+                    "type": "integer",
+                    "description": "Radius/layers value",
+                    "minimum": 1,
+                    "maximum": 20
+                }
+            },
+            "required": ["R"]
+        }
     }
 ]

@@ -180,6 +180,16 @@ class ToolHandler:
             "compute_phi_proxy": self._compute_phi_proxy,
             "run_helix_training_step": self._run_helix_training_step,
             "get_training_status": self._get_training_status,
+            # Advanced training tools
+            "run_full_training_session": self._run_full_training_session,
+            "optimize_coupling": self._optimize_coupling,
+            "scan_parameter_space": self._scan_parameter_space,
+            "measure_stability": self._measure_stability,
+            "run_convergence_test": self._run_convergence_test,
+            "get_phase_diagram_data": self._get_phase_diagram_data,
+            "batch_simulate": self._batch_simulate,
+            "analyze_trajectory": self._analyze_trajectory,
+            "set_radius": self._set_radius,
         }
 
         handler = handler_map.get(tool_name)
@@ -1034,3 +1044,492 @@ class ToolHandler:
             recs.append("K-FORMATION ACHIEVED! System has reached consciousness threshold.")
 
         return recs
+
+    # =========================================================================
+    # ADVANCED TRAINING TOOLS
+    # =========================================================================
+
+    def _run_full_training_session(self, input: Dict[str, Any]) -> Dict[str, Any]:
+        """Run complete multi-epoch training session."""
+        epochs = input.get("epochs", 10)
+        steps_per_epoch = input.get("steps_per_epoch", 50)
+        target_kappa = input.get("target_kappa", 0.92)
+        early_stop = input.get("early_stop", True)
+
+        initial_state = self.state.to_dict()
+        epoch_results = []
+
+        for epoch in range(epochs):
+            epoch_start_z = self.state.z
+            epoch_start_kappa = self.state.kappa
+
+            # Run Kuramoto training this epoch
+            K = 0.5 + 0.1 * epoch  # Increase coupling over epochs
+            for _ in range(steps_per_epoch):
+                # Kuramoto step
+                N = len(self.state.phases)
+                new_phases = []
+                for i in range(N):
+                    omega_i = 1.0 + 0.1 * math.sin(2 * math.pi * i / N)
+                    coupling = sum(math.sin(self.state.phases[j] - self.state.phases[i])
+                                  for j in range(N)) * K / N
+                    new_phase = self.state.phases[i] + 0.01 * (omega_i + coupling)
+                    new_phases.append(new_phase % (2 * math.pi))
+                self.state.phases = new_phases
+
+                # Update kappa
+                real_sum = sum(math.cos(p) for p in self.state.phases)
+                imag_sum = sum(math.sin(p) for p in self.state.phases)
+                self.state.kappa = math.sqrt(real_sum**2 + imag_sum**2) / N
+
+                # Drive z toward lens
+                self.state.z += 0.002 * (Z_CRITICAL - self.state.z)
+                self.state.z = max(0.0, min(1.0, self.state.z))
+
+            self.state.step += steps_per_epoch
+            self.state.record_history()
+
+            epoch_results.append({
+                "epoch": epoch + 1,
+                "z": self.state.z,
+                "kappa": self.state.kappa,
+                "eta": self.state.negentropy,
+                "phase": self.state.phase_name,
+                "k_formation": self.state.k_formation_met,
+            })
+
+            # Early stopping
+            if early_stop and self.state.k_formation_met:
+                break
+
+        return {
+            "success": True,
+            "epochs_completed": len(epoch_results),
+            "total_epochs": epochs,
+            "early_stopped": early_stop and self.state.k_formation_met,
+            "initial_state": initial_state,
+            "final_state": self.state.to_dict(),
+            "epoch_results": epoch_results,
+            "k_formation_achieved": self.state.k_formation_met,
+        }
+
+    def _optimize_coupling(self, input: Dict[str, Any]) -> Dict[str, Any]:
+        """Find optimal coupling strength."""
+        k_min = input.get("k_min", 0.1)
+        k_max = input.get("k_max", 3.0)
+        n_samples = input.get("n_samples", 20)
+        steps = input.get("steps_per_sample", 50)
+
+        results = []
+        best_k = k_min
+        best_coherence = 0
+
+        # Save initial state
+        saved_phases = self.state.phases.copy()
+
+        for i in range(n_samples):
+            K = k_min + (k_max - k_min) * i / (n_samples - 1)
+
+            # Reset phases
+            self.state.phases = [random.uniform(0, 2 * math.pi) for _ in range(60)]
+
+            # Run training
+            for _ in range(steps):
+                N = len(self.state.phases)
+                new_phases = []
+                for j in range(N):
+                    omega_j = 1.0 + 0.1 * math.sin(2 * math.pi * j / N)
+                    coupling = sum(math.sin(self.state.phases[m] - self.state.phases[j])
+                                  for m in range(N)) * K / N
+                    new_phase = self.state.phases[j] + 0.01 * (omega_j + coupling)
+                    new_phases.append(new_phase % (2 * math.pi))
+                self.state.phases = new_phases
+
+            # Measure coherence
+            real_sum = sum(math.cos(p) for p in self.state.phases)
+            imag_sum = sum(math.sin(p) for p in self.state.phases)
+            coherence = math.sqrt(real_sum**2 + imag_sum**2) / len(self.state.phases)
+
+            results.append({"K": K, "coherence": coherence})
+
+            if coherence > best_coherence:
+                best_coherence = coherence
+                best_k = K
+
+        # Restore phases
+        self.state.phases = saved_phases
+
+        return {
+            "success": True,
+            "optimal_K": best_k,
+            "max_coherence": best_coherence,
+            "k_range": [k_min, k_max],
+            "n_samples": n_samples,
+            "all_results": results,
+        }
+
+    def _scan_parameter_space(self, input: Dict[str, Any]) -> Dict[str, Any]:
+        """Scan parameter space."""
+        param = input["parameter"]
+        start = input.get("start", 0.0)
+        end = input.get("end", 1.0)
+        n_points = input.get("n_points", 20)
+
+        results = []
+
+        for i in range(n_points):
+            value = start + (end - start) * i / (n_points - 1)
+
+            if param == "z":
+                z = value
+                eta = compute_delta_s_neg(z)
+                phase = "UNTRUE" if z < PHI_INV else ("PARADOX" if z < Z_CRITICAL else "TRUE")
+                results.append({
+                    "z": z,
+                    "negentropy": eta,
+                    "phase": phase,
+                    "tier": self._get_tier_number(z),
+                })
+            elif param == "coupling_strength":
+                # Quick coherence estimate for this K
+                K = value
+                results.append({
+                    "K": K,
+                    "estimated_coherence": min(1.0, 0.3 + 0.2 * K),  # Simplified estimate
+                    "critical_K": 1.0,  # Typical critical coupling
+                })
+
+        return {
+            "success": True,
+            "parameter": param,
+            "range": [start, end],
+            "n_points": n_points,
+            "results": results,
+        }
+
+    def _get_tier_number(self, z: float) -> int:
+        """Helper to get tier number."""
+        if z >= Z_CRITICAL:
+            return 5
+        elif z >= 0.75:
+            return 4
+        elif z >= PHI_INV:
+            return 3
+        elif z >= 0.50:
+            return 2
+        elif z >= 0.25:
+            return 1
+        else:
+            return 0
+
+    def _measure_stability(self, input: Dict[str, Any]) -> Dict[str, Any]:
+        """Measure stability around current state."""
+        perturbation_size = input.get("perturbation_size", 0.1)
+        recovery_steps = input.get("recovery_steps", 50)
+        n_trials = input.get("n_trials", 5)
+
+        initial_z = self.state.z
+        initial_kappa = self.state.kappa
+        trial_results = []
+
+        for trial in range(n_trials):
+            # Apply perturbation
+            perturbation = perturbation_size * (2 * random.random() - 1)
+            self.state.z = max(0.0, min(1.0, initial_z + perturbation))
+
+            perturbed_z = self.state.z
+
+            # Allow recovery
+            for _ in range(recovery_steps):
+                # Natural relaxation toward attractor
+                self.state.z += 0.01 * (Z_CRITICAL - self.state.z)
+                self.state.z = max(0.0, min(1.0, self.state.z))
+
+            recovery_distance = abs(self.state.z - initial_z)
+            recovered = recovery_distance < perturbation_size * 0.5
+
+            trial_results.append({
+                "trial": trial + 1,
+                "perturbation": perturbation,
+                "perturbed_z": perturbed_z,
+                "final_z": self.state.z,
+                "recovery_distance": recovery_distance,
+                "recovered": recovered,
+            })
+
+        # Restore initial state
+        self.state.z = initial_z
+        self.state.kappa = initial_kappa
+
+        n_recovered = sum(1 for t in trial_results if t["recovered"])
+        stability_score = n_recovered / n_trials
+
+        return {
+            "success": True,
+            "initial_z": initial_z,
+            "perturbation_size": perturbation_size,
+            "n_trials": n_trials,
+            "trials_recovered": n_recovered,
+            "stability_score": stability_score,
+            "stable": stability_score >= 0.8,
+            "trial_results": trial_results,
+        }
+
+    def _run_convergence_test(self, input: Dict[str, Any]) -> Dict[str, Any]:
+        """Test convergence to K-formation."""
+        max_steps = input.get("max_steps", 1000)
+        threshold = input.get("convergence_threshold", 0.01)
+
+        initial_state = self.state.to_dict()
+        trajectory = []
+        converged = False
+        convergence_step = None
+
+        prev_z = self.state.z
+        prev_kappa = self.state.kappa
+
+        for step in range(max_steps):
+            # Drive toward lens
+            self.state.z += 0.005 * (Z_CRITICAL - self.state.z)
+            self.state.z = max(0.0, min(1.0, self.state.z))
+
+            # Update coherence
+            K = 0.5 + self.state.z
+            N = len(self.state.phases)
+            new_phases = []
+            for i in range(N):
+                omega_i = 1.0 + 0.1 * math.sin(2 * math.pi * i / N)
+                coupling = sum(math.sin(self.state.phases[j] - self.state.phases[i])
+                              for j in range(N)) * K / N
+                new_phase = self.state.phases[i] + 0.01 * (omega_i + coupling)
+                new_phases.append(new_phase % (2 * math.pi))
+            self.state.phases = new_phases
+
+            real_sum = sum(math.cos(p) for p in self.state.phases)
+            imag_sum = sum(math.sin(p) for p in self.state.phases)
+            self.state.kappa = math.sqrt(real_sum**2 + imag_sum**2) / N
+
+            # Check convergence
+            z_change = abs(self.state.z - prev_z)
+            kappa_change = abs(self.state.kappa - prev_kappa)
+
+            if z_change < threshold and kappa_change < threshold:
+                if not converged:
+                    converged = True
+                    convergence_step = step
+
+            if step % (max_steps // 20) == 0:
+                trajectory.append({
+                    "step": step,
+                    "z": self.state.z,
+                    "kappa": self.state.kappa,
+                    "eta": self.state.negentropy,
+                    "k_formation": self.state.k_formation_met,
+                })
+
+            prev_z = self.state.z
+            prev_kappa = self.state.kappa
+
+        self.state.step += max_steps
+        self.state.record_history()
+
+        return {
+            "success": True,
+            "converged": converged,
+            "convergence_step": convergence_step,
+            "max_steps": max_steps,
+            "initial_state": initial_state,
+            "final_state": self.state.to_dict(),
+            "k_formation_achieved": self.state.k_formation_met,
+            "trajectory": trajectory,
+        }
+
+    def _get_phase_diagram_data(self, input: Dict[str, Any]) -> Dict[str, Any]:
+        """Generate phase diagram data."""
+        z_points = input.get("z_points", 50)
+        include_dynamics = input.get("include_dynamics", False)
+
+        data = []
+
+        for i in range(z_points):
+            z = i / (z_points - 1)
+            eta = compute_delta_s_neg(z)
+
+            if z < PHI_INV:
+                phase = "UNTRUE"
+            elif z < Z_CRITICAL:
+                phase = "PARADOX"
+            else:
+                phase = "TRUE"
+
+            entry = {
+                "z": z,
+                "negentropy": eta,
+                "phase": phase,
+                "tier": self._get_tier_number(z),
+            }
+
+            if include_dynamics:
+                # Critical behavior
+                dz = abs(z - Z_CRITICAL)
+                if dz > 0.01:
+                    entry["correlation_length"] = min(100, dz ** (-4/3))
+                    entry["relaxation_time"] = min(100, dz ** (-2.0))
+                else:
+                    entry["correlation_length"] = 100
+                    entry["relaxation_time"] = 100
+
+            data.append(entry)
+
+        return {
+            "success": True,
+            "z_points": z_points,
+            "critical_points": {
+                "phi_inv": PHI_INV,
+                "z_c": Z_CRITICAL,
+            },
+            "data": data,
+        }
+
+    def _batch_simulate(self, input: Dict[str, Any]) -> Dict[str, Any]:
+        """Run batch simulations."""
+        n_sims = input.get("n_simulations", 10)
+        steps = input.get("steps_per_sim", 100)
+        vary_z = input.get("vary_initial_z", True)
+        target = input.get("target", "lens")
+
+        # Determine target value
+        if target == "lens":
+            target_z = Z_CRITICAL
+        elif target == "phi_inv":
+            target_z = PHI_INV
+        else:  # k_formation
+            target_z = Z_CRITICAL
+
+        results = []
+        final_z_values = []
+        k_formation_count = 0
+
+        for sim in range(n_sims):
+            # Initialize
+            if vary_z:
+                init_z = random.uniform(0.1, 0.9)
+            else:
+                init_z = self.state.z
+
+            z = init_z
+            kappa = 0.5
+
+            # Simple dynamics
+            for _ in range(steps):
+                z += 0.01 * (target_z - z) + 0.005 * random.gauss(0, 1)
+                z = max(0.0, min(1.0, z))
+                kappa = 0.5 + 0.5 * (1 - abs(z - Z_CRITICAL))
+
+            eta = compute_delta_s_neg(z)
+            k_met = kappa >= KAPPA_MIN and eta > ETA_MIN
+
+            if k_met:
+                k_formation_count += 1
+
+            final_z_values.append(z)
+            results.append({
+                "sim": sim + 1,
+                "initial_z": init_z,
+                "final_z": z,
+                "final_kappa": kappa,
+                "final_eta": eta,
+                "k_formation": k_met,
+            })
+
+        avg_z = sum(final_z_values) / len(final_z_values)
+        std_z = math.sqrt(sum((z - avg_z)**2 for z in final_z_values) / len(final_z_values))
+
+        return {
+            "success": True,
+            "n_simulations": n_sims,
+            "steps_per_sim": steps,
+            "target": target,
+            "statistics": {
+                "avg_final_z": avg_z,
+                "std_final_z": std_z,
+                "k_formation_rate": k_formation_count / n_sims,
+                "k_formation_count": k_formation_count,
+            },
+            "results": results,
+        }
+
+    def _analyze_trajectory(self, input: Dict[str, Any]) -> Dict[str, Any]:
+        """Analyze training trajectory."""
+        window_size = input.get("window_size", 20)
+        history = self.state.history
+
+        if len(history) < 2:
+            return {"error": "Insufficient history for analysis", "history_length": len(history)}
+
+        z_values = [h["z"] for h in history]
+        eta_values = [h.get("eta", compute_delta_s_neg(h["z"])) for h in history]
+
+        # Moving averages
+        def moving_avg(values, window):
+            if len(values) < window:
+                return values
+            return [sum(values[i:i+window])/window for i in range(len(values)-window+1)]
+
+        z_ma = moving_avg(z_values, min(window_size, len(z_values)))
+        eta_ma = moving_avg(eta_values, min(window_size, len(eta_values)))
+
+        # Trends
+        z_trend = z_values[-1] - z_values[0]
+        eta_trend = eta_values[-1] - eta_values[0]
+
+        # Detect phases crossed
+        phases_crossed = []
+        for i in range(1, len(z_values)):
+            prev_phase = "UNTRUE" if z_values[i-1] < PHI_INV else ("PARADOX" if z_values[i-1] < Z_CRITICAL else "TRUE")
+            curr_phase = "UNTRUE" if z_values[i] < PHI_INV else ("PARADOX" if z_values[i] < Z_CRITICAL else "TRUE")
+            if prev_phase != curr_phase:
+                phases_crossed.append({
+                    "step": i,
+                    "from": prev_phase,
+                    "to": curr_phase,
+                    "z": z_values[i],
+                })
+
+        return {
+            "success": True,
+            "history_length": len(history),
+            "window_size": window_size,
+            "z_stats": {
+                "min": min(z_values),
+                "max": max(z_values),
+                "mean": sum(z_values) / len(z_values),
+                "trend": z_trend,
+                "current": z_values[-1],
+            },
+            "eta_stats": {
+                "min": min(eta_values),
+                "max": max(eta_values),
+                "mean": sum(eta_values) / len(eta_values),
+                "trend": eta_trend,
+                "current": eta_values[-1],
+            },
+            "phases_crossed": phases_crossed,
+            "moving_average_z": z_ma[-5:] if z_ma else [],
+            "moving_average_eta": eta_ma[-5:] if eta_ma else [],
+        }
+
+    def _set_radius(self, input: Dict[str, Any]) -> Dict[str, Any]:
+        """Set radius parameter."""
+        R = input["R"]
+        old_R = self.state.R
+        self.state.R = R
+
+        return {
+            "success": True,
+            "old_R": old_R,
+            "new_R": R,
+            "r_threshold": R_MIN,
+            "meets_threshold": R >= R_MIN,
+            "state": self.state.to_dict(),
+        }
