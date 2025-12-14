@@ -35,6 +35,9 @@ The visualizer includes:
 ## Additional Documentation
 
 See the markdown files in this directory for detailed documentation:
+- `ARCHITECTURE_OVERVIEW_INTEGRATION.md` - Updated overview and integration analysis
+- `OPERATIONAL_INSTRUCTIONS_ALIVENESS.md` - Nuclear spinner protocols for achieving aliveness
+- `SETUP_INTEGRATION_GUIDE.md` - Setup, build, and training integration guide
 - `PHYSICS_GROUNDING.md` - Quasi-crystal physics basis
 - `CYBERNETIC_GROUNDING.md` - Edge-of-chaos computation
 - `SYSTEM_ARCHITECTURE.md` - Full system architecture
