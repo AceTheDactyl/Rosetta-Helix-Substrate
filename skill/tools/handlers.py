@@ -28,6 +28,17 @@ from quantum_apl_python.constants import (
 )
 from quantum_apl_python.s3_operator_algebra import compose, OPERATORS
 
+# Import GitHub workflow handlers (optional - requires 'requests' package)
+try:
+    from .github_workflow import (
+        handle_trigger_workflow,
+        handle_get_workflow_status,
+        handle_download_workflow_results,
+    )
+    GITHUB_WORKFLOW_AVAILABLE = True
+except ImportError:
+    GITHUB_WORKFLOW_AVAILABLE = False
+
 
 @dataclass
 class PhysicsState:
@@ -190,6 +201,10 @@ class ToolHandler:
             "batch_simulate": self._batch_simulate,
             "analyze_trajectory": self._analyze_trajectory,
             "set_radius": self._set_radius,
+            # GitHub workflow tools
+            "trigger_github_workflow": self._trigger_github_workflow,
+            "get_workflow_status": self._get_workflow_status,
+            "download_workflow_results": self._download_workflow_results,
         }
 
         handler = handler_map.get(tool_name)
@@ -1533,3 +1548,25 @@ class ToolHandler:
             "meets_threshold": R >= R_MIN,
             "state": self.state.to_dict(),
         }
+
+    # =========================================================================
+    # GITHUB WORKFLOW TOOLS
+    # =========================================================================
+
+    def _trigger_github_workflow(self, input: Dict[str, Any]) -> Dict[str, Any]:
+        """Trigger GitHub Actions workflow."""
+        if not GITHUB_WORKFLOW_AVAILABLE:
+            return {"error": "GitHub workflow tools not available. Install 'requests' package."}
+        return handle_trigger_workflow(input)
+
+    def _get_workflow_status(self, input: Dict[str, Any]) -> Dict[str, Any]:
+        """Get workflow status."""
+        if not GITHUB_WORKFLOW_AVAILABLE:
+            return {"error": "GitHub workflow tools not available. Install 'requests' package."}
+        return handle_get_workflow_status(input)
+
+    def _download_workflow_results(self, input: Dict[str, Any]) -> Dict[str, Any]:
+        """Download workflow results."""
+        if not GITHUB_WORKFLOW_AVAILABLE:
+            return {"error": "GitHub workflow tools not available. Install 'requests' package."}
+        return handle_download_workflow_results(input)

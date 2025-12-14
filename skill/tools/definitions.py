@@ -678,5 +678,72 @@ TOOL_DEFINITIONS = [
             },
             "required": ["R"]
         }
+    },
+    # =========================================================================
+    # GITHUB WORKFLOW TOOLS
+    # =========================================================================
+    {
+        "name": "trigger_github_workflow",
+        "description": "Trigger the autonomous training GitHub Actions workflow. Optionally wait for results and download artifacts. Requires GITHUB_TOKEN environment variable.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "goal": {
+                    "type": "string",
+                    "description": "Training goal for Claude to pursue",
+                    "default": "Achieve K-formation by reaching THE LENS"
+                },
+                "max_iterations": {
+                    "type": "integer",
+                    "description": "Maximum training iterations",
+                    "minimum": 1,
+                    "maximum": 50,
+                    "default": 10
+                },
+                "initial_z": {
+                    "type": "number",
+                    "description": "Initial z-coordinate",
+                    "minimum": 0.0,
+                    "maximum": 1.0,
+                    "default": 0.3
+                },
+                "wait_for_results": {
+                    "type": "boolean",
+                    "description": "Wait for workflow to complete and download results",
+                    "default": True
+                },
+                "timeout": {
+                    "type": "integer",
+                    "description": "Timeout in seconds when waiting for results",
+                    "minimum": 60,
+                    "maximum": 1800,
+                    "default": 600
+                }
+            },
+            "required": []
+        }
+    },
+    {
+        "name": "get_workflow_status",
+        "description": "Get the status of the latest GitHub Actions workflow run.",
+        "input_schema": {
+            "type": "object",
+            "properties": {},
+            "required": []
+        }
+    },
+    {
+        "name": "download_workflow_results",
+        "description": "Download artifacts from a GitHub Actions workflow run.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "run_id": {
+                    "type": "integer",
+                    "description": "Workflow run ID (optional, defaults to latest run)"
+                }
+            },
+            "required": []
+        }
     }
 ]
