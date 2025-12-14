@@ -241,9 +241,10 @@ class RunConfig:
 
     def _generate_run_id(self) -> str:
         """Generate a unique run ID."""
+        import uuid
         timestamp = datetime.utcnow().strftime("%Y%m%d_%H%M%S")
-        # Include config hash for uniqueness
-        config_str = f"{self.seed}_{self.total_steps}_{self.n_oscillators}"
+        # Include config hash AND random UUID for guaranteed uniqueness
+        config_str = f"{self.seed}_{self.total_steps}_{self.n_oscillators}_{uuid.uuid4().hex[:8]}"
         hash_suffix = hashlib.md5(config_str.encode()).hexdigest()[:6]
         return f"run_{timestamp}_{hash_suffix}"
 

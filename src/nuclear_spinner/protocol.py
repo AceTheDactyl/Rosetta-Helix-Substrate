@@ -124,7 +124,14 @@ class CommandFrame:
 
     @classmethod
     def from_bytes(cls, data: bytes) -> 'CommandFrame':
-        """Decode frame from received bytes."""
+        """Decode frame from received bytes.
+
+        Frame format:
+            Header (1) + PayloadLen (2) + Command (1) + Seq (1) + Payload (N) + CRC (2)
+
+        Where PayloadLen = 2 (cmd+seq) + N (payload) + 2 (CRC) = N + 4
+        Total frame length = 3 (header + len) + PayloadLen
+        """
         if len(data) < 6:
             raise ValueError("Frame too short")
 
@@ -133,16 +140,21 @@ class CommandFrame:
             raise ValueError(f"Invalid header: {header:#x}")
 
         payload_len = struct.unpack('<H', data[1:3])[0]
-        if len(data) < 5 + payload_len:
+        # Total frame = 3 (header + payload_len field) + payload_len
+        if len(data) < 3 + payload_len:
             raise ValueError("Incomplete frame")
 
         command = CommandType(data[3])
         sequence = data[4]
-        payload = data[5:5 + payload_len - 2]
+        # Payload starts at byte 5, ends before the 2-byte CRC
+        # payload_len includes cmd(1) + seq(1) + actual_payload + CRC(2)
+        actual_payload_len = payload_len - 4  # subtract cmd, seq, and CRC
+        payload = data[5:5 + actual_payload_len]
 
-        # Verify CRC
-        received_crc = struct.unpack('<H', data[5 + payload_len - 2:5 + payload_len])[0]
-        computed_crc = compute_crc16(data[:5 + payload_len - 2])
+        # Verify CRC (last 2 bytes of the payload_len region)
+        crc_start = 3 + payload_len - 2
+        received_crc = struct.unpack('<H', data[crc_start:crc_start + 2])[0]
+        computed_crc = compute_crc16(data[:crc_start])
 
         if received_crc != computed_crc:
             raise ValueError("CRC mismatch")
