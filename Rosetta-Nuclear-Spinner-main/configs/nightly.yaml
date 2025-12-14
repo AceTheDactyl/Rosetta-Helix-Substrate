@@ -1,0 +1,81 @@
+# Nightly Training Configuration
+# ================================
+# Physics constants are NOT configurable - they're observables.
+# Only training hyperparameters are set here.
+
+training:
+  # Full Depth Training
+  full_depth:
+    steps_per_module: 200
+    modules:
+      # Phase 1: Core Physics
+      - n0_silent_laws_enforcement
+      - kuramoto_layer
+      - physical_learner
+      # Phase 2: APL Stack
+      - apl_training_loop
+      - apl_pytorch_training
+      - full_apl_training
+      # Phase 3: Helix Geometry
+      - helix_nn
+      - prismatic_helix_training
+      - full_helix_integration
+      # Phase 4: WUMBO Silent Laws
+      - wumbo_apl_automated_training
+      - wumbo_integrated_training
+      # Phase 5: Dynamics
+      - quasicrystal_formation_dynamics
+      - triad_threshold_dynamics
+      - liminal_generator
+      - feedback_loop
+      # Phase 6: Unified Orchestration
+      - unified_helix_training
+      - hierarchical_training
+      - rosetta_helix_training
+      # Phase 7: Nightly Integration
+      - nightly_integrated_training
+
+  # Helix Engine Training
+  helix_engine:
+    steps: 2000
+    learning_rate: 0.001
+    batch_size: 32
+
+# Gate Criteria (thresholds only - physics constants are immutable)
+gates:
+  full_depth:
+    min_modules_passed: 19
+    min_k_formations: 1
+    require_physics_valid: true
+  
+  helix_engine:
+    min_negentropy: 0.7
+    min_final_z: 0.85
+    kappa_tolerance: 0.01  # Must be within 1% of φ⁻¹
+
+# Validation Seeds
+validation:
+  enabled: true
+  seeds:
+    - 0.6180339887498948  # φ⁻¹ (ABSENCE threshold)
+    - 0.8660254037844386  # z_c (THE LENS)
+    - 0.90
+    - 0.92
+    - training_final_z    # Dynamic: use final z from training
+
+# Model Registry
+registry:
+  name: nightly
+  tags:
+    - nightly
+    - automated
+    - unified
+    - validated
+
+# PR Configuration
+pr:
+  enabled: true
+  branch_prefix: nightly-results
+  labels:
+    - automated
+    - nightly

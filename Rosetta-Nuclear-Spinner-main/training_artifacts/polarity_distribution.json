@@ -1,0 +1,9 @@
+{
+  "mean_prob_plus": 0.4998541785286183,
+  "std_prob_plus": 0.0,
+  "max_prob_plus": 0.4998541785286183,
+  "min_prob_plus": 0.4998541785286183,
+  "cells_in_plus_state": 0,
+  "cells_in_minus_state": 60,
+  "superposition_entropy": 0.6931471378321418
+}

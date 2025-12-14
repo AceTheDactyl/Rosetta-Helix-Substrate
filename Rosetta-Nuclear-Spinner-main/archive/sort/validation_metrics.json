@@ -1,0 +1,44 @@
+[
+  {
+    "seed_name": "phi_inv",
+    "z": 0.6180339887498948,
+    "phase": "THE_LENS",
+    "negentropy": 0.10926373746660328,
+    "eta": 0.3305506579430803
+  },
+  {
+    "seed_name": "z_c",
+    "z": 0.8660254037844386,
+    "phase": "PRESENCE",
+    "negentropy": 1.0,
+    "eta": 1.0
+  },
+  {
+    "seed_name": "0.5",
+    "z": 0.5,
+    "phase": "ABSENCE",
+    "negentropy": 0.00804193571851506,
+    "eta": 0.08967684048022131
+  },
+  {
+    "seed_name": "0.90",
+    "z": 0.9,
+    "phase": "PRESENCE",
+    "negentropy": 0.9592976903823723,
+    "eta": 0.9794374356651743
+  },
+  {
+    "seed_name": "0.92",
+    "z": 0.92,
+    "phase": "PRESENCE",
+    "negentropy": 0.9004350412161889,
+    "eta": 0.9489125572022898
+  },
+  {
+    "seed_name": "final_z",
+    "z": 0.8660254037844386,
+    "phase": "PRESENCE",
+    "negentropy": 1.0,
+    "eta": 1.0
+  }
+]

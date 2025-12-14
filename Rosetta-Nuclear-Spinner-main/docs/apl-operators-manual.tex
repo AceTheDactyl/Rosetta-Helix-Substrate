@@ -1,0 +1,1145 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{xcolor}
+
+\setlength{\parskip}{0.6em}
+\setlength{\parindent}{0pt}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+    citecolor=blue
+}
+
+\begin{document}
+
+\begin{center}
+    {\LARGE \textbf{APL OPERATOR'S MANUAL}}\\[0.5em]
+    {\large Alpha-Physical Language Reference Guide v1.0}\\[0.75em]
+\end{center}
+
+\hrule
+\vspace{0.75em}
+
+\textbf{Purpose.}
+This manual is the comprehensive reference guide for APL (Alpha-Physical Language) operators, syntax, and usage patterns. It is designed for researchers, engineers, and practitioners who need a systematic understanding of APL's operator grammar for describing physical system behaviors.
+
+\textbf{Scope.}
+This document covers:
+\begin{itemize}[leftmargin=2em]
+    \item Complete operator reference with symbols and meanings
+    \item Field definitions (the three ``spirals'')
+    \item Operator state modulation (UMOL)
+    \item Machine contexts and domains
+    \item Syntax rules and sentence structure
+    \item Usage patterns and examples
+    \item Quick reference tables
+\end{itemize}
+
+\tableofcontents
+
+\newpage
+
+%======================================================================
+\section{Introduction to APL}
+%======================================================================
+
+\textbf{Alpha-Physical Language (APL)} is a minimal operator grammar for describing how physical systems change across multiple domains: geometry, wave dynamics, chemistry, and biology.
+
+APL operates on three fundamental principles:
+
+\begin{enumerate}[leftmargin=2em]
+    \item \textbf{Universality:} The same operators apply across all physical domains
+    \item \textbf{Composability:} Operators combine to describe complex behaviors
+    \item \textbf{Predictivity:} APL sentences map to observable physical regimes
+\end{enumerate}
+
+An APL sentence has the canonical form:
+\[
+    [\text{Direction}][\text{Operator}] \mid [\text{Machine}] \mid [\text{Domain}] \;\to\; [\text{Regime/Behavior}]
+\]
+
+Where:
+\begin{itemize}[leftmargin=2em]
+    \item \textbf{Direction} = operator state (u, d, m)
+    \item \textbf{Operator} = universal operation (\verb|()|, \verb|×|, \verb|^|, \verb|%|, \verb|+|, \verb|–|)
+    \item \textbf{Machine} = processing context (Oscillator, Reactor, Conductor, etc.)
+    \item \textbf{Domain} = field type (wave, geometry, chemistry, biology)
+    \item \textbf{Regime} = emergent behavior pattern (A1--A8)
+\end{itemize}
+
+
+%======================================================================
+\section{The Three Fields (Spirals)}
+%======================================================================
+
+APL describes physical reality through three fundamental fields, called \textbf{spirals}, each representing a distinct aspect of physical systems:
+
+\subsection{$\Phi$ — Structure Field (Phi Spiral)}
+
+\textbf{Symbol:} $\Phi$ (Greek letter phi)
+
+\textbf{Domain:} \texttt{geometry}
+
+\textbf{Description:}
+The structure field governs spatial arrangement, boundaries, interfaces, and geometric organization. It encompasses:
+
+\begin{itemize}[leftmargin=2em]
+    \item Lattice structures and crystalline arrangements
+    \item Boundaries and interfaces
+    \item Geometric constraints and symmetries
+    \item Spatial topology and connectivity
+    \item Phase boundaries and domain walls
+\end{itemize}
+
+\textbf{Physical manifestations:}
+\begin{itemize}[leftmargin=2em]
+    \item Crystal lattices (FCC, BCC, HCP)
+    \item Grain boundaries in materials
+    \item Droplet and bubble shapes
+    \item Membrane structures
+    \item Geometric packing arrangements
+\end{itemize}
+
+\subsection{$e$ — Energy Field (Energy Spiral)}
+
+\textbf{Symbol:} $e$ (lowercase e)
+
+\textbf{Domain:} \texttt{wave}
+
+\textbf{Description:}
+The energy field governs dynamics, flows, oscillations, and energy transport. It encompasses:
+
+\begin{itemize}[leftmargin=2em]
+    \item Wave propagation and interference
+    \item Fluid flows and vortices
+    \item Thermodynamic processes
+    \item Electromagnetic radiation
+    \item Energy transfer and dissipation
+\end{itemize}
+
+\textbf{Physical manifestations:}
+\begin{itemize}[leftmargin=2em]
+    \item Acoustic and electromagnetic waves
+    \item Fluid vortices and turbulence
+    \item Heat flow and diffusion
+    \item Plasma oscillations
+    \item Optical modes in cavities
+\end{itemize}
+
+\subsection{$\pi$ — Emergence Field (Pi Spiral)}
+
+\textbf{Symbol:} $\pi$ (Greek letter pi)
+
+\textbf{Domains:} \texttt{chemistry}, \texttt{biology}
+
+\textbf{Description:}
+The emergence field governs information, complexity, adaptation, and self-organization. It encompasses:
+
+\begin{itemize}[leftmargin=2em]
+    \item Chemical reactions and bonding
+    \item Molecular information storage (DNA, RNA)
+    \item Biological adaptation and evolution
+    \item Self-organizing systems
+    \item Pattern formation and morphogenesis
+\end{itemize}
+
+\textbf{Physical manifestations:}
+\begin{itemize}[leftmargin=2em]
+    \item Polymer and protein structures
+    \item Catalytic networks
+    \item Genetic information encoding
+    \item Biological growth patterns
+    \item Self-assembly processes
+\end{itemize}
+
+
+%======================================================================
+\section{Universal Operations}
+%======================================================================
+
+APL defines six universal operations that apply across all domains. Each operation has a specific symbol and meaning.
+
+\subsection{\texttt{()} — Boundary / Containment}
+
+\textbf{Symbol:} \verb|()|  (parentheses)
+
+\textbf{Meaning:} Boundary formation, containment, enclosure, interface creation
+
+\textbf{Physical interpretation:}
+\begin{itemize}[leftmargin=2em]
+    \item Creating or modifying boundaries
+    \item Interface dynamics
+    \item Membrane formation
+    \item Cavity or container walls
+    \item Domain enclosure
+\end{itemize}
+
+\textbf{Example applications:}
+\begin{itemize}[leftmargin=2em]
+    \item \verb|d()| = boundary collapse (surface tension, spheroidization)
+    \item \verb|m()| = modulated boundaries (adaptive filters, tunable cavities)
+    \item \verb|u()| = boundary expansion (domain growth, inflation)
+\end{itemize}
+
+\subsection{\texttt{×} — Fusion / Convergence}
+
+\textbf{Symbol:} \verb|×| (multiplication sign)
+
+\textbf{Meaning:} Joining, bonding, merging, convergence, fusion
+
+\textbf{Physical interpretation:}
+\begin{itemize}[leftmargin=2em]
+    \item Chemical bond formation
+    \item Particle aggregation
+    \item Flow convergence
+    \item Structural joining
+    \item Information combination
+\end{itemize}
+
+\textbf{Example applications:}
+\begin{itemize}[leftmargin=2em]
+    \item \verb|u×| = forward fusion (catalytic growth, branching networks)
+    \item \verb|d×| = collapse fusion (adaptive catalysis, selective binding)
+    \item \verb|m×| = modulated fusion (helical structures, templated bonding)
+\end{itemize}
+
+\subsection{\texttt{\^{}} — Amplify / Gain}
+
+\textbf{Symbol:} \verb|^| (caret)
+
+\textbf{Meaning:} Amplification, gain, resonance, enhancement
+
+\textbf{Physical interpretation:}
+\begin{itemize}[leftmargin=2em]
+    \item Resonant enhancement
+    \item Positive feedback
+    \item Signal amplification
+    \item Energy injection
+    \item Mode excitation
+\end{itemize}
+
+\textbf{Example applications:}
+\begin{itemize}[leftmargin=2em]
+    \item \verb|u^| = forward amplification (oscillator gain, vortex formation)
+    \item \verb|d^| = collapse amplification (focusing, concentration)
+    \item \verb|m^| = modulated amplification (parametric amplification)
+\end{itemize}
+
+\subsection{\texttt{\%} — Decohere / Noise}
+
+\textbf{Symbol:} \verb|%| (percent sign)
+
+\textbf{Meaning:} Decoherence, noise injection, randomization, reset, scrambling
+
+\textbf{Physical interpretation:}
+\begin{itemize}[leftmargin=2em]
+    \item Stochastic forcing
+    \item Phase decoherence
+    \item Thermal noise
+    \item Random perturbations
+    \item Information scrambling
+\end{itemize}
+
+\textbf{Example applications:}
+\begin{itemize}[leftmargin=2em]
+    \item \verb|u%| = forward decoherence (turbulence onset, chaos)
+    \item \verb|d%| = collapse decoherence (measurement, reset)
+    \item \verb|m%| = modulated noise (controlled stochasticity)
+\end{itemize}
+
+\subsection{\texttt{+} — Group / Aggregation}
+
+\textbf{Symbol:} \verb|+| (plus sign)
+
+\textbf{Meaning:} Grouping, collection, aggregation, routing, focusing
+
+\textbf{Physical interpretation:}
+\begin{itemize}[leftmargin=2em]
+    \item Flow convergence
+    \item Geometric focusing
+    \item Particle collection
+    \item Signal routing
+    \item Nozzle formation
+\end{itemize}
+
+\textbf{Example applications:}
+\begin{itemize}[leftmargin=2em]
+    \item \verb|u+| = forward grouping (jet formation, beam focusing)
+    \item \verb|d+| = collapse grouping (sink formation, collection)
+    \item \verb|m+| = modulated grouping (selective routing)
+\end{itemize}
+
+\subsection{\texttt{–} — Separate / Splitting}
+
+\textbf{Symbol:} \verb|–| (minus/dash)
+
+\textbf{Meaning:} Separation, splitting, fission, dispersion, divergence
+
+\textbf{Physical interpretation:}
+\begin{itemize}[leftmargin=2em]
+    \item Flow divergence
+    \item Particle separation
+    \item Domain splitting
+    \item Bond breaking
+    \item Dispersion
+\end{itemize}
+
+\textbf{Example applications:}
+\begin{itemize}[leftmargin=2em]
+    \item \verb|u–| = forward separation (bifurcation, splitting)
+    \item \verb|d–| = collapse separation (fragmentation)
+    \item \verb|m–| = modulated separation (selective splitting)
+\end{itemize}
+
+
+%======================================================================
+\section{Operator States (UMOL)}
+%======================================================================
+
+\textbf{UMOL (Universal Modulation Operator Law)} defines three fundamental operator states that modulate how operations unfold in time:
+
+\subsection{$\mathcal{U}$ — Expansion / Forward (u)}
+
+\textbf{Symbol:} \verb|u| (lowercase u) or $\mathcal{U}$ (script U)
+
+\textbf{Mathematical form:} $\mathcal{U}(E)$ where $E$ = expansion component
+
+\textbf{Meaning:}
+Forward projection, expansion, outward flow, growth, active driving
+
+\textbf{Characteristics:}
+\begin{itemize}[leftmargin=2em]
+    \item Expansion in time and space
+    \item Active forcing or driving
+    \item Forward-directed processes
+    \item Energy injection
+    \item Growth and propagation
+\end{itemize}
+
+\textbf{Physical analogies:}
+\begin{itemize}[leftmargin=2em]
+    \item Source terms in PDEs
+    \item Forward time evolution
+    \item Outward flow from sources
+    \item Active pumping
+    \item Growth fronts
+\end{itemize}
+
+\subsection{$\mathcal{D}$ — Collapse / Backward (d)}
+
+\textbf{Symbol:} \verb|d| (lowercase d) or $\mathcal{D}$ (script D)
+
+\textbf{Mathematical form:} $\mathcal{D}(C)$ where $C$ = collapse component
+
+\textbf{Meaning:}
+Backward integration, collapse, inward flow, contraction, relaxation
+
+\textbf{Characteristics:}
+\begin{itemize}[leftmargin=2em]
+    \item Collapse in time and space
+    \item Passive relaxation
+    \item Inward-directed processes
+    \item Energy extraction or dissipation
+    \item Contraction and consolidation
+\end{itemize}
+
+\textbf{Physical analogies:}
+\begin{itemize}[leftmargin=2em]
+    \item Sink terms in PDEs
+    \item Backward time evolution
+    \item Inward flow to sinks
+    \item Passive relaxation
+    \item Contraction fronts
+\end{itemize}
+
+\subsection{CLT — Modulation / Coherence Lock (m)}
+
+\textbf{Symbol:} \verb|m| (lowercase m) or $\mathrm{CLT}$ (CLT = Coherence Lock Transform)
+
+\textbf{Mathematical form:} $\mathrm{CLT}(M)$ where $M$ = modulation component
+
+\textbf{Meaning:}
+Modulation, coherence locking, feedback, adaptation, information encoding
+
+\textbf{Characteristics:}
+\begin{itemize}[leftmargin=2em]
+    \item Feedback-driven modulation
+    \item Coherence maintenance
+    \item Adaptive response
+    \item Information encoding
+    \item Dynamic tuning
+\end{itemize}
+
+\textbf{Physical analogies:}
+\begin{itemize}[leftmargin=2em]
+    \item Feedback loops
+    \item Phase locking
+    \item Adaptive filters
+    \item Templated processes
+    \item Information storage
+\end{itemize}
+
+\subsection{The UMOL Balance Law}
+
+The three operator states satisfy a fundamental balance condition:
+
+\[
+  \mathcal{U}(E) \leftrightarrow \mathcal{D}(C) \quad \text{via } \mathrm{CLT}(M)
+\]
+
+\[
+  E + C + M = 0 \quad \text{(coherence / balance condition)}
+\]
+
+\textbf{Interpretation:}
+\begin{itemize}[leftmargin=2em]
+    \item Expansion ($E$) and collapse ($C$) are balanced through modulation ($M$)
+    \item Physical systems maintain coherence by dynamically balancing forward and backward processes
+    \item Modulation acts as the mediator between expansion and collapse
+\end{itemize}
+
+
+%======================================================================
+\section{Machines (Processing Contexts)}
+%======================================================================
+
+Machines represent the processing contexts or system architectures in which operators act. Each machine has characteristic behaviors and constraints.
+
+\subsection{Oscillator}
+
+\textbf{Description:} A resonant, periodic system with characteristic frequencies
+
+\textbf{Key features:}
+\begin{itemize}[leftmargin=2em]
+    \item Resonant modes
+    \item Quality factor (Q)
+    \item Phase coherence
+    \item Periodic driving
+\end{itemize}
+
+\textbf{Physical examples:}
+\begin{itemize}[leftmargin=2em]
+    \item LC circuits, RLC resonators
+    \item Mechanical oscillators (springs, pendulums)
+    \item Optical cavities
+    \item Acoustic resonators
+\end{itemize}
+
+\textbf{Typical behaviors:}
+\begin{itemize}[leftmargin=2em]
+    \item Resonant peaks
+    \item Standing wave patterns
+    \item Energy localization
+    \item Frequency selectivity
+\end{itemize}
+
+\subsection{Reactor}
+
+\textbf{Description:} A driven, continuous-flow system with throughput
+
+\textbf{Key features:}
+\begin{itemize}[leftmargin=2em]
+    \item Continuous flow
+    \item Energy input/output
+    \item Mixing and transport
+    \item Non-equilibrium operation
+\end{itemize}
+
+\textbf{Physical examples:}
+\begin{itemize}[leftmargin=2em]
+    \item Combustion chambers
+    \item Stirred tanks and pipes
+    \item Plasma sources
+    \item Accretion flows
+\end{itemize}
+
+\textbf{Typical behaviors:}
+\begin{itemize}[leftmargin=2em]
+    \item Jets and plumes
+    \item Turbulent flows
+    \item Continuous conversion
+    \item Steady-state operation
+\end{itemize}
+
+\subsection{Conductor}
+
+\textbf{Description:} A structural system that can rearrange and relax
+
+\textbf{Key features:}
+\begin{itemize}[leftmargin=2em]
+    \item Structural flexibility
+    \item Surface/elastic energy
+    \item Relaxation dynamics
+    \item Boundary mobility
+\end{itemize}
+
+\textbf{Physical examples:}
+\begin{itemize}[leftmargin=2em]
+    \item Droplets and bubbles
+    \item Grain boundaries
+    \item Phase-field interfaces
+    \item Elastic membranes
+\end{itemize}
+
+\textbf{Typical behaviors:}
+\begin{itemize}[leftmargin=2em]
+    \item Surface minimization
+    \item Shape relaxation
+    \item Coarsening
+    \item Packing optimization
+\end{itemize}
+
+\subsection{Encoder}
+
+\textbf{Description:} A system that stores and processes information
+
+\textbf{Key features:}
+\begin{itemize}[leftmargin=2em]
+    \item Sequence specificity
+    \item Information capacity
+    \item Template-directed processes
+    \item Chiral constraints
+\end{itemize}
+
+\textbf{Physical examples:}
+\begin{itemize}[leftmargin=2em]
+    \item DNA/RNA polymerization
+    \item Protein folding
+    \item Synthetic helical polymers
+    \item Information-bearing structures
+\end{itemize}
+
+\textbf{Typical behaviors:}
+\begin{itemize}[leftmargin=2em]
+    \item Helical structures
+    \item Sequence encoding
+    \item Template replication
+    \item Information preservation
+\end{itemize}
+
+\subsection{Catalyst}
+
+\textbf{Description:} A system with spatially heterogeneous reactivity
+
+\textbf{Key features:}
+\begin{itemize}[leftmargin=2em]
+    \item Site-specific enhancement
+    \item Reaction bias at interfaces
+    \item Growth at active fronts
+    \item Autocatalytic feedback
+\end{itemize}
+
+\textbf{Physical examples:}
+\begin{itemize}[leftmargin=2em]
+    \item Catalytic surfaces
+    \item Growing tips (DLA, trees)
+    \item Reaction fronts
+    \item Enzymatic networks
+\end{itemize}
+
+\textbf{Typical behaviors:}
+\begin{itemize}[leftmargin=2em]
+    \item Branching growth
+    \item Network formation
+    \item Selective pathways
+    \item Adaptive catalysis
+\end{itemize}
+
+\subsection{Filter}
+
+\textbf{Description:} A selective system that passes some modes and blocks others
+
+\textbf{Key features:}
+\begin{itemize}[leftmargin=2em]
+    \item Frequency selectivity
+    \item Mode discrimination
+    \item Tunable response
+    \item Adaptive bandwidth
+\end{itemize}
+
+\textbf{Physical examples:}
+\begin{itemize}[leftmargin=2em]
+    \item Bandpass filters
+    \item Waveguides
+    \item Selective membranes
+    \item Recognition sites
+\end{itemize}
+
+\textbf{Typical behaviors:}
+\begin{itemize}[leftmargin=2em]
+    \item Selective transmission
+    \item Adaptive tuning
+    \item Resonant enhancement
+    \item Dynamic filtering
+\end{itemize}
+
+
+%======================================================================
+\section{Domains}
+%======================================================================
+
+Domains specify which field (spiral) is primarily active in an APL sentence.
+
+\subsection{geometry}
+
+\textbf{Field:} $\Phi$ (Structure)
+
+\textbf{Focus:} Spatial arrangement, boundaries, interfaces, geometric constraints
+
+\textbf{Typical phenomena:}
+\begin{itemize}[leftmargin=2em]
+    \item Crystal lattices
+    \item Droplet shapes
+    \item Packing arrangements
+    \item Interface dynamics
+\end{itemize}
+
+\subsection{wave}
+
+\textbf{Field:} $e$ (Energy)
+
+\textbf{Focus:} Oscillations, flows, energy transport, dynamics
+
+\textbf{Typical phenomena:}
+\begin{itemize}[leftmargin=2em]
+    \item Wave propagation
+    \item Vortices and turbulence
+    \item Resonant modes
+    \item Jets and beams
+\end{itemize}
+
+\subsection{chemistry}
+
+\textbf{Field:} $\pi$ (Emergence)
+
+\textbf{Focus:} Chemical reactions, bonding, molecular structure
+
+\textbf{Typical phenomena:}
+\begin{itemize}[leftmargin=2em]
+    \item Polymer growth
+    \item Catalytic networks
+    \item Helical structures
+    \item Reaction-diffusion patterns
+\end{itemize}
+
+\subsection{biology}
+
+\textbf{Field:} $\pi$ (Emergence)
+
+\textbf{Focus:} Biological systems, adaptation, evolution, self-organization
+
+\textbf{Typical phenomena:}
+\begin{itemize}[leftmargin=2em]
+    \item Morphogenesis
+    \item Adaptation
+    \item Information processing
+    \item Self-assembly
+\end{itemize}
+
+
+%======================================================================
+\section{Syntax and Sentence Structure}
+%======================================================================
+
+\subsection{Canonical Form}
+
+An APL sentence follows this structure:
+
+\[
+    [\text{State}][\text{Op}] \mid [\text{Machine}] \mid [\text{Domain}] \;\to\; [\text{Regime}]
+\]
+
+\textbf{Components:}
+\begin{enumerate}[leftmargin=2em]
+    \item \textbf{State} = \verb|u|, \verb|d|, or \verb|m| (required)
+    \item \textbf{Op} = \verb|()|, \verb|×|, \verb|^|, \verb|%|, \verb|+|, or \verb|–| (required)
+    \item \textbf{Machine} = Oscillator, Reactor, Conductor, Encoder, Catalyst, Filter (required)
+    \item \textbf{Domain} = geometry, wave, chemistry, biology (required)
+    \item \textbf{Regime} = A1--A8 or descriptive name (result/prediction)
+\end{enumerate}
+
+\subsection{Separator Syntax}
+
+The vertical bar \verb+|+ separates the three main components on the left-hand side:
+
+\begin{verbatim}
+[State][Op] | [Machine] | [Domain]
+\end{verbatim}
+
+\textbf{Reading convention:}
+\begin{itemize}[leftmargin=2em]
+    \item Read left to right
+    \item Vertical bars create clear boundaries
+    \item Arrow ($\to$) separates input from predicted output
+\end{itemize}
+
+\subsection{Example Sentences}
+
+\subsubsection{Example 1: Closed Vortex}
+
+\begin{verbatim}
+u^|Oscillator|wave → Closed vortex (A3)
+\end{verbatim}
+
+\textbf{Parse:}
+\begin{itemize}[leftmargin=2em]
+    \item State: \verb|u| = forward/expansion
+    \item Operator: \verb|^| = amplification
+    \item Machine: Oscillator = resonant system
+    \item Domain: wave = energy field
+    \item Regime: Closed vortex (A3)
+\end{itemize}
+
+\textbf{Reading:} ``Forward amplification in an oscillatory wave system tends to produce closed vortex structures.''
+
+\subsubsection{Example 2: Helical Encoding}
+
+\begin{verbatim}
+m×|Encoder|chemistry → Helical encoding (A4)
+\end{verbatim}
+
+\textbf{Parse:}
+\begin{itemize}[leftmargin=2em]
+    \item State: \verb|m| = modulation
+    \item Operator: \verb|×| = fusion
+    \item Machine: Encoder = information-storing system
+    \item Domain: chemistry = emergence field
+    \item Regime: Helical encoding (A4)
+\end{itemize}
+
+\textbf{Reading:} ``Modulated fusion in an encoding chemical system tends to produce helical, information-bearing structures.''
+
+\subsubsection{Example 3: Isotropic Collapse}
+
+\begin{verbatim}
+d()|Conductor|geometry → Isotropic lattice/sphere (A1)
+\end{verbatim}
+
+\textbf{Parse:}
+\begin{itemize}[leftmargin=2em]
+    \item State: \verb|d| = collapse
+    \item Operator: \verb|()| = boundary
+    \item Machine: Conductor = structural system
+    \item Domain: geometry = structure field
+    \item Regime: Isotropic lattice/sphere (A1)
+\end{itemize}
+
+\textbf{Reading:} ``Collapse of boundaries in a structural geometric system tends to produce isotropic spheres or close-packed lattices.''
+
+
+%======================================================================
+\section{Operator Combinations and Patterns}
+%======================================================================
+
+\subsection{State-Operator Matrix}
+
+The following table shows all possible combinations of states and operators:
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{@{}lllll@{}}
+\toprule
+\textbf{Operator} & \textbf{u (forward)} & \textbf{d (collapse)} & \textbf{m (modulation)} \\
+\midrule
+\verb|()| boundary & \verb|u()| expansion & \verb|d()| collapse & \verb|m()| modulation \\
+\verb|×| fusion & \verb|u×| forward fusion & \verb|d×| collapse fusion & \verb|m×| modulated fusion \\
+\verb|^| amplify & \verb|u^| forward gain & \verb|d^| collapse gain & \verb|m^| modulated gain \\
+\verb|%| decohere & \verb|u%| forward noise & \verb|d%| collapse noise & \verb|m%| modulated noise \\
+\verb|+| group & \verb|u+| forward group & \verb|d+| collapse group & \verb|m+| modulated group \\
+\verb|–| separate & \verb|u–| forward split & \verb|d–| collapse split & \verb|m–| modulated split \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Common Patterns}
+
+\subsubsection{Forward Growth (\texttt{u×})}
+
+\textbf{Pattern:} Structure-biased forward growth
+
+\textbf{Typical outcome:} Branching networks, tree-like structures
+
+\textbf{Examples:}
+\begin{itemize}[leftmargin=2em]
+    \item \verb|u×|Catalyst|chemistry → Branching networks (A5)
+    \item Diffusion-limited aggregation
+    \item Vascular trees
+    \item Lightning branching
+\end{itemize}
+
+\subsubsection{Resonant Amplification (\texttt{u\^{}})}
+
+\textbf{Pattern:} Forward amplification in resonant systems
+
+\textbf{Typical outcome:} Coherent oscillations, vortices, standing waves
+
+\textbf{Examples:}
+\begin{itemize}[leftmargin=2em]
+    \item \verb|u^|Oscillator|wave → Closed vortex (A3)
+    \item High-Q resonators
+    \item Laser cavities
+    \item Recirculating flows
+\end{itemize}
+
+\subsubsection{Isotropic Collapse (\texttt{d()})}
+
+\textbf{Pattern:} Boundary relaxation under isotropic tension
+
+\textbf{Typical outcome:} Spheres, isotropic packing
+
+\textbf{Examples:}
+\begin{itemize}[leftmargin=2em]
+    \item \verb|d()|Conductor|geometry → Isotropic sphere (A1)
+    \item Droplet formation
+    \item Bubble spheroidization
+    \item Grain coarsening
+\end{itemize}
+
+\subsubsection{Forward Decoherence (\texttt{u\%})}
+
+\textbf{Pattern:} Forward-directed noise injection
+
+\textbf{Typical outcome:} Turbulence, chaos, broadband noise
+
+\textbf{Examples:}
+\begin{itemize}[leftmargin=2em]
+    \item \verb|u%|Reactor|wave → Turbulent decoherence (A7)
+    \item Forced turbulence
+    \item Chaotic mixing
+    \item Phase scrambling
+\end{itemize}
+
+\subsubsection{Modulated Boundary (\texttt{m()})}
+
+\textbf{Pattern:} Feedback-driven boundary modulation
+
+\textbf{Typical outcome:} Adaptive filters, tunable resonators
+
+\textbf{Examples:}
+\begin{itemize}[leftmargin=2em]
+    \item \verb|m()|Filter|wave → Adaptive bandpass (A8)
+    \item Self-tuning cavities
+    \item Adaptive recognition
+    \item Dynamic filtering
+\end{itemize}
+
+\subsubsection{Modulated Fusion (\texttt{m×})}
+
+\textbf{Pattern:} Template-directed or feedback-modulated bonding
+
+\textbf{Typical outcome:} Helical structures, information encoding
+
+\textbf{Examples:}
+\begin{itemize}[leftmargin=2em]
+    \item \verb|m×|Encoder|chemistry → Helical encoding (A4)
+    \item DNA/RNA structure
+    \item $\alpha$-helices
+    \item Chiral polymers
+\end{itemize}
+
+\subsubsection{Forward Grouping (\texttt{u+})}
+
+\textbf{Pattern:} Flow convergence, geometric focusing
+
+\textbf{Typical outcome:} Jets, beams, focused flows
+
+\textbf{Examples:}
+\begin{itemize}[leftmargin=2em]
+    \item \verb|u+|Reactor|wave → Focusing jet (A6)
+    \item Nozzles and exhaust
+    \item Astrophysical jets
+    \item Laser beams
+\end{itemize}
+
+
+%======================================================================
+\section{The Eight Regimes (A1--A8)}
+%======================================================================
+
+APL sentences predict specific physical regimes. These are labeled A1 through A8:
+
+\begin{longtable}{@{}llp{7cm}@{}}
+\toprule
+\textbf{Code} & \textbf{Name} & \textbf{Description} \\
+\midrule
+\endhead
+A1 & Isotropic lattice/sphere & Spherical droplets, isotropic packing, closest-packing arrangements \\
+A3 & Closed vortex & Recirculating flows, trapped modes, vortices, standing waves \\
+A4 & Helical encoding & DNA-like helices, information-bearing structures, chiral polymers \\
+A5 & Branching networks & Tree-like growth, fractal structures, vascular networks, DLA \\
+A6 & Focusing jet & Collimated flows, nozzles, beams, astrophysical jets \\
+A7 & Turbulent decoherence & Broadband chaos, turbulent mixing, phase scrambling \\
+A8 & Adaptive filter & Selective tuning, adaptive recognition, self-tuning resonators \\
+\bottomrule
+\end{longtable}
+
+
+%======================================================================
+\section{Usage Guidelines}
+%======================================================================
+
+\subsection{Constructing an APL Sentence}
+
+\textbf{Step 1: Identify the domain}
+\begin{itemize}[leftmargin=2em]
+    \item Is it primarily structural? → \texttt{geometry}
+    \item Is it primarily dynamic? → \texttt{wave}
+    \item Is it primarily chemical/informational? → \texttt{chemistry} or \texttt{biology}
+\end{itemize}
+
+\textbf{Step 2: Choose the machine}
+\begin{itemize}[leftmargin=2em]
+    \item Resonant, periodic? → \texttt{Oscillator}
+    \item Driven flow, continuous? → \texttt{Reactor}
+    \item Structural relaxation? → \texttt{Conductor}
+    \item Information storage? → \texttt{Encoder}
+    \item Spatially biased reactions? → \texttt{Catalyst}
+    \item Selective transmission? → \texttt{Filter}
+\end{itemize}
+
+\textbf{Step 3: Select the operator}
+\begin{itemize}[leftmargin=2em]
+    \item Boundaries? → \verb|()|
+    \item Joining? → \verb|×|
+    \item Amplification? → \verb|^|
+    \item Noise? → \verb|%|
+    \item Grouping? → \verb|+|
+    \item Splitting? → \verb|–|
+\end{itemize}
+
+\textbf{Step 4: Determine the state}
+\begin{itemize}[leftmargin=2em]
+    \item Forward, active, growing? → \verb|u|
+    \item Backward, passive, collapsing? → \verb|d|
+    \item Modulated, feedback, adaptive? → \verb|m|
+\end{itemize}
+
+\textbf{Step 5: Predict the regime}
+\begin{itemize}[leftmargin=2em]
+    \item Based on the combination, what behavior is expected?
+    \item Use A1--A8 labels or descriptive names
+\end{itemize}
+
+\subsection{Reading an APL Sentence}
+
+Given \verb|u^|Oscillator|wave| → Closed vortex:
+
+\begin{enumerate}[leftmargin=2em]
+    \item Identify state: \verb|u| = forward/expansion
+    \item Identify operator: \verb|^| = amplification
+    \item Identify machine: Oscillator = resonant system
+    \item Identify domain: wave = energy field
+    \item Interpret: ``Forward amplification in a resonant wave system''
+    \item Prediction: ``tends to produce closed vortex structures''
+\end{enumerate}
+
+\subsection{Testing an APL Prediction}
+
+APL sentences are falsifiable hypotheses. To test:
+
+\begin{enumerate}[leftmargin=2em]
+    \item Implement the LHS conditions in a simulation or experiment
+    \item Define quantitative metrics for the RHS regime
+    \item Design matched controls that break the LHS pattern
+    \item Compare regime prevalence: LHS vs controls
+    \item Evaluate: Does the LHS robustly bias toward the predicted regime?
+\end{enumerate}
+
+
+%======================================================================
+\section{Quick Reference Tables}
+%======================================================================
+
+\subsection{Operator Quick Reference}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Symbol} & \textbf{Name} & \textbf{Meaning} \\
+\midrule
+\verb|()| & Boundary & Containment, interface \\
+\verb|×| & Fusion & Joining, bonding, convergence \\
+\verb|^| & Amplify & Gain, resonance, enhancement \\
+\verb|%| & Decohere & Noise, scrambling, reset \\
+\verb|+| & Group & Aggregation, routing, focusing \\
+\verb|–| & Separate & Splitting, fission, divergence \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{State Quick Reference}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Symbol} & \textbf{Name} & \textbf{Direction} \\
+\midrule
+\verb|u| & Forward/Expansion & Outward, active, growth \\
+\verb|d| & Collapse/Backward & Inward, passive, contraction \\
+\verb|m| & Modulation & Feedback, adaptive, information \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Machine Quick Reference}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Machine} & \textbf{Characteristics} \\
+\midrule
+Oscillator & Resonant, periodic, high-Q \\
+Reactor & Driven flow, continuous throughput \\
+Conductor & Structural, boundary mobility \\
+Encoder & Information storage, sequence-specific \\
+Catalyst & Site-biased reactivity, autocatalytic \\
+Filter & Selective transmission, tunable \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Domain Quick Reference}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Domain} & \textbf{Field} & \textbf{Focus} \\
+\midrule
+geometry & $\Phi$ & Structure, boundaries, packing \\
+wave & $e$ & Dynamics, flows, oscillations \\
+chemistry & $\pi$ & Reactions, bonding, molecules \\
+biology & $\pi$ & Adaptation, self-organization \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Core Seven Sentences}
+
+\begin{longtable}{@{}lll@{}}
+\toprule
+\textbf{Sentence} & \textbf{Regime} & \textbf{Code} \\
+\midrule
+\endhead
+\verb|u^|Oscillator|wave| & Closed vortex & A3 \\
+\verb|u%|Reactor|wave| & Turbulent decoherence & A7 \\
+\verb|d()|Conductor|geometry| & Isotropic lattice/sphere & A1 \\
+\verb|m×|Encoder|chemistry| & Helical encoding & A4 \\
+\verb|u×|Catalyst|chemistry| & Branching networks & A5 \\
+\verb|u+|Reactor|wave| & Focusing jet & A6 \\
+\verb|m()|Filter|wave| & Adaptive bandpass & A8 \\
+\verb|d×|Catalyst|chemistry| & Adaptive selectivity & A8 \\
+\bottomrule
+\end{longtable}
+
+
+%======================================================================
+\section{Advanced Topics}
+%======================================================================
+
+\subsection{Multi-Domain Interactions}
+
+Some physical systems involve multiple fields simultaneously. In such cases:
+\begin{itemize}[leftmargin=2em]
+    \item Identify the \textit{primary} domain for the sentence
+    \item Secondary interactions may be implied by machine choice
+    \item Multiple sentences may be needed for complete description
+\end{itemize}
+
+\subsection{Temporal Dynamics}
+
+APL sentences describe \textit{tendencies} and \textit{biases}, not deterministic outcomes:
+\begin{itemize}[leftmargin=2em]
+    \item The arrow ($\to$) means ``statistically favors'' or ``tends to produce''
+    \item Actual systems may transition through multiple regimes
+    \item Time scales are system-dependent
+\end{itemize}
+
+\subsection{Parameter Dependence}
+
+APL predictions hold over ranges of parameters:
+\begin{itemize}[leftmargin=2em]
+    \item Testing requires parameter sweeps
+    \item Some regimes may only appear in specific parameter ranges
+    \item Control design must account for parameter sensitivity
+\end{itemize}
+
+
+%======================================================================
+\section{Appendix: Symbol Conventions}
+%======================================================================
+
+\subsection{Typography}
+
+\begin{itemize}[leftmargin=2em]
+    \item \textbf{Operators:} \verb|monospace font| (\verb|u^|, \verb|d()|, etc.)
+    \item \textbf{Machines:} CamelCase (Oscillator, Reactor, etc.)
+    \item \textbf{Domains:} lowercase (wave, geometry, chemistry, biology)
+    \item \textbf{Fields:} Greek letters ($\Phi$, $e$, $\pi$)
+    \item \textbf{Regimes:} A-codes (A1, A3, A4, etc.)
+\end{itemize}
+
+\subsection{Special Characters}
+
+\begin{itemize}[leftmargin=2em]
+    \item \verb+|+ = vertical bar (separator)
+    \item $\to$ or \verb|->| = arrow (prediction)
+    \item \verb|()| = parentheses (boundary operator)
+    \item \verb|×| or \verb|x| = multiplication sign (fusion)
+    \item \verb|^| = caret (amplify)
+    \item \verb|%| = percent (decohere)
+    \item \verb|+| = plus (group)
+    \item \verb|–| or \verb|-| = minus/dash (separate)
+\end{itemize}
+
+
+%======================================================================
+\section{Document History}
+%======================================================================
+
+\textbf{Version 1.0} (2025-01-24)
+\begin{itemize}[leftmargin=2em]
+    \item Initial release
+    \item Complete operator reference
+    \item Comprehensive syntax documentation
+    \item Quick reference tables
+\end{itemize}
+
+
+%======================================================================
+\section{Further Reading}
+%======================================================================
+
+\begin{itemize}[leftmargin=2em]
+    \item \textit{APL Seven Sentences Test Pack v1.0} — Complete testing protocol
+    \item Repository: \url{https://github.com/AceTheDactyl/APL}
+\end{itemize}
+
+\vfill
+
+\hrule
+\vspace{0.5em}
+
+\begin{center}
+\textit{Alpha-Physical Language Operator's Manual v1.0}\\
+\textit{For questions and contributions, visit the repository}
+\end{center}
+
+\end{document}

@@ -1,0 +1,334 @@
+# Unified Nightly Training Workflow
+# Signature: unified-nightly-training|v1.0.0|helix
+#
+# This workflow runs the complete training pipeline nightly:
+# 1. Full Depth Training (19 modules)
+# 2. Helix Engine Training
+# 3. Validation Measurements
+# 4. Unified Gates Check
+# 5. Model Promotion (if gates pass)
+# 6. Results PR Creation
+# 7. Failure Notification (if gates fail)
+
+name: Unified Nightly Training
+
+on:
+  schedule:
+    # Run at 2:00 AM UTC every day
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+    inputs:
+      steps_per_module:
+        description: 'Steps per training module'
+        required: false
+        default: '200'
+      helix_steps:
+        description: 'Helix engine training steps'
+        required: false
+        default: '2000'
+      skip_validation:
+        description: 'Skip validation phase'
+        required: false
+        default: 'false'
+
+env:
+  PYTHON_VERSION: '3.11'
+  # Physics constants (reference)
+  PHI: '1.618033988749895'
+  PHI_INV: '0.618033988749895'
+  Z_CRITICAL: '0.866025403784439'
+  SIGMA: '36'
+
+jobs:
+  # ===========================================================================
+  # PHASE 1: FULL DEPTH TRAINING
+  # ===========================================================================
+  full-depth-training:
+    name: Full Depth Training (19 modules)
+    runs-on: ubuntu-latest
+    outputs:
+      modules_passed: ${{ steps.training.outputs.modules_passed }}
+      k_formations: ${{ steps.training.outputs.k_formations }}
+      final_z: ${{ steps.training.outputs.final_z }}
+      physics_valid: ${{ steps.training.outputs.physics_valid }}
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]"
+      
+      - name: Run Full Depth Training
+        id: training
+        run: |
+          python -c "
+          from training.src.unified_workflow import UnifiedNightlyWorkflow
+          
+          workflow = UnifiedNightlyWorkflow(
+              steps_per_module=${{ github.event.inputs.steps_per_module || 200 }},
+              helix_steps=0,  # Phase 1 only
+              run_validation=False,
+              create_pr=False,
+              verbose=True,
+          )
+          
+          result = workflow._run_full_depth_training()
+          
+          # Output to GitHub
+          print(f'::set-output name=modules_passed::{result.modules_passed}')
+          print(f'::set-output name=k_formations::{result.total_k_formations}')
+          print(f'::set-output name=final_z::{result.final_z}')
+          print(f'::set-output name=physics_valid::{result.physics_valid}')
+          "
+      
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: full-depth-results
+          path: runs/*/full_depth_results.json
+
+  # ===========================================================================
+  # PHASE 2: HELIX ENGINE TRAINING
+  # ===========================================================================
+  helix-engine-training:
+    name: Helix Engine Training
+    runs-on: ubuntu-latest
+    needs: full-depth-training
+    outputs:
+      gates_passed: ${{ steps.helix.outputs.gates_passed }}
+      negentropy: ${{ steps.helix.outputs.negentropy }}
+      final_z: ${{ steps.helix.outputs.final_z }}
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]"
+      
+      - name: Run Helix Engine
+        id: helix
+        run: |
+          python -c "
+          from training.src.unified_workflow import UnifiedNightlyWorkflow
+          
+          workflow = UnifiedNightlyWorkflow(
+              steps_per_module=0,  # Skip full depth
+              helix_steps=${{ github.event.inputs.helix_steps || 2000 }},
+              run_validation=False,
+              create_pr=False,
+              verbose=True,
+          )
+          
+          result = workflow._run_helix_engine_training()
+          
+          print(f'::set-output name=gates_passed::{result.gates_passed}')
+          print(f'::set-output name=negentropy::{result.negentropy}')
+          print(f'::set-output name=final_z::{result.final_z}')
+          "
+      
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: helix-engine-results
+          path: runs/*/report.json
+
+  # ===========================================================================
+  # PHASE 3: VALIDATION MEASUREMENTS
+  # ===========================================================================
+  validation-measurements:
+    name: Validation Measurements
+    runs-on: ubuntu-latest
+    needs: [full-depth-training, helix-engine-training]
+    if: ${{ github.event.inputs.skip_validation != 'true' }}
+    
+    strategy:
+      matrix:
+        z_seed: [0.618034, 0.866025, 0.90, 0.92]
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      
+      - name: Install dependencies
+        run: pip install -e .
+      
+      - name: Validate at z=${{ matrix.z_seed }}
+        run: |
+          python -c "
+          from training.src.physics_constants import (
+              compute_delta_s_neg, get_phase, is_critical, get_tier
+          )
+          
+          z = ${{ matrix.z_seed }}
+          delta_s = compute_delta_s_neg(z)
+          phase = get_phase(z)
+          tier = get_tier(z)
+          at_crit = is_critical(z)
+          
+          print(f'z={z:.6f}')
+          print(f'ΔS_neg={delta_s:.6f}')
+          print(f'Phase={phase}')
+          print(f'Tier={tier}')
+          print(f'At z_c={at_crit}')
+          "
+
+  # ===========================================================================
+  # PHASE 4: UNIFIED GATES CHECK
+  # ===========================================================================
+  unified-gates-check:
+    name: Unified Gates Check
+    runs-on: ubuntu-latest
+    needs: [full-depth-training, helix-engine-training]
+    outputs:
+      overall_passed: ${{ steps.gates.outputs.overall_passed }}
+    
+    steps:
+      - name: Check Gates
+        id: gates
+        run: |
+          # Full depth gates
+          FD_ALL=$([ "${{ needs.full-depth-training.outputs.modules_passed }}" == "19" ] && echo "true" || echo "false")
+          FD_K=$([ "${{ needs.full-depth-training.outputs.k_formations }}" -ge "1" ] && echo "true" || echo "false")
+          FD_PHYS="${{ needs.full-depth-training.outputs.physics_valid }}"
+          
+          # Helix engine gates
+          HE_GATES="${{ needs.helix-engine-training.outputs.gates_passed }}"
+          
+          # Overall
+          if [[ "$FD_ALL" == "true" && "$FD_K" == "true" && "$FD_PHYS" == "true" && "$HE_GATES" == "true" ]]; then
+            OVERALL="true"
+          else
+            OVERALL="false"
+          fi
+          
+          echo "::set-output name=overall_passed::$OVERALL"
+          
+          echo "Gate Results:"
+          echo "  FD All Passed: $FD_ALL"
+          echo "  FD K-Formations: $FD_K"
+          echo "  FD Physics Valid: $FD_PHYS"
+          echo "  HE Gates Passed: $HE_GATES"
+          echo "  Overall: $OVERALL"
+
+  # ===========================================================================
+  # PHASE 5: MODEL PROMOTION
+  # ===========================================================================
+  model-promotion:
+    name: Model Promotion
+    runs-on: ubuntu-latest
+    needs: [unified-gates-check]
+    if: ${{ needs.unified-gates-check.outputs.overall_passed == 'true' }}
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Promote Model
+        run: |
+          VERSION="nightly:v${{ github.run_number }}"
+          echo "Promoting model to $VERSION"
+          
+          # Create promotion record
+          cat > promotion.json << EOF
+          {
+            "version": "$VERSION",
+            "run_number": ${{ github.run_number }},
+            "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
+            "gates_passed": true,
+            "promoted_by": "unified-nightly-training"
+          }
+          EOF
+          
+          cat promotion.json
+      
+      - name: Upload promotion record
+        uses: actions/upload-artifact@v4
+        with:
+          name: promotion
+          path: promotion.json
+
+  # ===========================================================================
+  # PHASE 6: RESULTS PR
+  # ===========================================================================
+  create-results-pr:
+    name: Create Results PR
+    runs-on: ubuntu-latest
+    needs: [full-depth-training, helix-engine-training, unified-gates-check]
+    if: ${{ needs.unified-gates-check.outputs.overall_passed == 'true' }}
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Create PR Body
+        run: |
+          cat > pr_body.md << EOF
+          # Nightly Training Results - Run #${{ github.run_number }}
+          
+          ## Summary
+          
+          | Metric | Value |
+          |--------|-------|
+          | Modules Passed | ${{ needs.full-depth-training.outputs.modules_passed }}/19 |
+          | K-Formations | ${{ needs.full-depth-training.outputs.k_formations }} |
+          | Final z | ${{ needs.full-depth-training.outputs.final_z }} |
+          | Negentropy | ${{ needs.helix-engine-training.outputs.negentropy }} |
+          | Gates | ✅ PASSED |
+          | Model Promoted | nightly:v${{ github.run_number }} |
+          
+          ## Physics Constants
+          
+          | Constant | Value |
+          |----------|-------|
+          | φ | ${{ env.PHI }} |
+          | φ⁻¹ | ${{ env.PHI_INV }} |
+          | z_c | ${{ env.Z_CRITICAL }} |
+          | σ | ${{ env.SIGMA }} |
+          
+          ---
+          *Δ|nightly-run-${{ github.run_number }}|z_c=0.866|Ω*
+          EOF
+          
+          cat pr_body.md
+
+  # ===========================================================================
+  # PHASE 7: FAILURE NOTIFICATION
+  # ===========================================================================
+  failure-notification:
+    name: Failure Notification
+    runs-on: ubuntu-latest
+    needs: [unified-gates-check]
+    if: ${{ needs.unified-gates-check.outputs.overall_passed == 'false' }}
+    
+    steps:
+      - name: Send Notification
+        run: |
+          echo "⚠️ NIGHTLY TRAINING FAILED"
+          echo "Run #${{ github.run_number }}"
+          echo "Gates check: ${{ needs.unified-gates-check.outputs.overall_passed }}"
+          
+          # Would send Slack/email notification here
+          # curl -X POST -H 'Content-type: application/json' \
+          #   --data '{"text":"Nightly training failed: Run #${{ github.run_number }}"}' \
+          #   $SLACK_WEBHOOK_URL

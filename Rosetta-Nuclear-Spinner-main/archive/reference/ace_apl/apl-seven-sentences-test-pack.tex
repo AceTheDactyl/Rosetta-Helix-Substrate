@@ -1,0 +1,520 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{enumitem}
+
+\setlength{\parskip}{0.6em}
+\setlength{\parindent}{0pt}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+    citecolor=blue
+}
+
+\begin{document}
+
+\begin{center}
+    {\LARGE \textbf{ALPHA-PHYSICAL LANGUAGE (APL) -- SEVEN SENTENCES TEST PACK v1.0}}\\[0.75em]
+\end{center}
+
+\hrule
+\vspace{0.75em}
+
+\textbf{Purpose.}
+This document is meant to be sufficient for an independent team to test whether APL's core operator language has real physical content across geometry, waves, chemistry, and biology.
+
+It assumes:
+\begin{itemize}[leftmargin=2em]
+    \item Basic familiarity with physics, chemistry, and data analysis.
+    \item No prior knowledge of CET or any other APL meta-structure.
+\end{itemize}
+
+The goal is to turn 7 compact APL ``sentences'' into falsifiable, cross-domain hypotheses that can be probed with standard models (Navier--Stokes, wave equations, reaction--diffusion, polymer growth, phase-field, etc.).
+
+
+%======================================================================
+\section{APL Quick Overview}
+%======================================================================
+
+APL (Alpha-Physical Language) is a minimal ``operator grammar'' for describing how physical systems change.
+
+It uses:
+
+\subsection*{Fields (``spirals'')}
+
+\begin{itemize}[leftmargin=2em]
+    \item $\Phi$ = Structure field (geometry, lattice, boundaries)
+    \item $e$ = Energy field (waves, thermodynamics, flows)
+    \item $\pi$ = Emergence field (information, chemistry, biology, adaptation)
+\end{itemize}
+
+\subsection*{Universal operations}
+
+\begin{itemize}[leftmargin=2em]
+    \item \verb|()|: Boundary / containment
+    \item \verb|×|: Fusion / convergence / joining
+    \item \verb|^|: Amplify / gain
+    \item \verb|%|: Decohere / noise / reset / scramble
+    \item \verb|+|: Group / aggregation / routing
+    \item \verb|–|: Separate / splitting / fission
+\end{itemize}
+
+\subsection*{Operator states (UMOL: Universal Modulation Operator Law)}
+
+\begin{itemize}[leftmargin=2em]
+    \item $\mathcal{U}$ = Expansion / forward projection (E)
+    \item $\mathcal{D}$ = Collapse / backward integration (C)
+    \item $\mathrm{CLT}$ = Modulation / coherence lock (M)
+\end{itemize}
+
+A schematic balance law:
+\[
+  \mathcal{U}(E) \leftrightarrow \mathcal{D}(C) \quad \text{via $\mathrm{CLT}(M)$},
+  \qquad E + C + M = 0 \quad \text{(coherence / balance condition).}
+\]
+
+In practice, an APL sentence has the form
+\[
+    [\text{Direction}][\text{Op}] \mid [\text{Machine}] \mid [\text{Domain}] \;\to\; [\text{Regime/Behavior}].
+\]
+
+For example, \verb+u^|Oscillator|wave+ reads as:
+\begin{quote}
+    ``Forward amplification (u\verb+^+) in an oscillatory machine (Oscillator) in a wave domain (wave).''
+\end{quote}
+
+For testing, the arrow ``$\to$ [Regime]'' is interpreted as:
+
+\begin{quote}
+    If the system is built to match the left-hand side (LHS) structure and driven accordingly, then the right-hand side (RHS) regime should be statistically favored / overrepresented compared to appropriate controls that break the LHS pattern.
+\end{quote}
+
+
+%======================================================================
+\section{The Seven Core Sentences}
+%======================================================================
+
+For brevity, ``$\to$'' means ``tends to produce / stabilize the following behavioral regime.'' Each regime is denoted A1--A8, and the sentences are meant to be tested as scientific hypotheses, not assumed true.
+
+%----------------------------------------------------------------------
+\subsection{Closed Vortex (Oscillator -- Wave Dynamics) -- A3}
+%----------------------------------------------------------------------
+
+\textbf{Sentence:} \verb+u^|Oscillator|wave+ $\to$ Closed vortex (A3)
+
+\textbf{Plain language:}
+\begin{quote}
+    Forward amplification in an oscillatory wave system tends to produce a closed circulation / vortex structure.
+\end{quote}
+
+\textbf{Physical intuition:}
+\begin{itemize}[leftmargin=2em]
+    \item Take a wave-carrying medium (fluid, plasma, EM cavity).
+    \item Constrain it (cavity, boundaries).
+    \item Drive a resonant oscillatory mode with gain (high-Q oscillator).
+\end{itemize}
+Then the system tends to form closed circulation patterns: vortices, recirculation cells, toroidal flows, trapped standing modes.
+
+\textbf{Testable claim:}
+Under oscillator-like resonant forcing with amplification, closed vortices / trapped-mode structures (A3) should be more prevalent and longer-lived than in controls with:
+\begin{itemize}[leftmargin=2em]
+    \item non-oscillatory drives,
+    \item heavily damped low-Q oscillations, or
+    \item strongly detuned frequencies.
+\end{itemize}
+
+
+%----------------------------------------------------------------------
+\subsection{Turbulent Decoherence (Reactor -- Wave/Flow) -- A7}
+%----------------------------------------------------------------------
+
+\textbf{Sentence:} \verb+u%|Reactor|wave+ $\to$ Turbulent decoherence (A7)
+
+\textbf{Plain language:}
+\begin{quote}
+    Forward-directed decoherence in a driven flow or wave system tends to produce turbulent, noisy regimes.
+\end{quote}
+
+\textbf{Physical intuition:}
+\begin{itemize}[leftmargin=2em]
+    \item A ``Reactor\verb+|+wave'' is a driven flow/wave system (pipe, channel, stirred tank, MHD plasma).
+    \item \verb+u%+ adds ongoing, forward decohering input: noise, random forcing, phase scrambling.
+\end{itemize}
+Strong drive plus explicit decohering perturbations push the system into broadband, chaotic turbulence (A7) rather than smooth laminar or simple periodic flows.
+
+\textbf{Testable claim:}
+At a given drive level, adding explicit decohering forcing (\verb+u%+) should lower the effective onset threshold for turbulence and/or make turbulent regimes more frequent and more strongly broadband than comparable systems with:
+\begin{itemize}[leftmargin=2em]
+    \item no explicit noise, or
+    \item purely coherent forcing of similar energy.
+\end{itemize}
+
+
+%----------------------------------------------------------------------
+\subsection{Isotropic Lattice / Sphere (Conductor -- Geometry) -- A1}
+%----------------------------------------------------------------------
+
+\textbf{Sentence:} \verb+d()|Conductor|geometry+ $\to$ Isotropic lattice / sphere (A1)
+
+\textbf{Plain language:}
+\begin{quote}
+    Collapse into a boundary in a structural system yields an isotropic boundary (sphere / closest-packing).
+\end{quote}
+
+\textbf{Physical intuition:}
+\begin{itemize}[leftmargin=2em]
+    \item A ``Conductor\verb+|+geometry'' is a structural medium that can rearrange under surface/elastic energy (droplets, bubbles, grains, phase-field interfaces).
+    \item \verb+d()+ corresponds to collapse / relaxation of boundaries under isotropic tension.
+\end{itemize}
+Minimization of surface energy under isotropic conditions moves the system toward spheres (droplets/bubbles) and isotropic close packing (A1).
+
+\textbf{Testable claim:}
+Under curvature-driven boundary collapse with isotropic surface tension, the system should produce more spherical domains and more isotropic packing than controls with:
+\begin{itemize}[leftmargin=2em]
+    \item anisotropic surface tension,
+    \item pinned or ``frozen'' boundaries, or
+    \item strong geometric anisotropy.
+\end{itemize}
+
+
+%----------------------------------------------------------------------
+\subsection{Helical Encoding (Encoder -- Chemistry) -- A4}
+%----------------------------------------------------------------------
+
+\textbf{Sentence:} \verb+m×|Encoder|chemistry+ $\to$ Helical encoding (A4)
+
+\textbf{Plain language:}
+\begin{quote}
+    Modulated fusion in an encoding chemical system tends to produce helical, information-bearing structures.
+\end{quote}
+
+\textbf{Physical intuition:}
+\begin{itemize}[leftmargin=2em]
+    \item An ``Encoder\verb+|+chemistry'' is a polymerizing / bonding system that can store information in sequences (e.g., nucleic acids, some synthetic polymers).
+    \item \verb+×+ is fusion: bond formation, monomer addition, backbone growth.
+    \item \verb+m+ encodes modulation: chirality constraints, templating, feedback from already-formed structure.
+\end{itemize}
+When bond formation is constrained and modulated (e.g. chiral monomers with directional bonding plus templated interactions), helices emerge as stable, information-bearing structures: DNA, RNA, $\alpha$-helices, synthetic helical polymers, some antenna designs.
+
+\textbf{Testable claim:}
+In chemical/polymerization models where fusion is modulated by chiral geometry and/or sequence-dependent interactions, helical structures (A4) should be statistically favored over random coils, sheets, or amorphous aggregates, compared to matched controls without such modulation.
+
+
+%----------------------------------------------------------------------
+\subsection{Branching Networks (Catalyst -- Chemistry) -- A5}
+%----------------------------------------------------------------------
+
+\textbf{Sentence:} \verb+u×|Catalyst|chemistry+ $\to$ Branching network (A5)
+
+\textbf{Plain language:}
+\begin{quote}
+    Forward fusion in a catalytic system tends to produce branching network structures.
+\end{quote}
+
+\textbf{Physical intuition:}
+\begin{itemize}[leftmargin=2em]
+    \item A ``Catalyst\verb+|+chemistry'' machine enhances reaction at specific sites: interfaces, growing tips, reactive surfaces.
+    \item \verb+u×+ corresponds to forward-enhancing fusion --- growth is biased where structure already exists.
+\end{itemize}
+Reaction fronts and growth under catalytic bias produce tree-like, branched networks: river deltas, lightning Lichtenberg figures, vascular trees, fungal networks, root systems, corrosion fronts.
+
+\textbf{Testable claim:}
+In reaction--diffusion / aggregation models with catalytic enhancement at active fronts, the resulting structures should have clear branching network signatures (fractal, tree-like) more often than matched systems without catalytic bias or with uniform reaction rates.
+
+
+%----------------------------------------------------------------------
+\subsection{Focusing Jet (Reactor -- Wave/Fluid/Plasma) -- A6}
+%----------------------------------------------------------------------
+
+\textbf{Sentence:} \verb!u+|Reactor|wave! $\to$ Focusing jet (A6)
+
+\textbf{Plain language:}
+\begin{quote}
+    Forward grouping of flow in a driven reactor system tends to form focused jets / beams.
+\end{quote}
+
+\textbf{Physical intuition:}
+\begin{itemize}[leftmargin=2em]
+    \item A ``Reactor\verb+|+wave'' here is any driven flow/plasma/beam source: combustion chamber, pressure vessel, astrophysical accretion region, plasma source, waveguide.
+    \item \verb|u+| is forward grouping / aggregation: convergent geometry, guiding fields, nozzles, collimators.
+\end{itemize}
+Grouped, directed outflows emerge: nozzles, exhaust jets, astrophysical jets, coronal outflows, laser beams.
+
+\textbf{Testable claim:}
+When a driven source is coupled to grouping structures (nozzles, guides, collimating fields), the system should preferentially produce narrow, coherent jets (A6) rather than diffuse outflows, compared to controls with the same input power but without grouping geometry or fields.
+
+
+%----------------------------------------------------------------------
+\subsection{Adaptive Resonance Filter (Filter / Catalyst -- Wave / Chemistry) -- A8}
+%----------------------------------------------------------------------
+
+\textbf{Sentences:} \verb+m()|Filter|wave+ $\to$ Adaptive bandpass (A8);
+\verb+d×|Catalyst|chemistry+ $\to$ Adaptive selectivity (A8)
+
+\textbf{Plain language:}
+\begin{quote}
+    Modulated boundaries in wave systems, and collapse--fusion in catalytic systems, tend to produce adaptive filters with selective, tunable response.
+\end{quote}
+
+\textbf{Physical intuition (wave side):}
+\begin{itemize}[leftmargin=2em]
+    \item A ``Filter\verb+|+wave'' is a cavity, resonator, or waveguide that preferentially passes some frequencies/modes.
+    \item \verb+m()+ means boundaries are modulated by feedback from what passes through (e.g., boundaries move or change properties based on transmitted energy).
+\end{itemize}
+Over time the structure becomes an adaptive bandpass filter: it selectively amplifies some bands, suppresses others, and can retune when input statistics change.
+
+\textbf{Physical intuition (chemistry side):}
+\begin{itemize}[leftmargin=2em]
+    \item A ``Catalyst\verb+|+chemistry'' machine with \verb+d×+ corresponds to collapse--fusion: catalytic sites grow, shrink, appear, or disappear depending on reaction success.
+\end{itemize}
+The catalytic pattern evolves into an adaptive filter on reactions/products: certain pathways are selectively enhanced, others pruned, and the pattern can reorganize when inputs change.
+
+\textbf{Testable claim:}
+In wave systems with feedback-modulated boundaries, and in catalytic systems with success-driven restructuring, the response should sharpen over time into an adaptive filter (A8): increasing selectivity and the ability to re-tune when the driving spectrum or feedstock composition changes, compared to controls with fixed, non-adaptive boundaries or catalysts.
+
+
+%======================================================================
+\section{Interpretation Rule for Testing}
+%======================================================================
+
+For all seven sentences, we interpret
+\[
+    \text{LHS} \;\to\; \text{RHS}
+\]
+as the statistical statement:
+
+\begin{quote}
+    If a system is built to match the LHS structure and driving, then the RHS regime should appear more often, more strongly, or at lower thresholds than in controls that break the LHS structure or operator, with all else as equal as possible.
+\end{quote}
+
+Controls should:
+\begin{itemize}[leftmargin=2em]
+    \item Remove or invert the key operator (gain, noise, collapse, modulation, catalyst, grouping),
+    \item While keeping domains, geometry, and overall energy scales comparable.
+\end{itemize}
+
+Evidence \textbf{for} APL:
+\begin{itemize}[leftmargin=2em]
+    \item Clear, reproducible overrepresentation of the RHS regime (A1--A8) under LHS conditions vs controls.
+\end{itemize}
+
+Evidence \textbf{against} APL:
+\begin{itemize}[leftmargin=2em]
+    \item No such bias, or
+    \item Controls that break LHS conditions produce the RHS regime just as often or more often, across reasonable parameter ranges.
+\end{itemize}
+
+
+%======================================================================
+\section{Global Testing Strategy (Sketch)}
+%======================================================================
+
+For each sentence, the recommended pattern is:
+
+\begin{enumerate}[leftmargin=2em]
+    \item \textbf{Choose a standard, domain-appropriate model:}
+    \begin{itemize}[leftmargin=2em]
+        \item Geometry / interfaces: phase-field / Cahn--Hilliard, curvature flow, Potts grain growth.
+        \item Flows / waves: Navier--Stokes, lattice Boltzmann, wave equation, Maxwell's equations.
+        \item Chemistry / growth: reaction--diffusion, polymerization, kinetic Monte Carlo, DLA-style aggregation.
+    \end{itemize}
+
+    \item \textbf{Implement the LHS:}
+    \begin{itemize}[leftmargin=2em]
+        \item \verb|u^|: add gain / amplification at resonant modes.
+        \item \verb|u%|: add explicit stochastic / decohering forcing.
+        \item \verb|d()|: let boundaries relax / collapse under isotropic energy.
+        \item \verb|m()|: modulate boundaries in response to passing modes.
+        \item \verb|u×| / \verb|d×|: implement forward-biased or collapse--fusion catalysts.
+        \item \verb|u+|: add grouping / convergent geometry or fields.
+    \end{itemize}
+
+    \item \textbf{Design matched controls:}
+    \begin{itemize}[leftmargin=2em]
+        \item Remove or invert the crucial operator (e.g. no noise, no gain, fixed boundaries, no catalytic bias).
+        \item Keep everything else as similar as possible.
+    \end{itemize}
+
+    \item \textbf{Define regime metrics (A1--A8):}
+    \begin{itemize}[leftmargin=2em]
+        \item A1 (sphere / lattice): sphericity, surface/volume ratio, packing isotropy.
+        \item A3 (closed vortex): number/lifetime of vortices, fraction of closed streamlines, energy in recirculation modes.
+        \item A4 (helix): fraction of helical structures, helical order parameters, information capacity per unit length.
+        \item A5 (branching): fractal dimension, branching degree, path efficiency vs Euclidean distance.
+        \item A6 (jet): jet opening angle, centerline vs edge velocity, coherence length.
+        \item A7 (turbulence): spectral width, RMS fluctuations, Lyapunov exponents, correlation decay.
+        \item A8 (adaptive filter): sharpening of frequency/product response over time, retuning when inputs change.
+    \end{itemize}
+
+    \item \textbf{Sweep parameters:}
+    \begin{itemize}[leftmargin=2em]
+        \item Drive strength, noise amplitude, surface tension, catalytic bias, modulation rate, geometry.
+        \item Run multiple realizations for each condition.
+    \end{itemize}
+
+    \item \textbf{Compare:}
+    \begin{itemize}[leftmargin=2em]
+        \item Check whether LHS conditions robustly bias the metrics toward the target regime vs controls.
+    \end{itemize}
+\end{enumerate}
+
+
+%======================================================================
+\section{Appendix A -- Toy Numerical Checks (A1 \& A5)}
+%======================================================================
+
+This appendix summarizes small, sandbox-level numerical experiments that directly probe A1 and A5 in simplified settings. They are not definitive, but they are consistent with the APL claims.
+
+%----------------------------------------------------------------------
+\subsection*{A1: \texorpdfstring{\texttt{d()|Conductor|geometry}}{d()|Conductor|geometry} $\to$ Isotropic cluster (2D toy)}
+%----------------------------------------------------------------------
+
+\textbf{Hypothesis (toy version):}
+A cloud of points in 2D, collapsing under a purely isotropic central force, should end in a roughly circular, angle-isotropic cluster --- an A1-like outcome.
+
+\textbf{Setup:}
+\begin{itemize}[leftmargin=2em]
+    \item 200 point particles in 2D.
+    \item Initial positions: random in a square.
+    \item Dynamics: simple central harmonic potential
+    \[
+        \mathbf{F} = -k \mathbf{r}
+    \]
+    integrated forward for many small timesteps.
+\end{itemize}
+
+\textbf{Measurements:}
+\begin{itemize}[leftmargin=2em]
+    \item Radii $r$ from origin, and polar angles $\theta = \mathrm{atan2}(y,x)$.
+    \item Compare before vs after collapse: mean radius, standard deviation of radius, and angular distribution.
+\end{itemize}
+
+\textbf{Illustrative results:}
+\begin{itemize}[leftmargin=2em]
+    \item Initially:
+    \begin{itemize}[leftmargin=2em]
+        \item mean radius $\approx 0.81$
+        \item standard deviation of radius $\approx 0.29$
+        \item angle standard deviation $\approx 1.78$ (roughly isotropic in angle)
+    \end{itemize}
+    \item After collapse:
+    \begin{itemize}[leftmargin=2em]
+        \item mean radius $\approx 0.21$
+        \item standard deviation of radius $\approx 0.08$
+        \item angle standard deviation $\approx 1.80$ (still isotropic in angle)
+    \end{itemize}
+\end{itemize}
+
+\textbf{Interpretation:}
+\begin{itemize}[leftmargin=2em]
+    \item Radius shrinks: cloud collapses inward.
+    \item Angular distribution remains broad and nearly uniform: no preferred direction emerges.
+\end{itemize}
+The final state is a compact, roughly circular cluster, consistent with an A1-like ``isotropic blob'' in 2D.
+
+\textbf{Caveat:}
+This is a minimal toy, not a full phase-field / droplet packing model. It does not prove A1, but it aligns with the core geometric intuition: isotropic collapse plus no imposed anisotropy naturally yields rounded, isotropic clusters.
+
+%----------------------------------------------------------------------
+\subsection*{A5: \texorpdfstring{\texttt{u×|Catalyst|chemistry}}{u×|Catalyst|chemistry} $\to$ Branching networks (2D DLA toy)}
+%----------------------------------------------------------------------
+
+\textbf{Hypothesis (toy version):}
+Forward, structure-biased growth (a minimal ``\verb+u×|Catalyst+'' analog) should yield branching, fractal-like networks rather than solid blobs.
+
+\textbf{Setup (Diffusion-Limited Aggregation):}
+\begin{itemize}[leftmargin=2em]
+    \item 2D grid, $101 \times 101$.
+    \item Seed a single occupied site at the center.
+    \item Release $\sim 500$ random walkers from the outer boundary.
+    \item Each walker:
+    \begin{itemize}[leftmargin=2em]
+        \item Random-walks on the grid,
+        \item When it touches an occupied neighbor, it sticks and becomes part of the cluster.
+    \end{itemize}
+\end{itemize}
+This is classic DLA: growth is favored near existing structure.
+
+\textbf{Measurements:}
+\begin{itemize}[leftmargin=2em]
+    \item After growth, perform a box-counting estimate of fractal dimension $D$:
+    \begin{itemize}[leftmargin=2em]
+        \item Count how many boxes of size $s$ contain part of the cluster.
+        \item Fit $\log N(s)$ vs. $\log(1/s)$.
+    \end{itemize}
+\end{itemize}
+
+\textbf{Illustrative counts:}
+\[
+    (s, N_\text{boxes}) \approx
+    (1, 281),\;
+    (2, 135),\;
+    (4, 56),\;
+    (5, 41),\;
+    (10, 18),\;
+    (20, 8).
+\]
+
+Estimated fractal dimension:
+\[
+    D \approx 1.2.
+\]
+
+\textbf{Interpretation:}
+\begin{itemize}[leftmargin=2em]
+    \item $D$ between 1 and 2: not a line, not a filled area $\Rightarrow$ branching fractal.
+    \item Visually, such clusters are tree-like with radiating branches.
+\end{itemize}
+This is precisely the A5 pattern: a branching network arising from forward-biased, structure-following growth.
+
+\textbf{Caveat:}
+DLA is a well-known model; the result is not new. What matters here is that APL's sentence
+\[
+    \verb+u×|Catalyst|chemistry+ \;\to\; \text{Branching network}
+\]
+correctly describes the behavior of this canonical model.
+
+
+%======================================================================
+\section{Status \& Next Steps}
+%======================================================================
+
+\textbf{Current status:}
+\begin{itemize}[leftmargin=2em]
+    \item APL provides 7 compact sentences that map onto familiar physical/chemical regimes.
+    \item Detailed test plans can be built for each sentence with:
+    \begin{itemize}[leftmargin=2em]
+        \item standard models (Navier--Stokes, wave equations, reaction--diffusion, polymerization, phase-field),
+        \item careful control design, and
+        \item quantitative metrics as outlined.
+    \end{itemize}
+    \item Toy numerical checks for A1 and A5 are consistent with the claimed directions of bias (spherical / isotropic clusters under isotropic collapse; branching networks under forward-biased aggregation).
+\end{itemize}
+
+\textbf{Next steps for an independent team:}
+\begin{itemize}[leftmargin=2em]
+    \item Implement the full test protocols for each sentence with:
+    \begin{itemize}[leftmargin=2em]
+        \item proper resolution and convergence checks,
+        \item careful control design, and
+        \item quantitative metrics as outlined.
+    \end{itemize}
+    \item Treat every sentence as a falsifiable claim:
+    \begin{itemize}[leftmargin=2em]
+        \item Look for parameter regions where the APL-predicted regime is significantly overrepresented under LHS conditions vs controls.
+        \item Report both successes and failures; both are informative for refining or rejecting APL.
+    \end{itemize}
+\end{itemize}
+
+The language should stand or fall on whether these seven sentences predict robust, cross-domain biases in real physical and chemical systems --- nothing more and nothing less.
+
+\end{document}

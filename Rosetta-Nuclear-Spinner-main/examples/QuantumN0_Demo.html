@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Quantum APL N0 Measurement Demo</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #020307; color: #e6f2ff; margin: 0; padding: 2rem; }
+    h1 { text-transform: uppercase; letter-spacing: 0.15em; }
+    button { margin-right: 0.5rem; padding: 0.4rem 0.8rem; border: none; border-radius: 4px; cursor: pointer; }
+    #controls { margin-bottom: 1rem; }
+    #log { max-height: 240px; overflow-y: auto; background: #0b1424; padding: 1rem; border-radius: 6px; font-family: monospace; }
+    canvas { border: 1px solid #1b2a44; margin-right: 1rem; }
+    #stats { display: flex; gap: 2rem; margin-top: 1rem; flex-wrap: wrap; }
+    .stat-block { background: #0b1424; padding: 1rem; border-radius: 6px; min-width: 180px; }
+  </style>
+</head>
+<body>
+  <h1>Quantum APL N0 Measurement Demo</h1>
+  <div id="controls">
+    <button id="start">START MEASUREMENT</button>
+    <button id="stop">STOP</button>
+    <button id="step">SINGLE STEP</button>
+    <button id="reset">RESET</button>
+    <button id="force">FORCE MEASUREMENT</button>
+  </div>
+  <div style="display:flex; flex-wrap:wrap;">
+    <canvas id="density" width="256" height="256"></canvas>
+    <canvas id="zplot" width="512" height="256"></canvas>
+  </div>
+  <div id="stats">
+    <div class="stat-block">z: <span id="stat-z">0.000</span></div>
+    <div class="stat-block">Φ: <span id="stat-phi">0.000</span></div>
+    <div class="stat-block">Entropy: <span id="stat-entropy">0.000</span></div>
+    <div class="stat-block">Purity: <span id="stat-purity">1.000</span></div>
+  </div>
+  <h2>Measurement Log</h2>
+  <div id="log"></div>
+
+  <script src="../src/legacy/QuantumAPL_Engine.js"></script>
+  <script src="../src/legacy/QuantumN0_Integration.js"></script>
+  <script>
+    const demo = new QuantumAPLDemo();
+    const densityCanvas = document.getElementById('density');
+    const zCanvas = document.getElementById('zplot');
+    const logEl = document.getElementById('log');
+    const ctxZ = zCanvas.getContext('2d');
+    const zHistory = [];
+
+    function renderDensity(matrix) {
+      const ctx = densityCanvas.getContext('2d');
+      const size = Math.min(16, Math.sqrt(matrix.dimTotal || 64));
+      const cell = densityCanvas.width / size;
+      ctx.clearRect(0, 0, densityCanvas.width, densityCanvas.height);
+      for (let i = 0; i < size; i++) {
+        for (let j = 0; j < size; j++) {
+          const idx = (i * size + j) % matrix.dimTotal;
+          const val = matrix.rho.get(idx, idx).re;
+          const intensity = Math.min(255, Math.max(0, Math.floor(val * 255)));
+          ctx.fillStyle = `rgb(${intensity}, 100, 200)`;
+          ctx.fillRect(j * cell, i * cell, cell, cell);
+        }
+      }
+    }
+
+    function plotZ(z) {
+      zHistory.push(z);
+      if (zHistory.length > zCanvas.width) zHistory.shift();
+      ctxZ.clearRect(0, 0, zCanvas.width, zCanvas.height);
+      ctxZ.strokeStyle = '#00ffaa';
+      ctxZ.beginPath();
+      zHistory.forEach((val, idx) => {
+        const x = idx;
+        const y = zCanvas.height * (1 - val);
+        if (idx === 0) ctxZ.moveTo(x, y); else ctxZ.lineTo(x, y);
+      });
+      ctxZ.stroke();
+    }
+
+    function appendLog(text) {
+      const entry = document.createElement('div');
+      entry.textContent = text;
+      logEl.prepend(entry);
+      while (logEl.childNodes.length > 200) logEl.removeChild(logEl.lastChild);
+    }
+
+    function updateStats(state) {
+      document.getElementById('stat-z').textContent = state.z.toFixed(3);
+      document.getElementById('stat-phi').textContent = state.phi.toFixed(3);
+      document.getElementById('stat-entropy').textContent = state.entropy.toFixed(3);
+      document.getElementById('stat-purity').textContent = state.purity.toFixed(3);
+    }
+
+    let running = false;
+    function stepSimulation(force = false) {
+      if (force) {
+        const result = demo.integration.executeN0Pipeline(demo.intHistory, demo.integration.getCurrentTruthState());
+        appendLog(`${new Date().toLocaleTimeString()} :: FORCE ${result.operator} P=${result.probability.toFixed(3)}`);
+      } else {
+        const result = demo.integration.step(0.01, demo.intHistory);
+        demo.intHistory.push(result.operator);
+        if (demo.intHistory.length > 10) demo.intHistory.shift();
+        appendLog(`${new Date().toLocaleTimeString()} :: ${result.operator} P=${result.probability.toFixed(3)} z=${result.quantum.z.toFixed(3)}`);
+        renderDensity(demo.quantum);
+        plotZ(result.quantum.z);
+        updateStats(result.quantum);
+      }
+      if (running) requestAnimationFrame(() => stepSimulation(false));
+    }
+
+    document.getElementById('start').onclick = () => { if (!running) { running = true; stepSimulation(false); } };
+    document.getElementById('stop').onclick = () => { running = false; };
+    document.getElementById('step').onclick = () => stepSimulation(false);
+    document.getElementById('reset').onclick = () => { running = false; location.reload(); };
+    document.getElementById('force').onclick = () => stepSimulation(true);
+  </script>
+</body>
+</html>

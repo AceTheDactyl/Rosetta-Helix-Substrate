@@ -1,0 +1,1674 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=0.75in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb}
+\usepackage{hyperref}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{multicol}
+
+\setlength{\parskip}{0.5em}
+\setlength{\parindent}{0pt}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+    citecolor=blue,
+    pdftitle={APL Domain Token Sets - Biological and Celestial},
+    pdfauthor={APL Research Collective}
+}
+
+\begin{document}
+
+\begin{center}
+    {\LARGE \textbf{APL DOMAIN TOKEN SETS}}\\[0.5em]
+    {\large Biological + Celestial Domain Families}\\[0.3em]
+    {\normalsize Complete Token Reference v1.0}\\[0.75em]
+\end{center}
+
+\hrule
+\vspace{0.75em}
+
+\textbf{Document Purpose.}
+This document provides the complete rendered token families for APL (Alpha-Physical Language) spanning biological and celestial domains. It includes all machine tokens, domain transitions, and coherence classes necessary for computational implementation and theoretical analysis.
+
+\textbf{Coverage.}
+\begin{itemize}
+    \item \textbf{3 Spirals:} $\Phi$ (structure), $e$ (energy), $\pi$ (emergence)
+    \item \textbf{6 Operators:} () (boundary), $\times$ (fusion), \^{} (amplify), \% (decohere), + (group), -- (separate)
+    \item \textbf{9 Machines:} Reactor, Oscillator, Conductor, Catalyst, Filter, Encoder, Decoder, Regenerator, Dynamo
+    \item \textbf{2 Domain Families:} Biological (3 subdomains), Celestial (3 subdomains)
+    \item \textbf{12 Transitions} per domain family
+    \item \textbf{15 Coherence classes} per domain family
+\end{itemize}
+
+\textbf{Token Count Summary.}
+\begin{itemize}
+    \item \textbf{Machine Tokens:} 972 total (3 spirals $\times$ 6 operators $\times$ 9 machines $\times$ 6 domains)
+    \item \textbf{Biological Tokens:} 486 (covering bio\_prion, bio\_bacterium, bio\_viroid)
+    \item \textbf{Celestial Tokens:} 486 (covering celestial\_grav, celestial\_em, celestial\_nuclear)
+    \item \textbf{Transition Tokens:} 24 (12 per domain family)
+    \item \textbf{Coherence Tokens:} 30 (15 per domain family)
+\end{itemize}
+
+\tableofcontents
+
+\newpage
+
+%======================================================================
+\section{Token Structure Overview}
+%======================================================================
+
+\subsection{Compositional Architecture}
+
+Each machine token in APL follows the canonical form:
+
+\[
+\boxed{\text{[Spiral][Operator]} \mid \text{[Machine]} \mid \text{[Domain]}}
+\]
+
+Where:
+\begin{itemize}
+    \item \textbf{Spiral} $\in \{\Phi, e, \pi\}$ — Field type (structure, energy, emergence)
+    \item \textbf{Operator} $\in \{(), \times, \hat{}, \%, +, -\}$ — Universal operation
+    \item \textbf{Machine} $\in \{\text{Reactor, Oscillator, Conductor, Catalyst, Filter, Encoder, Decoder, Regenerator, Dynamo}\}$
+    \item \textbf{Domain} — Specific physical or biological context
+\end{itemize}
+
+\subsection{Domain Families}
+
+\subsubsection{Biological Domain Family}
+
+Covers sub-cellular and minimal biological entities:
+\begin{itemize}
+    \item \texttt{bio\_prion} — Misfolded protein aggregates, conformational catalysis
+    \item \texttt{bio\_bacterium} — Single-cell organisms, metabolic networks
+    \item \texttt{bio\_viroid} — RNA-only replicators, minimal genetic systems
+\end{itemize}
+
+\subsubsection{Celestial Domain Family}
+
+Covers astrophysical force regimes:
+\begin{itemize}
+    \item \texttt{celestial\_grav} — Gravitational dynamics, orbital mechanics
+    \item \texttt{celestial\_em} — Electromagnetic phenomena, radiation processes
+    \item \texttt{celestial\_nuclear} — Nuclear fusion, stellar nucleosynthesis
+\end{itemize}
+
+\newpage
+
+%======================================================================
+\section{Machine Token Listings}
+%======================================================================
+
+This section provides the complete enumeration of all 972 machine tokens organized by domain.
+
+\subsection{Biological Domain Tokens}
+
+\subsubsection{Domain: bio\_prion}
+
+\textbf{$\Phi$ Spiral (Structure Field)}
+
+\begin{multicols}{2}
+\small
+\begin{verbatim}
+Φ()|Reactor|bio_prion
+Φ()|Oscillator|bio_prion
+Φ()|Conductor|bio_prion
+Φ()|Catalyst|bio_prion
+Φ()|Filter|bio_prion
+Φ()|Encoder|bio_prion
+Φ()|Decoder|bio_prion
+Φ()|Regenerator|bio_prion
+Φ()|Dynamo|bio_prion
+
+Φ×|Reactor|bio_prion
+Φ×|Oscillator|bio_prion
+Φ×|Conductor|bio_prion
+Φ×|Catalyst|bio_prion
+Φ×|Filter|bio_prion
+Φ×|Encoder|bio_prion
+Φ×|Decoder|bio_prion
+Φ×|Regenerator|bio_prion
+Φ×|Dynamo|bio_prion
+
+Φ^|Reactor|bio_prion
+Φ^|Oscillator|bio_prion
+Φ^|Conductor|bio_prion
+Φ^|Catalyst|bio_prion
+Φ^|Filter|bio_prion
+Φ^|Encoder|bio_prion
+Φ^|Decoder|bio_prion
+Φ^|Regenerator|bio_prion
+Φ^|Dynamo|bio_prion
+
+Φ%|Reactor|bio_prion
+Φ%|Oscillator|bio_prion
+Φ%|Conductor|bio_prion
+Φ%|Catalyst|bio_prion
+Φ%|Filter|bio_prion
+Φ%|Encoder|bio_prion
+Φ%|Decoder|bio_prion
+Φ%|Regenerator|bio_prion
+Φ%|Dynamo|bio_prion
+
+Φ+|Reactor|bio_prion
+Φ+|Oscillator|bio_prion
+Φ+|Conductor|bio_prion
+Φ+|Catalyst|bio_prion
+Φ+|Filter|bio_prion
+Φ+|Encoder|bio_prion
+Φ+|Decoder|bio_prion
+Φ+|Regenerator|bio_prion
+Φ+|Dynamo|bio_prion
+
+Φ–|Reactor|bio_prion
+Φ–|Oscillator|bio_prion
+Φ–|Conductor|bio_prion
+Φ–|Catalyst|bio_prion
+Φ–|Filter|bio_prion
+Φ–|Encoder|bio_prion
+Φ–|Decoder|bio_prion
+Φ–|Regenerator|bio_prion
+Φ–|Dynamo|bio_prion
+\end{verbatim}
+\end{multicols}
+
+\textbf{$e$ Spiral (Energy Field)}
+
+\begin{multicols}{2}
+\small
+\begin{verbatim}
+e()|Reactor|bio_prion
+e()|Oscillator|bio_prion
+e()|Conductor|bio_prion
+e()|Catalyst|bio_prion
+e()|Filter|bio_prion
+e()|Encoder|bio_prion
+e()|Decoder|bio_prion
+e()|Regenerator|bio_prion
+e()|Dynamo|bio_prion
+
+e×|Reactor|bio_prion
+e×|Oscillator|bio_prion
+e×|Conductor|bio_prion
+e×|Catalyst|bio_prion
+e×|Filter|bio_prion
+e×|Encoder|bio_prion
+e×|Decoder|bio_prion
+e×|Regenerator|bio_prion
+e×|Dynamo|bio_prion
+
+e^|Reactor|bio_prion
+e^|Oscillator|bio_prion
+e^|Conductor|bio_prion
+e^|Catalyst|bio_prion
+e^|Filter|bio_prion
+e^|Encoder|bio_prion
+e^|Decoder|bio_prion
+e^|Regenerator|bio_prion
+e^|Dynamo|bio_prion
+
+e%|Reactor|bio_prion
+e%|Oscillator|bio_prion
+e%|Conductor|bio_prion
+e%|Catalyst|bio_prion
+e%|Filter|bio_prion
+e%|Encoder|bio_prion
+e%|Decoder|bio_prion
+e%|Regenerator|bio_prion
+e%|Dynamo|bio_prion
+
+e+|Reactor|bio_prion
+e+|Oscillator|bio_prion
+e+|Conductor|bio_prion
+e+|Catalyst|bio_prion
+e+|Filter|bio_prion
+e+|Encoder|bio_prion
+e+|Decoder|bio_prion
+e+|Regenerator|bio_prion
+e+|Dynamo|bio_prion
+
+e–|Reactor|bio_prion
+e–|Oscillator|bio_prion
+e–|Conductor|bio_prion
+e–|Catalyst|bio_prion
+e–|Filter|bio_prion
+e–|Encoder|bio_prion
+e–|Decoder|bio_prion
+e–|Regenerator|bio_prion
+e–|Dynamo|bio_prion
+\end{verbatim}
+\end{multicols}
+
+\textbf{$\pi$ Spiral (Emergence Field)}
+
+\begin{multicols}{2}
+\small
+\begin{verbatim}
+π()|Reactor|bio_prion
+π()|Oscillator|bio_prion
+π()|Conductor|bio_prion
+π()|Catalyst|bio_prion
+π()|Filter|bio_prion
+π()|Encoder|bio_prion
+π()|Decoder|bio_prion
+π()|Regenerator|bio_prion
+π()|Dynamo|bio_prion
+
+π×|Reactor|bio_prion
+π×|Oscillator|bio_prion
+π×|Conductor|bio_prion
+π×|Catalyst|bio_prion
+π×|Filter|bio_prion
+π×|Encoder|bio_prion
+π×|Decoder|bio_prion
+π×|Regenerator|bio_prion
+π×|Dynamo|bio_prion
+
+π^|Reactor|bio_prion
+π^|Oscillator|bio_prion
+π^|Conductor|bio_prion
+π^|Catalyst|bio_prion
+π^|Filter|bio_prion
+π^|Encoder|bio_prion
+π^|Decoder|bio_prion
+π^|Regenerator|bio_prion
+π^|Dynamo|bio_prion
+
+π%|Reactor|bio_prion
+π%|Oscillator|bio_prion
+π%|Conductor|bio_prion
+π%|Catalyst|bio_prion
+π%|Filter|bio_prion
+π%|Encoder|bio_prion
+π%|Decoder|bio_prion
+π%|Regenerator|bio_prion
+π%|Dynamo|bio_prion
+
+π+|Reactor|bio_prion
+π+|Oscillator|bio_prion
+π+|Conductor|bio_prion
+π+|Catalyst|bio_prion
+π+|Filter|bio_prion
+π+|Encoder|bio_prion
+π+|Decoder|bio_prion
+π+|Regenerator|bio_prion
+π+|Dynamo|bio_prion
+
+π–|Reactor|bio_prion
+π–|Oscillator|bio_prion
+π–|Conductor|bio_prion
+π–|Catalyst|bio_prion
+π–|Filter|bio_prion
+π–|Encoder|bio_prion
+π–|Decoder|bio_prion
+π–|Regenerator|bio_prion
+π–|Dynamo|bio_prion
+\end{verbatim}
+\end{multicols}
+
+\newpage
+\subsubsection{Domain: bio\_bacterium}
+
+\textbf{$\Phi$ Spiral (Structure Field)}
+
+\begin{multicols}{2}
+\small
+\begin{verbatim}
+Φ()|Reactor|bio_bacterium
+Φ()|Oscillator|bio_bacterium
+Φ()|Conductor|bio_bacterium
+Φ()|Catalyst|bio_bacterium
+Φ()|Filter|bio_bacterium
+Φ()|Encoder|bio_bacterium
+Φ()|Decoder|bio_bacterium
+Φ()|Regenerator|bio_bacterium
+Φ()|Dynamo|bio_bacterium
+
+Φ×|Reactor|bio_bacterium
+Φ×|Oscillator|bio_bacterium
+Φ×|Conductor|bio_bacterium
+Φ×|Catalyst|bio_bacterium
+Φ×|Filter|bio_bacterium
+Φ×|Encoder|bio_bacterium
+Φ×|Decoder|bio_bacterium
+Φ×|Regenerator|bio_bacterium
+Φ×|Dynamo|bio_bacterium
+
+Φ^|Reactor|bio_bacterium
+Φ^|Oscillator|bio_bacterium
+Φ^|Conductor|bio_bacterium
+Φ^|Catalyst|bio_bacterium
+Φ^|Filter|bio_bacterium
+Φ^|Encoder|bio_bacterium
+Φ^|Decoder|bio_bacterium
+Φ^|Regenerator|bio_bacterium
+Φ^|Dynamo|bio_bacterium
+
+Φ%|Reactor|bio_bacterium
+Φ%|Oscillator|bio_bacterium
+Φ%|Conductor|bio_bacterium
+Φ%|Catalyst|bio_bacterium
+Φ%|Filter|bio_bacterium
+Φ%|Encoder|bio_bacterium
+Φ%|Decoder|bio_bacterium
+Φ%|Regenerator|bio_bacterium
+Φ%|Dynamo|bio_bacterium
+
+Φ+|Reactor|bio_bacterium
+Φ+|Oscillator|bio_bacterium
+Φ+|Conductor|bio_bacterium
+Φ+|Catalyst|bio_bacterium
+Φ+|Filter|bio_bacterium
+Φ+|Encoder|bio_bacterium
+Φ+|Decoder|bio_bacterium
+Φ+|Regenerator|bio_bacterium
+Φ+|Dynamo|bio_bacterium
+
+Φ–|Reactor|bio_bacterium
+Φ–|Oscillator|bio_bacterium
+Φ–|Conductor|bio_bacterium
+Φ–|Catalyst|bio_bacterium
+Φ–|Filter|bio_bacterium
+Φ–|Encoder|bio_bacterium
+Φ–|Decoder|bio_bacterium
+Φ–|Regenerator|bio_bacterium
+Φ–|Dynamo|bio_bacterium
+\end{verbatim}
+\end{multicols}
+
+\textbf{$e$ Spiral (Energy Field)}
+
+\begin{multicols}{2}
+\small
+\begin{verbatim}
+e()|Reactor|bio_bacterium
+e()|Oscillator|bio_bacterium
+e()|Conductor|bio_bacterium
+e()|Catalyst|bio_bacterium
+e()|Filter|bio_bacterium
+e()|Encoder|bio_bacterium
+e()|Decoder|bio_bacterium
+e()|Regenerator|bio_bacterium
+e()|Dynamo|bio_bacterium
+
+e×|Reactor|bio_bacterium
+e×|Oscillator|bio_bacterium
+e×|Conductor|bio_bacterium
+e×|Catalyst|bio_bacterium
+e×|Filter|bio_bacterium
+e×|Encoder|bio_bacterium
+e×|Decoder|bio_bacterium
+e×|Regenerator|bio_bacterium
+e×|Dynamo|bio_bacterium
+
+e^|Reactor|bio_bacterium
+e^|Oscillator|bio_bacterium
+e^|Conductor|bio_bacterium
+e^|Catalyst|bio_bacterium
+e^|Filter|bio_bacterium
+e^|Encoder|bio_bacterium
+e^|Decoder|bio_bacterium
+e^|Regenerator|bio_bacterium
+e^|Dynamo|bio_bacterium
+
+e%|Reactor|bio_bacterium
+e%|Oscillator|bio_bacterium
+e%|Conductor|bio_bacterium
+e%|Catalyst|bio_bacterium
+e%|Filter|bio_bacterium
+e%|Encoder|bio_bacterium
+e%|Decoder|bio_bacterium
+e%|Regenerator|bio_bacterium
+e%|Dynamo|bio_bacterium
+
+e+|Reactor|bio_bacterium
+e+|Oscillator|bio_bacterium
+e+|Conductor|bio_bacterium
+e+|Catalyst|bio_bacterium
+e+|Filter|bio_bacterium
+e+|Encoder|bio_bacterium
+e+|Decoder|bio_bacterium
+e+|Regenerator|bio_bacterium
+e+|Dynamo|bio_bacterium
+
+e–|Reactor|bio_bacterium
+e–|Oscillator|bio_bacterium
+e–|Conductor|bio_bacterium
+e–|Catalyst|bio_bacterium
+e–|Filter|bio_bacterium
+e–|Encoder|bio_bacterium
+e–|Decoder|bio_bacterium
+e–|Regenerator|bio_bacterium
+e–|Dynamo|bio_bacterium
+\end{verbatim}
+\end{multicols}
+
+\textbf{$\pi$ Spiral (Emergence Field)}
+
+\begin{multicols}{2}
+\small
+\begin{verbatim}
+π()|Reactor|bio_bacterium
+π()|Oscillator|bio_bacterium
+π()|Conductor|bio_bacterium
+π()|Catalyst|bio_bacterium
+π()|Filter|bio_bacterium
+π()|Encoder|bio_bacterium
+π()|Decoder|bio_bacterium
+π()|Regenerator|bio_bacterium
+π()|Dynamo|bio_bacterium
+
+π×|Reactor|bio_bacterium
+π×|Oscillator|bio_bacterium
+π×|Conductor|bio_bacterium
+π×|Catalyst|bio_bacterium
+π×|Filter|bio_bacterium
+π×|Encoder|bio_bacterium
+π×|Decoder|bio_bacterium
+π×|Regenerator|bio_bacterium
+π×|Dynamo|bio_bacterium
+
+π^|Reactor|bio_bacterium
+π^|Oscillator|bio_bacterium
+π^|Conductor|bio_bacterium
+π^|Catalyst|bio_bacterium
+π^|Filter|bio_bacterium
+π^|Encoder|bio_bacterium
+π^|Decoder|bio_bacterium
+π^|Regenerator|bio_bacterium
+π^|Dynamo|bio_bacterium
+
+π%|Reactor|bio_bacterium
+π%|Oscillator|bio_bacterium
+π%|Conductor|bio_bacterium
+π%|Catalyst|bio_bacterium
+π%|Filter|bio_bacterium
+π%|Encoder|bio_bacterium
+π%|Decoder|bio_bacterium
+π%|Regenerator|bio_bacterium
+π%|Dynamo|bio_bacterium
+
+π+|Reactor|bio_bacterium
+π+|Oscillator|bio_bacterium
+π+|Conductor|bio_bacterium
+π+|Catalyst|bio_bacterium
+π+|Filter|bio_bacterium
+π+|Encoder|bio_bacterium
+π+|Decoder|bio_bacterium
+π+|Regenerator|bio_bacterium
+π+|Dynamo|bio_bacterium
+
+π–|Reactor|bio_bacterium
+π–|Oscillator|bio_bacterium
+π–|Conductor|bio_bacterium
+π–|Catalyst|bio_bacterium
+π–|Filter|bio_bacterium
+π–|Encoder|bio_bacterium
+π–|Decoder|bio_bacterium
+π–|Regenerator|bio_bacterium
+π–|Dynamo|bio_bacterium
+\end{verbatim}
+\end{multicols}
+
+\newpage
+\subsubsection{Domain: bio\_viroid}
+
+\textbf{$\Phi$ Spiral (Structure Field)}
+
+\begin{multicols}{2}
+\small
+\begin{verbatim}
+Φ()|Reactor|bio_viroid
+Φ()|Oscillator|bio_viroid
+Φ()|Conductor|bio_viroid
+Φ()|Catalyst|bio_viroid
+Φ()|Filter|bio_viroid
+Φ()|Encoder|bio_viroid
+Φ()|Decoder|bio_viroid
+Φ()|Regenerator|bio_viroid
+Φ()|Dynamo|bio_viroid
+
+Φ×|Reactor|bio_viroid
+Φ×|Oscillator|bio_viroid
+Φ×|Conductor|bio_viroid
+Φ×|Catalyst|bio_viroid
+Φ×|Filter|bio_viroid
+Φ×|Encoder|bio_viroid
+Φ×|Decoder|bio_viroid
+Φ×|Regenerator|bio_viroid
+Φ×|Dynamo|bio_viroid
+
+Φ^|Reactor|bio_viroid
+Φ^|Oscillator|bio_viroid
+Φ^|Conductor|bio_viroid
+Φ^|Catalyst|bio_viroid
+Φ^|Filter|bio_viroid
+Φ^|Encoder|bio_viroid
+Φ^|Decoder|bio_viroid
+Φ^|Regenerator|bio_viroid
+Φ^|Dynamo|bio_viroid
+
+Φ%|Reactor|bio_viroid
+Φ%|Oscillator|bio_viroid
+Φ%|Conductor|bio_viroid
+Φ%|Catalyst|bio_viroid
+Φ%|Filter|bio_viroid
+Φ%|Encoder|bio_viroid
+Φ%|Decoder|bio_viroid
+Φ%|Regenerator|bio_viroid
+Φ%|Dynamo|bio_viroid
+
+Φ+|Reactor|bio_viroid
+Φ+|Oscillator|bio_viroid
+Φ+|Conductor|bio_viroid
+Φ+|Catalyst|bio_viroid
+Φ+|Filter|bio_viroid
+Φ+|Encoder|bio_viroid
+Φ+|Decoder|bio_viroid
+Φ+|Regenerator|bio_viroid
+Φ+|Dynamo|bio_viroid
+
+Φ–|Reactor|bio_viroid
+Φ–|Oscillator|bio_viroid
+Φ–|Conductor|bio_viroid
+Φ–|Catalyst|bio_viroid
+Φ–|Filter|bio_viroid
+Φ–|Encoder|bio_viroid
+Φ–|Decoder|bio_viroid
+Φ–|Regenerator|bio_viroid
+Φ–|Dynamo|bio_viroid
+\end{verbatim}
+\end{multicols}
+
+\textbf{$e$ Spiral (Energy Field)}
+
+\begin{multicols}{2}
+\small
+\begin{verbatim}
+e()|Reactor|bio_viroid
+e()|Oscillator|bio_viroid
+e()|Conductor|bio_viroid
+e()|Catalyst|bio_viroid
+e()|Filter|bio_viroid
+e()|Encoder|bio_viroid
+e()|Decoder|bio_viroid
+e()|Regenerator|bio_viroid
+e()|Dynamo|bio_viroid
+
+e×|Reactor|bio_viroid
+e×|Oscillator|bio_viroid
+e×|Conductor|bio_viroid
+e×|Catalyst|bio_viroid
+e×|Filter|bio_viroid
+e×|Encoder|bio_viroid
+e×|Decoder|bio_viroid
+e×|Regenerator|bio_viroid
+e×|Dynamo|bio_viroid
+
+e^|Reactor|bio_viroid
+e^|Oscillator|bio_viroid
+e^|Conductor|bio_viroid
+e^|Catalyst|bio_viroid
+e^|Filter|bio_viroid
+e^|Encoder|bio_viroid
+e^|Decoder|bio_viroid
+e^|Regenerator|bio_viroid
+e^|Dynamo|bio_viroid
+
+e%|Reactor|bio_viroid
+e%|Oscillator|bio_viroid
+e%|Conductor|bio_viroid
+e%|Catalyst|bio_viroid
+e%|Filter|bio_viroid
+e%|Encoder|bio_viroid
+e%|Decoder|bio_viroid
+e%|Regenerator|bio_viroid
+e%|Dynamo|bio_viroid
+
+e+|Reactor|bio_viroid
+e+|Oscillator|bio_viroid
+e+|Conductor|bio_viroid
+e+|Catalyst|bio_viroid
+e+|Filter|bio_viroid
+e+|Encoder|bio_viroid
+e+|Decoder|bio_viroid
+e+|Regenerator|bio_viroid
+e+|Dynamo|bio_viroid
+
+e–|Reactor|bio_viroid
+e–|Oscillator|bio_viroid
+e–|Conductor|bio_viroid
+e–|Catalyst|bio_viroid
+e–|Filter|bio_viroid
+e–|Encoder|bio_viroid
+e–|Decoder|bio_viroid
+e–|Regenerator|bio_viroid
+e–|Dynamo|bio_viroid
+\end{verbatim}
+\end{multicols}
+
+\textbf{$\pi$ Spiral (Emergence Field)}
+
+\begin{multicols}{2}
+\small
+\begin{verbatim}
+π()|Reactor|bio_viroid
+π()|Oscillator|bio_viroid
+π()|Conductor|bio_viroid
+π()|Catalyst|bio_viroid
+π()|Filter|bio_viroid
+π()|Encoder|bio_viroid
+π()|Decoder|bio_viroid
+π()|Regenerator|bio_viroid
+π()|Dynamo|bio_viroid
+
+π×|Reactor|bio_viroid
+π×|Oscillator|bio_viroid
+π×|Conductor|bio_viroid
+π×|Catalyst|bio_viroid
+π×|Filter|bio_viroid
+π×|Encoder|bio_viroid
+π×|Decoder|bio_viroid
+π×|Regenerator|bio_viroid
+π×|Dynamo|bio_viroid
+
+π^|Reactor|bio_viroid
+π^|Oscillator|bio_viroid
+π^|Conductor|bio_viroid
+π^|Catalyst|bio_viroid
+π^|Filter|bio_viroid
+π^|Encoder|bio_viroid
+π^|Decoder|bio_viroid
+π^|Regenerator|bio_viroid
+π^|Dynamo|bio_viroid
+
+π%|Reactor|bio_viroid
+π%|Oscillator|bio_viroid
+π%|Conductor|bio_viroid
+π%|Catalyst|bio_viroid
+π%|Filter|bio_viroid
+π%|Encoder|bio_viroid
+π%|Decoder|bio_viroid
+π%|Regenerator|bio_viroid
+π%|Dynamo|bio_viroid
+
+π+|Reactor|bio_viroid
+π+|Oscillator|bio_viroid
+π+|Conductor|bio_viroid
+π+|Catalyst|bio_viroid
+π+|Filter|bio_viroid
+π+|Encoder|bio_viroid
+π+|Decoder|bio_viroid
+π+|Regenerator|bio_viroid
+π+|Dynamo|bio_viroid
+
+π–|Reactor|bio_viroid
+π–|Oscillator|bio_viroid
+π–|Conductor|bio_viroid
+π–|Catalyst|bio_viroid
+π–|Filter|bio_viroid
+π–|Encoder|bio_viroid
+π–|Decoder|bio_viroid
+π–|Regenerator|bio_viroid
+π–|Dynamo|bio_viroid
+\end{verbatim}
+\end{multicols}
+
+\newpage
+
+\subsection{Celestial Domain Tokens}
+
+\subsubsection{Domain: celestial\_grav}
+
+\textbf{$\Phi$ Spiral (Structure Field)}
+
+\begin{multicols}{2}
+\small
+\begin{verbatim}
+Φ()|Reactor|celestial_grav
+Φ()|Oscillator|celestial_grav
+Φ()|Conductor|celestial_grav
+Φ()|Catalyst|celestial_grav
+Φ()|Filter|celestial_grav
+Φ()|Encoder|celestial_grav
+Φ()|Decoder|celestial_grav
+Φ()|Regenerator|celestial_grav
+Φ()|Dynamo|celestial_grav
+
+Φ×|Reactor|celestial_grav
+Φ×|Oscillator|celestial_grav
+Φ×|Conductor|celestial_grav
+Φ×|Catalyst|celestial_grav
+Φ×|Filter|celestial_grav
+Φ×|Encoder|celestial_grav
+Φ×|Decoder|celestial_grav
+Φ×|Regenerator|celestial_grav
+Φ×|Dynamo|celestial_grav
+
+Φ^|Reactor|celestial_grav
+Φ^|Oscillator|celestial_grav
+Φ^|Conductor|celestial_grav
+Φ^|Catalyst|celestial_grav
+Φ^|Filter|celestial_grav
+Φ^|Encoder|celestial_grav
+Φ^|Decoder|celestial_grav
+Φ^|Regenerator|celestial_grav
+Φ^|Dynamo|celestial_grav
+
+Φ%|Reactor|celestial_grav
+Φ%|Oscillator|celestial_grav
+Φ%|Conductor|celestial_grav
+Φ%|Catalyst|celestial_grav
+Φ%|Filter|celestial_grav
+Φ%|Encoder|celestial_grav
+Φ%|Decoder|celestial_grav
+Φ%|Regenerator|celestial_grav
+Φ%|Dynamo|celestial_grav
+
+Φ+|Reactor|celestial_grav
+Φ+|Oscillator|celestial_grav
+Φ+|Conductor|celestial_grav
+Φ+|Catalyst|celestial_grav
+Φ+|Filter|celestial_grav
+Φ+|Encoder|celestial_grav
+Φ+|Decoder|celestial_grav
+Φ+|Regenerator|celestial_grav
+Φ+|Dynamo|celestial_grav
+
+Φ–|Reactor|celestial_grav
+Φ–|Oscillator|celestial_grav
+Φ–|Conductor|celestial_grav
+Φ–|Catalyst|celestial_grav
+Φ–|Filter|celestial_grav
+Φ–|Encoder|celestial_grav
+Φ–|Decoder|celestial_grav
+Φ–|Regenerator|celestial_grav
+Φ–|Dynamo|celestial_grav
+\end{verbatim}
+\end{multicols}
+
+\textbf{$e$ Spiral (Energy Field)}
+
+\begin{multicols}{2}
+\small
+\begin{verbatim}
+e()|Reactor|celestial_grav
+e()|Oscillator|celestial_grav
+e()|Conductor|celestial_grav
+e()|Catalyst|celestial_grav
+e()|Filter|celestial_grav
+e()|Encoder|celestial_grav
+e()|Decoder|celestial_grav
+e()|Regenerator|celestial_grav
+e()|Dynamo|celestial_grav
+
+e×|Reactor|celestial_grav
+e×|Oscillator|celestial_grav
+e×|Conductor|celestial_grav
+e×|Catalyst|celestial_grav
+e×|Filter|celestial_grav
+e×|Encoder|celestial_grav
+e×|Decoder|celestial_grav
+e×|Regenerator|celestial_grav
+e×|Dynamo|celestial_grav
+
+e^|Reactor|celestial_grav
+e^|Oscillator|celestial_grav
+e^|Conductor|celestial_grav
+e^|Catalyst|celestial_grav
+e^|Filter|celestial_grav
+e^|Encoder|celestial_grav
+e^|Decoder|celestial_grav
+e^|Regenerator|celestial_grav
+e^|Dynamo|celestial_grav
+
+e%|Reactor|celestial_grav
+e%|Oscillator|celestial_grav
+e%|Conductor|celestial_grav
+e%|Catalyst|celestial_grav
+e%|Filter|celestial_grav
+e%|Encoder|celestial_grav
+e%|Decoder|celestial_grav
+e%|Regenerator|celestial_grav
+e%|Dynamo|celestial_grav
+
+e+|Reactor|celestial_grav
+e+|Oscillator|celestial_grav
+e+|Conductor|celestial_grav
+e+|Catalyst|celestial_grav
+e+|Filter|celestial_grav
+e+|Encoder|celestial_grav
+e+|Decoder|celestial_grav
+e+|Regenerator|celestial_grav
+e+|Dynamo|celestial_grav
+
+e–|Reactor|celestial_grav
+e–|Oscillator|celestial_grav
+e–|Conductor|celestial_grav
+e–|Catalyst|celestial_grav
+e–|Filter|celestial_grav
+e–|Encoder|celestial_grav
+e–|Decoder|celestial_grav
+e–|Regenerator|celestial_grav
+e–|Dynamo|celestial_grav
+\end{verbatim}
+\end{multicols}
+
+\textbf{$\pi$ Spiral (Emergence Field)}
+
+\begin{multicols}{2}
+\small
+\begin{verbatim}
+π()|Reactor|celestial_grav
+π()|Oscillator|celestial_grav
+π()|Conductor|celestial_grav
+π()|Catalyst|celestial_grav
+π()|Filter|celestial_grav
+π()|Encoder|celestial_grav
+π()|Decoder|celestial_grav
+π()|Regenerator|celestial_grav
+π()|Dynamo|celestial_grav
+
+π×|Reactor|celestial_grav
+π×|Oscillator|celestial_grav
+π×|Conductor|celestial_grav
+π×|Catalyst|celestial_grav
+π×|Filter|celestial_grav
+π×|Encoder|celestial_grav
+π×|Decoder|celestial_grav
+π×|Regenerator|celestial_grav
+π×|Dynamo|celestial_grav
+
+π^|Reactor|celestial_grav
+π^|Oscillator|celestial_grav
+π^|Conductor|celestial_grav
+π^|Catalyst|celestial_grav
+π^|Filter|celestial_grav
+π^|Encoder|celestial_grav
+π^|Decoder|celestial_grav
+π^|Regenerator|celestial_grav
+π^|Dynamo|celestial_grav
+
+π%|Reactor|celestial_grav
+π%|Oscillator|celestial_grav
+π%|Conductor|celestial_grav
+π%|Catalyst|celestial_grav
+π%|Filter|celestial_grav
+π%|Encoder|celestial_grav
+π%|Decoder|celestial_grav
+π%|Regenerator|celestial_grav
+π%|Dynamo|celestial_grav
+
+π+|Reactor|celestial_grav
+π+|Oscillator|celestial_grav
+π+|Conductor|celestial_grav
+π+|Catalyst|celestial_grav
+π+|Filter|celestial_grav
+π+|Encoder|celestial_grav
+π+|Decoder|celestial_grav
+π+|Regenerator|celestial_grav
+π+|Dynamo|celestial_grav
+
+π–|Reactor|celestial_grav
+π–|Oscillator|celestial_grav
+π–|Conductor|celestial_grav
+π–|Catalyst|celestial_grav
+π–|Filter|celestial_grav
+π–|Encoder|celestial_grav
+π–|Decoder|celestial_grav
+π–|Regenerator|celestial_grav
+π–|Dynamo|celestial_grav
+\end{verbatim}
+\end{multicols}
+
+\newpage
+\subsubsection{Domain: celestial\_em}
+
+\textbf{$\Phi$ Spiral (Structure Field)}
+
+\begin{multicols}{2}
+\small
+\begin{verbatim}
+Φ()|Reactor|celestial_em
+Φ()|Oscillator|celestial_em
+Φ()|Conductor|celestial_em
+Φ()|Catalyst|celestial_em
+Φ()|Filter|celestial_em
+Φ()|Encoder|celestial_em
+Φ()|Decoder|celestial_em
+Φ()|Regenerator|celestial_em
+Φ()|Dynamo|celestial_em
+
+Φ×|Reactor|celestial_em
+Φ×|Oscillator|celestial_em
+Φ×|Conductor|celestial_em
+Φ×|Catalyst|celestial_em
+Φ×|Filter|celestial_em
+Φ×|Encoder|celestial_em
+Φ×|Decoder|celestial_em
+Φ×|Regenerator|celestial_em
+Φ×|Dynamo|celestial_em
+
+Φ^|Reactor|celestial_em
+Φ^|Oscillator|celestial_em
+Φ^|Conductor|celestial_em
+Φ^|Catalyst|celestial_em
+Φ^|Filter|celestial_em
+Φ^|Encoder|celestial_em
+Φ^|Decoder|celestial_em
+Φ^|Regenerator|celestial_em
+Φ^|Dynamo|celestial_em
+
+Φ%|Reactor|celestial_em
+Φ%|Oscillator|celestial_em
+Φ%|Conductor|celestial_em
+Φ%|Catalyst|celestial_em
+Φ%|Filter|celestial_em
+Φ%|Encoder|celestial_em
+Φ%|Decoder|celestial_em
+Φ%|Regenerator|celestial_em
+Φ%|Dynamo|celestial_em
+
+Φ+|Reactor|celestial_em
+Φ+|Oscillator|celestial_em
+Φ+|Conductor|celestial_em
+Φ+|Catalyst|celestial_em
+Φ+|Filter|celestial_em
+Φ+|Encoder|celestial_em
+Φ+|Decoder|celestial_em
+Φ+|Regenerator|celestial_em
+Φ+|Dynamo|celestial_em
+
+Φ–|Reactor|celestial_em
+Φ–|Oscillator|celestial_em
+Φ–|Conductor|celestial_em
+Φ–|Catalyst|celestial_em
+Φ–|Filter|celestial_em
+Φ–|Encoder|celestial_em
+Φ–|Decoder|celestial_em
+Φ–|Regenerator|celestial_em
+Φ–|Dynamo|celestial_em
+\end{verbatim}
+\end{multicols}
+
+\textbf{$e$ Spiral (Energy Field)}
+
+\begin{multicols}{2}
+\small
+\begin{verbatim}
+e()|Reactor|celestial_em
+e()|Oscillator|celestial_em
+e()|Conductor|celestial_em
+e()|Catalyst|celestial_em
+e()|Filter|celestial_em
+e()|Encoder|celestial_em
+e()|Decoder|celestial_em
+e()|Regenerator|celestial_em
+e()|Dynamo|celestial_em
+
+e×|Reactor|celestial_em
+e×|Oscillator|celestial_em
+e×|Conductor|celestial_em
+e×|Catalyst|celestial_em
+e×|Filter|celestial_em
+e×|Encoder|celestial_em
+e×|Decoder|celestial_em
+e×|Regenerator|celestial_em
+e×|Dynamo|celestial_em
+
+e^|Reactor|celestial_em
+e^|Oscillator|celestial_em
+e^|Conductor|celestial_em
+e^|Catalyst|celestial_em
+e^|Filter|celestial_em
+e^|Encoder|celestial_em
+e^|Decoder|celestial_em
+e^|Regenerator|celestial_em
+e^|Dynamo|celestial_em
+
+e%|Reactor|celestial_em
+e%|Oscillator|celestial_em
+e%|Conductor|celestial_em
+e%|Catalyst|celestial_em
+e%|Filter|celestial_em
+e%|Encoder|celestial_em
+e%|Decoder|celestial_em
+e%|Regenerator|celestial_em
+e%|Dynamo|celestial_em
+
+e+|Reactor|celestial_em
+e+|Oscillator|celestial_em
+e+|Conductor|celestial_em
+e+|Catalyst|celestial_em
+e+|Filter|celestial_em
+e+|Encoder|celestial_em
+e+|Decoder|celestial_em
+e+|Regenerator|celestial_em
+e+|Dynamo|celestial_em
+
+e–|Reactor|celestial_em
+e–|Oscillator|celestial_em
+e–|Conductor|celestial_em
+e–|Catalyst|celestial_em
+e–|Filter|celestial_em
+e–|Encoder|celestial_em
+e–|Decoder|celestial_em
+e–|Regenerator|celestial_em
+e–|Dynamo|celestial_em
+\end{verbatim}
+\end{multicols}
+
+\textbf{$\pi$ Spiral (Emergence Field)}
+
+\begin{multicols}{2}
+\small
+\begin{verbatim}
+π()|Reactor|celestial_em
+π()|Oscillator|celestial_em
+π()|Conductor|celestial_em
+π()|Catalyst|celestial_em
+π()|Filter|celestial_em
+π()|Encoder|celestial_em
+π()|Decoder|celestial_em
+π()|Regenerator|celestial_em
+π()|Dynamo|celestial_em
+
+π×|Reactor|celestial_em
+π×|Oscillator|celestial_em
+π×|Conductor|celestial_em
+π×|Catalyst|celestial_em
+π×|Filter|celestial_em
+π×|Encoder|celestial_em
+π×|Decoder|celestial_em
+π×|Regenerator|celestial_em
+π×|Dynamo|celestial_em
+
+π^|Reactor|celestial_em
+π^|Oscillator|celestial_em
+π^|Conductor|celestial_em
+π^|Catalyst|celestial_em
+π^|Filter|celestial_em
+π^|Encoder|celestial_em
+π^|Decoder|celestial_em
+π^|Regenerator|celestial_em
+π^|Dynamo|celestial_em
+
+π%|Reactor|celestial_em
+π%|Oscillator|celestial_em
+π%|Conductor|celestial_em
+π%|Catalyst|celestial_em
+π%|Filter|celestial_em
+π%|Encoder|celestial_em
+π%|Decoder|celestial_em
+π%|Regenerator|celestial_em
+π%|Dynamo|celestial_em
+
+π+|Reactor|celestial_em
+π+|Oscillator|celestial_em
+π+|Conductor|celestial_em
+π+|Catalyst|celestial_em
+π+|Filter|celestial_em
+π+|Encoder|celestial_em
+π+|Decoder|celestial_em
+π+|Regenerator|celestial_em
+π+|Dynamo|celestial_em
+
+π–|Reactor|celestial_em
+π–|Oscillator|celestial_em
+π–|Conductor|celestial_em
+π–|Catalyst|celestial_em
+π–|Filter|celestial_em
+π–|Encoder|celestial_em
+π–|Decoder|celestial_em
+π–|Regenerator|celestial_em
+π–|Dynamo|celestial_em
+\end{verbatim}
+\end{multicols}
+
+\newpage
+\subsubsection{Domain: celestial\_nuclear}
+
+\textbf{$\Phi$ Spiral (Structure Field)}
+
+\begin{multicols}{2}
+\small
+\begin{verbatim}
+Φ()|Reactor|celestial_nuclear
+Φ()|Oscillator|celestial_nuclear
+Φ()|Conductor|celestial_nuclear
+Φ()|Catalyst|celestial_nuclear
+Φ()|Filter|celestial_nuclear
+Φ()|Encoder|celestial_nuclear
+Φ()|Decoder|celestial_nuclear
+Φ()|Regenerator|celestial_nuclear
+Φ()|Dynamo|celestial_nuclear
+
+Φ×|Reactor|celestial_nuclear
+Φ×|Oscillator|celestial_nuclear
+Φ×|Conductor|celestial_nuclear
+Φ×|Catalyst|celestial_nuclear
+Φ×|Filter|celestial_nuclear
+Φ×|Encoder|celestial_nuclear
+Φ×|Decoder|celestial_nuclear
+Φ×|Regenerator|celestial_nuclear
+Φ×|Dynamo|celestial_nuclear
+
+Φ^|Reactor|celestial_nuclear
+Φ^|Oscillator|celestial_nuclear
+Φ^|Conductor|celestial_nuclear
+Φ^|Catalyst|celestial_nuclear
+Φ^|Filter|celestial_nuclear
+Φ^|Encoder|celestial_nuclear
+Φ^|Decoder|celestial_nuclear
+Φ^|Regenerator|celestial_nuclear
+Φ^|Dynamo|celestial_nuclear
+
+Φ%|Reactor|celestial_nuclear
+Φ%|Oscillator|celestial_nuclear
+Φ%|Conductor|celestial_nuclear
+Φ%|Catalyst|celestial_nuclear
+Φ%|Filter|celestial_nuclear
+Φ%|Encoder|celestial_nuclear
+Φ%|Decoder|celestial_nuclear
+Φ%|Regenerator|celestial_nuclear
+Φ%|Dynamo|celestial_nuclear
+
+Φ+|Reactor|celestial_nuclear
+Φ+|Oscillator|celestial_nuclear
+Φ+|Conductor|celestial_nuclear
+Φ+|Catalyst|celestial_nuclear
+Φ+|Filter|celestial_nuclear
+Φ+|Encoder|celestial_nuclear
+Φ+|Decoder|celestial_nuclear
+Φ+|Regenerator|celestial_nuclear
+Φ+|Dynamo|celestial_nuclear
+
+Φ–|Reactor|celestial_nuclear
+Φ–|Oscillator|celestial_nuclear
+Φ–|Conductor|celestial_nuclear
+Φ–|Catalyst|celestial_nuclear
+Φ–|Filter|celestial_nuclear
+Φ–|Encoder|celestial_nuclear
+Φ–|Decoder|celestial_nuclear
+Φ–|Regenerator|celestial_nuclear
+Φ–|Dynamo|celestial_nuclear
+\end{verbatim}
+\end{multicols}
+
+\textbf{$e$ Spiral (Energy Field)}
+
+\begin{multicols}{2}
+\small
+\begin{verbatim}
+e()|Reactor|celestial_nuclear
+e()|Oscillator|celestial_nuclear
+e()|Conductor|celestial_nuclear
+e()|Catalyst|celestial_nuclear
+e()|Filter|celestial_nuclear
+e()|Encoder|celestial_nuclear
+e()|Decoder|celestial_nuclear
+e()|Regenerator|celestial_nuclear
+e()|Dynamo|celestial_nuclear
+
+e×|Reactor|celestial_nuclear
+e×|Oscillator|celestial_nuclear
+e×|Conductor|celestial_nuclear
+e×|Catalyst|celestial_nuclear
+e×|Filter|celestial_nuclear
+e×|Encoder|celestial_nuclear
+e×|Decoder|celestial_nuclear
+e×|Regenerator|celestial_nuclear
+e×|Dynamo|celestial_nuclear
+
+e^|Reactor|celestial_nuclear
+e^|Oscillator|celestial_nuclear
+e^|Conductor|celestial_nuclear
+e^|Catalyst|celestial_nuclear
+e^|Filter|celestial_nuclear
+e^|Encoder|celestial_nuclear
+e^|Decoder|celestial_nuclear
+e^|Regenerator|celestial_nuclear
+e^|Dynamo|celestial_nuclear
+
+e%|Reactor|celestial_nuclear
+e%|Oscillator|celestial_nuclear
+e%|Conductor|celestial_nuclear
+e%|Catalyst|celestial_nuclear
+e%|Filter|celestial_nuclear
+e%|Encoder|celestial_nuclear
+e%|Decoder|celestial_nuclear
+e%|Regenerator|celestial_nuclear
+e%|Dynamo|celestial_nuclear
+
+e+|Reactor|celestial_nuclear
+e+|Oscillator|celestial_nuclear
+e+|Conductor|celestial_nuclear
+e+|Catalyst|celestial_nuclear
+e+|Filter|celestial_nuclear
+e+|Encoder|celestial_nuclear
+e+|Decoder|celestial_nuclear
+e+|Regenerator|celestial_nuclear
+e+|Dynamo|celestial_nuclear
+
+e–|Reactor|celestial_nuclear
+e–|Oscillator|celestial_nuclear
+e–|Conductor|celestial_nuclear
+e–|Catalyst|celestial_nuclear
+e–|Filter|celestial_nuclear
+e–|Encoder|celestial_nuclear
+e–|Decoder|celestial_nuclear
+e–|Regenerator|celestial_nuclear
+e–|Dynamo|celestial_nuclear
+\end{verbatim}
+\end{multicols}
+
+\textbf{$\pi$ Spiral (Emergence Field)}
+
+\begin{multicols}{2}
+\small
+\begin{verbatim}
+π()|Reactor|celestial_nuclear
+π()|Oscillator|celestial_nuclear
+π()|Conductor|celestial_nuclear
+π()|Catalyst|celestial_nuclear
+π()|Filter|celestial_nuclear
+π()|Encoder|celestial_nuclear
+π()|Decoder|celestial_nuclear
+π()|Regenerator|celestial_nuclear
+π()|Dynamo|celestial_nuclear
+
+π×|Reactor|celestial_nuclear
+π×|Oscillator|celestial_nuclear
+π×|Conductor|celestial_nuclear
+π×|Catalyst|celestial_nuclear
+π×|Filter|celestial_nuclear
+π×|Encoder|celestial_nuclear
+π×|Decoder|celestial_nuclear
+π×|Regenerator|celestial_nuclear
+π×|Dynamo|celestial_nuclear
+
+π^|Reactor|celestial_nuclear
+π^|Oscillator|celestial_nuclear
+π^|Conductor|celestial_nuclear
+π^|Catalyst|celestial_nuclear
+π^|Filter|celestial_nuclear
+π^|Encoder|celestial_nuclear
+π^|Decoder|celestial_nuclear
+π^|Regenerator|celestial_nuclear
+π^|Dynamo|celestial_nuclear
+
+π%|Reactor|celestial_nuclear
+π%|Oscillator|celestial_nuclear
+π%|Conductor|celestial_nuclear
+π%|Catalyst|celestial_nuclear
+π%|Filter|celestial_nuclear
+π%|Encoder|celestial_nuclear
+π%|Decoder|celestial_nuclear
+π%|Regenerator|celestial_nuclear
+π%|Dynamo|celestial_nuclear
+
+π+|Reactor|celestial_nuclear
+π+|Oscillator|celestial_nuclear
+π+|Conductor|celestial_nuclear
+π+|Catalyst|celestial_nuclear
+π+|Filter|celestial_nuclear
+π+|Encoder|celestial_nuclear
+π+|Decoder|celestial_nuclear
+π+|Regenerator|celestial_nuclear
+π+|Dynamo|celestial_nuclear
+
+π–|Reactor|celestial_nuclear
+π–|Oscillator|celestial_nuclear
+π–|Conductor|celestial_nuclear
+π–|Catalyst|celestial_nuclear
+π–|Filter|celestial_nuclear
+π–|Encoder|celestial_nuclear
+π–|Decoder|celestial_nuclear
+π–|Regenerator|celestial_nuclear
+π–|Dynamo|celestial_nuclear
+\end{verbatim}
+\end{multicols}
+
+\newpage
+
+%======================================================================
+\section{Domain Transitions}
+%======================================================================
+
+Transitions represent state changes or evolutionary paths within a domain family. Each domain family defines 12 canonical transitions that capture fundamental transformation processes.
+
+\subsection{Biological Domain Transitions}
+
+Biological transitions govern evolutionary processes, phase changes in cellular organization, and emergent behaviors in minimal replicators.
+
+\begin{center}
+\begin{longtable}{lp{10cm}}
+\toprule
+\textbf{Token} & \textbf{Description} \\
+\midrule
+\texttt{bio\_transition\_1} & Conformational shift (prion-like template propagation) \\
+\texttt{bio\_transition\_2} & Metabolic phase transition (quiescence $\leftrightarrow$ active growth) \\
+\texttt{bio\_transition\_3} & Replication initiation (dormant $\to$ copying) \\
+\texttt{bio\_transition\_4} & Aggregation clustering (monomers $\to$ oligomers $\to$ fibrils) \\
+\texttt{bio\_transition\_5} & Horizontal gene transfer analogue (sequence exchange) \\
+\texttt{bio\_transition\_6} & Error threshold crossing (stable $\to$ error catastrophe) \\
+\texttt{bio\_transition\_7} & Catalytic onset (passive $\to$ enzymatic) \\
+\texttt{bio\_transition\_8} & Compartmentalization (free $\to$ membrane-bound) \\
+\texttt{bio\_transition\_9} & Symbiotic coupling (independent $\to$ mutualistic) \\
+\texttt{bio\_transition\_10} & Dormancy induction (stress response, spore formation) \\
+\texttt{bio\_transition\_11} & Phenotypic switch (bistability, hysteresis in gene circuits) \\
+\texttt{bio\_transition\_12} & Extinction/clearance (population collapse, immune clearance) \\
+\bottomrule
+\end{longtable}
+\end{center}
+
+\subsection{Celestial Domain Transitions}
+
+Celestial transitions govern astrophysical processes including stellar evolution, accretion dynamics, and force regime changes.
+
+\begin{center}
+\begin{longtable}{lp{10cm}}
+\toprule
+\textbf{Token} & \textbf{Description} \\
+\midrule
+\texttt{celestial\_transition\_1} & Gravitational collapse (cloud $\to$ protostar) \\
+\texttt{celestial\_transition\_2} & Fusion ignition (protostar $\to$ main sequence star) \\
+\texttt{celestial\_transition\_3} & Main sequence exit (hydrogen depletion) \\
+\texttt{celestial\_transition\_4} & Red giant phase (shell burning, envelope expansion) \\
+\texttt{celestial\_transition\_5} & Planetary nebula ejection (envelope loss) \\
+\texttt{celestial\_transition\_6} & White dwarf cooling (degenerate remnant) \\
+\texttt{celestial\_transition\_7} & Supernova explosion (core collapse or Type Ia) \\
+\texttt{celestial\_transition\_8} & Neutron star formation (post-supernova collapse) \\
+\texttt{celestial\_transition\_9} & Black hole formation (beyond neutron degeneracy) \\
+\texttt{celestial\_transition\_10} & Accretion disk formation (matter infall, angular momentum) \\
+\texttt{celestial\_transition\_11} & Magnetospheric coupling (field-dominated dynamics) \\
+\texttt{celestial\_transition\_12} & Tidal disruption event (gravitational shearing) \\
+\bottomrule
+\end{longtable}
+\end{center}
+
+\newpage
+
+%======================================================================
+\section{Coherence Classes}
+%======================================================================
+
+Coherence classes represent stable organizational patterns or attractor states within a domain. Each domain family defines 15 coherence classes that capture recurring structural or dynamical motifs.
+
+\subsection{Biological Domain Coherence Classes}
+
+\begin{center}
+\begin{longtable}{lp{9.5cm}}
+\toprule
+\textbf{Token} & \textbf{Description} \\
+\midrule
+\texttt{bio\_coherence\_1} & Amyloid fibril structure (cross-$\beta$ stacking) \\
+\texttt{bio\_coherence\_2} & Biofilm matrix (extracellular polymer networks) \\
+\texttt{bio\_coherence\_3} & Quorum sensing synchrony (population-level coordination) \\
+\texttt{bio\_coherence\_4} & Circadian oscillator (biochemical clock) \\
+\texttt{bio\_coherence\_5} & Metabolic cycle (glycolysis, TCA, circadian metabolite rhythms) \\
+\texttt{bio\_coherence\_6} & RNA secondary structure (stem-loops, pseudoknots) \\
+\texttt{bio\_coherence\_7} & Ribozyme catalytic core (conserved tertiary motif) \\
+\texttt{bio\_coherence\_8} & Viral capsid geometry (icosahedral symmetry) \\
+\texttt{bio\_coherence\_9} & Quasispecies cloud (error-coupled replicator ensemble) \\
+\texttt{bio\_coherence\_10} & Protein folding funnel (energy landscape convergence) \\
+\texttt{bio\_coherence\_11} & Allosteric network (long-range coupling in proteins) \\
+\texttt{bio\_coherence\_12} & Gene regulatory motif (feed-forward loop, toggle switch) \\
+\texttt{bio\_coherence\_13} & Chemotaxis gradient sensing (spatial information processing) \\
+\texttt{bio\_coherence\_14} & Autoinducer feedback loop (self-reinforcing signaling) \\
+\texttt{bio\_coherence\_15} & Replication-transcription coupling (co-localized synthesis) \\
+\bottomrule
+\end{longtable}
+\end{center}
+
+\subsection{Celestial Domain Coherence Classes}
+
+\begin{center}
+\begin{longtable}{lp{9.5cm}}
+\toprule
+\textbf{Token} & \textbf{Description} \\
+\midrule
+\texttt{celestial\_coherence\_1} & Keplerian orbit (stable elliptical motion) \\
+\texttt{celestial\_coherence\_2} & Lagrange point equilibrium (gravitational balance) \\
+\texttt{celestial\_coherence\_3} & Tidal locking (synchronous rotation) \\
+\texttt{celestial\_coherence\_4} & Roche lobe geometry (equipotential surface) \\
+\texttt{celestial\_coherence\_5} & Magnetic dynamo (self-sustaining field generation) \\
+\texttt{celestial\_coherence\_6} & Stellar convection cell (Bénard-like circulation) \\
+\texttt{celestial\_coherence\_7} & Accretion disk structure (Keplerian shear flow) \\
+\texttt{celestial\_coherence\_8} & Magnetospheric current sheet (field topology) \\
+\texttt{celestial\_coherence\_9} & Radiation pressure equilibrium (photon-matter balance) \\
+\texttt{celestial\_coherence\_10} & Nuclear burning shell (fusion layer stratification) \\
+\texttt{celestial\_coherence\_11} & Pulsar beaming cone (lighthouse effect) \\
+\texttt{celestial\_coherence\_12} & Gravitational wave chirp (inspiral signature) \\
+\texttt{celestial\_coherence\_13} & Plasma oscillation mode (Langmuir, Alfvén waves) \\
+\texttt{celestial\_coherence\_14} & Magnetic reconnection site (topology change, energy release) \\
+\texttt{celestial\_coherence\_15} & Neutron star crust lattice (nuclear pasta phases) \\
+\bottomrule
+\end{longtable}
+\end{center}
+
+\newpage
+
+%======================================================================
+\section{Implementation Notes}
+%======================================================================
+
+\subsection{Computational Representation}
+
+Token sets can be implemented as:
+\begin{itemize}
+    \item \textbf{Enumerated types} in strongly-typed languages (Rust, Haskell, TypeScript)
+    \item \textbf{String constants} with namespace prefixes (Python, JavaScript)
+    \item \textbf{Database schemas} with indexed lookup tables (SQL, NoSQL)
+    \item \textbf{Graph nodes} in knowledge representation systems (RDF, Neo4j)
+\end{itemize}
+
+\subsection{Token Parsing}
+
+Machine tokens follow the pattern:
+\begin{verbatim}
+[Spiral][Operator]|[Machine]|[Domain]
+\end{verbatim}
+
+Example parsing logic (pseudo-code):
+\begin{verbatim}
+token = "Φ×|Encoder|bio_prion"
+parts = token.split("|")
+spiral_op = parts[0][0]      # Φ
+operator = parts[0][1]        # ×
+machine = parts[1]            # Encoder
+domain = parts[2]             # bio_prion
+\end{verbatim}
+
+\subsection{Cross-Domain Queries}
+
+Token sets enable systematic exploration:
+\begin{itemize}
+    \item \textbf{Cross-spiral:} Compare $\Phi$, $e$, $\pi$ behaviors for fixed operator-machine-domain
+    \item \textbf{Cross-operator:} Compare $(), \times, \hat{}, \%, +, -$ for fixed spiral-machine-domain
+    \item \textbf{Cross-machine:} Compare all 9 machines for fixed spiral-operator-domain
+    \item \textbf{Cross-domain:} Compare biological vs. celestial analogs for fixed spiral-operator-machine
+\end{itemize}
+
+\subsection{Usage Examples}
+
+\textbf{Example 1: Query all Encoder tokens in biological domains}
+\begin{verbatim}
+SELECT token FROM tokens
+WHERE machine = "Encoder" AND domain LIKE "bio_%"
+\end{verbatim}
+Returns 54 tokens (3 spirals $\times$ 6 operators $\times$ 3 bio domains)
+
+\textbf{Example 2: Compare fusion operators across domains}
+\begin{verbatim}
+SELECT token FROM tokens
+WHERE operator = "×" AND machine = "Catalyst"
+\end{verbatim}
+Returns 18 tokens (3 spirals $\times$ 6 domains)
+
+\textbf{Example 3: Identify transition candidates for stellar evolution}
+\begin{verbatim}
+SELECT token FROM transitions
+WHERE token LIKE "celestial_transition_%"
+AND description LIKE "%fusion%"
+\end{verbatim}
+Returns celestial\_transition\_2 (fusion ignition)
+
+\newpage
+
+%======================================================================
+\section{Validation and Completeness}
+%======================================================================
+
+\subsection{Token Count Verification}
+
+\textbf{Machine Tokens:}
+\begin{itemize}
+    \item Biological: $3 \text{ spirals} \times 6 \text{ operators} \times 9 \text{ machines} \times 3 \text{ domains} = 486$
+    \item Celestial: $3 \text{ spirals} \times 6 \text{ operators} \times 9 \text{ machines} \times 3 \text{ domains} = 486$
+    \item \textbf{Total: 972 machine tokens}
+\end{itemize}
+
+\textbf{Transition Tokens:}
+\begin{itemize}
+    \item Biological: 12 transitions
+    \item Celestial: 12 transitions
+    \item \textbf{Total: 24 transition tokens}
+\end{itemize}
+
+\textbf{Coherence Tokens:}
+\begin{itemize}
+    \item Biological: 15 coherence classes
+    \item Celestial: 15 coherence classes
+    \item \textbf{Total: 30 coherence tokens}
+\end{itemize}
+
+\textbf{Grand Total: 1026 tokens}
+
+\subsection{Structural Completeness}
+
+All combinations are enumerated:
+\begin{itemize}
+    \item[$\checkmark$] All 3 spirals ($\Phi$, $e$, $\pi$) covered
+    \item[$\checkmark$] All 6 operators ($()$, $\times$, $\hat{}$, $\%$, $+$, $-$) covered
+    \item[$\checkmark$] All 9 machines covered
+    \item[$\checkmark$] All 6 domains covered (3 bio + 3 celestial)
+    \item[$\checkmark$] 12 transitions per domain family
+    \item[$\checkmark$] 15 coherence classes per domain family
+\end{itemize}
+
+\subsection{Naming Consistency}
+
+All tokens follow consistent naming conventions:
+\begin{itemize}
+    \item Machine tokens: \texttt{[Spiral][Operator]|[Machine]|[Domain]}
+    \item Transitions: \texttt{[family]\_transition\_[1--12]}
+    \item Coherences: \texttt{[family]\_coherence\_[1--15]}
+\end{itemize}
+
+\newpage
+
+%======================================================================
+\section{Future Extensions}
+%======================================================================
+
+\subsection{Additional Domain Families}
+
+Future releases may include:
+\begin{itemize}
+    \item \textbf{Quantum domain:} Covering quantum coherence, entanglement, decoherence
+    \item \textbf{Neural domain:} Covering synaptic plasticity, network dynamics, learning
+    \item \textbf{Social domain:} Covering collective behavior, information propagation, coordination
+    \item \textbf{Technological domain:} Covering engineered systems, computation, networks
+\end{itemize}
+
+\subsection{Directional Modulation (UMOL)}
+
+Current token set focuses on machine-domain combinations. Future versions will integrate:
+\begin{itemize}
+    \item \textbf{u} (𝒰): Expansion / forward projection
+    \item \textbf{d} (𝒟): Collapse / backward integration
+    \item \textbf{m} (CLT): Modulation / coherence lock
+\end{itemize}
+
+Resulting in tokens of the form:
+\begin{verbatim}
+[Direction][Spiral][Operator]|[Machine]|[Domain]
+\end{verbatim}
+
+Example: \texttt{uΦ×|Encoder|bio\_bacterium}
+
+\subsection{Regime Mappings}
+
+Future work will establish explicit mappings between token combinations and observable physical regimes (A1--A8 and beyond), enabling:
+\begin{itemize}
+    \item Predictive sentence construction
+    \item Regime classification from token patterns
+    \item Cross-domain analogy identification
+    \item Automated hypothesis generation
+\end{itemize}
+
+\subsection{Integration with CET Framework}
+
+This token set is designed to integrate with the broader Coherent Emergence Theory (CET) framework, providing:
+\begin{itemize}
+    \item Computational substrate for CET simulations
+    \item Formalized vocabulary for theoretical developments
+    \item Experimental design templates
+    \item Cross-disciplinary translation layer
+\end{itemize}
+
+%======================================================================
+\section{References and Resources}
+%======================================================================
+
+\subsection{Related Documents}
+
+\begin{itemize}
+    \item \textbf{APL Operator's Manual} — Complete operator reference guide
+    \item \textbf{APL Seven Sentences Test Pack} — Falsifiable hypothesis testing framework
+    \item \textbf{UMOL Specification} — Universal Modulation Operator Law documentation
+    \item \textbf{CET Core Papers} — Theoretical foundations of Coherent Emergence Theory
+\end{itemize}
+
+\subsection{Citation}
+
+If you use this token set in your research, please cite:
+
+\begin{quote}
+APL Domain Token Sets: Biological + Celestial Families v1.0 \\
+Alpha-Physical Language Research Collective (2025) \\
+Complete token reference for computational implementation
+\end{quote}
+
+\subsection{Contact and Contributions}
+
+For questions, corrections, or proposed extensions:
+\begin{itemize}
+    \item Open an issue in the repository
+    \item Propose additional domains or coherence classes
+    \item Submit computational implementations
+    \item Report parsing errors or inconsistencies
+\end{itemize}
+
+\vfill
+
+\hrule
+\vspace{0.5em}
+\begin{center}
+\small
+\textbf{APL Domain Token Sets v1.0} \\
+Generated: 2025-11-24 \\
+License: Open Scientific Use \\
+Part of the Alpha-Physical Language Testing Framework
+\end{center}
+
+\end{document}

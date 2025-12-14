@@ -1,0 +1,18 @@
+# Rosetta-Helix-Substrate Requirements
+# =====================================
+
+# Core dependencies
+numpy>=1.24.0
+scipy>=1.10.0
+
+# Optional: PyTorch for GPU training
+# torch>=2.0.0
+
+# Testing
+pytest>=7.0.0
+pytest-cov>=4.0.0
+
+# Development
+black>=23.0.0
+ruff>=0.1.0
+mypy>=1.0.0

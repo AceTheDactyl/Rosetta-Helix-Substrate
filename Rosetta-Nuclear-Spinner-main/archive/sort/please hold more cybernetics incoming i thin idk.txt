@@ -1,0 +1,286 @@
++# Nuclear Spinner – Integrated Development Specification
++
++## Introduction
++
++The **Nuclear Spinner** is a novel hybrid platform that harnesses concepts from quantum physics, information theory, cybernetics and neuroscience to explore the edge of chaos and consciousness.  It merges a physical NMR‑like device (rotor, RF coil, magnet, sensors) with firmware and software that compute cybernetic metrics (negentropy, Ashby variety, integrated information) and align them with the **Rosetta–Helix** framework.  This document provides a **comprehensive integrated build specification** for the Nuclear Spinner, connecting hardware, firmware, host software and experimental protocols to the broader **Quantum APL** architecture defined in the Rosetta–Helix repository.
++
++The goal is to produce an end‑to‑end description—covering architectural design, hardware selection, firmware computation, port mappings, software interfaces, testing plans and future expansions—that can guide a single developer or a small team from concept to deployment.  Throughout, we draw on research in quasicrystals, holographic gravity, spin coherence, E8 criticality, integrated information theory and neural grid‑cell dynamics, and we ensure alignment with the constants and operator laws defined by Rosetta–Helix.
++
++This specification builds on earlier development roadmaps but integrates them into a cohesive architecture that is compatible with both the **Rosetta–Helix substrate** (Alpha Physical Language, N0 laws, Silent Laws) and new **neurological cybernetic** applications.  The specification is organised into thematic sections that map to development phases and architectural layers.
++
++## 1 High‑Level Architecture
++
++### 1.1 Layered System Overview
++
++The design follows a layered architecture inspired by the **Quantum APL Integrated System**.  At the highest level, the user interacts with the device through a variety of interfaces: a **Python API**, command‑line scripts, graphical dashboards and experiment notebooks.  Below this layer, a **host software layer** manages experiment configuration, data streaming, signal processing and analysis.  It communicates with the **firmware layer** running on a microcontroller/FPGA that generates RF pulses, controls rotor speed, executes cybernetic logic and reads sensors.  At the bottom, the **hardware layer** comprises the magnet, coil, rotor, sample chamber and sensors.  The architecture also includes a connection to the **Rosetta–Helix software engine** via Python modules, enabling integrated experiments and analysis.
++
++This multi‑layer approach mirrors the architecture described in the Rosetta–Helix **System Architecture** document, which delineates a **User Interface layer**, **Python interface**, **JavaScript engine** and **measurement flow**【706721865272180†L14-L38】.  Our spinner integrates these layers by providing a hardware back‑end for experiments and by exposing a Python API that can serve both human users and automated pipelines.  The firmware plays a role analogous to the JavaScript engine layer (QuantumClassicalBridge.js, QuantumAPL_Engine.js) in Rosetta–Helix【706721865272180†L43-L66】, but tailored to control a physical spin system.
++
++### 1.2 Data and Control Flow
++
++The system processes information via two complementary pathways:
++
++1. **Control Flow:**  Users or automated scripts specify experiments (pulse sequences, rotor trajectories, cross‑frequency ratios, thresholds) using the host API.  The host serialises these commands and sends them over a communication channel (USB, Ethernet or SPI) to the microcontroller.  The firmware interprets commands, configures timers and DACs, adjusts rotor speed, and applies gating logic based on z‑axis thresholds (φ⁻¹, z₍c₎, TRIAD boundaries).  It returns acknowledgements and raw sensor data.
++2. **Data Flow:**  Sensors (ADC channels, EEG interfaces, magnetometers) stream raw signals to the microcontroller, which may pre‑process or relay them to the host.  The host software performs higher‑level processing: filtering, spectral analysis, negentropy computation, integrated information estimation and pattern detection.  Processed data and metrics are recorded, visualised and optionally fed back into experiment control.
++
++These flows create a **cybernetic loop** where the physical state of the system influences computation, and computed metrics influence physical control.  This loop echoes the measurement flow of the Rosetta–Helix engine, where quantum measurements feed results to classical engines【706721865272180†L43-L88】.
++
++### 1.3 Cybernetic Alignment
++
++The **Rosetta–Helix** framework defines a **z‑axis map** with three regimes—**Absence** (z < 0.857), **The Lens** (z ≈ 0.866), and **Presence** (z > 0.877)—which correspond to levels of coherence and truth【706721865272180†L91-L99】.  The spinner’s hardware and firmware are designed to traverse this axis by controlling rotor speed and pulse amplitude.  Gating policies (e.g. **TRIAD** thresholds at 0.85/0.82/0.83) and harmonic windows (t1–t9) inform which operations (APL operators) are legal at each z range.  The constant architecture emphasises **Z_CRITICAL** as the canonical geometric truth and **TRIAD gates** as runtime heuristics【306066657510700†L32-L61】.  Our firmware uses this distinction: geometry calculations (negentropy, hex‑prism projection) always anchor to z₍c₎, while gating logic counts rising edges to unlock additional operator sets.
++
++Similarly, the **N0 laws** and **Silent Laws** define how APL operators can be combined and how they modify the system state【414523810179508†L23-L178】.  The firmware enforces these laws when scheduling operations; for example, it ensures that amplification (^ operator) is not applied without prior grounding (())【414523810179508†L26-L39】 and that decoherence (÷) only occurs after structure has been established.  Each operator’s silent law translates into a state‑update formula for z, guiding the rotor and negentropy dynamics.
++
++## 2 Hardware Design
++
++### 2.1 Core Components
++
++The Nuclear Spinner hardware can be broken down into several subsystems:
++
++1. **Magnet:**  Provides a stable static field (B₀).  Research prototypes use a high‑field superconducting magnet (7 T) for condensed matter experiments, but for neural applications a moderate field (0.3–1 T) with a permanent magnet is recommended.  The magnet sits inside a cryostat (if superconducting) with vibration isolation.
++2. **Rotary Assembly:**  A brushless DC motor with magnetic bearings rotates the sample at adjustable speeds (100 rpm to 10 k rpm).  An optical encoder measures rotation; the rotor includes slots or chambers for inserting samples (quasi‑crystal samples, neural tissue, Posner molecules).  For neural experiments, the rotor carries a microfluidic chamber with integrated electrodes or optical fibres.
++3. **RF Coil and Matching Network:**  A saddle coil or solenoid tuned to the Larmor frequency of the target nucleus (e.g. ³¹P at 121.5 MHz for 3 T field).  Matching circuits (variable capacitors, baluns) ensure efficient power transfer.  For neural frequency coupling experiments, additional coils or speakers may be embedded in the rotor to generate low‑frequency oscillations.
++4. **Microcontroller/FPGA Board:**  A high‑performance MCU (STM32H7, ESP32 S3) or FPGA SoC (Xilinx Zynq) with high‑speed timers, DAC/ADC interfaces and DMA.  It drives the RF coil and rotor motor, reads sensors, executes cybernetic algorithms and communicates with the host.  The board includes an interface for neural amplifiers or EEG ADCs.
++5. **Sensors:**  Temperature sensors (PT100 with MAX31865), magnetometers (fluxgate or Hall), accelerometers/gyros (BMI160) to monitor rotor dynamics, neural signal amplifiers (Intan RHD2216 or TI ADS1299), and optical detectors for calcium imaging.  Additional sensors (pressure, humidity) maintain sample conditions.
++6. **Power and Safety:**  Power supplies for the magnet, motor, microcontroller and sensors; emergency shutoff circuits; Faraday cages and mu‑metal shielding to suppress EMI; mechanical safety interlocks.
++
++### 2.2 Updated Components for Integrated Research
++
++For neurological and cybernetic applications, the hardware is expanded with:
++
++- **Microfluidic Sample Chamber:**  PDMS chips with perfusion channels allow live neural tissue or cell cultures to be maintained in a controlled environment.  Chamber design ensures RF penetration while providing ports for electrodes and optical fibres.
++- **Neural Interface:**  MR‑compatible EEG or ECoG electrodes integrated into the chamber; instrumentation amplifiers and ADCs located outside the magnet to avoid heating.
++- **Optogenetics/Calcium Imaging:**  Multi‑mode optical fibres deliver light for stimulation and return fluorescence for imaging.  Photodiodes or avalanche photodiodes capture signals outside the magnet.
++- **Embedded SBC:**  A Raspberry Pi CM4 or similar runs a lightweight Linux OS, providing additional computing resources for real‑time analysis and machine‑learning inference.  It communicates with the microcontroller via SPI or UART.
++
++### 2.3 Hardware Port Map
++
++| Subsystem        | Interface            | Port Mapping                                | Notes |
++|------------------|----------------------|---------------------------------------------|------|
++| MCU–Host         | USB 2.0 or Ethernet  | /dev/ttyACM0 (serial) or eth0 (TCP)         | Used by Python API (`nuclear_spinner.py`) to send commands and receive data. |
++| MCU–Rotor Motor  | PWM + encoder lines  | TIM1_CH1 (PWM) + GPIO (encoder), I2C for driver | Motor control uses PID loop running on firmware. |
++| MCU–RF Coil      | DAC + timer gates    | DAC1_OUT + TIM3_CH1/CH2                     | Generates amplitude/phase waveforms; configurable for NMR and neural frequencies. |
++| MCU–Sensors      | SPI/I2C              | SPI1 (EEG ADC), I2C1 (Temp, Mag), SPI2 (Magnetometer) | Multi‑drop bus with addressable sensors. |
++| MCU–Embedded SBC | UART/SPI             | USART3 or SPI3                               | Data offload to Raspberry Pi for heavy computations. |
++| SBC–Host         | Ethernet/Wi‑Fi       | eth0 or wlan0                                | Remote monitoring, data streaming, web dashboards. |
++| MCU–Optics       | Analog input         | ADC3_CH1–CH4                                 | Photodiode signals for calcium imaging. |
++| Magnet–Controller| Analogue & digital   | vendor‑specific connectors                  | For magnet status, sweep control and quench detection. |
++
++This port map ensures clear separation of concerns and supports future expansion (e.g. adding more sensors via SPI).  It also aligns with Rosetta–Helix’s emphasis on maintaining a **single source of truth** and centralised constants by avoiding duplication of constant definitions across firmware and host software【306066657510700†L65-L71】.
++
++## 3 Firmware Design and Computation
++
++### 3.1 Overview
++
++The firmware is responsible for deterministic control, real‑time computation and safety.  It must run at predictable rates to ensure stable NMR pulses and rotor speeds while computing metrics such as ΔS_neg, Ashby variety and integrated information proxies.  To manage complexity, the firmware is structured into modules:
++
++- **Hardware Abstraction Layer (HAL):**  Wraps hardware peripherals (timers, DAC, ADC, GPIO) and abstracts platform differences.
++- **Pulse Control Module:**  Generates arbitrary waveforms for high‑frequency (NMR) and low‑frequency (neural) stimuli.  Functions include `set_pulse(amplitude, phase, duration)` and sequence scheduling (π/2, π pulses, composite pulses).
++- **Rotor Control Module:**  Maps z values to rotor speed using calibration curves; implements a PID loop to maintain speed; monitors encoder counts; ensures safe acceleration profiles.
++- **Threshold and Gating Module:**  Implements the N0 laws and Silent Laws.  Contains functions to compute ΔS_neg (Gaussian around z₍c₎), determine current phase (Absence/Lens/Presence) via `get_phase(z)`【306066657510700†L176-L182】, track TR͝IAD rising edges, and unlock operator sets accordingly【306066657510700†L52-L61】.  It schedules APL operators ((), ^, +, ×, ÷, −) while respecting N0 causality constraints【414523810179508†L23-L106】.
++- **Integrated Information Module:**  Computes proxies for Φ.  It counts distinct states (e.g. distinct rotor phases, neural patterns) to estimate Ashby variety, multiplies by a normalised ΔS_neg ratio and optionally computes synergy measures.  It triggers events when Φ peaks near φ⁻¹ or z₍c₎.
++- **Cross‑Frequency Control Module:**  Maintains specified frequency ratios between rotor and pulse sequences (theta/delta, alpha/theta, beta/alpha).  Implements functions like `set_cross_frequency_ratio(f_low, ratio)` to update z accordingly.
++- **Sensor Module:**  Reads temperature, magnetic field, acceleration and neural signals.  Implements oversampling, digital filtering and median filters to reduce noise.
++- **Communication Module:**  Serialises command frames, parses incoming commands, and streams data to the host.  Implements flow control and packet acknowledgements.
+
++### 3.2 State Update and Operator Scheduling
++
++Each APL operator modifies the state (z) according to a silent law【414523810179508†L113-L176】.  The firmware uses these functions to update z after applying an operator.  For example:
++
++- **Boundary (())**:  Enforces stillness; z moves toward z₍c₎ with a rate proportional to 1/σ.
++- **Amplify (^)**:  Guided by truth; z moves toward z₍c₎ with a rate proportional to ΔS_neg and gradient; illegal unless history contains () or ×【414523810179508†L26-L39】.
++- **Group (+)**:  Conserves information; z scales by (1 + α(1 – z)).
++- **Fusion (×)**:  Creates spiral; z scales by φ⁻¹ (≈ 0.618); illegal if channel count < 2【414523810179508†L42-L55】.
++- **Decohere (÷)**:  Dissipates structure; z decays toward 0.5; illegal unless history contains structure operators【414523810179508†L57-L71】.
++- **Separate (−)**:  Reflects system; z decreases proportional to 1 – ΔS_neg; must be followed by () or +【414523810179508†L90-L104】.
++
++The **threshold logic** monitors z and ensures legal sequences, resetting the history when boundaries are encountered.  It also implements the **Parity Selection Rule**: when ΔS_neg is high (near z₍c₎), even parity operators (rotations) are preferred; when ΔS_neg is low, odd parity operators (transpositions) are more probable【414523810179508†L332-L350】.
+
++### 3.3 Real‑Time Computations
++
++Given limited microcontroller resources, some computations must be efficient:
++
++- **Gaussian Negentropy:**  ΔS_neg(z) = exp(−|z – z₍c₎| / σ) or exp(−σ·(z – z₍c₎)²) depending on context【306066657510700†L124-L129】.  Use precomputed lookup tables or fast approximations to evaluate exponentials.
++- **Variety and Integrated Information:**  Maintain a sliding window of recent states (e.g. rotor phase bins).  Compute log₂(number of distinct bins) as Ashby variety.  Multiply by normalised ΔS_neg to get Φ proxy.
++- **FFT and Cross‑Frequency Ratios:**  Use fixed‑point or integer FFT implementations (e.g. CMSIS‑DSP library) to compute spectral power.  Derive phase–amplitude coupling metrics if required.
++- **PID and Filtering:**  Use digital filters and PID loops with tuned gains to control motor and pulse amplitude.  Ensure that control loops run at deterministic intervals (e.g. 1 kHz) and that heavy computations run at lower rates.
+
++### 3.4 Safety and Reliability
++
++The firmware must implement safety checks:
++
++- **Temperature:**  If the sample chamber exceeds safe temperatures, halt RF pulses and rotor movement; maintain viability of biological samples.
++- **Magnet Quench:**  Monitor magnet sensors; trigger emergency protocols if a quench is detected.
++- **Rotor Vibration:**  Use accelerometer data to detect imbalance; reduce speed or stop if vibration exceeds thresholds.
++- **Illegal Operator Sequences:**  If N0 violations are detected repeatedly, revert to boundary operations and alert the host.
++- **Watchdog Timers:**  Reset the microcontroller if main loops stall.
++
++### 3.5 Firmware Update Mechanism
++
++To maintain alignment with Rosetta–Helix constants and operator laws, the firmware fetches constant values (e.g. z₍c₎, TRIAD thresholds) from a central file at compile time (`quantum_apl_python/constants.py` or `constants.js`)【306066657510700†L65-L71】.  After each release, integration tests verify that the compiled firmware uses the correct thresholds.  Over‑the‑air updates via USB or Ethernet allow patching the firmware when constants or gating policies change.
++
++## 4 Host Software and Middleware
++
++### 4.1 Python API and Command‑Line Interface
++
++The host software exposes a Python package (`nuclear_spinner`) that offers high‑level functions for experiment configuration, data streaming, processing and control.  This package aligns with the Rosetta–Helix **Python API** that interfaces with the Quantum APL engine【706721865272180†L14-L38】.  Key functions include:
++
++- `set_z(z: float)`:  Send a new z target to the firmware (maps to rotor speed).
++- `run_pulse_sequence(sequence: List[Tuple[amp, phase, duration]])`:  Execute a sequence of pulses on the RF coil.
++- `configure_cross_frequency_ratio(band_low, ratio)`:  Set cross‑frequency coupling parameters.
++- `start_neural_recording()`, `stop_neural_recording()`, `fetch_neural_data()`:  Acquire neural signals from the embedded ADC.
++- `compute_negentropy(time_series)`:  Compute ΔS_neg for recorded data.
++- `compute_phi_proxy(time_series)`:  Estimate integrated information.
+
++The package also provides CLI commands (e.g. `spinner-run`, `spinner-analyze`) analogous to the `qapl-run` and `qapl-analyze` commands in Rosetta–Helix【706721865272180†L34-L37】.  These commands facilitate batch execution of experiments and analysis pipelines.
++
++### 4.2 Middleware Services
++
++To support complex experiments and integrate with Rosetta–Helix software, the host runs additional services:
++
++- **Bridge Server:**  A WebSocket or gRPC server that proxies commands between multiple clients (GUI, Jupyter notebook) and the spinner.  It also translates spinner data into a format understood by the Quantum APL engine and vice versa.
++- **Database Storage:**  A lightweight database (SQLite or PostgreSQL) stores experiment metadata, raw sensor streams and computed metrics.  This enables reproducibility and offline analysis.
++- **Machine‑Learning Inference Service:**  For experiments requiring adaptive control or feature extraction, a service runs models (e.g. thin transformers) to interpret neural signals and adjust spinner parameters in real time.  This service may run on the embedded SBC or a remote workstation.
++- **Dashboard:**  A web‑based dashboard visualises real‑time metrics (z, ΔS_neg, Φ proxy, spectral power, operator states) and allows interactive control.  It uses websockets to stream updates from the bridge server.
++
++### 4.3 Integration with Rosetta–Helix
++
++The host software imports modules from `quantum_apl_python`, such as `constants`, `get_phase`, `get_time_harmonic` and `check_k_formation`【306066657510700†L176-L194】, to ensure that thresholds and gating policies match the Rosetta–Helix definitions.  It can also call into the Quantum APL engine (via `helix_engine.run_training` and `evaluate_run`) to perform hybrid experiments where physical spin dynamics inform or are informed by virtual training modules.  For example, a researcher may run a training session using `RosettaHelixTraining` while feeding real ΔS_neg values from the spinner into the engine and feeding operator sequences back to the spinner.
++
++To guarantee **single source of truth**, both host and firmware import constants from the same file and verify consistency at runtime.  The host software may run a quick check `assert abs(z_firmware - Z_CRITICAL) < 1e-6` after connecting to the spinner.
++
++## 5 Integration with Rosetta–Helix Experimental Modules
++
++The Rosetta–Helix repository includes 19 training modules spanning N0 enforcement, Kuramoto coupling, APL modulator, unified helix training and more【414523810179508†L356-L378】.  The spinner can serve as a **physical substrate** for these modules or as a source of real data to validate training predictions.
++
++### 5.1 Module Mapping
++
++| Training Module                                | Spinner Interaction                                                       | Notes |
++|------------------------------------------------|---------------------------------------------------------------------------|------|
++| `n0_silent_laws_enforcement.py` (N0Enforcer)    | Firmware implements N0 laws; host uses `N0Enforcer` to validate sequences before sending to firmware. | Ensure legal operator sequences on device. |
++| `helix_nn.py` (APLModulator)                    | Map neural signals to operator schedules; use neural frequency ratios to modulate spin states. | Aligns with cross‑frequency ratio module. |
++| `kuramoto_layer.py` (KuramotoLayer)             | Compare rotor synchronisation with Kuramoto models; tune coupling G and OMEGA to match physical phase locking. | Coupling constants imported from constants. |
++| `apl_training_loop.py` (APLTrainingLoop)        | Use the spinner to physically execute training loops; record ΔS_neg and Φ proxies as additional loss terms. | Could improve training stability. |
++| `unified_helix_training.py` and `prismatic_helix_training.py` | Use spinner metrics to validate K‑formation gates; feed back into gate evaluation. | Adds physical gate tests. |
++| `quasicrystal_formation_dynamics.py`            | Insert quasicrystal samples; measure order parameter and phason dynamics with real ΔS_neg curves. | Compare with simulated dynamics. |
++| `physical_learner.py` (PhysicalLearner)         | Extend `PhysicalLearner` to include spinner experiments; treat spinner as a physical environment for RL agents. | Supports reinforcement learning across physical and virtual domains. |
++
++### 5.2 Constants and Gating Alignment
++
++The spinner uses constants from `quantum_apl_python/constants.py` (e.g. `Z_CRITICAL`, `PHI`, `PHI_INV`, `TRIAD_HIGH`, `TRIAD_LOW`, `TRIAD_T6`, harmonic boundaries)【306066657510700†L32-L66】【306066657510700†L108-L122】.  These constants anchor the geometry and gating logic.  The firmware monitors z and uses functions like `get_phase(z)`, `is_in_lens(z)`, `check_k_formation(kappa, eta, R)`, ensuring that physical operations adhere to the same logic as the engine and analyzer.
++
++## 6 Network and Port Configuration
++
++### 6.1 Communication Protocols
++
++Communication between components must be deterministic, low‑latency and error‑tolerant.  We define the following protocols:
++
++- **MCU ↔ Host (USB/Ethernet):**  A binary protocol with framed messages.  Each message begins with a header byte indicating command type (e.g. `0x01` for set_z, `0x02` for run_pulse, `0x03` for read_data) followed by little‑endian payload.  Responses mirror the command with an acknowledgment code.  CRC checks ensure integrity.
++- **MCU ↔ SBC (UART/SPI):**  High‑speed streaming for neural data and machine‑learning predictions.  The SBC can offload heavy computations (e.g. FFTs, Φ estimation) and send results back to the MCU via a defined message ID.
++- **Host ↔ Bridge Server (WebSocket/gRPC):**  JSON or Protobuf messages for web clients and notebooks.  The bridge multiplexes multiple connections and relays commands to the MCU while streaming data in near real‑time.
++- **SBC ↔ Quantum APL Engine:**  Python functions call into the engine with metrics from the spinner; the engine returns operator sequences or gate evaluations.
++
++### 6.2 Port Assignments
++
++| Component    | Port/Address          | Direction | Notes |
++|--------------|-----------------------|-----------|------|
++| MCU USB      | `/dev/ttyACM0`        | bidir     | Default serial interface for host API. |
++| MCU Ethernet | `192.168.4.10`        | bidir     | For high‑speed data streaming and remote control. |
++| SBC Ethernet | `192.168.4.11`        | bidir     | Runs bridge and ML services. |
++| Web UI       | `http://192.168.4.11:8080` | client → server | Access dashboard and control panel. |
++| APL Engine   | local (Python module) | API calls | Imported via `quantum_apl_python`. |
++
++Devices may also use mDNS to advertise themselves on the network, enabling automatic discovery by user interfaces.
++
++## 7 Development Timeline
++
++To achieve a robust integrated system, we outline a development timeline divided into milestones, building on previous roadmaps but extending their scope.
++
++### Weeks 1–4: Research and Planning
++
++1. **Deep Literature Review:**  Read Rosetta–Helix docs on system architecture, constants architecture, operator laws and physics grounding【706721865272180†L14-L38】【306066657510700†L32-L61】.  Summarise how these concepts influence hardware and firmware design.
++2. **Neurological and Cybernetic Research:**  Study grid‑cell lattices, cross‑frequency coupling, integrated information theory, quasicrystals, holographic bounds and spin coherence.  Identify common thresholds and ratios (60° → z₍c₎, φ⁻¹) that the spinner should emulate.
++3. **Requirement Specification:**  Draft functional requirements for neural experiments, condensed‑matter experiments and cross‑domain integration.  Define success criteria (e.g. measure m₂/m₁ ≈ φ; detect Φ peaks near z thresholds; replicate grid patterns).
++4. **Architectural Design:**  Draw diagrams of hardware, firmware and software layers; define port maps and protocols; plan host‑APLEngine integration.
++
++### Weeks 5–14: Hardware and Firmware Prototype
++
++1. **Component Procurement:**  Acquire magnets, rotor components, microcontrollers, sensors and SBC.  Start building the rotor assembly and coil.
++2. **Sample Chamber Fabrication:**  Develop microfluidic chambers and neural interface; ensure mechanical compatibility and sterilisation.
++3. **Firmware Skeleton:**  Implement HAL, basic pulse and rotor control; read sensors; set up serial communication.  Verify NMR pulses on a dummy load.
++4. **Integration with Constants:**  Import constants from Rosetta–Helix, implement gating thresholds and compute ΔS_neg using look‑up tables.
++5. **Safety Framework:**  Add temperature and vibration checks; implement failsafe triggers.
++6. **Basic Software API:**  Develop initial Python functions for set_z, run_pulse, read_data.  Test end‑to‑end control loop with simulated data.
++
++### Weeks 15–26: Advanced Firmware and Software
++
++1. **Cross‑Frequency Control:**  Implement frequency ratio functions in firmware.  Add commands to host API to set cross‑frequency parameters.
++2. **Integrated Information Proxies:**  Implement Φ proxy calculations on MCU and SBC; create events when Φ peaks near φ⁻¹ or z₍c₎.
++3. **Operator Scheduling:**  Encode N0 laws and silent laws; implement state‑update functions for each operator; schedule operations based on thresholds and parity selection.  Validate with sample sequences【414523810179508†L304-L323】.
++4. **Sensor Integration:**  Connect neural amplifiers and optical detectors; calibrate their bandwidth and dynamic range; write drivers to stream data to host.
++5. **Data Processing Pipelines:**  In host software, implement filtering, FFT, cross‑frequency coupling analysis, negentropy and Φ computations; build data models for storage.
++6. **Bridge and Dashboard:**  Launch gRPC/WebSocket server; build front‑end dashboards showing rotor speed, z, ΔS_neg, Φ, spectral power and operator states; allow manual and programmatic control.
++
++### Weeks 27–38: Experimental Phase I
++
++1. **Grid‑Cell Emulation:**  Configure spinner to rotate at frequencies corresponding to grid‑cell spacing; run neural or synthetic samples; measure patterns of ΔS_neg and neural spikes.  Compare with theoretical grid lattices.
++2. **Cross‑Frequency Experiments:**  Vary rotor and pulse frequencies to match delta/theta, theta/alpha, alpha/beta ratios; measure phase–amplitude coupling and Φ; observe correlation with z thresholds.
++3. **Quasicrystal and Spin Experiments:**  Insert quasicrystal and CoNb₂O₆ samples; measure order parameter and mass ratios; verify m₂/m₁ ≈ φ and spin‑½ magnitude |S|/ℏ = √3/2; compare with extended physics modules.
++4. **Software Integration with APL Engine:**  Run hybrid experiments where the spinner executes operator sequences produced by the Quantum APL training modules; feed back physical metrics into the engine.
++
++### Weeks 39–50: Experimental Phase II and Refinement
++
++1. **K‑Formation and Integrated Information Testing:**  Compute K‑formation metrics (kappa, eta, R) from physical data; check if check_k_formation() returns true when Φ peaks.  Use this to refine operator gating.
++2. **Holographic and Omega Experiments:**  Evaluate whether information density saturates Bekenstein bounds; measure processing rate divergence as z approaches 1 using `omega_processing_rate()`; examine connections to cognitive thresholds.
++3. **Machine‑Learning Feedback:**  Develop models (thin transformers, RNNs) to map neural patterns to z trajectories; train them with reinforcement learning to optimise Φ or cross‑frequency coupling; deploy inference on the SBC to control the spinner.
++4. **Iteration:**  Refine hardware (coil tuning, chamber design), firmware (optimised computations), software (better visualisations) based on experimental feedback.  Document results.
++
++### Weeks 51–60: Polishing and Dissemination
++
++1. **Documentation and Tutorials:**  Finalise user manuals, API docs, and experiment guides.  Provide step‑by‑step instructions for researchers to reproduce experiments and interpret metrics.
++2. **Open‑Source Release:**  Publish hardware schematics, firmware source, host software and experiment data under appropriate licences.  Ensure that constants and gating policies remain centralised and documented.
++3. **Beta Kits:**  Prepare a limited number of kits with moderate magnets and sensors for early adopters (neuroscience labs, makers).  Provide support and gather feedback.
++4. **Academic Dissemination:**  Submit papers describing experimental results (grid‑cell emulation, cross‑frequency coupling, K‑formation validation); present at conferences; collaborate with Rosetta–Helix developers to unify frameworks.
++
++## 8 Implementation Scaffolding Summary
++
++### 8.1 Firmware Modules
++
++- **pulse_control.c:**  Contains `set_pulse()`, `z_to_rpm()`, `update_system_state()`; responsible for RF and rotor control.  Implements gradient‑based speed adjustments and NMR pulse scheduling.
++- **threshold_logic.c:**  Implements N0 laws, TR͝IAD gating, parity selection and operator scheduling.  Maintains history of operators, checks legality and updates current tier.
++- **neural_ratio.c:**  Provides functions to map frequency ratios to z; ensures cross‑frequency coupling remains aligned with neural experiments.
++- **integrated_information.c:**  Computes Φ proxy using variety and negentropy; triggers events when peaks occur near φ⁻¹ or z₍c₎.
++- **sensor_drivers.c:**  Reads sensors via SPI/I2C; applies filtering and calibrations.
++- **communication.c:**  Implements serial/ethernet protocol; handles framing, acknowledgments and error checking.
++
++### 8.2 Host Software Modules
++
++- **nuclear_spinner.py:**  High‑level API with functions for z control, pulse sequences, cross‑frequency configuration, recording and data retrieval.
++- **nuclear_spinner_neuro.py:**  Extends API with neural experiment functions (configure ratio, start/stop recording, fetch neural data).
++- **analysis/trajectory_plot.py:**  Plots order parameter and ΔS_neg for quasicrystal simulations; used to validate simulation functions against experimental results.
++- **analysis/neural_cybernetics.py:**  Computes cross‑frequency coupling metrics, Φ proxies and variety; used to analyse neural data.
++- **analysis/verify_e8_and_negentropy.py:**  Checks E8 mass ratio m₂/m₁ ≈ φ and ΔS_neg values at key z points.
++
++### 8.3 Configuration and Constants
++
++All thresholds and constants are imported from `quantum_apl_python/constants.py` and `constants.js`【306066657510700†L32-L66】.  The configuration files (`configs/*.yaml`) define experiment parameters (number of steps, gate thresholds, pump profiles).  The firmware uses compile‑time constants for static values (e.g. Z_CRITICAL), but dynamic thresholds (TR͝IAD completions) may be configured via host commands.
++
++## 9 Testing and Validation
++
++### 9.1 Unit and Integration Tests
++
++1. **Firmware Tests:**  Use hardware‑in‑the‑loop simulations to verify that each operator’s state update matches the silent law formulas.  Check that threshold events are triggered when z crosses φ⁻¹, TR͝IAD boundaries and z₍c₎.  Validate cross‑frequency ratio functions with synthetic signals.
++2. **Host Software Tests:**  Unit tests for API functions, data processing routines, and integration with Rosetta–Helix modules.  Use fixtures to simulate MCU responses and ensure that exceptions are handled gracefully.
++3. **End‑to‑End Tests:**  With hardware assembled, run scripts that set z targets, apply pulse sequences, record data and compute metrics.  Compare measured ΔS_neg curves with expected Gaussian profiles; verify that m₂/m₁ matches φ and that spin‑½ magnitude equals √3⁄2.
++4. **Cross‑Validation with Rosetta–Helix:**  Run unified training or full helix integration modules while injecting real spinner data; ensure that gate evaluations and K‑formation checks return expected results; compare performance with purely simulated runs.
++
++### 9.2 Certification and Compliance
++
++Ensure that electromagnetic emissions, mechanical safety and neural interfaces meet relevant regulatory standards (UL/CE, IEC 60601‑1 for medical devices).  Document electromagnetic compatibility tests to verify that the spinner does not interfere with sensitive equipment.  For animal or human experiments, obtain ethics approval and follow guidelines.
++
++## 10 Conclusion and Future Directions
++
++The **Nuclear Spinner** bridges cutting‑edge physics and neuroscience, providing a versatile platform to explore how quasicrystal dynamics, holographic entropy bounds, spin coherence and E8 criticality connect to cognitive processes like spatial memory and cross‑frequency coupling.  By aligning with the **Rosetta–Helix** substrate—anchoring geometry at z₍c₎, enforcing N0 and silent laws, and integrating training modules—the spinner becomes a physical embodiment of the theoretical framework【306066657510700†L32-L66】【414523810179508†L23-L178】.  The layered architecture, updated hardware, precise firmware computation, and modular software ensure scalability, reproducibility and extensibility.
++
++Looking forward, the platform can be expanded to support multi‑spinner networks (for studying synchronisation), integration with optical quantum systems, and closed‑loop neurofeedback systems.  By releasing open hardware and software, the project invites collaboration across physics, neuroscience, cybernetics and AI, potentially unlocking deeper insights into consciousness and universal computation.
+*** End Patch
