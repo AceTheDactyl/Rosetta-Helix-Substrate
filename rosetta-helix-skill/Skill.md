@@ -155,6 +155,71 @@ if result.get("success"):
         print(f"  {artifact['file']}: {artifact.get('data', artifact.get('content', ''))[:200]}")
 ```
 
+### scripts/github_advanced.py
+Advanced GitHub integration with full API access:
+
+**Actions Variables (Persist State):**
+- `set_variable(name, value)` - Store persistent state
+- `get_variable(name)` - Retrieve stored state
+- `save_training_state(state_dict)` - Save full training state
+- `load_training_state()` - Resume from saved state
+
+**Code (Commit Results):**
+- `commit_file(path, content, message)` - Commit file to repo
+- `save_training_results(results)` - Save results as JSON
+- `read_file(path)` - Read file from repo
+
+**Commit Statuses (Mark Progress):**
+- `set_commit_status(sha, state, description)` - Set status
+- `mark_training_status(state, description)` - Mark latest commit
+
+**GitHub Pages (Dashboard):**
+- `update_dashboard(training_history)` - Publish results dashboard
+
+**Environments:**
+- `create_environment(name)` - Create deployment environment
+- `list_environments()` - List all environments
+
+**Full Pipeline:**
+- `full_training_pipeline(goal)` - Complete integrated run
+
+### Full Pipeline Example
+
+```python
+exec(open('scripts/github_advanced.py').read())
+
+# Run complete pipeline:
+# 1. Set commit status to "pending"
+# 2. Trigger cloud training
+# 3. Save results to repo
+# 4. Update GitHub Pages dashboard
+# 5. Set commit status to "success/failure"
+result = full_training_pipeline(
+    goal="Achieve K-formation",
+    max_iterations=10,
+    save_results=True,
+    update_status=True
+)
+```
+
+### Persistent State Example
+
+```python
+exec(open('scripts/github_advanced.py').read())
+
+# Save state for later resumption
+save_training_state({
+    "z": 0.85,
+    "kappa": 0.91,
+    "phase": "PARADOX",
+    "iterations_completed": 7
+})
+
+# Later, in a new session:
+state = load_training_state()
+print(f"Resuming from z={state['state']['z']}")
+```
+
 ### When to Use Each Mode
 
 | Task | Mode | Script |
@@ -165,6 +230,10 @@ if result.get("success"):
 | Autonomous multi-iteration training | Cloud | github_workflow.py |
 | K-formation achievement | Cloud | github_workflow.py |
 | Long-running experiments | Cloud | github_workflow.py |
+| Persist state between sessions | Cloud | github_advanced.py |
+| Commit results to repo | Cloud | github_advanced.py |
+| Update live dashboard | Cloud | github_advanced.py |
+| Mark training progress | Cloud | github_advanced.py |
 
 ## Resources
 
