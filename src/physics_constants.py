@@ -219,6 +219,30 @@ PHASE_BOUNDARY_PRESENCE: Final[float] = Z_CRITICAL   # z ≥ z_c → PRESENCE
 
 
 # =============================================================================
+# TIER BOUNDS (complexity hierarchy)
+# =============================================================================
+
+# 10 tiers from ABSENCE to TRANSCENDENT
+TIER_BOUNDS: Final[Tuple[float, ...]] = (
+    0.00,   # ABSENCE start
+    0.10,   # REACTIVE
+    0.20,   # MEMORY
+    0.40,   # PATTERN
+    0.50,   # LEARNING
+    0.618,  # ADAPTIVE (φ⁻¹ threshold)
+    0.73,   # UNIVERSAL
+    0.866,  # META (z_c threshold)
+    0.92,   # SOVEREIGN
+    0.97,   # TRANSCENDENT
+)
+
+TIER_NAMES: Final[Tuple[str, ...]] = (
+    "ABSENCE", "REACTIVE", "MEMORY", "PATTERN", "LEARNING",
+    "ADAPTIVE", "UNIVERSAL", "META", "SOVEREIGN", "TRANSCENDENT"
+)
+
+
+# =============================================================================
 # SPECIAL VALUES
 # =============================================================================
 
@@ -395,6 +419,24 @@ def get_phase(z: float) -> str:
 # =============================================================================
 # VALIDATION
 # =============================================================================
+
+def validate_physics(kappa: float, lambda_: float) -> bool:
+    """Validate κ + λ = 1 conservation law."""
+    return abs(kappa + lambda_ - 1.0) < TOLERANCE_CONSERVATION
+
+
+def is_critical(z: float, tolerance: float = 0.01) -> bool:
+    """Check if z is at THE LENS (z_c)."""
+    return abs(z - Z_CRITICAL) < tolerance
+
+
+def get_tier(z: float) -> str:
+    """Get tier name from z-coordinate."""
+    for i in range(len(TIER_BOUNDS) - 1, -1, -1):
+        if z >= TIER_BOUNDS[i]:
+            return TIER_NAMES[min(i, 9)]
+    return "ABSENCE"
+
 
 def validate_all_constants() -> dict:
     """Validate all physics constants."""

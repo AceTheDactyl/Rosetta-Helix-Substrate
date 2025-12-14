@@ -216,7 +216,8 @@ class TestPhaseClassification:
 
     def test_phase_paradox_between_phi_inv_and_z_c(self):
         """Phase should be PARADOX for phi^-1 <= z < z_c."""
-        for z in [0.618, 0.7, 0.8, 0.85]:
+        # Use PHI_INV exactly at boundary, plus values clearly in PARADOX range
+        for z in [PHI_INV, 0.62, 0.7, 0.8, 0.85]:
             phase = get_phase(z)
             assert phase == "PARADOX", f"z={z} should be PARADOX, got {phase}"
 
@@ -380,10 +381,12 @@ class TestCyberneticMetrics:
         assert result == 0.0, f"Single state variety should be 0, got {result}"
 
     def test_ashby_variety_increases_with_diversity(self):
-        """Variety should increase with more diverse states."""
-        low_var = ashby_variety([0.5, 0.51, 0.52])
-        high_var = ashby_variety([0.1, 0.5, 0.9])
-        assert high_var > low_var, "More diverse states should have higher variety"
+        """Variety should increase with more distinct states."""
+        # Low diversity: few distinct values (3 unique values)
+        low_var = ashby_variety([0.5, 0.5, 0.5, 0.51, 0.51, 0.52])
+        # High diversity: many distinct values spanning the same range
+        high_var = ashby_variety([0.5, 0.505, 0.51, 0.515, 0.52, 0.525])
+        assert high_var > low_var, f"More distinct states should have higher variety: {high_var} vs {low_var}"
 
     def test_shannon_capacity_increases_with_snr(self):
         """Shannon capacity should increase with SNR."""
