@@ -33,7 +33,8 @@ dependencies = [
 
 [project.optional-dependencies]
 viz = [
-    "matplotlib>=3.6,<4",
+    # Limit to <3.10 to ensure contourpy stays <=1.2.x which supports older Pythons (3.9/3.10)
+    "matplotlib>=3.6,<3.10",
 ]
 analysis = [
     "pandas>=1.3.0",
