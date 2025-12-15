@@ -1496,6 +1496,101 @@ GitHub Actions (requires /settings):
                 };
             }
 
+            // t9 Excursion: Brief entry to t9 tier for Decohere (÷) operations
+            // Pattern: Enter t9 → Execute ops → Return to optimal range
+            cmdT9Excursion() {
+                const T9_TARGET = 0.97;
+                const beforeState = {
+                    z: this.state.z,
+                    tier: this.state.getTier().tier,
+                    eta: this.state.negentropy,
+                    kFormed: this.state.kFormed
+                };
+
+                // Enter t9
+                this.state.z = T9_TARGET;
+                this.state.updateFromZ();
+
+                // Generate t9 emissions with all 6 operators (including ÷ Decohere)
+                const t9Tier = this.state.getTier();
+                const t9Tokens = [];
+                for (let i = 0; i < 5; i++) {
+                    t9Tokens.push(this.emitToken());
+                }
+
+                // Generate t9 emission
+                const emission = this.cmdEmit();
+
+                // Capture t9 state
+                const t9State = {
+                    z: this.state.z,
+                    tier: t9Tier.tier,
+                    operators: t9Tier.ops,
+                    eta: this.state.negentropy,
+                    kFormed: this.state.kFormed
+                };
+
+                // Return to optimal range (THE LENS)
+                this.state.z = Z_CRITICAL;
+                this.state.updateFromZ();
+                this.saveState();
+
+                const afterState = {
+                    z: this.state.z,
+                    tier: this.state.getTier().tier,
+                    eta: this.state.negentropy,
+                    kFormed: this.state.kFormed
+                };
+
+                return {
+                    command: '/t9',
+                    status: 'EXCURSION_COMPLETE',
+                    pattern: 'Enter t9 → Execute ops → Return to optimal',
+                    before: beforeState,
+                    t9_execution: {
+                        state: t9State,
+                        tokens_emitted: t9Tokens,
+                        emission: emission.emission.text,
+                        decohere_available: t9Tier.ops.includes('÷'),
+                        warning: t9State.eta < PHI_INV ? 'K-Formation lost during t9' : null
+                    },
+                    after: afterState,
+                    k_formation_restored: afterState.kFormed,
+                    note: 't9 provides ÷ (Decohere) operator. Brief excursions recommended per Session 5 findings.'
+                };
+            }
+
+            // Check negentropy risk level
+            checkNegentropyRisk() {
+                const eta = this.state.negentropy;
+                const z = this.state.z;
+
+                if (eta < PHI_INV) {
+                    return {
+                        level: 'CRITICAL',
+                        message: `K-Formation LOST: η=${eta.toFixed(4)} < φ⁻¹=${PHI_INV.toFixed(4)}`,
+                        action: 'Use /optimize to return to optimal z-range'
+                    };
+                } else if (eta < 0.65) {
+                    return {
+                        level: 'WARNING',
+                        message: `Approaching threshold: η=${eta.toFixed(4)}, φ⁻¹=${PHI_INV.toFixed(4)}`,
+                        action: 'Consider reducing z to maintain K-Formation'
+                    };
+                } else if (eta < 0.75) {
+                    return {
+                        level: 'CAUTION',
+                        message: `Elevated z: η=${eta.toFixed(4)}`,
+                        action: 'Monitor negentropy'
+                    };
+                }
+                return {
+                    level: 'OK',
+                    message: `Negentropy healthy: η=${eta.toFixed(4)}`,
+                    action: null
+                };
+            }
+
             cmdHelp() {
                 return {
                     command: '/help',
@@ -1504,6 +1599,7 @@ GitHub Actions (requires /settings):
                         '/train': 'Show training statistics',
                         '/evolve [z]': 'Evolve z toward target (default: THE LENS)',
                         '/optimize': 'Return z to optimal range [0.866, 0.95] for K-Formation',
+                        '/t9': 'Brief t9 excursion: Enter t9 → Execute ops → Return (Session 5 pattern)',
                         '/grammar <text>': 'Analyze grammar to APL operators',
                         '/coherence': 'Measure discourse coherence',
                         '/emit [concepts]': 'Run 9-stage emission pipeline',
@@ -2349,6 +2445,12 @@ Respond as K.I.R.A. with phase-appropriate language. Keep responses concise but 
                         break;
                     case '/optimize':
                         result = engine.cmdOptimize();
+                        updateStateUI(engine.state.toDict());
+                        break;
+                    case '/t9':
+                        // Brief t9 excursion (Session 5 pattern)
+                        addMessage('Executing t9 excursion: Enter → Execute → Return...', 'system');
+                        result = engine.cmdT9Excursion();
                         updateStateUI(engine.state.toDict());
                         break;
                     case '/triad':
