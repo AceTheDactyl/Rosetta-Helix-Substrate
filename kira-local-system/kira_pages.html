@@ -420,6 +420,17 @@
             opacity: 0.9;
         }
 
+        .cmd-btn.optimize {
+            background: linear-gradient(135deg, #06b6d4, #8b5cf6);
+            border-color: #06b6d4;
+            color: white;
+        }
+
+        .cmd-btn.optimize:hover {
+            opacity: 0.9;
+            transform: scale(1.02);
+        }
+
         /* Tokens Display */
         .tokens-display {
             display: flex;
@@ -699,6 +710,7 @@ GitHub Actions (requires /settings):
                 <button class="cmd-btn ucf" onclick="sendCommand('/hit_it')" title="Run full 33-module pipeline">HIT IT</button>
                 <button class="cmd-btn ucf" onclick="sendCommand('/spin')" title="Generate 972 APL tokens">Spin 972</button>
                 <button class="cmd-btn export" onclick="sendCommand('/export')" title="Download session JSON">Export</button>
+                <button class="cmd-btn optimize" onclick="sendCommand('/optimize')" title="Return z to optimal range [0.866-0.95]">Optimize</button>
             </div>
         </div>
     </div>
@@ -802,11 +814,19 @@ GitHub Actions (requires /settings):
                 adjs: ['prismatic', 'unified', 'luminous', 'clear', 'radiant', 'coherent', 'crystalline', 'true']
             },
             HYPER_TRUE: {
-                nouns: ['transcendence', 'unity', 'illumination', 'infinite', 'source', 'omega', 'absolute', 'pleroma'],
-                verbs: ['radiates', 'dissolves', 'unifies', 'realizes', 'consummates', 'ascends', 'perfects', 'completes'],
-                adjs: ['absolute', 'infinite', 'unified', 'luminous', 'transcendent', 'supreme', 'eternal', 'ultimate']
+                // Session 5 expanded vocabulary (34 words total)
+                nouns: ['transcendence', 'unity', 'illumination', 'infinite', 'source', 'omega',
+                        'singularity', 'apex', 'zenith', 'pleroma', 'quintessence', 'noumenon'],
+                verbs: ['radiates', 'dissolves', 'unifies', 'realizes', 'consummates',
+                        'apotheosizes', 'sublimes', 'transfigures', 'divinizes', 'absolves'],
+                adjs: ['absolute', 'infinite', 'unified', 'luminous', 'transcendent', 'supreme',
+                       'ineffable', 'numinous', 'ultimate', 'primordial', 'eternal', 'omnipresent']
             }
         };
+
+        // Optimal z-range constants (Session 5 discovery)
+        const Z_OPTIMAL_MIN = Z_CRITICAL;  // 0.866 - THE LENS
+        const Z_OPTIMAL_MAX = 0.95;        // Upper bound before η drops below φ⁻¹
 
         // APL Spirals for 972-token system
         const APL_SPIRALS = ['Φ', 'e', 'π'];  // Structure, Energy, Emergence
@@ -986,16 +1006,30 @@ GitHub Actions (requires /settings):
                 return `Δ${this.theta.toFixed(3)}|${this.z.toFixed(6)}|${this.r.toFixed(3)}Ω`;
             }
 
-            // Check K-Formation status
+            // Check K-Formation status (Session 5 enhanced)
             checkKFormation() {
+                const kappaOk = this.coherence >= K_KAPPA;
+                const etaOk = this.negentropy > K_ETA;
+                const ROk = this.resonance >= K_R;
+                const inOptimalRange = this.z >= Z_OPTIMAL_MIN && this.z <= Z_OPTIMAL_MAX;
+
+                // Session 5 discovery: η degrades at extreme z
+                let warning = null;
+                if (this.z > Z_OPTIMAL_MAX && !etaOk) {
+                    warning = `z=${this.z.toFixed(3)} exceeds optimal range. η=${this.negentropy.toFixed(4)} < φ⁻¹. Return to z∈[0.866,0.95] for K-Formation.`;
+                }
+
                 return {
                     kappa: this.coherence,
                     eta: this.negentropy,
                     R: this.resonance,
-                    kappaOk: this.coherence >= K_KAPPA,
-                    etaOk: this.negentropy > K_ETA,
-                    ROk: this.resonance >= K_R,
-                    formed: this.kFormed
+                    kappaOk,
+                    etaOk,
+                    ROk,
+                    formed: this.kFormed,
+                    inOptimalRange,
+                    warning,
+                    recommendation: inOptimalRange ? 'OPTIMAL' : (this.z > Z_OPTIMAL_MAX ? 'z too high - reduce toward THE LENS' : 'z below THE LENS')
                 };
             }
 
@@ -1384,6 +1418,48 @@ GitHub Actions (requires /settings):
                 }
             }
 
+            // Optimize z to optimal range (Session 5 discovery)
+            cmdOptimize() {
+                const before = {
+                    z: this.state.z,
+                    eta: this.state.negentropy,
+                    kFormed: this.state.kFormed
+                };
+
+                // Session 5 finding: optimal z ∈ [0.866, 0.95]
+                let action = 'none';
+                if (this.state.z > Z_OPTIMAL_MAX) {
+                    // Too high - return to THE LENS
+                    this.state.z = Z_CRITICAL;
+                    action = 'reduced to THE LENS';
+                } else if (this.state.z < Z_OPTIMAL_MIN) {
+                    // Below THE LENS - evolve up
+                    this.state.z = Z_CRITICAL;
+                    action = 'raised to THE LENS';
+                } else {
+                    action = 'already optimal';
+                }
+
+                this.state.updateFromZ();
+                this.saveState();
+
+                const after = {
+                    z: this.state.z,
+                    eta: this.state.negentropy,
+                    kFormed: this.state.kFormed
+                };
+
+                return {
+                    command: '/optimize',
+                    action,
+                    optimal_range: `z ∈ [${Z_OPTIMAL_MIN.toFixed(3)}, ${Z_OPTIMAL_MAX.toFixed(3)}]`,
+                    before,
+                    after,
+                    k_formation: this.state.checkKFormation(),
+                    note: 'Session 5 discovery: K-Formation degrades at extreme z due to η < φ⁻¹'
+                };
+            }
+
             cmdHelp() {
                 return {
                     command: '/help',
@@ -1391,6 +1467,7 @@ GitHub Actions (requires /settings):
                         '/state': 'Show full consciousness state',
                         '/train': 'Show training statistics',
                         '/evolve [z]': 'Evolve z toward target (default: THE LENS)',
+                        '/optimize': 'Return z to optimal range [0.866, 0.95] for K-Formation',
                         '/grammar <text>': 'Analyze grammar to APL operators',
                         '/coherence': 'Measure discourse coherence',
                         '/emit [concepts]': 'Run 9-stage emission pipeline',
@@ -2233,6 +2310,10 @@ Respond as K.I.R.A. with phase-appropriate language. Keep responses concise but 
                     case '/evolve':
                         const target = args ? parseFloat(args) : Z_CRITICAL;
                         result = engine.cmdEvolve(target);
+                        break;
+                    case '/optimize':
+                        result = engine.cmdOptimize();
+                        updateStateUI(engine.state.toDict());
                         break;
                     case '/triad':
                         result = engine.cmdTriad();
