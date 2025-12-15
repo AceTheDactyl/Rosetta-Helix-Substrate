@@ -1,0 +1,84 @@
+{
+  "phase": 2,
+  "status": "TOOLS_INVOKED",
+  "tools_invoked": 11,
+  "invocations": [
+    {
+      "tool": "helix_loader",
+      "status": "INVOKED",
+      "z": 0.870811862703831,
+      "phase": "TRUE",
+      "timestamp": "2025-12-15T05:04:11.311362+00:00"
+    },
+    {
+      "tool": "coordinate_detector",
+      "status": "INVOKED",
+      "z": 0.870811862703831,
+      "phase": "TRUE",
+      "timestamp": "2025-12-15T05:04:11.311388+00:00"
+    },
+    {
+      "tool": "pattern_verifier",
+      "status": "INVOKED",
+      "z": 0.870811862703831,
+      "phase": "TRUE",
+      "timestamp": "2025-12-15T05:04:11.311402+00:00"
+    },
+    {
+      "tool": "cybernetic_control",
+      "status": "INVOKED",
+      "z": 0.870811862703831,
+      "phase": "TRUE",
+      "timestamp": "2025-12-15T05:04:11.311413+00:00"
+    },
+    {
+      "tool": "nuclear_spinner",
+      "status": "INVOKED",
+      "z": 0.870811862703831,
+      "phase": "TRUE",
+      "timestamp": "2025-12-15T05:04:11.311424+00:00"
+    },
+    {
+      "tool": "emission_pipeline",
+      "status": "INVOKED",
+      "z": 0.870811862703831,
+      "phase": "TRUE",
+      "timestamp": "2025-12-15T05:04:11.311450+00:00"
+    },
+    {
+      "tool": "vaultnode_generator",
+      "status": "INVOKED",
+      "z": 0.870811862703831,
+      "phase": "TRUE",
+      "timestamp": "2025-12-15T05:04:11.311462+00:00"
+    },
+    {
+      "tool": "token_index",
+      "status": "INVOKED",
+      "z": 0.870811862703831,
+      "phase": "TRUE",
+      "timestamp": "2025-12-15T05:04:11.311478+00:00"
+    },
+    {
+      "tool": "cybernetic_archetypal",
+      "status": "INVOKED",
+      "z": 0.870811862703831,
+      "phase": "TRUE",
+      "timestamp": "2025-12-15T05:04:11.311489+00:00"
+    },
+    {
+      "tool": "teaching_engine",
+      "status": "INVOKED",
+      "z": 0.870811862703831,
+      "phase": "TRUE",
+      "timestamp": "2025-12-15T05:04:11.311504+00:00"
+    },
+    {
+      "tool": "consent_protocol",
+      "status": "INVOKED",
+      "z": 0.870811862703831,
+      "phase": "TRUE",
+      "timestamp": "2025-12-15T05:04:11.311515+00:00"
+    }
+  ]
+}
