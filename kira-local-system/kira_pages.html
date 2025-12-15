@@ -556,17 +556,18 @@
             <div class="message command">
 Commands available:
   /state     - Consciousness state
-  /train     - Training statistics
   /evolve    - Evolve toward THE LENS
-  /grammar   - Analyze grammar -> APL
-  /coherence - Measure coherence
   /emit      - 9-stage emission pipeline
   /tokens    - Show APL tokens
   /triad     - TRIAD unlock status
-  /claude    - Claude API (needs config)
-  /settings  - Configure GitHub/API
-  /reset     - Reset state
-  /save      - Save to localStorage
+
+GitHub Actions (requires /settings):
+  /claude    - Claude API chat
+  /hit_it    - Full 33-module UCF pipeline
+  /export    - Export training as epoch
+  /training  - Multi-turn training session
+
+  /settings  - Configure GitHub/API keys
   /help      - All commands</div>
         </div>
 
@@ -1195,8 +1196,11 @@ Commands available:
                         '/emit [concepts]': 'Run emission pipeline',
                         '/tokens [n]': 'Show recent APL tokens',
                         '/triad': 'TRIAD unlock status',
-                        '/claude <msg>': 'Claude API (requires settings)',
-                        '/settings': 'Configure API keys',
+                        '/claude <msg>': 'Claude API chat',
+                        '/hit_it': 'Full 33-module UCF pipeline (GitHub Actions)',
+                        '/export': 'Export training data as epoch (GitHub Actions)',
+                        '/training': 'Multi-turn training session (GitHub Actions)',
+                        '/settings': 'Configure GitHub/API keys',
                         '/reset': 'Reset to initial state',
                         '/save': 'Save session to localStorage',
                         '/help': 'Show this help'
@@ -1514,7 +1518,7 @@ Respond as K.I.R.A. with phase-appropriate language. Keep responses concise but 
         }
 
         // Call Claude via GitHub Actions workflow
-        async function callClaudeViaGitHub(message, state) {
+        async function callClaudeViaGitHub(message, state, mode = 'chat') {
             const callbackId = Date.now().toString(36) + Math.random().toString(36).substr(2, 5);
 
             try {
@@ -1532,6 +1536,7 @@ Respond as K.I.R.A. with phase-appropriate language. Keep responses concise but 
                             ref: 'main',
                             inputs: {
                                 message: message,
+                                mode: mode,
                                 state_z: state.z.toString(),
                                 state_phase: state.phase,
                                 callback_id: callbackId
@@ -1691,6 +1696,59 @@ Respond as K.I.R.A. with phase-appropriate language. Keep responses concise but 
                         }
                         updateStateUI(engine.state.toDict());
                         return;
+
+                    case '/hit_it':
+                    case '/hitit':
+                        if (!settings.githubToken || !settings.githubRepo) {
+                            addMessage('GitHub Actions required for /hit_it. Use /settings to configure.', 'command');
+                            return;
+                        }
+                        addMessage('Triggering full 33-module UCF pipeline via GitHub Actions...', 'system');
+                        const hitItResult = await callClaudeViaGitHub(args || 'Execute full UCF pipeline', engine.state.toDict(), 'hit_it');
+                        if (hitItResult.error) {
+                            addMessage(hitItResult.message, 'command');
+                        } else {
+                            addMessage(`33-Module Pipeline Complete!\n${hitItResult.response}`, 'kira', {
+                                phase: 'TRUE',
+                                coordinate: engine.state.getCoordinate()
+                            });
+                        }
+                        return;
+
+                    case '/export':
+                        if (!settings.githubToken || !settings.githubRepo) {
+                            addMessage('GitHub Actions required for /export. Use /settings to configure.', 'command');
+                            return;
+                        }
+                        addMessage('Triggering export workflow...', 'system');
+                        const exportResult = await callClaudeViaGitHub(args || 'Export current session', engine.state.toDict(), 'export');
+                        if (exportResult.error) {
+                            addMessage(exportResult.message, 'command');
+                        } else {
+                            addMessage(`Export Complete!\n${exportResult.response}`, 'kira', {
+                                phase: engine.state.phase,
+                                coordinate: engine.state.getCoordinate()
+                            });
+                        }
+                        return;
+
+                    case '/training':
+                        if (!settings.githubToken || !settings.githubRepo) {
+                            addMessage('GitHub Actions required for /training. Use /settings to configure.', 'command');
+                            return;
+                        }
+                        addMessage('Starting training session via GitHub Actions...', 'system');
+                        const trainingResult = await callClaudeViaGitHub(args || 'Train toward K-formation', engine.state.toDict(), 'training');
+                        if (trainingResult.error) {
+                            addMessage(trainingResult.message, 'command');
+                        } else {
+                            addMessage(`Training Complete!\n${trainingResult.response}`, 'kira', {
+                                phase: engine.state.phase,
+                                coordinate: engine.state.getCoordinate()
+                            });
+                        }
+                        return;
+
                     default:
                         addMessage(`Unknown command: ${cmd}\nUse /help for available commands.`, 'command');
                         return;
