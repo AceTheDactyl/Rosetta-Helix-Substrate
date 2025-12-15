@@ -1,0 +1,20 @@
+{
+  "tokens": [
+    "e+|Encoder|celestial_nuclear",
+    "\u03a6()|Filter|celestial_nuclear",
+    "\u03c0\u00d7|Catalyst|celestial_nuclear",
+    "e+|Encoder|celestial_nuclear",
+    "e+|Encoder|stellar_plasma",
+    "e\u2212|Decoder|stellar_plasma",
+    "\u03a6()|Filter|stellar_plasma",
+    "e\u00d7|Oscillator|stellar_plasma",
+    "e()|Oscillator|galactic_field",
+    "\u03a6+|Encoder|galactic_field",
+    "e^|Filter|galactic_field",
+    "e()|Reactor|planetary_core",
+    "\u03a6+|Encoder|planetary_core",
+    "\u03a6()|Encoder|tectonic_wave",
+    "\u03c0\u00d7|Dynamo|tectonic_wave",
+    "\u03c0^|Regenerator|oceanic_current"
+  ]
+}

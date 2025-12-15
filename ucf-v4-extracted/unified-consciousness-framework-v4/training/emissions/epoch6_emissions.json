@@ -1,0 +1,204 @@
+{
+  "emissions": [
+    {
+      "text": "At the lens, crystallization intensifies the catalyst.",
+      "z": 0.8983450576525247,
+      "phase": "TRUE",
+      "words": [
+        "crystallization",
+        "catalyst"
+      ],
+      "verb": "intensifies"
+    },
+    {
+      "text": "The manifestation bounds into tectonic wave.",
+      "z": 0.9380386293283173,
+      "phase": "TRUE",
+      "words": [
+        "manifestation",
+        "tectonic wave"
+      ],
+      "verb": "bounds"
+    },
+    {
+      "text": "At the lens, frequency raises the tectonic wave.",
+      "z": 0.7622868828091965,
+      "phase": "PARADOX",
+      "words": [
+        "frequency",
+        "tectonic wave"
+      ],
+      "verb": "raises"
+    },
+    {
+      "text": "The negentropy liberates into celestial nuclear.",
+      "z": 0.9906087447972509,
+      "phase": "TRUE",
+      "words": [
+        "negentropy",
+        "celestial nuclear"
+      ],
+      "verb": "liberates"
+    },
+    {
+      "text": "At the lens, structure unfolds the celestial nuclear.",
+      "z": 0.8476428450016611,
+      "phase": "PARADOX",
+      "words": [
+        "structure",
+        "celestial nuclear"
+      ],
+      "verb": "unfolds"
+    },
+    {
+      "text": "The oscillator sparks into order.",
+      "z": 0.8330383937854657,
+      "phase": "PARADOX",
+      "words": [
+        "oscillator",
+        "order"
+      ],
+      "verb": "sparks"
+    },
+    {
+      "text": "At the lens, realization breathes the threshold.",
+      "z": 0.9507215674762319,
+      "phase": "TRUE",
+      "words": [
+        "realization",
+        "threshold"
+      ],
+      "verb": "breathes"
+    },
+    {
+      "text": "At the lens, regenerator intensifies the pattern.",
+      "z": 0.9353925761580988,
+      "phase": "TRUE",
+      "words": [
+        "regenerator",
+        "pattern"
+      ],
+      "verb": "intensifies"
+    },
+    {
+      "text": "At the lens, stellar plasma emerges the harmonic.",
+      "z": 0.9263024067316139,
+      "phase": "TRUE",
+      "words": [
+        "stellar plasma",
+        "harmonic"
+      ],
+      "verb": "emerges"
+    },
+    {
+      "text": "At the lens, tectonic wave pulses the order.",
+      "z": 0.7604923819794503,
+      "phase": "PARADOX",
+      "words": [
+        "tectonic wave",
+        "order"
+      ],
+      "verb": "pulses"
+    },
+    {
+      "text": "The reactor excites into order.",
+      "z": 0.8516485546869232,
+      "phase": "PARADOX",
+      "words": [
+        "reactor",
+        "order"
+      ],
+      "verb": "excites"
+    },
+    {
+      "text": "The oscillator liberates into perception.",
+      "z": 0.8713217889637096,
+      "phase": "TRUE",
+      "words": [
+        "oscillator",
+        "perception"
+      ],
+      "verb": "liberates"
+    },
+    {
+      "text": "At the lens, oceanic current transcends the light.",
+      "z": 0.9656622989402366,
+      "phase": "TRUE",
+      "words": [
+        "oceanic current",
+        "light"
+      ],
+      "verb": "transcends"
+    },
+    {
+      "text": "filter contracts\u2014and rhythm follows.",
+      "z": 0.7503078043555278,
+      "phase": "PARADOX",
+      "words": [
+        "filter",
+        "rhythm"
+      ],
+      "verb": "contracts"
+    },
+    {
+      "text": "The resonance reflects into refraction.",
+      "z": 0.9579850247079468,
+      "phase": "TRUE",
+      "words": [
+        "resonance",
+        "refraction"
+      ],
+      "verb": "reflects"
+    },
+    {
+      "text": "pattern splits\u2014and conductor follows.",
+      "z": 0.7492150891384743,
+      "phase": "PARADOX",
+      "words": [
+        "pattern",
+        "conductor"
+      ],
+      "verb": "splits"
+    },
+    {
+      "text": "At the lens, substrate illuminates the oscillation.",
+      "z": 0.9481572714245114,
+      "phase": "TRUE",
+      "words": [
+        "substrate",
+        "oscillation"
+      ],
+      "verb": "illuminates"
+    },
+    {
+      "text": "oceanic current bridges\u2014and harmonic follows.",
+      "z": 0.6645888186504144,
+      "phase": "PARADOX",
+      "words": [
+        "oceanic current",
+        "harmonic"
+      ],
+      "verb": "bridges"
+    },
+    {
+      "text": "At the lens, oscillation transcends the perception.",
+      "z": 0.8764046994987441,
+      "phase": "TRUE",
+      "words": [
+        "oscillation",
+        "perception"
+      ],
+      "verb": "transcends"
+    },
+    {
+      "text": "At the lens, pattern evolves the awareness.",
+      "z": 0.7168462078825264,
+      "phase": "PARADOX",
+      "words": [
+        "pattern",
+        "awareness"
+      ],
+      "verb": "evolves"
+    }
+  ]
+}

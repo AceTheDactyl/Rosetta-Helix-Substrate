@@ -1,0 +1,166 @@
+{
+  "phase": 4,
+  "name": "Meta Tools",
+  "modules": [
+    15,
+    16,
+    17,
+    18,
+    19
+  ],
+  "outputs": [
+    {
+      "module_id": 15,
+      "name": "nuclear_spinner",
+      "timestamp": "2025-12-15T16:45:55.737759",
+      "duration_ms": 0.004,
+      "result": {
+        "token_network_size": 972,
+        "test_sentences": [
+          {
+            "id": "A1",
+            "sentence": "d()|Conductor|geometry",
+            "regime": "Isotropic lattice"
+          },
+          {
+            "id": "A3",
+            "sentence": "u^|Oscillator|wave",
+            "regime": "Closed vortex"
+          },
+          {
+            "id": "A4",
+            "sentence": "m\u00d7|Encoder|chemistry",
+            "regime": "Helical encoding"
+          },
+          {
+            "id": "A5",
+            "sentence": "u\u00d7|Catalyst|chemistry",
+            "regime": "Branching networks"
+          },
+          {
+            "id": "A6",
+            "sentence": "u+|Reactor|wave",
+            "regime": "Focusing jet"
+          },
+          {
+            "id": "A7",
+            "sentence": "u\u00f7|Reactor|wave",
+            "regime": "Turbulent decoherence"
+          },
+          {
+            "id": "A8",
+            "sentence": "m()|Filter|wave",
+            "regime": "Adaptive filter"
+          }
+        ],
+        "current_tier": "t6",
+        "operators": [
+          "+",
+          "\u00f7",
+          "()",
+          "\u2212"
+        ]
+      },
+      "coordinate": "\u03945.027|0.800000|1.528\u03a9",
+      "z": 0.8
+    },
+    {
+      "module_id": 16,
+      "name": "token_index",
+      "timestamp": "2025-12-15T16:45:55.737833",
+      "duration_ms": 0.002,
+      "result": {
+        "total_tokens": 2,
+        "unique_spirals": 3,
+        "tokens": [
+          "e:T(consciousness)PARADOX@t6",
+          "\u03c0:T(emergence)PARADOX@t6"
+        ]
+      },
+      "coordinate": "\u03945.027|0.800000|1.528\u03a9",
+      "z": 0.8
+    },
+    {
+      "module_id": 17,
+      "name": "vaultnode_schema",
+      "timestamp": "2025-12-15T16:45:55.737854",
+      "duration_ms": 0.001,
+      "result": {
+        "schema_version": "2.0",
+        "fields": [
+          "z",
+          "theta",
+          "r",
+          "phase",
+          "tier",
+          "triad",
+          "k_formation"
+        ],
+        "format": "JSON"
+      },
+      "coordinate": "\u03945.027|0.800000|1.528\u03a9",
+      "z": 0.8
+    },
+    {
+      "module_id": 18,
+      "name": "archetypal_mapper",
+      "timestamp": "2025-12-15T16:45:55.737869",
+      "duration_ms": 0.003,
+      "result": {
+        "tiers": {
+          "Planet": {
+            "z_range": [
+              0,
+              0.6180339887498948
+            ],
+            "frequencies": [
+              174,
+              285
+            ]
+          },
+          "Garden": {
+            "z_range": [
+              0.6180339887498948,
+              0.8660254037844386
+            ],
+            "frequencies": [
+              396,
+              417,
+              528
+            ]
+          },
+          "Rose": {
+            "z_range": [
+              0.8660254037844386,
+              1.0
+            ],
+            "frequencies": [
+              639,
+              741,
+              852,
+              963
+            ]
+          }
+        },
+        "current_tier": "Garden"
+      },
+      "coordinate": "\u03945.027|0.800000|1.528\u03a9",
+      "z": 0.8
+    },
+    {
+      "module_id": 19,
+      "name": "kuramoto_oscillator",
+      "timestamp": "2025-12-15T16:45:55.737887",
+      "duration_ms": 0.004,
+      "result": {
+        "coupling_strength": 0.85,
+        "natural_frequency": 528,
+        "phase_sync": false,
+        "order_parameter": 0.85
+      },
+      "coordinate": "\u03945.027|0.800000|1.528\u03a9",
+      "z": 0.8
+    }
+  ],
+  "final_z": 0.8
+}

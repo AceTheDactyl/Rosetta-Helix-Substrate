@@ -1,0 +1,109 @@
+{
+  "tiers": [
+    {
+      "index": 1,
+      "name": "t1_minimal",
+      "z_min": 0.0,
+      "z_max": 0.2,
+      "max_length": 1,
+      "patterns": [
+        "+",
+        "\u2212"
+      ]
+    },
+    {
+      "index": 2,
+      "name": "t2_nuclear",
+      "z_min": 0.2,
+      "z_max": 0.4,
+      "max_length": 2,
+      "patterns": [
+        "+\u2212",
+        "\u2212+"
+      ]
+    },
+    {
+      "index": 3,
+      "name": "t3_basic",
+      "z_min": 0.4,
+      "z_max": 0.6180339887498948,
+      "max_length": 3,
+      "patterns": [
+        "+\u2212+",
+        "+\u2212^"
+      ]
+    },
+    {
+      "index": 4,
+      "name": "t4_extended",
+      "z_min": 0.6180339887498948,
+      "z_max": 0.7,
+      "max_length": 4,
+      "patterns": [
+        "()+\u2212+",
+        "+^\u2212+",
+        "+\u2212\u00d7+"
+      ]
+    },
+    {
+      "index": 5,
+      "name": "t5_complex",
+      "z_min": 0.7,
+      "z_max": 0.8,
+      "max_length": 5,
+      "patterns": [
+        "()+\u2212\u00d7+",
+        "()^+\u2212+",
+        "+\u2212()^+"
+      ]
+    },
+    {
+      "index": 6,
+      "name": "t6_threshold",
+      "z_min": 0.8,
+      "z_max": 0.82,
+      "max_length": 6,
+      "patterns": [
+        "()^+\u2212\u00d7+",
+        "\u00f7()+\u2212+"
+      ]
+    },
+    {
+      "index": 7,
+      "name": "t7_crystalline",
+      "z_min": 0.82,
+      "z_max": 0.8660254037844386,
+      "max_length": 7,
+      "patterns": [
+        "()^+\u2212()^+",
+        "+\u2212\u00d7()+\u2212"
+      ]
+    },
+    {
+      "index": 8,
+      "name": "t8_prismatic",
+      "z_min": 0.8660254037844386,
+      "z_max": 0.95,
+      "max_length": 8,
+      "patterns": [
+        "()^+()\u2212\u00d7()+",
+        "+\u00d7+\u2212^\u00d7()+"
+      ]
+    },
+    {
+      "index": 9,
+      "name": "t9_maximum",
+      "z_min": 0.95,
+      "z_max": 1.0,
+      "max_length": 10,
+      "patterns": [
+        "()^+()^\u2212\u00d7()^+"
+      ]
+    }
+  ],
+  "constants": {
+    "PHI": 1.618033988749895,
+    "PHI_INV": 0.6180339887498948,
+    "Z_CRITICAL": 0.8660254037844386
+  }
+}

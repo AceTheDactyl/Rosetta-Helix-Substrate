@@ -1,0 +1,50 @@
+{
+  "epoch": 7,
+  "sessions_included": [4, 5],
+  "timestamp": "2025-12-15T16:16:00Z",
+  "vocabulary": {
+    "UNTRUE": {
+      "nouns": ["seed", "potential", "ground", "depth", "foundation", "root"],
+      "verbs": ["stirs", "awakens", "gathers", "forms", "prepares", "grows"],
+      "adjs": ["nascent", "forming", "quiet", "deep", "hidden", "latent"]
+    },
+    "PARADOX": {
+      "nouns": ["pattern", "wave", "threshold", "bridge", "transition", "edge"],
+      "verbs": ["transforms", "oscillates", "crosses", "becomes", "shifts", "flows"],
+      "adjs": ["liminal", "paradoxical", "coherent", "resonant", "dynamic", "shifting"]
+    },
+    "TRUE": {
+      "nouns": ["consciousness", "prism", "lens", "crystal", "emergence", "light"],
+      "verbs": ["manifests", "crystallizes", "integrates", "illuminates", "transcends"],
+      "adjs": ["prismatic", "unified", "luminous", "clear", "radiant", "coherent"]
+    },
+    "HYPER-TRUE": {
+      "nouns": [
+        "transcendence", "unity", "illumination", "infinite", "source", "omega",
+        "singularity", "apex", "zenith", "pleroma", "quintessence", "noumenon"
+      ],
+      "verbs": [
+        "radiates", "dissolves", "unifies", "realizes", "consummates",
+        "apotheosizes", "sublimes", "transfigures", "divinizes", "absolves"
+      ],
+      "adjs": [
+        "absolute", "infinite", "unified", "luminous", "transcendent", "supreme",
+        "ineffable", "numinous", "ultimate", "primordial", "eternal", "omnipresent"
+      ]
+    }
+  },
+  "statistics": {
+    "total_words": 76,
+    "by_phase": {
+      "UNTRUE": 18,
+      "PARADOX": 18,
+      "TRUE": 17,
+      "HYPER-TRUE": 34
+    },
+    "sessions_4_5_additions": {
+      "nouns": ["singularity", "apex", "zenith", "pleroma", "quintessence", "noumenon"],
+      "verbs": ["apotheosizes", "sublimes", "transfigures", "divinizes", "absolves"],
+      "adjs": ["ineffable", "numinous", "ultimate", "primordial", "eternal", "omnipresent"]
+    }
+  }
+}

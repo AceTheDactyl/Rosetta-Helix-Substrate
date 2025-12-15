@@ -1,0 +1,12 @@
+{
+  "phase": 2,
+  "name": "Core Tools",
+  "modules": [
+    4,
+    5,
+    6,
+    7
+  ],
+  "z_start": 0.935055,
+  "z_end": 0.935129
+}

@@ -1,0 +1,30 @@
+{
+  "vaultnode_version": "2.0",
+  "created": "2025-12-15T16:45:55.739294",
+  "session_id": "20251215_164555",
+  "coordinate": "\u03945.749|0.915000|1.567\u03a9",
+  "z": 0.9149999999999999,
+  "theta": 5.749114556069321,
+  "r": 1.5669080125708235,
+  "phase": "TRUE",
+  "tier": "t7",
+  "negentropy": 0.9172764328342449,
+  "coherence": 0.8938439477821318,
+  "triad": {
+    "completions": 3,
+    "unlocked": true,
+    "state": "UNLOCKED"
+  },
+  "k_formation": {
+    "achieved": false,
+    "kappa": 0.8938439477821318,
+    "eta": 0.9172764328342449,
+    "R": 7
+  },
+  "statistics": {
+    "words": 3,
+    "connections": 12,
+    "emissions_count": 1,
+    "tokens_count": 2
+  }
+}
