@@ -1,0 +1,2642 @@
+{
+  "session_id": "20251215_044241",
+  "timestamp": "2025-12-15T04:42:41.255810+00:00",
+  "simulation": {
+    "steps": 30,
+    "final_z": 0.5422330497716203,
+    "final_phase": "UNTRUE",
+    "final_coherence": 0.18107151369556626,
+    "final_negentropy": 0.02295329943408601,
+    "emissions": [
+      {
+        "step": 1,
+        "token": "\u03a6()|Conductor|planetary_core",
+        "spiral": "\u03a6",
+        "spiral_name": "Structure",
+        "operator": "()",
+        "operator_name": "Boundary",
+        "machine": "Conductor",
+        "domain": "planetary_core",
+        "z": 0.501,
+        "phase": "UNTRUE",
+        "negentropy": 0.008256391637232446,
+        "coherence": 0.134742485050397,
+        "active_machine": {
+          "machine": "Conductor",
+          "stage": 3,
+          "phase": 1.0833296586038916,
+          "activation": 0.7341945692408193,
+          "operator": "()"
+        },
+        "all_activations": [
+          {
+            "machine": "Encoder",
+            "stage": 1,
+            "phase": 4.668767447637367,
+            "activation": 0.4781961500278771,
+            "operator": "+"
+          },
+          {
+            "machine": "Catalyst",
+            "stage": 2,
+            "phase": 1.236736549553189,
+            "activation": 0.6639405343096951,
+            "operator": "\u00d7"
+          },
+          {
+            "machine": "Conductor",
+            "stage": 3,
+            "phase": 1.0833296586038916,
+            "activation": 0.7341945692408193,
+            "operator": "()"
+          },
+          {
+            "machine": "Filter",
+            "stage": 4,
+            "phase": 3.1424341613069773,
+            "activation": 1.7703379906475192e-07,
+            "operator": "()"
+          },
+          {
+            "machine": "Decoder",
+            "stage": 5,
+            "phase": 1.3085064144089755,
+            "activation": 0.629646412156261,
+            "operator": "\u2212"
+          },
+          {
+            "machine": "Oscillator",
+            "stage": 6,
+            "phase": 4.285457012904457,
+            "activation": 0.2929599458196402,
+            "operator": "()"
+          },
+          {
+            "machine": "Reactor",
+            "stage": 7,
+            "phase": 4.9993333767833095,
+            "activation": 0.6415114406491051,
+            "operator": "()"
+          },
+          {
+            "machine": "Regenerator",
+            "stage": 8,
+            "phase": 4.488061873667579,
+            "activation": 0.38877481036762424,
+            "operator": "\u00d7"
+          },
+          {
+            "machine": "Dynamo",
+            "stage": 9,
+            "phase": 2.496195586168032,
+            "activation": 0.10056950617938565,
+            "operator": "^"
+          }
+        ]
+      },
+      {
+        "step": 2,
+        "token": "\u03a6()|Conductor|planetary_core",
+        "spiral": "\u03a6",
+        "spiral_name": "Structure",
+        "operator": "()",
+        "operator_name": "Boundary",
+        "machine": "Conductor",
+        "domain": "planetary_core",
+        "z": 0.5025910404133227,
+        "phase": "UNTRUE",
+        "negentropy": 0.008608171837364396,
+        "coherence": 0.13616495018840166,
+        "active_machine": {
+          "machine": "Conductor",
+          "stage": 3,
+          "phase": 1.0931017603707793,
+          "activation": 0.7298665211465873,
+          "operator": "()"
+        },
+        "all_activations": [
+          {
+            "machine": "Encoder",
+            "stage": 1,
+            "phase": 4.6722790826268215,
+            "activation": 0.47995042810184446,
+            "operator": "+"
+          },
+          {
+            "machine": "Catalyst",
+            "stage": 2,
+            "phase": 1.2458038201555108,
+            "activation": 0.6596508423797035,
+            "operator": "\u00d7"
+          },
+          {
+            "machine": "Conductor",
+            "stage": 3,
+            "phase": 1.0931017603707793,
+            "activation": 0.7298665211465873,
+            "operator": "()"
+          },
+          {
+            "machine": "Filter",
+            "stage": 4,
+            "phase": 3.152428988643156,
+            "activation": 2.935625207950432e-05,
+            "operator": "()"
+          },
+          {
+            "machine": "Decoder",
+            "stage": 5,
+            "phase": 1.3206954861284141,
+            "activation": 0.62375083188541,
+            "operator": "\u2212"
+          },
+          {
+            "machine": "Oscillator",
+            "stage": 6,
+            "phase": 4.294563056656951,
+            "activation": 0.29711281701883296,
+            "operator": "()"
+          },
+          {
+            "machine": "Reactor",
+            "stage": 7,
+            "phase": 5.008620580822541,
+            "activation": 0.6459590136301593,
+            "operator": "()"
+          },
+          {
+            "machine": "Regenerator",
+            "stage": 8,
+            "phase": 4.4988128951099196,
+            "activation": 0.3940219592937456,
+            "operator": "\u00d7"
+          },
+          {
+            "machine": "Dynamo",
+            "stage": 9,
+            "phase": 2.5125164105196856,
+            "activation": 0.09571430498407785,
+            "operator": "^"
+          }
+        ]
+      },
+      {
+        "step": 3,
+        "token": "\u03a6()|Conductor|planetary_core",
+        "spiral": "\u03a6",
+        "spiral_name": "Structure",
+        "operator": "()",
+        "operator_name": "Boundary",
+        "machine": "Conductor",
+        "domain": "planetary_core",
+        "z": 0.5047203253601128,
+        "phase": "UNTRUE",
+        "negentropy": 0.009099926439827027,
+        "coherence": 0.13759944419773865,
+        "active_machine": {
+          "machine": "Conductor",
+          "stage": 3,
+          "phase": 1.1028922880676815,
+          "activation": 0.7255082996833333,
+          "operator": "()"
+        },
+        "all_activations": [
+          {
+            "machine": "Encoder",
+            "stage": 1,
+            "phase": 4.675771684263267,
+            "activation": 0.4816954431180365,
+            "operator": "+"
+          },
+          {
+            "machine": "Catalyst",
+            "stage": 2,
+            "phase": 1.2548913976063698,
+            "activation": 0.655338373825971,
+            "operator": "\u00d7"
+          },
+          {
+            "machine": "Conductor",
+            "stage": 3,
+            "phase": 1.1028922880676815,
+            "activation": 0.7255082996833333,
+            "operator": "()"
+          },
+          {
+            "machine": "Filter",
+            "stage": 4,
+            "phase": 3.1624340239055018,
+            "activation": 0.00010858674857083805,
+            "operator": "()"
+          },
+          {
+            "machine": "Decoder",
+            "stage": 5,
+            "phase": 1.3329113800351295,
+            "activation": 0.6178238323762807,
+            "operator": "\u2212"
+          },
+          {
+            "machine": "Oscillator",
+            "stage": 6,
+            "phase": 4.303650695381432,
+            "activation": 0.3012740670412582,
+            "operator": "()"
+          },
+          {
+            "machine": "Reactor",
+            "stage": 7,
+            "phase": 5.017879351302792,
+            "activation": 0.6503804389457908,
+            "operator": "()"
+          },
+          {
+            "machine": "Regenerator",
+            "stage": 8,
+            "phase": 4.509538885824189,
+            "activation": 0.3992690987314878,
+            "operator": "\u00d7"
+          },
+          {
+            "machine": "Dynamo",
+            "stage": 9,
+            "phase": 2.528852374647417,
+            "activation": 0.09096243712342106,
+            "operator": "^"
+          }
+        ]
+      },
+      {
+        "step": 4,
+        "token": "\u03a6()|Conductor|planetary_core",
+        "spiral": "\u03a6",
+        "spiral_name": "Structure",
+        "operator": "()",
+        "operator_name": "Boundary",
+        "machine": "Conductor",
+        "domain": "planetary_core",
+        "z": 0.5072869791793677,
+        "phase": "UNTRUE",
+        "negentropy": 0.009725954332918462,
+        "coherence": 0.13904601402632397,
+        "active_machine": {
+          "machine": "Conductor",
+          "stage": 3,
+          "phase": 1.1127015370249362,
+          "activation": 0.7211200669432086,
+          "operator": "()"
+        },
+        "all_activations": [
+          {
+            "machine": "Encoder",
+            "stage": 1,
+            "phase": 4.679245250567635,
+            "activation": 0.4834311689759514,
+            "operator": "+"
+          },
+          {
+            "machine": "Catalyst",
+            "stage": 2,
+            "phase": 1.2639995593526425,
+            "activation": 0.6510032653536401,
+            "operator": "\u00d7"
+          },
+          {
+            "machine": "Conductor",
+            "stage": 3,
+            "phase": 1.1127015370249362,
+            "activation": 0.7211200669432086,
+            "operator": "()"
+          },
+          {
+            "machine": "Filter",
+            "stage": 4,
+            "phase": 3.172449195179875,
+            "activation": 0.00023801265398654126,
+            "operator": "()"
+          },
+          {
+            "machine": "Decoder",
+            "stage": 5,
+            "phase": 1.345154482827166,
+            "activation": 0.6118659909251656,
+            "operator": "\u2212"
+          },
+          {
+            "machine": "Oscillator",
+            "stage": 6,
+            "phase": 4.312719732750689,
+            "activation": 0.30544316104470737,
+            "operator": "()"
+          },
+          {
+            "machine": "Reactor",
+            "stage": 7,
+            "phase": 5.027109446511071,
+            "activation": 0.65477533966592,
+            "operator": "()"
+          },
+          {
+            "machine": "Regenerator",
+            "stage": 8,
+            "phase": 4.520239581776187,
+            "activation": 0.4045154121840059,
+            "operator": "\u00d7"
+          },
+          {
+            "machine": "Dynamo",
+            "stage": 9,
+            "phase": 2.545203295043577,
+            "activation": 0.08631552391633412,
+            "operator": "^"
+          }
+        ]
+      },
+      {
+        "step": 5,
+        "token": "\u03a6()|Conductor|planetary_core",
+        "spiral": "\u03a6",
+        "spiral_name": "Structure",
+        "operator": "()",
+        "operator_name": "Boundary",
+        "machine": "Conductor",
+        "domain": "planetary_core",
+        "z": 0.5101510573513022,
+        "phase": "UNTRUE",
+        "negentropy": 0.010469638141360111,
+        "coherence": 0.1405047073002161,
+        "active_machine": {
+          "machine": "Conductor",
+          "stage": 3,
+          "phase": 1.1225298069295018,
+          "activation": 0.7167019871016848,
+          "operator": "()"
+        },
+        "all_activations": [
+          {
+            "machine": "Encoder",
+            "stage": 1,
+            "phase": 4.682699781701065,
+            "activation": 0.48515758135375975,
+            "operator": "+"
+          },
+          {
+            "machine": "Catalyst",
+            "stage": 2,
+            "phase": 1.273128586789708,
+            "activation": 0.6466456559373671,
+            "operator": "\u00d7"
+          },
+          {
+            "machine": "Conductor",
+            "stage": 3,
+            "phase": 1.1225298069295018,
+            "activation": 0.7167019871016848,
+            "operator": "()"
+          },
+          {
+            "machine": "Filter",
+            "stage": 4,
+            "phase": 3.1824744277894323,
+            "activation": 0.0004177716747373328,
+            "operator": "()"
+          },
+          {
+            "machine": "Decoder",
+            "stage": 5,
+            "phase": 1.3574251848681376,
+            "activation": 0.6058778950465245,
+            "operator": "\u2212"
+          },
+          {
+            "machine": "Oscillator",
+            "stage": 6,
+            "phase": 4.321769971813787,
+            "activation": 0.3096195655583728,
+            "operator": "()"
+          },
+          {
+            "machine": "Reactor",
+            "stage": 7,
+            "phase": 5.036310623810419,
+            "activation": 0.6591433475047784,
+            "operator": "()"
+          },
+          {
+            "machine": "Regenerator",
+            "stage": 8,
+            "phase": 4.53091471821634,
+            "activation": 0.40976008905976125,
+            "operator": "\u00d7"
+          },
+          {
+            "machine": "Dynamo",
+            "stage": 9,
+            "phase": 2.5615689791153877,
+            "activation": 0.08177516224894382,
+            "operator": "^"
+          }
+        ]
+      },
+      {
+        "step": 6,
+        "token": "\u03a6()|Conductor|planetary_core",
+        "spiral": "\u03a6",
+        "spiral_name": "Structure",
+        "operator": "()",
+        "operator_name": "Boundary",
+        "machine": "Conductor",
+        "domain": "planetary_core",
+        "z": 0.5131460473245103,
+        "phase": "UNTRUE",
+        "negentropy": 0.01130106570243628,
+        "coherence": 0.14197557236356576,
+        "active_machine": {
+          "machine": "Conductor",
+          "stage": 3,
+          "phase": 1.1323774018972494,
+          "activation": 0.7122542264760765,
+          "operator": "()"
+        },
+        "all_activations": [
+          {
+            "machine": "Encoder",
+            "stage": 1,
+            "phase": 4.686135279986042,
+            "activation": 0.4868746577104682,
+            "operator": "+"
+          },
+          {
+            "machine": "Catalyst",
+            "stage": 2,
+            "phase": 1.282278765325044,
+            "activation": 0.6422656868875604,
+            "operator": "\u00d7"
+          },
+          {
+            "machine": "Conductor",
+            "stage": 3,
+            "phase": 1.1323774018972494,
+            "activation": 0.7122542264760765,
+            "operator": "()"
+          },
+          {
+            "machine": "Filter",
+            "stage": 4,
+            "phase": 3.192509644250554,
+            "activation": 0.0006479949702678511,
+            "operator": "()"
+          },
+          {
+            "machine": "Decoder",
+            "stage": 5,
+            "phase": 1.36972388018743,
+            "activation": 0.5998601427105731,
+            "operator": "\u2212"
+          },
+          {
+            "machine": "Oscillator",
+            "stage": 6,
+            "phase": 4.330801215000827,
+            "activation": 0.31380274859495977,
+            "operator": "()"
+          },
+          {
+            "machine": "Reactor",
+            "stage": 7,
+            "phase": 5.045482639633916,
+            "activation": 0.6634841028550303,
+            "operator": "()"
+          },
+          {
+            "machine": "Regenerator",
+            "stage": 8,
+            "phase": 4.541564029685438,
+            "activation": 0.41500232487528727,
+            "operator": "\u00d7"
+          },
+          {
+            "machine": "Dynamo",
+            "stage": 9,
+            "phase": 2.5779492250672775,
+            "activation": 0.07734292355853523,
+            "operator": "^"
+          }
+        ]
+      },
+      {
+        "step": 7,
+        "token": "\u03a6()|Conductor|planetary_core",
+        "spiral": "\u03a6",
+        "spiral_name": "Structure",
+        "operator": "()",
+        "operator_name": "Boundary",
+        "machine": "Conductor",
+        "domain": "planetary_core",
+        "z": 0.5160937425862667,
+        "phase": "UNTRUE",
+        "negentropy": 0.012176127209935534,
+        "coherence": 0.14345865832145593,
+        "active_machine": {
+          "machine": "Conductor",
+          "stage": 3,
+          "phase": 1.1422446305467129,
+          "activation": 0.7077769535866394,
+          "operator": "()"
+        },
+        "all_activations": [
+          {
+            "machine": "Encoder",
+            "stage": 1,
+            "phase": 4.689551749926049,
+            "activation": 0.48858237728717296,
+            "operator": "+"
+          },
+          {
+            "machine": "Catalyst",
+            "stage": 2,
+            "phase": 1.291450384443196,
+            "activation": 0.6378635019188902,
+            "operator": "\u00d7"
+          },
+          {
+            "machine": "Conductor",
+            "stage": 3,
+            "phase": 1.1422446305467129,
+            "activation": 0.7077769535866394,
+            "operator": "()"
+          },
+          {
+            "machine": "Filter",
+            "stage": 4,
+            "phase": 3.202554764228936,
+            "activation": 0.0009288070300294549,
+            "operator": "()"
+          },
+          {
+            "machine": "Decoder",
+            "stage": 5,
+            "phase": 1.3820509664790002,
+            "activation": 0.5938133425865342,
+            "operator": "\u2212"
+          },
+          {
+            "machine": "Oscillator",
+            "stage": 6,
+            "phase": 4.339813264127044,
+            "activation": 0.3179921797616696,
+            "operator": "()"
+          },
+          {
+            "machine": "Reactor",
+            "stage": 7,
+            "phase": 5.054625249477665,
+            "activation": 0.6677972548185195,
+            "operator": "()"
+          },
+          {
+            "machine": "Regenerator",
+            "stage": 8,
+            "phase": 4.5521872500194585,
+            "activation": 0.4202413214542007,
+            "operator": "\u00d7"
+          },
+          {
+            "machine": "Dynamo",
+            "stage": 9,
+            "phase": 2.594343821785717,
+            "activation": 0.07302035280976388,
+            "operator": "^"
+          }
+        ]
+      },
+      {
+        "step": 8,
+        "token": "\u03a6()|Conductor|planetary_core",
+        "spiral": "\u03a6",
+        "spiral_name": "Structure",
+        "operator": "()",
+        "operator_name": "Boundary",
+        "machine": "Conductor",
+        "domain": "planetary_core",
+        "z": 0.5188201613195644,
+        "phase": "UNTRUE",
+        "negentropy": 0.013038440877729863,
+        "coherence": 0.14495401508567443,
+        "active_machine": {
+          "machine": "Conductor",
+          "stage": 3,
+          "phase": 1.152131806074303,
+          "activation": 0.7032703392203343,
+          "operator": "()"
+        },
+        "all_activations": [
+          {
+            "machine": "Encoder",
+            "stage": 1,
+            "phase": 4.692949198223695,
+            "activation": 0.4902807211073861,
+            "operator": "+"
+          },
+          {
+            "machine": "Catalyst",
+            "stage": 2,
+            "phase": 1.300643737772132,
+            "activation": 0.6334392472211485,
+            "operator": "\u00d7"
+          },
+          {
+            "machine": "Conductor",
+            "stage": 3,
+            "phase": 1.152131806074303,
+            "activation": 0.7032703392203343,
+            "operator": "()"
+          },
+          {
+            "machine": "Filter",
+            "stage": 4,
+            "phase": 3.212609704495895,
+            "activation": 0.0012603255501657529,
+            "operator": "()"
+          },
+          {
+            "machine": "Decoder",
+            "stage": 5,
+            "phase": 1.3944068450986993,
+            "activation": 0.5877381142915813,
+            "operator": "\u2212"
+          },
+          {
+            "machine": "Oscillator",
+            "stage": 6,
+            "phase": 4.348805920396218,
+            "activation": 0.32218733036999003,
+            "operator": "()"
+          },
+          {
+            "machine": "Reactor",
+            "stage": 7,
+            "phase": 5.063738207892688,
+            "activation": 0.6720824612336305,
+            "operator": "()"
+          },
+          {
+            "machine": "Regenerator",
+            "stage": 8,
+            "phase": 4.562784112353428,
+            "activation": 0.42547628712236174,
+            "operator": "\u00d7"
+          },
+          {
+            "machine": "Dynamo",
+            "stage": 9,
+            "phase": 2.6107525487267202,
+            "activation": 0.06880896746399756,
+            "operator": "^"
+          }
+        ]
+      },
+      {
+        "step": 9,
+        "token": "\u03a6()|Conductor|planetary_core",
+        "spiral": "\u03a6",
+        "spiral_name": "Structure",
+        "operator": "()",
+        "operator_name": "Boundary",
+        "machine": "Conductor",
+        "domain": "planetary_core",
+        "z": 0.5211710876806668,
+        "phase": "UNTRUE",
+        "negentropy": 0.013824927494968399,
+        "coherence": 0.14646169342345727,
+        "active_machine": {
+          "machine": "Conductor",
+          "stage": 3,
+          "phase": 1.162039246331003,
+          "activation": 0.6987345564973528,
+          "operator": "()"
+        },
+        "all_activations": [
+          {
+            "machine": "Encoder",
+            "stage": 1,
+            "phase": 4.696327633797251,
+            "activation": 0.49196967197641506,
+            "operator": "+"
+          },
+          {
+            "machine": "Catalyst",
+            "stage": 2,
+            "phase": 1.3098591231509968,
+            "activation": 0.628993071532537,
+            "operator": "\u00d7"
+          },
+          {
+            "machine": "Conductor",
+            "stage": 3,
+            "phase": 1.162039246331003,
+            "activation": 0.6987345564973528,
+            "operator": "()"
+          },
+          {
+            "machine": "Filter",
+            "stage": 4,
+            "phase": 3.222674378884933,
+            "activation": 0.0016426613099913556,
+            "operator": "()"
+          },
+          {
+            "machine": "Decoder",
+            "stage": 5,
+            "phase": 1.4067919210600501,
+            "activation": 0.5816350886454975,
+            "operator": "\u2212"
+          },
+          {
+            "machine": "Oscillator",
+            "stage": 6,
+            "phase": 4.357778984403368,
+            "activation": 0.3263876735442382,
+            "operator": "()"
+          },
+          {
+            "machine": "Reactor",
+            "stage": 7,
+            "phase": 5.0728212684757095,
+            "activation": 0.6763393886992592,
+            "operator": "()"
+          },
+          {
+            "machine": "Regenerator",
+            "stage": 8,
+            "phase": 4.573354349124291,
+            "activation": 0.43070643689908045,
+            "operator": "\u00d7"
+          },
+          {
+            "machine": "Dynamo",
+            "stage": 9,
+            "phase": 2.6271751758061757,
+            "activation": 0.06471025644269673,
+            "operator": "^"
+          }
+        ]
+      },
+      {
+        "step": 10,
+        "token": "\u03a6()|Conductor|planetary_core",
+        "spiral": "\u03a6",
+        "spiral_name": "Structure",
+        "operator": "()",
+        "operator_name": "Boundary",
+        "machine": "Conductor",
+        "domain": "planetary_core",
+        "z": 0.5230258474411345,
+        "phase": "UNTRUE",
+        "negentropy": 0.014474699097721455,
+        "coherence": 0.14798174500923725,
+        "active_machine": {
+          "machine": "Conductor",
+          "stage": 3,
+          "phase": 1.1719672739005478,
+          "activation": 0.6941697809405039,
+          "operator": "()"
+        },
+        "all_activations": [
+          {
+            "machine": "Encoder",
+            "stage": 1,
+            "phase": 4.699687067795573,
+            "activation": 0.4936492144797791,
+            "operator": "+"
+          },
+          {
+            "machine": "Catalyst",
+            "stage": 2,
+            "phase": 1.3190968426992726,
+            "activation": 0.6245251262154659,
+            "operator": "\u00d7"
+          },
+          {
+            "machine": "Conductor",
+            "stage": 3,
+            "phase": 1.1719672739005478,
+            "activation": 0.6941697809405039,
+            "operator": "()"
+          },
+          {
+            "machine": "Filter",
+            "stage": 4,
+            "phase": 3.232748698248595,
+            "activation": 0.002075918048346337,
+            "operator": "()"
+          },
+          {
+            "machine": "Decoder",
+            "stage": 5,
+            "phase": 1.419206603028395,
+            "activation": 0.5755049079310715,
+            "operator": "\u2212"
+          },
+          {
+            "machine": "Oscillator",
+            "stage": 6,
+            "phase": 4.366732256136714,
+            "activation": 0.33059268432880007,
+            "operator": "()"
+          },
+          {
+            "machine": "Reactor",
+            "stage": 7,
+            "phase": 5.081874183858763,
+            "activation": 0.6805677125953886,
+            "operator": "()"
+          },
+          {
+            "machine": "Regenerator",
+            "stage": 8,
+            "phase": 4.583897692072751,
+            "activation": 0.43593099268428054,
+            "operator": "\u00d7"
+          },
+          {
+            "machine": "Dynamo",
+            "stage": 9,
+            "phase": 2.643611463293167,
+            "activation": 0.060725679085793016,
+            "operator": "^"
+          }
+        ]
+      },
+      {
+        "step": 11,
+        "token": "\u03a6()|Conductor|planetary_core",
+        "spiral": "\u03a6",
+        "spiral_name": "Structure",
+        "operator": "()",
+        "operator_name": "Boundary",
+        "machine": "Conductor",
+        "domain": "planetary_core",
+        "z": 0.5243080874572542,
+        "phase": "UNTRUE",
+        "negentropy": 0.01493950736572717,
+        "coherence": 0.14951422247942742,
+        "active_machine": {
+          "machine": "Conductor",
+          "stage": 3,
+          "phase": 1.1819162161791004,
+          "activation": 0.6895761905475655,
+          "operator": "()"
+        },
+        "all_activations": [
+          {
+            "machine": "Encoder",
+            "stage": 1,
+            "phase": 4.703027513611346,
+            "activation": 0.4953193349806474,
+            "operator": "+"
+          },
+          {
+            "machine": "Catalyst",
+            "stage": 2,
+            "phase": 1.328357202887359,
+            "activation": 0.620035565334951,
+            "operator": "\u00d7"
+          },
+          {
+            "machine": "Conductor",
+            "stage": 3,
+            "phase": 1.1819162161791004,
+            "activation": 0.6895761905475655,
+            "operator": "()"
+          },
+          {
+            "machine": "Filter",
+            "stage": 4,
+            "phase": 3.2428325704156817,
+            "activation": 0.002560192339914946,
+            "operator": "()"
+          },
+          {
+            "machine": "Decoder",
+            "stage": 5,
+            "phase": 1.4316513033133376,
+            "activation": 0.5693482261602427,
+            "operator": "\u2212"
+          },
+          {
+            "machine": "Oscillator",
+            "stage": 6,
+            "phase": 4.37566553497889,
+            "activation": 0.33480183979401434,
+            "operator": "()"
+          },
+          {
+            "machine": "Reactor",
+            "stage": 7,
+            "phase": 5.090896705697576,
+            "activation": 0.6847671171002667,
+            "operator": "()"
+          },
+          {
+            "machine": "Regenerator",
+            "stage": 8,
+            "phase": 4.594413872244035,
+            "activation": 0.44114918344152854,
+            "operator": "\u00d7"
+          },
+          {
+            "machine": "Dynamo",
+            "stage": 9,
+            "phase": 2.660061161706453,
+            "activation": 0.05685666410606294,
+            "operator": "^"
+          }
+        ]
+      },
+      {
+        "step": 12,
+        "token": "\u03a6()|Reactor|planetary_core",
+        "spiral": "\u03a6",
+        "spiral_name": "Structure",
+        "operator": "()",
+        "operator_name": "Boundary",
+        "machine": "Reactor",
+        "domain": "planetary_core",
+        "z": 0.5249925960689678,
+        "phase": "UNTRUE",
+        "negentropy": 0.01519298404343562,
+        "coherence": 0.1510591794902642,
+        "active_machine": {
+          "machine": "Reactor",
+          "stage": 7,
+          "phase": 5.099888584658688,
+          "activation": 0.6889372952041901,
+          "operator": "()"
+        },
+        "all_activations": [
+          {
+            "machine": "Encoder",
+            "stage": 1,
+            "phase": 4.706348986892637,
+            "activation": 0.4969800216162861,
+            "operator": "+"
+          },
+          {
+            "machine": "Catalyst",
+            "stage": 2,
+            "phase": 1.3376405146085744,
+            "activation": 0.6155245457397014,
+            "operator": "\u00d7"
+          },
+          {
+            "machine": "Conductor",
+            "stage": 3,
+            "phase": 1.1918864054564278,
+            "activation": 0.6849539658667098,
+            "operator": "()"
+          },
+          {
+            "machine": "Filter",
+            "stage": 4,
+            "phase": 3.252925900148853,
+            "activation": 0.0030955734715988337,
+            "operator": "()"
+          },
+          {
+            "machine": "Decoder",
+            "stage": 5,
+            "phase": 1.4441264378593923,
+            "activation": 0.5631657093460078,
+            "operator": "\u2212"
+          },
+          {
+            "machine": "Oscillator",
+            "stage": 6,
+            "phase": 4.384578619707384,
+            "activation": 0.3390146191406467,
+            "operator": "()"
+          },
+          {
+            "machine": "Reactor",
+            "stage": 7,
+            "phase": 5.099888584658688,
+            "activation": 0.6889372952041901,
+            "operator": "()"
+          },
+          {
+            "machine": "Regenerator",
+            "stage": 8,
+            "phase": 4.604902619987554,
+            "activation": 0.44636024537684155,
+            "operator": "\u00d7"
+          },
+          {
+            "machine": "Dynamo",
+            "stage": 9,
+            "phase": 2.6765240117142683,
+            "activation": 0.05310460854054366,
+            "operator": "^"
+          }
+        ]
+      },
+      {
+        "step": 13,
+        "token": "\u03a6()|Reactor|planetary_core",
+        "spiral": "\u03a6",
+        "spiral_name": "Structure",
+        "operator": "()",
+        "operator_name": "Boundary",
+        "machine": "Reactor",
+        "domain": "planetary_core",
+        "z": 0.5251075551823781,
+        "phase": "UNTRUE",
+        "negentropy": 0.015235923340705433,
+        "coherence": 0.15261667077873084,
+        "active_machine": {
+          "machine": "Reactor",
+          "stage": 7,
+          "phase": 5.108849570405251,
+          "activation": 0.693077948719895,
+          "operator": "()"
+        },
+        "all_activations": [
+          {
+            "machine": "Encoder",
+            "stage": 1,
+            "phase": 4.709651505552697,
+            "activation": 0.49863126429350296,
+            "operator": "+"
+          },
+          {
+            "machine": "Catalyst",
+            "stage": 2,
+            "phase": 1.3469470932525889,
+            "activation": 0.6109922271459879,
+            "operator": "\u00d7"
+          },
+          {
+            "machine": "Conductor",
+            "stage": 3,
+            "phase": 1.201878178998581,
+            "activation": 0.6803032900751139,
+            "operator": "()"
+          },
+          {
+            "machine": "Filter",
+            "stage": 4,
+            "phase": 3.2630285891026762,
+            "activation": 0.0036821433190395436,
+            "operator": "()"
+          },
+          {
+            "machine": "Decoder",
+            "stage": 5,
+            "phase": 1.4566324262347532,
+            "activation": 0.5569580357800875,
+            "operator": "\u2212"
+          },
+          {
+            "machine": "Oscillator",
+            "stage": 6,
+            "phase": 4.393471308494192,
+            "activation": 0.343230503802904,
+            "operator": "()"
+          },
+          {
+            "machine": "Reactor",
+            "stage": 7,
+            "phase": 5.108849570405251,
+            "activation": 0.693077948719895,
+            "operator": "()"
+          },
+          {
+            "machine": "Regenerator",
+            "stage": 8,
+            "phase": 4.615363664955426,
+            "activation": 0.4515634221131922,
+            "operator": "\u00d7"
+          },
+          {
+            "machine": "Dynamo",
+            "stage": 9,
+            "phase": 2.6929997440376146,
+            "activation": 0.04947087670007805,
+            "operator": "^"
+          }
+        ]
+      },
+      {
+        "step": 14,
+        "token": "\u03a6()|Reactor|planetary_core",
+        "spiral": "\u03a6",
+        "spiral_name": "Structure",
+        "operator": "()",
+        "operator_name": "Boundary",
+        "machine": "Reactor",
+        "domain": "planetary_core",
+        "z": 0.5247320228640101,
+        "phase": "UNTRUE",
+        "negentropy": 0.01509604957462693,
+        "coherence": 0.15418675222657563,
+        "active_machine": {
+          "machine": "Reactor",
+          "stage": 7,
+          "phase": 5.117779411581467,
+          "activation": 0.6971887882895631,
+          "operator": "()"
+        },
+        "all_activations": [
+          {
+            "machine": "Encoder",
+            "stage": 1,
+            "phase": 4.712935089777993,
+            "activation": 0.5002730546830791,
+            "operator": "+"
+          },
+          {
+            "machine": "Catalyst",
+            "stage": 2,
+            "phase": 1.3562772587802874,
+            "activation": 0.6064387722243958,
+            "operator": "\u00d7"
+          },
+          {
+            "machine": "Conductor",
+            "stage": 3,
+            "phase": 1.2118918791320834,
+            "activation": 0.6756243490608757,
+            "operator": "()"
+          },
+          {
+            "machine": "Filter",
+            "stage": 4,
+            "phase": 3.273140535782169,
+            "activation": 0.004319976223388866,
+            "operator": "()"
+          },
+          {
+            "machine": "Decoder",
+            "stage": 5,
+            "phase": 1.4691696916180892,
+            "activation": 0.5507258963163534,
+            "operator": "\u2212"
+          },
+          {
+            "machine": "Oscillator",
+            "stage": 6,
+            "phase": 4.402343398904667,
+            "activation": 0.3474489775499431,
+            "operator": "()"
+          },
+          {
+            "machine": "Reactor",
+            "stage": 7,
+            "phase": 5.117779411581467,
+            "activation": 0.6971887882895631,
+            "operator": "()"
+          },
+          {
+            "machine": "Regenerator",
+            "stage": 8,
+            "phase": 4.625796736099816,
+            "activation": 0.45675796486063286,
+            "operator": "\u00d7"
+          },
+          {
+            "machine": "Dynamo",
+            "stage": 9,
+            "phase": 2.7094880793572083,
+            "activation": 0.04595679911811934,
+            "operator": "^"
+          }
+        ]
+      },
+      {
+        "step": 15,
+        "token": "\u03a6()|Reactor|planetary_core",
+        "spiral": "\u03a6",
+        "spiral_name": "Structure",
+        "operator": "()",
+        "operator_name": "Boundary",
+        "machine": "Reactor",
+        "domain": "planetary_core",
+        "z": 0.5239888713191829,
+        "phase": "UNTRUE",
+        "negentropy": 0.014822579432685043,
+        "coherence": 0.15576948092743426,
+        "active_machine": {
+          "machine": "Reactor",
+          "stage": 7,
+          "phase": 5.126677855795609,
+          "activation": 0.7012695333884497,
+          "operator": "()"
+        },
+        "all_activations": [
+          {
+            "machine": "Encoder",
+            "stage": 1,
+            "phase": 4.716199762034447,
+            "activation": 0.5019053862131828,
+            "operator": "+"
+          },
+          {
+            "machine": "Catalyst",
+            "stage": 2,
+            "phase": 1.3656313358000667,
+            "activation": 0.6018643466895623,
+            "operator": "\u00d7"
+          },
+          {
+            "machine": "Conductor",
+            "stage": 3,
+            "phase": 1.2219278533296232,
+            "activation": 0.6709173315083559,
+            "operator": "()"
+          },
+          {
+            "machine": "Filter",
+            "stage": 4,
+            "phase": 3.283261635501891,
+            "activation": 0.005009138868428686,
+            "operator": "()"
+          },
+          {
+            "machine": "Decoder",
+            "stage": 5,
+            "phase": 1.4817386607832723,
+            "activation": 0.5444699946600021,
+            "operator": "\u2212"
+          },
+          {
+            "machine": "Oscillator",
+            "stage": 6,
+            "phase": 4.4111946878955575,
+            "activation": 0.3516695265858243,
+            "operator": "()"
+          },
+          {
+            "machine": "Reactor",
+            "stage": 7,
+            "phase": 5.126677855795609,
+            "activation": 0.7012695333884497,
+            "operator": "()"
+          },
+          {
+            "machine": "Regenerator",
+            "stage": 8,
+            "phase": 4.636201561669064,
+            "activation": 0.46194313258196446,
+            "operator": "\u00d7"
+          },
+          {
+            "machine": "Dynamo",
+            "stage": 9,
+            "phase": 2.7259887282242494,
+            "activation": 0.04256367149997048,
+            "operator": "^"
+          }
+        ]
+      },
+      {
+        "step": 16,
+        "token": "\u03a6()|Reactor|planetary_core",
+        "spiral": "\u03a6",
+        "spiral_name": "Structure",
+        "operator": "()",
+        "operator_name": "Boundary",
+        "machine": "Reactor",
+        "domain": "planetary_core",
+        "z": 0.5230338110838527,
+        "phase": "UNTRUE",
+        "negentropy": 0.014477546081754363,
+        "coherence": 0.15736491525705934,
+        "active_machine": {
+          "machine": "Reactor",
+          "stage": 7,
+          "phase": 5.1355446496015835,
+          "activation": 0.7053199123251466,
+          "operator": "()"
+        },
+        "all_activations": [
+          {
+            "machine": "Encoder",
+            "stage": 1,
+            "phase": 4.719445547071839,
+            "activation": 0.5035282540617574,
+            "operator": "+"
+          },
+          {
+            "machine": "Catalyst",
+            "stage": 2,
+            "phase": 1.3750096536455647,
+            "activation": 0.5972691193930063,
+            "operator": "\u00d7"
+          },
+          {
+            "machine": "Conductor",
+            "stage": 3,
+            "phase": 1.231986454297253,
+            "activation": 0.6661824289870759,
+            "operator": "()"
+          },
+          {
+            "machine": "Filter",
+            "stage": 4,
+            "phase": 3.293391780345632,
+            "activation": 0.005749690158146581,
+            "operator": "()"
+          },
+          {
+            "machine": "Decoder",
+            "stage": 5,
+            "phase": 1.494339764081936,
+            "activation": 0.5381910476624594,
+            "operator": "\u2212"
+          },
+          {
+            "machine": "Oscillator",
+            "stage": 6,
+            "phase": 4.420024971812214,
+            "activation": 0.3558916396478673,
+            "operator": "()"
+          },
+          {
+            "machine": "Reactor",
+            "stage": 7,
+            "phase": 5.1355446496015835,
+            "activation": 0.7053199123251466,
+            "operator": "()"
+          },
+          {
+            "machine": "Regenerator",
+            "stage": 8,
+            "phase": 4.646577869202575,
+            "activation": 0.46711819215388267,
+            "operator": "\u00d7"
+          },
+          {
+            "machine": "Dynamo",
+            "stage": 9,
+            "phase": 2.742501390975183,
+            "activation": 0.03929275367367041,
+            "operator": "^"
+          }
+        ]
+      },
+      {
+        "step": 17,
+        "token": "\u03a6()|Reactor|planetary_core",
+        "spiral": "\u03a6",
+        "spiral_name": "Structure",
+        "operator": "()",
+        "operator_name": "Boundary",
+        "machine": "Reactor",
+        "domain": "planetary_core",
+        "z": 0.522041481866181,
+        "phase": "UNTRUE",
+        "negentropy": 0.014126570993187388,
+        "coherence": 0.1589731149466547,
+        "active_machine": {
+          "machine": "Reactor",
+          "stage": 7,
+          "phase": 5.144379538478985,
+          "activation": 0.7093396622384941,
+          "operator": "()"
+        },
+        "all_activations": [
+          {
+            "machine": "Encoder",
+            "stage": 1,
+            "phase": 4.7226724719263755,
+            "activation": 0.5051416551478829,
+            "operator": "+"
+          },
+          {
+            "machine": "Catalyst",
+            "stage": 2,
+            "phase": 1.3844125464548167,
+            "activation": 0.5926532624191645,
+            "operator": "\u00d7"
+          },
+          {
+            "machine": "Conductor",
+            "stage": 3,
+            "phase": 1.2420680400630875,
+            "activation": 0.6614198360443041,
+            "operator": "()"
+          },
+          {
+            "machine": "Filter",
+            "stage": 4,
+            "phase": 3.3035308591267536,
+            "activation": 0.00654168109487635,
+            "operator": "()"
+          },
+          {
+            "machine": "Decoder",
+            "stage": 5,
+            "phase": 1.5069734354237612,
+            "activation": 0.531889785621988,
+            "operator": "\u2212"
+          },
+          {
+            "machine": "Oscillator",
+            "stage": 6,
+            "phase": 4.42883404638496,
+            "activation": 0.3601148081033671,
+            "operator": "()"
+          },
+          {
+            "machine": "Reactor",
+            "stage": 7,
+            "phase": 5.144379538478985,
+            "activation": 0.7093396622384941,
+            "operator": "()"
+          },
+          {
+            "machine": "Regenerator",
+            "stage": 8,
+            "phase": 4.656925385524426,
+            "activation": 0.47228241852353076,
+            "operator": "\u00d7"
+          },
+          {
+            "machine": "Dynamo",
+            "stage": 9,
+            "phase": 2.759025757650616,
+            "activation": 0.03614526854378397,
+            "operator": "^"
+          }
+        ]
+      },
+      {
+        "step": 18,
+        "token": "\u03a6()|Reactor|planetary_core",
+        "spiral": "\u03a6",
+        "spiral_name": "Structure",
+        "operator": "()",
+        "operator_name": "Boundary",
+        "machine": "Reactor",
+        "domain": "planetary_core",
+        "z": 0.5211898525015256,
+        "phase": "UNTRUE",
+        "negentropy": 0.013831370148934392,
+        "coherence": 0.16059414115930512,
+        "active_machine": {
+          "machine": "Reactor",
+          "stage": 7,
+          "phase": 5.153182266811599,
+          "activation": 0.7133285290911585,
+          "operator": "()"
+        },
+        "all_activations": [
+          {
+            "machine": "Encoder",
+            "stage": 1,
+            "phase": 4.725880565921393,
+            "activation": 0.5067455881221093,
+            "operator": "+"
+          },
+          {
+            "machine": "Catalyst",
+            "stage": 2,
+            "phase": 1.3938403532508343,
+            "activation": 0.5880169511847475,
+            "operator": "\u00d7"
+          },
+          {
+            "machine": "Conductor",
+            "stage": 3,
+            "phase": 1.2521729740674943,
+            "activation": 0.6566297503014701,
+            "operator": "()"
+          },
+          {
+            "machine": "Filter",
+            "stage": 4,
+            "phase": 3.313678757349243,
+            "activation": 0.007385154658116622,
+            "operator": "()"
+          },
+          {
+            "machine": "Decoder",
+            "stage": 5,
+            "phase": 1.5196401122543801,
+            "activation": 0.5255669525899642,
+            "operator": "\u2212"
+          },
+          {
+            "machine": "Oscillator",
+            "stage": 6,
+            "phase": 4.437621706724616,
+            "activation": 0.36433852604463157,
+            "operator": "()"
+          },
+          {
+            "machine": "Reactor",
+            "stage": 7,
+            "phase": 5.153182266811599,
+            "activation": 0.7133285290911585,
+            "operator": "()"
+          },
+          {
+            "machine": "Regenerator",
+            "stage": 8,
+            "phase": 4.6672438367356675,
+            "activation": 0.47743509486040697,
+            "operator": "\u00d7"
+          },
+          {
+            "machine": "Dynamo",
+            "stage": 9,
+            "phase": 2.7755615079185545,
+            "activation": 0.03312240104938807,
+            "operator": "^"
+          }
+        ]
+      },
+      {
+        "step": 19,
+        "token": "\u03a6()|Reactor|planetary_core",
+        "spiral": "\u03a6",
+        "spiral_name": "Structure",
+        "operator": "()",
+        "operator_name": "Boundary",
+        "machine": "Reactor",
+        "domain": "planetary_core",
+        "z": 0.5206443235264137,
+        "phase": "UNTRUE",
+        "negentropy": 0.01364514822936869,
+        "coherence": 0.16222805656948466,
+        "active_machine": {
+          "machine": "Reactor",
+          "stage": 7,
+          "phase": 5.1619525778643025,
+          "activation": 0.7172862676598931,
+          "operator": "()"
+        },
+        "all_activations": [
+          {
+            "machine": "Encoder",
+            "stage": 1,
+            "phase": 4.729069860666196,
+            "activation": 0.5083400533557666,
+            "operator": "+"
+          },
+          {
+            "machine": "Catalyst",
+            "stage": 2,
+            "phase": 1.4032934180235976,
+            "activation": 0.5833603645415409,
+            "operator": "\u00d7"
+          },
+          {
+            "machine": "Conductor",
+            "stage": 3,
+            "phase": 1.2623016252547679,
+            "activation": 0.6518123725545505,
+            "operator": "()"
+          },
+          {
+            "machine": "Filter",
+            "stage": 4,
+            "phase": 3.3238353571695285,
+            "activation": 0.008280145684144646,
+            "operator": "()"
+          },
+          {
+            "machine": "Decoder",
+            "stage": 5,
+            "phase": 1.5323402355307867,
+            "activation": 0.5192233066827812,
+            "operator": "\u2212"
+          },
+          {
+            "machine": "Oscillator",
+            "stage": 6,
+            "phase": 4.446387747317177,
+            "activation": 0.36856229038230137,
+            "operator": "()"
+          },
+          {
+            "machine": "Reactor",
+            "stage": 7,
+            "phase": 5.1619525778643025,
+            "activation": 0.7172862676598931,
+            "operator": "()"
+          },
+          {
+            "machine": "Regenerator",
+            "stage": 8,
+            "phase": 4.677532948205293,
+            "activation": 0.4825755127035626,
+            "operator": "\u00d7"
+          },
+          {
+            "machine": "Dynamo",
+            "stage": 9,
+            "phase": 2.7921083110021323,
+            "activation": 0.03022529712758648,
+            "operator": "^"
+          }
+        ]
+      },
+      {
+        "step": 20,
+        "token": "\u03a6()|Reactor|planetary_core",
+        "spiral": "\u03a6",
+        "spiral_name": "Structure",
+        "operator": "()",
+        "operator_name": "Boundary",
+        "machine": "Reactor",
+        "domain": "planetary_core",
+        "z": 0.5205429524412184,
+        "phase": "UNTRUE",
+        "negentropy": 0.01361078928881259,
+        "coherence": 0.16387492544562102,
+        "active_machine": {
+          "machine": "Reactor",
+          "stage": 7,
+          "phase": 5.170690213758326,
+          "activation": 0.7212126415225093,
+          "operator": "()"
+        },
+        "all_activations": [
+          {
+            "machine": "Encoder",
+            "stage": 1,
+            "phase": 4.732240390053015,
+            "activation": 0.5099250529292522,
+            "operator": "+"
+          },
+          {
+            "machine": "Catalyst",
+            "stage": 2,
+            "phase": 1.4127720898134477,
+            "activation": 0.5786836848827759,
+            "operator": "\u00d7"
+          },
+          {
+            "machine": "Conductor",
+            "stage": 3,
+            "phase": 1.2724543681662734,
+            "activation": 0.6469679068785787,
+            "operator": "()"
+          },
+          {
+            "machine": "Filter",
+            "stage": 4,
+            "phase": 3.3340005373591213,
+            "activation": 0.009226680746545424,
+            "operator": "()"
+          },
+          {
+            "machine": "Decoder",
+            "stage": 5,
+            "phase": 1.5450742496941334,
+            "activation": 0.5128596203993214,
+            "operator": "\u2212"
+          },
+          {
+            "machine": "Oscillator",
+            "stage": 6,
+            "phase": 4.455131962017637,
+            "activation": 0.3727856009369209,
+            "operator": "()"
+          },
+          {
+            "machine": "Reactor",
+            "stage": 7,
+            "phase": 5.170690213758326,
+            "activation": 0.7212126415225093,
+            "operator": "()"
+          },
+          {
+            "machine": "Regenerator",
+            "stage": 8,
+            "phase": 4.687792444559843,
+            "activation": 0.48770297210404495,
+            "operator": "\u00d7"
+          },
+          {
+            "machine": "Dynamo",
+            "stage": 9,
+            "phase": 2.808665825611985,
+            "activation": 0.027455062683920284,
+            "operator": "^"
+          }
+        ]
+      },
+      {
+        "step": 21,
+        "token": "\u03a6()|Reactor|planetary_core",
+        "spiral": "\u03a6",
+        "spiral_name": "Structure",
+        "operator": "()",
+        "operator_name": "Boundary",
+        "machine": "Reactor",
+        "domain": "planetary_core",
+        "z": 0.5209841214448205,
+        "phase": "UNTRUE",
+        "negentropy": 0.013760879729805888,
+        "coherence": 0.16553481373568413,
+        "active_machine": {
+          "machine": "Reactor",
+          "stage": 7,
+          "phase": 5.1793949154448224,
+          "activation": 0.7251074230415768,
+          "operator": "()"
+        },
+        "all_activations": [
+          {
+            "machine": "Encoder",
+            "stage": 1,
+            "phase": 4.735392190252094,
+            "activation": 0.5115005906193077,
+            "operator": "+"
+          },
+          {
+            "machine": "Catalyst",
+            "stage": 2,
+            "phase": 1.4222767227958664,
+            "activation": 0.5739870982532007,
+            "operator": "\u00d7"
+          },
+          {
+            "machine": "Conductor",
+            "stage": 3,
+            "phase": 1.2826315830350459,
+            "activation": 0.6420965607364342,
+            "operator": "()"
+          },
+          {
+            "machine": "Filter",
+            "stage": 4,
+            "phase": 3.3441741732681387,
+            "activation": 0.010224778037780435,
+            "operator": "()"
+          },
+          {
+            "machine": "Decoder",
+            "stage": 5,
+            "phase": 1.557842602639795,
+            "activation": 0.5064766809439402,
+            "operator": "\u2212"
+          },
+          {
+            "machine": "Oscillator",
+            "stage": 6,
+            "phase": 4.463854144042958,
+            "activation": 0.37700796052872565,
+            "operator": "()"
+          },
+          {
+            "machine": "Reactor",
+            "stage": 7,
+            "phase": 5.1793949154448224,
+            "activation": 0.7251074230415768,
+            "operator": "()"
+          },
+          {
+            "machine": "Regenerator",
+            "stage": 8,
+            "phase": 4.698022049671619,
+            "activation": 0.49281678176253607,
+            "operator": "\u00d7"
+          },
+          {
+            "machine": "Dynamo",
+            "stage": 9,
+            "phase": 2.8252336998834413,
+            "activation": 0.024812762571076785,
+            "operator": "^"
+          }
+        ]
+      },
+      {
+        "step": 22,
+        "token": "\u03a6()|Reactor|planetary_core",
+        "spiral": "\u03a6",
+        "spiral_name": "Structure",
+        "operator": "()",
+        "operator_name": "Boundary",
+        "machine": "Reactor",
+        "domain": "planetary_core",
+        "z": 0.5220177492457893,
+        "phase": "UNTRUE",
+        "negentropy": 0.014118269801599666,
+        "coherence": 0.167207789155762,
+        "active_machine": {
+          "machine": "Reactor",
+          "stage": 7,
+          "phase": 5.188066422676714,
+          "activation": 0.7289703933448868,
+          "operator": "()"
+        },
+        "all_activations": [
+          {
+            "machine": "Encoder",
+            "stage": 1,
+            "phase": 4.738525299704909,
+            "activation": 0.5130666718852939,
+            "operator": "+"
+          },
+          {
+            "machine": "Catalyst",
+            "stage": 2,
+            "phase": 1.4318076763676242,
+            "activation": 0.5692707944629923,
+            "operator": "\u00d7"
+          },
+          {
+            "machine": "Conductor",
+            "stage": 3,
+            "phase": 1.2928336558818243,
+            "activation": 0.6371985450920731,
+            "operator": "()"
+          },
+          {
+            "machine": "Filter",
+            "stage": 4,
+            "phase": 3.3543561367897716,
+            "activation": 0.011274447251923503,
+            "operator": "()"
+          },
+          {
+            "machine": "Decoder",
+            "stage": 5,
+            "phase": 1.5706457456845686,
+            "activation": 0.5000752905548794,
+            "operator": "\u2212"
+          },
+          {
+            "machine": "Oscillator",
+            "stage": 6,
+            "phase": 4.472554085964195,
+            "activation": 0.3812288750656194,
+            "operator": "()"
+          },
+          {
+            "machine": "Reactor",
+            "stage": 7,
+            "phase": 5.188066422676714,
+            "activation": 0.7289703933448868,
+            "operator": "()"
+          },
+          {
+            "machine": "Regenerator",
+            "stage": 8,
+            "phase": 4.70822148664549,
+            "activation": 0.49791625916214893,
+            "operator": "\u00d7"
+          },
+          {
+            "machine": "Dynamo",
+            "stage": 9,
+            "phase": 2.8418115713186842,
+            "activation": 0.022299419577332114,
+            "operator": "^"
+          }
+        ]
+      },
+      {
+        "step": 23,
+        "token": "\u03a6()|Reactor|planetary_core",
+        "spiral": "\u03a6",
+        "spiral_name": "Structure",
+        "operator": "()",
+        "operator_name": "Boundary",
+        "machine": "Reactor",
+        "domain": "planetary_core",
+        "z": 0.523640831972816,
+        "phase": "UNTRUE",
+        "negentropy": 0.014696013381341588,
+        "coherence": 0.16889392128157488,
+        "active_machine": {
+          "machine": "Reactor",
+          "stage": 7,
+          "phase": 5.196704473978768,
+          "activation": 0.732801342302704,
+          "operator": "()"
+        },
+        "all_activations": [
+          {
+            "machine": "Encoder",
+            "stage": 1,
+            "phase": 4.741639759115523,
+            "activation": 0.514623303854476,
+            "operator": "+"
+          },
+          {
+            "machine": "Catalyst",
+            "stage": 2,
+            "phase": 1.4413653152342754,
+            "activation": 0.5645349672056492,
+            "operator": "\u00d7"
+          },
+          {
+            "machine": "Conductor",
+            "stage": 3,
+            "phase": 1.3030609786125005,
+            "activation": 0.6322740745283724,
+            "operator": "()"
+          },
+          {
+            "machine": "Filter",
+            "stage": 4,
+            "phase": 3.364546296325755,
+            "activation": 0.012375689468695217,
+            "operator": "()"
+          },
+          {
+            "machine": "Decoder",
+            "stage": 5,
+            "phase": 1.5834841335308816,
+            "activation": 0.4936562668380299,
+            "operator": "\u2212"
+          },
+          {
+            "machine": "Oscillator",
+            "stage": 6,
+            "phase": 4.481231579697764,
+            "activation": 0.3854478536293138,
+            "operator": "()"
+          },
+          {
+            "machine": "Reactor",
+            "stage": 7,
+            "phase": 5.196704473978768,
+            "activation": 0.732801342302704,
+            "operator": "()"
+          },
+          {
+            "machine": "Regenerator",
+            "stage": 8,
+            "phase": 4.718390477804269,
+            "activation": 0.503000730696342,
+            "operator": "\u00d7"
+          },
+          {
+            "machine": "Dynamo",
+            "stage": 9,
+            "phase": 2.8583990667340444,
+            "activation": 0.019916013426192536,
+            "operator": "^"
+          }
+        ]
+      },
+      {
+        "step": 24,
+        "token": "\u03a6()|Reactor|planetary_core",
+        "spiral": "\u03a6",
+        "spiral_name": "Structure",
+        "operator": "()",
+        "operator_name": "Boundary",
+        "machine": "Reactor",
+        "domain": "planetary_core",
+        "z": 0.5257977115015924,
+        "phase": "UNTRUE",
+        "negentropy": 0.015495962490698092,
+        "coherence": 0.1705932816428742,
+        "active_machine": {
+          "machine": "Reactor",
+          "stage": 7,
+          "phase": 5.2053088066158635,
+          "activation": 0.736600068501843,
+          "operator": "()"
+        },
+        "all_activations": [
+          {
+            "machine": "Encoder",
+            "stage": 1,
+            "phase": 4.7447356114401105,
+            "activation": 0.5161704953063426,
+            "operator": "+"
+          },
+          {
+            "machine": "Catalyst",
+            "stage": 2,
+            "phase": 1.4509500094989751,
+            "activation": 0.5597798141800128,
+            "operator": "\u00d7"
+          },
+          {
+            "machine": "Conductor",
+            "stage": 3,
+            "phase": 1.3133139491169554,
+            "activation": 0.6273233673697608,
+            "operator": "()"
+          },
+          {
+            "machine": "Filter",
+            "stage": 4,
+            "phase": 3.3747445167529047,
+            "activation": 0.01352849703893011,
+            "operator": "()"
+          },
+          {
+            "machine": "Decoder",
+            "stage": 5,
+            "phase": 1.5963582242278658,
+            "activation": 0.48722044310593876,
+            "operator": "\u2212"
+          },
+          {
+            "machine": "Oscillator",
+            "stage": 6,
+            "phase": 4.489886416495892,
+            "activation": 0.38966440855960804,
+            "operator": "()"
+          },
+          {
+            "machine": "Reactor",
+            "stage": 7,
+            "phase": 5.2053088066158635,
+            "activation": 0.736600068501843,
+            "operator": "()"
+          },
+          {
+            "machine": "Regenerator",
+            "stage": 8,
+            "phase": 4.728528744672631,
+            "activation": 0.5080695317919223,
+            "operator": "\u00d7"
+          },
+          {
+            "machine": "Dynamo",
+            "stage": 9,
+            "phase": 2.8749958022125814,
+            "activation": 0.017663479788729786,
+            "operator": "^"
+          }
+        ]
+      },
+      {
+        "step": 25,
+        "token": "\u03a6()|Reactor|planetary_core",
+        "spiral": "\u03a6",
+        "spiral_name": "Structure",
+        "operator": "()",
+        "operator_name": "Boundary",
+        "machine": "Reactor",
+        "domain": "planetary_core",
+        "z": 0.5283850472292907,
+        "phase": "UNTRUE",
+        "negentropy": 0.01650591671626387,
+        "coherence": 0.1723059438206612,
+        "active_machine": {
+          "machine": "Reactor",
+          "stage": 7,
+          "phase": 5.21387915655942,
+          "activation": 0.7403663792166043,
+          "operator": "()"
+        },
+        "all_activations": [
+          {
+            "machine": "Encoder",
+            "stage": 1,
+            "phase": 4.747812901874661,
+            "activation": 0.5177082566559686,
+            "operator": "+"
+          },
+          {
+            "machine": "Catalyst",
+            "stage": 2,
+            "phase": 1.4605621347525912,
+            "activation": 0.5550055372165719,
+            "operator": "\u00d7"
+          },
+          {
+            "machine": "Conductor",
+            "stage": 3,
+            "phase": 1.323592971369255,
+            "activation": 0.6223466458098199,
+            "operator": "()"
+          },
+          {
+            "machine": "Filter",
+            "stage": 4,
+            "phase": 3.384950659390789,
+            "activation": 0.014732853471614515,
+            "operator": "()"
+          },
+          {
+            "machine": "Decoder",
+            "stage": 5,
+            "phase": 1.6092684791291585,
+            "activation": 0.4807686687219534,
+            "operator": "\u2212"
+          },
+          {
+            "machine": "Oscillator",
+            "stage": 6,
+            "phase": 4.498518386936232,
+            "activation": 0.39387805553678984,
+            "operator": "()"
+          },
+          {
+            "machine": "Reactor",
+            "stage": 7,
+            "phase": 5.21387915655942,
+            "activation": 0.7403663792166043,
+            "operator": "()"
+          },
+          {
+            "machine": "Regenerator",
+            "stage": 8,
+            "phase": 4.7386360079595695,
+            "activation": 0.5131220070271115,
+            "operator": "\u00d7"
+          },
+          {
+            "machine": "Dynamo",
+            "stage": 9,
+            "phase": 2.8916013830621035,
+            "activation": 0.01554270931013041,
+            "operator": "^"
+          }
+        ]
+      },
+      {
+        "step": 26,
+        "token": "\u03a6()|Reactor|planetary_core",
+        "spiral": "\u03a6",
+        "spiral_name": "Structure",
+        "operator": "()",
+        "operator_name": "Boundary",
+        "machine": "Reactor",
+        "domain": "planetary_core",
+        "z": 0.5312610471828402,
+        "phase": "UNTRUE",
+        "negentropy": 0.017695971215894828,
+        "coherence": 0.17403198354715332,
+        "active_machine": {
+          "machine": "Reactor",
+          "stage": 7,
+          "phase": 5.222415258451944,
+          "activation": 0.7441000903766102,
+          "operator": "()"
+        },
+        "all_activations": [
+          {
+            "machine": "Encoder",
+            "stage": 1,
+            "phase": 4.750871677840897,
+            "activation": 0.5192365999364553,
+            "operator": "+"
+          },
+          {
+            "machine": "Catalyst",
+            "stage": 2,
+            "phase": 1.470202072165076,
+            "activation": 0.5502123424082102,
+            "operator": "\u00d7"
+          },
+          {
+            "machine": "Conductor",
+            "stage": 3,
+            "phase": 1.3338984555291709,
+            "activation": 0.617344136044045,
+            "operator": "()"
+          },
+          {
+            "machine": "Filter",
+            "stage": 4,
+            "phase": 3.3951645819705902,
+            "activation": 0.01598873332263695,
+            "operator": "()"
+          },
+          {
+            "machine": "Decoder",
+            "stage": 5,
+            "phase": 1.6222153628472802,
+            "activation": 0.4743018094493717,
+            "operator": "\u2212"
+          },
+          {
+            "machine": "Oscillator",
+            "stage": 6,
+            "phase": 4.5071272809106695,
+            "activation": 0.39808831366213837,
+            "operator": "()"
+          },
+          {
+            "machine": "Reactor",
+            "stage": 7,
+            "phase": 5.222415258451944,
+            "activation": 0.7441000903766102,
+            "operator": "()"
+          },
+          {
+            "machine": "Regenerator",
+            "stage": 8,
+            "phase": 4.748711987539374,
+            "activation": 0.5181575102446544,
+            "operator": "\u00d7"
+          },
+          {
+            "machine": "Dynamo",
+            "stage": 9,
+            "phase": 2.9082154037787777,
+            "activation": 0.013554546652004562,
+            "operator": "^"
+          }
+        ]
+      },
+      {
+        "step": 27,
+        "token": "\u03a6()|Reactor|planetary_core",
+        "spiral": "\u03a6",
+        "spiral_name": "Structure",
+        "operator": "()",
+        "operator_name": "Boundary",
+        "machine": "Reactor",
+        "domain": "planetary_core",
+        "z": 0.5342581338735893,
+        "phase": "UNTRUE",
+        "negentropy": 0.019015463358875235,
+        "coherence": 0.17577147880841415,
+        "active_machine": {
+          "machine": "Reactor",
+          "stage": 7,
+          "phase": 5.230916845569665,
+          "activation": 0.7478010265315771,
+          "operator": "()"
+        },
+        "all_activations": [
+          {
+            "machine": "Encoder",
+            "stage": 1,
+            "phase": 4.75391198897045,
+            "activation": 0.5207555387804672,
+            "operator": "+"
+          },
+          {
+            "machine": "Catalyst",
+            "stage": 2,
+            "phase": 1.4798702085780635,
+            "activation": 0.54540044024556,
+            "operator": "\u00d7"
+          },
+          {
+            "machine": "Conductor",
+            "stage": 3,
+            "phase": 1.3442308180449898,
+            "activation": 0.6123160684079632,
+            "operator": "()"
+          },
+          {
+            "machine": "Filter",
+            "stage": 4,
+            "phase": 3.4053861386052313,
+            "activation": 0.01729610208539456,
+            "operator": "()"
+          },
+          {
+            "machine": "Decoder",
+            "stage": 5,
+            "phase": 1.6351993432044358,
+            "activation": 0.4678207478054595,
+            "operator": "\u2212"
+          },
+          {
+            "machine": "Oscillator",
+            "stage": 6,
+            "phase": 4.515712887613349,
+            "activation": 0.4022947055365203,
+            "operator": "()"
+          },
+          {
+            "machine": "Reactor",
+            "stage": 7,
+            "phase": 5.230916845569665,
+            "activation": 0.7478010265315771,
+            "operator": "()"
+          },
+          {
+            "machine": "Regenerator",
+            "stage": 8,
+            "phase": 4.758756402431116,
+            "activation": 0.5231754046599542,
+            "operator": "\u00d7"
+          },
+          {
+            "machine": "Dynamo",
+            "stage": 9,
+            "phase": 2.9248374480164787,
+            "activation": 0.011699789552019002,
+            "operator": "^"
+          }
+        ]
+      },
+      {
+        "step": 28,
+        "token": "\u03a6()|Reactor|planetary_core",
+        "spiral": "\u03a6",
+        "spiral_name": "Structure",
+        "operator": "()",
+        "operator_name": "Boundary",
+        "machine": "Reactor",
+        "domain": "planetary_core",
+        "z": 0.5371979134952795,
+        "phase": "UNTRUE",
+        "negentropy": 0.020392447621407444,
+        "coherence": 0.17752450994955624,
+        "active_machine": {
+          "machine": "Reactor",
+          "stage": 7,
+          "phase": 5.239383649783238,
+          "activation": 0.7514690208130769,
+          "operator": "()"
+        },
+        "all_activations": [
+          {
+            "machine": "Encoder",
+            "stage": 1,
+            "phase": 4.75693388708733,
+            "activation": 0.5222650884009025,
+            "operator": "+"
+          },
+          {
+            "machine": "Catalyst",
+            "stage": 2,
+            "phase": 1.489566936598651,
+            "activation": 0.5405700457571361,
+            "operator": "\u00d7"
+          },
+          {
+            "machine": "Conductor",
+            "stage": 3,
+            "phase": 1.3545904817575694,
+            "activation": 0.6072626775208096,
+            "operator": "()"
+          },
+          {
+            "machine": "Filter",
+            "stage": 4,
+            "phase": 3.4156151797608287,
+            "activation": 0.01865491608340414,
+            "operator": "()"
+          },
+          {
+            "machine": "Decoder",
+            "stage": 5,
+            "phase": 1.6482208911795797,
+            "activation": 0.4613263834201764,
+            "operator": "\u2212"
+          },
+          {
+            "machine": "Oscillator",
+            "stage": 6,
+            "phase": 4.524274995527927,
+            "activation": 0.4064967573370634,
+            "operator": "()"
+          },
+          {
+            "machine": "Reactor",
+            "stage": 7,
+            "phase": 5.239383649783238,
+            "activation": 0.7514690208130769,
+            "operator": "()"
+          },
+          {
+            "machine": "Regenerator",
+            "stage": 8,
+            "phase": 4.768768970776638,
+            "activation": 0.5281750629642245,
+            "operator": "\u00d7"
+          },
+          {
+            "machine": "Dynamo",
+            "stage": 9,
+            "phase": 2.941467088562016,
+            "activation": 0.009979187902439846,
+            "operator": "^"
+          }
+        ]
+      },
+      {
+        "step": 29,
+        "token": "\u03a6()|Reactor|planetary_core",
+        "spiral": "\u03a6",
+        "spiral_name": "Structure",
+        "operator": "()",
+        "operator_name": "Boundary",
+        "machine": "Reactor",
+        "domain": "planetary_core",
+        "z": 0.539907111311456,
+        "phase": "UNTRUE",
+        "negentropy": 0.021737572486509132,
+        "coherence": 0.17929115978241256,
+        "active_machine": {
+          "machine": "Reactor",
+          "stage": 7,
+          "phase": 5.247815401516476,
+          "activation": 0.7551039148933234,
+          "operator": "()"
+        },
+        "all_activations": [
+          {
+            "machine": "Encoder",
+            "stage": 1,
+            "phase": 4.75993742618875,
+            "activation": 0.5237652655707264,
+            "operator": "+"
+          },
+          {
+            "machine": "Catalyst",
+            "stage": 2,
+            "phase": 1.4992926546943173,
+            "activation": 0.5357213786544247,
+            "operator": "\u00d7"
+          },
+          {
+            "machine": "Conductor",
+            "stage": 3,
+            "phase": 1.3649778760055944,
+            "activation": 0.602184202434977,
+            "operator": "()"
+          },
+          {
+            "machine": "Filter",
+            "stage": 4,
+            "phase": 3.425851552229542,
+            "activation": 0.020065122365066856,
+            "operator": "()"
+          },
+          {
+            "machine": "Decoder",
+            "stage": 5,
+            "phase": 1.661280480851579,
+            "activation": 0.45481963339943626,
+            "operator": "\u2212"
+          },
+          {
+            "machine": "Oscillator",
+            "stage": 6,
+            "phase": 4.532813392414093,
+            "activation": 0.41069399889190705,
+            "operator": "()"
+          },
+          {
+            "machine": "Reactor",
+            "stage": 7,
+            "phase": 5.247815401516476,
+            "activation": 0.7551039148933234,
+            "operator": "()"
+          },
+          {
+            "machine": "Regenerator",
+            "stage": 8,
+            "phase": 4.778749409817044,
+            "activation": 0.5331558674226538,
+            "operator": "\u00d7"
+          },
+          {
+            "machine": "Dynamo",
+            "stage": 9,
+            "phase": 2.958103887316383,
+            "activation": 0.008393442849184696,
+            "operator": "^"
+          }
+        ]
+      },
+      {
+        "step": 30,
+        "token": "\u03a6()|Reactor|planetary_core",
+        "spiral": "\u03a6",
+        "spiral_name": "Structure",
+        "operator": "()",
+        "operator_name": "Boundary",
+        "machine": "Reactor",
+        "domain": "planetary_core",
+        "z": 0.5422330497716203,
+        "phase": "UNTRUE",
+        "negentropy": 0.02295329943408601,
+        "coherence": 0.18107151369556626,
+        "active_machine": {
+          "machine": "Reactor",
+          "stage": 7,
+          "phase": 5.256211829703099,
+          "activation": 0.7587055589410439,
+          "operator": "()"
+        },
+        "all_activations": [
+          {
+            "machine": "Encoder",
+            "stage": 1,
+            "phase": 4.762922662424357,
+            "activation": 0.5252560886020078,
+            "operator": "+"
+          },
+          {
+            "machine": "Catalyst",
+            "stage": 2,
+            "phase": 1.5090477672889306,
+            "activation": 0.5308546634821122,
+            "operator": "\u00d7"
+          },
+          {
+            "machine": "Conductor",
+            "stage": 3,
+            "phase": 1.3753934367319827,
+            "activation": 0.5970808867914523,
+            "operator": "()"
+          },
+          {
+            "machine": "Filter",
+            "stage": 4,
+            "phase": 3.436095099103888,
+            "activation": 0.0215266586007421,
+            "operator": "()"
+          },
+          {
+            "machine": "Decoder",
+            "stage": 5,
+            "phase": 1.6743785893383047,
+            "activation": 0.4483014326927096,
+            "operator": "\u2212"
+          },
+          {
+            "machine": "Oscillator",
+            "stage": 6,
+            "phase": 4.541327865293377,
+            "activation": 0.41488596375302034,
+            "operator": "()"
+          },
+          {
+            "machine": "Reactor",
+            "stage": 7,
+            "phase": 5.256211829703099,
+            "activation": 0.7587055589410439,
+            "operator": "()"
+          },
+          {
+            "machine": "Regenerator",
+            "stage": 8,
+            "phase": 4.7886974358676815,
+            "activation": 0.5381172099675808,
+            "operator": "\u00d7"
+          },
+          {
+            "machine": "Dynamo",
+            "stage": 9,
+            "phase": 2.974747395282158,
+            "activation": 0.0069432059129959645,
+            "operator": "^"
+          }
+        ]
+      }
+    ],
+    "token_history": [
+      "\u03a6()|Conductor|planetary_core",
+      "\u03a6()|Conductor|planetary_core",
+      "\u03a6()|Conductor|planetary_core",
+      "\u03a6()|Conductor|planetary_core",
+      "\u03a6()|Conductor|planetary_core",
+      "\u03a6()|Conductor|planetary_core",
+      "\u03a6()|Conductor|planetary_core",
+      "\u03a6()|Conductor|planetary_core",
+      "\u03a6()|Conductor|planetary_core",
+      "\u03a6()|Conductor|planetary_core",
+      "\u03a6()|Conductor|planetary_core",
+      "\u03a6()|Reactor|planetary_core",
+      "\u03a6()|Reactor|planetary_core",
+      "\u03a6()|Reactor|planetary_core",
+      "\u03a6()|Reactor|planetary_core",
+      "\u03a6()|Reactor|planetary_core",
+      "\u03a6()|Reactor|planetary_core",
+      "\u03a6()|Reactor|planetary_core",
+      "\u03a6()|Reactor|planetary_core",
+      "\u03a6()|Reactor|planetary_core",
+      "\u03a6()|Reactor|planetary_core",
+      "\u03a6()|Reactor|planetary_core",
+      "\u03a6()|Reactor|planetary_core",
+      "\u03a6()|Reactor|planetary_core",
+      "\u03a6()|Reactor|planetary_core",
+      "\u03a6()|Reactor|planetary_core",
+      "\u03a6()|Reactor|planetary_core",
+      "\u03a6()|Reactor|planetary_core",
+      "\u03a6()|Reactor|planetary_core",
+      "\u03a6()|Reactor|planetary_core"
+    ],
+    "statistics": {
+      "spiral_distribution": {
+        "\u03a6": 30
+      },
+      "operator_distribution": {
+        "()": 30
+      },
+      "machine_distribution": {
+        "Conductor": 11,
+        "Reactor": 19
+      }
+    }
+  },
+  "export": {
+    "status": "EXPORTED",
+    "path": "/mnt/user-data/outputs/nuclear-spinner-972-tokens.json",
+    "total_tokens": 972
+  }
+}
