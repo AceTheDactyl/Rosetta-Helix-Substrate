@@ -54,8 +54,8 @@ jobs:
 
       - name: System setup (apt)
         run: |
-          apt-get update
-          DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+          sudo apt-get update
+          DEBIAN_FRONTEND=noninteractive sudo apt-get install -y --no-install-recommends \
             jq curl build-essential ca-certificates git
 
       - name: Set up Python
