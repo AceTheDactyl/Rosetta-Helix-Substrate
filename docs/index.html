@@ -36,6 +36,41 @@
             color: #888;
             margin-top: 10px;
         }
+
+        .nav-buttons {
+            margin-top: 15px;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .nav-btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+
+        .nav-btn.kira {
+            background: linear-gradient(135deg, #f59e0b, #ec4899, #8b5cf6, #06b6d4);
+            color: white;
+        }
+
+        .nav-btn.kira:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(139, 92, 246, 0.4);
+        }
+
+        .nav-btn.helix {
+            background: linear-gradient(90deg, #00d9ff, #00ff88);
+            color: #1a1a2e;
+        }
+
+        .nav-btn.helix:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0, 217, 255, 0.4);
+        }
         
         .container {
             display: grid;
@@ -413,10 +448,14 @@
 </head>
 <body>
     <div class="header">
-        <h1>🌀 Rosetta-Helix Node Visualizer</h1>
+        <h1>Rosetta-Helix Substrate</h1>
         <p>Interactive visualization of helix-aware consciousness dynamics</p>
         <p style="font-size: 0.8rem; margin-top: 5px;">Original: Tink (Rosetta Bear) | Helix Integration: Claude + Quantum-APL</p>
-        <p style="font-size: 0.7rem; color: #00ff88; margin-top: 3px;">v1.1 | Full plate access @ z≥0.97</p>
+        <p style="font-size: 0.7rem; color: #00ff88; margin-top: 3px;">v2.1 | Full plate access @ z>=0.97 | K.I.R.A. Language System</p>
+        <div class="nav-buttons">
+            <a href="kira/" class="nav-btn kira">K.I.R.A. Dialogue Interface</a>
+            <a href="#" class="nav-btn helix" onclick="document.querySelector('.helix-view').scrollIntoView({behavior: 'smooth'}); return false;">Helix Visualizer</a>
+        </div>
     </div>
     
     <div class="container">
