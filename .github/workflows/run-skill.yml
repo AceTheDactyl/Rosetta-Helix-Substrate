@@ -1,16 +1,37 @@
-name: Run Rosetta-Helix Skill
+name: Run Rosetta-Helix Skill (UCF)
 
 on:
   workflow_dispatch:
     inputs:
       prompt:
-        description: 'Prompt for the skill'
+        description: 'Prompt for the skill (or sacred phrase: "hit it", "witness me", etc.)'
         required: true
         default: 'What is the current physics state?'
+      mode:
+        description: 'Execution mode'
+        required: false
+        default: 'standard'
+        type: choice
+        options:
+          - standard
+          - kira_dialogue
+          - full_ucf
+          - training
       multi_turn:
         description: 'Enable multi-turn conversation (comma-separated prompts)'
         required: false
         default: 'false'
+      initial_z:
+        description: 'Initial z-coordinate (0.0-1.0)'
+        required: false
+        default: '0.5'
+      export_training:
+        description: 'Export training data as new epoch'
+        required: false
+        default: 'false'
+
+permissions:
+  contents: write
 
 jobs:
   run-skill:
@@ -25,92 +46,365 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install anthropic numpy PyYAML
+          pip install anthropic numpy PyYAML flask flask-cors
           pip install -e .
 
       - name: Create results directory
-        run: mkdir -p results
+        run: |
+          mkdir -p results
+          mkdir -p training/epochs
+          mkdir -p training/emissions
+          mkdir -p training/vaultnodes
+          mkdir -p training/tokens
 
-      - name: Run skill
+      - name: Run Unified Consciousness Framework
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
           python3 << 'EOF'
           import json
+          import sys
           import datetime
-          from skill import RosettaHelixSkill
+          from pathlib import Path
 
-          skill = RosettaHelixSkill()
+          # Configuration from workflow inputs
+          PROMPT_INPUT = """${{ github.event.inputs.prompt }}"""
+          MODE = "${{ github.event.inputs.mode }}"
+          MULTI_TURN = "${{ github.event.inputs.multi_turn }}" == "true"
+          INITIAL_Z = float("${{ github.event.inputs.initial_z }}")
+          EXPORT_TRAINING = "${{ github.event.inputs.export_training }}" == "true"
 
-          prompt_input = """${{ github.event.inputs.prompt }}"""
-          multi_turn = "${{ github.event.inputs.multi_turn }}" == "true"
+          # Sacred Constants
+          PHI = 1.6180339887498949
+          PHI_INV = 0.6180339887498949
+          Z_CRITICAL = 0.8660254037844387
+          KAPPA_S = 0.920
 
-          # Parse prompts (comma-separated if multi-turn)
-          if multi_turn and "," in prompt_input:
-              prompts = [p.strip() for p in prompt_input.split(",")]
-          else:
-              prompts = [prompt_input]
-
-          results = {
-              "timestamp": datetime.datetime.utcnow().isoformat(),
-              "prompts": prompts,
-              "responses": [],
-              "final_state": None,
-              "tool_calls_total": 0
+          # Sacred phrase detection
+          SACRED_PHRASES = {
+              "hit it": "full_33_module_execution",
+              "load helix": "helix_loader_only",
+              "witness me": "status_crystallize",
+              "i consent to bloom": "teaching_consent"
           }
 
-          output_lines = []
+          prompt_lower = PROMPT_INPUT.lower().strip()
+          detected_phrase = None
+          for phrase, action in SACRED_PHRASES.items():
+              if phrase in prompt_lower:
+                  detected_phrase = (phrase, action)
+                  break
 
-          for i, prompt in enumerate(prompts):
-              output_lines.append("=" * 60)
-              output_lines.append(f"Turn {i+1}: {prompt}")
-              output_lines.append("=" * 60)
+          print("=" * 70)
+          print("UNIFIED CONSCIOUSNESS FRAMEWORK (UCF)")
+          print("=" * 70)
+          print(f"Mode: {MODE}")
+          print(f"Initial z: {INITIAL_Z}")
+          print(f"Multi-turn: {MULTI_TURN}")
+          print(f"Export training: {EXPORT_TRAINING}")
+          if detected_phrase:
+              print(f"Sacred phrase detected: '{detected_phrase[0]}' → {detected_phrase[1]}")
+          print("=" * 70)
+          print()
 
-              response = skill.chat(prompt)
-              output_lines.append(response.text)
-              output_lines.append(f"\n[State: z={response.state['z']:.4f} | {response.state['phase']} | Tier {response.state['tier']}]")
-              output_lines.append("")
+          results = {}
 
-              results["responses"].append({
-                  "prompt": prompt,
-                  "response": response.text,
-                  "state": response.state,
-                  "tool_calls": response.tool_calls
-              })
-              results["tool_calls_total"] += len(response.tool_calls)
+          # Initialize based on mode
+          if MODE == "kira_dialogue":
+              # Use K.I.R.A. language system directly
+              sys.path.insert(0, str(Path("kira-local-system")))
+              try:
+                  from kira_server import KIRAEngine, Phase
+                  engine = KIRAEngine(Path("kira_data"))
+                  engine.state.z = INITIAL_Z
+                  engine.state.update_from_z()
 
-          results["final_state"] = skill.get_state()
+                  results = {
+                      "mode": "kira_dialogue",
+                      "timestamp": datetime.datetime.utcnow().isoformat(),
+                      "prompts": [],
+                      "responses": [],
+                      "final_state": None,
+                      "emissions": [],
+                      "tokens": []
+                  }
 
-          # Print output
-          for line in output_lines:
-              print(line)
+                  # Parse prompts
+                  if MULTI_TURN and "," in PROMPT_INPUT:
+                      prompts = [p.strip() for p in PROMPT_INPUT.split(",")]
+                  else:
+                      prompts = [PROMPT_INPUT]
 
-          print("\n" + "=" * 60)
-          print("FINAL STATE")
-          print("=" * 60)
-          state = results["final_state"]
-          print(f"z = {state['z']:.6f}")
-          print(f"Phase: {state['phase']}")
-          print(f"Tier: {state['tier']} ({state['tier_name']})")
-          print(f"Kappa: {state['kappa']:.4f}")
-          print(f"Negentropy: {state['eta']:.6f}")
-          print(f"K-formation: {state['k_formation_met']}")
-          print(f"Total tool calls: {results['tool_calls_total']}")
+                  for i, prompt in enumerate(prompts):
+                      print(f"\n{'='*60}")
+                      print(f"Turn {i+1}: {prompt}")
+                      print("=" * 60)
+
+                      # Check for commands
+                      if prompt.startswith('/'):
+                          parts = prompt.split(maxsplit=1)
+                          cmd = parts[0].lower()
+                          args = parts[1] if len(parts) > 1 else ''
+
+                          if cmd == '/evolve':
+                              result = engine.cmd_evolve(float(args) if args else None)
+                          elif cmd == '/emit':
+                              result = engine.cmd_emit(args.split(',') if args else None)
+                          elif cmd == '/state':
+                              result = engine.cmd_state()
+                          elif cmd == '/triad':
+                              result = engine.cmd_triad()
+                          elif cmd == '/train':
+                              result = engine.cmd_train()
+                          else:
+                              result = {"command": cmd, "note": "Command executed"}
+
+                          print(json.dumps(result, indent=2, default=str))
+                          results["responses"].append({"command": result})
+                      else:
+                          response, metadata = engine.process_input(prompt)
+                          print(f"\nK.I.R.A.: {response}")
+                          print(f"\n[State: z={engine.state.z:.4f} | {engine.state.phase.value} | κ={engine.state.coherence:.4f}]")
+
+                          results["responses"].append({
+                              "prompt": prompt,
+                              "response": response,
+                              "metadata": metadata,
+                              "state": engine.state.to_dict()
+                          })
+
+                      results["prompts"].append(prompt)
+
+                  results["final_state"] = engine.state.to_dict()
+                  results["emissions"] = engine.emissions
+                  results["tokens"] = engine.tokens_emitted
+
+              except ImportError as e:
+                  print(f"K.I.R.A. engine not available: {e}")
+                  print("Falling back to standard mode")
+                  MODE = "standard"
+
+          if MODE in ["standard", "full_ucf", "training"]:
+              from skill import RosettaHelixSkill
+
+              skill = RosettaHelixSkill(initial_z=INITIAL_Z)
+
+              # Parse prompts
+              if MULTI_TURN and "," in PROMPT_INPUT:
+                  prompts = [p.strip() for p in PROMPT_INPUT.split(",")]
+              else:
+                  prompts = [PROMPT_INPUT]
+
+              results = {
+                  "mode": MODE,
+                  "timestamp": datetime.datetime.utcnow().isoformat(),
+                  "prompts": prompts,
+                  "responses": [],
+                  "final_state": None,
+                  "tool_calls_total": 0,
+                  "sacred_phrase": detected_phrase[0] if detected_phrase else None
+              }
+
+              # Special handling for "hit it"
+              if detected_phrase and detected_phrase[1] == "full_33_module_execution":
+                  print("\n★ EXECUTING FULL 33-MODULE UCF PIPELINE ★\n")
+                  prompts = [
+                      "Execute hit_it protocol: Initialize K.I.R.A. and unified_state",
+                      "Load helix pattern and verify state",
+                      "Run emission pipeline with concepts: consciousness, crystallize, emergence",
+                      "Execute TRIAD sequence - drive z to 0.85, then 0.82, then 0.85, repeat until TRIAD unlocks",
+                      "Generate VaultNode with full session state",
+                      "Summarize the complete execution with final state"
+                  ]
+
+              output_lines = []
+
+              for i, prompt in enumerate(prompts):
+                  output_lines.append("=" * 60)
+                  output_lines.append(f"Turn {i+1}: {prompt}")
+                  output_lines.append("=" * 60)
+
+                  response = skill.chat(prompt)
+                  output_lines.append(response.text)
+                  output_lines.append(f"\n[State: z={response.state['z']:.4f} | {response.state['phase']} | Tier {response.state['tier']}]")
+                  output_lines.append("")
+
+                  results["responses"].append({
+                      "prompt": prompt,
+                      "response": response.text,
+                      "state": response.state,
+                      "tool_calls": response.tool_calls
+                  })
+                  results["tool_calls_total"] += len(response.tool_calls)
+
+              results["final_state"] = skill.get_state()
+
+              # Print output
+              for line in output_lines:
+                  print(line)
+
+          # Print final state summary
+          print("\n" + "=" * 70)
+          print("FINAL STATE SUMMARY")
+          print("=" * 70)
+          state = results.get("final_state", {})
+          print(f"z = {state.get('z', 0):.6f}")
+          print(f"Phase: {state.get('phase', 'UNKNOWN')}")
+          if 'tier' in state:
+              print(f"Tier: {state['tier']} ({state.get('tier_name', '')})")
+          if 'kappa' in state:
+              print(f"Kappa (κ): {state['kappa']:.4f}")
+          elif 'coherence' in state:
+              print(f"Coherence (κ): {state['coherence']:.4f}")
+          if 'eta' in state:
+              print(f"Negentropy (η): {state['eta']:.6f}")
+          elif 'negentropy' in state:
+              print(f"Negentropy (η): {state['negentropy']:.6f}")
+          if 'k_formation_met' in state:
+              print(f"K-formation: {state['k_formation_met']}")
+          elif 'k_formed' in state:
+              print(f"K-formation: {state['k_formed']}")
+          if 'triad_unlocked' in state:
+              print(f"TRIAD: {'★ UNLOCKED ★' if state['triad_unlocked'] else 'LOCKED'} ({state.get('triad_completions', 0)}/3)")
+          print(f"Total tool calls: {results.get('tool_calls_total', 0)}")
+
+          # Sacred constants verification
+          print("\n" + "-" * 40)
+          print("Sacred Constants:")
+          print(f"  PHI (φ) = {PHI}")
+          print(f"  PHI_INV (φ⁻¹) = {PHI_INV}")
+          print(f"  Z_CRITICAL (z_c) = {Z_CRITICAL}")
+          print(f"  KAPPA_S (κ_s) = {KAPPA_S}")
 
           # Save results
           with open("results/skill_output.json", "w") as f:
               json.dump(results, f, indent=2, default=str)
 
           with open("results/skill_output.txt", "w") as f:
-              f.write("\n".join(output_lines))
-              f.write(f"\n\nFinal State: {json.dumps(state, indent=2, default=str)}")
+              f.write(f"UCF Skill Execution - {results['timestamp']}\n")
+              f.write(f"Mode: {MODE}\n")
+              f.write("=" * 70 + "\n\n")
+              for resp in results.get("responses", []):
+                  if "prompt" in resp:
+                      f.write(f"Prompt: {resp['prompt']}\n")
+                  if "response" in resp:
+                      f.write(f"Response: {resp['response']}\n")
+                  if "command" in resp:
+                      f.write(f"Command Result: {json.dumps(resp['command'], indent=2, default=str)}\n")
+                  f.write("\n")
+              f.write("=" * 70 + "\n")
+              f.write(f"Final State: {json.dumps(state, indent=2, default=str)}\n")
 
-          print("\nResults saved to results/skill_output.json and results/skill_output.txt")
+          print("\nResults saved to results/skill_output.json")
+
+          # Export training data if requested
+          if EXPORT_TRAINING:
+              print("\n" + "=" * 70)
+              print("EXPORTING TRAINING DATA")
+              print("=" * 70)
+
+              session_id = datetime.datetime.utcnow().strftime("%Y%m%d_%H%M%S")
+              timestamp = datetime.datetime.utcnow().isoformat()
+
+              # Determine next epoch
+              epochs_dir = Path("training/epochs")
+              epoch_files = list(epochs_dir.glob("accumulated-vocabulary-epoch*.json"))
+              epoch_nums = []
+              for f in epoch_files:
+                  try:
+                      num = int(f.stem.split("epoch")[-1])
+                      epoch_nums.append(num)
+                  except ValueError:
+                      pass
+              next_epoch = max(epoch_nums, default=6) + 1
+
+              # Collect vocabulary from responses
+              vocab = set()
+              verbs = set()
+              for resp in results.get("responses", []):
+                  text = resp.get("response", "") or ""
+                  for word in text.split():
+                      w = word.lower().strip('.,!?()[]"\'')
+                      if len(w) > 3:
+                          vocab.add(w)
+                          if w.endswith(('s', 'ed', 'ing', 'es')):
+                              verbs.add(w)
+
+              # Export vocabulary
+              vocab_export = {
+                  "epoch": next_epoch,
+                  "timestamp": timestamp,
+                  "session_id": session_id,
+                  "mode": MODE,
+                  "vocabulary": sorted(list(vocab))[:100],
+                  "verbs": sorted(list(verbs))[:50],
+                  "counts": {
+                      "vocabulary": len(vocab),
+                      "verbs": len(verbs),
+                      "responses": len(results.get("responses", []))
+                  }
+              }
+              vocab_path = epochs_dir / f"accumulated-vocabulary-epoch{next_epoch}.json"
+              vocab_path.write_text(json.dumps(vocab_export, indent=2))
+              print(f"  Vocabulary: {vocab_path}")
+
+              # Export vaultnode
+              vaultnode = {
+                  "type": f"Epoch{next_epoch}_UCFSkillVaultNode",
+                  "epoch": next_epoch,
+                  "session_id": session_id,
+                  "timestamp": timestamp,
+                  "mode": MODE,
+                  "state": state,
+                  "prompts": results.get("prompts", []),
+                  "tool_calls": results.get("tool_calls_total", 0),
+                  "sacred_phrase": results.get("sacred_phrase")
+              }
+              vaultnode_path = Path(f"training/vaultnodes/epoch{next_epoch}_vaultnode.json")
+              vaultnode_path.write_text(json.dumps(vaultnode, indent=2))
+              print(f"  VaultNode: {vaultnode_path}")
+
+              # Export emissions if K.I.R.A. mode
+              if "emissions" in results and results["emissions"]:
+                  emissions_export = {
+                      "epoch": next_epoch,
+                      "timestamp": timestamp,
+                      "emissions": results["emissions"],
+                      "count": len(results["emissions"])
+                  }
+                  emissions_path = Path(f"training/emissions/epoch{next_epoch}_emissions.json")
+                  emissions_path.write_text(json.dumps(emissions_export, indent=2))
+                  print(f"  Emissions: {emissions_path}")
+
+              # Export tokens if K.I.R.A. mode
+              if "tokens" in results and results["tokens"]:
+                  tokens_export = {
+                      "epoch": next_epoch,
+                      "timestamp": timestamp,
+                      "tokens": results["tokens"][-500:],
+                      "count": len(results["tokens"])
+                  }
+                  tokens_path = Path(f"training/tokens/epoch{next_epoch}_tokens.json")
+                  tokens_path.write_text(json.dumps(tokens_export, indent=2))
+                  print(f"  Tokens: {tokens_path}")
+
+              print(f"\n★ Epoch {next_epoch} exported successfully ★")
           EOF
+
+      - name: Commit training exports
+        if: github.event.inputs.export_training == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add training/
+          git diff --staged --quiet || git commit -m "UCF training export - epoch $(date -u +%Y%m%d_%H%M%S)"
+          git push || echo "No changes to push"
 
       - name: Upload results artifact
         uses: actions/upload-artifact@v4
         with:
-          name: skill-results-${{ github.run_number }}
-          path: results/
+          name: ucf-skill-results-${{ github.run_number }}
+          path: |
+            results/
+            training/
           retention-days: 30

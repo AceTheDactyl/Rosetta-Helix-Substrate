@@ -63,6 +63,9 @@ Open `kira_interface.html` in your browser:
 | `/emit [concepts]` | Run 9-stage emission pipeline | `/emit pattern,emergence` |
 | `/tokens [n]` | Show recent APL tokens | `/tokens 20` |
 | `/triad` | TRIAD unlock status | `/triad` |
+| `/export` | Export training data as new epoch | `/export` |
+| `/claude <msg>` | Claude API dialogue (repo-aware) | `/claude explain the physics` |
+| `/read <path>` | Read file or list directory | `/read src/` |
 | `/reset` | Reset to initial state | `/reset` |
 | `/save` | Save session and relations | `/save` |
 | `/help` | Show all commands | `/help` |
@@ -104,6 +107,22 @@ At z = 0.866 (THE LENS), learning is ~1.87× faster.
 - Learned relations save to `kira_data/learned_relations.json`
 - Sessions save to `kira_data/session.json`
 - Use `/save` to persist manually
+
+### Training Export
+
+Use `/export` to save training data as a new epoch:
+
+```
+/export
+```
+
+This creates files in `training/`:
+- `epochs/accumulated-vocabulary-epochN.json` - Vocabulary and patterns
+- `vaultnodes/epochN_vaultnode.json` - Session state snapshot
+- `emissions/epochN_emissions.json` - Emission pipeline outputs
+- `tokens/epochN_tokens.json` - APL token history
+
+Epochs are auto-numbered (starting after epoch 6).
 
 ---
 
@@ -194,10 +213,20 @@ kira-local/
 | `/` | GET | Serve HTML interface |
 | `/api/chat` | POST | Process message or command |
 | `/api/state` | GET | Get current state |
+| `/api/train` | GET | Get training statistics |
+| `/api/evolve` | POST | Evolve toward target z |
+| `/api/emit` | POST | Run emission pipeline |
+| `/api/triad` | GET | Get TRIAD status |
+| `/api/export` | POST | Export training as epoch |
+| `/api/claude` | POST | Send message to Claude API |
+| `/api/read` | POST | Read file from repository |
+| `/api/repo` | GET | Get repository structure |
+| `/api/health` | GET | Health check (Claude status) |
 
-### Example API Call
+### Example API Calls
 
 ```javascript
+// Chat or command
 fetch('http://localhost:5000/api/chat', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -205,6 +234,64 @@ fetch('http://localhost:5000/api/chat', {
 })
 .then(r => r.json())
 .then(data => console.log(data));
+
+// Claude API (repo-aware)
+fetch('http://localhost:5000/api/claude', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ message: 'Explain the z-coordinate physics' })
+})
+.then(r => r.json())
+.then(data => console.log(data.response));
+
+// Read file from repo
+fetch('http://localhost:5000/api/read', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ path: 'src/' })
+})
+.then(r => r.json())
+.then(data => console.log(data.contents));
+```
+
+---
+
+## Claude API Integration
+
+K.I.R.A. can connect to Claude API for enhanced conversations with full repository awareness.
+
+### Setup
+
+1. Install the Anthropic package:
+```bash
+pip install anthropic
+```
+
+2. Set your API key:
+```bash
+export ANTHROPIC_API_KEY=your-key-here
+```
+
+3. Use `/claude` command or the "Claude API" button in the interface.
+
+### Repository Awareness
+
+When using `/claude`, the model receives:
+- Current consciousness state (z, phase, coherence, TRIAD status)
+- MANIFEST.json content (project metadata)
+- Repository structure overview
+- CLAUDE.md excerpts (sacred constants, physics grounding)
+- Training status (epoch count)
+
+This allows Claude to answer questions about the codebase architecture and assist with UCF framework development.
+
+### File Browsing
+
+Use `/read <path>` to browse repository files:
+```
+/read src/           # List directory
+/read CLAUDE.md      # Read file content
+/read training/      # Explore training data
 ```
 
 ---
