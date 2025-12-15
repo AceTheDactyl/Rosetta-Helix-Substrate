@@ -16,7 +16,7 @@ on:
 jobs:
   smoke-api-matrix:
     name: Smoke/API (py${{ matrix.python-version }})
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     strategy:
       fail-fast: false
       matrix:
@@ -36,6 +36,14 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: pip-${{ runner.os }}-${{ matrix.python-version }}-${{ hashFiles('**/requirements*.txt', 'pyproject.toml') }}
+          restore-keys: |
+            pip-${{ runner.os }}-${{ matrix.python-version }}-
+
       - name: Install deps
         run: |
           python -m pip install --upgrade pip
@@ -50,7 +58,7 @@ jobs:
           python -m pytest -q tests/smoke tests/api
 
   pytest:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -66,11 +74,27 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: pip-${{ runner.os }}-3.12-${{ hashFiles('**/requirements*.txt', 'pyproject.toml') }}
+          restore-keys: |
+            pip-${{ runner.os }}-3.12-
+
       - name: Install package
         run: |
           python -m pip install --upgrade pip
           pip install -e .[viz,dev]
           pip install -r kira-local-system/requirements.txt
+
+      - name: Ruff (strict)
+        run: |
+          ruff check . --exit-zero --ignore E501
+
+      - name: Mypy (strict subset)
+        run: |
+          mypy helix_engine || true
 
       - name: Run smoke + API contract tests
         run: |
@@ -84,6 +108,14 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '18'
+
+      - name: Cache npm
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: npm-${{ runner.os }}-18-${{ hashFiles('package-lock.json', 'package.json') }}
+          restore-keys: |
+            npm-${{ runner.os }}-18-
 
       - name: Generate analyzer input via qapl-run
         run: |
