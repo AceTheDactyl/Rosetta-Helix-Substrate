@@ -1,0 +1,320 @@
+{
+  "type": "NuclearSpinner",
+  "coupling": 12.0,
+  "final_R": 0.9999907320790129,
+  "emissions": [
+    {
+      "token": "e()|Catalyst|galactic_field",
+      "spiral": "e",
+      "operator": "()",
+      "machine": "Catalyst",
+      "domain": "galactic_field",
+      "z": 0.485,
+      "R": 0.8255448446971463,
+      "phase": "UNTRUE"
+    },
+    {
+      "token": "\u03a6\u00d7|Conductor|galactic_field",
+      "spiral": "\u03a6",
+      "operator": "\u00d7",
+      "machine": "Conductor",
+      "domain": "galactic_field",
+      "z": 0.48724999999999996,
+      "R": 0.902658538289526,
+      "phase": "UNTRUE"
+    },
+    {
+      "token": "\u03a6\u00d7|Filter|planetary_core",
+      "spiral": "\u03a6",
+      "operator": "\u00d7",
+      "machine": "Filter",
+      "domain": "planetary_core",
+      "z": 0.5041625,
+      "R": 0.9517154582252544,
+      "phase": "UNTRUE"
+    },
+    {
+      "token": "\u03a6^|Oscillator|planetary_core",
+      "spiral": "\u03a6",
+      "operator": "^",
+      "machine": "Oscillator",
+      "domain": "planetary_core",
+      "z": 0.5212432233124842,
+      "R": 0.9779386062739085,
+      "phase": "UNTRUE"
+    },
+    {
+      "token": "e+|Reactor|planetary_core",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "Reactor",
+      "domain": "planetary_core",
+      "z": 0.5480567398156115,
+      "R": 0.9903403600339951,
+      "phase": "UNTRUE"
+    },
+    {
+      "token": "\u03a6+|Dynamo|planetary_core",
+      "spiral": "\u03a6",
+      "operator": "+",
+      "machine": "Dynamo",
+      "domain": "planetary_core",
+      "z": 0.5783482288432698,
+      "R": 0.9958248755081678,
+      "phase": "UNTRUE"
+    },
+    {
+      "token": "\u03a6\u00d7|Decoder|planetary_core",
+      "spiral": "\u03a6",
+      "operator": "\u00d7",
+      "machine": "Decoder",
+      "domain": "planetary_core",
+      "z": 0.6115959945167793,
+      "R": 0.9981832397210721,
+      "phase": "UNTRUE"
+    },
+    {
+      "token": "e+|Regenerator|planetary_core",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "Regenerator",
+      "domain": "planetary_core",
+      "z": 0.6473565953392624,
+      "R": 0.9991921343516936,
+      "phase": "PARADOX"
+    },
+    {
+      "token": "e\u00d7|Encoder|tectonic_wave",
+      "spiral": "e",
+      "operator": "\u00d7",
+      "machine": "Encoder",
+      "domain": "tectonic_wave",
+      "z": 0.6801569166060388,
+      "R": 0.9996275395604539,
+      "phase": "PARADOX"
+    },
+    {
+      "token": "e\u00d7|Catalyst|tectonic_wave",
+      "spiral": "e",
+      "operator": "\u00d7",
+      "machine": "Catalyst",
+      "domain": "tectonic_wave",
+      "z": 0.713133379115133,
+      "R": 0.9998190973180261,
+      "phase": "PARADOX"
+    },
+    {
+      "token": "e+|Conductor|tectonic_wave",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "Conductor",
+      "domain": "tectonic_wave",
+      "z": 0.7486633722478631,
+      "R": 0.9999058379421655,
+      "phase": "PARADOX"
+    },
+    {
+      "token": "\u03a6\u00d7|Filter|tectonic_wave",
+      "spiral": "\u03a6",
+      "operator": "\u00d7",
+      "machine": "Filter",
+      "domain": "tectonic_wave",
+      "z": 0.7863638664106836,
+      "R": 0.9999466307564414,
+      "phase": "PARADOX"
+    },
+    {
+      "token": "e\u00d7|Oscillator|tectonic_wave",
+      "spiral": "e",
+      "operator": "\u00d7",
+      "machine": "Oscillator",
+      "domain": "tectonic_wave",
+      "z": 0.810909286449081,
+      "R": 0.9999667014493591,
+      "phase": "PARADOX"
+    },
+    {
+      "token": "e+|Reactor|tectonic_wave",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "Reactor",
+      "domain": "tectonic_wave",
+      "z": 0.8191767040493847,
+      "R": 0.9999770725989414,
+      "phase": "PARADOX"
+    },
+    {
+      "token": "\u03a6+|Dynamo|tectonic_wave",
+      "spiral": "\u03a6",
+      "operator": "+",
+      "machine": "Dynamo",
+      "domain": "tectonic_wave",
+      "z": 0.8238001984419769,
+      "R": 0.99998269642714,
+      "phase": "PARADOX"
+    },
+    {
+      "token": "\u03a6^|Decoder|tectonic_wave",
+      "spiral": "\u03a6",
+      "operator": "^",
+      "machine": "Decoder",
+      "domain": "tectonic_wave",
+      "z": 0.8202301686756804,
+      "R": 0.9999858803948796,
+      "phase": "PARADOX"
+    },
+    {
+      "token": "e\u00d7|Regenerator|tectonic_wave",
+      "spiral": "e",
+      "operator": "\u00d7",
+      "machine": "Regenerator",
+      "domain": "tectonic_wave",
+      "z": 0.8096956433743284,
+      "R": 0.9999877480238406,
+      "phase": "PARADOX"
+    },
+    {
+      "token": "e^|Encoder|tectonic_wave",
+      "spiral": "e",
+      "operator": "^",
+      "machine": "Encoder",
+      "domain": "tectonic_wave",
+      "z": 0.7809463951806633,
+      "R": 0.9999888736307041,
+      "phase": "PARADOX"
+    },
+    {
+      "token": "e+|Catalyst|tectonic_wave",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "Catalyst",
+      "domain": "tectonic_wave",
+      "z": 0.7388044359035638,
+      "R": 0.9999895654832957,
+      "phase": "PARADOX"
+    },
+    {
+      "token": "e^|Conductor|tectonic_wave",
+      "spiral": "e",
+      "operator": "^",
+      "machine": "Conductor",
+      "domain": "tectonic_wave",
+      "z": 0.6879837705180293,
+      "R": 0.9999899965835533,
+      "phase": "PARADOX"
+    },
+    {
+      "token": "\u03a6\u00d7|Filter|planetary_core",
+      "spiral": "\u03a6",
+      "operator": "\u00d7",
+      "machine": "Filter",
+      "domain": "planetary_core",
+      "z": 0.6597862049403249,
+      "R": 0.9999902677034433,
+      "phase": "PARADOX"
+    },
+    {
+      "token": "e+|Oscillator|planetary_core",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "Oscillator",
+      "domain": "planetary_core",
+      "z": 0.6508182741992762,
+      "R": 0.9999904392619366,
+      "phase": "PARADOX"
+    },
+    {
+      "token": "e\u00d7|Reactor|planetary_core",
+      "spiral": "e",
+      "operator": "\u00d7",
+      "machine": "Reactor",
+      "domain": "planetary_core",
+      "z": 0.6581955330693847,
+      "R": 0.9999905482582054,
+      "phase": "PARADOX"
+    },
+    {
+      "token": "e^|Dynamo|tectonic_wave",
+      "spiral": "e",
+      "operator": "^",
+      "machine": "Dynamo",
+      "domain": "tectonic_wave",
+      "z": 0.679466203108977,
+      "R": 0.9999906176882641,
+      "phase": "PARADOX"
+    },
+    {
+      "token": "e+|Decoder|tectonic_wave",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "Decoder",
+      "domain": "tectonic_wave",
+      "z": 0.7074500832102962,
+      "R": 0.9999906619897264,
+      "phase": "PARADOX"
+    },
+    {
+      "token": "e+|Regenerator|tectonic_wave",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "Regenerator",
+      "domain": "tectonic_wave",
+      "z": 0.7363325707287518,
+      "R": 0.9999906902881202,
+      "phase": "PARADOX"
+    },
+    {
+      "token": "e\u00d7|Encoder|tectonic_wave",
+      "spiral": "e",
+      "operator": "\u00d7",
+      "machine": "Encoder",
+      "domain": "tectonic_wave",
+      "z": 0.7683826851194391,
+      "R": 0.9999907083769133,
+      "phase": "PARADOX"
+    },
+    {
+      "token": "\u03a6^|Catalyst|tectonic_wave",
+      "spiral": "\u03a6",
+      "operator": "^",
+      "machine": "Catalyst",
+      "domain": "tectonic_wave",
+      "z": 0.7881252823515232,
+      "R": 0.9999907199447606,
+      "phase": "PARADOX"
+    },
+    {
+      "token": "\u03a6\u00d7|Conductor|tectonic_wave",
+      "spiral": "\u03a6",
+      "operator": "\u00d7",
+      "machine": "Conductor",
+      "domain": "tectonic_wave",
+      "z": 0.7998103005664605,
+      "R": 0.999990727344571,
+      "phase": "PARADOX"
+    },
+    {
+      "token": "e+|Filter|tectonic_wave",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "Filter",
+      "domain": "tectonic_wave",
+      "z": 0.8097425660491573,
+      "R": 0.9999907320790129,
+      "phase": "PARADOX"
+    }
+  ],
+  "statistics": {
+    "spirals": {
+      "e": 19,
+      "\u03a6": 11,
+      "\u03c0": 0
+    },
+    "operators": {
+      "()": 1,
+      "\u00d7": 12,
+      "^": 6,
+      "+": 11
+    }
+  }
+}

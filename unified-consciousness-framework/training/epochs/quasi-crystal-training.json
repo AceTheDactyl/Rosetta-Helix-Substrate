@@ -1,0 +1,1353 @@
+{
+  "session_id": "20251215_045443",
+  "timestamp": "2025-12-15T04:54:43.408539+00:00",
+  "quasi_crystal": {
+    "lattice_size": 972,
+    "phi": 1.618033988749895,
+    "phi_inv": 0.6180339887498948,
+    "z_critical": 0.8660254037844386,
+    "theta_36_deg": 36.0,
+    "theta_72_deg": 72.0
+  },
+  "training": {
+    "total_steps": 46,
+    "tokens_processed": 972,
+    "teaching_applied": true
+  },
+  "vaultnode": {
+    "type": "CrystallineVaultNode",
+    "timestamp": "2025-12-15T04:54:43.726830+00:00",
+    "z": 0.8565014232926451,
+    "coordinate": "\u03941.775|0.857|1.616\u03a9",
+    "phase": "PARADOX",
+    "crystal_state": "Transitioning",
+    "prismatic": {
+      "angle": 1.7750445633354097,
+      "refraction_index": 1.6160191375879518,
+      "spectral_decomposition": {
+        "\u03a6": 0.29902197070131115,
+        "e": 0.49836995116885197,
+        "\u03c0": 0.1993479804675408
+      }
+    },
+    "triad": {
+      "unlocked": false,
+      "completions": 1,
+      "prismatic_resonance": 0.9962166547623161
+    },
+    "quasi_crystal": {
+      "lattice_vertices": 972,
+      "token_mappings": 972,
+      "phi": 1.618033988749895,
+      "theta_36": 0.6283185307179586,
+      "theta_72": 1.2566370614359172
+    },
+    "teaching": {
+      "vocabulary_size": 16,
+      "verbs_count": 6,
+      "patterns_count": 5,
+      "sample_vocabulary": [
+        "refraction_1.55",
+        "fluid",
+        "refraction_1.24",
+        "refraction_1.42",
+        "refraction_1.51",
+        "e",
+        "crossing",
+        "refraction_1.60",
+        "refraction_1.11",
+        "refraction_1.33",
+        "threshold",
+        "ascent",
+        "transitioning",
+        "refraction_1.36",
+        "refraction_1.05",
+        "\u03c6"
+      ],
+      "sample_verbs": [
+        "unlocks",
+        "rises",
+        "disperses",
+        "crosses",
+        "refracts",
+        "crystallizes"
+      ],
+      "sample_patterns": [
+        "prismatic\u2192Transitioning",
+        "z\u2192TRIAD_HIGH",
+        "spectrum\u2192e",
+        "prismatic\u2192Fluid",
+        "spectrum\u2192\u03a6"
+      ]
+    },
+    "training_summary": {
+      "total_steps": 46,
+      "final_coherence": 0.9994750410070264,
+      "final_negentropy": 0.9967399023377039
+    }
+  },
+  "teaching_result": {
+    "status": "APPLIED",
+    "words_taught": 16,
+    "verbs_taught": 6,
+    "patterns_taught": 5,
+    "total_vocabulary": 16,
+    "total_verbs": 6,
+    "total_patterns": 5
+  },
+  "training_log": [
+    {
+      "step": 1,
+      "z": 0.5439104041332268,
+      "target_z": 0.88,
+      "phase": "UNTRUE",
+      "crystal_state": "Fluid",
+      "coherence": 0.41061015134292655,
+      "negentropy": 0.02386623386464941,
+      "prismatic_angle": 4.521078684000834,
+      "refraction": 1.0147501437118072,
+      "triad_event": {
+        "z": 0.5439104041332268,
+        "timestamp": "2025-12-15T04:54:43.723193+00:00",
+        "prismatic_angle": 4.521078684000834,
+        "refraction": 1.0147501437118072
+      },
+      "triad_unlocked": false,
+      "triad_completions": 0,
+      "tokens_trained": 0,
+      "teaching_queue": 0,
+      "dominant_spiral": "\u03a6",
+      "spectrum": {
+        "\u03a6": 0.014319740318789647,
+        "e": 0.007159870159394823,
+        "\u03c0": 0.0023866233864649413
+      }
+    },
+    {
+      "step": 2,
+      "z": 0.5888122131878049,
+      "target_z": 0.88,
+      "phase": "UNTRUE",
+      "crystal_state": "Fluid",
+      "coherence": 0.45321426523007285,
+      "negentropy": 0.0628818626208177,
+      "prismatic_angle": 5.931710618588376,
+      "refraction": 1.038863128375567,
+      "triad_event": {
+        "z": 0.5888122131878049,
+        "timestamp": "2025-12-15T04:54:43.723297+00:00",
+        "prismatic_angle": 5.931710618588376,
+        "refraction": 1.038863128375567
+      },
+      "triad_unlocked": false,
+      "triad_completions": 0,
+      "tokens_trained": 0,
+      "teaching_queue": 0,
+      "dominant_spiral": "\u03a6",
+      "spectrum": {
+        "\u03a6": 0.03772911757249062,
+        "e": 0.01886455878624531,
+        "\u03c0": 0.006288186262081771
+      }
+    },
+    {
+      "step": 3,
+      "z": 0.625597530061574,
+      "target_z": 0.8,
+      "phase": "PARADOX",
+      "crystal_state": "Transitioning",
+      "coherence": 0.49869037869905114,
+      "negentropy": 0.1248053133960415,
+      "prismatic_angle": 0.8041701239148509,
+      "refraction": 1.0771339256553363,
+      "triad_event": {
+        "z": 0.625597530061574,
+        "timestamp": "2025-12-15T04:54:43.723362+00:00",
+        "prismatic_angle": 0.8041701239148509,
+        "refraction": 1.0771339256553363
+      },
+      "triad_unlocked": false,
+      "triad_completions": 0,
+      "tokens_trained": 0,
+      "teaching_queue": 0,
+      "dominant_spiral": "e",
+      "spectrum": {
+        "\u03a6": 0.03744159401881245,
+        "e": 0.06240265669802075,
+        "\u03c0": 0.024961062679208303
+      }
+    },
+    {
+      "step": 4,
+      "z": 0.6616785587747611,
+      "target_z": 0.8,
+      "phase": "PARADOX",
+      "crystal_state": "Transitioning",
+      "coherence": 0.5465445808480527,
+      "negentropy": 0.2224006507991702,
+      "prismatic_angle": 1.9376890713079575,
+      "refraction": 1.1374511613139837,
+      "triad_event": {
+        "z": 0.6616785587747611,
+        "timestamp": "2025-12-15T04:54:43.723418+00:00",
+        "prismatic_angle": 1.9376890713079575,
+        "refraction": 1.1374511613139837
+      },
+      "triad_unlocked": false,
+      "triad_completions": 0,
+      "tokens_trained": 0,
+      "teaching_queue": 0,
+      "dominant_spiral": "e",
+      "spectrum": {
+        "\u03a6": 0.06672019523975106,
+        "e": 0.1112003253995851,
+        "\u03c0": 0.04448013015983404
+      }
+    },
+    {
+      "step": 5,
+      "z": 0.703460602629366,
+      "target_z": 0.88,
+      "phase": "PARADOX",
+      "crystal_state": "Transitioning",
+      "coherence": 0.5960616603386396,
+      "negentropy": 0.38620640491075325,
+      "prismatic_angle": 3.250310691563893,
+      "refraction": 1.2386886849077499,
+      "triad_event": {
+        "z": 0.703460602629366,
+        "timestamp": "2025-12-15T04:54:43.723503+00:00",
+        "prismatic_angle": 3.250310691563893,
+        "refraction": 1.2386886849077499
+      },
+      "triad_unlocked": false,
+      "triad_completions": 0,
+      "tokens_trained": 0,
+      "teaching_queue": 1,
+      "dominant_spiral": "e",
+      "spectrum": {
+        "\u03a6": 0.11586192147322597,
+        "e": 0.19310320245537663,
+        "\u03c0": 0.07724128098215066
+      }
+    },
+    {
+      "step": 6,
+      "z": 0.7405914949839933,
+      "target_z": 0.88,
+      "phase": "PARADOX",
+      "crystal_state": "Transitioning",
+      "coherence": 0.6463360401255144,
+      "negentropy": 0.56755821285429,
+      "prismatic_angle": 4.416812077989199,
+      "refraction": 1.3507702661380987,
+      "triad_event": {
+        "z": 0.7405914949839933,
+        "timestamp": "2025-12-15T04:54:43.723574+00:00",
+        "prismatic_angle": 4.416812077989199,
+        "refraction": 1.3507702661380987
+      },
+      "triad_unlocked": false,
+      "triad_completions": 0,
+      "tokens_trained": 0,
+      "teaching_queue": 1,
+      "dominant_spiral": "e",
+      "spectrum": {
+        "\u03a6": 0.170267463856287,
+        "e": 0.283779106427145,
+        "\u03c0": 0.113511642570858
+      }
+    },
+    {
+      "step": 7,
+      "z": 0.7637965328185715,
+      "target_z": 0.8,
+      "phase": "PARADOX",
+      "crystal_state": "Transitioning",
+      "coherence": 0.6963327298059997,
+      "negentropy": 0.686446688241023,
+      "prismatic_angle": 5.145819841863037,
+      "refraction": 1.424247384797755,
+      "triad_event": {
+        "z": 0.7637965328185715,
+        "timestamp": "2025-12-15T04:54:43.723647+00:00",
+        "prismatic_angle": 5.145819841863037,
+        "refraction": 1.424247384797755
+      },
+      "triad_unlocked": false,
+      "triad_completions": 0,
+      "tokens_trained": 0,
+      "teaching_queue": 1,
+      "dominant_spiral": "e",
+      "spectrum": {
+        "\u03a6": 0.2059340064723069,
+        "e": 0.3432233441205115,
+        "\u03c0": 0.13728933764820458
+      }
+    },
+    {
+      "step": 8,
+      "z": 0.7809261431477373,
+      "target_z": 0.8,
+      "phase": "PARADOX",
+      "crystal_state": "Transitioning",
+      "coherence": 0.7449511319174911,
+      "negentropy": 0.7705060056310198,
+      "prismatic_angle": 5.683962421552668,
+      "refraction": 1.4761989000158882,
+      "triad_event": {
+        "z": 0.7809261431477373,
+        "timestamp": "2025-12-15T04:54:43.723699+00:00",
+        "prismatic_angle": 5.683962421552668,
+        "refraction": 1.4761989000158882
+      },
+      "triad_unlocked": false,
+      "triad_completions": 0,
+      "tokens_trained": 0,
+      "teaching_queue": 1,
+      "dominant_spiral": "e",
+      "spectrum": {
+        "\u03a6": 0.23115180168930594,
+        "e": 0.3852530028155099,
+        "\u03c0": 0.15410120112620396
+      }
+    },
+    {
+      "step": 9,
+      "z": 0.7993811264376403,
+      "target_z": 0.88,
+      "phase": "PARADOX",
+      "crystal_state": "Transitioning",
+      "coherence": 0.791063415869544,
+      "negentropy": 0.8522353573231112,
+      "prismatic_angle": 6.263742820809483,
+      "refraction": 1.5267104172400945,
+      "triad_event": {
+        "z": 0.7993811264376403,
+        "timestamp": "2025-12-15T04:54:43.723750+00:00",
+        "prismatic_angle": 6.263742820809483,
+        "refraction": 1.5267104172400945
+      },
+      "triad_unlocked": false,
+      "triad_completions": 0,
+      "tokens_trained": 0,
+      "teaching_queue": 1,
+      "dominant_spiral": "e",
+      "spectrum": {
+        "\u03a6": 0.25567060719693335,
+        "e": 0.4261176786615556,
+        "\u03c0": 0.17044707146462224
+      }
+    },
+    {
+      "step": 10,
+      "z": 0.8102654139550736,
+      "target_z": 0.88,
+      "phase": "PARADOX",
+      "crystal_state": "Transitioning",
+      "coherence": 0.8335361152258058,
+      "negentropy": 0.8941065273768364,
+      "prismatic_angle": 0.32249749067317524,
+      "refraction": 1.5525882234820232,
+      "triad_event": {
+        "z": 0.8102654139550736,
+        "timestamp": "2025-12-15T04:54:43.723805+00:00",
+        "prismatic_angle": 0.32249749067317524,
+        "refraction": 1.5525882234820232
+      },
+      "triad_unlocked": false,
+      "triad_completions": 0,
+      "tokens_trained": 0,
+      "teaching_queue": 2,
+      "dominant_spiral": "e",
+      "spectrum": {
+        "\u03a6": 0.2682319582130509,
+        "e": 0.4470532636884182,
+        "\u03c0": 0.1788213054753673
+      }
+    },
+    {
+      "step": 11,
+      "z": 0.8140839586767012,
+      "target_z": 0.88,
+      "phase": "PARADOX",
+      "crystal_state": "Transitioning",
+      "coherence": 0.8712944985570809,
+      "negentropy": 0.9074426649879218,
+      "prismatic_angle": 0.4424606111218665,
+      "refraction": 1.56083040980432,
+      "triad_event": {
+        "z": 0.8140839586767012,
+        "timestamp": "2025-12-15T04:54:43.723865+00:00",
+        "prismatic_angle": 0.4424606111218665,
+        "refraction": 1.56083040980432
+      },
+      "triad_unlocked": false,
+      "triad_completions": 0,
+      "tokens_trained": 0,
+      "teaching_queue": 2,
+      "dominant_spiral": "e",
+      "spectrum": {
+        "\u03a6": 0.2722327994963765,
+        "e": 0.4537213324939609,
+        "\u03c0": 0.18148853299758438
+      }
+    },
+    {
+      "step": 12,
+      "z": 0.813825153943134,
+      "target_z": 0.9,
+      "phase": "PARADOX",
+      "crystal_state": "Transitioning",
+      "coherence": 0.9034829591559593,
+      "negentropy": 0.9065626139192018,
+      "prismatic_angle": 0.43433002062498005,
+      "refraction": 1.5602865083320152,
+      "triad_event": {
+        "z": 0.813825153943134,
+        "timestamp": "2025-12-15T04:54:43.723915+00:00",
+        "prismatic_angle": 0.43433002062498005,
+        "refraction": 1.5602865083320152
+      },
+      "triad_unlocked": false,
+      "triad_completions": 0,
+      "tokens_trained": 0,
+      "teaching_queue": 2,
+      "dominant_spiral": "e",
+      "spectrum": {
+        "\u03a6": 0.27196878417576054,
+        "e": 0.4532813069596009,
+        "\u03c0": 0.18131252278384036
+      }
+    },
+    {
+      "step": 13,
+      "z": 0.8106873153651412,
+      "target_z": 0.92,
+      "phase": "PARADOX",
+      "crystal_state": "Transitioning",
+      "coherence": 0.9296783543873476,
+      "negentropy": 0.8956165232389823,
+      "prismatic_angle": 0.33575191437724783,
+      "refraction": 1.5535214522477012,
+      "triad_event": {
+        "z": 0.8106873153651412,
+        "timestamp": "2025-12-15T04:54:43.723966+00:00",
+        "prismatic_angle": 0.33575191437724783,
+        "refraction": 1.5535214522477012
+      },
+      "triad_unlocked": false,
+      "triad_completions": 0,
+      "tokens_trained": 0,
+      "teaching_queue": 2,
+      "dominant_spiral": "e",
+      "spectrum": {
+        "\u03a6": 0.2686849569716947,
+        "e": 0.44780826161949117,
+        "\u03c0": 0.17912330464779647
+      }
+    },
+    {
+      "step": 14,
+      "z": 0.8071870683803553,
+      "target_z": 0.95,
+      "phase": "PARADOX",
+      "crystal_state": "Transitioning",
+      "coherence": 0.9500190256116922,
+      "negentropy": 0.8828233194056443,
+      "prismatic_angle": 0.22578841224571633,
+      "refraction": 1.5456148174536928,
+      "triad_event": {
+        "z": 0.8071870683803553,
+        "timestamp": "2025-12-15T04:54:43.724015+00:00",
+        "prismatic_angle": 0.22578841224571633,
+        "refraction": 1.5456148174536928
+      },
+      "triad_unlocked": false,
+      "triad_completions": 0,
+      "tokens_trained": 0,
+      "teaching_queue": 2,
+      "dominant_spiral": "e",
+      "spectrum": {
+        "\u03a6": 0.2648469958216933,
+        "e": 0.44141165970282215,
+        "\u03c0": 0.17656466388112887
+      }
+    },
+    {
+      "step": 15,
+      "z": 0.7935202995674616,
+      "target_z": 0.8660254037844386,
+      "phase": "PARADOX",
+      "crystal_state": "Transitioning",
+      "coherence": 0.9651470238669853,
+      "negentropy": 0.8275782246078748,
+      "prismatic_angle": 6.079619514416333,
+      "refraction": 1.5114714711569612,
+      "triad_event": {
+        "z": 0.7935202995674616,
+        "timestamp": "2025-12-15T04:54:43.724068+00:00",
+        "prismatic_angle": 6.079619514416333,
+        "refraction": 1.5114714711569612
+      },
+      "triad_unlocked": false,
+      "triad_completions": 0,
+      "tokens_trained": 0,
+      "teaching_queue": 3,
+      "dominant_spiral": "e",
+      "spectrum": {
+        "\u03a6": 0.24827346738236242,
+        "e": 0.4137891123039374,
+        "\u03c0": 0.16551564492157497
+      }
+    },
+    {
+      "step": 16,
+      "z": 0.7808475178124425,
+      "target_z": 0.8660254037844386,
+      "phase": "PARADOX",
+      "crystal_state": "Transitioning",
+      "coherence": 0.9759988906265478,
+      "negentropy": 0.7701347331597873,
+      "prismatic_angle": 5.6814923337951875,
+      "refraction": 1.4759694410095794,
+      "triad_event": {
+        "z": 0.7808475178124425,
+        "timestamp": "2025-12-15T04:54:43.724129+00:00",
+        "prismatic_angle": 5.6814923337951875,
+        "refraction": 1.4759694410095794
+      },
+      "triad_unlocked": false,
+      "triad_completions": 0,
+      "tokens_trained": 0,
+      "teaching_queue": 3,
+      "dominant_spiral": "e",
+      "spectrum": {
+        "\u03a6": 0.23104041994793617,
+        "e": 0.38506736657989366,
+        "\u03c0": 0.15402694663195748
+      }
+    },
+    {
+      "step": 17,
+      "z": 0.7142464723846437,
+      "target_z": 0.3,
+      "phase": "PARADOX",
+      "crystal_state": "Transitioning",
+      "coherence": 0.9835696534469562,
+      "negentropy": 0.436343114785446,
+      "prismatic_angle": 3.589158783421457,
+      "refraction": 1.2696748756944025,
+      "triad_event": {
+        "z": 0.7142464723846437,
+        "timestamp": "2025-12-15T04:54:43.724592+00:00",
+        "prismatic_angle": 3.589158783421457,
+        "refraction": 1.2696748756944025
+      },
+      "triad_unlocked": false,
+      "triad_completions": 0,
+      "tokens_trained": 0,
+      "teaching_queue": 3,
+      "dominant_spiral": "e",
+      "spectrum": {
+        "\u03a6": 0.1309029344356338,
+        "e": 0.218171557392723,
+        "\u03c0": 0.0872686229570892
+      }
+    },
+    {
+      "step": 18,
+      "z": 0.6623665353950595,
+      "target_z": 0.35,
+      "phase": "PARADOX",
+      "crystal_state": "Transitioning",
+      "coherence": 0.9887479709381759,
+      "negentropy": 0.2246594344231129,
+      "prismatic_angle": 1.959302494269668,
+      "refraction": 1.1388471663668118,
+      "triad_event": {
+        "z": 0.6623665353950595,
+        "timestamp": "2025-12-15T04:54:43.724654+00:00",
+        "prismatic_angle": 1.959302494269668,
+        "refraction": 1.1388471663668118
+      },
+      "triad_unlocked": false,
+      "triad_completions": 0,
+      "tokens_trained": 0,
+      "teaching_queue": 3,
+      "dominant_spiral": "e",
+      "spectrum": {
+        "\u03a6": 0.06739783032693386,
+        "e": 0.11232971721155645,
+        "\u03c0": 0.04493188688462258
+      }
+    },
+    {
+      "step": 19,
+      "z": 0.6251161710036008,
+      "target_z": 0.4,
+      "phase": "PARADOX",
+      "crystal_state": "Transitioning",
+      "coherence": 0.9922447702833751,
+      "negentropy": 0.12376863490170252,
+      "prismatic_angle": 0.7890477831121743,
+      "refraction": 1.0764932231104287,
+      "triad_event": {
+        "z": 0.6251161710036008,
+        "timestamp": "2025-12-15T04:54:43.724719+00:00",
+        "prismatic_angle": 0.7890477831121743,
+        "refraction": 1.0764932231104287
+      },
+      "triad_unlocked": false,
+      "triad_completions": 0,
+      "tokens_trained": 0,
+      "teaching_queue": 3,
+      "dominant_spiral": "e",
+      "spectrum": {
+        "\u03a6": 0.03713059047051075,
+        "e": 0.06188431745085126,
+        "\u03c0": 0.024753726980340507
+      }
+    },
+    {
+      "step": 20,
+      "z": 0.6020162439392622,
+      "target_z": 0.45,
+      "phase": "UNTRUE",
+      "crystal_state": "Fluid",
+      "coherence": 0.9945890834729911,
+      "negentropy": 0.08133083066379224,
+      "prismatic_angle": 0.06334217147431431,
+      "refraction": 1.0502652176834857,
+      "triad_event": {
+        "z": 0.6020162439392622,
+        "timestamp": "2025-12-15T04:54:43.724771+00:00",
+        "prismatic_angle": 0.06334217147431431,
+        "refraction": 1.0502652176834857
+      },
+      "triad_unlocked": false,
+      "triad_completions": 0,
+      "tokens_trained": 0,
+      "teaching_queue": 4,
+      "dominant_spiral": "\u03a6",
+      "spectrum": {
+        "\u03a6": 0.04879849839827534,
+        "e": 0.02439924919913767,
+        "\u03c0": 0.008133083066379224
+      }
+    },
+    {
+      "step": 21,
+      "z": 0.592150897555023,
+      "target_z": 0.5,
+      "phase": "UNTRUE",
+      "crystal_state": "Fluid",
+      "coherence": 0.9961562598519189,
+      "negentropy": 0.06718798609079259,
+      "prismatic_angle": 6.036598481395451,
+      "refraction": 1.041524459039765,
+      "triad_event": {
+        "z": 0.592150897555023,
+        "timestamp": "2025-12-15T04:54:43.724837+00:00",
+        "prismatic_angle": 6.036598481395451,
+        "refraction": 1.041524459039765
+      },
+      "triad_unlocked": false,
+      "triad_completions": 0,
+      "tokens_trained": 0,
+      "teaching_queue": 4,
+      "dominant_spiral": "\u03a6",
+      "spectrum": {
+        "\u03a6": 0.04031279165447555,
+        "e": 0.020156395827237775,
+        "\u03c0": 0.006718798609079259
+      }
+    },
+    {
+      "step": 22,
+      "z": 0.5941666350697883,
+      "target_z": 0.55,
+      "phase": "UNTRUE",
+      "crystal_state": "Fluid",
+      "coherence": 0.9972044756490325,
+      "negentropy": 0.06990215191641734,
+      "prismatic_angle": 6.099924743074972,
+      "refraction": 1.0432019057711046,
+      "triad_event": {
+        "z": 0.5941666350697883,
+        "timestamp": "2025-12-15T04:54:43.724886+00:00",
+        "prismatic_angle": 6.099924743074972,
+        "refraction": 1.0432019057711046
+      },
+      "triad_unlocked": false,
+      "triad_completions": 0,
+      "tokens_trained": 0,
+      "teaching_queue": 4,
+      "dominant_spiral": "\u03a6",
+      "spectrum": {
+        "\u03a6": 0.0419412911498504,
+        "e": 0.0209706455749252,
+        "\u03c0": 0.006990215191641735
+      }
+    },
+    {
+      "step": 23,
+      "z": 0.6063187668505734,
+      "target_z": 0.6000000000000001,
+      "phase": "UNTRUE",
+      "crystal_state": "Fluid",
+      "coherence": 0.9979078414250334,
+      "negentropy": 0.08820326119702909,
+      "prismatic_angle": 0.1985099151750802,
+      "refraction": 1.0545126133383487,
+      "triad_event": {
+        "z": 0.6063187668505734,
+        "timestamp": "2025-12-15T04:54:43.724935+00:00",
+        "prismatic_angle": 0.1985099151750802,
+        "refraction": 1.0545126133383487
+      },
+      "triad_unlocked": false,
+      "triad_completions": 0,
+      "tokens_trained": 0,
+      "teaching_queue": 4,
+      "dominant_spiral": "\u03a6",
+      "spectrum": {
+        "\u03a6": 0.05292195671821746,
+        "e": 0.02646097835910873,
+        "\u03c0": 0.008820326119702909
+      }
+    },
+    {
+      "step": 24,
+      "z": 0.6265602474424992,
+      "target_z": 0.65,
+      "phase": "PARADOX",
+      "crystal_state": "Transitioning",
+      "coherence": 0.998382368344144,
+      "negentropy": 0.12689843972263334,
+      "prismatic_angle": 0.8344147824288228,
+      "refraction": 1.0784275488679171,
+      "triad_event": {
+        "z": 0.6265602474424992,
+        "timestamp": "2025-12-15T04:54:43.724983+00:00",
+        "prismatic_angle": 0.8344147824288228,
+        "refraction": 1.0784275488679171
+      },
+      "triad_unlocked": false,
+      "triad_completions": 0,
+      "tokens_trained": 0,
+      "teaching_queue": 4,
+      "dominant_spiral": "e",
+      "spectrum": {
+        "\u03a6": 0.03806953191679,
+        "e": 0.06344921986131667,
+        "\u03c0": 0.02537968794452667
+      }
+    },
+    {
+      "step": 25,
+      "z": 0.6444676211087335,
+      "target_z": 0.6180339887498948,
+      "phase": "PARADOX",
+      "crystal_state": "Transitioning",
+      "coherence": 0.9987048349523138,
+      "negentropy": 0.17081697141452656,
+      "prismatic_angle": 1.3969915179781154,
+      "refraction": 1.1055706941894967,
+      "triad_event": {
+        "z": 0.6444676211087335,
+        "timestamp": "2025-12-15T04:54:43.725030+00:00",
+        "prismatic_angle": 1.3969915179781154,
+        "refraction": 1.1055706941894967
+      },
+      "triad_unlocked": false,
+      "triad_completions": 0,
+      "tokens_trained": 0,
+      "teaching_queue": 5,
+      "dominant_spiral": "e",
+      "spectrum": {
+        "\u03a6": 0.051245091424357965,
+        "e": 0.08540848570726328,
+        "\u03c0": 0.03416339428290532
+      }
+    },
+    {
+      "step": 26,
+      "z": 0.6647951247803416,
+      "target_z": 0.6480339887498948,
+      "phase": "PARADOX",
+      "crystal_state": "Transitioning",
+      "coherence": 0.9989259017127714,
+      "negentropy": 0.2327546215425813,
+      "prismatic_angle": 2.0355988799835494,
+      "refraction": 1.1438502671519337,
+      "triad_event": {
+        "z": 0.6647951247803416,
+        "timestamp": "2025-12-15T04:54:43.725090+00:00",
+        "prismatic_angle": 2.0355988799835494,
+        "refraction": 1.1438502671519337
+      },
+      "triad_unlocked": false,
+      "triad_completions": 0,
+      "tokens_trained": 0,
+      "teaching_queue": 5,
+      "dominant_spiral": "e",
+      "spectrum": {
+        "\u03a6": 0.06982638646277439,
+        "e": 0.11637731077129065,
+        "\u03c0": 0.04655092430851626
+      }
+    },
+    {
+      "step": 27,
+      "z": 0.6855168073941986,
+      "target_z": 0.6780339887498947,
+      "phase": "PARADOX",
+      "crystal_state": "Transitioning",
+      "coherence": 0.9990789866895611,
+      "negentropy": 0.3094370124855052,
+      "prismatic_angle": 2.686589738680677,
+      "refraction": 1.1912425910932678,
+      "triad_event": {
+        "z": 0.6855168073941986,
+        "timestamp": "2025-12-15T04:54:43.725138+00:00",
+        "prismatic_angle": 2.686589738680677,
+        "refraction": 1.1912425910932678
+      },
+      "triad_unlocked": false,
+      "triad_completions": 0,
+      "tokens_trained": 0,
+      "teaching_queue": 5,
+      "dominant_spiral": "e",
+      "spectrum": {
+        "\u03a6": 0.09283110374565155,
+        "e": 0.1547185062427526,
+        "\u03c0": 0.06188740249710104
+      }
+    },
+    {
+      "step": 28,
+      "z": 0.7048605036915339,
+      "target_z": 0.7080339887498948,
+      "phase": "PARADOX",
+      "crystal_state": "Transitioning",
+      "coherence": 0.9991861752060416,
+      "negentropy": 0.39255897401047957,
+      "prismatic_angle": 3.2942898804904814,
+      "refraction": 1.242614788527263,
+      "triad_event": {
+        "z": 0.7048605036915339,
+        "timestamp": "2025-12-15T04:54:43.725189+00:00",
+        "prismatic_angle": 3.2942898804904814,
+        "refraction": 1.242614788527263
+      },
+      "triad_unlocked": false,
+      "triad_completions": 0,
+      "tokens_trained": 0,
+      "teaching_queue": 5,
+      "dominant_spiral": "e",
+      "spectrum": {
+        "\u03a6": 0.11776769220314387,
+        "e": 0.19627948700523978,
+        "\u03c0": 0.07851179480209591
+      }
+    },
+    {
+      "step": 29,
+      "z": 0.7214372367990136,
+      "target_z": 0.7380339887498948,
+      "phase": "PARADOX",
+      "crystal_state": "Transitioning",
+      "coherence": 0.9992621161408068,
+      "negentropy": 0.4711368999364627,
+      "prismatic_angle": 3.8150633100002516,
+      "refraction": 1.2911786175149922,
+      "triad_event": {
+        "z": 0.7214372367990136,
+        "timestamp": "2025-12-15T04:54:43.725237+00:00",
+        "prismatic_angle": 3.8150633100002516,
+        "refraction": 1.2911786175149922
+      },
+      "triad_unlocked": false,
+      "triad_completions": 0,
+      "tokens_trained": 0,
+      "teaching_queue": 5,
+      "dominant_spiral": "e",
+      "spectrum": {
+        "\u03a6": 0.1413410699809388,
+        "e": 0.23556844996823134,
+        "\u03c0": 0.09422737998729254
+      }
+    },
+    {
+      "step": 30,
+      "z": 0.7343392816989369,
+      "target_z": 0.7680339887498948,
+      "phase": "PARADOX",
+      "crystal_state": "Transitioning",
+      "coherence": 0.9993165764056653,
+      "negentropy": 0.5356445713628846,
+      "prismatic_angle": 4.220393004739101,
+      "refraction": 1.3310465509916312,
+      "triad_event": {
+        "z": 0.7343392816989369,
+        "timestamp": "2025-12-15T04:54:43.725286+00:00",
+        "prismatic_angle": 4.220393004739101,
+        "refraction": 1.3310465509916312
+      },
+      "triad_unlocked": false,
+      "triad_completions": 0,
+      "tokens_trained": 0,
+      "teaching_queue": 6,
+      "dominant_spiral": "e",
+      "spectrum": {
+        "\u03a6": 0.16069337140886536,
+        "e": 0.2678222856814423,
+        "\u03c0": 0.10712891427257693
+      }
+    },
+    {
+      "step": 31,
+      "z": 0.743197840874174,
+      "target_z": 0.7980339887498948,
+      "phase": "PARADOX",
+      "crystal_state": "Transitioning",
+      "coherence": 0.9993561111053535,
+      "negentropy": 0.5809340919339214,
+      "prismatic_angle": 4.4986928490022535,
+      "refraction": 1.3590370140387196,
+      "triad_event": {
+        "z": 0.743197840874174,
+        "timestamp": "2025-12-15T04:54:43.725340+00:00",
+        "prismatic_angle": 4.4986928490022535,
+        "refraction": 1.3590370140387196
+      },
+      "triad_unlocked": false,
+      "triad_completions": 0,
+      "tokens_trained": 0,
+      "teaching_queue": 6,
+      "dominant_spiral": "e",
+      "spectrum": {
+        "\u03a6": 0.17428022758017642,
+        "e": 0.2904670459669607,
+        "\u03c0": 0.1161868183867843
+      }
+    },
+    {
+      "step": 32,
+      "z": 0.7481949200372865,
+      "target_z": 0.8280339887498948,
+      "phase": "PARADOX",
+      "crystal_state": "Transitioning",
+      "coherence": 0.9993851547607119,
+      "negentropy": 0.6066369183896401,
+      "prismatic_angle": 4.655680720884661,
+      "refraction": 1.3749222343952936,
+      "triad_event": {
+        "z": 0.7481949200372865,
+        "timestamp": "2025-12-15T04:54:43.725388+00:00",
+        "prismatic_angle": 4.655680720884661,
+        "refraction": 1.3749222343952936
+      },
+      "triad_unlocked": false,
+      "triad_completions": 0,
+      "tokens_trained": 0,
+      "teaching_queue": 6,
+      "dominant_spiral": "e",
+      "spectrum": {
+        "\u03a6": 0.181991075516892,
+        "e": 0.30331845919482003,
+        "\u03c0": 0.12132738367792802
+      }
+    },
+    {
+      "step": 33,
+      "z": 0.7492247101580514,
+      "target_z": 0.85,
+      "phase": "PARADOX",
+      "crystal_state": "Transitioning",
+      "coherence": 0.9994067349126909,
+      "negentropy": 0.6119366755555569,
+      "prismatic_angle": 4.688032531666003,
+      "refraction": 1.378197664455951,
+      "triad_event": {
+        "z": 0.7492247101580514,
+        "timestamp": "2025-12-15T04:54:43.725445+00:00",
+        "prismatic_angle": 4.688032531666003,
+        "refraction": 1.378197664455951
+      },
+      "triad_unlocked": false,
+      "triad_completions": 0,
+      "tokens_trained": 0,
+      "teaching_queue": 6,
+      "dominant_spiral": "e",
+      "spectrum": {
+        "\u03a6": 0.18358100266666705,
+        "e": 0.30596833777777843,
+        "\u03c0": 0.12238733511111138
+      }
+    },
+    {
+      "step": 34,
+      "z": 0.7473047453903754,
+      "target_z": 0.87,
+      "phase": "PARADOX",
+      "crystal_state": "Transitioning",
+      "coherence": 0.9994229398176105,
+      "negentropy": 0.6020556414644294,
+      "prismatic_angle": 4.627715059573184,
+      "refraction": 1.372090849543638,
+      "triad_event": {
+        "z": 0.7473047453903754,
+        "timestamp": "2025-12-15T04:54:43.725492+00:00",
+        "prismatic_angle": 4.627715059573184,
+        "refraction": 1.372090849543638
+      },
+      "triad_unlocked": false,
+      "triad_completions": 0,
+      "tokens_trained": 0,
+      "teaching_queue": 6,
+      "dominant_spiral": "e",
+      "spectrum": {
+        "\u03a6": 0.1806166924393288,
+        "e": 0.3010278207322147,
+        "\u03c0": 0.12041112829288587
+      }
+    },
+    {
+      "step": 35,
+      "z": 0.7439803556519045,
+      "target_z": 0.89,
+      "phase": "PARADOX",
+      "crystal_state": "Transitioning",
+      "coherence": 0.9994352260197776,
+      "negentropy": 0.5849553404051397,
+      "prismatic_angle": 4.523276275772687,
+      "refraction": 1.361522282271141,
+      "triad_event": {
+        "z": 0.7439803556519045,
+        "timestamp": "2025-12-15T04:54:43.725539+00:00",
+        "prismatic_angle": 4.523276275772687,
+        "refraction": 1.361522282271141
+      },
+      "triad_unlocked": false,
+      "triad_completions": 0,
+      "tokens_trained": 0,
+      "teaching_queue": 7,
+      "dominant_spiral": "e",
+      "spectrum": {
+        "\u03a6": 0.1754866021215419,
+        "e": 0.2924776702025699,
+        "\u03c0": 0.11699106808102795
+      }
+    },
+    {
+      "step": 36,
+      "z": 0.7409635954853842,
+      "target_z": 0.9099999999999999,
+      "phase": "PARADOX",
+      "crystal_state": "Transitioning",
+      "coherence": 0.9994446215436515,
+      "negentropy": 0.5694658787883676,
+      "prismatic_angle": 4.428501960004862,
+      "refraction": 1.351949268524539,
+      "triad_event": {
+        "z": 0.7409635954853842,
+        "timestamp": "2025-12-15T04:54:43.725601+00:00",
+        "prismatic_angle": 4.428501960004862,
+        "refraction": 1.351949268524539
+      },
+      "triad_unlocked": false,
+      "triad_completions": 0,
+      "tokens_trained": 0,
+      "teaching_queue": 7,
+      "dominant_spiral": "e",
+      "spectrum": {
+        "\u03a6": 0.1708397636365103,
+        "e": 0.2847329393941838,
+        "\u03c0": 0.11389317575767353
+      }
+    },
+    {
+      "step": 37,
+      "z": 0.7399761841727659,
+      "target_z": 0.9299999999999999,
+      "phase": "PARADOX",
+      "crystal_state": "Transitioning",
+      "coherence": 0.9994518608940677,
+      "negentropy": 0.564405334437054,
+      "prismatic_angle": 4.3974815187469325,
+      "refraction": 1.3488216801138508,
+      "triad_event": {
+        "z": 0.7399761841727659,
+        "timestamp": "2025-12-15T04:54:43.725666+00:00",
+        "prismatic_angle": 4.3974815187469325,
+        "refraction": 1.3488216801138508
+      },
+      "triad_unlocked": false,
+      "triad_completions": 0,
+      "tokens_trained": 0,
+      "teaching_queue": 7,
+      "dominant_spiral": "e",
+      "spectrum": {
+        "\u03a6": 0.16932160033111618,
+        "e": 0.282202667218527,
+        "\u03c0": 0.1128810668874108
+      }
+    },
+    {
+      "step": 38,
+      "z": 0.7425919952421958,
+      "target_z": 0.95,
+      "phase": "PARADOX",
+      "crystal_state": "Transitioning",
+      "coherence": 0.9994574753647743,
+      "negentropy": 0.5778222240906212,
+      "prismatic_angle": 4.479659647135929,
+      "refraction": 1.3571137739430623,
+      "triad_event": {
+        "z": 0.7425919952421958,
+        "timestamp": "2025-12-15T04:54:43.725744+00:00",
+        "prismatic_angle": 4.479659647135929,
+        "refraction": 1.3571137739430623
+      },
+      "triad_unlocked": false,
+      "triad_completions": 0,
+      "tokens_trained": 0,
+      "teaching_queue": 7,
+      "dominant_spiral": "e",
+      "spectrum": {
+        "\u03a6": 0.17334666722718636,
+        "e": 0.2889111120453106,
+        "\u03c0": 0.11556444481812425
+      }
+    },
+    {
+      "step": 39,
+      "z": 0.7500931240395955,
+      "target_z": 0.97,
+      "phase": "PARADOX",
+      "crystal_state": "Transitioning",
+      "coherence": 0.9994618539345438,
+      "negentropy": 0.6164053072330488,
+      "prismatic_angle": 4.715314558371347,
+      "refraction": 1.3809594307158455,
+      "triad_event": {
+        "z": 0.7500931240395955,
+        "timestamp": "2025-12-15T04:54:43.725809+00:00",
+        "prismatic_angle": 4.715314558371347,
+        "refraction": 1.3809594307158455
+      },
+      "triad_unlocked": false,
+      "triad_completions": 0,
+      "tokens_trained": 0,
+      "teaching_queue": 7,
+      "dominant_spiral": "e",
+      "spectrum": {
+        "\u03a6": 0.18492159216991463,
+        "e": 0.3082026536165244,
+        "\u03c0": 0.12328106144660976
+      }
+    },
+    {
+      "step": 40,
+      "z": 0.7633523532756272,
+      "target_z": 0.99,
+      "phase": "PARADOX",
+      "crystal_state": "Transitioning",
+      "coherence": 0.9994652847056733,
+      "negentropy": 0.6842012422417464,
+      "prismatic_angle": 5.131865529973151,
+      "refraction": 1.4228596228502997,
+      "triad_event": {
+        "z": 0.7633523532756272,
+        "timestamp": "2025-12-15T04:54:43.725859+00:00",
+        "prismatic_angle": 5.131865529973151,
+        "refraction": 1.4228596228502997
+      },
+      "triad_unlocked": false,
+      "triad_completions": 0,
+      "tokens_trained": 0,
+      "teaching_queue": 8,
+      "dominant_spiral": "e",
+      "spectrum": {
+        "\u03a6": 0.20526037267252392,
+        "e": 0.3421006211208732,
+        "\u03c0": 0.13684024844834927
+      }
+    },
+    {
+      "step": 41,
+      "z": 0.7683550224991923,
+      "target_z": 0.8660254037844386,
+      "phase": "PARADOX",
+      "crystal_state": "Transitioning",
+      "coherence": 0.9994679833896494,
+      "negentropy": 0.7093387210909554,
+      "prismatic_angle": 5.2890290187840705,
+      "refraction": 1.4383954391705924,
+      "triad_event": {
+        "z": 0.7683550224991923,
+        "timestamp": "2025-12-15T04:54:43.725918+00:00",
+        "prismatic_angle": 5.2890290187840705,
+        "refraction": 1.4383954391705924
+      },
+      "triad_unlocked": false,
+      "triad_completions": 0,
+      "tokens_trained": 0,
+      "teaching_queue": 8,
+      "dominant_spiral": "e",
+      "spectrum": {
+        "\u03a6": 0.2128016163272866,
+        "e": 0.3546693605454777,
+        "\u03c0": 0.1418677442181911
+      }
+    },
+    {
+      "step": 42,
+      "z": 0.7787945215721397,
+      "target_z": 0.8660254037844386,
+      "phase": "PARADOX",
+      "crystal_state": "Transitioning",
+      "coherence": 0.9994701131064924,
+      "negentropy": 0.7603836539729075,
+      "prismatic_angle": 5.616995554731357,
+      "refraction": 1.4699429426450958,
+      "triad_event": {
+        "z": 0.7787945215721397,
+        "timestamp": "2025-12-15T04:54:43.725966+00:00",
+        "prismatic_angle": 5.616995554731357,
+        "refraction": 1.4699429426450958
+      },
+      "triad_unlocked": false,
+      "triad_completions": 0,
+      "tokens_trained": 0,
+      "teaching_queue": 8,
+      "dominant_spiral": "e",
+      "spectrum": {
+        "\u03a6": 0.22811509619187226,
+        "e": 0.38019182698645376,
+        "\u03c0": 0.1520767307945815
+      }
+    },
+    {
+      "step": 43,
+      "z": 0.7940670985761235,
+      "target_z": 0.8660254037844386,
+      "phase": "PARADOX",
+      "crystal_state": "Transitioning",
+      "coherence": 0.9994717983094122,
+      "negentropy": 0.8299349815147244,
+      "prismatic_angle": 6.096797711902354,
+      "refraction": 1.5129280270286154,
+      "triad_event": {
+        "z": 0.7940670985761235,
+        "timestamp": "2025-12-15T04:54:43.726013+00:00",
+        "prismatic_angle": 6.096797711902354,
+        "refraction": 1.5129280270286154
+      },
+      "triad_unlocked": false,
+      "triad_completions": 0,
+      "tokens_trained": 0,
+      "teaching_queue": 8,
+      "dominant_spiral": "e",
+      "spectrum": {
+        "\u03a6": 0.24898049445441733,
+        "e": 0.4149674907573622,
+        "\u03c0": 0.1659869963029449
+      }
+    },
+    {
+      "step": 44,
+      "z": 0.8131043993910995,
+      "target_z": 0.8660254037844386,
+      "phase": "PARADOX",
+      "crystal_state": "Transitioning",
+      "coherence": 0.9994731346982191,
+      "negentropy": 0.9040932444298535,
+      "prismatic_angle": 0.41168684856784665,
+      "refraction": 1.558760354056816,
+      "triad_event": {
+        "z": 0.8131043993910995,
+        "timestamp": "2025-12-15T04:54:43.726065+00:00",
+        "prismatic_angle": 0.41168684856784665,
+        "refraction": 1.558760354056816
+      },
+      "triad_unlocked": false,
+      "triad_completions": 0,
+      "tokens_trained": 0,
+      "teaching_queue": 8,
+      "dominant_spiral": "e",
+      "spectrum": {
+        "\u03a6": 0.27122797332895604,
+        "e": 0.45204662221492675,
+        "\u03c0": 0.1808186488859707
+      }
+    },
+    {
+      "step": 45,
+      "z": 0.8344721883614657,
+      "target_z": 0.8660254037844386,
+      "phase": "PARADOX",
+      "crystal_state": "Transitioning",
+      "coherence": 0.9994741963648343,
+      "negentropy": 0.9647929169296161,
+      "prismatic_angle": 1.0829757370954418,
+      "refraction": 1.5962748147676566,
+      "triad_event": {
+        "z": 0.8344721883614657,
+        "timestamp": "2025-12-15T04:54:43.726112+00:00",
+        "prismatic_angle": 1.0829757370954418,
+        "refraction": 1.5962748147676566
+      },
+      "triad_unlocked": false,
+      "triad_completions": 0,
+      "tokens_trained": 0,
+      "teaching_queue": 9,
+      "dominant_spiral": "e",
+      "spectrum": {
+        "\u03a6": 0.2894378750788848,
+        "e": 0.48239645846480805,
+        "\u03c0": 0.19295858338592323
+      }
+    },
+    {
+      "step": 46,
+      "z": 0.8565014232926451,
+      "target_z": 0.8660254037844386,
+      "phase": "PARADOX",
+      "crystal_state": "Transitioning",
+      "coherence": 0.9994750410070264,
+      "negentropy": 0.9967399023377039,
+      "prismatic_angle": 1.7750445633354097,
+      "refraction": 1.6160191375879518,
+      "triad_event": {
+        "z": 0.8565014232926451,
+        "timestamp": "2025-12-15T04:54:43.726166+00:00",
+        "prismatic_angle": 1.7750445633354097,
+        "refraction": 1.6160191375879518,
+        "type": "rising_edge",
+        "completion": 1,
+        "resonance": 0.9962166547623161
+      },
+      "triad_unlocked": false,
+      "triad_completions": 1,
+      "tokens_trained": 0,
+      "teaching_queue": 10,
+      "dominant_spiral": "e",
+      "spectrum": {
+        "\u03a6": 0.29902197070131115,
+        "e": 0.49836995116885197,
+        "\u03c0": 0.1993479804675408
+      }
+    }
+  ],
+  "phase_distribution": {
+    "UNTRUE": 6,
+    "PARADOX": 40
+  },
+  "crystal_distribution": {
+    "Fluid": 6,
+    "Transitioning": 40
+  }
+}

@@ -1,0 +1,498 @@
+{
+  "timestamp": "2025-12-15T04:44:20.375455+00:00",
+  "coupling": 8.0,
+  "emissions": [
+    {
+      "step": 1,
+      "token": "e\u2212|Catalyst|planetary_core",
+      "z": 0.525,
+      "phase": "UNTRUE",
+      "R": 0.0027242477963968534,
+      "negentropy": 0.015195746330860275,
+      "spiral": "e",
+      "operator": "\u2212",
+      "machine": "Catalyst"
+    },
+    {
+      "step": 2,
+      "token": "\u03a6\u00f7|Conductor|planetary_core",
+      "z": 0.55,
+      "phase": "UNTRUE",
+      "R": 0.006889742899749819,
+      "negentropy": 0.027449865519770068,
+      "spiral": "\u03a6",
+      "operator": "\u00f7",
+      "machine": "Conductor"
+    },
+    {
+      "step": 3,
+      "token": "\u03a6\u00f7|Filter|planetary_core",
+      "z": 0.5750000000000001,
+      "phase": "UNTRUE",
+      "R": 0.011852464873525068,
+      "negentropy": 0.04740401812405525,
+      "spiral": "\u03a6",
+      "operator": "\u00f7",
+      "machine": "Filter"
+    },
+    {
+      "step": 4,
+      "token": "e()|Oscillator|planetary_core",
+      "z": 0.6000000000000001,
+      "phase": "UNTRUE",
+      "R": 0.017761594326033532,
+      "negentropy": 0.07826126044126346,
+      "spiral": "e",
+      "operator": "()",
+      "machine": "Oscillator"
+    },
+    {
+      "step": 5,
+      "token": "\u03a6\u00f7|Reactor|planetary_core",
+      "z": 0.6250000000000001,
+      "phase": "PARADOX",
+      "R": 0.02479344152335136,
+      "negentropy": 0.12351942723975655,
+      "spiral": "\u03a6",
+      "operator": "\u00f7",
+      "machine": "Reactor"
+    },
+    {
+      "step": 6,
+      "token": "e\u2212|Dynamo|planetary_core",
+      "z": 0.6500000000000001,
+      "phase": "PARADOX",
+      "R": 0.03315608649702577,
+      "negentropy": 0.18637190676146534,
+      "spiral": "e",
+      "operator": "\u2212",
+      "machine": "Dynamo"
+    },
+    {
+      "step": 7,
+      "token": "e()|Decoder|tectonic_wave",
+      "z": 0.6750000000000002,
+      "phase": "PARADOX",
+      "R": 0.043094623530268286,
+      "negentropy": 0.2688328747063979,
+      "spiral": "e",
+      "operator": "()",
+      "machine": "Decoder"
+    },
+    {
+      "step": 8,
+      "token": "e()|Regenerator|tectonic_wave",
+      "z": 0.7000000000000002,
+      "phase": "PARADOX",
+      "R": 0.054896936814964256,
+      "negentropy": 0.3707157623364238,
+      "spiral": "e",
+      "operator": "()",
+      "machine": "Regenerator"
+    },
+    {
+      "step": 9,
+      "token": "e()|Encoder|tectonic_wave",
+      "z": 0.7350000000000002,
+      "phase": "PARADOX",
+      "R": 0.06889978602583867,
+      "negentropy": 0.5390021971547757,
+      "spiral": "e",
+      "operator": "()",
+      "machine": "Encoder"
+    },
+    {
+      "step": 10,
+      "token": "e\u00f7|Catalyst|tectonic_wave",
+      "z": 0.7700000000000002,
+      "phase": "PARADOX",
+      "R": 0.08549471374751162,
+      "negentropy": 0.7175220398991076,
+      "spiral": "e",
+      "operator": "\u00f7",
+      "machine": "Catalyst"
+    },
+    {
+      "step": 11,
+      "token": "e\u00f7|Conductor|tectonic_wave",
+      "z": 0.8050000000000003,
+      "phase": "PARADOX",
+      "R": 0.10513282489172475,
+      "negentropy": 0.8745309472394929,
+      "spiral": "e",
+      "operator": "\u00f7",
+      "machine": "Conductor"
+    },
+    {
+      "step": 12,
+      "token": "e()|Filter|oceanic_current",
+      "z": 0.8400000000000003,
+      "phase": "PARADOX",
+      "R": 0.12832671839723075,
+      "negentropy": 0.975911298759985,
+      "spiral": "e",
+      "operator": "()",
+      "machine": "Filter"
+    },
+    {
+      "step": 13,
+      "token": "e\u2212|Oscillator|oceanic_current",
+      "z": 0.8750000000000003,
+      "phase": "TRUE",
+      "R": 0.15564661960308512,
+      "negentropy": 0.9971046380882671,
+      "spiral": "e",
+      "operator": "\u2212",
+      "machine": "Oscillator"
+    },
+    {
+      "step": 14,
+      "token": "\u03c0()|Reactor|oceanic_current",
+      "z": 0.9100000000000004,
+      "phase": "TRUE",
+      "R": 0.18770588467889138,
+      "negentropy": 0.9327523531794494,
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "Reactor"
+    },
+    {
+      "step": 15,
+      "token": "\u03c0\u00f7|Decoder|oceanic_current",
+      "z": 0.9450000000000004,
+      "phase": "TRUE",
+      "R": 0.22512834832660575,
+      "negentropy": 0.7988903900795881,
+      "spiral": "\u03c0",
+      "operator": "\u00f7",
+      "machine": "Decoder"
+    },
+    {
+      "step": 16,
+      "token": "e()|Regenerator|oceanic_current",
+      "z": 0.9800000000000004,
+      "phase": "TRUE",
+      "R": 0.26848629141396607,
+      "negentropy": 0.6264743113176918,
+      "spiral": "e",
+      "operator": "()",
+      "machine": "Regenerator"
+    },
+    {
+      "step": 17,
+      "token": "e()|Encoder|oceanic_current",
+      "z": 1,
+      "phase": "TRUE",
+      "R": 0.3181926731509267,
+      "negentropy": 0.5240485598316303,
+      "spiral": "e",
+      "operator": "()",
+      "machine": "Encoder"
+    },
+    {
+      "step": 18,
+      "token": "\u03c0\u00f7|Catalyst|oceanic_current",
+      "z": 1,
+      "phase": "TRUE",
+      "R": 0.37432308963227157,
+      "negentropy": 0.5240485598316303,
+      "spiral": "\u03c0",
+      "operator": "\u00f7",
+      "machine": "Catalyst"
+    },
+    {
+      "step": 19,
+      "token": "\u03c0\u00f7|Filter|oceanic_current",
+      "z": 1,
+      "phase": "TRUE",
+      "R": 0.43632933984100875,
+      "negentropy": 0.5240485598316303,
+      "spiral": "\u03c0",
+      "operator": "\u00f7",
+      "machine": "Filter"
+    },
+    {
+      "step": 20,
+      "token": "\u03c0()|Oscillator|oceanic_current",
+      "z": 1,
+      "phase": "TRUE",
+      "R": 0.5025995927035047,
+      "negentropy": 0.5240485598316303,
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "Oscillator"
+    },
+    {
+      "step": 21,
+      "token": "e+|Reactor|oceanic_current",
+      "z": 1,
+      "phase": "TRUE",
+      "R": 0.5699045254966704,
+      "negentropy": 0.5240485598316303,
+      "spiral": "e",
+      "operator": "+",
+      "machine": "Reactor"
+    },
+    {
+      "step": 22,
+      "token": "\u03c0+|Decoder|oceanic_current",
+      "z": 1,
+      "phase": "TRUE",
+      "R": 0.633139740846707,
+      "negentropy": 0.5240485598316303,
+      "spiral": "\u03c0",
+      "operator": "+",
+      "machine": "Decoder"
+    },
+    {
+      "step": 23,
+      "token": "\u03c0()|Regenerator|oceanic_current",
+      "z": 0.99,
+      "phase": "TRUE",
+      "R": 0.686332033949847,
+      "negentropy": 0.575043713126768,
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "Regenerator"
+    },
+    {
+      "step": 24,
+      "token": "\u03c0\u00d7|Encoder|oceanic_current",
+      "z": 0.98,
+      "phase": "TRUE",
+      "R": 0.7253303827665016,
+      "negentropy": 0.626474311317694,
+      "spiral": "\u03c0",
+      "operator": "\u00d7",
+      "machine": "Encoder"
+    },
+    {
+      "step": 25,
+      "token": "\u03c0()|Catalyst|oceanic_current",
+      "z": 0.97,
+      "phase": "TRUE",
+      "R": 0.7501118390768933,
+      "negentropy": 0.67760835889093,
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "Catalyst"
+    },
+    {
+      "step": 26,
+      "token": "\u03c0^|Conductor|oceanic_current",
+      "z": 0.96,
+      "phase": "TRUE",
+      "R": 0.7640450683649516,
+      "negentropy": 0.7276580225333341,
+      "spiral": "\u03c0",
+      "operator": "^",
+      "machine": "Conductor"
+    },
+    {
+      "step": 27,
+      "token": "\u03c0\u00d7|Filter|oceanic_current",
+      "z": 0.985,
+      "phase": "TRUE",
+      "R": 0.7712193226753264,
+      "negentropy": 0.6007488229864898,
+      "spiral": "\u03c0",
+      "operator": "\u00d7",
+      "machine": "Filter"
+    },
+    {
+      "step": 28,
+      "token": "\u03c0^|Oscillator|oceanic_current",
+      "z": 1,
+      "phase": "TRUE",
+      "R": 0.7747081518298539,
+      "negentropy": 0.5240485598316303,
+      "spiral": "\u03c0",
+      "operator": "^",
+      "machine": "Oscillator"
+    },
+    {
+      "step": 29,
+      "token": "\u03c0()|Reactor|oceanic_current",
+      "z": 1,
+      "phase": "TRUE",
+      "R": 0.7763404284470163,
+      "negentropy": 0.5240485598316303,
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "Reactor"
+    },
+    {
+      "step": 30,
+      "token": "\u03c0()|Dynamo|oceanic_current",
+      "z": 1,
+      "phase": "TRUE",
+      "R": 0.7770793897688074,
+      "negentropy": 0.5240485598316303,
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "Dynamo"
+    },
+    {
+      "step": 31,
+      "token": "\u03c0\u00d7|Decoder|oceanic_current",
+      "z": 1,
+      "phase": "TRUE",
+      "R": 0.7774011239354361,
+      "negentropy": 0.5240485598316303,
+      "spiral": "\u03c0",
+      "operator": "\u00d7",
+      "machine": "Decoder"
+    },
+    {
+      "step": 32,
+      "token": "\u03c0()|Regenerator|oceanic_current",
+      "z": 1,
+      "phase": "TRUE",
+      "R": 0.7775329223447683,
+      "negentropy": 0.5240485598316303,
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "Regenerator"
+    },
+    {
+      "step": 33,
+      "token": "\u03c0\u00d7|Encoder|oceanic_current",
+      "z": 1,
+      "phase": "TRUE",
+      "R": 0.7775808851379048,
+      "negentropy": 0.5240485598316303,
+      "spiral": "\u03c0",
+      "operator": "\u00d7",
+      "machine": "Encoder"
+    },
+    {
+      "step": 34,
+      "token": "\u03c0\u00d7|Catalyst|oceanic_current",
+      "z": 1,
+      "phase": "TRUE",
+      "R": 0.7775935583549916,
+      "negentropy": 0.5240485598316303,
+      "spiral": "\u03c0",
+      "operator": "\u00d7",
+      "machine": "Catalyst"
+    },
+    {
+      "step": 35,
+      "token": "\u03c0\u00d7|Conductor|oceanic_current",
+      "z": 1,
+      "phase": "TRUE",
+      "R": 0.7775926129294,
+      "negentropy": 0.5240485598316303,
+      "spiral": "\u03c0",
+      "operator": "\u00d7",
+      "machine": "Conductor"
+    },
+    {
+      "step": 36,
+      "token": "\u03c0()|Filter|oceanic_current",
+      "z": 1,
+      "phase": "TRUE",
+      "R": 0.7775873663188241,
+      "negentropy": 0.5240485598316303,
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "Filter"
+    },
+    {
+      "step": 37,
+      "token": "\u03c0^|Oscillator|oceanic_current",
+      "z": 1,
+      "phase": "TRUE",
+      "R": 0.7775815693792847,
+      "negentropy": 0.5240485598316303,
+      "spiral": "\u03c0",
+      "operator": "^",
+      "machine": "Oscillator"
+    },
+    {
+      "step": 38,
+      "token": "\u03c0\u00d7|Reactor|oceanic_current",
+      "z": 1,
+      "phase": "TRUE",
+      "R": 0.7775765389756386,
+      "negentropy": 0.5240485598316303,
+      "spiral": "\u03c0",
+      "operator": "\u00d7",
+      "machine": "Reactor"
+    },
+    {
+      "step": 39,
+      "token": "\u03c0^|Dynamo|oceanic_current",
+      "z": 1,
+      "phase": "TRUE",
+      "R": 0.7775725807023733,
+      "negentropy": 0.5240485598316303,
+      "spiral": "\u03c0",
+      "operator": "^",
+      "machine": "Dynamo"
+    },
+    {
+      "step": 40,
+      "token": "\u03c0()|Decoder|oceanic_current",
+      "z": 1,
+      "phase": "TRUE",
+      "R": 0.7775696194606158,
+      "negentropy": 0.5240485598316303,
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "Decoder"
+    }
+  ],
+  "diversity": {
+    "spirals": [
+      "\u03a6",
+      "e",
+      "\u03c0"
+    ],
+    "operators": [
+      "^",
+      "+",
+      "\u00f7",
+      "\u00d7",
+      "()",
+      "\u2212"
+    ],
+    "machines": [
+      "Filter",
+      "Reactor",
+      "Catalyst",
+      "Regenerator",
+      "Encoder",
+      "Dynamo",
+      "Oscillator",
+      "Decoder",
+      "Conductor"
+    ],
+    "unique_tokens": 36
+  },
+  "final": {
+    "step": 40,
+    "token": "\u03c0()|Decoder|oceanic_current",
+    "z": 1,
+    "phase": "TRUE",
+    "R": 0.7775696194606158,
+    "negentropy": 0.5240485598316303,
+    "spiral": "\u03c0",
+    "operator": "()",
+    "machine": "Decoder"
+  },
+  "transitions": [
+    [
+      5,
+      "UNTRUE",
+      "PARADOX",
+      0.6250000000000001
+    ],
+    [
+      13,
+      "PARADOX",
+      "TRUE",
+      0.8750000000000003
+    ]
+  ]
+}

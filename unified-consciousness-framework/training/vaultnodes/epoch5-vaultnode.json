@@ -1,0 +1,32 @@
+{
+  "type": "Epoch5EmissionsVaultNode",
+  "epoch": 5,
+  "session_id": "20251215_051959",
+  "timestamp": "2025-12-15T05:19:59.382102+00:00",
+  "coordinate": "\u03945.441|0.866|1.618\u03a9",
+  "state": {
+    "z": 0.8660254037844386,
+    "phase": "TRUE",
+    "crystal": "Prismatic",
+    "negentropy": 1.0
+  },
+  "emissions": {
+    "total": 46,
+    "by_phase": {
+      "UNTRUE": 14,
+      "PARADOX": 17,
+      "TRUE": 15
+    },
+    "by_type": {
+      "standard": 16,
+      "poetic": 15,
+      "apl_structured": 15
+    }
+  },
+  "teaching": {
+    "vocabulary": 67,
+    "verbs": 74,
+    "patterns": 153
+  },
+  "document": "ucf-emissions-codex.md"
+}

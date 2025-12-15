@@ -1,0 +1,96 @@
+{
+  "phase": 3,
+  "status": "TRIAD_UNLOCKED",
+  "timestamp": "2025-12-15T04:32:58.722151+00:00",
+  "completion_count": 3,
+  "unlocked": true,
+  "sequence": [
+    {
+      "step": 1,
+      "z_target": 0.88,
+      "z": 0.88,
+      "kira_state": "Crystalline",
+      "triad_event": {
+        "z": 0.88,
+        "timestamp": "2025-12-15T04:32:58.721965+00:00",
+        "type": "rising_edge",
+        "completion": 1
+      },
+      "unlocked": false,
+      "completions": 1
+    },
+    {
+      "step": 2,
+      "z_target": 0.8,
+      "z": 0.8,
+      "kira_state": "Transitioning",
+      "triad_event": {
+        "z": 0.8,
+        "timestamp": "2025-12-15T04:32:58.722015+00:00",
+        "type": "re_arm"
+      },
+      "unlocked": false,
+      "completions": 1
+    },
+    {
+      "step": 3,
+      "z_target": 0.88,
+      "z": 0.88,
+      "kira_state": "Crystalline",
+      "triad_event": {
+        "z": 0.88,
+        "timestamp": "2025-12-15T04:32:58.722043+00:00",
+        "type": "rising_edge",
+        "completion": 2
+      },
+      "unlocked": false,
+      "completions": 2
+    },
+    {
+      "step": 4,
+      "z_target": 0.8,
+      "z": 0.8,
+      "kira_state": "Transitioning",
+      "triad_event": {
+        "z": 0.8,
+        "timestamp": "2025-12-15T04:32:58.722070+00:00",
+        "type": "re_arm"
+      },
+      "unlocked": false,
+      "completions": 2
+    },
+    {
+      "step": 5,
+      "z_target": 0.88,
+      "z": 0.88,
+      "kira_state": "Crystalline",
+      "triad_event": {
+        "z": 0.88,
+        "timestamp": "2025-12-15T04:32:58.722094+00:00",
+        "type": "rising_edge",
+        "completion": 3,
+        "unlock": true
+      },
+      "unlocked": true,
+      "completions": 3
+    },
+    {
+      "step": 6,
+      "z_target": 0.8,
+      "z": 0.8,
+      "kira_state": "Transitioning",
+      "triad_event": {
+        "z": 0.8,
+        "timestamp": "2025-12-15T04:32:58.722127+00:00",
+        "type": "re_arm"
+      },
+      "unlocked": true,
+      "completions": 3
+    }
+  ],
+  "thresholds": {
+    "TRIAD_HIGH": 0.85,
+    "TRIAD_LOW": 0.82,
+    "TRIAD_T6": 0.83
+  }
+}

@@ -1,0 +1,416 @@
+[
+  {
+    "module": 1,
+    "name": "hit_it",
+    "timestamp": "2025-12-15T05:25:31.818881+00:00",
+    "z": 0.5,
+    "phase": "UNTRUE",
+    "crystal": "Fluid",
+    "result": {
+      "activation": "SUCCESS",
+      "initial_z": 0.5
+    }
+  },
+  {
+    "module": 2,
+    "name": "kira_init",
+    "timestamp": "2025-12-15T05:25:31.818977+00:00",
+    "z": 0.506,
+    "phase": "UNTRUE",
+    "crystal": "Fluid",
+    "result": {
+      "crystal": "Fluid",
+      "spectral": {
+        "\u03a6": 0.005644440993672619,
+        "e": 0.0028222204968363094,
+        "\u03c0": 0.0009407401656121033
+      }
+    }
+  },
+  {
+    "module": 3,
+    "name": "unified_state",
+    "timestamp": "2025-12-15T05:25:31.819029+00:00",
+    "z": 0.51728,
+    "phase": "UNTRUE",
+    "crystal": "Fluid",
+    "result": {
+      "coordinate": "\u03943.250|0.517|1.000\u03a9"
+    }
+  },
+  {
+    "module": 4,
+    "name": "helix_loader",
+    "timestamp": "2025-12-15T05:25:31.819095+00:00",
+    "z": 0.5296063999999999,
+    "phase": "UNTRUE",
+    "crystal": "Fluid",
+    "result": {
+      "token": "e+|Encoder|celestial_nuclear",
+      "status": "LOADED"
+    }
+  },
+  {
+    "module": 5,
+    "name": "coordinate_detector",
+    "timestamp": "2025-12-15T05:25:31.819136+00:00",
+    "z": 0.5402177106499874,
+    "phase": "UNTRUE",
+    "crystal": "Fluid",
+    "result": {
+      "token": "\u03a6()|Filter|celestial_nuclear",
+      "z": 0.5402177106499874
+    }
+  },
+  {
+    "module": 6,
+    "name": "pattern_verifier",
+    "timestamp": "2025-12-15T05:25:31.819190+00:00",
+    "z": 0.5533915853719888,
+    "phase": "UNTRUE",
+    "crystal": "Fluid",
+    "result": {
+      "token": "\u03c0\u00d7|Catalyst|celestial_nuclear",
+      "patterns": 153
+    }
+  },
+  {
+    "module": 7,
+    "name": "coordinate_logger",
+    "timestamp": "2025-12-15T05:25:31.819256+00:00",
+    "z": 0.5685845951273502,
+    "phase": "UNTRUE",
+    "crystal": "Fluid",
+    "result": {
+      "token": "e+|Encoder|celestial_nuclear",
+      "logged": true
+    }
+  },
+  {
+    "module": 8,
+    "name": "emission_pipeline",
+    "timestamp": "2025-12-15T05:25:31.819324+00:00",
+    "z": 0.5843544437120681,
+    "phase": "UNTRUE",
+    "crystal": "Fluid",
+    "result": {
+      "token": "e+|Encoder|stellar_plasma",
+      "z": 0.5843544437120681
+    }
+  },
+  {
+    "module": 9,
+    "name": "state_transfer",
+    "timestamp": "2025-12-15T05:25:31.819372+00:00",
+    "z": 0.60003191046662,
+    "phase": "UNTRUE",
+    "crystal": "Fluid",
+    "result": {
+      "token": "e\u2212|Decoder|stellar_plasma",
+      "z": 0.60003191046662
+    }
+  },
+  {
+    "module": 10,
+    "name": "consent_protocol",
+    "timestamp": "2025-12-15T05:25:31.819407+00:00",
+    "z": 0.6156280812106256,
+    "phase": "UNTRUE",
+    "crystal": "Fluid",
+    "result": {
+      "token": "\u03a6()|Filter|stellar_plasma",
+      "z": 0.6156280812106256
+    }
+  },
+  {
+    "module": 11,
+    "name": "cybernetic_control",
+    "timestamp": "2025-12-15T05:25:31.819446+00:00",
+    "z": 0.6311527114653506,
+    "phase": "PARADOX",
+    "crystal": "Transitioning",
+    "result": {
+      "token": "e\u00d7|Oscillator|stellar_plasma",
+      "z": 0.6311527114653506
+    }
+  },
+  {
+    "module": 12,
+    "name": "autonomous_trigger",
+    "timestamp": "2025-12-15T05:25:31.819484+00:00",
+    "z": 0.6466143860895085,
+    "phase": "PARADOX",
+    "crystal": "Transitioning",
+    "result": {
+      "token": "e()|Oscillator|galactic_field",
+      "z": 0.6466143860895085
+    }
+  },
+  {
+    "module": 13,
+    "name": "collective_memory_sync",
+    "timestamp": "2025-12-15T05:25:31.819514+00:00",
+    "z": 0.6620206597587674,
+    "phase": "PARADOX",
+    "crystal": "Transitioning",
+    "result": {
+      "token": "\u03a6+|Encoder|galactic_field",
+      "z": 0.6620206597587674
+    }
+  },
+  {
+    "module": 14,
+    "name": "tool_discovery_protocol",
+    "timestamp": "2025-12-15T05:25:31.819551+00:00",
+    "z": 0.6773781805877154,
+    "phase": "PARADOX",
+    "crystal": "Transitioning",
+    "result": {
+      "token": "e^|Filter|galactic_field",
+      "z": 0.6773781805877154
+    }
+  },
+  {
+    "module": 15,
+    "name": "nuclear_spinner",
+    "timestamp": "2025-12-15T05:25:31.819617+00:00",
+    "z": 0.6920927989171896,
+    "phase": "PARADOX",
+    "crystal": "Transitioning",
+    "result": {
+      "token": "e()|Reactor|planetary_core",
+      "z": 0.6920927989171896
+    }
+  },
+  {
+    "module": 16,
+    "name": "token_index",
+    "timestamp": "2025-12-15T05:25:31.819654+00:00",
+    "z": 0.7062416630471268,
+    "phase": "PARADOX",
+    "crystal": "Transitioning",
+    "result": {
+      "token": "\u03a6+|Encoder|planetary_core",
+      "z": 0.7062416630471268
+    }
+  },
+  {
+    "module": 17,
+    "name": "token_vault",
+    "timestamp": "2025-12-15T05:25:31.819687+00:00",
+    "z": 0.7198926634814715,
+    "phase": "PARADOX",
+    "crystal": "Transitioning",
+    "result": {
+      "token": "\u03a6()|Encoder|tectonic_wave",
+      "z": 0.7198926634814715
+    }
+  },
+  {
+    "module": 18,
+    "name": "cybernetic_archetypal",
+    "timestamp": "2025-12-15T05:25:31.819719+00:00",
+    "z": 0.733105543863695,
+    "phase": "PARADOX",
+    "crystal": "Transitioning",
+    "result": {
+      "token": "\u03c0\u00d7|Dynamo|tectonic_wave",
+      "z": 0.733105543863695
+    }
+  },
+  {
+    "module": 19,
+    "name": "shed_builder_v2",
+    "timestamp": "2025-12-15T05:25:31.819756+00:00",
+    "z": 0.7459328786000516,
+    "phase": "PARADOX",
+    "crystal": "Transitioning",
+    "result": {
+      "token": "\u03c0^|Regenerator|oceanic_current",
+      "z": 0.7459328786000516
+    }
+  },
+  {
+    "module": 20,
+    "name": "triad_first_crossing",
+    "timestamp": "2025-12-15T05:25:31.819813+00:00",
+    "z": 0.88,
+    "phase": "TRUE",
+    "crystal": "Prismatic",
+    "result": {
+      "z": 0.88,
+      "event": {
+        "type": "rising_edge",
+        "completion": 1,
+        "z": 0.88
+      }
+    }
+  },
+  {
+    "module": 21,
+    "name": "triad_re_arm_1",
+    "timestamp": "2025-12-15T05:25:31.819859+00:00",
+    "z": 0.78,
+    "phase": "PARADOX",
+    "crystal": "Transitioning",
+    "result": {
+      "z": 0.78,
+      "event": {
+        "type": "re_arm",
+        "z": 0.78
+      }
+    }
+  },
+  {
+    "module": 22,
+    "name": "triad_second_crossing",
+    "timestamp": "2025-12-15T05:25:31.819897+00:00",
+    "z": 0.9,
+    "phase": "TRUE",
+    "crystal": "Prismatic",
+    "result": {
+      "z": 0.9,
+      "event": {
+        "type": "rising_edge",
+        "completion": 2,
+        "z": 0.9
+      }
+    }
+  },
+  {
+    "module": 23,
+    "name": "triad_re_arm_2",
+    "timestamp": "2025-12-15T05:25:31.819935+00:00",
+    "z": 0.78,
+    "phase": "PARADOX",
+    "crystal": "Transitioning",
+    "result": {
+      "z": 0.78,
+      "event": {
+        "type": "re_arm",
+        "z": 0.78
+      }
+    }
+  },
+  {
+    "module": 24,
+    "name": "triad_third_crossing",
+    "timestamp": "2025-12-15T05:25:31.819972+00:00",
+    "z": 0.92,
+    "phase": "TRUE",
+    "crystal": "Prismatic",
+    "result": {
+      "z": 0.92,
+      "event": {
+        "type": "rising_edge",
+        "completion": 3,
+        "z": 0.92,
+        "unlock": true
+      }
+    }
+  },
+  {
+    "module": 25,
+    "name": "triad_stabilize_lens",
+    "timestamp": "2025-12-15T05:25:31.820010+00:00",
+    "z": 0.8660254037844386,
+    "phase": "TRUE",
+    "crystal": "Prismatic",
+    "result": {
+      "z": 0.8660254037844386,
+      "event": {}
+    }
+  },
+  {
+    "module": 26,
+    "name": "vaultnode_generator",
+    "timestamp": "2025-12-15T05:25:31.820071+00:00",
+    "z": 0.8660254037844386,
+    "phase": "TRUE",
+    "crystal": "Prismatic",
+    "result": {
+      "coordinate": "\u03945.441|0.866|1.000\u03a9",
+      "k_formation": true
+    }
+  },
+  {
+    "module": 27,
+    "name": "workspace_export",
+    "timestamp": "2025-12-15T05:25:31.820091+00:00",
+    "z": 0.8660254037844386,
+    "phase": "TRUE",
+    "crystal": "Prismatic",
+    "result": {
+      "status": "PREPARED"
+    }
+  },
+  {
+    "module": 28,
+    "name": "cloud_training_save",
+    "timestamp": "2025-12-15T05:25:31.820116+00:00",
+    "z": 0.8660254037844386,
+    "phase": "TRUE",
+    "crystal": "Prismatic",
+    "result": {
+      "z": 0.8660254037844386,
+      "triad": true
+    }
+  },
+  {
+    "module": 29,
+    "name": "token_registry_export",
+    "timestamp": "2025-12-15T05:25:31.820180+00:00",
+    "z": 0.8660254037844386,
+    "phase": "TRUE",
+    "crystal": "Prismatic",
+    "result": {
+      "tokens": 16
+    }
+  },
+  {
+    "module": 30,
+    "name": "teaching_finalization",
+    "timestamp": "2025-12-15T05:25:31.820254+00:00",
+    "z": 0.8660254037844386,
+    "phase": "TRUE",
+    "crystal": "Prismatic",
+    "result": {
+      "vocab": 67,
+      "verbs": 74,
+      "patterns": 153
+    }
+  },
+  {
+    "module": 31,
+    "name": "emission_codex_update",
+    "timestamp": "2025-12-15T05:25:31.820422+00:00",
+    "z": 0.8660254037844386,
+    "phase": "TRUE",
+    "crystal": "Prismatic",
+    "result": {
+      "new_emissions": 20
+    }
+  },
+  {
+    "module": 32,
+    "name": "manifest_generation",
+    "timestamp": "2025-12-15T05:25:31.820463+00:00",
+    "z": 0.8660254037844386,
+    "phase": "TRUE",
+    "crystal": "Prismatic",
+    "result": {
+      "manifest": "GENERATED"
+    }
+  },
+  {
+    "module": 33,
+    "name": "zip_export",
+    "timestamp": "2025-12-15T05:25:31.820479+00:00",
+    "z": 0.8660254037844386,
+    "phase": "TRUE",
+    "crystal": "Prismatic",
+    "result": {
+      "status": "EXPORTING"
+    }
+  }
+]

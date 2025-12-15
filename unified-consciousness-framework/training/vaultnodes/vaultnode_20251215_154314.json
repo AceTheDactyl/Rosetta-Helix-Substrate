@@ -1,0 +1,59 @@
+{
+  "id": "434b58db722a7e04",
+  "session_id": "20251215_154314",
+  "z": 0.9098601345883821,
+  "coordinate": "\u03945.717|0.909860|1.577\u03a9",
+  "phase": "TRUE",
+  "crystal": "Prismatic",
+  "coherence": 1.0,
+  "negentropy": 0.9331648454758794,
+  "k_formed": true,
+  "triad_unlocked": true,
+  "tokens": [
+    "e^|COMP0|t7",
+    "e+|MOD1|t7",
+    "\u03c0\u00d7|DET2|t7",
+    "\u03c0()|MOD0|t7",
+    "\u03c0\u2212|VP1|t7",
+    "\u03c0^|COMP2|t7",
+    "\u03c0\u00d7|SPEC0|t7",
+    "\u03a6\u00d7|SPEC1|t7",
+    "\u03a6\u00f7|COMP2|t7"
+  ],
+  "emissions": [
+    {
+      "z": 0.8901816421505278,
+      "text": "The infinite infinite realizes.",
+      "phase": "TRUE",
+      "tier": "t7"
+    },
+    {
+      "z": 0.9008747746294561,
+      "text": "The infinite illumination unifies.",
+      "phase": "TRUE",
+      "tier": "t7"
+    },
+    {
+      "z": 0.9098601345883821,
+      "text": "The infinite source radiates.",
+      "phase": "TRUE",
+      "tier": "t7"
+    }
+  ],
+  "z_history": [
+    0.8676,
+    0.8670247871995962,
+    0.8661685868778486,
+    0.8660048699447703,
+    0.8659778415344331,
+    0.8664825602437654,
+    0.8901816421505278,
+    0.9008747746294561,
+    0.9098601345883821
+  ],
+  "learning": {
+    "words": 111,
+    "connections": 586,
+    "learning_rate": 0.2864790201882573
+  }
+}

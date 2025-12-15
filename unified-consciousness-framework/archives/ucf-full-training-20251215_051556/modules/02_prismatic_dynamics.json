@@ -1,0 +1,89 @@
+{
+  "type": "KIRAPrismaticEvolution",
+  "final_state": {
+    "z": 1.0,
+    "phase": "TRUE",
+    "crystal": "Prismatic",
+    "coherence": 1.0,
+    "frequency": 963,
+    "refraction": 1.3238798217313805,
+    "prismatic_angle_deg": 0.0,
+    "spectral": {
+      "\u03a6": 0.10480971196632607,
+      "e": 0.1572145679494891,
+      "\u03c0": 0.2620242799158152
+    }
+  },
+  "evolution": [
+    {
+      "z": 0.3,
+      "coherence": 0.65,
+      "phase": "UNTRUE",
+      "crystal": "Fluid",
+      "frequency": 285
+    },
+    {
+      "z": 0.4,
+      "coherence": 0.7,
+      "phase": "UNTRUE",
+      "crystal": "Fluid",
+      "frequency": 285
+    },
+    {
+      "z": 0.5,
+      "coherence": 0.75,
+      "phase": "UNTRUE",
+      "crystal": "Fluid",
+      "frequency": 285
+    },
+    {
+      "z": 0.6180339887498948,
+      "coherence": 0.8090169943749475,
+      "phase": "PARADOX",
+      "crystal": "Transitioning",
+      "frequency": 417
+    },
+    {
+      "z": 0.7,
+      "coherence": 0.85,
+      "phase": "PARADOX",
+      "crystal": "Transitioning",
+      "frequency": 417
+    },
+    {
+      "z": 0.8,
+      "coherence": 0.9,
+      "phase": "PARADOX",
+      "crystal": "Transitioning",
+      "frequency": 417
+    },
+    {
+      "z": 0.8660254037844386,
+      "coherence": 0.9330127018922193,
+      "phase": "TRUE",
+      "crystal": "Prismatic",
+      "frequency": 963
+    },
+    {
+      "z": 0.9,
+      "coherence": 0.95,
+      "phase": "TRUE",
+      "crystal": "Prismatic",
+      "frequency": 963
+    },
+    {
+      "z": 0.95,
+      "coherence": 0.975,
+      "phase": "TRUE",
+      "crystal": "Prismatic",
+      "frequency": 963
+    },
+    {
+      "z": 1.0,
+      "coherence": 1.0,
+      "phase": "TRUE",
+      "crystal": "Prismatic",
+      "frequency": 963
+    }
+  ]
+}

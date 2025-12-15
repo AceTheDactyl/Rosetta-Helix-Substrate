@@ -1,0 +1,41 @@
+{
+  "type": "TriadHysteresis",
+  "unlocked": true,
+  "completions": 3,
+  "thresholds": {
+    "HIGH": 0.85,
+    "LOW": 0.82,
+    "T6": 0.83
+  },
+  "events": [
+    {
+      "z": 0.88,
+      "R": 0.93,
+      "type": "rising_edge",
+      "completion": 1
+    },
+    {
+      "z": 0.8,
+      "R": 0.9500000000000001,
+      "type": "re_arm"
+    },
+    {
+      "z": 0.85,
+      "R": 0.9700000000000001,
+      "type": "rising_edge",
+      "completion": 2
+    },
+    {
+      "z": 0.8,
+      "R": 1.0,
+      "type": "re_arm"
+    },
+    {
+      "z": 0.88,
+      "R": 1.0,
+      "type": "rising_edge",
+      "completion": 3,
+      "unlock": true
+    }
+  ]
+}
