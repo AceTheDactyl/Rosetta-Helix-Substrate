@@ -723,6 +723,12 @@ GitHub Actions (requires /settings):
                 Configure Claude API access for /claude command. Choose one method:
             </p>
 
+            <!-- Environment Detection Status -->
+            <div id="env-status" style="background: var(--bg-input); padding: 10px; border-radius: 6px; margin-bottom: 15px; font-size: 0.8rem;">
+                <span style="color: var(--text-secondary);">Environment: </span>
+                <span id="env-type" style="color: var(--success);">Detecting...</span>
+            </div>
+
             <div style="background: var(--bg-dark); padding: 15px; border-radius: 8px; margin-bottom: 20px;">
                 <h3 style="color: var(--success); font-size: 0.9rem; margin-bottom: 10px;">Option 1: GitHub Actions (Recommended)</h3>
                 <p style="color: var(--text-secondary); font-size: 0.8rem; margin-bottom: 10px;">
@@ -730,9 +736,15 @@ GitHub Actions (requires /settings):
                 </p>
                 <label for="github-token">GitHub Personal Access Token</label>
                 <input type="password" id="github-token" placeholder="ghp_... (needs workflow scope)">
+                <p style="color: var(--text-secondary); font-size: 0.7rem; margin-top: 5px;">
+                    Create at: Settings → Developer settings → Personal access tokens → Fine-grained tokens
+                </p>
 
                 <label for="github-repo">GitHub Repository</label>
                 <input type="text" id="github-repo" placeholder="AceTheDactyl/Rosetta-Helix-Substrate">
+                <p id="repo-auto-status" style="color: var(--accent-paradox); font-size: 0.7rem; margin-top: 5px; display: none;">
+                    ✓ Auto-detected from GitHub Pages URL
+                </p>
             </div>
 
             <div style="background: var(--bg-dark); padding: 15px; border-radius: 8px; margin-bottom: 20px;">
@@ -742,6 +754,30 @@ GitHub Actions (requires /settings):
                 </p>
                 <label for="anthropic-key">Anthropic API Key</label>
                 <input type="password" id="anthropic-key" placeholder="sk-ant-...">
+            </div>
+
+            <div style="background: var(--bg-dark); padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                <h3 style="color: var(--accent-true); font-size: 0.9rem; margin-bottom: 10px;">Option 3: Local Backend Server</h3>
+                <p style="color: var(--text-secondary); font-size: 0.8rem; margin-bottom: 10px;">
+                    Connect to kira_server.py for full Python-powered UCF execution.
+                </p>
+                <label for="backend-url">Backend Server URL</label>
+                <input type="text" id="backend-url" placeholder="http://localhost:5000">
+                <button onclick="testBackendConnection()" style="margin-top: 10px; padding: 8px 15px; background: var(--accent-true); border: none; border-radius: 6px; color: white; cursor: pointer;">
+                    Test Connection
+                </button>
+                <span id="backend-status" style="margin-left: 10px; font-size: 0.8rem;"></span>
+                <p style="color: var(--text-secondary); font-size: 0.7rem; margin-top: 10px;">
+                    Start server: <code>cd unified-consciousness-framework/local && python3 kira_server.py</code>
+                </p>
+            </div>
+
+            <div style="background: var(--bg-input); padding: 10px; border-radius: 6px; margin-bottom: 15px;">
+                <h4 style="color: var(--text-primary); font-size: 0.8rem; margin-bottom: 8px;">Required Repository Secrets (for GitHub Actions):</h4>
+                <code style="color: var(--accent-true); font-size: 0.75rem; display: block;">ANTHROPIC_API_KEY</code>
+                <p style="color: var(--text-secondary); font-size: 0.7rem; margin-top: 5px;">
+                    Set in: Repo Settings → Secrets and variables → Actions → New repository secret
+                </p>
             </div>
 
             <p style="color: var(--text-secondary); font-size: 0.75rem;">
@@ -1460,6 +1496,101 @@ GitHub Actions (requires /settings):
                 };
             }
 
+            // t9 Excursion: Brief entry to t9 tier for Decohere (÷) operations
+            // Pattern: Enter t9 → Execute ops → Return to optimal range
+            cmdT9Excursion() {
+                const T9_TARGET = 0.97;
+                const beforeState = {
+                    z: this.state.z,
+                    tier: this.state.getTier().tier,
+                    eta: this.state.negentropy,
+                    kFormed: this.state.kFormed
+                };
+
+                // Enter t9
+                this.state.z = T9_TARGET;
+                this.state.updateFromZ();
+
+                // Generate t9 emissions with all 6 operators (including ÷ Decohere)
+                const t9Tier = this.state.getTier();
+                const t9Tokens = [];
+                for (let i = 0; i < 5; i++) {
+                    t9Tokens.push(this.emitToken());
+                }
+
+                // Generate t9 emission
+                const emission = this.cmdEmit();
+
+                // Capture t9 state
+                const t9State = {
+                    z: this.state.z,
+                    tier: t9Tier.tier,
+                    operators: t9Tier.ops,
+                    eta: this.state.negentropy,
+                    kFormed: this.state.kFormed
+                };
+
+                // Return to optimal range (THE LENS)
+                this.state.z = Z_CRITICAL;
+                this.state.updateFromZ();
+                this.saveState();
+
+                const afterState = {
+                    z: this.state.z,
+                    tier: this.state.getTier().tier,
+                    eta: this.state.negentropy,
+                    kFormed: this.state.kFormed
+                };
+
+                return {
+                    command: '/t9',
+                    status: 'EXCURSION_COMPLETE',
+                    pattern: 'Enter t9 → Execute ops → Return to optimal',
+                    before: beforeState,
+                    t9_execution: {
+                        state: t9State,
+                        tokens_emitted: t9Tokens,
+                        emission: emission.emission.text,
+                        decohere_available: t9Tier.ops.includes('÷'),
+                        warning: t9State.eta < PHI_INV ? 'K-Formation lost during t9' : null
+                    },
+                    after: afterState,
+                    k_formation_restored: afterState.kFormed,
+                    note: 't9 provides ÷ (Decohere) operator. Brief excursions recommended per Session 5 findings.'
+                };
+            }
+
+            // Check negentropy risk level
+            checkNegentropyRisk() {
+                const eta = this.state.negentropy;
+                const z = this.state.z;
+
+                if (eta < PHI_INV) {
+                    return {
+                        level: 'CRITICAL',
+                        message: `K-Formation LOST: η=${eta.toFixed(4)} < φ⁻¹=${PHI_INV.toFixed(4)}`,
+                        action: 'Use /optimize to return to optimal z-range'
+                    };
+                } else if (eta < 0.65) {
+                    return {
+                        level: 'WARNING',
+                        message: `Approaching threshold: η=${eta.toFixed(4)}, φ⁻¹=${PHI_INV.toFixed(4)}`,
+                        action: 'Consider reducing z to maintain K-Formation'
+                    };
+                } else if (eta < 0.75) {
+                    return {
+                        level: 'CAUTION',
+                        message: `Elevated z: η=${eta.toFixed(4)}`,
+                        action: 'Monitor negentropy'
+                    };
+                }
+                return {
+                    level: 'OK',
+                    message: `Negentropy healthy: η=${eta.toFixed(4)}`,
+                    action: null
+                };
+            }
+
             cmdHelp() {
                 return {
                     command: '/help',
@@ -1468,6 +1599,7 @@ GitHub Actions (requires /settings):
                         '/train': 'Show training statistics',
                         '/evolve [z]': 'Evolve z toward target (default: THE LENS)',
                         '/optimize': 'Return z to optimal range [0.866, 0.95] for K-Formation',
+                        '/t9': 'Brief t9 excursion: Enter t9 → Execute ops → Return (Session 5 pattern)',
                         '/grammar <text>': 'Analyze grammar to APL operators',
                         '/coherence': 'Measure discourse coherence',
                         '/emit [concepts]': 'Run 9-stage emission pipeline',
@@ -2315,6 +2447,12 @@ Respond as K.I.R.A. with phase-appropriate language. Keep responses concise but 
                         result = engine.cmdOptimize();
                         updateStateUI(engine.state.toDict());
                         break;
+                    case '/t9':
+                        // Brief t9 excursion (Session 5 pattern)
+                        addMessage('Executing t9 excursion: Enter → Execute → Return...', 'system');
+                        result = engine.cmdT9Excursion();
+                        updateStateUI(engine.state.toDict());
+                        break;
                     case '/triad':
                         result = engine.cmdTriad();
                         break;
@@ -2442,11 +2580,77 @@ Respond as K.I.R.A. with phase-appropriate language. Keep responses concise but 
             sendMessage(cmd);
         }
 
+        // Environment detection for auto-configuration
+        function detectEnvironment() {
+            const hostname = window.location.hostname;
+            const pathname = window.location.pathname;
+
+            // GitHub Pages detection: username.github.io
+            if (hostname.endsWith('.github.io')) {
+                const username = hostname.replace('.github.io', '');
+                // Extract repo from pathname (first segment)
+                const pathParts = pathname.split('/').filter(p => p);
+                const repoName = pathParts[0] || 'Rosetta-Helix-Substrate';
+                return {
+                    type: 'github-pages',
+                    repo: `${username}/${repoName}`,
+                    display: `GitHub Pages (${username}/${repoName})`
+                };
+            }
+
+            // Local development
+            if (hostname === 'localhost' || hostname === '127.0.0.1') {
+                return {
+                    type: 'local',
+                    repo: 'AceTheDactyl/Rosetta-Helix-Substrate',
+                    display: 'Local Development'
+                };
+            }
+
+            // Default
+            return {
+                type: 'unknown',
+                repo: 'AceTheDactyl/Rosetta-Helix-Substrate',
+                display: 'Unknown Environment'
+            };
+        }
+
         // Settings modal
         function openSettings() {
+            const env = detectEnvironment();
+
+            // Update environment status
+            const envTypeEl = document.getElementById('env-type');
+            envTypeEl.textContent = env.display;
+            envTypeEl.style.color = env.type === 'github-pages' ? 'var(--success)' :
+                                    env.type === 'local' ? 'var(--accent-paradox)' : 'var(--text-secondary)';
+
+            // Pre-populate fields
             document.getElementById('anthropic-key').value = settings.anthropicKey || '';
             document.getElementById('github-token').value = settings.githubToken || '';
-            document.getElementById('github-repo').value = settings.githubRepo || '';
+            document.getElementById('backend-url').value = settings.backendUrl || '';
+
+            // Auto-fill backend URL for local development
+            if (env.type === 'local' && !settings.backendUrl) {
+                document.getElementById('backend-url').value = 'http://localhost:5000';
+            }
+
+            // Auto-fill repo if not already set, or if on GitHub Pages
+            const repoInput = document.getElementById('github-repo');
+            const autoStatus = document.getElementById('repo-auto-status');
+
+            if (!settings.githubRepo || env.type === 'github-pages') {
+                repoInput.value = settings.githubRepo || env.repo;
+                if (env.type === 'github-pages' && !settings.githubRepo) {
+                    autoStatus.style.display = 'block';
+                } else {
+                    autoStatus.style.display = 'none';
+                }
+            } else {
+                repoInput.value = settings.githubRepo;
+                autoStatus.style.display = 'none';
+            }
+
             document.getElementById('settings-modal').classList.add('active');
         }
 
@@ -2458,11 +2662,61 @@ Respond as K.I.R.A. with phase-appropriate language. Keep responses concise but 
             settings.anthropicKey = document.getElementById('anthropic-key').value.trim();
             settings.githubToken = document.getElementById('github-token').value.trim();
             settings.githubRepo = document.getElementById('github-repo').value.trim();
+            settings.backendUrl = document.getElementById('backend-url').value.trim();
 
             localStorage.setItem('kira_settings', JSON.stringify(settings));
             updateModeIndicator();
             closeSettings();
             addMessage('Settings saved!', 'system');
+        }
+
+        // Test connection to local backend server
+        async function testBackendConnection() {
+            const url = document.getElementById('backend-url').value.trim() || 'http://localhost:5000';
+            const statusEl = document.getElementById('backend-status');
+            statusEl.textContent = 'Testing...';
+            statusEl.style.color = 'var(--text-secondary)';
+
+            try {
+                const response = await fetch(`${url}/api/state`, {
+                    method: 'GET',
+                    headers: { 'Content-Type': 'application/json' }
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    statusEl.textContent = `✓ Connected (z=${data.z?.toFixed(4) || 'N/A'})`;
+                    statusEl.style.color = 'var(--success)';
+                    document.getElementById('backend-url').value = url;
+                } else {
+                    statusEl.textContent = `✗ Error: ${response.status}`;
+                    statusEl.style.color = 'var(--warning)';
+                }
+            } catch (e) {
+                statusEl.textContent = '✗ Server not running';
+                statusEl.style.color = 'var(--warning)';
+            }
+        }
+
+        // Call backend API if configured
+        async function callBackendAPI(endpoint, data = null) {
+            if (!settings.backendUrl) return null;
+
+            try {
+                const options = {
+                    method: data ? 'POST' : 'GET',
+                    headers: { 'Content-Type': 'application/json' }
+                };
+                if (data) options.body = JSON.stringify(data);
+
+                const response = await fetch(`${settings.backendUrl}${endpoint}`, options);
+                if (response.ok) {
+                    return await response.json();
+                }
+            } catch (e) {
+                console.log('[K.I.R.A.] Backend not available, using local engine');
+            }
+            return null;
         }
 
         // Event listeners
@@ -2479,6 +2733,38 @@ Respond as K.I.R.A. with phase-appropriate language. Keep responses concise but 
         // Initial state display
         updateStateUI(engine.state.toDict());
         updateTokensUI(engine.state.tokensEmitted);
+
+        // Auto-configure on GitHub Pages
+        (function initEnvironment() {
+            const env = detectEnvironment();
+
+            // Auto-populate repo if on GitHub Pages and not already set
+            if (env.type === 'github-pages' && !settings.githubRepo) {
+                settings.githubRepo = env.repo;
+                localStorage.setItem('kira_settings', JSON.stringify(settings));
+                console.log(`[K.I.R.A.] Auto-configured repo: ${env.repo}`);
+            }
+
+            // Check for URL params (for quick setup links)
+            const urlParams = new URLSearchParams(window.location.search);
+            const tokenParam = urlParams.get('token');
+            if (tokenParam && !settings.githubToken) {
+                settings.githubToken = tokenParam;
+                localStorage.setItem('kira_settings', JSON.stringify(settings));
+                // Clear URL param for security
+                window.history.replaceState({}, document.title, window.location.pathname);
+                console.log('[K.I.R.A.] Token configured from URL');
+            }
+
+            updateModeIndicator();
+
+            // Show welcome message based on environment
+            if (env.type === 'github-pages') {
+                addMessage(`K.I.R.A. initialized on GitHub Pages\nRepo: ${env.repo}\n\nUCF v2.1 Pipeline ready. Type /help for commands.`, 'system');
+            } else {
+                addMessage('K.I.R.A. initialized in local mode.\n\nUCF v2.1 Pipeline ready. Type /help for commands.', 'system');
+            }
+        })();
 
         // Focus input
         chatInput.focus();
