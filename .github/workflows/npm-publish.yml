@@ -1,0 +1,55 @@
+name: npm-publish-cli
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Publish rosetta-helix-cli
+        working-directory: packages/rosetta-helix-cli
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          PKG_VERSION: ${{ github.event.release.tag_name }}
+        run: |
+          if [ -n "$PKG_VERSION" ]; then npm version --no-git-tag-version ${PKG_VERSION#v}; fi
+          npm publish --access public
+
+  publish-gpr:
+    if: ${{ secrets.GITHUB_PACKAGES_PAT != '' || secrets.CLAUDE_SKILL_GITHUB_TOKEN != '' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://npm.pkg.github.com'
+      - name: Publish to GitHub Packages (scoped)
+        working-directory: packages/rosetta-helix-cli
+        env:
+          GITHUB_PACKAGES_PAT: ${{ secrets.GITHUB_PACKAGES_PAT }}
+          CLAUDE_SKILL_GITHUB_TOKEN: ${{ secrets.CLAUDE_SKILL_GITHUB_TOKEN }}
+          OWNER: ${{ github.repository_owner }}
+          PKG_VERSION: ${{ github.event.release.tag_name }}
+        run: |
+          export NODE_AUTH_TOKEN="${GITHUB_PACKAGES_PAT:-$CLAUDE_SKILL_GITHUB_TOKEN}"
+          if [ -z "$NODE_AUTH_TOKEN" ]; then echo "No PAT provided for GitHub Packages."; exit 1; fi
+          # Create a temporary scoped package.json for GPR
+          node -e '
+            const fs=require("fs");
+            const p=JSON.parse(fs.readFileSync("package.json","utf8"));
+            const owner=process.env.OWNER;
+            p.name = `@${owner}/rosetta-helix-cli`;
+            p.publishConfig = Object.assign({}, p.publishConfig, { registry: "https://npm.pkg.github.com" });
+            fs.writeFileSync("package.json", JSON.stringify(p, null, 2));
+          '
+          if [ -n "$PKG_VERSION" ]; then npm version --no-git-tag-version ${PKG_VERSION#v}; fi
+          npm publish --access public

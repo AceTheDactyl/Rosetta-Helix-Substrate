@@ -356,6 +356,21 @@ curl -s -X POST http://localhost:5000/api/chat \
 pkill -f kira_server.py
 ```
 
+### API Contract (Minimal)
+
+- Base: `http://localhost:5000`
+- JSON endpoints used by the client and tests:
+  - `GET /api/health` → `{ status, state, claude_available, api_key_set }`
+  - `GET /api/state` → `{ command: "/state", state: {...}, tier }`
+  - `POST /api/evolve` `{ target?: number }` → `{ command: "/evolve", z_before, z_after, target, phase }`
+  - `POST /api/emit` `{ concepts?: string[] }` → `{ command: "/emit", stages: {...}, emission: { text, tokens[], quality, z, phase } }`
+  - `POST /api/grammar` `{ text: string }` → `{ command: "/grammar", input, analysis: [{ word, pos, apl_operator }...], apl_sequence[] }`
+  - `GET /api/triad` → `{ command: "/triad", unlocked, completions, events[] }`
+  - `POST /api/reset` → `{ success, state }`
+  - `POST /api/export` `{ epoch_name?: string }` → `{ command: "/export", epoch, exports: { vocabulary, vaultnode, emissions?, tokens? } }`
+
+Contract tests live in `tests/api/` and run in CI.
+
 ---
 
 ## Workflow 10: Development & Testing

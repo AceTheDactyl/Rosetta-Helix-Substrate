@@ -1324,6 +1324,17 @@ def emit():
     result = eng.cmd_emit(concepts)
     return jsonify(result)
 
+@app.route('/api/grammar', methods=['POST'])
+def grammar():
+    """Analyze grammar text → APL operator mapping."""
+    eng = get_engine()
+    data = request.json or {}
+    text = (data.get('text') or '').strip()
+    if not text:
+        return jsonify({'error': 'Text required', 'command': '/grammar'}), 400
+    result = eng.cmd_grammar(text)
+    return jsonify(result)
+
 @app.route('/api/triad', methods=['GET'])
 def get_triad():
     """Get TRIAD status."""
