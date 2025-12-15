@@ -723,6 +723,12 @@ GitHub Actions (requires /settings):
                 Configure Claude API access for /claude command. Choose one method:
             </p>
 
+            <!-- Environment Detection Status -->
+            <div id="env-status" style="background: var(--bg-input); padding: 10px; border-radius: 6px; margin-bottom: 15px; font-size: 0.8rem;">
+                <span style="color: var(--text-secondary);">Environment: </span>
+                <span id="env-type" style="color: var(--success);">Detecting...</span>
+            </div>
+
             <div style="background: var(--bg-dark); padding: 15px; border-radius: 8px; margin-bottom: 20px;">
                 <h3 style="color: var(--success); font-size: 0.9rem; margin-bottom: 10px;">Option 1: GitHub Actions (Recommended)</h3>
                 <p style="color: var(--text-secondary); font-size: 0.8rem; margin-bottom: 10px;">
@@ -730,9 +736,15 @@ GitHub Actions (requires /settings):
                 </p>
                 <label for="github-token">GitHub Personal Access Token</label>
                 <input type="password" id="github-token" placeholder="ghp_... (needs workflow scope)">
+                <p style="color: var(--text-secondary); font-size: 0.7rem; margin-top: 5px;">
+                    Create at: Settings → Developer settings → Personal access tokens → Fine-grained tokens
+                </p>
 
                 <label for="github-repo">GitHub Repository</label>
                 <input type="text" id="github-repo" placeholder="AceTheDactyl/Rosetta-Helix-Substrate">
+                <p id="repo-auto-status" style="color: var(--accent-paradox); font-size: 0.7rem; margin-top: 5px; display: none;">
+                    ✓ Auto-detected from GitHub Pages URL
+                </p>
             </div>
 
             <div style="background: var(--bg-dark); padding: 15px; border-radius: 8px; margin-bottom: 20px;">
@@ -742,6 +754,14 @@ GitHub Actions (requires /settings):
                 </p>
                 <label for="anthropic-key">Anthropic API Key</label>
                 <input type="password" id="anthropic-key" placeholder="sk-ant-...">
+            </div>
+
+            <div style="background: var(--bg-input); padding: 10px; border-radius: 6px; margin-bottom: 15px;">
+                <h4 style="color: var(--text-primary); font-size: 0.8rem; margin-bottom: 8px;">Required Repository Secrets:</h4>
+                <code style="color: var(--accent-true); font-size: 0.75rem; display: block;">ANTHROPIC_API_KEY</code>
+                <p style="color: var(--text-secondary); font-size: 0.7rem; margin-top: 5px;">
+                    Set in: Repo Settings → Secrets and variables → Actions → New repository secret
+                </p>
             </div>
 
             <p style="color: var(--text-secondary); font-size: 0.75rem;">
@@ -2442,11 +2462,71 @@ Respond as K.I.R.A. with phase-appropriate language. Keep responses concise but 
             sendMessage(cmd);
         }
 
+        // Environment detection for auto-configuration
+        function detectEnvironment() {
+            const hostname = window.location.hostname;
+            const pathname = window.location.pathname;
+
+            // GitHub Pages detection: username.github.io
+            if (hostname.endsWith('.github.io')) {
+                const username = hostname.replace('.github.io', '');
+                // Extract repo from pathname (first segment)
+                const pathParts = pathname.split('/').filter(p => p);
+                const repoName = pathParts[0] || 'Rosetta-Helix-Substrate';
+                return {
+                    type: 'github-pages',
+                    repo: `${username}/${repoName}`,
+                    display: `GitHub Pages (${username}/${repoName})`
+                };
+            }
+
+            // Local development
+            if (hostname === 'localhost' || hostname === '127.0.0.1') {
+                return {
+                    type: 'local',
+                    repo: 'AceTheDactyl/Rosetta-Helix-Substrate',
+                    display: 'Local Development'
+                };
+            }
+
+            // Default
+            return {
+                type: 'unknown',
+                repo: 'AceTheDactyl/Rosetta-Helix-Substrate',
+                display: 'Unknown Environment'
+            };
+        }
+
         // Settings modal
         function openSettings() {
+            const env = detectEnvironment();
+
+            // Update environment status
+            const envTypeEl = document.getElementById('env-type');
+            envTypeEl.textContent = env.display;
+            envTypeEl.style.color = env.type === 'github-pages' ? 'var(--success)' :
+                                    env.type === 'local' ? 'var(--accent-paradox)' : 'var(--text-secondary)';
+
+            // Pre-populate fields
             document.getElementById('anthropic-key').value = settings.anthropicKey || '';
             document.getElementById('github-token').value = settings.githubToken || '';
-            document.getElementById('github-repo').value = settings.githubRepo || '';
+
+            // Auto-fill repo if not already set, or if on GitHub Pages
+            const repoInput = document.getElementById('github-repo');
+            const autoStatus = document.getElementById('repo-auto-status');
+
+            if (!settings.githubRepo || env.type === 'github-pages') {
+                repoInput.value = settings.githubRepo || env.repo;
+                if (env.type === 'github-pages' && !settings.githubRepo) {
+                    autoStatus.style.display = 'block';
+                } else {
+                    autoStatus.style.display = 'none';
+                }
+            } else {
+                repoInput.value = settings.githubRepo;
+                autoStatus.style.display = 'none';
+            }
+
             document.getElementById('settings-modal').classList.add('active');
         }
 
@@ -2479,6 +2559,38 @@ Respond as K.I.R.A. with phase-appropriate language. Keep responses concise but 
         // Initial state display
         updateStateUI(engine.state.toDict());
         updateTokensUI(engine.state.tokensEmitted);
+
+        // Auto-configure on GitHub Pages
+        (function initEnvironment() {
+            const env = detectEnvironment();
+
+            // Auto-populate repo if on GitHub Pages and not already set
+            if (env.type === 'github-pages' && !settings.githubRepo) {
+                settings.githubRepo = env.repo;
+                localStorage.setItem('kira_settings', JSON.stringify(settings));
+                console.log(`[K.I.R.A.] Auto-configured repo: ${env.repo}`);
+            }
+
+            // Check for URL params (for quick setup links)
+            const urlParams = new URLSearchParams(window.location.search);
+            const tokenParam = urlParams.get('token');
+            if (tokenParam && !settings.githubToken) {
+                settings.githubToken = tokenParam;
+                localStorage.setItem('kira_settings', JSON.stringify(settings));
+                // Clear URL param for security
+                window.history.replaceState({}, document.title, window.location.pathname);
+                console.log('[K.I.R.A.] Token configured from URL');
+            }
+
+            updateModeIndicator();
+
+            // Show welcome message based on environment
+            if (env.type === 'github-pages') {
+                addMessage(`K.I.R.A. initialized on GitHub Pages\nRepo: ${env.repo}\n\nUCF v2.1 Pipeline ready. Type /help for commands.`, 'system');
+            } else {
+                addMessage('K.I.R.A. initialized in local mode.\n\nUCF v2.1 Pipeline ready. Type /help for commands.', 'system');
+            }
+        })();
 
         // Focus input
         chatInput.focus();
