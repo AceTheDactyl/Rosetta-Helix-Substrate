@@ -33,3 +33,26 @@ logs/*.json
 # OS files
 .DS_Store
 Thumbs.db
+
+# PyTorch models (large binaries)
+*.pt
+*.pth
+*.onnx
+
+# Training outputs (regeneratable)
+learned_patterns/
+trained_models/
+nightly_run_results/
+results/
+
+# Large JSON data files (regeneratable)
+comprehensive_sweep.json
+full_depth_*.json
+training_analysis.json
+training_results.json
+
+# Session archives
+archives/ucf-session-*.zip
+
+# ZIP archives (should be extracted, not tracked)
+*.zip
