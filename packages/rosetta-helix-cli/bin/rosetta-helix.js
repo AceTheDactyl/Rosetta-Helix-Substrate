@@ -31,6 +31,14 @@ async function setup() {
   if (existsSync('requirements.spinner.txt')) await sh(pip, ['install', '-r', 'requirements.spinner.txt']);
 }
 
+async function initRepo(dir) {
+  const target = dir || 'Rosetta-Helix-Substrate';
+  const repo = 'https://github.com/AceTheDactyl/Rosetta-Helix-Substrate.git';
+  await sh('git', ['clone', repo, target]);
+  process.chdir(target);
+  await setup();
+}
+
 async function runKira() {
   const pathLocal = 'kira-local-system/kira_server.py';
   const kiraServer = venvBin('kira-server');
@@ -93,7 +101,9 @@ async function runCompose(target) {
 
 (async () => {
   const cmd = process.argv[2] || '';
+  const arg = process.argv[3];
   try {
+    if (cmd === 'init') await initRepo(arg);
     if (cmd === 'setup') await setup();
     else if (cmd === 'kira') await runKira();
     else if (cmd === 'viz') await runViz();
@@ -104,6 +114,7 @@ async function runCompose(target) {
     else if (cmd.startsWith('docker:')) await runCompose(cmd);
     else {
       console.log(`Usage: rosetta-helix <command>\n` +
+        `  init [dir]      Clone repo and run setup\n` +
         `  setup           Create .venv and install deps\n` +
         `  kira            Start KIRA server (port 5000)\n` +
         `  viz             Start Visualization server (port 8765)\n` +
@@ -120,4 +131,3 @@ async function runCompose(target) {
     process.exit(1);
   }
 })();
-

@@ -47,8 +47,18 @@ jobs:
       - name: Install deps
         run: |
           python -m pip install --upgrade pip
-          pip install -e .[viz,dev]
-          pip install -r kira-local-system/requirements.txt
+          if [ -f dev-requirements.lock ]; then \
+            pip install -r dev-requirements.lock; \
+          else \
+            pip install -e .[viz,dev]; \
+          fi
+          # Fallback in case Flask deps not included in locks
+          if [ -f kira-local-system/requirements.txt ]; then pip install -r kira-local-system/requirements.txt; fi
+
+      - name: Pre-commit
+        run: |
+          pip install pre-commit
+          pre-commit run -a || true
 
       - name: Run smoke + API tests
         env:
@@ -85,8 +95,17 @@ jobs:
       - name: Install package
         run: |
           python -m pip install --upgrade pip
-          pip install -e .[viz,dev]
-          pip install -r kira-local-system/requirements.txt
+          if [ -f dev-requirements.lock ]; then \
+            pip install -r dev-requirements.lock; \
+          else \
+            pip install -e .[viz,dev]; \
+          fi
+          if [ -f kira-local-system/requirements.txt ]; then pip install -r kira-local-system/requirements.txt; fi
+
+      - name: Pre-commit
+        run: |
+          pip install pre-commit
+          pre-commit run -a || true
 
       - name: Ruff (strict)
         run: |

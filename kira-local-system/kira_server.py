@@ -1319,8 +1319,19 @@ def evolve():
 def emit():
     """Run emission pipeline."""
     eng = get_engine()
-    data = request.json or {}
+    # Content-type and size guard
+    MAX_JSON_BYTES = 64 * 1024
+    if request.content_length and request.content_length > MAX_JSON_BYTES:
+        return jsonify({'command': '/emit', 'error': 'Payload too large'}), 413
+    if not request.is_json:
+        return jsonify({'command': '/emit', 'error': 'Unsupported content type'}), 415
+
+    data = request.get_json(silent=True) or {}
     concepts = data.get('concepts')
+    # Validate schema: concepts optional, but if present must be list[str]
+    if concepts is not None:
+        if not isinstance(concepts, list) or not all(isinstance(x, str) for x in concepts):
+            return jsonify({'command': '/emit', 'error': 'Invalid concepts: expected list of strings'}), 400
     result = eng.cmd_emit(concepts)
     return jsonify(result)
 
@@ -1328,7 +1339,14 @@ def emit():
 def grammar():
     """Analyze grammar text → APL operator mapping."""
     eng = get_engine()
-    data = request.json or {}
+    # Content-type and size guard
+    MAX_JSON_BYTES = 64 * 1024
+    if request.content_length and request.content_length > MAX_JSON_BYTES:
+        return jsonify({'command': '/grammar', 'error': 'Payload too large'}), 413
+    if not request.is_json:
+        return jsonify({'command': '/grammar', 'error': 'Unsupported content type'}), 415
+
+    data = request.get_json(silent=True) or {}
     text = (data.get('text') or '').strip()
     if not text:
         return jsonify({'error': 'Text required', 'command': '/grammar'}), 400
@@ -1356,10 +1374,29 @@ def health():
 def read_file():
     """Read file or directory from repo."""
     eng = get_engine()
-    data = request.json or {}
-    file_path = data.get('path', '').strip()
+    # Only JSON accepted and small payloads
+    if not request.is_json:
+        return jsonify({'command': '/read', 'error': 'Unsupported content type'}), 415
+    data = request.get_json(silent=True) or {}
+    file_path = (data.get('path') or '').strip()
     if not file_path:
-        return jsonify({'error': 'Path required'})
+        return jsonify({'command': '/read', 'error': 'Path required'}), 400
+    # Block traversal and hidden segments at the HTTP layer
+    from pathlib import PurePosixPath
+    p = PurePosixPath(file_path)
+    parts = p.parts
+    if any(part in ('..',) for part in parts):
+        return jsonify({'command': '/read', 'error': 'Path traversal detected'}), 403
+    if any(str(part).startswith('.') for part in parts):
+        return jsonify({'command': '/read', 'error': 'Hidden files not allowed'}), 403
+    # Allowlist top-level directories / files to reduce exposure
+    ALLOW_DIRS = {
+        'docs', 'kira-local-system', 'kira_local_system', 'tests', 'templates', 'assets', 'learned_patterns',
+    }
+    top = parts[0] if parts else ''
+    allowed_file_prefixes = ('README',)
+    if top and top not in ALLOW_DIRS and not any(file_path.startswith(pref) for pref in allowed_file_prefixes):
+        return jsonify({'command': '/read', 'error': 'Access to path not permitted'}), 403
     result = eng.cmd_read_file(file_path)
     return jsonify(result)
 

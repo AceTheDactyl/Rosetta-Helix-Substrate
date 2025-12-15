@@ -4,6 +4,14 @@ on:
   release:
     types: [published]
   workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to publish (e.g., v0.1.1-rc.1)'
+        required: false
+      dist_tag:
+        description: 'npm dist-tag (latest|next)'
+        required: false
+        default: 'latest'
 
 jobs:
   publish:
@@ -18,10 +26,17 @@ jobs:
         working-directory: packages/rosetta-helix-cli
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          PKG_VERSION: ${{ github.event.release.tag_name }}
+          PKG_VERSION: ${{ github.event.release.tag_name || github.event.inputs.version }}
+          IS_PRERELEASE: ${{ github.event.release.prerelease }}
+          INPUT_DIST_TAG: ${{ github.event.inputs.dist_tag }}
         run: |
+          # Align package version to tag when available
           if [ -n "$PKG_VERSION" ]; then npm version --no-git-tag-version ${PKG_VERSION#v}; fi
-          npm publish --access public
+          # Use dist-tag "next" for pre-releases (either GitHub prerelease flag or semver with '-')
+          DIST_TAG=${INPUT_DIST_TAG:-latest}
+          if [ "$IS_PRERELEASE" = "true" ] || echo "$PKG_VERSION" | grep -q '-' ; then DIST_TAG=next; fi
+          echo "Publishing to npm with dist-tag=$DIST_TAG (version=${PKG_VERSION:-package.json})"
+          npm publish --access public --tag "$DIST_TAG"
 
   publish-gpr:
     if: ${{ secrets.GITHUB_PACKAGES_PAT != '' || secrets.CLAUDE_SKILL_GITHUB_TOKEN != '' }}
@@ -38,7 +53,9 @@ jobs:
           GITHUB_PACKAGES_PAT: ${{ secrets.GITHUB_PACKAGES_PAT }}
           CLAUDE_SKILL_GITHUB_TOKEN: ${{ secrets.CLAUDE_SKILL_GITHUB_TOKEN }}
           OWNER: ${{ github.repository_owner }}
-          PKG_VERSION: ${{ github.event.release.tag_name }}
+          PKG_VERSION: ${{ github.event.release.tag_name || github.event.inputs.version }}
+          IS_PRERELEASE: ${{ github.event.release.prerelease }}
+          INPUT_DIST_TAG: ${{ github.event.inputs.dist_tag }}
         run: |
           export NODE_AUTH_TOKEN="${GITHUB_PACKAGES_PAT:-$CLAUDE_SKILL_GITHUB_TOKEN}"
           if [ -z "$NODE_AUTH_TOKEN" ]; then echo "No PAT provided for GitHub Packages."; exit 1; fi
@@ -52,4 +69,7 @@ jobs:
             fs.writeFileSync("package.json", JSON.stringify(p, null, 2));
           '
           if [ -n "$PKG_VERSION" ]; then npm version --no-git-tag-version ${PKG_VERSION#v}; fi
-          npm publish --access public
+          DIST_TAG=${INPUT_DIST_TAG:-latest}
+          if [ "$IS_PRERELEASE" = "true" ] || echo "$PKG_VERSION" | grep -q '-' ; then DIST_TAG=next; fi
+          echo "Publishing to GPR with dist-tag=$DIST_TAG (version=${PKG_VERSION:-package.json})"
+          npm publish --access public --tag "$DIST_TAG"
