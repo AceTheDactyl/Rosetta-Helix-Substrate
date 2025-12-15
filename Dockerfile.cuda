@@ -1,0 +1,25 @@
+# Optional CUDA-based image (example)
+FROM nvidia/cuda:12.2.0-runtime-ubuntu22.04
+
+ENV PYTHONUNBUFFERED=1 PYTHONDONTWRITEBYTECODE=1 PIP_NO_CACHE_DIR=1
+
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+    python3 python3-venv python3-pip build-essential git curl ca-certificates \
+  && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+COPY . /app
+
+RUN python3 -m venv .venv \
+ && . .venv/bin/activate \
+ && pip install --upgrade pip setuptools wheel \
+ && if [ -f requirements.txt ]; then pip install -r requirements.txt; fi \
+ && pip install -e . \
+ && if [ -f kira-local-system/requirements.txt ]; then pip install -r kira-local-system/requirements.txt; fi \
+ && if [ -f requirements.spinner.txt ]; then pip install -r requirements.spinner.txt || true; fi \
+ && pip install torch --index-url https://download.pytorch.org/whl/cu121 || true
+
+ENV PATH=/app/.venv/bin:$PATH
+
+CMD ["python", "-c", "print('CUDA image ready. Override CMD to run services.')"]
+
