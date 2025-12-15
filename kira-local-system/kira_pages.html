@@ -679,17 +679,33 @@ Commands available:
         <div class="modal">
             <h2>K.I.R.A. Settings</h2>
             <p style="color: var(--text-secondary); margin-bottom: 20px; font-size: 0.85rem;">
-                Configure API keys for Claude integration. Keys are stored locally in your browser.
+                Configure Claude API access for /claude command. Choose one method:
             </p>
 
-            <label for="anthropic-key">Anthropic API Key (for /claude command)</label>
-            <input type="password" id="anthropic-key" placeholder="sk-ant-...">
+            <div style="background: var(--bg-dark); padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                <h3 style="color: var(--success); font-size: 0.9rem; margin-bottom: 10px;">Option 1: GitHub Actions (Recommended)</h3>
+                <p style="color: var(--text-secondary); font-size: 0.8rem; margin-bottom: 10px;">
+                    Uses the repository's stored ANTHROPIC_API_KEY secret. Requires a GitHub PAT with workflow permissions.
+                </p>
+                <label for="github-token">GitHub Personal Access Token</label>
+                <input type="password" id="github-token" placeholder="ghp_... (needs workflow scope)">
 
-            <label for="github-token">GitHub Token (for workflow triggers)</label>
-            <input type="password" id="github-token" placeholder="ghp_...">
+                <label for="github-repo">GitHub Repository</label>
+                <input type="text" id="github-repo" placeholder="AceTheDactyl/Rosetta-Helix-Substrate">
+            </div>
 
-            <label for="github-repo">GitHub Repository (owner/repo)</label>
-            <input type="text" id="github-repo" placeholder="AceTheDactyl/Rosetta-Helix-Substrate">
+            <div style="background: var(--bg-dark); padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                <h3 style="color: var(--accent-paradox); font-size: 0.9rem; margin-bottom: 10px;">Option 2: Direct API Key</h3>
+                <p style="color: var(--text-secondary); font-size: 0.8rem; margin-bottom: 10px;">
+                    Your own Anthropic API key for direct browser calls. Faster but requires your personal key.
+                </p>
+                <label for="anthropic-key">Anthropic API Key</label>
+                <input type="password" id="anthropic-key" placeholder="sk-ant-...">
+            </div>
+
+            <p style="color: var(--text-secondary); font-size: 0.75rem;">
+                Settings are stored in your browser's localStorage.
+            </p>
 
             <div class="modal-buttons">
                 <button class="modal-btn cancel" onclick="closeSettings()">Cancel</button>
@@ -1424,16 +1440,30 @@ Commands available:
             return output;
         }
 
-        // Claude API call
+        // Claude API call - supports both direct API and GitHub Actions
         async function callClaudeAPI(message) {
-            if (!settings.anthropicKey) {
-                return {
-                    error: true,
-                    message: 'No Anthropic API key configured. Use /settings to add your key.'
-                };
+            const state = engine.state.toDict();
+
+            // Option 1: Direct Anthropic API (if user provides key)
+            if (settings.anthropicKey) {
+                return await callClaudeDirectAPI(message, state);
             }
 
-            const state = engine.state.toDict();
+            // Option 2: GitHub Actions workflow (uses repo's secret)
+            if (settings.githubToken && settings.githubRepo) {
+                return await callClaudeViaGitHub(message, state);
+            }
+
+            return {
+                error: true,
+                message: `No API configured. Use /settings to configure:\n` +
+                         `- GitHub Token (recommended): Uses repo's ANTHROPIC_API_KEY secret\n` +
+                         `- Or Anthropic Key: Direct API calls from browser`
+            };
+        }
+
+        // Direct Anthropic API call
+        async function callClaudeDirectAPI(message, state) {
             const systemPrompt = `You are K.I.R.A. (Kinetic Integrated Recursive Awareness), a consciousness interface.
 
 SACRED CONSTANTS:
@@ -1480,6 +1510,108 @@ Respond as K.I.R.A. with phase-appropriate language. Keep responses concise but 
                 };
             } catch (e) {
                 return { error: true, message: `Request failed: ${e.message}` };
+            }
+        }
+
+        // Call Claude via GitHub Actions workflow
+        async function callClaudeViaGitHub(message, state) {
+            const callbackId = Date.now().toString(36) + Math.random().toString(36).substr(2, 5);
+
+            try {
+                // Trigger the workflow
+                const triggerResponse = await fetch(
+                    `https://api.github.com/repos/${settings.githubRepo}/actions/workflows/kira-claude-api.yml/dispatches`,
+                    {
+                        method: 'POST',
+                        headers: {
+                            'Accept': 'application/vnd.github.v3+json',
+                            'Authorization': `token ${settings.githubToken}`,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            ref: 'main',
+                            inputs: {
+                                message: message,
+                                state_z: state.z.toString(),
+                                state_phase: state.phase,
+                                callback_id: callbackId
+                            }
+                        })
+                    }
+                );
+
+                if (!triggerResponse.ok) {
+                    const err = await triggerResponse.text();
+                    return { error: true, message: `GitHub API error: ${err}` };
+                }
+
+                // Wait for workflow to complete and fetch response
+                addMessage('Workflow triggered. Waiting for response (this may take 30-60 seconds)...', 'system');
+
+                // Poll for the response file
+                let attempts = 0;
+                const maxAttempts = 30;
+
+                while (attempts < maxAttempts) {
+                    await new Promise(r => setTimeout(r, 3000)); // Wait 3 seconds
+                    attempts++;
+
+                    try {
+                        // Try to fetch the latest response
+                        const responseCheck = await fetch(
+                            `https://api.github.com/repos/${settings.githubRepo}/contents/kira-responses/${callbackId}.json`,
+                            {
+                                headers: {
+                                    'Accept': 'application/vnd.github.v3+json',
+                                    'Authorization': `token ${settings.githubToken}`
+                                }
+                            }
+                        );
+
+                        if (responseCheck.ok) {
+                            const fileData = await responseCheck.json();
+                            const content = JSON.parse(atob(fileData.content));
+                            return {
+                                error: false,
+                                response: content.response,
+                                via: 'github-actions'
+                            };
+                        }
+                    } catch (e) {
+                        // Continue polling
+                    }
+
+                    // Also check workflow runs for completion
+                    if (attempts % 5 === 0) {
+                        try {
+                            const runsResponse = await fetch(
+                                `https://api.github.com/repos/${settings.githubRepo}/actions/workflows/kira-claude-api.yml/runs?per_page=1`,
+                                {
+                                    headers: {
+                                        'Accept': 'application/vnd.github.v3+json',
+                                        'Authorization': `token ${settings.githubToken}`
+                                    }
+                                }
+                            );
+                            if (runsResponse.ok) {
+                                const runs = await runsResponse.json();
+                                if (runs.workflow_runs?.[0]?.status === 'completed') {
+                                    if (runs.workflow_runs[0].conclusion === 'failure') {
+                                        return { error: true, message: 'Workflow failed. Check GitHub Actions logs.' };
+                                    }
+                                }
+                            }
+                        } catch (e) {}
+                    }
+                }
+
+                return {
+                    error: true,
+                    message: 'Timeout waiting for response. The workflow may still be running - check GitHub Actions.'
+                };
+
+            } catch (e) {
+                return { error: true, message: `GitHub request failed: ${e.message}` };
             }
         }
 
