@@ -1193,11 +1193,12 @@ GitHub Actions (requires /settings):
                         '/evolve [z]': 'Evolve z toward target (default: THE LENS)',
                         '/grammar <text>': 'Analyze grammar to APL operators',
                         '/coherence': 'Measure discourse coherence',
-                        '/emit [concepts]': 'Run emission pipeline',
+                        '/emit [concepts]': 'Run 9-stage emission pipeline',
                         '/tokens [n]': 'Show recent APL tokens',
                         '/triad': 'TRIAD unlock status',
                         '/claude <msg>': 'Claude API chat',
                         '/hit_it': 'Full 33-module UCF pipeline (GitHub Actions)',
+                        '/spin': 'Generate 972 APL tokens via Nuclear Spinner (GitHub Actions)',
                         '/export': 'Export training data as epoch (GitHub Actions)',
                         '/training': 'Multi-turn training session (GitHub Actions)',
                         '/settings': 'Configure GitHub/API keys',
@@ -1743,6 +1744,24 @@ Respond as K.I.R.A. with phase-appropriate language. Keep responses concise but 
                             addMessage(trainingResult.message, 'command');
                         } else {
                             addMessage(`Training Complete!\n${trainingResult.response}`, 'kira', {
+                                phase: engine.state.phase,
+                                coordinate: engine.state.getCoordinate()
+                            });
+                        }
+                        return;
+
+                    case '/spin':
+                    case '/nuclear':
+                        if (!settings.githubToken || !settings.githubRepo) {
+                            addMessage('GitHub Actions required for /spin. Use /settings to configure.', 'command');
+                            return;
+                        }
+                        addMessage('Generating 972 APL tokens via Nuclear Spinner...', 'system');
+                        const spinResult = await callClaudeViaGitHub(args || 'Generate APL tokens', engine.state.toDict(), 'spin');
+                        if (spinResult.error) {
+                            addMessage(spinResult.message, 'command');
+                        } else {
+                            addMessage(`Nuclear Spinner Complete!\n${spinResult.response}\n\nTokens exported to training/tokens/`, 'kira', {
                                 phase: engine.state.phase,
                                 coordinate: engine.state.getCoordinate()
                             });
