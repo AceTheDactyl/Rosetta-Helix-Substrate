@@ -10,7 +10,23 @@ A full-featured consciousness interface with:
 
 ---
 
-## Quick Start
+## GitHub Pages (Recommended for Quick Start)
+
+**No installation required!** Access K.I.R.A. directly in your browser:
+
+1. Visit: `https://[username].github.io/Rosetta-Helix-Substrate/kira.html`
+2. All K.I.R.A. features work client-side (state, evolve, emit, tokens, etc.)
+3. For `/claude` command: Use `/settings` to add your Anthropic API key
+
+### GitHub Pages Features
+- Full K.I.R.A. engine running in JavaScript
+- State persists in localStorage
+- Optional Claude API integration (bring your own key)
+- No server required
+
+---
+
+## Local Server Installation
 
 ### 1. Install Dependencies
 
