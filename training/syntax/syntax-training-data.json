@@ -1,0 +1,3956 @@
+{
+  "type": "syntax_training_export",
+  "epochs_trained": 1,
+  "total_samples": 159,
+  "timestamp": "2025-12-15T06:06:08.731252",
+  "samples": [
+    {
+      "tier": 1,
+      "pattern_index": 0,
+      "sample_num": 0,
+      "z": 0.0,
+      "syntax": "+",
+      "slots": [
+        "NP0"
+      ],
+      "coordinate": "\u03940.000|0.000|1.000\u03a9",
+      "tokens": [
+        "\u03a6+|NP0|t1"
+      ],
+      "spiral": "\u03a6",
+      "phase": "UNTRUE",
+      "surface": null
+    },
+    {
+      "tier": 1,
+      "pattern_index": 0,
+      "sample_num": 1,
+      "z": 0.1,
+      "syntax": "\u2212",
+      "slots": [
+        "VP0"
+      ],
+      "coordinate": "\u03940.628|0.100|1.000\u03a9",
+      "tokens": [
+        "\u03a6\u2212|VP0|t1"
+      ],
+      "spiral": "\u03a6",
+      "phase": "UNTRUE",
+      "surface": null
+    },
+    {
+      "tier": 2,
+      "pattern_index": 0,
+      "sample_num": 2,
+      "z": 0.2,
+      "syntax": "+\u2212",
+      "slots": [
+        "NP0",
+        "VP0"
+      ],
+      "coordinate": "\u03941.257|0.200|1.000\u03a9",
+      "tokens": [
+        "\u03a6+|NP0|t2",
+        "\u03a6\u2212|VP0|t2"
+      ],
+      "spiral": "\u03a6",
+      "phase": "UNTRUE",
+      "surface": null
+    },
+    {
+      "tier": 1,
+      "pattern_index": 1,
+      "sample_num": 0,
+      "z": 0.0,
+      "syntax": "+",
+      "slots": [
+        "NP0"
+      ],
+      "coordinate": "\u03940.000|0.000|1.000\u03a9",
+      "tokens": [
+        "\u03a6+|NP0|t1"
+      ],
+      "spiral": "\u03a6",
+      "phase": "UNTRUE",
+      "surface": null
+    },
+    {
+      "tier": 1,
+      "pattern_index": 1,
+      "sample_num": 1,
+      "z": 0.1,
+      "syntax": "\u2212",
+      "slots": [
+        "VP0"
+      ],
+      "coordinate": "\u03940.628|0.100|1.000\u03a9",
+      "tokens": [
+        "\u03a6\u2212|VP0|t1"
+      ],
+      "spiral": "\u03a6",
+      "phase": "UNTRUE",
+      "surface": null
+    },
+    {
+      "tier": 2,
+      "pattern_index": 1,
+      "sample_num": 2,
+      "z": 0.2,
+      "syntax": "+\u2212",
+      "slots": [
+        "NP0",
+        "VP0"
+      ],
+      "coordinate": "\u03941.257|0.200|1.000\u03a9",
+      "tokens": [
+        "\u03a6+|NP0|t2",
+        "\u03a6\u2212|VP0|t2"
+      ],
+      "spiral": "\u03a6",
+      "phase": "UNTRUE",
+      "surface": null
+    },
+    {
+      "tier": 2,
+      "pattern_index": 0,
+      "sample_num": 0,
+      "z": 0.2,
+      "syntax": "\u2212+",
+      "slots": [
+        "VP0",
+        "NP0"
+      ],
+      "coordinate": "\u03941.257|0.200|1.000\u03a9",
+      "tokens": [
+        "\u03a6\u2212|VP0|t2",
+        "\u03a6+|NP0|t2"
+      ],
+      "spiral": "\u03a6",
+      "phase": "UNTRUE",
+      "surface": null
+    },
+    {
+      "tier": 2,
+      "pattern_index": 0,
+      "sample_num": 1,
+      "z": 0.30000000000000004,
+      "syntax": "\u2212+",
+      "slots": [
+        "VP0",
+        "NP0"
+      ],
+      "coordinate": "\u03941.885|0.300|1.000\u03a9",
+      "tokens": [
+        "\u03a6\u2212|VP0|t2",
+        "\u03a6+|NP0|t2"
+      ],
+      "spiral": "\u03a6",
+      "phase": "UNTRUE",
+      "surface": null
+    },
+    {
+      "tier": 3,
+      "pattern_index": 0,
+      "sample_num": 2,
+      "z": 0.4,
+      "syntax": "+\u2212+",
+      "slots": [
+        "NP0",
+        "VP0",
+        "NP1"
+      ],
+      "coordinate": "\u03942.513|0.400|1.000\u03a9",
+      "tokens": [
+        "\u03a6+|NP0|t3",
+        "\u03a6\u2212|VP0|t3",
+        "\u03a6+|NP1|t3"
+      ],
+      "spiral": "\u03a6",
+      "phase": "UNTRUE",
+      "surface": null
+    },
+    {
+      "tier": 2,
+      "pattern_index": 1,
+      "sample_num": 0,
+      "z": 0.2,
+      "syntax": "+\u2212",
+      "slots": [
+        "NP0",
+        "VP0"
+      ],
+      "coordinate": "\u03941.257|0.200|1.000\u03a9",
+      "tokens": [
+        "\u03a6+|NP0|t2",
+        "\u03a6\u2212|VP0|t2"
+      ],
+      "spiral": "\u03a6",
+      "phase": "UNTRUE",
+      "surface": null
+    },
+    {
+      "tier": 2,
+      "pattern_index": 1,
+      "sample_num": 1,
+      "z": 0.30000000000000004,
+      "syntax": "+\u2212",
+      "slots": [
+        "NP0",
+        "VP0"
+      ],
+      "coordinate": "\u03941.885|0.300|1.000\u03a9",
+      "tokens": [
+        "\u03a6+|NP0|t2",
+        "\u03a6\u2212|VP0|t2"
+      ],
+      "spiral": "\u03a6",
+      "phase": "UNTRUE",
+      "surface": null
+    },
+    {
+      "tier": 3,
+      "pattern_index": 1,
+      "sample_num": 2,
+      "z": 0.4,
+      "syntax": "+\u2212^",
+      "slots": [
+        "NP0",
+        "VP0",
+        "MOD0"
+      ],
+      "coordinate": "\u03942.513|0.400|1.000\u03a9",
+      "tokens": [
+        "\u03a6+|NP0|t3",
+        "\u03a6\u2212|VP0|t3",
+        "\u03a6^|MOD0|t3"
+      ],
+      "spiral": "\u03a6",
+      "phase": "UNTRUE",
+      "surface": null
+    },
+    {
+      "tier": 3,
+      "pattern_index": 0,
+      "sample_num": 0,
+      "z": 0.4,
+      "syntax": "+\u2212+",
+      "slots": [
+        "NP0",
+        "VP0",
+        "NP1"
+      ],
+      "coordinate": "\u03942.513|0.400|1.000\u03a9",
+      "tokens": [
+        "\u03a6+|NP0|t3",
+        "\u03a6\u2212|VP0|t3",
+        "\u03a6+|NP1|t3"
+      ],
+      "spiral": "\u03a6",
+      "phase": "UNTRUE",
+      "surface": null
+    },
+    {
+      "tier": 3,
+      "pattern_index": 0,
+      "sample_num": 1,
+      "z": 0.5090169943749474,
+      "syntax": "+\u2212^",
+      "slots": [
+        "NP0",
+        "VP0",
+        "MOD0"
+      ],
+      "coordinate": "\u03943.198|0.509|1.006\u03a9",
+      "tokens": [
+        "\u03a6+|NP0|t3",
+        "\u03a6\u2212|VP0|t3",
+        "\u03a6^|MOD0|t3"
+      ],
+      "spiral": "\u03a6",
+      "phase": "UNTRUE",
+      "surface": null
+    },
+    {
+      "tier": 4,
+      "pattern_index": 0,
+      "sample_num": 2,
+      "z": 0.6180339887498948,
+      "syntax": "+^\u2212+",
+      "slots": [
+        "NP0",
+        "MOD0",
+        "VP0",
+        "NP1"
+      ],
+      "coordinate": "\u03943.883|0.618|1.068\u03a9",
+      "tokens": [
+        "e+|NP0|t4",
+        "e^|MOD0|t4",
+        "e\u2212|VP0|t4",
+        "e+|NP1|t4"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "tier": 3,
+      "pattern_index": 1,
+      "sample_num": 0,
+      "z": 0.4,
+      "syntax": "+\u2212^",
+      "slots": [
+        "NP0",
+        "VP0",
+        "MOD0"
+      ],
+      "coordinate": "\u03942.513|0.400|1.000\u03a9",
+      "tokens": [
+        "\u03a6+|NP0|t3",
+        "\u03a6\u2212|VP0|t3",
+        "\u03a6^|MOD0|t3"
+      ],
+      "spiral": "\u03a6",
+      "phase": "UNTRUE",
+      "surface": null
+    },
+    {
+      "tier": 3,
+      "pattern_index": 1,
+      "sample_num": 1,
+      "z": 0.5090169943749474,
+      "syntax": "+\u2212+",
+      "slots": [
+        "NP0",
+        "VP0",
+        "NP1"
+      ],
+      "coordinate": "\u03943.198|0.509|1.006\u03a9",
+      "tokens": [
+        "\u03a6+|NP0|t3",
+        "\u03a6\u2212|VP0|t3",
+        "\u03a6+|NP1|t3"
+      ],
+      "spiral": "\u03a6",
+      "phase": "UNTRUE",
+      "surface": null
+    },
+    {
+      "tier": 4,
+      "pattern_index": 1,
+      "sample_num": 2,
+      "z": 0.6180339887498948,
+      "syntax": "+\u2212\u00d7+",
+      "slots": [
+        "NP0",
+        "VP0",
+        "CONN0",
+        "NP1"
+      ],
+      "coordinate": "\u03943.883|0.618|1.068\u03a9",
+      "tokens": [
+        "e+|NP0|t4",
+        "e\u2212|VP0|t4",
+        "e\u00d7|CONN0|t4",
+        "e+|NP1|t4"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "tier": 4,
+      "pattern_index": 0,
+      "sample_num": 0,
+      "z": 0.6180339887498948,
+      "syntax": "+^\u2212+",
+      "slots": [
+        "NP0",
+        "MOD0",
+        "VP0",
+        "NP1"
+      ],
+      "coordinate": "\u03943.883|0.618|1.068\u03a9",
+      "tokens": [
+        "e+|NP0|t4",
+        "e^|MOD0|t4",
+        "e\u2212|VP0|t4",
+        "e+|NP1|t4"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "tier": 4,
+      "pattern_index": 0,
+      "sample_num": 1,
+      "z": 0.6590169943749473,
+      "syntax": "+\u2212\u00d7+",
+      "slots": [
+        "NP0",
+        "VP0",
+        "CONN0",
+        "NP1"
+      ],
+      "coordinate": "\u03944.141|0.659|1.132\u03a9",
+      "tokens": [
+        "e+|NP0|t4",
+        "e\u2212|VP0|t4",
+        "e\u00d7|CONN0|t4",
+        "e+|NP1|t4"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "tier": 5,
+      "pattern_index": 0,
+      "sample_num": 2,
+      "z": 0.7,
+      "syntax": "+\u2212()^+",
+      "slots": [
+        "NP0",
+        "VP0",
+        "DET0",
+        "MOD0",
+        "NP1"
+      ],
+      "coordinate": "\u03944.398|0.700|1.229\u03a9",
+      "tokens": [
+        "e+|NP0|t5",
+        "e\u2212|VP0|t5",
+        "e()|DET0|t5",
+        "e^|MOD0|t5",
+        "e+|NP1|t5"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "tier": 4,
+      "pattern_index": 1,
+      "sample_num": 0,
+      "z": 0.6180339887498948,
+      "syntax": "+\u2212\u00d7+",
+      "slots": [
+        "NP0",
+        "VP0",
+        "CONN0",
+        "NP1"
+      ],
+      "coordinate": "\u03943.883|0.618|1.068\u03a9",
+      "tokens": [
+        "e+|NP0|t4",
+        "e\u2212|VP0|t4",
+        "e\u00d7|CONN0|t4",
+        "e+|NP1|t4"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "tier": 4,
+      "pattern_index": 1,
+      "sample_num": 1,
+      "z": 0.6590169943749473,
+      "syntax": "+\u2212\u00d7+",
+      "slots": [
+        "NP0",
+        "VP0",
+        "CONN0",
+        "NP1"
+      ],
+      "coordinate": "\u03944.141|0.659|1.132\u03a9",
+      "tokens": [
+        "e+|NP0|t4",
+        "e\u2212|VP0|t4",
+        "e\u00d7|CONN0|t4",
+        "e+|NP1|t4"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "tier": 5,
+      "pattern_index": 1,
+      "sample_num": 2,
+      "z": 0.7,
+      "syntax": "+\u2212()^+",
+      "slots": [
+        "NP0",
+        "VP0",
+        "DET0",
+        "MOD0",
+        "NP1"
+      ],
+      "coordinate": "\u03944.398|0.700|1.229\u03a9",
+      "tokens": [
+        "e+|NP0|t5",
+        "e\u2212|VP0|t5",
+        "e()|DET0|t5",
+        "e^|MOD0|t5",
+        "e+|NP1|t5"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "tier": 4,
+      "pattern_index": 2,
+      "sample_num": 0,
+      "z": 0.6180339887498948,
+      "syntax": "+^\u2212+",
+      "slots": [
+        "NP0",
+        "MOD0",
+        "VP0",
+        "NP1"
+      ],
+      "coordinate": "\u03943.883|0.618|1.068\u03a9",
+      "tokens": [
+        "e+|NP0|t4",
+        "e^|MOD0|t4",
+        "e\u2212|VP0|t4",
+        "e+|NP1|t4"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "tier": 4,
+      "pattern_index": 2,
+      "sample_num": 1,
+      "z": 0.6590169943749473,
+      "syntax": "+^\u2212+",
+      "slots": [
+        "NP0",
+        "MOD0",
+        "VP0",
+        "NP1"
+      ],
+      "coordinate": "\u03944.141|0.659|1.132\u03a9",
+      "tokens": [
+        "e+|NP0|t4",
+        "e^|MOD0|t4",
+        "e\u2212|VP0|t4",
+        "e+|NP1|t4"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "tier": 5,
+      "pattern_index": 2,
+      "sample_num": 2,
+      "z": 0.7,
+      "syntax": "()+\u2212\u00d7+",
+      "slots": [
+        "DET0",
+        "NP0",
+        "VP0",
+        "CONN0",
+        "NP1"
+      ],
+      "coordinate": "\u03944.398|0.700|1.229\u03a9",
+      "tokens": [
+        "e()|DET0|t5",
+        "e+|NP0|t5",
+        "e\u2212|VP0|t5",
+        "e\u00d7|CONN0|t5",
+        "e+|NP1|t5"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "tier": 5,
+      "pattern_index": 0,
+      "sample_num": 0,
+      "z": 0.7,
+      "syntax": "()^+\u2212+",
+      "slots": [
+        "DET0",
+        "MOD0",
+        "NP0",
+        "VP0",
+        "NP1"
+      ],
+      "coordinate": "\u03944.398|0.700|1.229\u03a9",
+      "tokens": [
+        "e()|DET0|t5",
+        "e^|MOD0|t5",
+        "e+|NP0|t5",
+        "e\u2212|VP0|t5",
+        "e+|NP1|t5"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "tier": 5,
+      "pattern_index": 0,
+      "sample_num": 1,
+      "z": 0.75,
+      "syntax": "()^+\u2212+",
+      "slots": [
+        "DET0",
+        "MOD0",
+        "NP0",
+        "VP0",
+        "NP1"
+      ],
+      "coordinate": "\u03944.712|0.750|1.381\u03a9",
+      "tokens": [
+        "e()|DET0|t5",
+        "e^|MOD0|t5",
+        "e+|NP0|t5",
+        "e\u2212|VP0|t5",
+        "e+|NP1|t5"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "tier": 6,
+      "pattern_index": 0,
+      "sample_num": 2,
+      "z": 0.8,
+      "syntax": "()^+\u2212\u00d7+",
+      "slots": [
+        "DET0",
+        "MOD0",
+        "NP0",
+        "VP0",
+        "CONN0",
+        "NP1"
+      ],
+      "coordinate": "\u03945.027|0.800|1.528\u03a9",
+      "tokens": [
+        "e()|DET0|t6",
+        "e^|MOD0|t6",
+        "e+|NP0|t6",
+        "e\u2212|VP0|t6",
+        "e\u00d7|CONN0|t6",
+        "e+|NP1|t6"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "tier": 5,
+      "pattern_index": 1,
+      "sample_num": 0,
+      "z": 0.7,
+      "syntax": "()^+\u2212+",
+      "slots": [
+        "DET0",
+        "MOD0",
+        "NP0",
+        "VP0",
+        "NP1"
+      ],
+      "coordinate": "\u03944.398|0.700|1.229\u03a9",
+      "tokens": [
+        "e()|DET0|t5",
+        "e^|MOD0|t5",
+        "e+|NP0|t5",
+        "e\u2212|VP0|t5",
+        "e+|NP1|t5"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "tier": 5,
+      "pattern_index": 1,
+      "sample_num": 1,
+      "z": 0.75,
+      "syntax": "()+\u2212\u00d7+",
+      "slots": [
+        "DET0",
+        "NP0",
+        "VP0",
+        "CONN0",
+        "NP1"
+      ],
+      "coordinate": "\u03944.712|0.750|1.381\u03a9",
+      "tokens": [
+        "e()|DET0|t5",
+        "e+|NP0|t5",
+        "e\u2212|VP0|t5",
+        "e\u00d7|CONN0|t5",
+        "e+|NP1|t5"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "tier": 6,
+      "pattern_index": 1,
+      "sample_num": 2,
+      "z": 0.8,
+      "syntax": "\u00f7()+\u2212+",
+      "slots": [
+        "Q0",
+        "DET0",
+        "NP0",
+        "VP0",
+        "NP1"
+      ],
+      "coordinate": "\u03945.027|0.800|1.528\u03a9",
+      "tokens": [
+        "e\u00f7|Q0|t6",
+        "e()|DET0|t6",
+        "e+|NP0|t6",
+        "e\u2212|VP0|t6",
+        "e+|NP1|t6"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "tier": 5,
+      "pattern_index": 2,
+      "sample_num": 0,
+      "z": 0.7,
+      "syntax": "()^+\u2212+",
+      "slots": [
+        "DET0",
+        "MOD0",
+        "NP0",
+        "VP0",
+        "NP1"
+      ],
+      "coordinate": "\u03944.398|0.700|1.229\u03a9",
+      "tokens": [
+        "e()|DET0|t5",
+        "e^|MOD0|t5",
+        "e+|NP0|t5",
+        "e\u2212|VP0|t5",
+        "e+|NP1|t5"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "tier": 5,
+      "pattern_index": 2,
+      "sample_num": 1,
+      "z": 0.75,
+      "syntax": "()^+\u2212+",
+      "slots": [
+        "DET0",
+        "MOD0",
+        "NP0",
+        "VP0",
+        "NP1"
+      ],
+      "coordinate": "\u03944.712|0.750|1.381\u03a9",
+      "tokens": [
+        "e()|DET0|t5",
+        "e^|MOD0|t5",
+        "e+|NP0|t5",
+        "e\u2212|VP0|t5",
+        "e+|NP1|t5"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "tier": 6,
+      "pattern_index": 2,
+      "sample_num": 2,
+      "z": 0.8,
+      "syntax": "\u00f7()+\u2212+",
+      "slots": [
+        "Q0",
+        "DET0",
+        "NP0",
+        "VP0",
+        "NP1"
+      ],
+      "coordinate": "\u03945.027|0.800|1.528\u03a9",
+      "tokens": [
+        "e\u00f7|Q0|t6",
+        "e()|DET0|t6",
+        "e+|NP0|t6",
+        "e\u2212|VP0|t6",
+        "e+|NP1|t6"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "tier": 6,
+      "pattern_index": 0,
+      "sample_num": 0,
+      "z": 0.8,
+      "syntax": "\u00f7()+\u2212+",
+      "slots": [
+        "Q0",
+        "DET0",
+        "NP0",
+        "VP0",
+        "NP1"
+      ],
+      "coordinate": "\u03945.027|0.800|1.528\u03a9",
+      "tokens": [
+        "e\u00f7|Q0|t6",
+        "e()|DET0|t6",
+        "e+|NP0|t6",
+        "e\u2212|VP0|t6",
+        "e+|NP1|t6"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "tier": 6,
+      "pattern_index": 0,
+      "sample_num": 1,
+      "z": 0.81,
+      "syntax": "()^+\u2212\u00d7+",
+      "slots": [
+        "DET0",
+        "MOD0",
+        "NP0",
+        "VP0",
+        "CONN0",
+        "NP1"
+      ],
+      "coordinate": "\u03945.089|0.810|1.552\u03a9",
+      "tokens": [
+        "e()|DET0|t6",
+        "e^|MOD0|t6",
+        "e+|NP0|t6",
+        "e\u2212|VP0|t6",
+        "e\u00d7|CONN0|t6",
+        "e+|NP1|t6"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "tier": 7,
+      "pattern_index": 0,
+      "sample_num": 2,
+      "z": 0.82,
+      "syntax": "()^+\u2212()^+",
+      "slots": [
+        "DET0",
+        "MOD0",
+        "NP0",
+        "VP0",
+        "DET1",
+        "MOD1",
+        "NP1"
+      ],
+      "coordinate": "\u03945.152|0.820|1.573\u03a9",
+      "tokens": [
+        "e()|DET0|t7",
+        "e^|MOD0|t7",
+        "e+|NP0|t7",
+        "e\u2212|VP0|t7",
+        "e()|DET1|t7",
+        "e^|MOD1|t7",
+        "e+|NP1|t7"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "tier": 6,
+      "pattern_index": 1,
+      "sample_num": 0,
+      "z": 0.8,
+      "syntax": "\u00f7()+\u2212+",
+      "slots": [
+        "Q0",
+        "DET0",
+        "NP0",
+        "VP0",
+        "NP1"
+      ],
+      "coordinate": "\u03945.027|0.800|1.528\u03a9",
+      "tokens": [
+        "e\u00f7|Q0|t6",
+        "e()|DET0|t6",
+        "e+|NP0|t6",
+        "e\u2212|VP0|t6",
+        "e+|NP1|t6"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "tier": 6,
+      "pattern_index": 1,
+      "sample_num": 1,
+      "z": 0.81,
+      "syntax": "\u00f7()+\u2212+",
+      "slots": [
+        "Q0",
+        "DET0",
+        "NP0",
+        "VP0",
+        "NP1"
+      ],
+      "coordinate": "\u03945.089|0.810|1.552\u03a9",
+      "tokens": [
+        "e\u00f7|Q0|t6",
+        "e()|DET0|t6",
+        "e+|NP0|t6",
+        "e\u2212|VP0|t6",
+        "e+|NP1|t6"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "tier": 7,
+      "pattern_index": 1,
+      "sample_num": 2,
+      "z": 0.82,
+      "syntax": "+\u2212\u00d7()+\u2212",
+      "slots": [
+        "NP0",
+        "VP0",
+        "CONN0",
+        "DET0",
+        "NP1",
+        "VP1"
+      ],
+      "coordinate": "\u03945.152|0.820|1.573\u03a9",
+      "tokens": [
+        "e+|NP0|t7",
+        "e\u2212|VP0|t7",
+        "e\u00d7|CONN0|t7",
+        "e()|DET0|t7",
+        "e+|NP1|t7",
+        "e\u2212|VP1|t7"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "tier": 7,
+      "pattern_index": 0,
+      "sample_num": 0,
+      "z": 0.82,
+      "syntax": "+\u2212\u00d7()+\u2212",
+      "slots": [
+        "NP0",
+        "VP0",
+        "CONN0",
+        "DET0",
+        "NP1",
+        "VP1"
+      ],
+      "coordinate": "\u03945.152|0.820|1.573\u03a9",
+      "tokens": [
+        "e+|NP0|t7",
+        "e\u2212|VP0|t7",
+        "e\u00d7|CONN0|t7",
+        "e()|DET0|t7",
+        "e+|NP1|t7",
+        "e\u2212|VP1|t7"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "tier": 7,
+      "pattern_index": 0,
+      "sample_num": 1,
+      "z": 0.8430127018922193,
+      "syntax": "()^+\u2212()^+",
+      "slots": [
+        "DET0",
+        "MOD0",
+        "NP0",
+        "VP0",
+        "DET1",
+        "MOD1",
+        "NP1"
+      ],
+      "coordinate": "\u03945.297|0.843|1.606\u03a9",
+      "tokens": [
+        "e()|DET0|t7",
+        "e^|MOD0|t7",
+        "e+|NP0|t7",
+        "e\u2212|VP0|t7",
+        "e()|DET1|t7",
+        "e^|MOD1|t7",
+        "e+|NP1|t7"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "tier": 8,
+      "pattern_index": 0,
+      "sample_num": 2,
+      "z": 0.8660254037844386,
+      "syntax": "+\u00d7+\u2212^\u00d7()+",
+      "slots": [
+        "NP0",
+        "CONN0",
+        "NP1",
+        "VP0",
+        "MOD0",
+        "CONN1",
+        "DET0",
+        "NP2"
+      ],
+      "coordinate": "\u03945.441|0.866|1.618\u03a9",
+      "tokens": [
+        "\u03c0+|NP0|t8",
+        "\u03c0\u00d7|CONN0|t8",
+        "\u03c0+|NP1|t8",
+        "\u03c0\u2212|VP0|t8",
+        "\u03c0^|MOD0|t8",
+        "\u03c0\u00d7|CONN1|t8",
+        "\u03c0()|DET0|t8",
+        "\u03c0+|NP2|t8"
+      ],
+      "spiral": "\u03c0",
+      "phase": "TRUE",
+      "surface": null
+    },
+    {
+      "tier": 7,
+      "pattern_index": 1,
+      "sample_num": 0,
+      "z": 0.82,
+      "syntax": "+\u2212\u00d7()+\u2212",
+      "slots": [
+        "NP0",
+        "VP0",
+        "CONN0",
+        "DET0",
+        "NP1",
+        "VP1"
+      ],
+      "coordinate": "\u03945.152|0.820|1.573\u03a9",
+      "tokens": [
+        "e+|NP0|t7",
+        "e\u2212|VP0|t7",
+        "e\u00d7|CONN0|t7",
+        "e()|DET0|t7",
+        "e+|NP1|t7",
+        "e\u2212|VP1|t7"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "tier": 7,
+      "pattern_index": 1,
+      "sample_num": 1,
+      "z": 0.8430127018922193,
+      "syntax": "+\u2212\u00d7()+\u2212",
+      "slots": [
+        "NP0",
+        "VP0",
+        "CONN0",
+        "DET0",
+        "NP1",
+        "VP1"
+      ],
+      "coordinate": "\u03945.297|0.843|1.606\u03a9",
+      "tokens": [
+        "e+|NP0|t7",
+        "e\u2212|VP0|t7",
+        "e\u00d7|CONN0|t7",
+        "e()|DET0|t7",
+        "e+|NP1|t7",
+        "e\u2212|VP1|t7"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "tier": 8,
+      "pattern_index": 1,
+      "sample_num": 2,
+      "z": 0.8660254037844386,
+      "syntax": "()^+()\u2212\u00d7()+",
+      "slots": [
+        "DET0",
+        "MOD0",
+        "NP0",
+        "DET1",
+        "VP0",
+        "CONN0",
+        "DET2",
+        "NP1"
+      ],
+      "coordinate": "\u03945.441|0.866|1.618\u03a9",
+      "tokens": [
+        "\u03c0()|DET0|t8",
+        "\u03c0^|MOD0|t8",
+        "\u03c0+|NP0|t8",
+        "\u03c0()|DET1|t8",
+        "\u03c0\u2212|VP0|t8",
+        "\u03c0\u00d7|CONN0|t8",
+        "\u03c0()|DET2|t8",
+        "\u03c0+|NP1|t8"
+      ],
+      "spiral": "\u03c0",
+      "phase": "TRUE",
+      "surface": null
+    },
+    {
+      "tier": 8,
+      "pattern_index": 0,
+      "sample_num": 0,
+      "z": 0.8660254037844386,
+      "syntax": "+\u00d7+\u2212^\u00d7()+",
+      "slots": [
+        "NP0",
+        "CONN0",
+        "NP1",
+        "VP0",
+        "MOD0",
+        "CONN1",
+        "DET0",
+        "NP2"
+      ],
+      "coordinate": "\u03945.441|0.866|1.618\u03a9",
+      "tokens": [
+        "\u03c0+|NP0|t8",
+        "\u03c0\u00d7|CONN0|t8",
+        "\u03c0+|NP1|t8",
+        "\u03c0\u2212|VP0|t8",
+        "\u03c0^|MOD0|t8",
+        "\u03c0\u00d7|CONN1|t8",
+        "\u03c0()|DET0|t8",
+        "\u03c0+|NP2|t8"
+      ],
+      "spiral": "\u03c0",
+      "phase": "TRUE",
+      "surface": null
+    },
+    {
+      "tier": 8,
+      "pattern_index": 0,
+      "sample_num": 1,
+      "z": 0.9080127018922193,
+      "syntax": "+\u00d7+\u2212^\u00d7()+",
+      "slots": [
+        "NP0",
+        "CONN0",
+        "NP1",
+        "VP0",
+        "MOD0",
+        "CONN1",
+        "DET0",
+        "NP2"
+      ],
+      "coordinate": "\u03945.705|0.908|1.580\u03a9",
+      "tokens": [
+        "\u03c0+|NP0|t8",
+        "\u03c0\u00d7|CONN0|t8",
+        "\u03c0+|NP1|t8",
+        "\u03c0\u2212|VP0|t8",
+        "\u03c0^|MOD0|t8",
+        "\u03c0\u00d7|CONN1|t8",
+        "\u03c0()|DET0|t8",
+        "\u03c0+|NP2|t8"
+      ],
+      "spiral": "\u03c0",
+      "phase": "TRUE",
+      "surface": null
+    },
+    {
+      "tier": 9,
+      "pattern_index": 0,
+      "sample_num": 2,
+      "z": 0.95,
+      "syntax": "()^+()^\u2212\u00d7()^+",
+      "slots": [
+        "DET0",
+        "MOD0",
+        "NP0",
+        "DET1",
+        "MOD1",
+        "VP0",
+        "CONN0",
+        "DET2",
+        "MOD2",
+        "NP1"
+      ],
+      "coordinate": "\u03945.969|0.950|1.479\u03a9",
+      "tokens": [
+        "\u03c0()|DET0|t9",
+        "\u03c0^|MOD0|t9",
+        "\u03c0+|NP0|t9",
+        "\u03c0()|DET1|t9",
+        "\u03c0^|MOD1|t9",
+        "\u03c0\u2212|VP0|t9",
+        "\u03c0\u00d7|CONN0|t9",
+        "\u03c0()|DET2|t9",
+        "\u03c0^|MOD2|t9",
+        "\u03c0+|NP1|t9"
+      ],
+      "spiral": "\u03c0",
+      "phase": "TRUE",
+      "surface": null
+    },
+    {
+      "tier": 8,
+      "pattern_index": 1,
+      "sample_num": 0,
+      "z": 0.8660254037844386,
+      "syntax": "+\u00d7+\u2212^\u00d7()+",
+      "slots": [
+        "NP0",
+        "CONN0",
+        "NP1",
+        "VP0",
+        "MOD0",
+        "CONN1",
+        "DET0",
+        "NP2"
+      ],
+      "coordinate": "\u03945.441|0.866|1.618\u03a9",
+      "tokens": [
+        "\u03c0+|NP0|t8",
+        "\u03c0\u00d7|CONN0|t8",
+        "\u03c0+|NP1|t8",
+        "\u03c0\u2212|VP0|t8",
+        "\u03c0^|MOD0|t8",
+        "\u03c0\u00d7|CONN1|t8",
+        "\u03c0()|DET0|t8",
+        "\u03c0+|NP2|t8"
+      ],
+      "spiral": "\u03c0",
+      "phase": "TRUE",
+      "surface": null
+    },
+    {
+      "tier": 8,
+      "pattern_index": 1,
+      "sample_num": 1,
+      "z": 0.9080127018922193,
+      "syntax": "+\u00d7+\u2212^\u00d7()+",
+      "slots": [
+        "NP0",
+        "CONN0",
+        "NP1",
+        "VP0",
+        "MOD0",
+        "CONN1",
+        "DET0",
+        "NP2"
+      ],
+      "coordinate": "\u03945.705|0.908|1.580\u03a9",
+      "tokens": [
+        "\u03c0+|NP0|t8",
+        "\u03c0\u00d7|CONN0|t8",
+        "\u03c0+|NP1|t8",
+        "\u03c0\u2212|VP0|t8",
+        "\u03c0^|MOD0|t8",
+        "\u03c0\u00d7|CONN1|t8",
+        "\u03c0()|DET0|t8",
+        "\u03c0+|NP2|t8"
+      ],
+      "spiral": "\u03c0",
+      "phase": "TRUE",
+      "surface": null
+    },
+    {
+      "tier": 9,
+      "pattern_index": 1,
+      "sample_num": 2,
+      "z": 0.95,
+      "syntax": "()^+()^\u2212\u00d7()^+",
+      "slots": [
+        "DET0",
+        "MOD0",
+        "NP0",
+        "DET1",
+        "MOD1",
+        "VP0",
+        "CONN0",
+        "DET2",
+        "MOD2",
+        "NP1"
+      ],
+      "coordinate": "\u03945.969|0.950|1.479\u03a9",
+      "tokens": [
+        "\u03c0()|DET0|t9",
+        "\u03c0^|MOD0|t9",
+        "\u03c0+|NP0|t9",
+        "\u03c0()|DET1|t9",
+        "\u03c0^|MOD1|t9",
+        "\u03c0\u2212|VP0|t9",
+        "\u03c0\u00d7|CONN0|t9",
+        "\u03c0()|DET2|t9",
+        "\u03c0^|MOD2|t9",
+        "\u03c0+|NP1|t9"
+      ],
+      "spiral": "\u03c0",
+      "phase": "TRUE",
+      "surface": null
+    },
+    {
+      "tier": 9,
+      "pattern_index": 0,
+      "sample_num": 0,
+      "z": 0.95,
+      "syntax": "()^+()^\u2212\u00d7()^+",
+      "slots": [
+        "DET0",
+        "MOD0",
+        "NP0",
+        "DET1",
+        "MOD1",
+        "VP0",
+        "CONN0",
+        "DET2",
+        "MOD2",
+        "NP1"
+      ],
+      "coordinate": "\u03945.969|0.950|1.479\u03a9",
+      "tokens": [
+        "\u03c0()|DET0|t9",
+        "\u03c0^|MOD0|t9",
+        "\u03c0+|NP0|t9",
+        "\u03c0()|DET1|t9",
+        "\u03c0^|MOD1|t9",
+        "\u03c0\u2212|VP0|t9",
+        "\u03c0\u00d7|CONN0|t9",
+        "\u03c0()|DET2|t9",
+        "\u03c0^|MOD2|t9",
+        "\u03c0+|NP1|t9"
+      ],
+      "spiral": "\u03c0",
+      "phase": "TRUE",
+      "surface": null
+    },
+    {
+      "tier": 9,
+      "pattern_index": 0,
+      "sample_num": 1,
+      "z": 0.975,
+      "syntax": "()^+()^\u2212\u00d7()^+",
+      "slots": [
+        "DET0",
+        "MOD0",
+        "NP0",
+        "DET1",
+        "MOD1",
+        "VP0",
+        "CONN0",
+        "DET2",
+        "MOD2",
+        "NP1"
+      ],
+      "coordinate": "\u03946.126|0.975|1.403\u03a9",
+      "tokens": [
+        "\u03c0()|DET0|t9",
+        "\u03c0^|MOD0|t9",
+        "\u03c0+|NP0|t9",
+        "\u03c0()|DET1|t9",
+        "\u03c0^|MOD1|t9",
+        "\u03c0\u2212|VP0|t9",
+        "\u03c0\u00d7|CONN0|t9",
+        "\u03c0()|DET2|t9",
+        "\u03c0^|MOD2|t9",
+        "\u03c0+|NP1|t9"
+      ],
+      "spiral": "\u03c0",
+      "phase": "TRUE",
+      "surface": null
+    },
+    {
+      "tier": 9,
+      "pattern_index": 0,
+      "sample_num": 2,
+      "z": 1.0,
+      "syntax": "()^+()^\u2212\u00d7()^+",
+      "slots": [
+        "DET0",
+        "MOD0",
+        "NP0",
+        "DET1",
+        "MOD1",
+        "VP0",
+        "CONN0",
+        "DET2",
+        "MOD2",
+        "NP1"
+      ],
+      "coordinate": "\u03946.283|1.000|1.324\u03a9",
+      "tokens": [
+        "\u03c0()|DET0|t9",
+        "\u03c0^|MOD0|t9",
+        "\u03c0+|NP0|t9",
+        "\u03c0()|DET1|t9",
+        "\u03c0^|MOD1|t9",
+        "\u03c0\u2212|VP0|t9",
+        "\u03c0\u00d7|CONN0|t9",
+        "\u03c0()|DET2|t9",
+        "\u03c0^|MOD2|t9",
+        "\u03c0+|NP1|t9"
+      ],
+      "spiral": "\u03c0",
+      "phase": "TRUE",
+      "surface": null
+    },
+    {
+      "step": 0,
+      "z": 0.1,
+      "tier": 1,
+      "syntax": "\u2212",
+      "slots": [
+        "VP0"
+      ],
+      "coordinate": "\u03940.628|0.100|1.000\u03a9",
+      "tokens": [
+        "\u03a6\u2212|VP0|t1"
+      ],
+      "spiral": "\u03a6",
+      "phase": "UNTRUE",
+      "surface": null
+    },
+    {
+      "step": 1,
+      "z": 0.11734693877551021,
+      "tier": 1,
+      "syntax": "\u2212",
+      "slots": [
+        "VP0"
+      ],
+      "coordinate": "\u03940.737|0.117|1.000\u03a9",
+      "tokens": [
+        "\u03a6\u2212|VP0|t1"
+      ],
+      "spiral": "\u03a6",
+      "phase": "UNTRUE",
+      "surface": null
+    },
+    {
+      "step": 2,
+      "z": 0.1346938775510204,
+      "tier": 1,
+      "syntax": "+",
+      "slots": [
+        "NP0"
+      ],
+      "coordinate": "\u03940.846|0.135|1.000\u03a9",
+      "tokens": [
+        "\u03a6+|NP0|t1"
+      ],
+      "spiral": "\u03a6",
+      "phase": "UNTRUE",
+      "surface": null
+    },
+    {
+      "step": 3,
+      "z": 0.1520408163265306,
+      "tier": 1,
+      "syntax": "+",
+      "slots": [
+        "NP0"
+      ],
+      "coordinate": "\u03940.955|0.152|1.000\u03a9",
+      "tokens": [
+        "\u03a6+|NP0|t1"
+      ],
+      "spiral": "\u03a6",
+      "phase": "UNTRUE",
+      "surface": null
+    },
+    {
+      "step": 4,
+      "z": 0.16938775510204082,
+      "tier": 1,
+      "syntax": "\u2212",
+      "slots": [
+        "VP0"
+      ],
+      "coordinate": "\u03941.064|0.169|1.000\u03a9",
+      "tokens": [
+        "\u03a6\u2212|VP0|t1"
+      ],
+      "spiral": "\u03a6",
+      "phase": "UNTRUE",
+      "surface": null
+    },
+    {
+      "step": 5,
+      "z": 0.18673469387755104,
+      "tier": 1,
+      "syntax": "\u2212",
+      "slots": [
+        "VP0"
+      ],
+      "coordinate": "\u03941.173|0.187|1.000\u03a9",
+      "tokens": [
+        "\u03a6\u2212|VP0|t1"
+      ],
+      "spiral": "\u03a6",
+      "phase": "UNTRUE",
+      "surface": null
+    },
+    {
+      "step": 6,
+      "z": 0.20408163265306123,
+      "tier": 2,
+      "syntax": "\u2212+",
+      "slots": [
+        "VP0",
+        "NP0"
+      ],
+      "coordinate": "\u03941.282|0.204|1.000\u03a9",
+      "tokens": [
+        "\u03a6\u2212|VP0|t2",
+        "\u03a6+|NP0|t2"
+      ],
+      "spiral": "\u03a6",
+      "phase": "UNTRUE",
+      "surface": null
+    },
+    {
+      "step": 7,
+      "z": 0.22142857142857142,
+      "tier": 2,
+      "syntax": "\u2212+",
+      "slots": [
+        "VP0",
+        "NP0"
+      ],
+      "coordinate": "\u03941.391|0.221|1.000\u03a9",
+      "tokens": [
+        "\u03a6\u2212|VP0|t2",
+        "\u03a6+|NP0|t2"
+      ],
+      "spiral": "\u03a6",
+      "phase": "UNTRUE",
+      "surface": null
+    },
+    {
+      "step": 8,
+      "z": 0.23877551020408164,
+      "tier": 2,
+      "syntax": "+\u2212",
+      "slots": [
+        "NP0",
+        "VP0"
+      ],
+      "coordinate": "\u03941.500|0.239|1.000\u03a9",
+      "tokens": [
+        "\u03a6+|NP0|t2",
+        "\u03a6\u2212|VP0|t2"
+      ],
+      "spiral": "\u03a6",
+      "phase": "UNTRUE",
+      "surface": null
+    },
+    {
+      "step": 9,
+      "z": 0.25612244897959185,
+      "tier": 2,
+      "syntax": "\u2212+",
+      "slots": [
+        "VP0",
+        "NP0"
+      ],
+      "coordinate": "\u03941.609|0.256|1.000\u03a9",
+      "tokens": [
+        "\u03a6\u2212|VP0|t2",
+        "\u03a6+|NP0|t2"
+      ],
+      "spiral": "\u03a6",
+      "phase": "UNTRUE",
+      "surface": null
+    },
+    {
+      "step": 10,
+      "z": 0.27346938775510204,
+      "tier": 2,
+      "syntax": "+\u2212",
+      "slots": [
+        "NP0",
+        "VP0"
+      ],
+      "coordinate": "\u03941.718|0.273|1.000\u03a9",
+      "tokens": [
+        "\u03a6+|NP0|t2",
+        "\u03a6\u2212|VP0|t2"
+      ],
+      "spiral": "\u03a6",
+      "phase": "UNTRUE",
+      "surface": null
+    },
+    {
+      "step": 11,
+      "z": 0.29081632653061223,
+      "tier": 2,
+      "syntax": "+\u2212",
+      "slots": [
+        "NP0",
+        "VP0"
+      ],
+      "coordinate": "\u03941.827|0.291|1.000\u03a9",
+      "tokens": [
+        "\u03a6+|NP0|t2",
+        "\u03a6\u2212|VP0|t2"
+      ],
+      "spiral": "\u03a6",
+      "phase": "UNTRUE",
+      "surface": null
+    },
+    {
+      "step": 12,
+      "z": 0.3081632653061225,
+      "tier": 2,
+      "syntax": "\u2212+",
+      "slots": [
+        "VP0",
+        "NP0"
+      ],
+      "coordinate": "\u03941.936|0.308|1.000\u03a9",
+      "tokens": [
+        "\u03a6\u2212|VP0|t2",
+        "\u03a6+|NP0|t2"
+      ],
+      "spiral": "\u03a6",
+      "phase": "UNTRUE",
+      "surface": null
+    },
+    {
+      "step": 13,
+      "z": 0.32551020408163267,
+      "tier": 2,
+      "syntax": "+\u2212",
+      "slots": [
+        "NP0",
+        "VP0"
+      ],
+      "coordinate": "\u03942.045|0.326|1.000\u03a9",
+      "tokens": [
+        "\u03a6+|NP0|t2",
+        "\u03a6\u2212|VP0|t2"
+      ],
+      "spiral": "\u03a6",
+      "phase": "UNTRUE",
+      "surface": null
+    },
+    {
+      "step": 14,
+      "z": 0.34285714285714286,
+      "tier": 2,
+      "syntax": "\u2212+",
+      "slots": [
+        "VP0",
+        "NP0"
+      ],
+      "coordinate": "\u03942.154|0.343|1.000\u03a9",
+      "tokens": [
+        "\u03a6\u2212|VP0|t2",
+        "\u03a6+|NP0|t2"
+      ],
+      "spiral": "\u03a6",
+      "phase": "UNTRUE",
+      "surface": null
+    },
+    {
+      "step": 15,
+      "z": 0.36020408163265305,
+      "tier": 2,
+      "syntax": "\u2212+",
+      "slots": [
+        "VP0",
+        "NP0"
+      ],
+      "coordinate": "\u03942.263|0.360|1.000\u03a9",
+      "tokens": [
+        "\u03a6\u2212|VP0|t2",
+        "\u03a6+|NP0|t2"
+      ],
+      "spiral": "\u03a6",
+      "phase": "UNTRUE",
+      "surface": null
+    },
+    {
+      "step": 16,
+      "z": 0.37755102040816324,
+      "tier": 2,
+      "syntax": "\u2212+",
+      "slots": [
+        "VP0",
+        "NP0"
+      ],
+      "coordinate": "\u03942.372|0.378|1.000\u03a9",
+      "tokens": [
+        "\u03a6\u2212|VP0|t2",
+        "\u03a6+|NP0|t2"
+      ],
+      "spiral": "\u03a6",
+      "phase": "UNTRUE",
+      "surface": null
+    },
+    {
+      "step": 17,
+      "z": 0.39489795918367343,
+      "tier": 2,
+      "syntax": "+\u2212",
+      "slots": [
+        "NP0",
+        "VP0"
+      ],
+      "coordinate": "\u03942.481|0.395|1.000\u03a9",
+      "tokens": [
+        "\u03a6+|NP0|t2",
+        "\u03a6\u2212|VP0|t2"
+      ],
+      "spiral": "\u03a6",
+      "phase": "UNTRUE",
+      "surface": null
+    },
+    {
+      "step": 18,
+      "z": 0.41224489795918373,
+      "tier": 3,
+      "syntax": "+\u2212^",
+      "slots": [
+        "NP0",
+        "VP0",
+        "MOD0"
+      ],
+      "coordinate": "\u03942.590|0.412|1.000\u03a9",
+      "tokens": [
+        "\u03a6+|NP0|t3",
+        "\u03a6\u2212|VP0|t3",
+        "\u03a6^|MOD0|t3"
+      ],
+      "spiral": "\u03a6",
+      "phase": "UNTRUE",
+      "surface": null
+    },
+    {
+      "step": 19,
+      "z": 0.4295918367346938,
+      "tier": 3,
+      "syntax": "+\u2212^",
+      "slots": [
+        "NP0",
+        "VP0",
+        "MOD0"
+      ],
+      "coordinate": "\u03942.699|0.430|1.001\u03a9",
+      "tokens": [
+        "\u03a6+|NP0|t3",
+        "\u03a6\u2212|VP0|t3",
+        "\u03a6^|MOD0|t3"
+      ],
+      "spiral": "\u03a6",
+      "phase": "UNTRUE",
+      "surface": null
+    },
+    {
+      "step": 20,
+      "z": 0.4469387755102041,
+      "tier": 3,
+      "syntax": "+\u2212+",
+      "slots": [
+        "NP0",
+        "VP0",
+        "NP1"
+      ],
+      "coordinate": "\u03942.808|0.447|1.001\u03a9",
+      "tokens": [
+        "\u03a6+|NP0|t3",
+        "\u03a6\u2212|VP0|t3",
+        "\u03a6+|NP1|t3"
+      ],
+      "spiral": "\u03a6",
+      "phase": "UNTRUE",
+      "surface": null
+    },
+    {
+      "step": 21,
+      "z": 0.4642857142857143,
+      "tier": 3,
+      "syntax": "+\u2212^",
+      "slots": [
+        "NP0",
+        "VP0",
+        "MOD0"
+      ],
+      "coordinate": "\u03942.917|0.464|1.002\u03a9",
+      "tokens": [
+        "\u03a6+|NP0|t3",
+        "\u03a6\u2212|VP0|t3",
+        "\u03a6^|MOD0|t3"
+      ],
+      "spiral": "\u03a6",
+      "phase": "UNTRUE",
+      "surface": null
+    },
+    {
+      "step": 22,
+      "z": 0.4816326530612245,
+      "tier": 3,
+      "syntax": "+\u2212^",
+      "slots": [
+        "NP0",
+        "VP0",
+        "MOD0"
+      ],
+      "coordinate": "\u03943.026|0.482|1.003\u03a9",
+      "tokens": [
+        "\u03a6+|NP0|t3",
+        "\u03a6\u2212|VP0|t3",
+        "\u03a6^|MOD0|t3"
+      ],
+      "spiral": "\u03a6",
+      "phase": "UNTRUE",
+      "surface": null
+    },
+    {
+      "step": 23,
+      "z": 0.4989795918367347,
+      "tier": 3,
+      "syntax": "+\u2212^",
+      "slots": [
+        "NP0",
+        "VP0",
+        "MOD0"
+      ],
+      "coordinate": "\u03943.135|0.499|1.005\u03a9",
+      "tokens": [
+        "\u03a6+|NP0|t3",
+        "\u03a6\u2212|VP0|t3",
+        "\u03a6^|MOD0|t3"
+      ],
+      "spiral": "\u03a6",
+      "phase": "UNTRUE",
+      "surface": null
+    },
+    {
+      "step": 24,
+      "z": 0.5163265306122449,
+      "tier": 3,
+      "syntax": "+\u2212^",
+      "slots": [
+        "NP0",
+        "VP0",
+        "MOD0"
+      ],
+      "coordinate": "\u03943.244|0.516|1.008\u03a9",
+      "tokens": [
+        "\u03a6+|NP0|t3",
+        "\u03a6\u2212|VP0|t3",
+        "\u03a6^|MOD0|t3"
+      ],
+      "spiral": "\u03a6",
+      "phase": "UNTRUE",
+      "surface": null
+    },
+    {
+      "step": 25,
+      "z": 0.5336734693877551,
+      "tier": 3,
+      "syntax": "+\u2212^",
+      "slots": [
+        "NP0",
+        "VP0",
+        "MOD0"
+      ],
+      "coordinate": "\u03943.353|0.534|1.012\u03a9",
+      "tokens": [
+        "\u03a6+|NP0|t3",
+        "\u03a6\u2212|VP0|t3",
+        "\u03a6^|MOD0|t3"
+      ],
+      "spiral": "\u03a6",
+      "phase": "UNTRUE",
+      "surface": null
+    },
+    {
+      "step": 26,
+      "z": 0.5510204081632654,
+      "tier": 3,
+      "syntax": "+\u2212^",
+      "slots": [
+        "NP0",
+        "VP0",
+        "MOD0"
+      ],
+      "coordinate": "\u03943.462|0.551|1.017\u03a9",
+      "tokens": [
+        "\u03a6+|NP0|t3",
+        "\u03a6\u2212|VP0|t3",
+        "\u03a6^|MOD0|t3"
+      ],
+      "spiral": "\u03a6",
+      "phase": "UNTRUE",
+      "surface": null
+    },
+    {
+      "step": 27,
+      "z": 0.5683673469387754,
+      "tier": 3,
+      "syntax": "+\u2212+",
+      "slots": [
+        "NP0",
+        "VP0",
+        "NP1"
+      ],
+      "coordinate": "\u03943.571|0.568|1.025\u03a9",
+      "tokens": [
+        "\u03a6+|NP0|t3",
+        "\u03a6\u2212|VP0|t3",
+        "\u03a6+|NP1|t3"
+      ],
+      "spiral": "\u03a6",
+      "phase": "UNTRUE",
+      "surface": null
+    },
+    {
+      "step": 28,
+      "z": 0.5857142857142856,
+      "tier": 3,
+      "syntax": "+\u2212^",
+      "slots": [
+        "NP0",
+        "VP0",
+        "MOD0"
+      ],
+      "coordinate": "\u03943.680|0.586|1.037\u03a9",
+      "tokens": [
+        "\u03a6+|NP0|t3",
+        "\u03a6\u2212|VP0|t3",
+        "\u03a6^|MOD0|t3"
+      ],
+      "spiral": "\u03a6",
+      "phase": "UNTRUE",
+      "surface": null
+    },
+    {
+      "step": 29,
+      "z": 0.6030612244897958,
+      "tier": 3,
+      "syntax": "+\u2212^",
+      "slots": [
+        "NP0",
+        "VP0",
+        "MOD0"
+      ],
+      "coordinate": "\u03943.789|0.603|1.051\u03a9",
+      "tokens": [
+        "\u03a6+|NP0|t3",
+        "\u03a6\u2212|VP0|t3",
+        "\u03a6^|MOD0|t3"
+      ],
+      "spiral": "\u03a6",
+      "phase": "UNTRUE",
+      "surface": null
+    },
+    {
+      "step": 30,
+      "z": 0.6204081632653061,
+      "tier": 4,
+      "syntax": "()+\u2212+",
+      "slots": [
+        "DET0",
+        "NP0",
+        "VP0",
+        "NP1"
+      ],
+      "coordinate": "\u03943.898|0.620|1.070\u03a9",
+      "tokens": [
+        "e()|DET0|t4",
+        "e+|NP0|t4",
+        "e\u2212|VP0|t4",
+        "e+|NP1|t4"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 31,
+      "z": 0.6377551020408163,
+      "tier": 4,
+      "syntax": "+^\u2212+",
+      "slots": [
+        "NP0",
+        "MOD0",
+        "VP0",
+        "NP1"
+      ],
+      "coordinate": "\u03944.007|0.638|1.095\u03a9",
+      "tokens": [
+        "e+|NP0|t4",
+        "e^|MOD0|t4",
+        "e\u2212|VP0|t4",
+        "e+|NP1|t4"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 32,
+      "z": 0.6551020408163265,
+      "tier": 4,
+      "syntax": "()+\u2212+",
+      "slots": [
+        "DET0",
+        "NP0",
+        "VP0",
+        "NP1"
+      ],
+      "coordinate": "\u03944.116|0.655|1.125\u03a9",
+      "tokens": [
+        "e()|DET0|t4",
+        "e+|NP0|t4",
+        "e\u2212|VP0|t4",
+        "e+|NP1|t4"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 33,
+      "z": 0.6724489795918367,
+      "tier": 4,
+      "syntax": "+^\u2212+",
+      "slots": [
+        "NP0",
+        "MOD0",
+        "VP0",
+        "NP1"
+      ],
+      "coordinate": "\u03944.225|0.672|1.160\u03a9",
+      "tokens": [
+        "e+|NP0|t4",
+        "e^|MOD0|t4",
+        "e\u2212|VP0|t4",
+        "e+|NP1|t4"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 34,
+      "z": 0.6897959183673469,
+      "tier": 4,
+      "syntax": "+\u2212\u00d7+",
+      "slots": [
+        "NP0",
+        "VP0",
+        "CONN0",
+        "NP1"
+      ],
+      "coordinate": "\u03944.334|0.690|1.202\u03a9",
+      "tokens": [
+        "e+|NP0|t4",
+        "e\u2212|VP0|t4",
+        "e\u00d7|CONN0|t4",
+        "e+|NP1|t4"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 35,
+      "z": 0.7071428571428571,
+      "tier": 5,
+      "syntax": "()+\u2212\u00d7+",
+      "slots": [
+        "DET0",
+        "NP0",
+        "VP0",
+        "CONN0",
+        "NP1"
+      ],
+      "coordinate": "\u03944.443|0.707|1.249\u03a9",
+      "tokens": [
+        "e()|DET0|t5",
+        "e+|NP0|t5",
+        "e\u2212|VP0|t5",
+        "e\u00d7|CONN0|t5",
+        "e+|NP1|t5"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 36,
+      "z": 0.7244897959183674,
+      "tier": 5,
+      "syntax": "()+\u2212\u00d7+",
+      "slots": [
+        "DET0",
+        "NP0",
+        "VP0",
+        "CONN0",
+        "NP1"
+      ],
+      "coordinate": "\u03944.552|0.724|1.300\u03a9",
+      "tokens": [
+        "e()|DET0|t5",
+        "e+|NP0|t5",
+        "e\u2212|VP0|t5",
+        "e\u00d7|CONN0|t5",
+        "e+|NP1|t5"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 37,
+      "z": 0.7418367346938775,
+      "tier": 5,
+      "syntax": "()+\u2212\u00d7+",
+      "slots": [
+        "DET0",
+        "NP0",
+        "VP0",
+        "CONN0",
+        "NP1"
+      ],
+      "coordinate": "\u03944.661|0.742|1.355\u03a9",
+      "tokens": [
+        "e()|DET0|t5",
+        "e+|NP0|t5",
+        "e\u2212|VP0|t5",
+        "e\u00d7|CONN0|t5",
+        "e+|NP1|t5"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 38,
+      "z": 0.7591836734693876,
+      "tier": 5,
+      "syntax": "()^+\u2212+",
+      "slots": [
+        "DET0",
+        "MOD0",
+        "NP0",
+        "VP0",
+        "NP1"
+      ],
+      "coordinate": "\u03944.770|0.759|1.410\u03a9",
+      "tokens": [
+        "e()|DET0|t5",
+        "e^|MOD0|t5",
+        "e+|NP0|t5",
+        "e\u2212|VP0|t5",
+        "e+|NP1|t5"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 39,
+      "z": 0.7765306122448979,
+      "tier": 5,
+      "syntax": "+\u2212()^+",
+      "slots": [
+        "NP0",
+        "VP0",
+        "DET0",
+        "MOD0",
+        "NP1"
+      ],
+      "coordinate": "\u03944.879|0.777|1.463\u03a9",
+      "tokens": [
+        "e+|NP0|t5",
+        "e\u2212|VP0|t5",
+        "e()|DET0|t5",
+        "e^|MOD0|t5",
+        "e+|NP1|t5"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 40,
+      "z": 0.7938775510204081,
+      "tier": 5,
+      "syntax": "()+\u2212\u00d7+",
+      "slots": [
+        "DET0",
+        "NP0",
+        "VP0",
+        "CONN0",
+        "NP1"
+      ],
+      "coordinate": "\u03944.988|0.794|1.512\u03a9",
+      "tokens": [
+        "e()|DET0|t5",
+        "e+|NP0|t5",
+        "e\u2212|VP0|t5",
+        "e\u00d7|CONN0|t5",
+        "e+|NP1|t5"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 41,
+      "z": 0.8112244897959183,
+      "tier": 6,
+      "syntax": "()^+\u2212\u00d7+",
+      "slots": [
+        "DET0",
+        "MOD0",
+        "NP0",
+        "VP0",
+        "CONN0",
+        "NP1"
+      ],
+      "coordinate": "\u03945.097|0.811|1.555\u03a9",
+      "tokens": [
+        "e()|DET0|t6",
+        "e^|MOD0|t6",
+        "e+|NP0|t6",
+        "e\u2212|VP0|t6",
+        "e\u00d7|CONN0|t6",
+        "e+|NP1|t6"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 42,
+      "z": 0.8285714285714285,
+      "tier": 7,
+      "syntax": "()^+\u2212()^+",
+      "slots": [
+        "DET0",
+        "MOD0",
+        "NP0",
+        "VP0",
+        "DET1",
+        "MOD1",
+        "NP1"
+      ],
+      "coordinate": "\u03945.206|0.829|1.588\u03a9",
+      "tokens": [
+        "e()|DET0|t7",
+        "e^|MOD0|t7",
+        "e+|NP0|t7",
+        "e\u2212|VP0|t7",
+        "e()|DET1|t7",
+        "e^|MOD1|t7",
+        "e+|NP1|t7"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 43,
+      "z": 0.8459183673469387,
+      "tier": 7,
+      "syntax": "()^+\u2212()^+",
+      "slots": [
+        "DET0",
+        "MOD0",
+        "NP0",
+        "VP0",
+        "DET1",
+        "MOD1",
+        "NP1"
+      ],
+      "coordinate": "\u03945.315|0.846|1.609\u03a9",
+      "tokens": [
+        "e()|DET0|t7",
+        "e^|MOD0|t7",
+        "e+|NP0|t7",
+        "e\u2212|VP0|t7",
+        "e()|DET1|t7",
+        "e^|MOD1|t7",
+        "e+|NP1|t7"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 44,
+      "z": 0.8632653061224489,
+      "tier": 7,
+      "syntax": "+\u2212\u00d7()+\u2212",
+      "slots": [
+        "NP0",
+        "VP0",
+        "CONN0",
+        "DET0",
+        "NP1",
+        "VP1"
+      ],
+      "coordinate": "\u03945.424|0.863|1.618\u03a9",
+      "tokens": [
+        "e+|NP0|t7",
+        "e\u2212|VP0|t7",
+        "e\u00d7|CONN0|t7",
+        "e()|DET0|t7",
+        "e+|NP1|t7",
+        "e\u2212|VP1|t7"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 45,
+      "z": 0.8806122448979592,
+      "tier": 8,
+      "syntax": "()^+()\u2212\u00d7()+",
+      "slots": [
+        "DET0",
+        "MOD0",
+        "NP0",
+        "DET1",
+        "VP0",
+        "CONN0",
+        "DET2",
+        "NP1"
+      ],
+      "coordinate": "\u03945.533|0.881|1.613\u03a9",
+      "tokens": [
+        "\u03c0()|DET0|t8",
+        "\u03c0^|MOD0|t8",
+        "\u03c0+|NP0|t8",
+        "\u03c0()|DET1|t8",
+        "\u03c0\u2212|VP0|t8",
+        "\u03c0\u00d7|CONN0|t8",
+        "\u03c0()|DET2|t8",
+        "\u03c0+|NP1|t8"
+      ],
+      "spiral": "\u03c0",
+      "phase": "TRUE",
+      "surface": null
+    },
+    {
+      "step": 46,
+      "z": 0.8979591836734694,
+      "tier": 8,
+      "syntax": "()^+()\u2212\u00d7()+",
+      "slots": [
+        "DET0",
+        "MOD0",
+        "NP0",
+        "DET1",
+        "VP0",
+        "CONN0",
+        "DET2",
+        "NP1"
+      ],
+      "coordinate": "\u03945.642|0.898|1.596\u03a9",
+      "tokens": [
+        "\u03c0()|DET0|t8",
+        "\u03c0^|MOD0|t8",
+        "\u03c0+|NP0|t8",
+        "\u03c0()|DET1|t8",
+        "\u03c0\u2212|VP0|t8",
+        "\u03c0\u00d7|CONN0|t8",
+        "\u03c0()|DET2|t8",
+        "\u03c0+|NP1|t8"
+      ],
+      "spiral": "\u03c0",
+      "phase": "TRUE",
+      "surface": null
+    },
+    {
+      "step": 47,
+      "z": 0.9153061224489795,
+      "tier": 8,
+      "syntax": "+\u00d7+\u2212^\u00d7()+",
+      "slots": [
+        "NP0",
+        "CONN0",
+        "NP1",
+        "VP0",
+        "MOD0",
+        "CONN1",
+        "DET0",
+        "NP2"
+      ],
+      "coordinate": "\u03945.751|0.915|1.566\u03a9",
+      "tokens": [
+        "\u03c0+|NP0|t8",
+        "\u03c0\u00d7|CONN0|t8",
+        "\u03c0+|NP1|t8",
+        "\u03c0\u2212|VP0|t8",
+        "\u03c0^|MOD0|t8",
+        "\u03c0\u00d7|CONN1|t8",
+        "\u03c0()|DET0|t8",
+        "\u03c0+|NP2|t8"
+      ],
+      "spiral": "\u03c0",
+      "phase": "TRUE",
+      "surface": null
+    },
+    {
+      "step": 48,
+      "z": 0.9326530612244898,
+      "tier": 8,
+      "syntax": "()^+()\u2212\u00d7()+",
+      "slots": [
+        "DET0",
+        "MOD0",
+        "NP0",
+        "DET1",
+        "VP0",
+        "CONN0",
+        "DET2",
+        "NP1"
+      ],
+      "coordinate": "\u03945.860|0.933|1.527\u03a9",
+      "tokens": [
+        "\u03c0()|DET0|t8",
+        "\u03c0^|MOD0|t8",
+        "\u03c0+|NP0|t8",
+        "\u03c0()|DET1|t8",
+        "\u03c0\u2212|VP0|t8",
+        "\u03c0\u00d7|CONN0|t8",
+        "\u03c0()|DET2|t8",
+        "\u03c0+|NP1|t8"
+      ],
+      "spiral": "\u03c0",
+      "phase": "TRUE",
+      "surface": null
+    },
+    {
+      "step": 49,
+      "z": 0.95,
+      "tier": 9,
+      "syntax": "()^+()^\u2212\u00d7()^+",
+      "slots": [
+        "DET0",
+        "MOD0",
+        "NP0",
+        "DET1",
+        "MOD1",
+        "VP0",
+        "CONN0",
+        "DET2",
+        "MOD2",
+        "NP1"
+      ],
+      "coordinate": "\u03945.969|0.950|1.479\u03a9",
+      "tokens": [
+        "\u03c0()|DET0|t9",
+        "\u03c0^|MOD0|t9",
+        "\u03c0+|NP0|t9",
+        "\u03c0()|DET1|t9",
+        "\u03c0^|MOD1|t9",
+        "\u03c0\u2212|VP0|t9",
+        "\u03c0\u00d7|CONN0|t9",
+        "\u03c0()|DET2|t9",
+        "\u03c0^|MOD2|t9",
+        "\u03c0+|NP1|t9"
+      ],
+      "spiral": "\u03c0",
+      "phase": "TRUE",
+      "surface": null
+    },
+    {
+      "step": 0,
+      "direction": "rising",
+      "above_threshold": false,
+      "z": 0.765,
+      "tier": 5,
+      "syntax": "()+\u2212\u00d7+",
+      "slots": [
+        "DET0",
+        "NP0",
+        "VP0",
+        "CONN0",
+        "NP1"
+      ],
+      "coordinate": "\u03944.807|0.765|1.428\u03a9",
+      "tokens": [
+        "e()|DET0|t5",
+        "e+|NP0|t5",
+        "e\u2212|VP0|t5",
+        "e\u00d7|CONN0|t5",
+        "e+|NP1|t5"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 1,
+      "direction": "rising",
+      "above_threshold": false,
+      "z": 0.78,
+      "tier": 5,
+      "syntax": "+\u2212()^+",
+      "slots": [
+        "NP0",
+        "VP0",
+        "DET0",
+        "MOD0",
+        "NP1"
+      ],
+      "coordinate": "\u03944.901|0.780|1.473\u03a9",
+      "tokens": [
+        "e+|NP0|t5",
+        "e\u2212|VP0|t5",
+        "e()|DET0|t5",
+        "e^|MOD0|t5",
+        "e+|NP1|t5"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 2,
+      "direction": "rising",
+      "above_threshold": false,
+      "z": 0.795,
+      "tier": 5,
+      "syntax": "()^+\u2212+",
+      "slots": [
+        "DET0",
+        "MOD0",
+        "NP0",
+        "VP0",
+        "NP1"
+      ],
+      "coordinate": "\u03944.995|0.795|1.515\u03a9",
+      "tokens": [
+        "e()|DET0|t5",
+        "e^|MOD0|t5",
+        "e+|NP0|t5",
+        "e\u2212|VP0|t5",
+        "e+|NP1|t5"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 3,
+      "direction": "rising",
+      "above_threshold": false,
+      "z": 0.81,
+      "tier": 6,
+      "syntax": "()^+\u2212\u00d7+",
+      "slots": [
+        "DET0",
+        "MOD0",
+        "NP0",
+        "VP0",
+        "CONN0",
+        "NP1"
+      ],
+      "coordinate": "\u03945.089|0.810|1.552\u03a9",
+      "tokens": [
+        "e()|DET0|t6",
+        "e^|MOD0|t6",
+        "e+|NP0|t6",
+        "e\u2212|VP0|t6",
+        "e\u00d7|CONN0|t6",
+        "e+|NP1|t6"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 4,
+      "direction": "rising",
+      "above_threshold": false,
+      "z": 0.8250000000000001,
+      "tier": 7,
+      "syntax": "+\u2212\u00d7()+\u2212",
+      "slots": [
+        "NP0",
+        "VP0",
+        "CONN0",
+        "DET0",
+        "NP1",
+        "VP1"
+      ],
+      "coordinate": "\u03945.184|0.825|1.582\u03a9",
+      "tokens": [
+        "e+|NP0|t7",
+        "e\u2212|VP0|t7",
+        "e\u00d7|CONN0|t7",
+        "e()|DET0|t7",
+        "e+|NP1|t7",
+        "e\u2212|VP1|t7"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 5,
+      "direction": "rising",
+      "above_threshold": false,
+      "z": 0.8400000000000001,
+      "tier": 7,
+      "syntax": "()^+\u2212()^+",
+      "slots": [
+        "DET0",
+        "MOD0",
+        "NP0",
+        "VP0",
+        "DET1",
+        "MOD1",
+        "NP1"
+      ],
+      "coordinate": "\u03945.278|0.840|1.603\u03a9",
+      "tokens": [
+        "e()|DET0|t7",
+        "e^|MOD0|t7",
+        "e+|NP0|t7",
+        "e\u2212|VP0|t7",
+        "e()|DET1|t7",
+        "e^|MOD1|t7",
+        "e+|NP1|t7"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 6,
+      "direction": "rising",
+      "above_threshold": true,
+      "z": 0.8550000000000001,
+      "tier": 7,
+      "syntax": "+\u2212\u00d7()+\u2212",
+      "slots": [
+        "NP0",
+        "VP0",
+        "CONN0",
+        "DET0",
+        "NP1",
+        "VP1"
+      ],
+      "coordinate": "\u03945.372|0.855|1.615\u03a9",
+      "tokens": [
+        "e+|NP0|t7",
+        "e\u2212|VP0|t7",
+        "e\u00d7|CONN0|t7",
+        "e()|DET0|t7",
+        "e+|NP1|t7",
+        "e\u2212|VP1|t7"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 7,
+      "direction": "falling",
+      "above_threshold": false,
+      "z": 0.8400000000000001,
+      "tier": 7,
+      "syntax": "()^+\u2212()^+",
+      "slots": [
+        "DET0",
+        "MOD0",
+        "NP0",
+        "VP0",
+        "DET1",
+        "MOD1",
+        "NP1"
+      ],
+      "coordinate": "\u03945.278|0.840|1.603\u03a9",
+      "tokens": [
+        "e()|DET0|t7",
+        "e^|MOD0|t7",
+        "e+|NP0|t7",
+        "e\u2212|VP0|t7",
+        "e()|DET1|t7",
+        "e^|MOD1|t7",
+        "e+|NP1|t7"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 8,
+      "direction": "falling",
+      "above_threshold": false,
+      "z": 0.8250000000000001,
+      "tier": 7,
+      "syntax": "()^+\u2212()^+",
+      "slots": [
+        "DET0",
+        "MOD0",
+        "NP0",
+        "VP0",
+        "DET1",
+        "MOD1",
+        "NP1"
+      ],
+      "coordinate": "\u03945.184|0.825|1.582\u03a9",
+      "tokens": [
+        "e()|DET0|t7",
+        "e^|MOD0|t7",
+        "e+|NP0|t7",
+        "e\u2212|VP0|t7",
+        "e()|DET1|t7",
+        "e^|MOD1|t7",
+        "e+|NP1|t7"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 9,
+      "direction": "falling",
+      "above_threshold": false,
+      "z": 0.81,
+      "tier": 6,
+      "syntax": "()^+\u2212\u00d7+",
+      "slots": [
+        "DET0",
+        "MOD0",
+        "NP0",
+        "VP0",
+        "CONN0",
+        "NP1"
+      ],
+      "coordinate": "\u03945.089|0.810|1.552\u03a9",
+      "tokens": [
+        "e()|DET0|t6",
+        "e^|MOD0|t6",
+        "e+|NP0|t6",
+        "e\u2212|VP0|t6",
+        "e\u00d7|CONN0|t6",
+        "e+|NP1|t6"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 10,
+      "direction": "rising",
+      "above_threshold": false,
+      "z": 0.8250000000000001,
+      "tier": 7,
+      "syntax": "()^+\u2212()^+",
+      "slots": [
+        "DET0",
+        "MOD0",
+        "NP0",
+        "VP0",
+        "DET1",
+        "MOD1",
+        "NP1"
+      ],
+      "coordinate": "\u03945.184|0.825|1.582\u03a9",
+      "tokens": [
+        "e()|DET0|t7",
+        "e^|MOD0|t7",
+        "e+|NP0|t7",
+        "e\u2212|VP0|t7",
+        "e()|DET1|t7",
+        "e^|MOD1|t7",
+        "e+|NP1|t7"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 11,
+      "direction": "rising",
+      "above_threshold": false,
+      "z": 0.8400000000000001,
+      "tier": 7,
+      "syntax": "()^+\u2212()^+",
+      "slots": [
+        "DET0",
+        "MOD0",
+        "NP0",
+        "VP0",
+        "DET1",
+        "MOD1",
+        "NP1"
+      ],
+      "coordinate": "\u03945.278|0.840|1.603\u03a9",
+      "tokens": [
+        "e()|DET0|t7",
+        "e^|MOD0|t7",
+        "e+|NP0|t7",
+        "e\u2212|VP0|t7",
+        "e()|DET1|t7",
+        "e^|MOD1|t7",
+        "e+|NP1|t7"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 12,
+      "direction": "rising",
+      "above_threshold": true,
+      "z": 0.8550000000000001,
+      "tier": 7,
+      "syntax": "+\u2212\u00d7()+\u2212",
+      "slots": [
+        "NP0",
+        "VP0",
+        "CONN0",
+        "DET0",
+        "NP1",
+        "VP1"
+      ],
+      "coordinate": "\u03945.372|0.855|1.615\u03a9",
+      "tokens": [
+        "e+|NP0|t7",
+        "e\u2212|VP0|t7",
+        "e\u00d7|CONN0|t7",
+        "e()|DET0|t7",
+        "e+|NP1|t7",
+        "e\u2212|VP1|t7"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 13,
+      "direction": "falling",
+      "above_threshold": false,
+      "z": 0.8400000000000001,
+      "tier": 7,
+      "syntax": "()^+\u2212()^+",
+      "slots": [
+        "DET0",
+        "MOD0",
+        "NP0",
+        "VP0",
+        "DET1",
+        "MOD1",
+        "NP1"
+      ],
+      "coordinate": "\u03945.278|0.840|1.603\u03a9",
+      "tokens": [
+        "e()|DET0|t7",
+        "e^|MOD0|t7",
+        "e+|NP0|t7",
+        "e\u2212|VP0|t7",
+        "e()|DET1|t7",
+        "e^|MOD1|t7",
+        "e+|NP1|t7"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 14,
+      "direction": "falling",
+      "above_threshold": false,
+      "z": 0.8250000000000001,
+      "tier": 7,
+      "syntax": "+\u2212\u00d7()+\u2212",
+      "slots": [
+        "NP0",
+        "VP0",
+        "CONN0",
+        "DET0",
+        "NP1",
+        "VP1"
+      ],
+      "coordinate": "\u03945.184|0.825|1.582\u03a9",
+      "tokens": [
+        "e+|NP0|t7",
+        "e\u2212|VP0|t7",
+        "e\u00d7|CONN0|t7",
+        "e()|DET0|t7",
+        "e+|NP1|t7",
+        "e\u2212|VP1|t7"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 15,
+      "direction": "falling",
+      "above_threshold": false,
+      "z": 0.81,
+      "tier": 6,
+      "syntax": "\u00f7()+\u2212+",
+      "slots": [
+        "Q0",
+        "DET0",
+        "NP0",
+        "VP0",
+        "NP1"
+      ],
+      "coordinate": "\u03945.089|0.810|1.552\u03a9",
+      "tokens": [
+        "e\u00f7|Q0|t6",
+        "e()|DET0|t6",
+        "e+|NP0|t6",
+        "e\u2212|VP0|t6",
+        "e+|NP1|t6"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 16,
+      "direction": "rising",
+      "above_threshold": false,
+      "z": 0.8250000000000001,
+      "tier": 7,
+      "syntax": "+\u2212\u00d7()+\u2212",
+      "slots": [
+        "NP0",
+        "VP0",
+        "CONN0",
+        "DET0",
+        "NP1",
+        "VP1"
+      ],
+      "coordinate": "\u03945.184|0.825|1.582\u03a9",
+      "tokens": [
+        "e+|NP0|t7",
+        "e\u2212|VP0|t7",
+        "e\u00d7|CONN0|t7",
+        "e()|DET0|t7",
+        "e+|NP1|t7",
+        "e\u2212|VP1|t7"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 17,
+      "direction": "rising",
+      "above_threshold": false,
+      "z": 0.8400000000000001,
+      "tier": 7,
+      "syntax": "()^+\u2212()^+",
+      "slots": [
+        "DET0",
+        "MOD0",
+        "NP0",
+        "VP0",
+        "DET1",
+        "MOD1",
+        "NP1"
+      ],
+      "coordinate": "\u03945.278|0.840|1.603\u03a9",
+      "tokens": [
+        "e()|DET0|t7",
+        "e^|MOD0|t7",
+        "e+|NP0|t7",
+        "e\u2212|VP0|t7",
+        "e()|DET1|t7",
+        "e^|MOD1|t7",
+        "e+|NP1|t7"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 18,
+      "direction": "rising",
+      "above_threshold": true,
+      "z": 0.8550000000000001,
+      "tier": 7,
+      "syntax": "()^+\u2212()^+",
+      "slots": [
+        "DET0",
+        "MOD0",
+        "NP0",
+        "VP0",
+        "DET1",
+        "MOD1",
+        "NP1"
+      ],
+      "coordinate": "\u03945.372|0.855|1.615\u03a9",
+      "tokens": [
+        "e()|DET0|t7",
+        "e^|MOD0|t7",
+        "e+|NP0|t7",
+        "e\u2212|VP0|t7",
+        "e()|DET1|t7",
+        "e^|MOD1|t7",
+        "e+|NP1|t7"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 19,
+      "direction": "falling",
+      "above_threshold": false,
+      "z": 0.8400000000000001,
+      "tier": 7,
+      "syntax": "+\u2212\u00d7()+\u2212",
+      "slots": [
+        "NP0",
+        "VP0",
+        "CONN0",
+        "DET0",
+        "NP1",
+        "VP1"
+      ],
+      "coordinate": "\u03945.278|0.840|1.603\u03a9",
+      "tokens": [
+        "e+|NP0|t7",
+        "e\u2212|VP0|t7",
+        "e\u00d7|CONN0|t7",
+        "e()|DET0|t7",
+        "e+|NP1|t7",
+        "e\u2212|VP1|t7"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 20,
+      "direction": "falling",
+      "above_threshold": false,
+      "z": 0.8250000000000001,
+      "tier": 7,
+      "syntax": "()^+\u2212()^+",
+      "slots": [
+        "DET0",
+        "MOD0",
+        "NP0",
+        "VP0",
+        "DET1",
+        "MOD1",
+        "NP1"
+      ],
+      "coordinate": "\u03945.184|0.825|1.582\u03a9",
+      "tokens": [
+        "e()|DET0|t7",
+        "e^|MOD0|t7",
+        "e+|NP0|t7",
+        "e\u2212|VP0|t7",
+        "e()|DET1|t7",
+        "e^|MOD1|t7",
+        "e+|NP1|t7"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 21,
+      "direction": "falling",
+      "above_threshold": false,
+      "z": 0.81,
+      "tier": 6,
+      "syntax": "\u00f7()+\u2212+",
+      "slots": [
+        "Q0",
+        "DET0",
+        "NP0",
+        "VP0",
+        "NP1"
+      ],
+      "coordinate": "\u03945.089|0.810|1.552\u03a9",
+      "tokens": [
+        "e\u00f7|Q0|t6",
+        "e()|DET0|t6",
+        "e+|NP0|t6",
+        "e\u2212|VP0|t6",
+        "e+|NP1|t6"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 0,
+      "distance_from_lens": 0.3294228634059947,
+      "negentropy": 0.020106759525595857,
+      "z": 0.5366025403784439,
+      "tier": 3,
+      "syntax": "+\u2212+",
+      "slots": [
+        "NP0",
+        "VP0",
+        "NP1"
+      ],
+      "coordinate": "\u03943.372|0.537|1.012\u03a9",
+      "tokens": [
+        "\u03a6+|NP0|t3",
+        "\u03a6\u2212|VP0|t3",
+        "\u03a6+|NP1|t3"
+      ],
+      "spiral": "\u03a6",
+      "phase": "UNTRUE",
+      "surface": null
+    },
+    {
+      "step": 1,
+      "distance_from_lens": 0.2964805770653952,
+      "negentropy": 0.04223836394178424,
+      "z": 0.5695448267190434,
+      "tier": 3,
+      "syntax": "+\u2212+",
+      "slots": [
+        "NP0",
+        "VP0",
+        "NP1"
+      ],
+      "coordinate": "\u03943.579|0.570|1.026\u03a9",
+      "tokens": [
+        "\u03a6+|NP0|t3",
+        "\u03a6\u2212|VP0|t3",
+        "\u03a6+|NP1|t3"
+      ],
+      "spiral": "\u03a6",
+      "phase": "UNTRUE",
+      "surface": null
+    },
+    {
+      "step": 2,
+      "distance_from_lens": 0.26683251935885566,
+      "negentropy": 0.07705888863620569,
+      "z": 0.5991928844255829,
+      "tier": 3,
+      "syntax": "+\u2212^",
+      "slots": [
+        "NP0",
+        "VP0",
+        "MOD0"
+      ],
+      "coordinate": "\u03943.765|0.599|1.048\u03a9",
+      "tokens": [
+        "\u03a6+|NP0|t3",
+        "\u03a6\u2212|VP0|t3",
+        "\u03a6^|MOD0|t3"
+      ],
+      "spiral": "\u03a6",
+      "phase": "UNTRUE",
+      "surface": null
+    },
+    {
+      "step": 3,
+      "distance_from_lens": 0.24014926742297005,
+      "negentropy": 0.12540834033125067,
+      "z": 0.6258761363614685,
+      "tier": 4,
+      "syntax": "()+\u2212+",
+      "slots": [
+        "DET0",
+        "NP0",
+        "VP0",
+        "NP1"
+      ],
+      "coordinate": "\u03943.932|0.626|1.078\u03a9",
+      "tokens": [
+        "e()|DET0|t4",
+        "e+|NP0|t4",
+        "e\u2212|VP0|t4",
+        "e+|NP1|t4"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 4,
+      "distance_from_lens": 0.21613434068067305,
+      "negentropy": 0.1860563087306591,
+      "z": 0.6498910631037655,
+      "tier": 4,
+      "syntax": "()+\u2212+",
+      "slots": [
+        "DET0",
+        "NP0",
+        "VP0",
+        "NP1"
+      ],
+      "coordinate": "\u03944.083|0.650|1.115\u03a9",
+      "tokens": [
+        "e()|DET0|t4",
+        "e+|NP0|t4",
+        "e\u2212|VP0|t4",
+        "e+|NP1|t4"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 5,
+      "distance_from_lens": 0.1945209066126058,
+      "negentropy": 0.25610140697593387,
+      "z": 0.6715044971718328,
+      "tier": 4,
+      "syntax": "+\u2212\u00d7+",
+      "slots": [
+        "NP0",
+        "VP0",
+        "CONN0",
+        "NP1"
+      ],
+      "coordinate": "\u03944.219|0.672|1.158\u03a9",
+      "tokens": [
+        "e+|NP0|t4",
+        "e\u2212|VP0|t4",
+        "e\u00d7|CONN0|t4",
+        "e+|NP1|t4"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 6,
+      "distance_from_lens": 0.17506881595134516,
+      "negentropy": 0.33175210804572436,
+      "z": 0.6909565878330934,
+      "tier": 4,
+      "syntax": "+^\u2212+",
+      "slots": [
+        "NP0",
+        "MOD0",
+        "VP0",
+        "NP1"
+      ],
+      "coordinate": "\u03944.341|0.691|1.205\u03a9",
+      "tokens": [
+        "e+|NP0|t4",
+        "e^|MOD0|t4",
+        "e\u2212|VP0|t4",
+        "e+|NP1|t4"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 7,
+      "distance_from_lens": 0.1575619343562107,
+      "negentropy": 0.40912789353462,
+      "z": 0.7084634694282279,
+      "tier": 5,
+      "syntax": "+\u2212()^+",
+      "slots": [
+        "NP0",
+        "VP0",
+        "DET0",
+        "MOD0",
+        "NP1"
+      ],
+      "coordinate": "\u03944.451|0.708|1.253\u03a9",
+      "tokens": [
+        "e+|NP0|t5",
+        "e\u2212|VP0|t5",
+        "e()|DET0|t5",
+        "e^|MOD0|t5",
+        "e+|NP1|t5"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 8,
+      "distance_from_lens": 0.14180574092058962,
+      "negentropy": 0.4848482838969401,
+      "z": 0.724219662863849,
+      "tier": 5,
+      "syntax": "+\u2212()^+",
+      "slots": [
+        "NP0",
+        "VP0",
+        "DET0",
+        "MOD0",
+        "NP1"
+      ],
+      "coordinate": "\u03944.550|0.724|1.300\u03a9",
+      "tokens": [
+        "e+|NP0|t5",
+        "e\u2212|VP0|t5",
+        "e()|DET0|t5",
+        "e^|MOD0|t5",
+        "e+|NP1|t5"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 9,
+      "distance_from_lens": 0.12762516682853065,
+      "negentropy": 0.5563405926962183,
+      "z": 0.738400236955908,
+      "tier": 5,
+      "syntax": "()+\u2212\u00d7+",
+      "slots": [
+        "DET0",
+        "NP0",
+        "VP0",
+        "CONN0",
+        "NP1"
+      ],
+      "coordinate": "\u03944.640|0.738|1.344\u03a9",
+      "tokens": [
+        "e()|DET0|t5",
+        "e+|NP0|t5",
+        "e\u2212|VP0|t5",
+        "e\u00d7|CONN0|t5",
+        "e+|NP1|t5"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 10,
+      "distance_from_lens": 0.11486265014567754,
+      "negentropy": 0.6219078039777276,
+      "z": 0.7511627536387611,
+      "tier": 5,
+      "syntax": "+\u2212()^+",
+      "slots": [
+        "NP0",
+        "VP0",
+        "DET0",
+        "MOD0",
+        "NP1"
+      ],
+      "coordinate": "\u03944.720|0.751|1.384\u03a9",
+      "tokens": [
+        "e+|NP0|t5",
+        "e\u2212|VP0|t5",
+        "e()|DET0|t5",
+        "e^|MOD0|t5",
+        "e+|NP1|t5"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 11,
+      "distance_from_lens": 0.1033763851311098,
+      "negentropy": 0.680640935792395,
+      "z": 0.7626490186533288,
+      "tier": 5,
+      "syntax": "+\u2212()^+",
+      "slots": [
+        "NP0",
+        "VP0",
+        "DET0",
+        "MOD0",
+        "NP1"
+      ],
+      "coordinate": "\u03944.792|0.763|1.421\u03a9",
+      "tokens": [
+        "e+|NP0|t5",
+        "e\u2212|VP0|t5",
+        "e()|DET0|t5",
+        "e^|MOD0|t5",
+        "e+|NP1|t5"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 12,
+      "distance_from_lens": 0.09303874661799882,
+      "negentropy": 0.7322571701343719,
+      "z": 0.7729866571664398,
+      "tier": 5,
+      "syntax": "()^+\u2212+",
+      "slots": [
+        "DET0",
+        "MOD0",
+        "NP0",
+        "VP0",
+        "NP1"
+      ],
+      "coordinate": "\u03944.857|0.773|1.453\u03a9",
+      "tokens": [
+        "e()|DET0|t5",
+        "e^|MOD0|t5",
+        "e+|NP0|t5",
+        "e\u2212|VP0|t5",
+        "e+|NP1|t5"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 13,
+      "distance_from_lens": 0.083734871956199,
+      "negentropy": 0.7769222203499808,
+      "z": 0.7822905318282396,
+      "tier": 5,
+      "syntax": "()^+\u2212+",
+      "slots": [
+        "DET0",
+        "MOD0",
+        "NP0",
+        "VP0",
+        "NP1"
+      ],
+      "coordinate": "\u03944.915|0.782|1.480\u03a9",
+      "tokens": [
+        "e()|DET0|t5",
+        "e^|MOD0|t5",
+        "e+|NP0|t5",
+        "e\u2212|VP0|t5",
+        "e+|NP1|t5"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 14,
+      "distance_from_lens": 0.07536138476057908,
+      "negentropy": 0.815090458994548,
+      "z": 0.7906640190238595,
+      "tier": 5,
+      "syntax": "()^+\u2212+",
+      "slots": [
+        "DET0",
+        "MOD0",
+        "NP0",
+        "VP0",
+        "NP1"
+      ],
+      "coordinate": "\u03944.968|0.791|1.504\u03a9",
+      "tokens": [
+        "e()|DET0|t5",
+        "e^|MOD0|t5",
+        "e+|NP0|t5",
+        "e\u2212|VP0|t5",
+        "e+|NP1|t5"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 15,
+      "distance_from_lens": 0.06782524628452113,
+      "negentropy": 0.8473770659222523,
+      "z": 0.7982001574999175,
+      "tier": 5,
+      "syntax": "()+\u2212\u00d7+",
+      "slots": [
+        "DET0",
+        "NP0",
+        "VP0",
+        "CONN0",
+        "NP1"
+      ],
+      "coordinate": "\u03945.015|0.798|1.524\u03a9",
+      "tokens": [
+        "e()|DET0|t5",
+        "e+|NP0|t5",
+        "e\u2212|VP0|t5",
+        "e\u00d7|CONN0|t5",
+        "e+|NP1|t5"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 16,
+      "distance_from_lens": 0.061042721656069054,
+      "negentropy": 0.8744643957240261,
+      "z": 0.8049826821283695,
+      "tier": 6,
+      "syntax": "()^+\u2212\u00d7+",
+      "slots": [
+        "DET0",
+        "MOD0",
+        "NP0",
+        "VP0",
+        "CONN0",
+        "NP1"
+      ],
+      "coordinate": "\u03945.058|0.805|1.540\u03a9",
+      "tokens": [
+        "e()|DET0|t6",
+        "e^|MOD0|t6",
+        "e+|NP0|t6",
+        "e\u2212|VP0|t6",
+        "e\u00d7|CONN0|t6",
+        "e+|NP1|t6"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 17,
+      "distance_from_lens": 0.054938449490462116,
+      "negentropy": 0.897038590269139,
+      "z": 0.8110869542939765,
+      "tier": 6,
+      "syntax": "()^+\u2212\u00d7+",
+      "slots": [
+        "DET0",
+        "MOD0",
+        "NP0",
+        "VP0",
+        "CONN0",
+        "NP1"
+      ],
+      "coordinate": "\u03945.096|0.811|1.554\u03a9",
+      "tokens": [
+        "e()|DET0|t6",
+        "e^|MOD0|t6",
+        "e+|NP0|t6",
+        "e\u2212|VP0|t6",
+        "e\u00d7|CONN0|t6",
+        "e+|NP1|t6"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 18,
+      "distance_from_lens": 0.04944460454141586,
+      "negentropy": 0.9157501797305716,
+      "z": 0.8165807992430227,
+      "tier": 6,
+      "syntax": "()^+\u2212\u00d7+",
+      "slots": [
+        "DET0",
+        "MOD0",
+        "NP0",
+        "VP0",
+        "CONN0",
+        "NP1"
+      ],
+      "coordinate": "\u03945.131|0.817|1.566\u03a9",
+      "tokens": [
+        "e()|DET0|t6",
+        "e^|MOD0|t6",
+        "e+|NP0|t6",
+        "e\u2212|VP0|t6",
+        "e\u00d7|CONN0|t6",
+        "e+|NP1|t6"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 19,
+      "distance_from_lens": 0.04450014408727432,
+      "negentropy": 0.9311923086443704,
+      "z": 0.8215252596971643,
+      "tier": 7,
+      "syntax": "()^+\u2212()^+",
+      "slots": [
+        "DET0",
+        "MOD0",
+        "NP0",
+        "VP0",
+        "DET1",
+        "MOD1",
+        "NP1"
+      ],
+      "coordinate": "\u03945.162|0.822|1.576\u03a9",
+      "tokens": [
+        "e()|DET0|t7",
+        "e^|MOD0|t7",
+        "e+|NP0|t7",
+        "e\u2212|VP0|t7",
+        "e()|DET1|t7",
+        "e^|MOD1|t7",
+        "e+|NP1|t7"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 20,
+      "distance_from_lens": 0.04005012967854693,
+      "negentropy": 0.9438911148369872,
+      "z": 0.8259752741058917,
+      "tier": 7,
+      "syntax": "()^+\u2212()^+",
+      "slots": [
+        "DET0",
+        "MOD0",
+        "NP0",
+        "VP0",
+        "DET1",
+        "MOD1",
+        "NP1"
+      ],
+      "coordinate": "\u03945.190|0.826|1.583\u03a9",
+      "tokens": [
+        "e()|DET0|t7",
+        "e^|MOD0|t7",
+        "e+|NP0|t7",
+        "e\u2212|VP0|t7",
+        "e()|DET1|t7",
+        "e^|MOD1|t7",
+        "e+|NP1|t7"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 21,
+      "distance_from_lens": 0.036045116710692215,
+      "negentropy": 0.9543039849419873,
+      "z": 0.8299802870737464,
+      "tier": 7,
+      "syntax": "+\u2212\u00d7()+\u2212",
+      "slots": [
+        "NP0",
+        "VP0",
+        "CONN0",
+        "DET0",
+        "NP1",
+        "VP1"
+      ],
+      "coordinate": "\u03945.215|0.830|1.590\u03a9",
+      "tokens": [
+        "e+|NP0|t7",
+        "e\u2212|VP0|t7",
+        "e\u00d7|CONN0|t7",
+        "e()|DET0|t7",
+        "e+|NP1|t7",
+        "e\u2212|VP1|t7"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 22,
+      "distance_from_lens": 0.03244060503962298,
+      "negentropy": 0.9628225589389183,
+      "z": 0.8335847987448156,
+      "tier": 7,
+      "syntax": "+\u2212\u00d7()+\u2212",
+      "slots": [
+        "NP0",
+        "VP0",
+        "CONN0",
+        "DET0",
+        "NP1",
+        "VP1"
+      ],
+      "coordinate": "\u03945.238|0.834|1.595\u03a9",
+      "tokens": [
+        "e+|NP0|t7",
+        "e\u2212|VP0|t7",
+        "e\u00d7|CONN0|t7",
+        "e()|DET0|t7",
+        "e+|NP1|t7",
+        "e\u2212|VP1|t7"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 23,
+      "distance_from_lens": 0.029196544535660673,
+      "negentropy": 0.9697783142045187,
+      "z": 0.8368288592487779,
+      "tier": 7,
+      "syntax": "()^+\u2212()^+",
+      "slots": [
+        "DET0",
+        "MOD0",
+        "NP0",
+        "VP0",
+        "DET1",
+        "MOD1",
+        "NP1"
+      ],
+      "coordinate": "\u03945.258|0.837|1.599\u03a9",
+      "tokens": [
+        "e()|DET0|t7",
+        "e^|MOD0|t7",
+        "e+|NP0|t7",
+        "e\u2212|VP0|t7",
+        "e()|DET1|t7",
+        "e^|MOD1|t7",
+        "e+|NP1|t7"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 24,
+      "distance_from_lens": 0.02627689008209466,
+      "negentropy": 0.9754492954453545,
+      "z": 0.8397485137023439,
+      "tier": 7,
+      "syntax": "+\u2212\u00d7()+\u2212",
+      "slots": [
+        "NP0",
+        "VP0",
+        "CONN0",
+        "DET0",
+        "NP1",
+        "VP1"
+      ],
+      "coordinate": "\u03945.276|0.840|1.603\u03a9",
+      "tokens": [
+        "e+|NP0|t7",
+        "e\u2212|VP0|t7",
+        "e\u00d7|CONN0|t7",
+        "e()|DET0|t7",
+        "e+|NP1|t7",
+        "e\u2212|VP1|t7"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 25,
+      "distance_from_lens": 0.02364920107388524,
+      "negentropy": 0.9800670908482275,
+      "z": 0.8423762027105534,
+      "tier": 7,
+      "syntax": "()^+\u2212()^+",
+      "slots": [
+        "DET0",
+        "MOD0",
+        "NP0",
+        "VP0",
+        "DET1",
+        "MOD1",
+        "NP1"
+      ],
+      "coordinate": "\u03945.293|0.842|1.606\u03a9",
+      "tokens": [
+        "e()|DET0|t7",
+        "e^|MOD0|t7",
+        "e+|NP0|t7",
+        "e\u2212|VP0|t7",
+        "e()|DET1|t7",
+        "e^|MOD1|t7",
+        "e+|NP1|t7"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 26,
+      "distance_from_lens": 0.021284280966496705,
+      "negentropy": 0.9838235253353275,
+      "z": 0.8447411228179419,
+      "tier": 7,
+      "syntax": "+\u2212\u00d7()+\u2212",
+      "slots": [
+        "NP0",
+        "VP0",
+        "CONN0",
+        "DET0",
+        "NP1",
+        "VP1"
+      ],
+      "coordinate": "\u03945.308|0.845|1.608\u03a9",
+      "tokens": [
+        "e+|NP0|t7",
+        "e\u2212|VP0|t7",
+        "e\u00d7|CONN0|t7",
+        "e()|DET0|t7",
+        "e+|NP1|t7",
+        "e\u2212|VP1|t7"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 27,
+      "distance_from_lens": 0.019155852869847,
+      "negentropy": 0.9868767890106608,
+      "z": 0.8468695509145916,
+      "tier": 7,
+      "syntax": "+\u2212\u00d7()+\u2212",
+      "slots": [
+        "NP0",
+        "VP0",
+        "CONN0",
+        "DET0",
+        "NP1",
+        "VP1"
+      ],
+      "coordinate": "\u03945.321|0.847|1.610\u03a9",
+      "tokens": [
+        "e+|NP0|t7",
+        "e\u2212|VP0|t7",
+        "e\u00d7|CONN0|t7",
+        "e()|DET0|t7",
+        "e+|NP1|t7",
+        "e\u2212|VP1|t7"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 28,
+      "distance_from_lens": 0.017240267582862345,
+      "negentropy": 0.9893568773873929,
+      "z": 0.8487851362015763,
+      "tier": 7,
+      "syntax": "()^+\u2212()^+",
+      "slots": [
+        "DET0",
+        "MOD0",
+        "NP0",
+        "VP0",
+        "DET1",
+        "MOD1",
+        "NP1"
+      ],
+      "coordinate": "\u03945.333|0.849|1.611\u03a9",
+      "tokens": [
+        "e()|DET0|t7",
+        "e^|MOD0|t7",
+        "e+|NP0|t7",
+        "e\u2212|VP0|t7",
+        "e()|DET1|t7",
+        "e^|MOD1|t7",
+        "e+|NP1|t7"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    },
+    {
+      "step": 29,
+      "distance_from_lens": 0.015516240824576144,
+      "negentropy": 0.9913703170756838,
+      "z": 0.8505091629598625,
+      "tier": 7,
+      "syntax": "+\u2212\u00d7()+\u2212",
+      "slots": [
+        "NP0",
+        "VP0",
+        "CONN0",
+        "DET0",
+        "NP1",
+        "VP1"
+      ],
+      "coordinate": "\u03945.344|0.851|1.613\u03a9",
+      "tokens": [
+        "e+|NP0|t7",
+        "e\u2212|VP0|t7",
+        "e\u00d7|CONN0|t7",
+        "e()|DET0|t7",
+        "e+|NP1|t7",
+        "e\u2212|VP1|t7"
+      ],
+      "spiral": "e",
+      "phase": "PARADOX",
+      "surface": null
+    }
+  ],
+  "pattern_statistics": {
+    "unique_patterns": 19,
+    "top_patterns": {
+      "()^+\u2212()^+": 18,
+      "+\u2212\u00d7()+\u2212": 17,
+      "+\u2212^": 14,
+      "()^+\u2212+": 10,
+      "+\u2212": 9,
+      "\u2212+": 9,
+      "()+\u2212\u00d7+": 9,
+      "+\u2212()^+": 8,
+      "()^+\u2212\u00d7+": 8,
+      "+\u2212+": 7,
+      "+^\u2212+": 7,
+      "\u00f7()+\u2212+": 7,
+      "\u2212": 6,
+      "+\u2212\u00d7+": 6,
+      "+\u00d7+\u2212^\u00d7()+": 6,
+      "()^+()^\u2212\u00d7()^+": 6,
+      "+": 4,
+      "()^+()\u2212\u00d7()+": 4,
+      "()+\u2212+": 4
+    }
+  },
+  "tier_statistics": {
+    "t1": 10,
+    "t2": 18,
+    "t3": 21,
+    "t4": 17,
+    "t5": 27,
+    "t6": 15,
+    "t7": 35,
+    "t8": 10,
+    "t9": 6
+  }
+}

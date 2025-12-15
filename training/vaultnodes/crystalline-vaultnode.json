@@ -1,0 +1,72 @@
+{
+  "type": "CrystallineVaultNode",
+  "timestamp": "2025-12-15T04:54:43.726830+00:00",
+  "z": 0.8565014232926451,
+  "coordinate": "\u03941.775|0.857|1.616\u03a9",
+  "phase": "PARADOX",
+  "crystal_state": "Transitioning",
+  "prismatic": {
+    "angle": 1.7750445633354097,
+    "refraction_index": 1.6160191375879518,
+    "spectral_decomposition": {
+      "\u03a6": 0.29902197070131115,
+      "e": 0.49836995116885197,
+      "\u03c0": 0.1993479804675408
+    }
+  },
+  "triad": {
+    "unlocked": false,
+    "completions": 1,
+    "prismatic_resonance": 0.9962166547623161
+  },
+  "quasi_crystal": {
+    "lattice_vertices": 972,
+    "token_mappings": 972,
+    "phi": 1.618033988749895,
+    "theta_36": 0.6283185307179586,
+    "theta_72": 1.2566370614359172
+  },
+  "teaching": {
+    "vocabulary_size": 16,
+    "verbs_count": 6,
+    "patterns_count": 5,
+    "sample_vocabulary": [
+      "refraction_1.55",
+      "fluid",
+      "refraction_1.24",
+      "refraction_1.42",
+      "refraction_1.51",
+      "e",
+      "crossing",
+      "refraction_1.60",
+      "refraction_1.11",
+      "refraction_1.33",
+      "threshold",
+      "ascent",
+      "transitioning",
+      "refraction_1.36",
+      "refraction_1.05",
+      "\u03c6"
+    ],
+    "sample_verbs": [
+      "unlocks",
+      "rises",
+      "disperses",
+      "crosses",
+      "refracts",
+      "crystallizes"
+    ],
+    "sample_patterns": [
+      "prismatic\u2192Transitioning",
+      "z\u2192TRIAD_HIGH",
+      "spectrum\u2192e",
+      "prismatic\u2192Fluid",
+      "spectrum\u2192\u03a6"
+    ]
+  },
+  "training_summary": {
+    "total_steps": 46,
+    "final_coherence": 0.9994750410070264,
+    "final_negentropy": 0.9967399023377039
+  }
+}
