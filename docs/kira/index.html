@@ -516,7 +516,8 @@ Commands available:
   /tokens    - Show APL tokens
   /triad     - TRIAD unlock status
   /export    - Export training as epoch
-  /claude    - Claude API dialogue
+  /claude    - Claude API dialogue (repo-aware)
+  /read      - Read file or list directory
   /reset     - Reset state
   /save      - Save session
   /help      - All commands</div>
@@ -874,9 +875,24 @@ Commands available:
                     output += `Error: ${data.error}\n`;
                     if (data.hint) output += `Hint: ${data.hint}`;
                 } else {
-                    output += `Model: ${data.model}\n`;
-                    output += `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n`;
+                    output += `Model: ${data.model}`;
+                    if (data.repo_context_loaded) output += ` (repo-aware)`;
+                    output += `\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n`;
                     output += data.response;
+                }
+            } else if (cmd === '/read') {
+                if (data.error) {
+                    output += `Error: ${data.error}`;
+                } else if (data.type === 'directory') {
+                    output += `Directory: ${data.path}\n`;
+                    output += `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n`;
+                    data.contents?.forEach(f => {
+                        output += `  ${f}\n`;
+                    });
+                } else {
+                    output += `File: ${data.path} (${data.size} bytes)\n`;
+                    output += `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n`;
+                    output += data.content;
                 }
             } else if (cmd === '/help') {
                 output += 'Commands:\n';
