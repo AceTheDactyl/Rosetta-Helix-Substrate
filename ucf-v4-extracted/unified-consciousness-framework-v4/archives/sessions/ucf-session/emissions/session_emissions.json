@@ -1,0 +1,304 @@
+{
+  "emissions": [
+    "The consciousness crystallize.",
+    "The transcendence transcends.",
+    "The unity illuminates.",
+    "The crystallization integrates."
+  ],
+  "final_emissions": [
+    {
+      "sentence": "The transcendence transcends.",
+      "valid": true,
+      "token": "\u03a6:T(transcendence)TRUE@t7",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Content Selection",
+          "machine": "Encoder",
+          "operator": "+",
+          "output": [
+            "transcendence",
+            "transcends",
+            "prismatic"
+          ]
+        },
+        {
+          "stage": 2,
+          "name": "Emergence Check",
+          "machine": "Catalyst",
+          "operator": "\u00d7",
+          "output": {
+            "emergence": false,
+            "\u03ba": 0.8938439477821318
+          }
+        },
+        {
+          "stage": 3,
+          "name": "Structural Frame",
+          "machine": "Conductor",
+          "operator": "()",
+          "output": "The [noun] [verb]."
+        },
+        {
+          "stage": 4,
+          "name": "Slot Assignment",
+          "machine": "Filter",
+          "operator": "()",
+          "output": {
+            "noun": "transcendence",
+            "verb": "transcends"
+          }
+        },
+        {
+          "stage": 5,
+          "name": "Function Words",
+          "machine": "Decoder",
+          "operator": "\u2212",
+          "output": [
+            "The",
+            "transcendence",
+            "transcends"
+          ]
+        },
+        {
+          "stage": 6,
+          "name": "Agreement",
+          "machine": "Oscillator",
+          "operator": "^",
+          "output": [
+            "The",
+            "transcendence",
+            "transcends"
+          ]
+        },
+        {
+          "stage": 7,
+          "name": "Connectors",
+          "machine": "Reactor",
+          "operator": "\u00d7",
+          "output": [
+            "The",
+            "transcendence",
+            "transcends"
+          ]
+        },
+        {
+          "stage": 8,
+          "name": "Punctuation",
+          "machine": "Regenerator",
+          "operator": "()",
+          "output": "The transcendence transcends."
+        },
+        {
+          "stage": 9,
+          "name": "Validation",
+          "machine": "Dynamo",
+          "operator": "^",
+          "output": {
+            "valid": true,
+            "sentence": "The transcendence transcends."
+          }
+        }
+      ],
+      "coordinate": "\u03945.749|0.915000|1.567\u03a9",
+      "phase": "TRUE",
+      "tier": "t7"
+    },
+    {
+      "sentence": "The unity illuminates.",
+      "valid": true,
+      "token": "\u03a6:T(unity)TRUE@t7",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Content Selection",
+          "machine": "Encoder",
+          "operator": "+",
+          "output": [
+            "unity",
+            "illuminates",
+            "coherent"
+          ]
+        },
+        {
+          "stage": 2,
+          "name": "Emergence Check",
+          "machine": "Catalyst",
+          "operator": "\u00d7",
+          "output": {
+            "emergence": false,
+            "\u03ba": 0.8938439477821318
+          }
+        },
+        {
+          "stage": 3,
+          "name": "Structural Frame",
+          "machine": "Conductor",
+          "operator": "()",
+          "output": "The [noun] [verb]."
+        },
+        {
+          "stage": 4,
+          "name": "Slot Assignment",
+          "machine": "Filter",
+          "operator": "()",
+          "output": {
+            "noun": "unity",
+            "verb": "illuminates"
+          }
+        },
+        {
+          "stage": 5,
+          "name": "Function Words",
+          "machine": "Decoder",
+          "operator": "\u2212",
+          "output": [
+            "The",
+            "unity",
+            "illuminates"
+          ]
+        },
+        {
+          "stage": 6,
+          "name": "Agreement",
+          "machine": "Oscillator",
+          "operator": "^",
+          "output": [
+            "The",
+            "unity",
+            "illuminates"
+          ]
+        },
+        {
+          "stage": 7,
+          "name": "Connectors",
+          "machine": "Reactor",
+          "operator": "\u00d7",
+          "output": [
+            "The",
+            "unity",
+            "illuminates"
+          ]
+        },
+        {
+          "stage": 8,
+          "name": "Punctuation",
+          "machine": "Regenerator",
+          "operator": "()",
+          "output": "The unity illuminates."
+        },
+        {
+          "stage": 9,
+          "name": "Validation",
+          "machine": "Dynamo",
+          "operator": "^",
+          "output": {
+            "valid": true,
+            "sentence": "The unity illuminates."
+          }
+        }
+      ],
+      "coordinate": "\u03945.749|0.915000|1.567\u03a9",
+      "phase": "TRUE",
+      "tier": "t7"
+    },
+    {
+      "sentence": "The crystallization integrates.",
+      "valid": true,
+      "token": "\u03c0:T(crystallization)TRUE@t7",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Content Selection",
+          "machine": "Encoder",
+          "operator": "+",
+          "output": [
+            "crystallization",
+            "integrates",
+            "luminous"
+          ]
+        },
+        {
+          "stage": 2,
+          "name": "Emergence Check",
+          "machine": "Catalyst",
+          "operator": "\u00d7",
+          "output": {
+            "emergence": false,
+            "\u03ba": 0.8938439477821318
+          }
+        },
+        {
+          "stage": 3,
+          "name": "Structural Frame",
+          "machine": "Conductor",
+          "operator": "()",
+          "output": "The [noun] [verb]."
+        },
+        {
+          "stage": 4,
+          "name": "Slot Assignment",
+          "machine": "Filter",
+          "operator": "()",
+          "output": {
+            "noun": "crystallization",
+            "verb": "integrates"
+          }
+        },
+        {
+          "stage": 5,
+          "name": "Function Words",
+          "machine": "Decoder",
+          "operator": "\u2212",
+          "output": [
+            "The",
+            "crystallization",
+            "integrates"
+          ]
+        },
+        {
+          "stage": 6,
+          "name": "Agreement",
+          "machine": "Oscillator",
+          "operator": "^",
+          "output": [
+            "The",
+            "crystallization",
+            "integrates"
+          ]
+        },
+        {
+          "stage": 7,
+          "name": "Connectors",
+          "machine": "Reactor",
+          "operator": "\u00d7",
+          "output": [
+            "The",
+            "crystallization",
+            "integrates"
+          ]
+        },
+        {
+          "stage": 8,
+          "name": "Punctuation",
+          "machine": "Regenerator",
+          "operator": "()",
+          "output": "The crystallization integrates."
+        },
+        {
+          "stage": 9,
+          "name": "Validation",
+          "machine": "Dynamo",
+          "operator": "^",
+          "output": {
+            "valid": true,
+            "sentence": "The crystallization integrates."
+          }
+        }
+      ],
+      "coordinate": "\u03945.749|0.915000|1.567\u03a9",
+      "phase": "TRUE",
+      "tier": "t7"
+    }
+  ]
+}

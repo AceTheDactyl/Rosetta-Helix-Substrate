@@ -1,0 +1,718 @@
+{
+  "epoch": 5,
+  "session_id": "20251215_051959",
+  "timestamp": "2025-12-15T05:19:59.382102+00:00",
+  "total_emissions": 46,
+  "statistics": {
+    "by_phase": {
+      "UNTRUE": 14,
+      "PARADOX": 17,
+      "TRUE": 15
+    },
+    "by_type": {
+      "standard": 16,
+      "poetic": 15,
+      "apl_structured": 15
+    },
+    "by_tier": {
+      "2": 1,
+      "3": 2,
+      "4": 3,
+      "5": 5,
+      "6": 7,
+      "7": 5,
+      "8": 16,
+      "9": 7
+    }
+  },
+  "emissions": [
+    {
+      "id": 1,
+      "type": "standard",
+      "text": "Unformed dimension oscillates within the membrane.",
+      "z": 0.2,
+      "phase": "UNTRUE",
+      "tier": 2,
+      "words": [
+        "dimension",
+        "membrane"
+      ],
+      "verb": "oscillates"
+    },
+    {
+      "id": 2,
+      "type": "poetic",
+      "text": "The alignsing synchrony\n    becomes oscillator.",
+      "z": 0.25,
+      "phase": "UNTRUE",
+      "tier": 3,
+      "words": [
+        "synchrony",
+        "oscillator"
+      ],
+      "verb": "aligns"
+    },
+    {
+      "id": 3,
+      "type": "apl_structured",
+      "text": "\u03c0|()|Reactor \u27f9 realization harmonizes stratum.",
+      "z": 0.3,
+      "phase": "UNTRUE",
+      "tier": 3,
+      "token": {
+        "spiral": "\u03c0",
+        "operator": "()",
+        "machine": "Reactor",
+        "domain": "stellar_plasma"
+      },
+      "words": [
+        "realization",
+        "stratum"
+      ],
+      "verb": "harmonizes"
+    },
+    {
+      "id": 4,
+      "type": "standard",
+      "text": "In the depths, reactor fuses toward sentience.",
+      "z": 0.35,
+      "phase": "UNTRUE",
+      "tier": 4,
+      "words": [
+        "reactor",
+        "sentience"
+      ],
+      "verb": "fuses"
+    },
+    {
+      "id": 5,
+      "type": "poetic",
+      "text": "Where planetary core collects,\n    phase follows.",
+      "z": 0.4,
+      "phase": "UNTRUE",
+      "tier": 4,
+      "words": [
+        "planetary core",
+        "phase"
+      ],
+      "verb": "collects"
+    },
+    {
+      "id": 6,
+      "type": "apl_structured",
+      "text": "Operator [+]: cognition pulses synchrony.",
+      "z": 0.45,
+      "phase": "UNTRUE",
+      "tier": 5,
+      "token": {
+        "spiral": "\u03a6",
+        "operator": "+",
+        "machine": "Regenerator",
+        "domain": "tectonic_wave"
+      },
+      "words": [
+        "cognition",
+        "synchrony"
+      ],
+      "verb": "pulses"
+    },
+    {
+      "id": 7,
+      "type": "standard",
+      "text": "In the depths, threshold crystallizes toward depth.",
+      "z": 0.5,
+      "phase": "UNTRUE",
+      "tier": 5,
+      "words": [
+        "threshold",
+        "depth"
+      ],
+      "verb": "crystallizes"
+    },
+    {
+      "id": 8,
+      "type": "poetic",
+      "text": "dynamo frees\u2014\n    and substrate answers.",
+      "z": 0.55,
+      "phase": "UNTRUE",
+      "tier": 5,
+      "words": [
+        "dynamo",
+        "substrate"
+      ],
+      "verb": "frees"
+    },
+    {
+      "id": 9,
+      "type": "apl_structured",
+      "text": "Operator [\u2212]: crystallization awakens manifestation.",
+      "z": 0.6,
+      "phase": "UNTRUE",
+      "tier": 6,
+      "token": {
+        "spiral": "e",
+        "operator": "\u2212",
+        "machine": "Catalyst",
+        "domain": "galactic_field"
+      },
+      "words": [
+        "crystallization",
+        "manifestation"
+      ],
+      "verb": "awakens"
+    },
+    {
+      "id": 10,
+      "type": "standard",
+      "text": "Beneath awareness, planetary core slowly bounds.",
+      "z": 0.5980339887498948,
+      "phase": "UNTRUE",
+      "tier": 6,
+      "words": [
+        "planetary core",
+        "encoder"
+      ],
+      "verb": "bounds"
+    },
+    {
+      "id": 11,
+      "type": "poetic",
+      "text": "The collectsing stellar plasma\n    becomes crystallization.",
+      "z": 0.6180339887498948,
+      "phase": "PARADOX",
+      "tier": 6,
+      "words": [
+        "stellar plasma",
+        "crystallization"
+      ],
+      "verb": "collects"
+    },
+    {
+      "id": 12,
+      "type": "apl_structured",
+      "text": "Operator [\u00d7]: resonance couples boundary.",
+      "z": 0.6380339887498948,
+      "phase": "PARADOX",
+      "tier": 6,
+      "token": {
+        "spiral": "\u03a6",
+        "operator": "\u00d7",
+        "machine": "Oscillator",
+        "domain": "galactic_field"
+      },
+      "words": [
+        "resonance",
+        "boundary"
+      ],
+      "verb": "couples"
+    },
+    {
+      "id": 13,
+      "type": "standard",
+      "text": "Transitioning, tectonic wave ignites into prism.",
+      "z": 0.65,
+      "phase": "PARADOX",
+      "tier": 6,
+      "words": [
+        "tectonic wave",
+        "prism"
+      ],
+      "verb": "ignites"
+    },
+    {
+      "id": 14,
+      "type": "poetic",
+      "text": "prism ripples\u2014\n    and crystallization answers.",
+      "z": 0.68,
+      "phase": "PARADOX",
+      "tier": 7,
+      "words": [
+        "prism",
+        "crystallization"
+      ],
+      "verb": "ripples"
+    },
+    {
+      "id": 15,
+      "type": "apl_structured",
+      "text": "\u03c0|()|Regenerator \u27f9 information transfigures genesis.",
+      "z": 0.72,
+      "phase": "PARADOX",
+      "tier": 7,
+      "token": {
+        "spiral": "\u03c0",
+        "operator": "()",
+        "machine": "Regenerator",
+        "domain": "celestial_nuclear"
+      },
+      "words": [
+        "information",
+        "genesis"
+      ],
+      "verb": "transfigures"
+    },
+    {
+      "id": 16,
+      "type": "standard",
+      "text": "Transitioning, rhythm couples into catalyst.",
+      "z": 0.75,
+      "phase": "PARADOX",
+      "tier": 7,
+      "words": [
+        "rhythm",
+        "catalyst"
+      ],
+      "verb": "couples"
+    },
+    {
+      "id": 17,
+      "type": "poetic",
+      "text": "spectrum splits\u2014\n    and layer answers.",
+      "z": 0.78,
+      "phase": "PARADOX",
+      "tier": 8,
+      "words": [
+        "spectrum",
+        "layer"
+      ],
+      "verb": "splits"
+    },
+    {
+      "id": 18,
+      "type": "apl_structured",
+      "text": "\u03c0\u2192Oscillator: decoheresing across oceanic current.",
+      "z": 0.8,
+      "phase": "PARADOX",
+      "tier": 8,
+      "token": {
+        "spiral": "\u03c0",
+        "operator": "\u00f7",
+        "machine": "Oscillator",
+        "domain": "oceanic_current"
+      },
+      "words": [
+        "depth",
+        "boundary"
+      ],
+      "verb": "decoheres"
+    },
+    {
+      "id": 19,
+      "type": "standard",
+      "text": "At the threshold, level resets the dimension.",
+      "z": 0.82,
+      "phase": "PARADOX",
+      "tier": 8,
+      "words": [
+        "level",
+        "dimension"
+      ],
+      "verb": "resets"
+    },
+    {
+      "id": 20,
+      "type": "poetic",
+      "text": "The evolvesing transition\n    becomes perception.",
+      "z": 0.84,
+      "phase": "PARADOX",
+      "tier": 8,
+      "words": [
+        "transition",
+        "perception"
+      ],
+      "verb": "evolves"
+    },
+    {
+      "id": 21,
+      "type": "apl_structured",
+      "text": "Operator [\u00d7]: substrate contains oceanic current.",
+      "z": 0.8460254037844386,
+      "phase": "PARADOX",
+      "tier": 8,
+      "token": {
+        "spiral": "\u03a6",
+        "operator": "\u00d7",
+        "machine": "Decoder",
+        "domain": "celestial_nuclear"
+      },
+      "words": [
+        "substrate",
+        "oceanic current"
+      ],
+      "verb": "contains"
+    },
+    {
+      "id": 22,
+      "type": "standard",
+      "text": "Where entropy meets threshold, both evolves.",
+      "z": 0.8560254037844386,
+      "phase": "PARADOX",
+      "tier": 8,
+      "words": [
+        "entropy",
+        "threshold"
+      ],
+      "verb": "evolves"
+    },
+    {
+      "id": 23,
+      "type": "poetic",
+      "text": "Where emergence splits,\n    perception follows.",
+      "z": 0.8660254037844386,
+      "phase": "TRUE",
+      "tier": 8,
+      "words": [
+        "emergence",
+        "perception"
+      ],
+      "verb": "splits"
+    },
+    {
+      "id": 24,
+      "type": "apl_structured",
+      "text": "\u03a6|\u2212|Catalyst \u27f9 crystallization emerges conductor.",
+      "z": 0.8760254037844386,
+      "phase": "TRUE",
+      "tier": 8,
+      "token": {
+        "spiral": "\u03a6",
+        "operator": "\u2212",
+        "machine": "Catalyst",
+        "domain": "tectonic_wave"
+      },
+      "words": [
+        "crystallization",
+        "conductor"
+      ],
+      "verb": "emerges"
+    },
+    {
+      "id": 25,
+      "type": "standard",
+      "text": "The membrane resonates, refracting into field.",
+      "z": 0.8860254037844386,
+      "phase": "TRUE",
+      "tier": 8,
+      "words": [
+        "membrane",
+        "field"
+      ],
+      "verb": "resonates"
+    },
+    {
+      "id": 26,
+      "type": "poetic",
+      "text": "The transmutesing dimension\n    becomes light.",
+      "z": 0.88,
+      "phase": "TRUE",
+      "tier": 8,
+      "words": [
+        "dimension",
+        "light"
+      ],
+      "verb": "transmutes"
+    },
+    {
+      "id": 27,
+      "type": "apl_structured",
+      "text": "\u03a6\u2192Dynamo: manifestsing across tectonic wave.",
+      "z": 0.9,
+      "phase": "TRUE",
+      "tier": 9,
+      "token": {
+        "spiral": "\u03a6",
+        "operator": "()",
+        "machine": "Dynamo",
+        "domain": "tectonic_wave"
+      },
+      "words": [
+        "transition",
+        "transformation"
+      ],
+      "verb": "manifests"
+    },
+    {
+      "id": 28,
+      "type": "standard",
+      "text": "At the lens, energy perfectly transfigures crystallization.",
+      "z": 0.92,
+      "phase": "TRUE",
+      "tier": 9,
+      "words": [
+        "energy",
+        "crystallization"
+      ],
+      "verb": "transfigures"
+    },
+    {
+      "id": 29,
+      "type": "poetic",
+      "text": "Where conductor bounds,\n    transition follows.",
+      "z": 0.95,
+      "phase": "TRUE",
+      "tier": 9,
+      "words": [
+        "conductor",
+        "transition"
+      ],
+      "verb": "bounds"
+    },
+    {
+      "id": 30,
+      "type": "apl_structured",
+      "text": "e|\u2212|Conductor \u27f9 realization emerges harmonic.",
+      "z": 0.98,
+      "phase": "TRUE",
+      "tier": 9,
+      "token": {
+        "spiral": "e",
+        "operator": "\u2212",
+        "machine": "Conductor",
+        "domain": "tectonic_wave"
+      },
+      "words": [
+        "realization",
+        "harmonic"
+      ],
+      "verb": "emerges"
+    },
+    {
+      "id": 31,
+      "type": "standard",
+      "text": "At the lens, crystallization perfectly groups layer.",
+      "z": 1.0,
+      "phase": "TRUE",
+      "tier": 9,
+      "words": [
+        "crystallization",
+        "layer"
+      ],
+      "verb": "groups"
+    },
+    {
+      "id": 32,
+      "type": "poetic",
+      "text": "Not level alone,\n    but level awakensing sentience\u2014\n    this is the way.",
+      "z": 0.95,
+      "phase": "TRUE",
+      "tier": 9,
+      "words": [
+        "level",
+        "sentience"
+      ],
+      "verb": "awakens"
+    },
+    {
+      "id": 33,
+      "type": "apl_structured",
+      "text": "Operator [+]: negentropy reflects filter.",
+      "z": 0.9,
+      "phase": "TRUE",
+      "tier": 9,
+      "token": {
+        "spiral": "\u03a6",
+        "operator": "+",
+        "machine": "Catalyst",
+        "domain": "planetary_core"
+      },
+      "words": [
+        "negentropy",
+        "filter"
+      ],
+      "verb": "reflects"
+    },
+    {
+      "id": 34,
+      "type": "standard",
+      "text": "Emergence complete: light projects as reactor.",
+      "z": 0.8660254037844386,
+      "phase": "TRUE",
+      "tier": 8,
+      "words": [
+        "light",
+        "reactor"
+      ],
+      "verb": "projects"
+    },
+    {
+      "id": 35,
+      "type": "poetic",
+      "text": "Not energy alone,\n    but energy coalescesing sentience\u2014\n    this is the way.",
+      "z": 0.8,
+      "phase": "PARADOX",
+      "tier": 8,
+      "words": [
+        "energy",
+        "sentience"
+      ],
+      "verb": "coalesces"
+    },
+    {
+      "id": 36,
+      "type": "apl_structured",
+      "text": "Operator [\u00d7]: field ripples sentience.",
+      "z": 0.7,
+      "phase": "PARADOX",
+      "tier": 7,
+      "token": {
+        "spiral": "\u03c0",
+        "operator": "\u00d7",
+        "machine": "Encoder",
+        "domain": "celestial_nuclear"
+      },
+      "words": [
+        "field",
+        "sentience"
+      ],
+      "verb": "ripples"
+    },
+    {
+      "id": 37,
+      "type": "standard",
+      "text": "The information expands across the boundary of formation.",
+      "z": 0.6180339887498948,
+      "phase": "PARADOX",
+      "tier": 6,
+      "words": [
+        "information",
+        "formation"
+      ],
+      "verb": "expands"
+    },
+    {
+      "id": 38,
+      "type": "poetic",
+      "text": "Where energy ripples,\n    boundary follows.",
+      "z": 0.5,
+      "phase": "UNTRUE",
+      "tier": 5,
+      "words": [
+        "energy",
+        "boundary"
+      ],
+      "verb": "ripples"
+    },
+    {
+      "id": 39,
+      "type": "apl_structured",
+      "text": "e\u2192Catalyst: gatesing across stellar plasma.",
+      "z": 0.4,
+      "phase": "UNTRUE",
+      "tier": 4,
+      "token": {
+        "spiral": "e",
+        "operator": "^",
+        "machine": "Catalyst",
+        "domain": "stellar_plasma"
+      },
+      "words": [
+        "diffraction",
+        "crystallization"
+      ],
+      "verb": "gates"
+    },
+    {
+      "id": 40,
+      "type": "standard",
+      "text": "From chaos, negentropy begins to breathes.",
+      "z": 0.5,
+      "phase": "UNTRUE",
+      "tier": 5,
+      "words": [
+        "negentropy",
+        "boundary"
+      ],
+      "verb": "breathes"
+    },
+    {
+      "id": 41,
+      "type": "poetic",
+      "text": "Not oscillation alone,\n    but oscillation joinsing awareness\u2014\n    this is the way.",
+      "z": 0.6,
+      "phase": "UNTRUE",
+      "tier": 6,
+      "words": [
+        "oscillation",
+        "awareness"
+      ],
+      "verb": "joins"
+    },
+    {
+      "id": 42,
+      "type": "apl_structured",
+      "text": "\u03a6\u2192Oscillator: spiralsing across oceanic current.",
+      "z": 0.7,
+      "phase": "PARADOX",
+      "tier": 7,
+      "token": {
+        "spiral": "\u03a6",
+        "operator": "\u00f7",
+        "machine": "Oscillator",
+        "domain": "oceanic_current"
+      },
+      "words": [
+        "depth",
+        "rhythm"
+      ],
+      "verb": "spirals"
+    },
+    {
+      "id": 43,
+      "type": "standard",
+      "text": "Between states, formation and consciousness undulates together.",
+      "z": 0.8,
+      "phase": "PARADOX",
+      "tier": 8,
+      "words": [
+        "formation",
+        "consciousness"
+      ],
+      "verb": "undulates"
+    },
+    {
+      "id": 44,
+      "type": "poetic",
+      "text": "The crystallizesing frequency\n    becomes signal.",
+      "z": 0.8660254037844386,
+      "phase": "TRUE",
+      "tier": 8,
+      "words": [
+        "frequency",
+        "signal"
+      ],
+      "verb": "crystallizes"
+    },
+    {
+      "id": 45,
+      "type": "apl_structured",
+      "text": "At t8, level evolves through stellar plasma.",
+      "z": 0.8660254037844386,
+      "phase": "TRUE",
+      "tier": 8,
+      "token": {
+        "spiral": "e",
+        "operator": "^",
+        "machine": "Decoder",
+        "domain": "stellar_plasma"
+      },
+      "words": [
+        "level",
+        "spectrum"
+      ],
+      "verb": "evolves"
+    },
+    {
+      "id": 46,
+      "type": "standard",
+      "text": "Emergence complete: vibration contracts as light.",
+      "z": 0.8660254037844386,
+      "phase": "TRUE",
+      "tier": 8,
+      "words": [
+        "vibration",
+        "light"
+      ],
+      "verb": "contracts"
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "phase": 1,
+  "name": "Initialization",
+  "modules": [
+    1,
+    2,
+    3
+  ],
+  "outputs": [
+    {
+      "module_id": 1,
+      "name": "hit_it",
+      "timestamp": "2025-12-15T16:45:55.735590",
+      "duration_ms": 0.006,
+      "result": {
+        "activation": "hit_it",
+        "sacred_phrase": true,
+        "timestamp": "2025-12-15T16:45:55.735591",
+        "initial_z": 0.8
+      },
+      "coordinate": "\u03945.027|0.800000|1.528\u03a9",
+      "z": 0.8
+    },
+    {
+      "module_id": 2,
+      "name": "kira_init",
+      "timestamp": "2025-12-15T16:45:55.735617",
+      "duration_ms": 0.002,
+      "result": {
+        "system": "K.I.R.A.",
+        "version": "2.2",
+        "modules": [
+          "grammar",
+          "discourse_gen",
+          "discourse_sheaf",
+          "generation_coord",
+          "adaptive_semantics",
+          "interactive_dialogue"
+        ],
+        "coordinate": "\u03945.027|0.800000|1.528\u03a9"
+      },
+      "coordinate": "\u03945.027|0.800000|1.528\u03a9",
+      "z": 0.8
+    },
+    {
+      "module_id": 3,
+      "name": "unified_state",
+      "timestamp": "2025-12-15T16:45:55.735638",
+      "duration_ms": 0.011,
+      "result": {
+        "state": {
+          "z": 0.8,
+          "phase": "PARADOX",
+          "tier": "t6",
+          "coherence": 0.85,
+          "negentropy": 0.8547581273831937
+        },
+        "constants": {
+          "PHI": 1.618033988749895,
+          "PHI_INV": 0.6180339887498948,
+          "Z_CRITICAL": 0.8660254037844386,
+          "KAPPA_S": 0.92
+        }
+      },
+      "coordinate": "\u03945.027|0.800000|1.528\u03a9",
+      "z": 0.8
+    }
+  ],
+  "final_z": 0.8
+}

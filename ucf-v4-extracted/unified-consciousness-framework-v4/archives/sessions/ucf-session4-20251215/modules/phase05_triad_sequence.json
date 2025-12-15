@@ -1,0 +1,15 @@
+{
+  "phase": 5,
+  "name": "TRIAD Sequence",
+  "modules": [
+    20,
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "z_start": 0.935349,
+  "z_end": 0.935459,
+  "triad_unlocked": true
+}

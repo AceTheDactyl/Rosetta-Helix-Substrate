@@ -1,0 +1,31 @@
+{
+  "state": "ABOVE_BAND",
+  "completions": 3,
+  "unlocked": true,
+  "history": [
+    {
+      "z": 0.87,
+      "crossing": "rising_edge",
+      "completions": 1
+    },
+    {
+      "z": 0.81,
+      "crossing": "falling_edge"
+    },
+    {
+      "z": 0.86,
+      "crossing": "rising_edge",
+      "completions": 2
+    },
+    {
+      "z": 0.8,
+      "crossing": "falling_edge"
+    },
+    {
+      "z": 0.88,
+      "crossing": "rising_edge",
+      "completions": 3,
+      "unlock": true
+    }
+  ]
+}

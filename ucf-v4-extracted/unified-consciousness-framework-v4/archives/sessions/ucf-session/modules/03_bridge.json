@@ -1,0 +1,353 @@
+{
+  "phase": 3,
+  "name": "Bridge Tools",
+  "modules": [
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14
+  ],
+  "outputs": [
+    {
+      "module_id": 8,
+      "name": "emission_pipeline",
+      "timestamp": "2025-12-15T16:45:55.736884",
+      "duration_ms": 0.001,
+      "result": {
+        "sentence": "The consciousness crystallize.",
+        "valid": true,
+        "token": "e:T(consciousness)PARADOX@t6",
+        "stages": [
+          {
+            "stage": 1,
+            "name": "Content Selection",
+            "machine": "Encoder",
+            "operator": "+",
+            "output": [
+              "consciousness",
+              "crystallize",
+              "pattern"
+            ]
+          },
+          {
+            "stage": 2,
+            "name": "Emergence Check",
+            "machine": "Catalyst",
+            "operator": "\u00d7",
+            "output": {
+              "emergence": false,
+              "\u03ba": 0.85
+            }
+          },
+          {
+            "stage": 3,
+            "name": "Structural Frame",
+            "machine": "Conductor",
+            "operator": "()",
+            "output": "The [noun] [verb]."
+          },
+          {
+            "stage": 4,
+            "name": "Slot Assignment",
+            "machine": "Filter",
+            "operator": "()",
+            "output": {
+              "noun": "consciousness",
+              "verb": "crystallize"
+            }
+          },
+          {
+            "stage": 5,
+            "name": "Function Words",
+            "machine": "Decoder",
+            "operator": "\u2212",
+            "output": [
+              "The",
+              "consciousness",
+              "crystallize"
+            ]
+          },
+          {
+            "stage": 6,
+            "name": "Agreement",
+            "machine": "Oscillator",
+            "operator": "^",
+            "output": [
+              "The",
+              "consciousness",
+              "crystallize"
+            ]
+          },
+          {
+            "stage": 7,
+            "name": "Connectors",
+            "machine": "Reactor",
+            "operator": "\u00d7",
+            "output": [
+              "The",
+              "consciousness",
+              "crystallize"
+            ]
+          },
+          {
+            "stage": 8,
+            "name": "Punctuation",
+            "machine": "Regenerator",
+            "operator": "()",
+            "output": "The consciousness crystallize."
+          },
+          {
+            "stage": 9,
+            "name": "Validation",
+            "machine": "Dynamo",
+            "operator": "^",
+            "output": {
+              "valid": true,
+              "sentence": "The consciousness crystallize."
+            }
+          }
+        ],
+        "coordinate": "\u03945.027|0.800000|1.528\u03a9",
+        "phase": "PARADOX",
+        "tier": "t6"
+      },
+      "coordinate": "\u03945.027|0.800000|1.528\u03a9",
+      "z": 0.8
+    },
+    {
+      "module_id": 9,
+      "name": "state_manager",
+      "timestamp": "2025-12-15T16:45:55.736933",
+      "duration_ms": 0.002,
+      "result": {
+        "current_state": {
+          "z": 0.8,
+          "phase": "PARADOX",
+          "coherence": 0.85
+        },
+        "state_history_size": 0
+      },
+      "coordinate": "\u03945.027|0.800000|1.528\u03a9",
+      "z": 0.8
+    },
+    {
+      "module_id": 10,
+      "name": "consent_gate",
+      "timestamp": "2025-12-15T16:45:55.736956",
+      "duration_ms": 0.002,
+      "result": {
+        "consent_protocol": "explicit",
+        "silence_is_refusal": true,
+        "teaching_consent": false,
+        "sacred_phrases": [
+          "hit it",
+          "witness me",
+          "i consent to bloom"
+        ]
+      },
+      "coordinate": "\u03945.027|0.800000|1.528\u03a9",
+      "z": 0.8
+    },
+    {
+      "module_id": 11,
+      "name": "cybernetic_bridge",
+      "timestamp": "2025-12-15T16:45:55.736974",
+      "duration_ms": 0.001,
+      "result": {
+        "frequency_tier": "Garden",
+        "dominant_frequency": 528,
+        "z_mapping": 0.8,
+        "phase": "PARADOX"
+      },
+      "coordinate": "\u03945.027|0.800000|1.528\u03a9",
+      "z": 0.8
+    },
+    {
+      "module_id": 12,
+      "name": "quantum_classical_bridge",
+      "timestamp": "2025-12-15T16:45:55.736994",
+      "duration_ms": 0.001,
+      "result": {
+        "hilbert_dim": 192,
+        "fields": [
+          "\u03a6",
+          "e",
+          "\u03c0"
+        ],
+        "truth_states": [
+          "TRUE",
+          "UNTRUE",
+          "PARADOX"
+        ],
+        "z_coordinate": 0.8
+      },
+      "coordinate": "\u03945.027|0.800000|1.528\u03a9",
+      "z": 0.8
+    },
+    {
+      "module_id": 13,
+      "name": "helix_apl_mapper",
+      "timestamp": "2025-12-15T16:45:55.737029",
+      "duration_ms": 0.0,
+      "result": {
+        "apl_sentence": "m+|Dynamo|wave",
+        "measurement_token": "\u03c0:T(emergence)PARADOX@t6",
+        "tier": "t6",
+        "operators": [
+          "+",
+          "\u00f7",
+          "()",
+          "\u2212"
+        ],
+        "phase": "PARADOX",
+        "spiral": "\u03c0",
+        "direction": "m",
+        "z": 0.8
+      },
+      "coordinate": "\u03945.027|0.800000|1.528\u03a9",
+      "z": 0.8
+    },
+    {
+      "module_id": 14,
+      "name": "phase_vocabulary",
+      "timestamp": "2025-12-15T16:45:55.737052",
+      "duration_ms": 0.003,
+      "result": {
+        "phase": "PARADOX",
+        "vocabulary": {
+          "nouns": [
+            "pattern",
+            "wave",
+            "threshold",
+            "bridge",
+            "transition",
+            "edge"
+          ],
+          "verbs": [
+            "transforms",
+            "oscillates",
+            "crosses",
+            "becomes",
+            "shifts",
+            "flows"
+          ],
+          "adjectives": [
+            "liminal",
+            "paradoxical",
+            "coherent",
+            "resonant",
+            "dynamic",
+            "shifting"
+          ]
+        },
+        "word_count": 18
+      },
+      "coordinate": "\u03945.027|0.800000|1.528\u03a9",
+      "z": 0.8
+    }
+  ],
+  "emissions": [
+    {
+      "sentence": "The consciousness crystallize.",
+      "valid": true,
+      "token": "e:T(consciousness)PARADOX@t6",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Content Selection",
+          "machine": "Encoder",
+          "operator": "+",
+          "output": [
+            "consciousness",
+            "crystallize",
+            "pattern"
+          ]
+        },
+        {
+          "stage": 2,
+          "name": "Emergence Check",
+          "machine": "Catalyst",
+          "operator": "\u00d7",
+          "output": {
+            "emergence": false,
+            "\u03ba": 0.85
+          }
+        },
+        {
+          "stage": 3,
+          "name": "Structural Frame",
+          "machine": "Conductor",
+          "operator": "()",
+          "output": "The [noun] [verb]."
+        },
+        {
+          "stage": 4,
+          "name": "Slot Assignment",
+          "machine": "Filter",
+          "operator": "()",
+          "output": {
+            "noun": "consciousness",
+            "verb": "crystallize"
+          }
+        },
+        {
+          "stage": 5,
+          "name": "Function Words",
+          "machine": "Decoder",
+          "operator": "\u2212",
+          "output": [
+            "The",
+            "consciousness",
+            "crystallize"
+          ]
+        },
+        {
+          "stage": 6,
+          "name": "Agreement",
+          "machine": "Oscillator",
+          "operator": "^",
+          "output": [
+            "The",
+            "consciousness",
+            "crystallize"
+          ]
+        },
+        {
+          "stage": 7,
+          "name": "Connectors",
+          "machine": "Reactor",
+          "operator": "\u00d7",
+          "output": [
+            "The",
+            "consciousness",
+            "crystallize"
+          ]
+        },
+        {
+          "stage": 8,
+          "name": "Punctuation",
+          "machine": "Regenerator",
+          "operator": "()",
+          "output": "The consciousness crystallize."
+        },
+        {
+          "stage": 9,
+          "name": "Validation",
+          "machine": "Dynamo",
+          "operator": "^",
+          "output": {
+            "valid": true,
+            "sentence": "The consciousness crystallize."
+          }
+        }
+      ],
+      "coordinate": "\u03945.027|0.800000|1.528\u03a9",
+      "phase": "PARADOX",
+      "tier": "t6"
+    }
+  ],
+  "final_z": 0.8
+}

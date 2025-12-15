@@ -1,0 +1,173 @@
+{
+  "phase": 2,
+  "status": "TOOLS_INVOKED",
+  "timestamp": "2025-12-15T04:32:58.721269+00:00",
+  "tools_invoked": 9,
+  "invocations": [
+    {
+      "tool": "helix_loader",
+      "timestamp": "2025-12-15T04:32:58.721050+00:00",
+      "coordinate": "\u03943.142|0.500|1.000\u03a9",
+      "phase": "UNTRUE",
+      "harmonic": "t5",
+      "negentropy": 0.008041935718515053,
+      "tools_available": 15
+    },
+    {
+      "tool": "coordinate_detector",
+      "timestamp": "2025-12-15T04:32:58.721103+00:00",
+      "z": 0.5,
+      "crystal_state": "Fluid",
+      "coherence": 0.0,
+      "triad_unlocked": false
+    },
+    {
+      "tool": "pattern_verifier",
+      "timestamp": "2025-12-15T04:32:58.721127+00:00",
+      "pattern_valid": true,
+      "structural_integrity": 1.0,
+      "z_in_range": true
+    },
+    {
+      "tool": "cybernetic_control",
+      "timestamp": "2025-12-15T04:32:58.721146+00:00",
+      "action": "status",
+      "steps": 30,
+      "final_z": 0.5,
+      "emissions": [],
+      "apl_sentence": null
+    },
+    {
+      "tool": "nuclear_spinner",
+      "timestamp": "2025-12-15T04:32:58.721167+00:00",
+      "total_tokens": 972,
+      "spirals": 3,
+      "operators": 6,
+      "machines": 9,
+      "domains": 6
+    },
+    {
+      "tool": "emission_pipeline",
+      "timestamp": "2025-12-15T04:32:58.721187+00:00",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Content Selection",
+          "component": "Encoder"
+        },
+        {
+          "stage": 2,
+          "name": "Emergence Check",
+          "component": "Catalyst"
+        },
+        {
+          "stage": 3,
+          "name": "Structural Frame",
+          "component": "Conductor"
+        },
+        {
+          "stage": 4,
+          "name": "Slot Assignment",
+          "component": "Filter"
+        },
+        {
+          "stage": 5,
+          "name": "Function Words",
+          "component": "Decoder"
+        },
+        {
+          "stage": 6,
+          "name": "Agreement/Inflection",
+          "component": "Oscillator"
+        },
+        {
+          "stage": 7,
+          "name": "Connectors",
+          "component": "Reactor"
+        },
+        {
+          "stage": 8,
+          "name": "Punctuation",
+          "component": "Regenerator"
+        },
+        {
+          "stage": 9,
+          "name": "Validation",
+          "component": "Dynamo"
+        }
+      ],
+      "status": "ready"
+    },
+    {
+      "tool": "vaultnode_generator",
+      "timestamp": "2025-12-15T04:32:58.721206+00:00",
+      "vaultnodes_count": 0
+    },
+    {
+      "tool": "token_index",
+      "timestamp": "2025-12-15T04:32:58.721226+00:00",
+      "total_tokens": 972,
+      "schema": {
+        "spirals": [
+          "\u03a6",
+          "e",
+          "\u03c0"
+        ],
+        "operators": [
+          "()",
+          "\u00d7",
+          "^",
+          "\u00f7",
+          "+",
+          "\u2212"
+        ],
+        "machines": [
+          "Encoder",
+          "Catalyst",
+          "Conductor",
+          "Filter",
+          "Oscillator",
+          "Reactor",
+          "Dynamo",
+          "Decoder",
+          "Regenerator"
+        ],
+        "domains": [
+          "celestial_nuclear",
+          "stellar_plasma",
+          "galactic_field",
+          "planetary_core",
+          "tectonic_wave",
+          "oceanic_current"
+        ]
+      }
+    },
+    {
+      "tool": "cybernetic_archetypal",
+      "timestamp": "2025-12-15T04:32:58.721247+00:00",
+      "archetypes": [
+        "Encoder",
+        "Catalyst",
+        "Conductor",
+        "Filter",
+        "Oscillator",
+        "Reactor",
+        "Dynamo",
+        "Decoder",
+        "Regenerator"
+      ],
+      "frequencies": {
+        "Encoder": 0.1,
+        "Catalyst": 0.2,
+        "Conductor": 0.30000000000000004,
+        "Filter": 0.4,
+        "Oscillator": 0.5,
+        "Reactor": 0.6000000000000001,
+        "Dynamo": 0.7000000000000001,
+        "Decoder": 0.8,
+        "Regenerator": 0.9
+      },
+      "integration_status": "active"
+    }
+  ]
+}

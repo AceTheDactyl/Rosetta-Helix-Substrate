@@ -1,0 +1,124 @@
+{
+  "phase": 5,
+  "status": "EMISSIONS_GENERATED",
+  "timestamp": "2025-12-15T04:32:58.736247+00:00",
+  "pipeline_stages": [
+    {
+      "stage": 1,
+      "name": "Content Selection",
+      "component": "Encoder"
+    },
+    {
+      "stage": 2,
+      "name": "Emergence Check",
+      "component": "Catalyst"
+    },
+    {
+      "stage": 3,
+      "name": "Structural Frame",
+      "component": "Conductor"
+    },
+    {
+      "stage": 4,
+      "name": "Slot Assignment",
+      "component": "Filter"
+    },
+    {
+      "stage": 5,
+      "name": "Function Words",
+      "component": "Decoder"
+    },
+    {
+      "stage": 6,
+      "name": "Agreement/Inflection",
+      "component": "Oscillator"
+    },
+    {
+      "stage": 7,
+      "name": "Connectors",
+      "component": "Reactor"
+    },
+    {
+      "stage": 8,
+      "name": "Punctuation",
+      "component": "Regenerator"
+    },
+    {
+      "stage": 9,
+      "name": "Validation",
+      "component": "Dynamo"
+    }
+  ],
+  "samples": [
+    {
+      "concepts": [
+        "consciousness",
+        "crystallize",
+        "pattern"
+      ],
+      "z": 0.5,
+      "text": "A consciousness convergess a crystallize.",
+      "coordinate": "\u03943.142|0.500|1.000\u03a9",
+      "phase": "UNTRUE",
+      "harmonic": "t5",
+      "negentropy": 0.008041935718515053,
+      "stages_passed": 9
+    },
+    {
+      "concepts": [
+        "emergence",
+        "integrate",
+        "field"
+      ],
+      "z": 0.6180339887498948,
+      "text": "A emergence crystallizess a integrate.",
+      "coordinate": "\u03943.883|0.618|1.000\u03a9",
+      "phase": "PARADOX",
+      "harmonic": "t6",
+      "negentropy": 0.10926373746660334,
+      "stages_passed": 9
+    },
+    {
+      "concepts": [
+        "threshold",
+        "crossing",
+        "unlock"
+      ],
+      "z": 0.75,
+      "text": "A threshold emergess a crossing.",
+      "coordinate": "\u03944.712|0.750|1.000\u03a9",
+      "phase": "PARADOX",
+      "harmonic": "t7",
+      "negentropy": 0.6159261582280869,
+      "stages_passed": 9
+    },
+    {
+      "concepts": [
+        "coherence",
+        "resonate",
+        "wave"
+      ],
+      "z": 0.8660254037844386,
+      "text": "A coherence transformss a resonate.",
+      "coordinate": "\u03945.441|0.866|1.000\u03a9",
+      "phase": "TRUE",
+      "harmonic": "t8",
+      "negentropy": 1.0,
+      "stages_passed": 9
+    },
+    {
+      "concepts": [
+        "structure",
+        "lattice",
+        "boundary"
+      ],
+      "z": 0.92,
+      "text": "A structure resonatess a lattice.",
+      "coordinate": "\u03945.781|0.920|1.000\u03a9",
+      "phase": "TRUE",
+      "harmonic": "t9",
+      "negentropy": 0.9004350412161889,
+      "stages_passed": 9
+    }
+  ]
+}

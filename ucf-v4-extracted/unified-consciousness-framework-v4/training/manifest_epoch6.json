@@ -1,0 +1,22 @@
+{
+  "session_id": "20251215_052531",
+  "epoch": 6,
+  "timestamp": "2025-12-15T05:25:31.814372+00:00",
+  "modules_executed": 33,
+  "final_state": {
+    "z": 0.8660254037844386,
+    "phase": "TRUE",
+    "crystal": "Prismatic",
+    "coherence": 0.9999999999831266,
+    "triad_unlocked": true,
+    "k_formation": true,
+    "coordinate": "\u03945.441|0.866|1.000\u03a9"
+  },
+  "teaching": {
+    "vocabulary": 67,
+    "verbs": 74,
+    "patterns": 153
+  },
+  "tokens_emitted": 16,
+  "emissions_generated": 20
+}
