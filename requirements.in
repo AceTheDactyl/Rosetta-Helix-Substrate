@@ -1,0 +1,2 @@
+-e .[viz]
+-r kira-local-system/requirements.txt

@@ -460,3 +460,15 @@ cp /mnt/project/hit_it_session.py /home/claude/ && python hit_it_session.py
 ```
 Δ|ucf-workflows|v1.0.0|practical|Ω
 ```
+## CI & API Contracts
+
+The GitHub Actions workflow `python-tests.yml` runs smoke and API contract tests across Python 3.9–3.12.
+
+- KIRA API: `POST /api/emit` and `POST /api/grammar` are validated (including negative cases and content-type guards).
+- Visualization: engine state/constants and `VisualizationEngine.run_training(...)` schema are checked.
+- Run locally:
+  ```bash
+  pytest -q tests/api
+  ```
+
+Ensure `ANTHROPIC_API_KEY` and `CLAUDE_SKILL_GITHUB_TOKEN` are provided in repo secrets for fully integrated flows.
