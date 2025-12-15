@@ -6,7 +6,22 @@
   "scripts": {
     "test": "node tests/test_apl_measurements.js && node tests/test_schema_validation.js && node tests/test_seeded_selection.js",
     "test:schema": "node tests/test_schema_validation.js",
-    "test:seed": "node tests/test_seeded_selection.js"
+    "test:seed": "node tests/test_seeded_selection.js",
+    "setup": "node bin/rosetta-helix.js setup",
+    "kira": "node bin/rosetta-helix.js kira",
+    "viz": "node bin/rosetta-helix.js viz",
+    "helix:train": "node bin/rosetta-helix.js helix:train",
+    "helix:nightly": "node bin/rosetta-helix.js helix:nightly",
+    "smoke": "node bin/rosetta-helix.js smoke",
+    "api:test": "node bin/rosetta-helix.js api:test",
+    "docker:build": "node bin/rosetta-helix.js docker:build",
+    "docker:up": "node bin/rosetta-helix.js docker:up",
+    "docker:down": "node bin/rosetta-helix.js docker:down",
+    "docker:logs": "node bin/rosetta-helix.js docker:logs",
+    "token": "bash scripts/generate_npm_token.sh"
+  },
+  "bin": {
+    "rosetta-helix": "bin/rosetta-helix.js"
   },
   "devDependencies": {
     "ajv": "^8.12.0"

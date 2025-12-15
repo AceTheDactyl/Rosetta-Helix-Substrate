@@ -140,7 +140,9 @@ def run_integrated_wumbo_n0():
 
     # Train on seven sentences
     print("\n  --- Seven Sentences Training ---")
-    results = trainer.train_all_sentences(steps_per_sentence=80)
+    import os as _os
+    steps = int(_os.environ.get("WUMBO_SENTENCE_STEPS", "80"))
+    results = trainer.train_all_sentences(steps_per_sentence=steps)
 
     for sid, result in results["sentence_results"].items():
         reached = "+" if result["reached_target"] else "-"

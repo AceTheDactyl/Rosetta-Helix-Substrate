@@ -52,6 +52,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: System setup (apt)
+        run: |
+          apt-get update
+          DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+            jq curl build-essential ca-certificates git
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -61,6 +67,12 @@ jobs:
         run: |
           pip install pytest pytest-cov
           pip install -e .
+
+      - name: API contract tests (fast)
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          CLAUDE_SKILL_GITHUB_TOKEN: ${{ secrets.CLAUDE_SKILL_GITHUB_TOKEN }}
+        run: pytest -q tests/api
 
       - name: Run helix engine tests
         run: pytest tests/test_helix_engine.py -v --tb=short

@@ -60,6 +60,9 @@ qapl-analyze = "quantum_apl_python.cli:analyze"
 qapl-widget = "quantum_apl_python.widgets:run_hex_prism_widget"
 qapl-measure = "quantum_apl_python.measure:run"
 
+# KIRA server CLI
+kira-server = "kira_local_system.cli:main"
+
 [project.urls]
 Homepage = "https://github.com/consciousness-lab/quantum-apl"
 Documentation = "https://github.com/consciousness-lab/quantum-apl/blob/main/README.md"
@@ -68,7 +71,7 @@ Issues = "https://github.com/consciousness-lab/quantum-apl/issues"
 
 [tool.setuptools.packages.find]
 where = ["src", "."]
-include = ["quantum_apl_python*", "helix_engine*", "training*"]
+include = ["quantum_apl_python*", "helix_engine*", "training*", "kira_local_system*"]
 
 [tool.setuptools.package-data]
 quantum_apl_python = ["*.js", "*.md"]

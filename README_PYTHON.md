@@ -134,6 +134,26 @@ mypy quantum_apl_python
 pytest
 ```
 
+## CI and API Contract Tests
+
+- Fast, cross-module checks (local):
+  - `pytest -q tests/smoke tests/api`
+- GitHub Actions runs these suites on a Python matrix (3.9, 3.10, 3.11, 3.12) to ensure compatibility.
+- API contract tests validate:
+  - KIRA endpoints: `POST /api/emit`, `POST /api/grammar`
+  - Visualization training schema via `VisualizationEngine.run_training(...)`
+
+### Backend Secrets
+
+- Add repository secrets for backend-integrated workflows:
+  - `ANTHROPIC_API_KEY` — Claude API key; enables `/api/claude` flows in KIRA.
+  - `CLAUDE_SKILL_GITHUB_TOKEN` — Personal Access Token used by skill/workflows that need GitHub API access beyond the default `GITHUB_TOKEN` (optional).
+  - `NPM_TOKEN` — npm auth token for publishing the public CLI package (rosetta-helix-cli) via GitHub Actions.
+  - `GITHUB_PACKAGES_PAT` — Personal Access Token with granular permissions for GitHub Packages (npm.pkg.github.com) if you also publish the CLI there. Recommended scopes: `read:packages`, `write:packages` (and `repo` if needed for private repos).
+
+For registries supporting granular permissions (e.g., GitHub Packages), workflows are configured to prefer a PAT secret over `GITHUB_TOKEN` for publishing/authentication.
+- Ensure repository “Workflow permissions” allow necessary actions (e.g., artifact upload, release creation) if you enable those jobs.
+
 ## Troubleshooting
 
 - **Node.js not found** – Install Node.js and ensure `node` is on PATH.

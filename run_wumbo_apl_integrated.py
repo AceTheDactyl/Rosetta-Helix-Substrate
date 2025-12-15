@@ -103,13 +103,15 @@ def run_integrated_session():
     # ==========================================================================
     # PHASE 3: WUMBO APL Training Engine
     # ==========================================================================
-    print_subheader("Phase 3: WUMBO APL Training (100 steps)")
+    # Allow smoke-tunable step count via env var
+    wumbo_steps = int(os.environ.get("WUMBO_STEPS", "100"))
+    print_subheader(f"Phase 3: WUMBO APL Training ({wumbo_steps} steps)")
 
     apl_engine = WUMBOAPLTrainingEngine(n_oscillators=60)
 
     # Run with z-biased input to drive toward THE_LENS
     import random
-    for step in range(100):
+    for step in range(wumbo_steps):
         # Bias input toward positive z evolution
         input_val = random.random() * PHI_INV + 0.1 * (Z_CRITICAL - apl_engine.wumbo_cycle.z)
         result = apl_engine.training_step(max(0.01, input_val))
@@ -142,7 +144,8 @@ def run_integrated_session():
     print(f"  Coupling Conservation: {'PASS' if coupling_validation['all_valid'] else 'FAIL'}")
 
     # Train on sentences
-    sentence_results = wumbo_trainer.train_all_sentences(steps_per_sentence=50)
+    sentence_steps = int(os.environ.get("WUMBO_SENTENCE_STEPS", "50"))
+    sentence_results = wumbo_trainer.train_all_sentences(steps_per_sentence=sentence_steps)
 
     print(f"\n  Sentence Training Results:")
     for sid, result in sentence_results["sentence_results"].items():

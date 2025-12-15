@@ -1,0 +1,40 @@
+{
+  "name": "rosetta-helix-cli",
+  "version": "0.1.0",
+  "description": "CLI wrapper to orchestrate Rosetta-Helix-Substrate via Node",
+  "license": "MIT",
+  "author": "Rosetta Helix Contributors",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AceTheDactyl/Rosetta-Helix-Substrate.git"
+  },
+  "bugs": {
+    "url": "https://github.com/AceTheDactyl/Rosetta-Helix-Substrate/issues"
+  },
+  "homepage": "https://github.com/AceTheDactyl/Rosetta-Helix-Substrate#readme",
+  "keywords": [
+    "rosetta-helix",
+    "kira",
+    "helix",
+    "quantum-apl",
+    "cli",
+    "training",
+    "visualization"
+  ],
+  "bin": {
+    "rosetta-helix": "bin/rosetta-helix.js"
+  },
+  "files": [
+    "bin/rosetta-helix.js",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=16"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "prepare": "chmod +x bin/rosetta-helix.js"
+  }
+}

@@ -1,0 +1,34 @@
+version: "3.9"
+
+services:
+  kira:
+    build:
+      context: .
+      dockerfile: Dockerfile.app
+    command: ["kira-server", "--host", "0.0.0.0", "--port", "5000"]
+    ports:
+      - "5000:5000"
+    environment:
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - CLAUDE_SKILL_GITHUB_TOKEN=${CLAUDE_SKILL_GITHUB_TOKEN}
+    restart: unless-stopped
+
+  viz:
+    build:
+      context: .
+      dockerfile: Dockerfile.app
+    command: ["python", "visualization_server.py", "--port", "8765"]
+    ports:
+      - "8765:8765"
+    restart: unless-stopped
+
+  helix:
+    build:
+      context: .
+      dockerfile: Dockerfile.app
+    command: ["helix", "--help"]
+    volumes:
+      - ./runs:/app/runs
+      - ./models:/app/models
+    restart: on-failure
+
