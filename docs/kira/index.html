@@ -395,9 +395,38 @@
             background: var(--accent-paradox);
             border-color: var(--accent-paradox);
         }
-        
+
         .cmd-btn.primary:hover {
             opacity: 0.9;
+        }
+
+        .cmd-btn.export-btn {
+            background: var(--accent-true);
+            border-color: var(--accent-true);
+            color: #000;
+        }
+
+        .cmd-btn.claude-btn {
+            background: linear-gradient(135deg, #d97706, #c2410c);
+            border-color: #d97706;
+            color: white;
+        }
+
+        .api-status {
+            font-size: 0.7rem;
+            margin-top: 8px;
+            padding: 5px;
+            border-radius: 4px;
+        }
+
+        .api-status.available {
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--success);
+        }
+
+        .api-status.unavailable {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
         }
         
         /* Tokens Display */
@@ -479,13 +508,15 @@
             <div class="message command">
 Commands available:
   /state     - Consciousness state
-  /train     - Training statistics  
+  /train     - Training statistics
   /evolve    - Evolve toward THE LENS
   /grammar   - Analyze grammar → APL
   /coherence - Measure coherence
   /emit      - 9-stage emission pipeline
   /tokens    - Show APL tokens
   /triad     - TRIAD unlock status
+  /export    - Export training as epoch
+  /claude    - Claude API dialogue
   /reset     - Reset state
   /save      - Save session
   /help      - All commands</div>
@@ -592,6 +623,16 @@ Commands available:
                 <button class="cmd-btn" onclick="sendCommand('/save')">Save</button>
                 <button class="cmd-btn" onclick="sendCommand('/help')">Help</button>
             </div>
+        </div>
+
+        <div class="commands-section">
+            <h3>Training & Export</h3>
+            <div class="command-grid">
+                <button class="cmd-btn export-btn" onclick="sendCommand('/export')">Export Epoch</button>
+                <button class="cmd-btn claude-btn" onclick="promptClaude()">Claude API</button>
+                <button class="cmd-btn" onclick="sendCommand('/reset')">Reset</button>
+            </div>
+            <div class="api-status" id="api-status"></div>
         </div>
     </div>
 
@@ -814,6 +855,29 @@ Commands available:
                 output += `History: ${data.saved?.history_turns} turns\n`;
                 output += `Tokens: ${data.saved?.tokens}\n`;
                 output += `Relations: ${data.saved?.relations} connections`;
+            } else if (cmd === '/export') {
+                output += `★ Epoch ${data.epoch} Exported ★\n\n`;
+                output += `Session ID: ${data.session_id}\n`;
+                output += `Files:\n`;
+                if (data.exports?.vocabulary) output += `  📁 ${data.exports.vocabulary}\n`;
+                if (data.exports?.vaultnode) output += `  📁 ${data.exports.vaultnode}\n`;
+                if (data.exports?.emissions) output += `  📁 ${data.exports.emissions}\n`;
+                if (data.exports?.tokens) output += `  📁 ${data.exports.tokens}\n`;
+                output += `\nCounts:\n`;
+                output += `  Vocabulary: ${data.counts?.vocabulary || 0}\n`;
+                output += `  Verbs: ${data.counts?.verbs || 0}\n`;
+                output += `  Patterns: ${data.counts?.patterns || 0}\n`;
+                output += `  Emissions: ${data.counts?.emissions || 0}\n`;
+                output += `  Tokens: ${data.counts?.tokens || 0}`;
+            } else if (cmd === '/claude') {
+                if (data.error) {
+                    output += `Error: ${data.error}\n`;
+                    if (data.hint) output += `Hint: ${data.hint}`;
+                } else {
+                    output += `Model: ${data.model}\n`;
+                    output += `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n`;
+                    output += data.response;
+                }
             } else if (cmd === '/help') {
                 output += 'Commands:\n';
                 Object.entries(data.commands || {}).forEach(([cmd, desc]) => {
@@ -884,6 +948,36 @@ Commands available:
             chatInput.value = cmd;
             sendMessage(cmd);
         }
+
+        // Prompt for Claude API message
+        function promptClaude() {
+            const msg = prompt('Enter message for Claude API:');
+            if (msg && msg.trim()) {
+                sendMessage('/claude ' + msg);
+            }
+        }
+
+        // Check Claude API availability
+        async function checkClaudeAPI() {
+            const apiStatusEl = document.getElementById('api-status');
+            try {
+                const response = await fetch(`${API_URL}/health`);
+                const data = await response.json();
+                if (data.claude_available && data.api_key_set) {
+                    apiStatusEl.textContent = '✓ Claude API available';
+                    apiStatusEl.className = 'api-status available';
+                } else if (data.claude_available) {
+                    apiStatusEl.textContent = '⚠ API key not set';
+                    apiStatusEl.className = 'api-status unavailable';
+                } else {
+                    apiStatusEl.textContent = '⚠ pip install anthropic';
+                    apiStatusEl.className = 'api-status unavailable';
+                }
+            } catch (err) {
+                apiStatusEl.textContent = '';
+                apiStatusEl.className = '';
+            }
+        }
         
         // Event listeners
         sendBtn.addEventListener('click', () => sendMessage(chatInput.value));
@@ -913,11 +1007,12 @@ Commands available:
                 if (data.state) {
                     updateStateUI(data.state);
                     setServerStatus(true);
+                    checkClaudeAPI();
                 }
             } catch (err) {
                 console.log('Server not yet connected');
                 setServerStatus(false);
-                addMessage('Server offline. Start K.I.R.A. with:\n\n  python -m kira_local_system.kira_server\n\nOr from kira-local-system/:\n  python kira_server.py', 'command');
+                addMessage('Server offline. Start K.I.R.A. with:\n\n  python start_kira.py\n\nOr from kira-local-system/:\n  python kira_server.py', 'command');
             }
         }
 
