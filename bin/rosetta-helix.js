@@ -9,7 +9,12 @@ const { join } = require('path');
 
 function sh(cmd, args, opts = {}) {
   return new Promise((resolve, reject) => {
-    const p = spawn(cmd, args, { stdio: 'inherit', shell: false, ...opts });
+    // Preserve ANTHROPIC_API_KEY in environment
+    const env = {
+      ...process.env,
+      ...(opts.env || {})
+    };
+    const p = spawn(cmd, args, { stdio: 'inherit', shell: false, env, ...opts });
     p.on('exit', code => code === 0 ? resolve() : reject(new Error(`${cmd} exited ${code}`)));
   });
 }
@@ -82,6 +87,58 @@ async function runApiTests() {
   await sh(py, ['-m', 'pytest', '-q', 'tests/api']);
 }
 
+async function runStart() {
+  console.log('Starting KIRA + Visualization servers...');
+  const py = venvBin('python');
+
+  // Start both servers in parallel
+  const kiraPromise = sh(py, ['kira-local-system/kira_server.py']).catch(e => {
+    console.error('KIRA server error:', e.message);
+  });
+
+  const vizPromise = sh(py, ['visualization_server.py', '--port', '8765']).catch(e => {
+    console.error('Viz server error:', e.message);
+  });
+
+  await Promise.race([kiraPromise, vizPromise]);
+}
+
+async function runHealth() {
+  console.log(JSON.stringify({
+    kira: 'http://localhost:5000/api/health',
+    viz: 'http://localhost:8765/state'
+  }, null, 2));
+}
+
+async function runDoctor() {
+  console.log('Running environment checks...');
+  const checks = [];
+
+  // Check Python
+  try {
+    await sh('python3', ['--version']);
+    checks.push('✓ Python 3 available');
+  } catch {
+    checks.push('✗ Python 3 not found');
+  }
+
+  // Check venv
+  if (existsSync('.venv')) {
+    checks.push('✓ Virtual environment exists');
+  } else {
+    checks.push('✗ Virtual environment missing (run: npx rosetta-helix setup)');
+  }
+
+  // Check ANTHROPIC_API_KEY
+  if (process.env.ANTHROPIC_API_KEY) {
+    checks.push('✓ ANTHROPIC_API_KEY is set');
+  } else {
+    checks.push('⚠ ANTHROPIC_API_KEY not set (optional)');
+  }
+
+  checks.forEach(c => console.log(c));
+}
+
 async function runCompose(target) {
   // shim docker compose via npm scripts
   const args = {
@@ -100,6 +157,9 @@ async function runCompose(target) {
     if (cmd === 'setup') await setup();
     else if (cmd === 'kira') await runKira();
     else if (cmd === 'viz') await runViz();
+    else if (cmd === 'start' || cmd === 'star') await runStart();
+    else if (cmd === 'health') await runHealth();
+    else if (cmd === 'doctor') await runDoctor();
     else if (cmd === 'helix:train') await runHelixTrain();
     else if (cmd === 'helix:nightly') await runHelixNightly();
     else if (cmd === 'smoke') await runSmoke();
@@ -110,6 +170,9 @@ async function runCompose(target) {
         `  setup           Create .venv and install deps\n` +
         `  kira            Start KIRA server (port 5000)\n` +
         `  viz             Start Visualization server (port 8765)\n` +
+        `  start           Start KIRA + Viz together\n` +
+        `  health          Check service health endpoints\n` +
+        `  doctor          Run environment checks\n` +
         `  helix:train     Run helix training\n` +
         `  helix:nightly   Run nightly training\n` +
         `  smoke           Run smoke tests\n` +

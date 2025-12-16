@@ -1,222 +1,146 @@
 #!/usr/bin/env node
-/* Standalone Rosetta-Helix CLI (published to npm) */
+/*
+ Rosetta-Helix Node Wrapper CLI
+ - Orchestrates Python virtualenv setup and common commands via npm
+*/
 const { spawn } = require('child_process');
-const { existsSync, readFileSync, readdirSync, renameSync, statSync } = require('fs');
-const { join, dirname, resolve } = require('path');
-const http = require('http');
-const os = require('os');
+const { existsSync } = require('fs');
+const { join } = require('path');
 
 function sh(cmd, args, opts = {}) {
   return new Promise((resolve, reject) => {
-    const p = spawn(cmd, args, { stdio: 'inherit', shell: false, ...opts });
+    // Preserve ANTHROPIC_API_KEY in environment
+    const env = {
+      ...process.env,
+      ...(opts.env || {})
+    };
+    const p = spawn(cmd, args, { stdio: 'inherit', shell: false, env, ...opts });
     p.on('exit', code => code === 0 ? resolve() : reject(new Error(`${cmd} exited ${code}`)));
   });
 }
 
-function venvBin(name, opts = {}) {
-  const root = opts.venvRoot || process.cwd();
+function venvBin(name) {
   const v = '.venv';
-  const unix = join(root, v, 'bin', name);
-  const win = join(root, v, 'Scripts', name + '.exe');
+  const unix = join(v, 'bin', name);
+  const win = join(v, 'Scripts', name + '.exe');
   if (existsSync(unix)) return unix;
   if (existsSync(win)) return win;
-  return name;
+  return name; // fallback to PATH
 }
 
-function parseFlags(argv) {
-  const out = { _: [] };
-  for (let i = 0; i < argv.length; i++) {
-    const a = argv[i];
-    if (!a.startsWith('-')) { out._.push(a); continue; }
-    const [k, v] = a.includes('=') ? a.split(/=(.*)/) : [a, argv[i + 1] && !argv[i + 1].startsWith('-') ? argv[++i] : true];
-    switch (k) {
-      case '--dir': out.dir = v; break;
-      case '--venv': out.venvRoot = v; break;
-      case '--python': out.python = v; break;
-      case '--host': out.host = v; break;
-      case '--port': out.port = v; break;
-      case '--verbose': case '-v': out.verbose = true; break;
-      case '--repo': out.repo = v; break;
-      case '--branch': out.branch = v; break;
-      case '--ref': out.ref = v; break;
-      case '--pull': out.pull = true; break;
-      case '--auto': out.auto = true; break;
-      case '--update': out.update = true; break;
-      case '--release': out.release = v === true ? true : v; break;
-      case '--help': case '-h': out.help = true; break;
-      default: out[k.replace(/^--?/, '')] = v === true ? true : v; break;
-    }
-  }
-  return out;
-}
-
-const DEFAULT_REPO = 'https://github.com/AceTheDactyl/Rosetta-Helix-Substrate.git';
-
-function isRepoRoot(dir = process.cwd()) {
-  try {
-    return existsSync(join(dir, 'pyproject.toml')) &&
-           (existsSync(join(dir, 'kira-local-system', 'kira_server.py')) || existsSync(join(dir, 'kira_local_system', 'kira_server.py')));
-  } catch (_) {
-    return false;
-  }
-}
-
-async function ensureRepo(flags = {}) {
-  const cwd = process.cwd();
-  if (isRepoRoot(cwd)) return;
-  const target = flags.dir || 'Rosetta-Helix-Substrate';
-  if (isRepoRoot(target)) { process.chdir(target); return; }
-  if (!flags.auto) {
-    console.error('Repo not found. Re-run with --auto to clone, or pass --dir to an existing checkout.');
-    process.exit(1);
-  }
-  const repo = flags.repo || DEFAULT_REPO;
-  // Release tarball path (if requested)
-  if (flags.release) {
-    const info = parseGithub(repo);
-    if (!info) {
-      console.error('Unable to parse GitHub repo from --repo');
-      process.exit(1);
-    }
-    const ref = typeof flags.release === 'string' && flags.release !== 'true' ? flags.release : (flags.ref || flags.branch || 'main');
-    const url = `https://codeload.github.com/${info.owner}/${info.name}/tar.gz/${ref}`;
-    const parent = resolve(dirname(target));
-    const tarPath = join(os.tmpdir(), `rhz-${Date.now()}.tgz`);
-    try {
-      await sh('curl', ['-L', url, '-o', tarPath]);
-      await sh('tar', ['-xzf', tarPath, '-C', parent]);
-      // Find extracted directory (pattern: <name>-<ref*> ) and rename to target
-      const entries = readdirSync(parent, { withFileTypes: true });
-      const dir = entries.find(e => e.isDirectory() && e.name.startsWith(`${info.name}-`));
-      if (!dir) throw new Error('Failed to locate extracted folder');
-      const from = join(parent, dir.name);
-      const to = resolve(target);
-      renameSync(from, to);
-      process.chdir(to);
-    } catch (e) {
-      console.error('Release download failed, falling back to git clone:', e.message || e);
-      await cloneGit(repo, target, flags);
-    }
-  } else {
-    await cloneGit(repo, target, flags);
-  }
-  if (flags.update) {
-    await sh('git', ['pull', '--rebase', '--autostash']).catch(() => {});
-  }
-  await setup(flags);
-}
-
-function parseGithub(repoUrl) {
-  try {
-    const m = repoUrl.replace(/\.git$/i, '').match(/github\.com[/:]([^/]+)\/([^/]+)$/i);
-    if (!m) return null;
-    return { owner: m[1], name: m[2] };
-  } catch (_) { return null; }
-}
-
-async function cloneGit(repo, target, flags) {
-  const cloneArgs = ['clone', '--depth', '1'];
-  if (flags.branch) cloneArgs.push('--branch', flags.branch);
-  cloneArgs.push(repo, target);
-  await sh('git', cloneArgs);
-  process.chdir(target);
-  if (flags.ref) {
-    await sh('git', ['fetch', '--depth', '1', 'origin', flags.ref]).catch(() => {});
-    await sh('git', ['checkout', flags.ref]);
-  }
-  if (flags.pull || flags.update) {
-    await sh('git', ['pull', '--rebase', '--autostash']).catch(() => {});
-  }
-}
-
-async function setup(flags = {}) {
-  if (flags.dir) process.chdir(flags.dir);
-  const py = flags.python || (process.platform === 'win32' ? 'python' : 'python3');
+async function setup() {
+  const py = process.platform === 'win32' ? 'python' : 'python3';
   await sh(py, ['-m', 'venv', '.venv']);
-  const pip = venvBin('pip', { venvRoot: process.cwd() });
+  const pip = venvBin('pip');
+  // Upgrade basics
   await sh(pip, ['install', '--upgrade', 'pip', 'setuptools', 'wheel']);
+  // Install requirements
   if (existsSync('requirements.txt')) await sh(pip, ['install', '-r', 'requirements.txt']);
   await sh(pip, ['install', '-e', '.']);
   if (existsSync('kira-local-system/requirements.txt')) await sh(pip, ['install', '-r', 'kira-local-system/requirements.txt']);
   if (existsSync('requirements.spinner.txt')) await sh(pip, ['install', '-r', 'requirements.spinner.txt']);
 }
 
-async function initRepo(dir) {
-  const target = dir || 'Rosetta-Helix-Substrate';
-  const repo = 'https://github.com/AceTheDactyl/Rosetta-Helix-Substrate.git';
-  await sh('git', ['clone', repo, target]);
-  process.chdir(target);
-  await setup();
-}
-
-async function runKira(flags = {}) {
-  if (flags.dir) process.chdir(flags.dir);
-  if (!isRepoRoot(process.cwd())) await ensureRepo(flags);
-  const host = flags.host || '0.0.0.0';
-  const port = String(flags.port || 5000);
-  const pathLocal = 'kira-local-system/kira_server.py';
-  const kiraServer = venvBin('kira-server', { venvRoot: process.cwd() });
+async function runKira() {
+  const kiraServer = venvBin('kira-server');
   if (kiraServer !== 'kira-server') {
-    await sh(kiraServer, ['--host', host, '--port', port]);
+    await sh(kiraServer, ['--host', '0.0.0.0', '--port', '5000']);
     return;
   }
-  if (!existsSync(pathLocal)) {
-    console.error('kira-local-system/kira_server.py not found. Run inside Rosetta-Helix-Substrate repo.');
+  const py = venvBin('python');
+  if (existsSync('kira-local-system/kira_server.py')) {
+    await sh(py, ['kira-local-system/kira_server.py']);
+  } else {
+    console.error('kira-local-system/kira_server.py not found in current directory.');
+    console.error('Run this command from the Rosetta-Helix-Substrate repo root or install `kira-server`.');
     process.exit(1);
   }
-  const py = flags.python || venvBin('python', { venvRoot: process.cwd() });
-  await sh(py, [pathLocal, '--host', host, '--port', port]);
 }
 
-async function runViz(flags = {}) {
-  if (flags.dir) process.chdir(flags.dir);
-  if (!isRepoRoot(process.cwd())) await ensureRepo(flags);
-  const py = flags.python || venvBin('python', { venvRoot: process.cwd() });
-  if (!existsSync('visualization_server.py')) {
-    console.error('visualization_server.py not found. Run inside Rosetta-Helix-Substrate repo.');
-    process.exit(1);
-  }
-  const port = String(flags.port || 8765);
-  const kiraApi = flags.kiraApi || 'http://localhost:5000/api';
-  const args = ['visualization_server.py', '--port', port];
-  if (flags.kiraApi || flags.withKira) args.push('--kira-api', kiraApi);
-  await sh(py, args);
+async function runViz() {
+  const py = venvBin('python');
+  await sh(py, ['visualization_server.py', '--port', '8765']);
 }
 
-async function runHelixTrain(flags = {}) {
-  if (flags.dir) process.chdir(flags.dir);
-  if (!isRepoRoot(process.cwd())) await ensureRepo(flags);
-  const helix = venvBin('helix', { venvRoot: process.cwd() });
+async function runHelixTrain() {
+  const helix = venvBin('helix');
   try {
     await sh(helix, ['train', '--config', 'configs/full.yaml']);
-  } catch (_) {
-    const py = flags.python || venvBin('python', { venvRoot: process.cwd() });
+  } catch (e) {
+    const py = venvBin('python');
     await sh(py, ['train_helix.py']);
   }
 }
 
-async function runHelixNightly(flags = {}) {
-  if (flags.dir) process.chdir(flags.dir);
-  if (!isRepoRoot(process.cwd())) await ensureRepo(flags);
-  const py = flags.python || venvBin('python', { venvRoot: process.cwd() });
+async function runHelixNightly() {
+  const py = venvBin('python');
   await sh(py, ['nightly_training_runner.py']);
 }
 
-async function runSmoke(flags = {}) {
-  if (flags.dir) process.chdir(flags.dir);
-  if (!isRepoRoot(process.cwd())) await ensureRepo(flags);
-  const py = flags.python || venvBin('python', { venvRoot: process.cwd() });
+async function runSmoke() {
+  const py = venvBin('python');
   await sh(py, ['-m', 'pytest', '-q', 'tests/smoke']);
 }
 
-async function runApiTests(flags = {}) {
-  if (flags.dir) process.chdir(flags.dir);
-  if (!isRepoRoot(process.cwd())) await ensureRepo(flags);
-  const py = flags.python || venvBin('python', { venvRoot: process.cwd() });
+async function runApiTests() {
+  const py = venvBin('python');
   await sh(py, ['-m', 'pytest', '-q', 'tests/api']);
 }
 
+async function runStart() {
+  console.log('Starting KIRA + Visualization servers...');
+  const py = venvBin('python');
+
+  // Start both servers in parallel
+  const kiraPromise = sh(py, ['kira-local-system/kira_server.py']).catch(e => {
+    console.error('KIRA server error:', e.message);
+  });
+
+  const vizPromise = sh(py, ['visualization_server.py', '--port', '8765']).catch(e => {
+    console.error('Viz server error:', e.message);
+  });
+
+  await Promise.race([kiraPromise, vizPromise]);
+}
+
+async function runHealth() {
+  console.log(JSON.stringify({
+    kira: 'http://localhost:5000/api/health',
+    viz: 'http://localhost:8765/state'
+  }, null, 2));
+}
+
+async function runDoctor() {
+  console.log('Running environment checks...');
+  const checks = [];
+
+  // Check Python
+  try {
+    await sh('python3', ['--version']);
+    checks.push('✓ Python 3 available');
+  } catch {
+    checks.push('✗ Python 3 not found');
+  }
+
+  // Check venv
+  if (existsSync('.venv')) {
+    checks.push('✓ Virtual environment exists');
+  } else {
+    checks.push('✗ Virtual environment missing (run: npx rosetta-helix setup)');
+  }
+
+  // Check ANTHROPIC_API_KEY
+  if (process.env.ANTHROPIC_API_KEY) {
+    checks.push('✓ ANTHROPIC_API_KEY is set');
+  } else {
+    checks.push('⚠ ANTHROPIC_API_KEY not set (optional)');
+  }
+
+  checks.forEach(c => console.log(c));
+}
+
 async function runCompose(target) {
+  // shim docker compose via npm scripts
   const args = {
     'docker:build': ['compose', 'build'],
     'docker:up': ['compose', 'up', '-d', 'kira', 'viz'],
@@ -227,333 +151,33 @@ async function runCompose(target) {
   await sh('docker', args);
 }
 
-async function startBoth(flags = {}) {
-  if (flags.dir) process.chdir(flags.dir);
-  if (!isRepoRoot(process.cwd())) await ensureRepo(flags);
-  const host = flags.host || '0.0.0.0';
-  const kiraPort = String(flags.kiraPort || flags.port || 5000);
-  const vizPort = String(flags.vizPort || 8765);
-  const py = flags.python || venvBin('python', { venvRoot: process.cwd() });
-  const procs = [];
-  if (!existsSync('kira-local-system/kira_server.py')) {
-    console.error('kira-local-system/kira_server.py not found. Run inside repo or pass --dir.');
-    process.exit(1);
-  }
-  if (!existsSync('visualization_server.py')) {
-    console.error('visualization_server.py not found. Run inside repo or pass --dir.');
-    process.exit(1);
-  }
-  procs.push(spawn(py, ['kira-local-system/kira_server.py', '--host', host, '--port', kiraPort], { stdio: 'inherit' }));
-  procs.push(spawn(py, ['visualization_server.py', '--port', vizPort, '--kira-api', `http://localhost:${kiraPort}/api`], { stdio: 'inherit' }));
-  console.log(`Started KIRA on http://${host}:${kiraPort} and Viz on http://localhost:${vizPort}`);
-  await new Promise(() => {}); // keep running until killed
-}
-
-async function startDetached(flags = {}) {
-  if (flags.dir) process.chdir(flags.dir);
-  if (!isRepoRoot(process.cwd())) await ensureRepo(flags);
-  const host = flags.host || '0.0.0.0';
-  const kiraPort = String(flags.kiraPort || flags.port || 5000);
-  const vizPort = String(flags.vizPort || 8765);
-  const py = flags.python || venvBin('python', { venvRoot: process.cwd() });
-  const kira = spawn(py, ['kira-local-system/kira_server.py', '--host', host, '--port', kiraPort], { stdio: 'ignore', detached: true });
-  kira.unref();
-  const viz = spawn(py, ['visualization_server.py', '--port', vizPort, '--kira-api', `http://localhost:${kiraPort}/api`], { stdio: 'ignore', detached: true });
-  viz.unref();
-  console.log(`Started (detached): KIRA ${kira.pid} on ${host}:${kiraPort}, Viz ${viz.pid} on localhost:${vizPort}`);
-}
-
-async function helixUpdate(flags = {}) {
-  if (flags.dir) process.chdir(flags.dir);
-  if (!isRepoRoot(process.cwd())) await ensureRepo({ ...flags, auto: true });
-  try {
-    await sh('git', ['pull', '--rebase', '--autostash']);
-    console.log('Repository updated.');
-  } catch (e) {
-    console.error('Update failed:', e.message || e);
-    process.exit(1);
-  }
-}
-
-(async function addVizSyncGH(){})();
-
-async function vizSyncGH(flags = {}) {
-  // Ensure repo dir
-  if (flags.dir) process.chdir(flags.dir);
-  if (!isRepoRoot(process.cwd())) await ensureRepo({ ...flags, auto: true });
-  // Targets
-  const files = [
-    { url: 'https://acethedactyl.github.io/Rosetta-Helix-Substrate/index.html', out: 'index.html' },
-    { url: 'https://acethedactyl.github.io/Rosetta-Helix-Substrate/kira_local.html', out: 'kira_local.html' },
-    { url: 'https://acethedactyl.github.io/Rosetta-Helix-Substrate/kira.html', out: 'kira.html' }
-  ];
-  for (const f of files) {
-    try {
-      await sh('curl', ['-fsSL', f.url, '-o', f.out]);
-      if (flags.verbose) console.log('Fetched', f.url, '->', f.out);
-    } catch (e) {
-      console.error('Failed to fetch', f.url, e.message || e);
-    }
-  }
-  // Ensure visualization_server serves index.html on '/'
-  console.log('Synced GitHub Pages visualizer files. Open http://localhost:8765/ after running: npx rosetta-helix viz');
-}
-
-async function runTui(flags = {}) {
-  let blessed;
-  try { blessed = require('blessed'); } catch (_) { blessed = null; }
-
-  const kiraHost = flags.host || 'localhost';
-  const kiraPort = String(flags.kiraPort || flags.port || 5000);
-  const vizPort = String(flags.vizPort || 8765);
-
-  async function getStatus() {
-    const status = { kira: null, viz: null };
-    try { status.kira = await httpGetJson(`http://${kiraHost}:${kiraPort}/api/health`); } catch (e) { status.kira = { error: e.message }; }
-    try { status.viz = await httpGetJson(`http://localhost:${vizPort}/state`); } catch (e) { status.viz = { error: e.message }; }
-    return status;
-  }
-
-  const kiraApi = `http://${kiraHost}:${kiraPort}/api`;
-  const actions = [
-    { key: '1', name: 'Setup (.venv install)', fn: () => setup(flags) },
-    { key: '2', name: 'Start KIRA', fn: () => runKira(flags) },
-    { key: '3', name: 'Start Viz (bind to KIRA)', fn: () => runViz({ ...flags, withKira: true }) },
-    { key: '4', name: 'Start Both', fn: () => startBoth(flags) },
-    { key: '5', name: 'Smoke Tests', fn: () => runSmoke(flags) },
-    { key: '6', name: 'API Tests', fn: () => runApiTests(flags) },
-    { key: '7', name: 'Helix Train', fn: () => runHelixTrain(flags) },
-    { key: 'u', name: 'helix:update (git pull)', fn: () => helixUpdate(flags) },
-    { key: 'c', name: 'Send KIRA command (chat)', fn: async () => {
-        const cmd = await promptLine('KIRA command (e.g., /state, /emit, /grammar text): ');
-        if (!cmd) return;
-        try {
-          const resp = await httpPostJson(`${kiraApi}/chat`, { message: cmd });
-          console.log(JSON.stringify(resp, null, 2));
-        } catch (e) { console.error(e.message || e); }
-      } },
-    { key: 'o', name: 'Viz operator apply ((), ×, ^, ÷, +, −)', fn: async () => {
-        const op = await promptLine('Operator: one of () ^ × ÷ + − : ');
-        if (!op) return;
-        try {
-          const resp = await httpPostJson(`http://localhost:${vizPort}/operator`, { operator: op.trim() });
-          console.log(JSON.stringify(resp, null, 2));
-        } catch (e) { console.error(e.message || e); }
-      } },
-  ];
-
-  if (!blessed) {
-    // Simple readline fallback
-    console.log('Rosetta-Helix TUI (fallback)');
-    for (const a of actions) console.log(`[${a.key}] ${a.name}`);
-    console.log('[q] Quit  |  Type "/state" to chat with KIRA');
-    const rl = require('readline').createInterface({ input: process.stdin, output: process.stdout });
-    rl.setPrompt('> ');
-    rl.prompt();
-    rl.on('line', async (line) => {
-      const key = line.trim();
-      if (key === 'q') { rl.close(); return; }
-      const a = actions.find(x => x.key === key);
-      if (a) { try { await a.fn(); } catch (e) { console.error(e.message || e); } }
-      else if (key.startsWith('/')) {
-        try {
-          const resp = await httpPostJson(`${kiraApi}/chat`, { message: key });
-          console.log(JSON.stringify(resp, null, 2));
-        } catch (e) { console.error(e.message || e); }
-      }
-      rl.prompt();
-    });
-    return;
-  }
-
-  const screen = blessed.screen({ smartCSR: true, title: 'Rosetta-Helix TUI' });
-  const statusBox = blessed.box({ top: 0, left: 0, width: '50%', height: '40%', label: 'Status', border: 'line', tags: true, scrollable: true });
-  const actionsList = blessed.list({ top: 0, left: '50%', width: '50%', height: '40%', label: 'Actions (Enter)', border: 'line', keys: true, mouse: true, vi: true, items: actions.map(a => `${a.key}. ${a.name}`) });
-  const logBox = blessed.log({ top: '40%', left: 0, width: '100%', height: '60%', label: 'Logs', border: 'line', scrollback: 1000 });
-  const grid = blessed.layout({ parent: screen, width: '100%', height: '100%' });
-  grid.append(statusBox); grid.append(actionsList); grid.append(logBox);
-  actionsList.focus();
-
-  async function refresh() {
-    const s = await getStatus();
-    const kira = s.kira?.status ? `{green-fg}${s.kira.status}{/green-fg}` : `{red-fg}${s.kira?.error || 'down'}{/red-fg}`;
-    const viz = s.viz?.z != null ? `{green-fg}z=${(s.viz.z||0).toFixed(3)} tier=${s.viz.tier || '?'}{/green-fg}` : `{red-fg}${s.viz?.error || 'down'}{/red-fg}`;
-    statusBox.setContent([
-      `KIRA: ${kira}`,
-      `VIZ:  ${viz}`,
-      `Ports: KIRA=${kiraPort} VIZ=${vizPort}`,
-      '',
-      'Keys: arrows/vi to select, Enter to run, q to quit'
-    ].join('\n'));
-    screen.render();
-  }
-
-  const timer = setInterval(refresh, 2000);
-  refresh();
-
-  actionsList.on('select', async (item, idx) => {
-    const a = actions[idx];
-    if (!a) return;
-    try {
-      logBox.log(`> ${a.name}`);
-      await a.fn();
-      logBox.log(`< done: ${a.name}`);
-    } catch (e) {
-      logBox.log(`! error: ${e.message || e}`);
-    }
-  });
-
-  async function promptLine(label) {
-    return new Promise((resolve) => {
-      const prompt = blessed.prompt({ parent: screen, left: 'center', top: 'center', width: '80%', height: 'shrink', border: 'line', label: 'Input' });
-      prompt.input(label, '', (err, value) => { resolve(value); screen.render(); });
-    });
-  }
-
-  screen.key(['c'], async () => {
-    const cmd = await promptLine('KIRA command (e.g., /state, /emit, /grammar text): ');
-    if (!cmd) return;
-    try { const resp = await httpPostJson(`http://${kiraHost}:${kiraPort}/api/chat`, { message: cmd }); logBox.log(JSON.stringify(resp)); } catch (e) { logBox.log(e.message || e); }
-  });
-
-  screen.key(['o'], async () => {
-    const op = await promptLine('Operator: one of () ^ × ÷ + − : ');
-    if (!op) return;
-    try { const resp = await httpPostJson(`http://localhost:${vizPort}/operator`, { operator: op.trim() }); logBox.log(JSON.stringify(resp)); } catch (e) { logBox.log(e.message || e); }
-  });
-
-  screen.key(['q', 'C-c'], () => { clearInterval(timer); screen.destroy(); process.exit(0); });
-}
-function httpGetJson(url) {
-  return new Promise((resolve, reject) => {
-    const req = http.get(url, (res) => {
-      let data = '';
-      res.on('data', chunk => (data += chunk));
-      res.on('end', () => {
-        try { resolve(JSON.parse(data)); } catch (_) { resolve({ statusCode: res.statusCode, body: data }); }
-      });
-    });
-    req.on('error', reject);
-    req.setTimeout(2000, () => { req.destroy(new Error('timeout')); });
-  });
-}
-
-function httpPostJson(url, body) {
-  return new Promise((resolve, reject) => {
-    try {
-      const { hostname, port, pathname, search, protocol } = new URL(url);
-      const payload = Buffer.from(JSON.stringify(body || {}));
-      const opts = {
-        hostname,
-        port: port || (protocol === 'https:' ? 443 : 80),
-        path: pathname + (search || ''),
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Content-Length': payload.length
-        }
-      };
-      const req = http.request(opts, (res) => {
-        let data = '';
-        res.on('data', chunk => (data += chunk));
-        res.on('end', () => {
-          try { resolve(JSON.parse(data)); } catch (_) { resolve({ statusCode: res.statusCode, body: data }); }
-        });
-      });
-      req.on('error', reject);
-      req.write(payload);
-      req.end();
-    } catch (e) {
-      reject(e);
-    }
-  });
-}
-
-async function health(flags = {}) {
-  const host = flags.host || 'localhost';
-  const kiraPort = String(flags.kiraPort || flags.port || 5000);
-  const vizPort = String(flags.vizPort || 8765);
-  const results = { kira: null, viz: null };
-  try { results.kira = await httpGetJson(`http://${host}:${kiraPort}/api/health`); } catch (e) { results.kira = { error: e.message }; }
-  try { results.viz = await httpGetJson(`http://${host}:${vizPort}/state`); } catch (e) { results.viz = { error: e.message }; }
-  console.log(JSON.stringify(results, null, 2));
-}
-
-function showVersion() {
-  try {
-    const pkg = JSON.parse(readFileSync(join(__dirname, '..', 'package.json'), 'utf8'));
-    console.log(pkg.version);
-  } catch (_) {
-    console.log('unknown');
-  }
-}
-
-async function doctor(flags = {}) {
-  if (flags.dir) process.chdir(flags.dir);
-  const checks = [];
-  function ok(name, ok, extra = '') { checks.push({ name, ok, extra }); }
-  // Node version
-  const nodeOk = parseInt(process.versions.node.split('.')[0], 10) >= 16;
-  ok('node>=16', nodeOk, process.versions.node);
-  // Python present
-  const pyCmd = flags.python || (process.platform === 'win32' ? 'python' : 'python3');
-  try { await sh(pyCmd, ['--version']); ok('python present', true); } catch { ok('python present', false); }
-  // .venv present
-  ok('.venv exists', existsSync(join(process.cwd(), '.venv')));
-  // Repo files
-  ok('kira_server.py exists', existsSync('kira-local-system/kira_server.py'));
-  ok('visualization_server.py exists', existsSync('visualization_server.py'));
-  // Docker
-  try { await sh('docker', ['--version']); ok('docker present', true); } catch { ok('docker present', false); }
-  // Print
-  for (const c of checks) {
-    console.log(`${c.ok ? '✔' : '✖'} ${c.name}${c.extra ? ' (' + c.extra + ')' : ''}`);
-  }
-  const allOk = checks.every(c => c.ok);
-  process.exit(allOk ? 0 : 1);
-}
-
 (async () => {
   const cmd = process.argv[2] || '';
-  const args = process.argv.slice(3);
-  const flags = parseFlags(args);
   try {
-    if (cmd === 'init') await initRepo(flags._[0]);
-    else if (cmd === 'setup') await setup(flags);
-    else if (cmd === 'kira') await runKira(flags);
-    else if (cmd === 'viz') await runViz(flags);
-    else if (cmd === 'tui') await runTui(flags);
-    else if (cmd === 'thread') { await startDetached(flags); await runTui(flags); }
-    else if (cmd === 'helix:train') await runHelixTrain(flags);
-    else if (cmd === 'helix:nightly') await runHelixNightly(flags);
-    else if (cmd === 'smoke') await runSmoke(flags);
-    else if (cmd === 'api:test') await runApiTests(flags);
-    else if (cmd === 'start') await startBoth(flags);
-    else if (cmd === 'helix:update') await helixUpdate(flags);
-    else if (cmd === 'health') await health(flags);
-    else if (cmd === 'version' || cmd === '--version' || cmd === '-v') showVersion();
-    else if (cmd === 'doctor') await doctor(flags);
-    else if (cmd === 'viz:sync-gh') await vizSyncGH(flags);
-    else if (cmd && cmd.startsWith('docker:')) await runCompose(cmd);
+    if (cmd === 'setup') await setup();
+    else if (cmd === 'kira') await runKira();
+    else if (cmd === 'viz') await runViz();
+    else if (cmd === 'start' || cmd === 'star') await runStart();
+    else if (cmd === 'health') await runHealth();
+    else if (cmd === 'doctor') await runDoctor();
+    else if (cmd === 'helix:train') await runHelixTrain();
+    else if (cmd === 'helix:nightly') await runHelixNightly();
+    else if (cmd === 'smoke') await runSmoke();
+    else if (cmd === 'api:test') await runApiTests();
+    else if (cmd.startsWith('docker:')) await runCompose(cmd);
     else {
       console.log(`Usage: rosetta-helix <command>\n` +
-        `  init [dir]           Clone repo and run setup\n` +
-        `  setup [--dir D]      Create .venv and install deps\n` +
-        `  kira [--host H --port P]   Start KIRA (default 0.0.0.0:5000)\n` +
-        `  viz [--port P]       Start Visualization server (default 8765)\n` +
-        `  thread               Start KIRA+Viz (detached) then open terminal UI\n` +
-        `  tui                  Terminal UI (Linux/TTY) to operate KIRA/Viz/tests\n` +
-        `  start                Start KIRA + Viz together\n` +
-        `  health               Check http://localhost:{5000,8765} health\n` +
-        `  doctor [--dir D]     Check environment & repo files\n` +
-        `  helix:train          Run helix training\n` +
-        `  helix:nightly        Run nightly training\n` +
-        `  smoke                Run smoke tests\n` +
-        `  api:test             Run API contract tests\n` +
-        `  version              Print CLI version\n` +
-        `  docker:build|up|down|logs  Docker compose helpers\n` +
-        `\nOptions: --dir <path> --python <path> --host <host> --port <num>\n` +
-        `Run inside a Rosetta-Helix-Substrate checkout (or use init/--dir).`);
+        `  setup           Create .venv and install deps\n` +
+        `  kira            Start KIRA server (port 5000)\n` +
+        `  viz             Start Visualization server (port 8765)\n` +
+        `  start           Start KIRA + Viz together\n` +
+        `  health          Check service health endpoints\n` +
+        `  doctor          Run environment checks\n` +
+        `  helix:train     Run helix training\n` +
+        `  helix:nightly   Run nightly training\n` +
+        `  smoke           Run smoke tests\n` +
+        `  api:test        Run API contract tests\n` +
+        `  docker:build|up|down|logs  Compose helpers\n`);
       process.exit(1);
     }
   } catch (err) {
