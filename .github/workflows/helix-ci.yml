@@ -78,6 +78,7 @@ jobs:
         run: |
           python - << 'PY'
           import sys
+          print('Python executable:', sys.executable)
           try:
               import flask, flask_cors  # type: ignore
               print('Flask OK', flask.__version__)
