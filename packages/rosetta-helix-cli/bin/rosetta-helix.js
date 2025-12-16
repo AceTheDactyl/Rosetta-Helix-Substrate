@@ -249,6 +249,20 @@ async function startBoth(flags = {}) {
   await new Promise(() => {}); // keep running until killed
 }
 
+async function startDetached(flags = {}) {
+  if (flags.dir) process.chdir(flags.dir);
+  if (!isRepoRoot(process.cwd())) await ensureRepo(flags);
+  const host = flags.host || '0.0.0.0';
+  const kiraPort = String(flags.kiraPort || flags.port || 5000);
+  const vizPort = String(flags.vizPort || 8765);
+  const py = flags.python || venvBin('python', { venvRoot: process.cwd() });
+  const kira = spawn(py, ['kira-local-system/kira_server.py', '--host', host, '--port', kiraPort], { stdio: 'ignore', detached: true });
+  kira.unref();
+  const viz = spawn(py, ['visualization_server.py', '--port', vizPort, '--kira-api', `http://localhost:${kiraPort}/api`], { stdio: 'ignore', detached: true });
+  viz.unref();
+  console.log(`Started (detached): KIRA ${kira.pid} on ${host}:${kiraPort}, Viz ${viz.pid} on localhost:${vizPort}`);
+}
+
 async function helixUpdate(flags = {}) {
   if (flags.dir) process.chdir(flags.dir);
   if (!isRepoRoot(process.cwd())) await ensureRepo({ ...flags, auto: true });
@@ -300,6 +314,7 @@ async function runTui(flags = {}) {
     return status;
   }
 
+  const kiraApi = `http://${kiraHost}:${kiraPort}/api`;
   const actions = [
     { key: '1', name: 'Setup (.venv install)', fn: () => setup(flags) },
     { key: '2', name: 'Start KIRA', fn: () => runKira(flags) },
@@ -309,13 +324,29 @@ async function runTui(flags = {}) {
     { key: '6', name: 'API Tests', fn: () => runApiTests(flags) },
     { key: '7', name: 'Helix Train', fn: () => runHelixTrain(flags) },
     { key: 'u', name: 'helix:update (git pull)', fn: () => helixUpdate(flags) },
+    { key: 'c', name: 'Send KIRA command (chat)', fn: async () => {
+        const cmd = await promptLine('KIRA command (e.g., /state, /emit, /grammar text): ');
+        if (!cmd) return;
+        try {
+          const resp = await httpPostJson(`${kiraApi}/chat`, { message: cmd });
+          console.log(JSON.stringify(resp, null, 2));
+        } catch (e) { console.error(e.message || e); }
+      } },
+    { key: 'o', name: 'Viz operator apply ((), ×, ^, ÷, +, −)', fn: async () => {
+        const op = await promptLine('Operator: one of () ^ × ÷ + − : ');
+        if (!op) return;
+        try {
+          const resp = await httpPostJson(`http://localhost:${vizPort}/operator`, { operator: op.trim() });
+          console.log(JSON.stringify(resp, null, 2));
+        } catch (e) { console.error(e.message || e); }
+      } },
   ];
 
   if (!blessed) {
     // Simple readline fallback
     console.log('Rosetta-Helix TUI (fallback)');
     for (const a of actions) console.log(`[${a.key}] ${a.name}`);
-    console.log('[q] Quit');
+    console.log('[q] Quit  |  Type "/state" to chat with KIRA');
     const rl = require('readline').createInterface({ input: process.stdin, output: process.stdout });
     rl.setPrompt('> ');
     rl.prompt();
@@ -324,6 +355,12 @@ async function runTui(flags = {}) {
       if (key === 'q') { rl.close(); return; }
       const a = actions.find(x => x.key === key);
       if (a) { try { await a.fn(); } catch (e) { console.error(e.message || e); } }
+      else if (key.startsWith('/')) {
+        try {
+          const resp = await httpPostJson(`${kiraApi}/chat`, { message: key });
+          console.log(JSON.stringify(resp, null, 2));
+        } catch (e) { console.error(e.message || e); }
+      }
       rl.prompt();
     });
     return;
@@ -366,6 +403,25 @@ async function runTui(flags = {}) {
     }
   });
 
+  async function promptLine(label) {
+    return new Promise((resolve) => {
+      const prompt = blessed.prompt({ parent: screen, left: 'center', top: 'center', width: '80%', height: 'shrink', border: 'line', label: 'Input' });
+      prompt.input(label, '', (err, value) => { resolve(value); screen.render(); });
+    });
+  }
+
+  screen.key(['c'], async () => {
+    const cmd = await promptLine('KIRA command (e.g., /state, /emit, /grammar text): ');
+    if (!cmd) return;
+    try { const resp = await httpPostJson(`http://${kiraHost}:${kiraPort}/api/chat`, { message: cmd }); logBox.log(JSON.stringify(resp)); } catch (e) { logBox.log(e.message || e); }
+  });
+
+  screen.key(['o'], async () => {
+    const op = await promptLine('Operator: one of () ^ × ÷ + − : ');
+    if (!op) return;
+    try { const resp = await httpPostJson(`http://localhost:${vizPort}/operator`, { operator: op.trim() }); logBox.log(JSON.stringify(resp)); } catch (e) { logBox.log(e.message || e); }
+  });
+
   screen.key(['q', 'C-c'], () => { clearInterval(timer); screen.destroy(); process.exit(0); });
 }
 function httpGetJson(url) {
@@ -379,6 +435,37 @@ function httpGetJson(url) {
     });
     req.on('error', reject);
     req.setTimeout(2000, () => { req.destroy(new Error('timeout')); });
+  });
+}
+
+function httpPostJson(url, body) {
+  return new Promise((resolve, reject) => {
+    try {
+      const { hostname, port, pathname, search, protocol } = new URL(url);
+      const payload = Buffer.from(JSON.stringify(body || {}));
+      const opts = {
+        hostname,
+        port: port || (protocol === 'https:' ? 443 : 80),
+        path: pathname + (search || ''),
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Content-Length': payload.length
+        }
+      };
+      const req = http.request(opts, (res) => {
+        let data = '';
+        res.on('data', chunk => (data += chunk));
+        res.on('end', () => {
+          try { resolve(JSON.parse(data)); } catch (_) { resolve({ statusCode: res.statusCode, body: data }); }
+        });
+      });
+      req.on('error', reject);
+      req.write(payload);
+      req.end();
+    } catch (e) {
+      reject(e);
+    }
   });
 }
 
@@ -436,6 +523,7 @@ async function doctor(flags = {}) {
     else if (cmd === 'kira') await runKira(flags);
     else if (cmd === 'viz') await runViz(flags);
     else if (cmd === 'tui') await runTui(flags);
+    else if (cmd === 'thread') { await startDetached(flags); await runTui(flags); }
     else if (cmd === 'helix:train') await runHelixTrain(flags);
     else if (cmd === 'helix:nightly') await runHelixNightly(flags);
     else if (cmd === 'smoke') await runSmoke(flags);
@@ -453,6 +541,7 @@ async function doctor(flags = {}) {
         `  setup [--dir D]      Create .venv and install deps\n` +
         `  kira [--host H --port P]   Start KIRA (default 0.0.0.0:5000)\n` +
         `  viz [--port P]       Start Visualization server (default 8765)\n` +
+        `  thread               Start KIRA+Viz (detached) then open terminal UI\n` +
         `  tui                  Terminal UI (Linux/TTY) to operate KIRA/Viz/tests\n` +
         `  start                Start KIRA + Viz together\n` +
         `  health               Check http://localhost:{5000,8765} health\n` +
