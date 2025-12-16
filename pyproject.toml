@@ -29,6 +29,9 @@ classifiers = [
 dependencies = [
     "numpy>=1.20.0",
     "PyYAML>=6.0",
+    # KIRA server runtime deps needed by API tests and package consumers
+    "flask>=2.0.0",
+    "flask-cors>=3.0.0",
 ]
 
 [project.optional-dependencies]
