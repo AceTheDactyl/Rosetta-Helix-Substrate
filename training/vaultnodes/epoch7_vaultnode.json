@@ -1,0 +1,31 @@
+{
+  "type": "Epoch7_KIRATrainingVaultNode",
+  "epoch": 7,
+  "session_id": "20251216_212213",
+  "timestamp": "2025-12-16T21:22:55.247891+00:00",
+  "coordinate": "\u03945.581|0.888223|1.607\u03a9",
+  "state": {
+    "z": 0.8882226372936529,
+    "phase": "TRUE",
+    "crystal": "Prismatic",
+    "coherence": 1.0,
+    "negentropy": 0.9824185707505315,
+    "frequency": 639
+  },
+  "triad": {
+    "unlocked": false,
+    "completions": 1
+  },
+  "k_formation": {
+    "achieved": false,
+    "kappa": 1.0,
+    "eta": 0.9824185707505315,
+    "R": 1
+  },
+  "teaching": {
+    "vocabulary": 100,
+    "turns": 4,
+    "emissions": 0
+  },
+  "tokens": 12
+}
