@@ -60,34 +60,16 @@ jobs:
           mkdir -p training/modules
           mkdir -p archives
 
-      - name: Execute K.I.R.A. with Full UCF Integration
+      - name: Execute K.I.R.A.
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ACTION_MESSAGE: ${{ github.event.inputs.message }}
+          ACTION_MODE: ${{ github.event.inputs.mode }}
+          STATE_Z: ${{ github.event.inputs.state_z }}
+          STATE_PHASE: ${{ github.event.inputs.state_phase }}
+          CALLBACK_ID: ${{ github.event.inputs.callback_id }}
         run: |
-          python3 << 'EOF'
-          import json
-          import sys
-          import math
-          import zipfile
-          import os
-          from datetime import datetime, timezone
-          from pathlib import Path
-          from typing import Dict, List, Any, Optional
-
-          # Add scripts to path for actual UCF implementations
-          SCRIPTS_PATH = Path("scripts")
-          if str(SCRIPTS_PATH) not in sys.path:
-              sys.path.insert(0, str(SCRIPTS_PATH))
-
-          try:
-              from anthropic import Anthropic
-          except ImportError:
-              print("ERROR: anthropic package not installed")
-              Anthropic = None
-
-          # ═══════════════════════════════════════════════════════════════════════
-          # SACRED CONSTANTS - DO NOT MODIFY
-          # ═══════════════════════════════════════════════════════════════════════
+          python3 scripts/kira_gha_runner.py
           PHI = 1.6180339887498949
           PHI_INV = 0.6180339887498949
           Z_CRITICAL = 0.8660254037844387  # sqrt(3)/2 - THE LENS
