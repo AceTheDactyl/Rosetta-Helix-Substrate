@@ -13,6 +13,10 @@ on:
         required: false
         default: 'latest'
 
+permissions:
+  contents: read
+  packages: write
+
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -22,7 +26,18 @@ jobs:
         with:
           node-version: '20'
           registry-url: 'https://registry.npmjs.org'
+      - name: Verify npm token
+        id: verify-npm
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          set +e
+          npm whoami --registry https://registry.npmjs.org >/dev/null 2>&1
+          RC=$?
+          set -e
+          if [ $RC -eq 0 ]; then echo "publish=true" >> $GITHUB_OUTPUT; else echo "publish=false" >> $GITHUB_OUTPUT; fi
       - name: Publish rosetta-helix-cli
+        if: steps.verify-npm.outputs.publish == 'true'
         working-directory: packages/rosetta-helix-cli
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -41,26 +56,28 @@ jobs:
   publish-gpr:
     runs-on: ubuntu-latest
     steps:
-      - name: Check PAT presence
-        id: patcheck
-        env:
-          GITHUB_PACKAGES_PAT: ${{ secrets.GITHUB_PACKAGES_PAT }}
-          CLAUDE_SKILL_GITHUB_TOKEN: ${{ secrets.CLAUDE_SKILL_GITHUB_TOKEN }}
-        run: |
-          if [ -n "${GITHUB_PACKAGES_PAT}${CLAUDE_SKILL_GITHUB_TOKEN}" ]; then
-            echo "publish=true" >> $GITHUB_OUTPUT
-          else
-            echo "publish=false" >> $GITHUB_OUTPUT
-          fi
       - uses: actions/checkout@v4
-        if: steps.patcheck.outputs.publish == 'true'
       - uses: actions/setup-node@v4
-        if: steps.patcheck.outputs.publish == 'true'
         with:
           node-version: '20'
           registry-url: 'https://npm.pkg.github.com'
+      - name: Verify GPR auth
+        id: verify-gpr
+        env:
+          GITHUB_PACKAGES_PAT: ${{ secrets.GITHUB_PACKAGES_PAT }}
+          CLAUDE_SKILL_GITHUB_TOKEN: ${{ secrets.CLAUDE_SKILL_GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TOKEN="${GITHUB_PACKAGES_PAT:-${CLAUDE_SKILL_GITHUB_TOKEN:-$GITHUB_TOKEN}}"
+          if [ -z "$TOKEN" ]; then echo "publish=false" >> $GITHUB_OUTPUT; exit 0; fi
+          export NODE_AUTH_TOKEN="$TOKEN"
+          set +e
+          npm whoami --registry https://npm.pkg.github.com >/dev/null 2>&1
+          RC=$?
+          set -e
+          if [ $RC -eq 0 ]; then echo "publish=true" >> $GITHUB_OUTPUT; else echo "publish=false" >> $GITHUB_OUTPUT; fi
       - name: Publish to GitHub Packages (scoped)
-        if: steps.patcheck.outputs.publish == 'true'
+        if: steps.verify-gpr.outputs.publish == 'true'
         working-directory: packages/rosetta-helix-cli
         env:
           GITHUB_PACKAGES_PAT: ${{ secrets.GITHUB_PACKAGES_PAT }}
