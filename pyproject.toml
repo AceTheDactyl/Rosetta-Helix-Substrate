@@ -46,6 +46,9 @@ dev = [
     "black>=23.0.0",
     "mypy>=1.0.0",
     "ruff>=0.1.0",
+    # KIRA server test deps
+    "flask>=2.0.0",
+    "flask-cors>=3.0.0",
 ]
 all = [
     "quantum-apl[viz,analysis,dev]",
