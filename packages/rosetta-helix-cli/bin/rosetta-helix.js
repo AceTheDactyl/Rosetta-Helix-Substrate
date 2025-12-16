@@ -35,11 +35,52 @@ function parseFlags(argv) {
       case '--host': out.host = v; break;
       case '--port': out.port = v; break;
       case '--verbose': case '-v': out.verbose = true; break;
+      case '--repo': out.repo = v; break;
+      case '--branch': out.branch = v; break;
+      case '--ref': out.ref = v; break;
+      case '--pull': out.pull = true; break;
+      case '--auto': out.auto = true; break;
       case '--help': case '-h': out.help = true; break;
       default: out[k.replace(/^--?/, '')] = v === true ? true : v; break;
     }
   }
   return out;
+}
+
+const DEFAULT_REPO = 'https://github.com/AceTheDactyl/Rosetta-Helix-Substrate.git';
+
+function isRepoRoot(dir = process.cwd()) {
+  try {
+    return existsSync(join(dir, 'pyproject.toml')) &&
+           (existsSync(join(dir, 'kira-local-system', 'kira_server.py')) || existsSync(join(dir, 'kira_local_system', 'kira_server.py')));
+  } catch (_) {
+    return false;
+  }
+}
+
+async function ensureRepo(flags = {}) {
+  const cwd = process.cwd();
+  if (isRepoRoot(cwd)) return;
+  const target = flags.dir || 'Rosetta-Helix-Substrate';
+  if (isRepoRoot(target)) { process.chdir(target); return; }
+  if (!flags.auto) {
+    console.error('Repo not found. Re-run with --auto to clone, or pass --dir to an existing checkout.');
+    process.exit(1);
+  }
+  const repo = flags.repo || DEFAULT_REPO;
+  const cloneArgs = ['clone', '--depth', '1'];
+  if (flags.branch) cloneArgs.push('--branch', flags.branch);
+  cloneArgs.push(repo, target);
+  await sh('git', cloneArgs);
+  process.chdir(target);
+  if (flags.ref) {
+    await sh('git', ['fetch', '--depth', '1', 'origin', flags.ref]).catch(() => {});
+    await sh('git', ['checkout', flags.ref]);
+  }
+  if (flags.pull) {
+    await sh('git', ['pull', '--rebase', '--autostash']).catch(() => {});
+  }
+  await setup(flags);
 }
 
 async function setup(flags = {}) {
@@ -64,6 +105,7 @@ async function initRepo(dir) {
 
 async function runKira(flags = {}) {
   if (flags.dir) process.chdir(flags.dir);
+  if (!isRepoRoot(process.cwd())) await ensureRepo(flags);
   const host = flags.host || '0.0.0.0';
   const port = String(flags.port || 5000);
   const pathLocal = 'kira-local-system/kira_server.py';
@@ -82,6 +124,7 @@ async function runKira(flags = {}) {
 
 async function runViz(flags = {}) {
   if (flags.dir) process.chdir(flags.dir);
+  if (!isRepoRoot(process.cwd())) await ensureRepo(flags);
   const py = flags.python || venvBin('python', { venvRoot: process.cwd() });
   if (!existsSync('visualization_server.py')) {
     console.error('visualization_server.py not found. Run inside Rosetta-Helix-Substrate repo.');
@@ -93,6 +136,7 @@ async function runViz(flags = {}) {
 
 async function runHelixTrain(flags = {}) {
   if (flags.dir) process.chdir(flags.dir);
+  if (!isRepoRoot(process.cwd())) await ensureRepo(flags);
   const helix = venvBin('helix', { venvRoot: process.cwd() });
   try {
     await sh(helix, ['train', '--config', 'configs/full.yaml']);
@@ -104,18 +148,21 @@ async function runHelixTrain(flags = {}) {
 
 async function runHelixNightly(flags = {}) {
   if (flags.dir) process.chdir(flags.dir);
+  if (!isRepoRoot(process.cwd())) await ensureRepo(flags);
   const py = flags.python || venvBin('python', { venvRoot: process.cwd() });
   await sh(py, ['nightly_training_runner.py']);
 }
 
 async function runSmoke(flags = {}) {
   if (flags.dir) process.chdir(flags.dir);
+  if (!isRepoRoot(process.cwd())) await ensureRepo(flags);
   const py = flags.python || venvBin('python', { venvRoot: process.cwd() });
   await sh(py, ['-m', 'pytest', '-q', 'tests/smoke']);
 }
 
 async function runApiTests(flags = {}) {
   if (flags.dir) process.chdir(flags.dir);
+  if (!isRepoRoot(process.cwd())) await ensureRepo(flags);
   const py = flags.python || venvBin('python', { venvRoot: process.cwd() });
   await sh(py, ['-m', 'pytest', '-q', 'tests/api']);
 }
@@ -133,6 +180,7 @@ async function runCompose(target) {
 
 async function startBoth(flags = {}) {
   if (flags.dir) process.chdir(flags.dir);
+  if (!isRepoRoot(process.cwd())) await ensureRepo(flags);
   const host = flags.host || '0.0.0.0';
   const kiraPort = String(flags.kiraPort || flags.port || 5000);
   const vizPort = String(flags.vizPort || 8765);

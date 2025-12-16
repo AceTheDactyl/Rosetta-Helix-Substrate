@@ -46,6 +46,27 @@ rosetta-helix api:test        # API contract tests
 rosetta-helix docker:*        # docker:build|up|down|logs
 ```
 
+Auto‑Fetch Repo
+- Pass `--auto` to clone the repo on‑demand when running any command outside a checkout.
+- Optional flags:
+  - `--dir <path>` — where to clone or operate
+  - `--repo <url>` — custom repo URL (default: upstream)
+  - `--branch <name>` — branch to clone
+  - `--ref <sha|tag>` — checkout a specific ref after clone
+  - `--pull` — pull latest before running
+
+Examples
+```
+# Train without a prior checkout (auto-clone + setup + run)
+npx rosetta-helix helix:train --auto --dir ./Rosetta-Helix-Substrate
+
+# Start services and fetch latest main first
+npx rosetta-helix start --auto --pull
+
+# Use a specific tag/commit
+npx rosetta-helix start --auto --ref v2.1.0
+```
+
 CLI + CI Runbook (Quick)
 - Python (venv)
   - `python3 -m venv .venv && source .venv/bin/activate`
