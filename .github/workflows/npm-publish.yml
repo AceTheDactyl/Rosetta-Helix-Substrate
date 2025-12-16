@@ -12,6 +12,10 @@ on:
         description: 'npm dist-tag (latest|next)'
         required: false
         default: 'latest'
+      env_name:
+        description: 'Environment name that stores secrets (e.g., production, npm-publish)'
+        required: false
+        default: ''
 
 permissions:
   contents: read
@@ -19,6 +23,7 @@ permissions:
 
 jobs:
   publish:
+    environment: ${{ github.event.inputs.env_name != '' && github.event.inputs.env_name || 'npm-publish' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -56,6 +61,7 @@ jobs:
           npm publish --access public --tag "$DIST_TAG"
 
   publish-gpr:
+    environment: ${{ github.event.inputs.env_name != '' && github.event.inputs.env_name || 'npm-publish' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
