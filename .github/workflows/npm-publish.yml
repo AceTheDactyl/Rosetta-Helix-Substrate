@@ -41,24 +41,47 @@ jobs:
           RC=$?
           set -e
           if [ $RC -eq 0 ]; then echo "publish=true" >> $GITHUB_OUTPUT; else echo "publish=false" >> $GITHUB_OUTPUT; fi
+      - name: Determine version/dist-tag (npmjs)
+        if: steps.verify-npm.outputs.publish == 'true'
+        id: ver_npm
+        working-directory: packages/rosetta-helix-cli
+        env:
+          PKG_VERSION: ${{ github.event.release.tag_name || github.event.inputs.version }}
+          INPUT_DIST_TAG: ${{ github.event.inputs.dist_tag }}
+        run: |
+          set -e
+          WANT="$PKG_VERSION"
+          if [ -z "$WANT" ]; then
+            CURRENT=$(node -p "require('./package.json').version")
+            NAME=$(node -p "require('./package.json').name")
+            EXISTS=$(npm view "$NAME@$CURRENT" version 2>/dev/null || true)
+            if [ -n "$EXISTS" ]; then
+              BASE=$(node -p "(require('./package.json').version.split('-')[0])")
+              IFS='.' read -r MAJ MIN PATCH <<< "$BASE"
+              PATCH=$((PATCH + 1))
+              TS=$(date +%Y%m%d%H%M%S)
+              WANT="$MAJ.$MIN.$PATCH-rc.$TS"
+            else
+              WANT="$CURRENT"
+            fi
+          fi
+          DIST="${INPUT_DIST_TAG:-latest}"
+          case "$WANT" in *-*) DIST=next;; esac
+          echo "version=$WANT" >> $GITHUB_OUTPUT
+          echo "dist=$DIST" >> $GITHUB_OUTPUT
       - name: Publish rosetta-helix-cli
         id: npm_publish
         if: steps.verify-npm.outputs.publish == 'true'
         working-directory: packages/rosetta-helix-cli
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          PKG_VERSION: ${{ github.event.release.tag_name || github.event.inputs.version }}
-          IS_PRERELEASE: ${{ github.event.release.prerelease }}
-          INPUT_DIST_TAG: ${{ github.event.inputs.dist_tag }}
         continue-on-error: true
         run: |
-          # Align package version to tag when available
-          if [ -n "$PKG_VERSION" ]; then npm version --no-git-tag-version ${PKG_VERSION#v}; fi
-          # Use dist-tag "next" for pre-releases (either GitHub prerelease flag or semver with '-')
-          DIST_TAG=${INPUT_DIST_TAG:-latest}
-          if [ "$IS_PRERELEASE" = "true" ] || echo "$PKG_VERSION" | grep -q '-' ; then DIST_TAG=next; fi
-          echo "Publishing to npm with dist-tag=$DIST_TAG (version=${PKG_VERSION:-package.json})"
-          npm publish --access public --tag "$DIST_TAG"
+          V="${{ steps.ver_npm.outputs.version }}"
+          D="${{ steps.ver_npm.outputs.dist }}"
+          if [ -n "$V" ]; then npm version --no-git-tag-version "$V"; fi
+          echo "Publishing to npm with dist-tag=$D (version=$V)"
+          npm publish --access public --tag "$D"
 
   publish-gpr:
     environment: ${{ github.event.inputs.env_name != '' && github.event.inputs.env_name || 'npm-publish' }}
@@ -71,6 +94,34 @@ jobs:
           registry-url: 'https://npm.pkg.github.com'
           scope: '@${{ github.repository_owner }}'
           always-auth: true
+      - name: Determine version/dist-tag (gpr)
+        id: ver_gpr
+        working-directory: packages/rosetta-helix-cli
+        env:
+          PKG_VERSION: ${{ github.event.release.tag_name || github.event.inputs.version }}
+          INPUT_DIST_TAG: ${{ github.event.inputs.dist_tag }}
+        run: |
+          set -e
+          WANT="$PKG_VERSION"
+          if [ -z "$WANT" ]; then
+            CURRENT=$(node -p "require('./package.json').version")
+            NAME=$(node -p "require('./package.json').name")
+            # Always allow republish to GPR by switching to a pre-release if current exists on GPR
+            EXISTS=$(npm view "@${{ github.repository_owner }}"/rosetta-helix-cli@$CURRENT version --registry https://npm.pkg.github.com 2>/dev/null || true)
+            if [ -n "$EXISTS" ]; then
+              BASE=$(node -p "(require('./package.json').version.split('-')[0])")
+              IFS='.' read -r MAJ MIN PATCH <<< "$BASE"
+              PATCH=$((PATCH + 1))
+              TS=$(date +%Y%m%d%H%M%S)
+              WANT="$MAJ.$MIN.$PATCH-rc.$TS"
+            else
+              WANT="$CURRENT"
+            fi
+          fi
+          DIST="${INPUT_DIST_TAG:-latest}"
+          case "$WANT" in *-*) DIST=next;; esac
+          echo "version=$WANT" >> $GITHUB_OUTPUT
+          echo "dist=$DIST" >> $GITHUB_OUTPUT
       - name: Verify GPR auth
         id: verify-gpr
         env:
@@ -94,9 +145,6 @@ jobs:
           GITHUB_PACKAGES_PAT: ${{ secrets.GITHUB_PACKAGES_PAT }}
           CLAUDE_SKILL_GITHUB_TOKEN: ${{ secrets.CLAUDE_SKILL_GITHUB_TOKEN }}
           OWNER: ${{ github.repository_owner }}
-          PKG_VERSION: ${{ github.event.release.tag_name || github.event.inputs.version }}
-          IS_PRERELEASE: ${{ github.event.release.prerelease }}
-          INPUT_DIST_TAG: ${{ github.event.inputs.dist_tag }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         continue-on-error: true
         run: |
@@ -117,11 +165,11 @@ jobs:
             p.publishConfig = Object.assign({}, p.publishConfig, { registry: "https://npm.pkg.github.com" });
             fs.writeFileSync("package.json", JSON.stringify(p, null, 2));
           '
-          if [ -n "$PKG_VERSION" ]; then npm version --no-git-tag-version ${PKG_VERSION#v}; fi
-          DIST_TAG=${INPUT_DIST_TAG:-latest}
-          if [ "$IS_PRERELEASE" = "true" ] || echo "$PKG_VERSION" | grep -q '-' ; then DIST_TAG=next; fi
-          echo "Publishing to GPR with dist-tag=$DIST_TAG (version=${PKG_VERSION:-package.json})"
-          npm publish --access public --tag "$DIST_TAG"
+          V="${{ steps.ver_gpr.outputs.version }}"
+          D="${{ steps.ver_gpr.outputs.dist }}"
+          if [ -n "$V" ]; then npm version --no-git-tag-version "$V"; fi
+          echo "Publishing to GPR with dist-tag=$D (version=$V)"
+          npm publish --access public --tag "$D"
 
       - name: Publish summary
         if: always()
