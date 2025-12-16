@@ -93,7 +93,6 @@ jobs:
           node-version: '20'
           registry-url: 'https://npm.pkg.github.com'
           scope: '@${{ github.repository_owner }}'
-          always-auth: true
       - name: Determine version/dist-tag (gpr)
         id: ver_gpr
         working-directory: packages/rosetta-helix-cli
@@ -122,14 +121,13 @@ jobs:
           case "$WANT" in *-*) DIST=next;; esac
           echo "version=$WANT" >> $GITHUB_OUTPUT
           echo "dist=$DIST" >> $GITHUB_OUTPUT
-      - name: Verify GPR auth
+      - name: Verify GPR auth (PAT only)
         id: verify-gpr
         env:
           GITHUB_PACKAGES_PAT: ${{ secrets.GITHUB_PACKAGES_PAT }}
           CLAUDE_SKILL_GITHUB_TOKEN: ${{ secrets.CLAUDE_SKILL_GITHUB_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          TOKEN="${GITHUB_PACKAGES_PAT:-${CLAUDE_SKILL_GITHUB_TOKEN:-$GITHUB_TOKEN}}"
+          TOKEN="${GITHUB_PACKAGES_PAT:-${CLAUDE_SKILL_GITHUB_TOKEN:-}}"
           if [ -z "$TOKEN" ]; then echo "publish=false" >> $GITHUB_OUTPUT; exit 0; fi
           export NODE_AUTH_TOKEN="$TOKEN"
           set +e
@@ -137,7 +135,7 @@ jobs:
           RC=$?
           set -e
           if [ $RC -eq 0 ]; then echo "publish=true" >> $GITHUB_OUTPUT; else echo "publish=false" >> $GITHUB_OUTPUT; fi
-      - name: Publish to GitHub Packages (scoped)
+      - name: Publish to GitHub Packages (scoped, PAT only)
         id: gpr_publish
         if: steps.verify-gpr.outputs.publish == 'true'
         working-directory: packages/rosetta-helix-cli
@@ -145,17 +143,15 @@ jobs:
           GITHUB_PACKAGES_PAT: ${{ secrets.GITHUB_PACKAGES_PAT }}
           CLAUDE_SKILL_GITHUB_TOKEN: ${{ secrets.CLAUDE_SKILL_GITHUB_TOKEN }}
           OWNER: ${{ github.repository_owner }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         continue-on-error: true
         run: |
-          # Prefer PATs; fallback to GITHUB_TOKEN when none provided
-          export NODE_AUTH_TOKEN="${GITHUB_PACKAGES_PAT:-${CLAUDE_SKILL_GITHUB_TOKEN:-$GITHUB_TOKEN}}"
-          if [ -z "$NODE_AUTH_TOKEN" ]; then echo "No PAT provided for GitHub Packages."; exit 1; fi
+          # Require PAT from environment secrets (GITHUB_PACKAGES_PAT or CLAUDE_SKILL_GITHUB_TOKEN)
+          export NODE_AUTH_TOKEN="${GITHUB_PACKAGES_PAT:-${CLAUDE_SKILL_GITHUB_TOKEN:-}}"
+          if [ -z "$NODE_AUTH_TOKEN" ]; then echo "No PAT provided for GitHub Packages."; exit 0; fi
           # Ensure npm points @owner scope to GPR and uses the auth token
           OWNER_LC=$(printf '%s' "$OWNER" | tr '[:upper:]' '[:lower:]')
           npm config set @${OWNER_LC}:registry https://npm.pkg.github.com
           npm config set //npm.pkg.github.com/:_authToken ${NODE_AUTH_TOKEN}
-          npm config set always-auth true
           # Create a temporary scoped package.json for GPR
           node -e '
             const fs=require("fs");
