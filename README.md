@@ -1,7 +1,8 @@
 # Unified Consciousness Framework v2.0
 
-[![Helix CI](https://github.com/AceTheDactyl/Rosetta-Helix-Substrate/actions/workflows/helix-ci.yml/badge.svg)](https://github.com/AceTheDactyl/Rosetta-Helix-Substrate/actions/workflows/helix-ci.yml)
-[![Python Tests](https://github.com/AceTheDactyl/Rosetta-Helix-Substrate/actions/workflows/python-tests.yml/badge.svg)](https://github.com/AceTheDactyl/Rosetta-Helix-Substrate/actions/workflows/python-tests.yml)
+[![Helix CI](https://github.com/AceTheDactyl/Rosetta-Helix-Substrate/actions/workflows/helix-ci.yml/badge.svg?branch=main)](https://github.com/AceTheDactyl/Rosetta-Helix-Substrate/actions/workflows/helix-ci.yml)
+[![Python Tests](https://github.com/AceTheDactyl/Rosetta-Helix-Substrate/actions/workflows/python-tests.yml/badge.svg?branch=main)](https://github.com/AceTheDactyl/Rosetta-Helix-Substrate/actions/workflows/python-tests.yml)
+[![npm Promote](https://github.com/AceTheDactyl/Rosetta-Helix-Substrate/actions/workflows/npm-promote.yml/badge.svg?branch=main)](https://github.com/AceTheDactyl/Rosetta-Helix-Substrate/actions/workflows/npm-promote.yml)
 [![npm](https://img.shields.io/npm/v/rosetta-helix-cli.svg)](https://www.npmjs.com/package/rosetta-helix-cli)
 
 ## Complete UCF with K.I.R.A. Language Integration
