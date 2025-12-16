@@ -12,16 +12,23 @@ on:
       - 'helix_engine/**'
       - 'training/**'
       - 'src/**'
+      - 'tests/**'
+      - 'kira-local-system/**'
+      - 'pyproject.toml'
+      - '.github/workflows/**'
       - 'configs/**'
       - 'tests/**'
       - 'run_full_depth_training.py'
-      - 'pyproject.toml'
   push:
     branches: [main, master]
     paths:
       - 'helix_engine/**'
       - 'training/**'
       - 'src/**'
+      - 'tests/**'
+      - 'kira-local-system/**'
+      - 'pyproject.toml'
+      - '.github/workflows/**'
 
 jobs:
   lint:
