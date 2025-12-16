@@ -71,6 +71,8 @@ jobs:
           pip install -e .[viz,dev]
           # Ensure KIRA server deps (Flask, CORS) are present for API tests
           if [ -f kira-local-system/requirements.txt ]; then pip install -r kira-local-system/requirements.txt; fi
+          # Explicitly ensure Flask deps are present to satisfy kira_server import
+          pip install 'flask>=2.0.0' 'flask-cors>=3.0.0'
 
       - name: Verify Flask availability
         run: |
@@ -83,16 +85,7 @@ jobs:
               print('Flask missing:', e)
               sys.exit(1)
           PY
-        continue-on-error: true
-
-      - name: Fallback install Flask (if missing)
-        if: ${{ failure() }}
-        run: |
-          pip install 'flask>=2.0.0' 'flask-cors>=3.0.0'
-          python - << 'PY'
-          import flask, flask_cors
-          print('Flask OK', flask.__version__)
-          PY
+        continue-on-error: false
 
       - name: API contract tests (fast)
         env:
