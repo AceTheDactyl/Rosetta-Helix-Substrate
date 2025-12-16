@@ -65,8 +65,12 @@ jobs:
 
       - name: Install dependencies
         run: |
+          pip install --upgrade pip
           pip install pytest pytest-cov
-          pip install -e .
+          # Install project with dev extras so Flask and tooling are present
+          pip install -e .[viz,dev]
+          # Ensure KIRA server deps (Flask, CORS) are present for API tests
+          if [ -f kira-local-system/requirements.txt ]; then pip install -r kira-local-system/requirements.txt; fi
 
       - name: API contract tests (fast)
         env:
