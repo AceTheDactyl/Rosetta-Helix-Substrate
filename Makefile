@@ -192,7 +192,7 @@ npm-validate:
 	    echo "NPM_TOKEN not set; skipping npmjs whoami"; \
 	  fi && \
 	  echo "-- Validating GitHub Packages PAT (GITHUB_PACKAGES_PAT/CLAUDE_SKILL_GITHUB_TOKEN) --" && \
-	  OWNER=$${OWNER:-AceTheDactyl}; \
+	  OWNER=$${OWNER:-AceTheDactyl}; OWNER=$$(printf '%s' "$$OWNER" | tr '[:upper:]' '[:lower:]'); \
 	  GPR_TOKEN=$${GITHUB_PACKAGES_PAT:-$$CLAUDE_SKILL_GITHUB_TOKEN}; \
 	  if [ -n "$$GPR_TOKEN" ]; then \
 	    TMPRC=$$(mktemp); \
