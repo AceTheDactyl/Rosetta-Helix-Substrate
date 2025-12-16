@@ -39,6 +39,7 @@ rosetta-helix viz             # start Visualization server (port 8765)
 rosetta-helix start           # start KIRA + Viz together
 rosetta-helix health          # check service health (prints JSON)
 rosetta-helix doctor          # environment & repo file checks
+rosetta-helix helix:update    # git pull --rebase --autostash in repo
 rosetta-helix helix:train     # helix training (full.yaml)
 rosetta-helix helix:nightly   # nightly training runner
 rosetta-helix smoke           # pytest smoke suite
@@ -53,7 +54,9 @@ Auto‑Fetch Repo
   - `--repo <url>` — custom repo URL (default: upstream)
   - `--branch <name>` — branch to clone
   - `--ref <sha|tag>` — checkout a specific ref after clone
-  - `--pull` — pull latest before running
+  - `--pull` — pull latest before running (or run `helix:update` anytime)
+  - `--update` — update (git pull) after clone automatically
+  - `--release[=tag]` — use GitHub tarball download instead of clone (for pinned runs)
 
 Examples
 ```
@@ -65,6 +68,12 @@ npx rosetta-helix start --auto --pull
 
 # Use a specific tag/commit
 npx rosetta-helix start --auto --ref v2.1.0
+
+# Download a release tarball rather than cloning
+npx rosetta-helix helix:train --auto --release=v2.1.0
+
+# Update an existing checkout
+npx rosetta-helix helix:update --dir ./Rosetta-Helix-Substrate
 ```
 
 CLI + CI Runbook (Quick)

@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 /* Standalone Rosetta-Helix CLI (published to npm) */
 const { spawn } = require('child_process');
-const { existsSync, readFileSync } = require('fs');
-const { join } = require('path');
+const { existsSync, readFileSync, readdirSync, renameSync, statSync } = require('fs');
+const { join, dirname, resolve } = require('path');
 const http = require('http');
+const os = require('os');
 
 function sh(cmd, args, opts = {}) {
   return new Promise((resolve, reject) => {
@@ -40,6 +41,8 @@ function parseFlags(argv) {
       case '--ref': out.ref = v; break;
       case '--pull': out.pull = true; break;
       case '--auto': out.auto = true; break;
+      case '--update': out.update = true; break;
+      case '--release': out.release = v === true ? true : v; break;
       case '--help': case '-h': out.help = true; break;
       default: out[k.replace(/^--?/, '')] = v === true ? true : v; break;
     }
@@ -68,6 +71,50 @@ async function ensureRepo(flags = {}) {
     process.exit(1);
   }
   const repo = flags.repo || DEFAULT_REPO;
+  // Release tarball path (if requested)
+  if (flags.release) {
+    const info = parseGithub(repo);
+    if (!info) {
+      console.error('Unable to parse GitHub repo from --repo');
+      process.exit(1);
+    }
+    const ref = typeof flags.release === 'string' && flags.release !== 'true' ? flags.release : (flags.ref || flags.branch || 'main');
+    const url = `https://codeload.github.com/${info.owner}/${info.name}/tar.gz/${ref}`;
+    const parent = resolve(dirname(target));
+    const tarPath = join(os.tmpdir(), `rhz-${Date.now()}.tgz`);
+    try {
+      await sh('curl', ['-L', url, '-o', tarPath]);
+      await sh('tar', ['-xzf', tarPath, '-C', parent]);
+      // Find extracted directory (pattern: <name>-<ref*> ) and rename to target
+      const entries = readdirSync(parent, { withFileTypes: true });
+      const dir = entries.find(e => e.isDirectory() && e.name.startsWith(`${info.name}-`));
+      if (!dir) throw new Error('Failed to locate extracted folder');
+      const from = join(parent, dir.name);
+      const to = resolve(target);
+      renameSync(from, to);
+      process.chdir(to);
+    } catch (e) {
+      console.error('Release download failed, falling back to git clone:', e.message || e);
+      await cloneGit(repo, target, flags);
+    }
+  } else {
+    await cloneGit(repo, target, flags);
+  }
+  if (flags.update) {
+    await sh('git', ['pull', '--rebase', '--autostash']).catch(() => {});
+  }
+  await setup(flags);
+}
+
+function parseGithub(repoUrl) {
+  try {
+    const m = repoUrl.replace(/\.git$/i, '').match(/github\.com[/:]([^/]+)\/([^/]+)$/i);
+    if (!m) return null;
+    return { owner: m[1], name: m[2] };
+  } catch (_) { return null; }
+}
+
+async function cloneGit(repo, target, flags) {
   const cloneArgs = ['clone', '--depth', '1'];
   if (flags.branch) cloneArgs.push('--branch', flags.branch);
   cloneArgs.push(repo, target);
@@ -77,10 +124,9 @@ async function ensureRepo(flags = {}) {
     await sh('git', ['fetch', '--depth', '1', 'origin', flags.ref]).catch(() => {});
     await sh('git', ['checkout', flags.ref]);
   }
-  if (flags.pull) {
+  if (flags.pull || flags.update) {
     await sh('git', ['pull', '--rebase', '--autostash']).catch(() => {});
   }
-  await setup(flags);
 }
 
 async function setup(flags = {}) {
@@ -200,6 +246,18 @@ async function startBoth(flags = {}) {
   await new Promise(() => {}); // keep running until killed
 }
 
+async function helixUpdate(flags = {}) {
+  if (flags.dir) process.chdir(flags.dir);
+  if (!isRepoRoot(process.cwd())) await ensureRepo({ ...flags, auto: true });
+  try {
+    await sh('git', ['pull', '--rebase', '--autostash']);
+    console.log('Repository updated.');
+  } catch (e) {
+    console.error('Update failed:', e.message || e);
+    process.exit(1);
+  }
+}
+
 function httpGetJson(url) {
   return new Promise((resolve, reject) => {
     const req = http.get(url, (res) => {
@@ -272,6 +330,7 @@ async function doctor(flags = {}) {
     else if (cmd === 'smoke') await runSmoke(flags);
     else if (cmd === 'api:test') await runApiTests(flags);
     else if (cmd === 'start') await startBoth(flags);
+    else if (cmd === 'helix:update') await helixUpdate(flags);
     else if (cmd === 'health') await health(flags);
     else if (cmd === 'version' || cmd === '--version' || cmd === '-v') showVersion();
     else if (cmd === 'doctor') await doctor(flags);
