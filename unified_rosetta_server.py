@@ -1583,15 +1583,33 @@ def get_engine() -> UnifiedRosettaEngine:
 
 @app.route('/')
 def index():
-    """Serve unified interface."""
-    if Path('static/unified_interface.html').exists():
+    """Serve KIRA interface (default)."""
+    if Path('kira_interface.html').exists():
+        return send_from_directory('.', 'kira_interface.html')
+    elif Path('static/unified_interface.html').exists():
         return send_from_directory('static', 'unified_interface.html')
-    elif Path('unified_interface.html').exists():
-        return send_from_directory('.', 'unified_interface.html')
-    elif Path('kira_interface.html').exists():
+    else:
+        return jsonify({'message': 'Unified Rosetta-Helix Server', 'api': '/api/*', 'interfaces': {
+            'kira': '/kira',
+            'visualizer': '/visualizer',
+            'unified': '/unified'
+        }})
+
+@app.route('/kira')
+def kira_interface():
+    """Serve KIRA interface."""
+    if Path('kira_interface.html').exists():
         return send_from_directory('.', 'kira_interface.html')
     else:
-        return jsonify({'message': 'Unified Rosetta-Helix Server', 'api': '/api/*'})
+        return jsonify({'error': 'KIRA interface not found'})
+
+@app.route('/visualizer')
+def visualizer_interface():
+    """Serve visualizer interface."""
+    if Path('visualizer.html').exists():
+        return send_from_directory('.', 'visualizer.html')
+    else:
+        return jsonify({'error': 'Visualizer interface not found'})
 
 @app.route('/unified')
 def unified_interface():
@@ -1601,7 +1619,7 @@ def unified_interface():
     elif Path('unified_interface.html').exists():
         return send_from_directory('.', 'unified_interface.html')
     else:
-        return jsonify({'message': 'Unified interface not found', 'try': '/'})
+        return jsonify({'message': 'Unified interface not found', 'try': '/' })
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
