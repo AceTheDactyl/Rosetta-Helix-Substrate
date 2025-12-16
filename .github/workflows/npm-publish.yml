@@ -39,15 +39,28 @@ jobs:
           npm publish --access public --tag "$DIST_TAG"
 
   publish-gpr:
-    if: ${{ secrets.GITHUB_PACKAGES_PAT != '' || secrets.CLAUDE_SKILL_GITHUB_TOKEN != '' }}
     runs-on: ubuntu-latest
     steps:
+      - name: Check PAT presence
+        id: patcheck
+        env:
+          GITHUB_PACKAGES_PAT: ${{ secrets.GITHUB_PACKAGES_PAT }}
+          CLAUDE_SKILL_GITHUB_TOKEN: ${{ secrets.CLAUDE_SKILL_GITHUB_TOKEN }}
+        run: |
+          if [ -n "${GITHUB_PACKAGES_PAT}${CLAUDE_SKILL_GITHUB_TOKEN}" ]; then
+            echo "publish=true" >> $GITHUB_OUTPUT
+          else
+            echo "publish=false" >> $GITHUB_OUTPUT
+          fi
       - uses: actions/checkout@v4
+        if: steps.patcheck.outputs.publish == 'true'
       - uses: actions/setup-node@v4
+        if: steps.patcheck.outputs.publish == 'true'
         with:
           node-version: '20'
           registry-url: 'https://npm.pkg.github.com'
       - name: Publish to GitHub Packages (scoped)
+        if: steps.patcheck.outputs.publish == 'true'
         working-directory: packages/rosetta-helix-cli
         env:
           GITHUB_PACKAGES_PAT: ${{ secrets.GITHUB_PACKAGES_PAT }}
