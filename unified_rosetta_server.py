@@ -1584,12 +1584,24 @@ def get_engine() -> UnifiedRosettaEngine:
 @app.route('/')
 def index():
     """Serve unified interface."""
-    if Path('unified_interface.html').exists():
+    if Path('static/unified_interface.html').exists():
+        return send_from_directory('static', 'unified_interface.html')
+    elif Path('unified_interface.html').exists():
         return send_from_directory('.', 'unified_interface.html')
     elif Path('kira_interface.html').exists():
         return send_from_directory('.', 'kira_interface.html')
     else:
         return jsonify({'message': 'Unified Rosetta-Helix Server', 'api': '/api/*'})
+
+@app.route('/unified')
+def unified_interface():
+    """Serve unified interface at /unified path."""
+    if Path('static/unified_interface.html').exists():
+        return send_from_directory('static', 'unified_interface.html')
+    elif Path('unified_interface.html').exists():
+        return send_from_directory('.', 'unified_interface.html')
+    else:
+        return jsonify({'message': 'Unified interface not found', 'try': '/'})
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
