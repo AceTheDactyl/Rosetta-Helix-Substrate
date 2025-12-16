@@ -23,6 +23,7 @@ import json
 import sys
 import os
 from http.server import HTTPServer, BaseHTTPRequestHandler
+from urllib.request import urlopen, Request
 from urllib.parse import urlparse, parse_qs
 import argparse
 
@@ -42,6 +43,23 @@ from quantum_apl_python.s3_operator_algebra import OPERATORS, Parity
 from training.apl_training_loop import (
     APLTrainingLoop, APLPhysicalLearner, APLLiminalGenerator,
 )
+
+
+kira_api_base = None  # e.g., 'http://localhost:5000/api'
+
+
+def http_json(url: str, method: str = 'GET', data: dict | None = None, timeout: float = 2.0):
+    try:
+        payload = None
+        headers = {'Content-Type': 'application/json'}
+        if data is not None:
+            payload = json.dumps(data).encode()
+        req = Request(url, data=payload, headers=headers, method=method)
+        with urlopen(req, timeout=timeout) as resp:
+            text = resp.read().decode('utf-8')
+            return json.loads(text)
+    except Exception:
+        return None
 
 
 class VisualizationEngine:
@@ -296,6 +314,29 @@ class VisualizationHandler(BaseHTTPRequestHandler):
         path = parsed.path
 
         if path == '/state':
+            # If configured, proxy to KIRA API and map to viz schema
+            if kira_api_base:
+                s = http_json(f"{kira_api_base}/state")
+                if s and isinstance(s, dict):
+                    # KIRA returns { command: '/state', state: {...}, tier: 'tX', ... }
+                    ks = s.get('state') or {}
+                    mapped = {
+                        'z': ks.get('z', 0.3),
+                        'tier': s.get('tier') or 't3',
+                        'coherence': ks.get('coherence', 0.0),
+                        'coupling': 0.3,
+                        'delta_s_neg': 0.0,
+                        'w_pi': 0.0,
+                        'w_local': 1.0,
+                        'steps': s.get('turn_count', 0),
+                        'operators': {  # parity hints for UI coloring
+                            '()': {'parity': 'EVEN'}, '×': {'parity': 'EVEN'}, '^': {'parity': 'EVEN'},
+                            '÷': {'parity': 'ODD'}, '+': {'parity': 'ODD'}, '−': {'parity': 'ODD'}
+                        },
+                        'oscillators': []
+                    }
+                    self.send_json(mapped)
+                    return
             self.send_json(engine.get_state())
 
         elif path == '/training/data':
@@ -368,21 +409,64 @@ class VisualizationHandler(BaseHTTPRequestHandler):
 
         if path == '/step':
             work = data.get('work', 0.05)
-            self.send_json(engine.step(work))
+            if kira_api_base:
+                # For KIRA, approximate step by a small evolve toward z +/-
+                cur = http_json(f"{kira_api_base}/state")
+                z0 = (cur.get('state') or {}).get('z', 0.3) if cur else 0.3
+                target = max(0.0, min(1.0, z0 + float(work) * 0.1))
+                res = http_json(f"{kira_api_base}/evolve", method='POST', data={'target': target})
+                # Return mapped state
+                ns = http_json(f"{kira_api_base}/state") or {}
+                out = {
+                    'success': True,
+                    'collapsed': False,
+                    'work_extracted': 0.0
+                }
+                if ns.get('state'):
+                    out.update({
+                        'z': ns['state'].get('z', target),
+                        'tier': ns.get('tier', 't3'),
+                        'coherence': ns['state'].get('coherence', 0.0),
+                    })
+                self.send_json(out)
+            else:
+                self.send_json(engine.step(work))
 
         elif path == '/operator':
             operator = data.get('operator', '()')
-            self.send_json(engine.apply_operator(operator))
+            if kira_api_base:
+                # Map operator to a small evolve delta (EVEN ↑, ODD ↓)
+                parity_even = operator in ('()', '×', '^')
+                cur = http_json(f"{kira_api_base}/state")
+                z0 = (cur.get('state') or {}).get('z', 0.3) if cur else 0.3
+                dz = 0.03 if parity_even else -0.03
+                target = max(0.0, min(1.0, z0 + dz))
+                res = http_json(f"{kira_api_base}/evolve", method='POST', data={'target': target})
+                ok = bool(res)
+                self.send_json({'success': ok, 'parity': 'EVEN' if parity_even else 'ODD', 'tier': (cur or {}).get('tier', 't3'), 'coupling': 0.3})
+            else:
+                self.send_json(engine.apply_operator(operator))
 
         elif path == '/training/run':
             n_runs = data.get('runs', 3)
             cycles = data.get('cycles', 2)
-            result = engine.run_training(n_runs, cycles)
-            self.send_json(result)
+            if kira_api_base:
+                # KIRA has GET /api/train; return its stats
+                stats = http_json(f"{kira_api_base}/train") or {}
+                self.send_json(stats)
+            else:
+                result = engine.run_training(n_runs, cycles)
+                self.send_json(result)
 
         elif path == '/reset':
-            engine.reset()
-            self.send_json({'success': True, 'state': engine.get_state()})
+            if kira_api_base:
+                # Use chat command to reset KIRA engine
+                http_json(f"{kira_api_base}/chat", method='POST', data={'message': '/reset'})
+                ns = http_json(f"{kira_api_base}/state") or {}
+                self.send_json({'success': True, 'state': ns.get('state', {})})
+            else:
+                engine.reset()
+                self.send_json({'success': True, 'state': engine.get_state()})
 
         elif path == '/coupling':
             coupling = data.get('coupling', 0.3)
@@ -397,8 +481,10 @@ class VisualizationHandler(BaseHTTPRequestHandler):
         pass
 
 
-def run_server(port: int = 8765):
+def run_server(port: int = 8765, kira_api: str | None = None):
     """Run the visualization server."""
+    global kira_api_base
+    kira_api_base = kira_api
     server = HTTPServer(('localhost', port), VisualizationHandler)
     print(f"""
 ╔═══════════════════════════════════════════════════════════════════╗
@@ -419,6 +505,8 @@ def run_server(port: int = 8765):
 ║                                                                   ║
 ║  Open http://localhost:{port}/ in browser for visualizer           ║
 ║                                                                   ║
+║  KIRA API: {kira_api_base or 'disabled'}                            ║
+║                                                                   ║
 ║  Physics:                                                         ║
 ║    PHI_INV = {PHI_INV:.6f} (controls dynamics)                     ║
 ║    Z_CRITICAL = {Z_CRITICAL:.6f} (THE LENS)                         ║
@@ -436,6 +524,6 @@ def run_server(port: int = 8765):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Rosetta Helix Visualization Server')
     parser.add_argument('--port', type=int, default=8765, help='Port to run on')
+    parser.add_argument('--kira-api', type=str, default=None, help='Proxy to KIRA API base (e.g., http://localhost:5000/api)')
     args = parser.parse_args()
-
-    run_server(args.port)
+    run_server(args.port, kira_api=args.kira_api)

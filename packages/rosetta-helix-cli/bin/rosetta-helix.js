@@ -177,7 +177,10 @@ async function runViz(flags = {}) {
     process.exit(1);
   }
   const port = String(flags.port || 8765);
-  await sh(py, ['visualization_server.py', '--port', port]);
+  const kiraApi = flags.kiraApi || 'http://localhost:5000/api';
+  const args = ['visualization_server.py', '--port', port];
+  if (flags.kiraApi || flags.withKira) args.push('--kira-api', kiraApi);
+  await sh(py, args);
 }
 
 async function runHelixTrain(flags = {}) {
@@ -241,7 +244,7 @@ async function startBoth(flags = {}) {
     process.exit(1);
   }
   procs.push(spawn(py, ['kira-local-system/kira_server.py', '--host', host, '--port', kiraPort], { stdio: 'inherit' }));
-  procs.push(spawn(py, ['visualization_server.py', '--port', vizPort], { stdio: 'inherit' }));
+  procs.push(spawn(py, ['visualization_server.py', '--port', vizPort, '--kira-api', `http://localhost:${kiraPort}/api`], { stdio: 'inherit' }));
   console.log(`Started KIRA on http://${host}:${kiraPort} and Viz on http://localhost:${vizPort}`);
   await new Promise(() => {}); // keep running until killed
 }
