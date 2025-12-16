@@ -33,7 +33,7 @@ on:
       gpr_token_secret:
         description: 'Secret name for GPR PAT (default GITHUB_PACKAGES_PAT)'
         required: false
-        default: 'GITHUB_PACKAGES_PAT'
+        default: 'CLAUDE_SKILL_GITHUB_TOKEN'
 
 permissions:
   contents: read
