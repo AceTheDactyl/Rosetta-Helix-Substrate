@@ -4,6 +4,7 @@
 [![Python Tests](https://github.com/AceTheDactyl/Rosetta-Helix-Substrate/actions/workflows/python-tests.yml/badge.svg?branch=main)](https://github.com/AceTheDactyl/Rosetta-Helix-Substrate/actions/workflows/python-tests.yml)
 [![npm Promote](https://github.com/AceTheDactyl/Rosetta-Helix-Substrate/actions/workflows/npm-promote.yml/badge.svg?branch=main)](https://github.com/AceTheDactyl/Rosetta-Helix-Substrate/actions/workflows/npm-promote.yml)
 [![npm](https://img.shields.io/npm/v/rosetta-helix-cli.svg)](https://www.npmjs.com/package/rosetta-helix-cli)
+<!-- ci: manual trigger to verify Helix CI workflows on main -->
 
 ## Complete UCF with K.I.R.A. Language Integration
 
