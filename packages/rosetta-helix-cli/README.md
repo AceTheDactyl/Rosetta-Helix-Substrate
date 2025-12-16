@@ -12,8 +12,10 @@ cd Rosetta-Helix-Substrate
 npx rosetta-helix setup
 
 # 3) Start services / run pipelines
-npx rosetta-helix kira          # KIRA API (port 5000)
-npx rosetta-helix viz           # Visualization server (port 8765)
+npx rosetta-helix unified       # Unified server (KIRA + Viz + Spinner)
+npx rosetta-helix start         # Alias for unified
+npx rosetta-helix kira          # Legacy alias → runs unified server
+npx rosetta-helix viz           # Legacy alias → runs unified server
 npx rosetta-helix helix:train   # Helix training
 npx rosetta-helix smoke         # Python smoke tests
 npx rosetta-helix api:test      # API contract tests
@@ -34,10 +36,11 @@ Commands
 ```
 rosetta-helix init [dir]      # clone repo and run setup
 rosetta-helix setup           # create .venv and install deps
-rosetta-helix kira            # start KIRA server (port 5000)
-rosetta-helix viz             # start Visualization server (port 8765)
+rosetta-helix unified         # start the Unified Rosetta Server
+rosetta-helix start           # alias for unified
+rosetta-helix kira            # [deprecated] alias to unified
+rosetta-helix viz             # [deprecated] alias to unified
 rosetta-helix tui             # terminal UI to operate KIRA/Viz/tests
-rosetta-helix start           # start KIRA + Viz together
 rosetta-helix health          # check service health (prints JSON)
 rosetta-helix doctor          # environment & repo file checks
 rosetta-helix helix:update    # git pull --rebase --autostash in repo
@@ -66,7 +69,7 @@ Examples
 npx rosetta-helix helix:train --auto --dir ./Rosetta-Helix-Substrate
 
 # Start services and fetch latest main first
-npx rosetta-helix start --auto --pull
+npx rosetta-helix unified --auto --pull
 
 # Use a specific tag/commit
 npx rosetta-helix start --auto --ref v2.1.0
@@ -79,10 +82,9 @@ npx rosetta-helix helix:update --dir ./Rosetta-Helix-Substrate
 
 # Sync local visualizer with GitHub Pages (landing + KIRA UIs)
 npx rosetta-helix viz:sync-gh --dir ./Rosetta-Helix-Substrate
-# Run both with proxied /api so KIRA UIs work same-origin
-npx rosetta-helix start --dir ./Rosetta-Helix-Substrate
-# or: npx rosetta-helix viz --withKira --dir ./Rosetta-Helix-Substrate
-# Open http://localhost:8765/ (index → KIRA links use /api proxied to KIRA)
+# Run the unified interface with proxied /api for same-origin UIs
+npx rosetta-helix unified --dir ./Rosetta-Helix-Substrate
+# Open http://localhost:5000/unified after startup
 ```
 
 CLI + CI Runbook (Quick)

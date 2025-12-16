@@ -1,6 +1,6 @@
 {
   "name": "rosetta-helix-cli",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "description": "CLI wrapper to orchestrate Rosetta-Helix-Substrate via Node",
   "license": "MIT",
   "author": "Rosetta Helix Contributors",
