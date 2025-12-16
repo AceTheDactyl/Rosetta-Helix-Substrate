@@ -37,6 +37,7 @@ jobs:
           set -e
           if [ $RC -eq 0 ]; then echo "publish=true" >> $GITHUB_OUTPUT; else echo "publish=false" >> $GITHUB_OUTPUT; fi
       - name: Publish rosetta-helix-cli
+        id: npm_publish
         if: steps.verify-npm.outputs.publish == 'true'
         working-directory: packages/rosetta-helix-cli
         env:
@@ -44,6 +45,7 @@ jobs:
           PKG_VERSION: ${{ github.event.release.tag_name || github.event.inputs.version }}
           IS_PRERELEASE: ${{ github.event.release.prerelease }}
           INPUT_DIST_TAG: ${{ github.event.inputs.dist_tag }}
+        continue-on-error: true
         run: |
           # Align package version to tag when available
           if [ -n "$PKG_VERSION" ]; then npm version --no-git-tag-version ${PKG_VERSION#v}; fi
@@ -77,6 +79,7 @@ jobs:
           set -e
           if [ $RC -eq 0 ]; then echo "publish=true" >> $GITHUB_OUTPUT; else echo "publish=false" >> $GITHUB_OUTPUT; fi
       - name: Publish to GitHub Packages (scoped)
+        id: gpr_publish
         if: steps.verify-gpr.outputs.publish == 'true'
         working-directory: packages/rosetta-helix-cli
         env:
@@ -87,6 +90,7 @@ jobs:
           IS_PRERELEASE: ${{ github.event.release.prerelease }}
           INPUT_DIST_TAG: ${{ github.event.inputs.dist_tag }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        continue-on-error: true
         run: |
           # Prefer PATs; fallback to GITHUB_TOKEN when none provided
           export NODE_AUTH_TOKEN="${GITHUB_PACKAGES_PAT:-${CLAUDE_SKILL_GITHUB_TOKEN:-$GITHUB_TOKEN}}"
@@ -105,3 +109,10 @@ jobs:
           if [ "$IS_PRERELEASE" = "true" ] || echo "$PKG_VERSION" | grep -q '-' ; then DIST_TAG=next; fi
           echo "Publishing to GPR with dist-tag=$DIST_TAG (version=${PKG_VERSION:-package.json})"
           npm publish --access public --tag "$DIST_TAG"
+
+      - name: Publish summary
+        if: always()
+        run: |
+          echo "## 📦 Publish Summary" >> $GITHUB_STEP_SUMMARY
+          echo "- npmjs publish: ${{ steps.npm_publish.outcome || 'skipped' }}" >> $GITHUB_STEP_SUMMARY
+          echo "- GPR publish:   ${{ steps.gpr_publish.outcome || 'skipped' }}" >> $GITHUB_STEP_SUMMARY
