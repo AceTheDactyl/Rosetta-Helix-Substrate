@@ -129,10 +129,10 @@ ci: lint tests physics-verify
 	@echo "CI checks completed."
 
 ci-menu:
-    $(PY) scripts/ci_menu.py
+	$(PY) scripts/ci_menu.py
 
 smoke:
-    $(PY) -m pytest -q tests/smoke
+	$(PY) -m pytest -q tests/smoke
 
 # --- Local CI helpers ---
 ci-local-python:
@@ -171,8 +171,38 @@ docker-down:
 	docker compose down
 
 docker-logs:
-    docker compose logs -f --tail=200
+	docker compose logs -f --tail=200
 
 # --- npm token helper ---
 npm-token:
 	bash scripts/generate_npm_token.sh
+
+# --- npm validation & dry-run publish ---
+npm-validate:
+	@echo "Validating npm authentication and running a safe dry-run publish..."
+	@cd packages/rosetta-helix-cli && \
+	  echo "Package:" && node -e 'const p=require("./package.json"); console.log(`${p.name} ${p.version}`);' && \
+	  echo "-- Validating npmjs token (NPM_TOKEN) --" && \
+	  if [ -n "$$NPM_TOKEN" ]; then \
+	    TMPRC=$$(mktemp); \
+	    printf "//registry.npmjs.org/:_authToken=%s\n" "$$NPM_TOKEN" > $$TMPRC; \
+	    npm --userconfig $$TMPRC whoami --registry https://registry.npmjs.org || true; \
+	    rm -f $$TMPRC; \
+	  else \
+	    echo "NPM_TOKEN not set; skipping npmjs whoami"; \
+	  fi && \
+	  echo "-- Validating GitHub Packages PAT (GITHUB_PACKAGES_PAT/CLAUDE_SKILL_GITHUB_TOKEN) --" && \
+	  OWNER=$${OWNER:-AceTheDactyl}; \
+	  GPR_TOKEN=$${GITHUB_PACKAGES_PAT:-$$CLAUDE_SKILL_GITHUB_TOKEN}; \
+	  if [ -n "$$GPR_TOKEN" ]; then \
+	    TMPRC=$$(mktemp); \
+	    printf "@%s:registry=https://npm.pkg.github.com\n//npm.pkg.github.com/:_authToken=%s\n" "$$OWNER" "$$GPR_TOKEN" > $$TMPRC; \
+	    npm --userconfig $$TMPRC whoami --registry https://npm.pkg.github.com || true; \
+	    rm -f $$TMPRC; \
+	  else \
+	    echo "No GPR PAT set; skipping GPR whoami"; \
+	  fi && \
+	  echo "-- npm pack (no network) --" && \
+	  npm pack && \
+	  echo "-- npm publish --dry-run --tag test (npmjs) --" && \
+	  npm publish --dry-run --tag test --registry https://registry.npmjs.org
