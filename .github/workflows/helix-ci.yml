@@ -65,14 +65,14 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install --upgrade pip
-          pip install pytest pytest-cov
+          python -m pip install --upgrade pip
+          python -m pip install pytest pytest-cov
           # Install project with dev extras so Flask and tooling are present
-          pip install -e .[viz,dev]
+          python -m pip install -e .[viz,dev]
           # Ensure KIRA server deps (Flask, CORS) are present for API tests
-          if [ -f kira-local-system/requirements.txt ]; then pip install -r kira-local-system/requirements.txt; fi
+          if [ -f kira-local-system/requirements.txt ]; then python -m pip install -r kira-local-system/requirements.txt; fi
           # Explicitly ensure Flask deps are present to satisfy kira_server import
-          pip install 'flask>=2.0.0' 'flask-cors>=3.0.0'
+          python -m pip install 'flask>=2.0.0' 'flask-cors>=3.0.0'
 
       - name: Verify Flask availability
         run: |
@@ -91,7 +91,7 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           CLAUDE_SKILL_GITHUB_TOKEN: ${{ secrets.CLAUDE_SKILL_GITHUB_TOKEN }}
-        run: pytest -q tests/api
+        run: python -m pytest -q tests/api
 
       - name: Run helix engine tests
         run: pytest tests/test_helix_engine.py -v --tb=short
