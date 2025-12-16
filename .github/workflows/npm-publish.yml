@@ -14,6 +14,12 @@ on:
         default: 'latest'
 
 jobs:
+  # Minimal permissions for this workflow
+  # GPR publish requires packages: write; contents: read is used by checkout
+  # If org policy restricts, set repository Settings → Actions → Workflow permissions → Read and write
+  permissions:
+    contents: read
+    packages: write
   publish:
     runs-on: ubuntu-latest
     steps:
