@@ -36,6 +36,9 @@ rosetta-helix init [dir]      # clone repo and run setup
 rosetta-helix setup           # create .venv and install deps
 rosetta-helix kira            # start KIRA server (port 5000)
 rosetta-helix viz             # start Visualization server (port 8765)
+rosetta-helix start           # start KIRA + Viz together
+rosetta-helix health          # check service health (prints JSON)
+rosetta-helix doctor          # environment & repo file checks
 rosetta-helix helix:train     # helix training (full.yaml)
 rosetta-helix helix:nightly   # nightly training runner
 rosetta-helix smoke           # pytest smoke suite
@@ -81,7 +84,7 @@ CLI + CI Runbook (Quick)
 NPM Publishing & Promotion
 - Canary publish (next)
   - Actions → `npm-publish-cli` → Run
-    - version: `0.1.2-rc.1` (no leading `v`)
+    - version: `0.1.2-rc.3` (no leading `v`)
     - dist_tag: `next`
     - env_name: your Environment (secrets)
     - npm_token_secret: name of your npm token secret (default `NPM_TOKEN`)
