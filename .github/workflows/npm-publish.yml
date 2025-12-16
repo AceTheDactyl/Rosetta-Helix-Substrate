@@ -69,14 +69,16 @@ jobs:
           PKG_VERSION: ${{ github.event.release.tag_name || github.event.inputs.version }}
           IS_PRERELEASE: ${{ github.event.release.prerelease }}
           INPUT_DIST_TAG: ${{ github.event.inputs.dist_tag }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          export NODE_AUTH_TOKEN="${GITHUB_PACKAGES_PAT:-$CLAUDE_SKILL_GITHUB_TOKEN}"
+          # Prefer PATs; fallback to GITHUB_TOKEN when none provided
+          export NODE_AUTH_TOKEN="${GITHUB_PACKAGES_PAT:-${CLAUDE_SKILL_GITHUB_TOKEN:-$GITHUB_TOKEN}}"
           if [ -z "$NODE_AUTH_TOKEN" ]; then echo "No PAT provided for GitHub Packages."; exit 1; fi
           # Create a temporary scoped package.json for GPR
           node -e '
             const fs=require("fs");
             const p=JSON.parse(fs.readFileSync("package.json","utf8"));
-            const owner=process.env.OWNER;
+            const owner=(process.env.OWNER||"").toLowerCase();
             p.name = `@${owner}/rosetta-helix-cli`;
             p.publishConfig = Object.assign({}, p.publishConfig, { registry: "https://npm.pkg.github.com" });
             fs.writeFileSync("package.json", JSON.stringify(p, null, 2));
