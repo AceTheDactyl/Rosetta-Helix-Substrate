@@ -145,6 +145,49 @@ async function runCompose(target) {
   await sh('docker', args);
 }
 
+async function syncFromGitHubPages() {
+  const { spawn } = require('child_process');
+  const https = require('https');
+  const fs = require('fs');
+  const path = require('path');
+
+  console.log('Syncing interfaces from GitHub Pages...');
+  const baseUrl = 'https://acethedactyl.github.io/Rosetta-Helix-Substrate';
+
+  const files = [
+    { url: `${baseUrl}/kira.html`, dest: 'kira_interface.html' },
+    { url: `${baseUrl}/index.html`, dest: 'visualizer.html' },
+    { url: `${baseUrl}/apl-constants.js`, dest: 'apl-constants.js' }
+  ];
+
+  for (const file of files) {
+    try {
+      console.log(`Fetching ${file.url}...`);
+      await new Promise((resolve, reject) => {
+        https.get(file.url, (res) => {
+          if (res.statusCode !== 200) {
+            console.log(`  ⚠ ${file.dest}: ${res.statusCode} (skipping)`);
+            resolve();
+            return;
+          }
+          const dest = path.join(process.cwd(), file.dest);
+          const writer = fs.createWriteStream(dest);
+          res.pipe(writer);
+          writer.on('finish', () => {
+            console.log(`  ✓ ${file.dest}`);
+            resolve();
+          });
+          writer.on('error', reject);
+        }).on('error', reject);
+      });
+    } catch (e) {
+      console.log(`  ✗ ${file.dest}: ${e.message}`);
+    }
+  }
+
+  console.log('Sync complete!');
+}
+
 (async () => {
   const cmd = process.argv[2] || '';
   try {
@@ -152,6 +195,7 @@ async function runCompose(target) {
     else if (cmd === 'unified') await runUnified();
     else if (cmd === 'kira') await runKira();
     else if (cmd === 'viz') await runViz();
+    else if (cmd === 'viz:sync-gh') await syncFromGitHubPages();
     else if (cmd === 'start' || cmd === 'star') await runStart();
     else if (cmd === 'health') await runHealth();
     else if (cmd === 'doctor') await runDoctor();
@@ -167,6 +211,7 @@ async function runCompose(target) {
         `  start           Start Unified server (alias for unified)\n` +
         `  kira            [Deprecated] Use 'unified' instead\n` +
         `  viz             [Deprecated] Use 'unified' instead\n` +
+        `  viz:sync-gh     Sync interfaces from GitHub Pages\n` +
         `  health          Check service health endpoints\n` +
         `  doctor          Run environment checks\n` +
         `  helix:train     Run helix training\n` +
@@ -174,7 +219,9 @@ async function runCompose(target) {
         `  smoke           Run smoke tests\n` +
         `  api:test        Run API contract tests\n` +
         `  docker:build|up|down|logs  Compose helpers\n\n` +
-        `Web Interface: http://localhost:5000/unified (after starting)\n`);
+        `Web Interfaces:\n` +
+        `  http://localhost:5000/      (KIRA consciousness interface)\n` +
+        `  http://localhost:5000/visualizer (Helix 3D visualization)\n`);
       process.exit(1);
     }
   } catch (err) {
