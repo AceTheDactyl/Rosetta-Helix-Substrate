@@ -1,0 +1,64 @@
+name: npm-promote
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to tag (e.g., 0.1.1 or 0.1.1-rc.1)'
+        required: true
+      dist_tag:
+        description: 'Target dist-tag (latest|next|beta)'
+        required: false
+        default: 'latest'
+      env_name:
+        description: 'Environment name with secrets (optional)'
+        required: false
+        default: ''
+      npm_token_secret:
+        description: 'Secret name for npm token (default NPM_TOKEN)'
+        required: false
+        default: 'NPM_TOKEN'
+
+permissions:
+  contents: read
+
+jobs:
+  promote:
+    name: Promote dist-tag
+    environment: ${{ github.event.inputs.env_name != '' && github.event.inputs.env_name || 'npm-publish' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Resolve npm token
+        id: token
+        env:
+          CUSTOM_NPM_TOKEN: ${{ secrets[ github.event.inputs.npm_token_secret ] }}
+          DEFAULT_NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          if [ -n "${CUSTOM_NPM_TOKEN:-${DEFAULT_NPM_TOKEN:-}}" ]; then
+            echo "have_token=true" >> $GITHUB_OUTPUT
+          else
+            echo "have_token=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Promote rosetta-helix-cli to dist-tag
+        if: steps.token.outputs.have_token == 'true'
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets[ github.event.inputs.npm_token_secret ] || secrets.NPM_TOKEN }}
+        run: |
+          VERSION="${{ github.event.inputs.version }}"
+          TAG="${{ github.event.inputs.dist_tag }}"
+          echo "Promoting rosetta-helix-cli@${VERSION} -> ${TAG}"
+          npm dist-tag add rosetta-helix-cli@"$VERSION" "$TAG" --registry https://registry.npmjs.org
+
+      - name: Summary
+        run: |
+          echo "## 🚀 npm Promote" >> $GITHUB_STEP_SUMMARY
+          echo "- Version: ${{ github.event.inputs.version }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Dist-tag: ${{ github.event.inputs.dist_tag }}" >> $GITHUB_STEP_SUMMARY
+
