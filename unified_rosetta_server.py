@@ -2212,9 +2212,10 @@ def handle_command(eng: UnifiedRosettaEngine, user_input: str) -> Response:
 # WEBSOCKET SERVER
 # ═══════════════════════════════════════════════════════════════════════════════
 
-async def websocket_handler(websocket, path):
+async def websocket_handler(websocket):
     """Handle WebSocket connections for real-time updates."""
     eng = get_engine()
+    path = websocket.request.path if hasattr(websocket, 'request') else '/'
 
     # Add client
     eng.websocket_clients.add(websocket)
