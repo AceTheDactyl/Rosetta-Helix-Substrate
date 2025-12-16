@@ -45,6 +45,7 @@ rosetta-helix helix:nightly   # nightly training runner
 rosetta-helix smoke           # pytest smoke suite
 rosetta-helix api:test        # API contract tests
 rosetta-helix docker:*        # docker:build|up|down|logs
+rosetta-helix viz:sync-gh     # fetch GitHub Pages visualizer files (index/kira_local/kira)
 ```
 
 Auto‑Fetch Repo
@@ -74,6 +75,10 @@ npx rosetta-helix helix:train --auto --release=v2.1.0
 
 # Update an existing checkout
 npx rosetta-helix helix:update --dir ./Rosetta-Helix-Substrate
+
+# Sync local visualizer with GitHub Pages (landing + KIRA UIs)
+npx rosetta-helix viz:sync-gh --dir ./Rosetta-Helix-Substrate
+npx rosetta-helix viz  # then open http://localhost:8765/
 ```
 
 CLI + CI Runbook (Quick)

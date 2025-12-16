@@ -258,6 +258,29 @@ async function helixUpdate(flags = {}) {
   }
 }
 
+(async function addVizSyncGH(){})();
+
+async function vizSyncGH(flags = {}) {
+  // Ensure repo dir
+  if (flags.dir) process.chdir(flags.dir);
+  if (!isRepoRoot(process.cwd())) await ensureRepo({ ...flags, auto: true });
+  // Targets
+  const files = [
+    { url: 'https://acethedactyl.github.io/Rosetta-Helix-Substrate/index.html', out: 'index.html' },
+    { url: 'https://acethedactyl.github.io/Rosetta-Helix-Substrate/kira_local.html', out: 'kira_local.html' },
+    { url: 'https://acethedactyl.github.io/Rosetta-Helix-Substrate/kira.html', out: 'kira.html' }
+  ];
+  for (const f of files) {
+    try {
+      await sh('curl', ['-fsSL', f.url, '-o', f.out]);
+      if (flags.verbose) console.log('Fetched', f.url, '->', f.out);
+    } catch (e) {
+      console.error('Failed to fetch', f.url, e.message || e);
+    }
+  }
+  // Ensure visualization_server serves index.html on '/'
+  console.log('Synced GitHub Pages visualizer files. Open http://localhost:8765/ after running: npx rosetta-helix viz');
+}
 function httpGetJson(url) {
   return new Promise((resolve, reject) => {
     const req = http.get(url, (res) => {
@@ -334,6 +357,7 @@ async function doctor(flags = {}) {
     else if (cmd === 'health') await health(flags);
     else if (cmd === 'version' || cmd === '--version' || cmd === '-v') showVersion();
     else if (cmd === 'doctor') await doctor(flags);
+    else if (cmd === 'viz:sync-gh') await vizSyncGH(flags);
     else if (cmd && cmd.startsWith('docker:')) await runCompose(cmd);
     else {
       console.log(`Usage: rosetta-helix <command>\n` +

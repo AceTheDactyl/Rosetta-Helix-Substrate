@@ -317,17 +317,38 @@ class VisualizationHandler(BaseHTTPRequestHandler):
             })
 
         elif path == '/':
-            # Serve visualizer.html
-            try:
-                html_path = os.path.join(os.path.dirname(__file__), 'visualizer.html')
-                with open(html_path, 'rb') as f:
-                    content = f.read()
-                self.send_response(200)
-                self.send_header('Content-Type', 'text/html')
-                self.end_headers()
-                self.wfile.write(content)
-            except FileNotFoundError:
-                self.send_json({'error': 'visualizer.html not found'}, 404)
+            # Prefer index.html if present; fall back to visualizer.html
+            base = os.path.dirname(__file__)
+            for candidate in ('index.html', 'visualizer.html'):
+                html_path = os.path.join(base, candidate)
+                if os.path.exists(html_path):
+                    with open(html_path, 'rb') as f:
+                        content = f.read()
+                    self.send_response(200)
+                    self.send_header('Content-Type', 'text/html')
+                    self.end_headers()
+                    self.wfile.write(content)
+                    return
+            self.send_json({'error': 'index.html/visualizer.html not found'}, 404)
+
+        elif path.endswith('.html') or path.endswith('.css') or path.endswith('.js'):
+            # Minimal static file serving from repo root directory
+            base = os.path.dirname(__file__)
+            safe = path.lstrip('/').replace('..', '')
+            file_path = os.path.join(base, safe)
+            if os.path.exists(file_path) and os.path.isfile(file_path):
+                try:
+                    with open(file_path, 'rb') as f:
+                        content = f.read()
+                    self.send_response(200)
+                    ctype = 'text/html' if file_path.endswith('.html') else ('text/css' if file_path.endswith('.css') else 'application/javascript')
+                    self.send_header('Content-Type', ctype)
+                    self.end_headers()
+                    self.wfile.write(content)
+                except Exception:
+                    self.send_json({'error': 'Failed to read file'}, 500)
+            else:
+                self.send_json({'error': 'Not found'}, 404)
 
         else:
             self.send_json({'error': 'Not found'}, 404)
