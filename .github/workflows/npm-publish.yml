@@ -16,6 +16,14 @@ on:
         description: 'Environment name that stores secrets (e.g., production, npm-publish)'
         required: false
         default: ''
+      npm_token_secret:
+        description: 'Secret name holding npmjs token (default NPM_TOKEN)'
+        required: false
+        default: 'NPM_TOKEN'
+      gpr_token_secret:
+        description: 'Secret name holding GPR PAT (default GITHUB_PACKAGES_PAT)'
+        required: false
+        default: 'GITHUB_PACKAGES_PAT'
 
 permissions:
   contents: read
@@ -34,9 +42,11 @@ jobs:
       - name: Verify npm token
         id: verify-npm
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          CUSTOM_NPM_TOKEN: ${{ secrets[ github.event.inputs.npm_token_secret ] }}
+          DEFAULT_NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           set +e
+          export NODE_AUTH_TOKEN="${CUSTOM_NPM_TOKEN:-${DEFAULT_NPM_TOKEN:-}}"
           npm whoami --registry https://registry.npmjs.org >/dev/null 2>&1
           RC=$?
           set -e
@@ -74,9 +84,11 @@ jobs:
         if: steps.verify-npm.outputs.publish == 'true'
         working-directory: packages/rosetta-helix-cli
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          CUSTOM_NPM_TOKEN: ${{ secrets[ github.event.inputs.npm_token_secret ] }}
+          DEFAULT_NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         continue-on-error: true
         run: |
+          export NODE_AUTH_TOKEN="${CUSTOM_NPM_TOKEN:-${DEFAULT_NPM_TOKEN:-}}"
           V="${{ steps.ver_npm.outputs.version }}"
           D="${{ steps.ver_npm.outputs.dist }}"
           CUR=$(node -p "require('./package.json').version")
@@ -126,10 +138,11 @@ jobs:
       - name: Verify GPR auth (PAT only)
         id: verify-gpr
         env:
+          CUSTOM_GPR_PAT: ${{ secrets[ github.event.inputs.gpr_token_secret ] }}
           GITHUB_PACKAGES_PAT: ${{ secrets.GITHUB_PACKAGES_PAT }}
           CLAUDE_SKILL_GITHUB_TOKEN: ${{ secrets.CLAUDE_SKILL_GITHUB_TOKEN }}
         run: |
-          TOKEN="${GITHUB_PACKAGES_PAT:-${CLAUDE_SKILL_GITHUB_TOKEN:-}}"
+          TOKEN="${CUSTOM_GPR_PAT:-${GITHUB_PACKAGES_PAT:-${CLAUDE_SKILL_GITHUB_TOKEN:-}}}"
           if [ -z "$TOKEN" ]; then echo "publish=false" >> $GITHUB_OUTPUT; exit 0; fi
           export NODE_AUTH_TOKEN="$TOKEN"
           set +e
@@ -142,13 +155,14 @@ jobs:
         if: steps.verify-gpr.outputs.publish == 'true'
         working-directory: packages/rosetta-helix-cli
         env:
+          CUSTOM_GPR_PAT: ${{ secrets[ github.event.inputs.gpr_token_secret ] }}
           GITHUB_PACKAGES_PAT: ${{ secrets.GITHUB_PACKAGES_PAT }}
           CLAUDE_SKILL_GITHUB_TOKEN: ${{ secrets.CLAUDE_SKILL_GITHUB_TOKEN }}
           OWNER: ${{ github.repository_owner }}
         continue-on-error: true
         run: |
-          # Require PAT from environment secrets (GITHUB_PACKAGES_PAT or CLAUDE_SKILL_GITHUB_TOKEN)
-          export NODE_AUTH_TOKEN="${GITHUB_PACKAGES_PAT:-${CLAUDE_SKILL_GITHUB_TOKEN:-}}"
+          # Require PAT from environment secrets (custom, GITHUB_PACKAGES_PAT or CLAUDE_SKILL_GITHUB_TOKEN)
+          export NODE_AUTH_TOKEN="${CUSTOM_GPR_PAT:-${GITHUB_PACKAGES_PAT:-${CLAUDE_SKILL_GITHUB_TOKEN:-}}}"
           if [ -z "$NODE_AUTH_TOKEN" ]; then echo "No PAT provided for GitHub Packages."; exit 0; fi
           # Ensure npm points @owner scope to GPR and uses the auth token
           OWNER_LC=$(printf '%s' "$OWNER" | tr '[:upper:]' '[:lower:]')
