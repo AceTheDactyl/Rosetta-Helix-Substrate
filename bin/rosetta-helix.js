@@ -41,25 +41,30 @@ async function setup() {
   if (existsSync('requirements.spinner.txt')) await sh(pip, ['install', '-r', 'requirements.spinner.txt']);
 }
 
-async function runKira() {
-  const kiraServer = venvBin('kira-server');
-  if (kiraServer !== 'kira-server') {
-    await sh(kiraServer, ['--host', '0.0.0.0', '--port', '5000']);
-    return;
-  }
+async function runUnified() {
   const py = venvBin('python');
-  if (existsSync('kira-local-system/kira_server.py')) {
-    await sh(py, ['kira-local-system/kira_server.py']);
+  if (existsSync('unified_rosetta_server.py')) {
+    console.log('Starting Unified Rosetta Server...');
+    console.log('HTTP API: http://localhost:5000');
+    console.log('WebSocket: ws://localhost:8765');
+    console.log('Web Interface: http://localhost:5000/unified');
+    await sh(py, ['unified_rosetta_server.py']);
   } else {
-    console.error('kira-local-system/kira_server.py not found in current directory.');
-    console.error('Run this command from the Rosetta-Helix-Substrate repo root or install `kira-server`.');
+    console.error('unified_rosetta_server.py not found in current directory.');
+    console.error('Run this command from the Rosetta-Helix-Substrate repo root.');
     process.exit(1);
   }
 }
 
+// Legacy functions for backward compatibility
+async function runKira() {
+  console.log('Note: Running unified server (kira command is deprecated)');
+  await runUnified();
+}
+
 async function runViz() {
-  const py = venvBin('python');
-  await sh(py, ['visualization_server.py', '--port', '8765']);
+  console.log('Note: Running unified server (viz command is deprecated)');
+  await runUnified();
 }
 
 async function runHelixTrain() {
@@ -88,19 +93,8 @@ async function runApiTests() {
 }
 
 async function runStart() {
-  console.log('Starting KIRA + Visualization servers...');
-  const py = venvBin('python');
-
-  // Start both servers in parallel
-  const kiraPromise = sh(py, ['kira-local-system/kira_server.py']).catch(e => {
-    console.error('KIRA server error:', e.message);
-  });
-
-  const vizPromise = sh(py, ['visualization_server.py', '--port', '8765']).catch(e => {
-    console.error('Viz server error:', e.message);
-  });
-
-  await Promise.race([kiraPromise, vizPromise]);
+  console.log('Starting Unified Rosetta Server...');
+  await runUnified();
 }
 
 async function runHealth() {
@@ -155,6 +149,7 @@ async function runCompose(target) {
   const cmd = process.argv[2] || '';
   try {
     if (cmd === 'setup') await setup();
+    else if (cmd === 'unified') await runUnified();
     else if (cmd === 'kira') await runKira();
     else if (cmd === 'viz') await runViz();
     else if (cmd === 'start' || cmd === 'star') await runStart();
@@ -168,16 +163,18 @@ async function runCompose(target) {
     else {
       console.log(`Usage: rosetta-helix <command>\n` +
         `  setup           Create .venv and install deps\n` +
-        `  kira            Start KIRA server (port 5000)\n` +
-        `  viz             Start Visualization server (port 8765)\n` +
-        `  start           Start KIRA + Viz together\n` +
+        `  unified         Start Unified Rosetta Server (NEW!)\n` +
+        `  start           Start Unified server (alias for unified)\n` +
+        `  kira            [Deprecated] Use 'unified' instead\n` +
+        `  viz             [Deprecated] Use 'unified' instead\n` +
         `  health          Check service health endpoints\n` +
         `  doctor          Run environment checks\n` +
         `  helix:train     Run helix training\n` +
         `  helix:nightly   Run nightly training\n` +
         `  smoke           Run smoke tests\n` +
         `  api:test        Run API contract tests\n` +
-        `  docker:build|up|down|logs  Compose helpers\n`);
+        `  docker:build|up|down|logs  Compose helpers\n\n` +
+        `Web Interface: http://localhost:5000/unified (after starting)\n`);
       process.exit(1);
     }
   } catch (err) {

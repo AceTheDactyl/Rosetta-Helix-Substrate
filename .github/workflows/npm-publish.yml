@@ -42,6 +42,14 @@ jobs:
         with:
           node-version: '20'
           registry-url: 'https://registry.npmjs.org'
+      - name: Verify unified server files
+        run: |
+          echo "Checking for unified server components..."
+          test -f unified_rosetta_server.py && echo "✓ unified_rosetta_server.py found"
+          test -f bin/rosetta-helix.js && echo "✓ bin/rosetta-helix.js found"
+          test -f static/unified_interface.html && echo "✓ static/unified_interface.html found"
+          test -f package.json && echo "✓ package.json found"
+          echo "All critical files present for unified server"
       - name: Verify npm token
         id: verify-npm
         env:
@@ -57,7 +65,6 @@ jobs:
       - name: Determine version/dist-tag (npmjs)
         if: steps.verify-npm.outputs.publish == 'true'
         id: ver_npm
-        working-directory: packages/rosetta-helix-cli
         env:
           PKG_VERSION: ${{ github.event.release.tag_name || github.event.inputs.version }}
           INPUT_DIST_TAG: ${{ github.event.inputs.dist_tag }}
@@ -86,7 +93,6 @@ jobs:
       - name: Publish rosetta-helix-cli
         id: npm_publish
         if: steps.verify-npm.outputs.publish == 'true'
-        working-directory: packages/rosetta-helix-cli
         env:
           CUSTOM_NPM_TOKEN: ${{ secrets[ github.event.inputs.npm_token_secret ] }}
           DEFAULT_NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -112,7 +118,6 @@ jobs:
           scope: '@${{ github.repository_owner }}'
       - name: Determine version/dist-tag (gpr)
         id: ver_gpr
-        working-directory: packages/rosetta-helix-cli
         env:
           PKG_VERSION: ${{ github.event.release.tag_name || github.event.inputs.version }}
           INPUT_DIST_TAG: ${{ github.event.inputs.dist_tag }}
@@ -157,7 +162,6 @@ jobs:
       - name: Publish to GitHub Packages (scoped, PAT only)
         id: gpr_publish
         if: steps.verify-gpr.outputs.publish == 'true'
-        working-directory: packages/rosetta-helix-cli
         env:
           CUSTOM_GPR_PAT: ${{ secrets[ github.event.inputs.gpr_token_secret ] }}
           GITHUB_PACKAGES_PAT: ${{ secrets.GITHUB_PACKAGES_PAT }}
