@@ -79,7 +79,8 @@ jobs:
         run: |
           V="${{ steps.ver_npm.outputs.version }}"
           D="${{ steps.ver_npm.outputs.dist }}"
-          if [ -n "$V" ]; then npm version --no-git-tag-version "$V"; fi
+          CUR=$(node -p "require('./package.json').version")
+          if [ -n "$V" ] && [ "$V" != "$CUR" ]; then npm version --no-git-tag-version "$V"; fi
           echo "Publishing to npm with dist-tag=$D (version=$V)"
           npm publish --access public --tag "$D"
 
@@ -106,7 +107,8 @@ jobs:
             CURRENT=$(node -p "require('./package.json').version")
             NAME=$(node -p "require('./package.json').name")
             # Always allow republish to GPR by switching to a pre-release if current exists on GPR
-            EXISTS=$(npm view "@${{ github.repository_owner }}"/rosetta-helix-cli@$CURRENT version --registry https://npm.pkg.github.com 2>/dev/null || true)
+            OWNER_LC=$(printf '%s' "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
+            EXISTS=$(npm view "@${OWNER_LC}/rosetta-helix-cli@$CURRENT" version --registry https://npm.pkg.github.com 2>/dev/null || true)
             if [ -n "$EXISTS" ]; then
               BASE=$(node -p "(require('./package.json').version.split('-')[0])")
               IFS='.' read -r MAJ MIN PATCH <<< "$BASE"
@@ -161,9 +163,9 @@ jobs:
             p.publishConfig = Object.assign({}, p.publishConfig, { registry: "https://npm.pkg.github.com" });
             fs.writeFileSync("package.json", JSON.stringify(p, null, 2));
           '
-          V="${{ steps.ver_gpr.outputs.version }}"
-          D="${{ steps.ver_gpr.outputs.dist }}"
-          if [ -n "$V" ]; then npm version --no-git-tag-version "$V"; fi
+          V="${{ steps.ver_gpr.outputs.version }}"; D="${{ steps.ver_gpr.outputs.dist }}"
+          CUR=$(node -p "require('./package.json').version")
+          if [ -n "$V" ] && [ "$V" != "$CUR" ]; then npm version --no-git-tag-version "$V"; fi
           echo "Publishing to GPR with dist-tag=$D (version=$V)"
           npm publish --access public --tag "$D"
 
