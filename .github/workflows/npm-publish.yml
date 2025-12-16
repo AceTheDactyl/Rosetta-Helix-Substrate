@@ -60,7 +60,8 @@ jobs:
           INPUT_DIST_TAG: ${{ github.event.inputs.dist_tag }}
         run: |
           set -e
-          WANT="$PKG_VERSION"
+          # Normalize incoming version (strip optional leading 'v')
+          WANT="${PKG_VERSION#v}"
           if [ -z "$WANT" ]; then
             CURRENT=$(node -p "require('./package.json').version")
             NAME=$(node -p "require('./package.json').name")
@@ -114,7 +115,7 @@ jobs:
           INPUT_DIST_TAG: ${{ github.event.inputs.dist_tag }}
         run: |
           set -e
-          WANT="$PKG_VERSION"
+          WANT="${PKG_VERSION#v}"
           if [ -z "$WANT" ]; then
             CURRENT=$(node -p "require('./package.json').version")
             NAME=$(node -p "require('./package.json').name")
