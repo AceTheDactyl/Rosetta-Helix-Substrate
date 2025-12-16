@@ -284,6 +284,90 @@ async function vizSyncGH(flags = {}) {
   // Ensure visualization_server serves index.html on '/'
   console.log('Synced GitHub Pages visualizer files. Open http://localhost:8765/ after running: npx rosetta-helix viz');
 }
+
+async function runTui(flags = {}) {
+  let blessed;
+  try { blessed = require('blessed'); } catch (_) { blessed = null; }
+
+  const kiraHost = flags.host || 'localhost';
+  const kiraPort = String(flags.kiraPort || flags.port || 5000);
+  const vizPort = String(flags.vizPort || 8765);
+
+  async function getStatus() {
+    const status = { kira: null, viz: null };
+    try { status.kira = await httpGetJson(`http://${kiraHost}:${kiraPort}/api/health`); } catch (e) { status.kira = { error: e.message }; }
+    try { status.viz = await httpGetJson(`http://localhost:${vizPort}/state`); } catch (e) { status.viz = { error: e.message }; }
+    return status;
+  }
+
+  const actions = [
+    { key: '1', name: 'Setup (.venv install)', fn: () => setup(flags) },
+    { key: '2', name: 'Start KIRA', fn: () => runKira(flags) },
+    { key: '3', name: 'Start Viz (bind to KIRA)', fn: () => runViz({ ...flags, withKira: true }) },
+    { key: '4', name: 'Start Both', fn: () => startBoth(flags) },
+    { key: '5', name: 'Smoke Tests', fn: () => runSmoke(flags) },
+    { key: '6', name: 'API Tests', fn: () => runApiTests(flags) },
+    { key: '7', name: 'Helix Train', fn: () => runHelixTrain(flags) },
+    { key: 'u', name: 'helix:update (git pull)', fn: () => helixUpdate(flags) },
+  ];
+
+  if (!blessed) {
+    // Simple readline fallback
+    console.log('Rosetta-Helix TUI (fallback)');
+    for (const a of actions) console.log(`[${a.key}] ${a.name}`);
+    console.log('[q] Quit');
+    const rl = require('readline').createInterface({ input: process.stdin, output: process.stdout });
+    rl.setPrompt('> ');
+    rl.prompt();
+    rl.on('line', async (line) => {
+      const key = line.trim();
+      if (key === 'q') { rl.close(); return; }
+      const a = actions.find(x => x.key === key);
+      if (a) { try { await a.fn(); } catch (e) { console.error(e.message || e); } }
+      rl.prompt();
+    });
+    return;
+  }
+
+  const screen = blessed.screen({ smartCSR: true, title: 'Rosetta-Helix TUI' });
+  const statusBox = blessed.box({ top: 0, left: 0, width: '50%', height: '40%', label: 'Status', border: 'line', tags: true, scrollable: true });
+  const actionsList = blessed.list({ top: 0, left: '50%', width: '50%', height: '40%', label: 'Actions (Enter)', border: 'line', keys: true, mouse: true, vi: true, items: actions.map(a => `${a.key}. ${a.name}`) });
+  const logBox = blessed.log({ top: '40%', left: 0, width: '100%', height: '60%', label: 'Logs', border: 'line', scrollback: 1000 });
+  const grid = blessed.layout({ parent: screen, width: '100%', height: '100%' });
+  grid.append(statusBox); grid.append(actionsList); grid.append(logBox);
+  actionsList.focus();
+
+  async function refresh() {
+    const s = await getStatus();
+    const kira = s.kira?.status ? `{green-fg}${s.kira.status}{/green-fg}` : `{red-fg}${s.kira?.error || 'down'}{/red-fg}`;
+    const viz = s.viz?.z != null ? `{green-fg}z=${(s.viz.z||0).toFixed(3)} tier=${s.viz.tier || '?'}{/green-fg}` : `{red-fg}${s.viz?.error || 'down'}{/red-fg}`;
+    statusBox.setContent([
+      `KIRA: ${kira}`,
+      `VIZ:  ${viz}`,
+      `Ports: KIRA=${kiraPort} VIZ=${vizPort}`,
+      '',
+      'Keys: arrows/vi to select, Enter to run, q to quit'
+    ].join('\n'));
+    screen.render();
+  }
+
+  const timer = setInterval(refresh, 2000);
+  refresh();
+
+  actionsList.on('select', async (item, idx) => {
+    const a = actions[idx];
+    if (!a) return;
+    try {
+      logBox.log(`> ${a.name}`);
+      await a.fn();
+      logBox.log(`< done: ${a.name}`);
+    } catch (e) {
+      logBox.log(`! error: ${e.message || e}`);
+    }
+  });
+
+  screen.key(['q', 'C-c'], () => { clearInterval(timer); screen.destroy(); process.exit(0); });
+}
 function httpGetJson(url) {
   return new Promise((resolve, reject) => {
     const req = http.get(url, (res) => {
@@ -351,6 +435,7 @@ async function doctor(flags = {}) {
     else if (cmd === 'setup') await setup(flags);
     else if (cmd === 'kira') await runKira(flags);
     else if (cmd === 'viz') await runViz(flags);
+    else if (cmd === 'tui') await runTui(flags);
     else if (cmd === 'helix:train') await runHelixTrain(flags);
     else if (cmd === 'helix:nightly') await runHelixNightly(flags);
     else if (cmd === 'smoke') await runSmoke(flags);
@@ -368,6 +453,7 @@ async function doctor(flags = {}) {
         `  setup [--dir D]      Create .venv and install deps\n` +
         `  kira [--host H --port P]   Start KIRA (default 0.0.0.0:5000)\n` +
         `  viz [--port P]       Start Visualization server (default 8765)\n` +
+        `  tui                  Terminal UI (Linux/TTY) to operate KIRA/Viz/tests\n` +
         `  start                Start KIRA + Viz together\n` +
         `  health               Check http://localhost:{5000,8765} health\n` +
         `  doctor [--dir D]     Check environment & repo files\n` +

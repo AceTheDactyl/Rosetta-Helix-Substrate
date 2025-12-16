@@ -36,6 +36,7 @@ rosetta-helix init [dir]      # clone repo and run setup
 rosetta-helix setup           # create .venv and install deps
 rosetta-helix kira            # start KIRA server (port 5000)
 rosetta-helix viz             # start Visualization server (port 8765)
+rosetta-helix tui             # terminal UI to operate KIRA/Viz/tests
 rosetta-helix start           # start KIRA + Viz together
 rosetta-helix health          # check service health (prints JSON)
 rosetta-helix doctor          # environment & repo file checks
@@ -78,7 +79,10 @@ npx rosetta-helix helix:update --dir ./Rosetta-Helix-Substrate
 
 # Sync local visualizer with GitHub Pages (landing + KIRA UIs)
 npx rosetta-helix viz:sync-gh --dir ./Rosetta-Helix-Substrate
-npx rosetta-helix viz  # then open http://localhost:8765/
+# Run both with proxied /api so KIRA UIs work same-origin
+npx rosetta-helix start --dir ./Rosetta-Helix-Substrate
+# or: npx rosetta-helix viz --withKira --dir ./Rosetta-Helix-Substrate
+# Open http://localhost:8765/ (index → KIRA links use /api proxied to KIRA)
 ```
 
 CLI + CI Runbook (Quick)
