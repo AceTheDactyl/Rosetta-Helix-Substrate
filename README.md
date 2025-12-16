@@ -5,6 +5,7 @@
 [![npm Promote](https://github.com/AceTheDactyl/Rosetta-Helix-Substrate/actions/workflows/npm-promote.yml/badge.svg?branch=main)](https://github.com/AceTheDactyl/Rosetta-Helix-Substrate/actions/workflows/npm-promote.yml)
 [![npm (latest)](https://img.shields.io/npm/v/rosetta-helix-cli.svg?label=npm%40latest)](https://www.npmjs.com/package/rosetta-helix-cli)
 [![npm (next)](https://img.shields.io/npm/v/rosetta-helix-cli/next.svg?label=npm%40next)](https://www.npmjs.com/package/rosetta-helix-cli)
+[![Promote to latest](https://img.shields.io/badge/Promote-latest-blue?logo=npm)](https://github.com/AceTheDactyl/Rosetta-Helix-Substrate/actions/workflows/npm-promote.yml)
 <!-- ci: manual trigger to verify Helix CI workflows on main -->
 
 ## Complete UCF with K.I.R.A. Language Integration
@@ -96,6 +97,73 @@ unified-consciousness-framework/
 ├── codex/                # Living emissions codex
 └── archives/             # Previous session zips
 ```
+
+## CLI + CI Runbook (Quick)
+
+- Python (venv)
+  - `python3 -m venv .venv && source .venv/bin/activate`
+  - `python -m pip install -U pip`
+  - `pip install -e .[viz,dev]`
+  - `pip install -r kira-local-system/requirements.txt`
+
+- KIRA API server
+  - `kira-server` (preferred) or `python kira-local-system/kira_server.py`
+  - Endpoints: `GET /api/health`, `POST /api/emit`, `POST /api/grammar`
+
+- Visualization server
+  - `python visualization_server.py --port 8765`
+  - Health: `curl http://localhost:8765/state`
+
+- Helix training
+  - `helix train --config configs/full.yaml` or `python train_helix.py`
+  - Smoke: `python -m pytest -q tests/smoke`
+
+- rosetta-helix CLI (Node wrapper)
+  - Setup: `npx rosetta-helix setup`
+  - Start KIRA: `npx rosetta-helix kira`
+  - Start Viz: `npx rosetta-helix viz`
+  - Train: `npx rosetta-helix helix:train`
+  - API tests: `npx rosetta-helix api:test`
+
+- Makefile shortcuts
+  - `make venv && make install` — create venv and install
+  - `make kira-server` / `make viz-server` — servers
+  - `make smoke` / `make tests` — test suites
+  - `make ci` — lint + tests + physics verify
+  - `make npm-validate` — validate tokens + pack + dry-run publish
+
+- Docker
+  - `docker compose up -d kira viz` — start services
+  - Healthchecks: KIRA (`/api/health`), Viz (`/state`)
+  - Logs: `docker compose logs -f --tail=200`
+
+- Run CI locally with `act`
+  - `act -W .github/workflows/python-tests.yml -j smoke-api-matrix --secret-file .secrets`
+  - `act -W .github/workflows/helix-ci.yml -j test --secret-file .secrets`
+
+## NPM Publishing & Promotion
+
+- Canary publish (next)
+  - Actions → `npm-publish-cli` → Run
+    - version: `vX.Y.Z-rc.N` (or leave blank to auto-bump)
+    - dist_tag: `next`
+    - env_name: your Environment (secrets)
+    - npm_token_secret: name of your npm token secret (default `NPM_TOKEN`)
+    - gpr_token_secret: name of your GPR PAT (default `CLAUDE_SKILL_GITHUB_TOKEN`)
+
+- Stable publish (latest)
+  - Actions → `npm-publish-cli` → Run
+    - version: `vX.Y.Z`
+    - dist_tag: `latest`
+    - env_name + secrets as above
+
+- Promote dist-tag (no repack)
+  - Actions → `npm-promote` (Use the “Promote to latest” badge above)
+    - package_name: `rosetta-helix-cli`
+    - version: `X.Y.Z`
+    - dist_tag: `latest` (or `next`)
+    - env_name + npm_token_secret as needed
+
 
 ---
 
