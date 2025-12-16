@@ -8,7 +8,7 @@ on:
         required: false
         default: 'rosetta-helix-cli'
       version:
-        description: 'Version to tag (e.g., 0.1.1 or 0.1.1-rc.1)'
+        description: 'Version to tag (no leading v; e.g., 0.1.1 or 0.1.1-rc.1)'
         required: true
       dist_tag:
         description: 'Target dist-tag (latest|next|beta)'
@@ -50,6 +50,16 @@ jobs:
           node-version: '20'
           registry-url: 'https://registry.npmjs.org'
 
+      - name: Normalize inputs
+        id: norm
+        run: |
+          # Strip optional leading 'v' from version for npm compatibility
+          RAW="${{ github.event.inputs.version }}"
+          V_NORM="${RAW#v}"
+          echo "version_norm=$V_NORM" >> $GITHUB_OUTPUT
+          echo "pkg=${{ github.event.inputs.package_name || 'rosetta-helix-cli' }}" >> $GITHUB_OUTPUT
+          echo "tag=${{ github.event.inputs.dist_tag || 'latest' }}" >> $GITHUB_OUTPUT
+
       - name: Resolve npm token
         id: token
         env:
@@ -62,16 +72,40 @@ jobs:
             echo "have_token=false" >> $GITHUB_OUTPUT
           fi
 
-      - name: Promote on npmjs registry
-        if: steps.token.outputs.have_token == 'true' && github.event.inputs.promote_npm == 'true'
+      - name: Check version exists on npmjs
+        id: check_npm
+        if: steps.token.outputs.have_token == 'true'
         env:
           NODE_AUTH_TOKEN: ${{ secrets[ github.event.inputs.npm_token_secret ] || secrets.NPM_TOKEN }}
         run: |
-          PKG="${{ github.event.inputs.package_name }}"
-          VERSION="${{ github.event.inputs.version }}"
-          TAG="${{ github.event.inputs.dist_tag }}"
+          set -e
+          PKG="${{ steps.norm.outputs.pkg }}"
+          V="${{ steps.norm.outputs.version_norm }}"
+          # Query version existence (public packages: no auth required; token included for parity)
+          EXIST=$(npm view "${PKG}@${V}" version --registry https://registry.npmjs.org 2>/dev/null || true)
+          if [ -n "$EXIST" ]; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Promote on npmjs registry
+        if: steps.token.outputs.have_token == 'true' && github.event.inputs.promote_npm == 'true' && steps.check_npm.outputs.exists == 'true'
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets[ github.event.inputs.npm_token_secret ] || secrets.NPM_TOKEN }}
+        run: |
+          PKG="${{ steps.norm.outputs.pkg }}"
+          VERSION="${{ steps.norm.outputs.version_norm }}"
+          TAG="${{ steps.norm.outputs.tag }}"
           echo "Promoting ${PKG}@${VERSION} -> ${TAG} (npmjs)"
           npm dist-tag add "${PKG}@${VERSION}" "$TAG" --registry https://registry.npmjs.org
+
+      - name: Fail if npmjs version missing
+        if: steps.token.outputs.have_token == 'true' && github.event.inputs.promote_npm == 'true' && steps.check_npm.outputs.exists != 'true'
+        run: |
+          echo "::error::Version '${{ steps.norm.outputs.version_norm }}' not found on npmjs for package '${{ steps.norm.outputs.pkg }}'." \
+               "Publish it first via 'npm-publish-cli' (dist_tag: next/latest) then re-run promotion.";
+          exit 1
 
       - name: Resolve GPR token
         id: gpr_token
@@ -93,19 +127,25 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets[ github.event.inputs.gpr_token_secret ] || secrets.GITHUB_PACKAGES_PAT || secrets.CLAUDE_SKILL_GITHUB_TOKEN }}
         run: |
           OWNER_LC=$(printf '%s' "$OWNER" | tr '[:upper:]' '[:lower:]')
-          PKG="@${OWNER_LC}/${{ github.event.inputs.package_name }}"
-          VERSION="${{ github.event.inputs.version }}"
-          TAG="${{ github.event.inputs.dist_tag }}"
+          PKG="@${OWNER_LC}/${{ steps.norm.outputs.pkg }}"
+          VERSION="${{ steps.norm.outputs.version_norm }}"
+          TAG="${{ steps.norm.outputs.tag }}"
           npm config set @${OWNER_LC}:registry https://npm.pkg.github.com
           npm config set //npm.pkg.github.com/:_authToken ${NODE_AUTH_TOKEN}
+          # Verify version exists on GPR before promoting
+          EXIST=$(npm view "${PKG}@${VERSION}" version --registry https://npm.pkg.github.com 2>/dev/null || true)
+          if [ -z "$EXIST" ]; then
+            echo "::error::Version '${VERSION}' not found on GPR for '${PKG}'. Publish first or disable promote_gpr.";
+            exit 1
+          fi
           echo "Promoting ${PKG}@${VERSION} -> ${TAG} (GPR)"
           npm dist-tag add "${PKG}@${VERSION}" "$TAG" --registry https://npm.pkg.github.com
 
       - name: Summary
         run: |
           echo "## 🚀 npm Promote" >> $GITHUB_STEP_SUMMARY
-          echo "- Package: ${{ github.event.inputs.package_name }}" >> $GITHUB_STEP_SUMMARY
-          echo "- Version: ${{ github.event.inputs.version }}" >> $GITHUB_STEP_SUMMARY
-          echo "- Dist-tag: ${{ github.event.inputs.dist_tag }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Package: ${{ steps.norm.outputs.pkg }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Version: ${{ steps.norm.outputs.version_norm }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Dist-tag: ${{ steps.norm.outputs.tag }}" >> $GITHUB_STEP_SUMMARY
           echo "- Promote npmjs: ${{ github.event.inputs.promote_npm }}" >> $GITHUB_STEP_SUMMARY
           echo "- Promote GPR:   ${{ github.event.inputs.promote_gpr }}" >> $GITHUB_STEP_SUMMARY
