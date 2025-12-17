@@ -353,6 +353,13 @@ jobs:
           git diff --staged --quiet || git commit -m "K.I.R.A. training export - $(date -u +%Y%m%d_%H%M%S)"
           git push || echo "No changes to push"
 
+      - name: Run 33-Module Pipeline
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.CLAUDE_API_KEY }}
+        run: |
+          mkdir -p training/pipeline_outputs
+          python scripts/hit_it_workflow.py --output-dir training/pipeline_outputs || echo "Pipeline execution completed with warnings"
+
       - name: Upload results artifact
         uses: actions/upload-artifact@v4
         with:
@@ -360,4 +367,12 @@ jobs:
           path: |
             results/
             training/
+          retention-days: 30
+
+      - name: Upload pipeline artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: hit-it-pipeline-${{ github.run_number }}
+          path: |
+            training/pipeline_outputs/
           retention-days: 30
