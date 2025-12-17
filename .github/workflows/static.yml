@@ -41,8 +41,8 @@ jobs:
           mkdir -p _site
 
           # Copy K.I.R.A. interface files
-          cp kira-local-system/kira_pages.html _site/kira.html
-          cp kira-local-system/kira_interface.html _site/kira_local.html
+          cp kira-local-system/kira.html _site/kira.html
+          cp kira-local-system/kira_interface_ucf.html _site/kira_local.html
           cp kira-local-system/README.md _site/kira_readme.md
 
           # Copy docs
