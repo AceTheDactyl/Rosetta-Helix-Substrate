@@ -3,7 +3,7 @@
 [![Helix CI](https://github.com/AceTheDactyl/Rosetta-Helix-Substrate/actions/workflows/helix-ci.yml/badge.svg?branch=main)](https://github.com/AceTheDactyl/Rosetta-Helix-Substrate/actions/workflows/helix-ci.yml)
 [![Python Tests](https://github.com/AceTheDactyl/Rosetta-Helix-Substrate/actions/workflows/python-tests.yml/badge.svg?branch=main)](https://github.com/AceTheDactyl/Rosetta-Helix-Substrate/actions/workflows/python-tests.yml)
 [![GitHub Pages](https://github.com/AceTheDactyl/Rosetta-Helix-Substrate/actions/workflows/static.yml/badge.svg)](https://github.com/AceTheDactyl/Rosetta-Helix-Substrate/actions/workflows/static.yml)
-[![npm](https://img.shields.io/badge/npm-3.0.0-brightgreen)](https://www.npmjs.com/package/rosetta-helix-cli)
+[![npm version](https://img.shields.io/npm/v/rosetta-helix-cli)](https://www.npmjs.com/package/rosetta-helix-cli)
 [![Downloads](https://img.shields.io/npm/dt/rosetta-helix-cli.svg?color=blue)](https://www.npmjs.com/package/rosetta-helix-cli)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
