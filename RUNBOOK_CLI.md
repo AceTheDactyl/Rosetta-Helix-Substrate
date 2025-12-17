@@ -44,9 +44,6 @@ Common Workflows (non‑interactive)
   - make apl-run      # runs a sample via qapl-run
   - make apl-test     # runs Node test suite (requires make node-deps)
 
-- Visualization server (HTTP API for visualizer.html)
-  - make viz-server   # then open visualizer.html
-
 - Python tests and code quality
   - make tests
   - make lint
@@ -68,16 +65,16 @@ Module Map (orientation)
 - KIRA system: `kira-local-system/` (Flask server + pages), `start_kira.py`, `kira_enhanced_session.py`
 - Spinner + Plates: `scripts/nuclear_spinner.py`, `bridge/grid_cell_plates.py`, `bridge/spinner_bridge.py`
 - Training: `helix_engine/`, `train_helix.py`, `nightly_training_runner.py`, `run_wumbo_*`
-- Visualization: `visualization_server.py`, `visualizer.html`
+- Landing bundle: `docs/index.html`, `docs/kira/index.html` (served by the KIRA Flask app)
 
 Notes
 - All Make targets run inside `.venv` created at repo root.
 - The helix CLI is installed as `helix` via editable install; if missing, targets fall back to Python entrypoints.
-- KIRA UI files exist in `docs/kira/index.html` and `kira-local-system/kira_interface.html`. Prefer the docs version.
+- KIRA UI lives in `docs/kira/index.html` and ships with GitHub Pages (the Flask server serves it automatically).
 - For GPU/torch work, uncomment torch in `requirements.spinner.txt` and install CUDA‑matching wheels.
 
 Docker
-- Build and start KIRA + Viz via Docker:
+- Build and start KIRA via Docker:
   - `make docker-build`
   - `make docker-up`
 - Stop and view logs:
@@ -89,7 +86,7 @@ NPM Orchestration
 - Use npm scripts or the Node CLI to drive Python flows:
   - `npm run setup`       # create .venv + install Python deps
   - `npm run kira`        # start KIRA server on 5000
-  - `npm run viz`         # start Visualization server on 8765
+  - `npm run viz`         # print docs/kira landing paths
   - `npm run helix:train` # helix training (full.yaml)
   - `npm run helix:nightly`
   - `npm run smoke`       # run smoke tests

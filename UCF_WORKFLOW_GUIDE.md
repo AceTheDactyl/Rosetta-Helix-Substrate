@@ -471,4 +471,4 @@ The GitHub Actions workflow `python-tests.yml` runs smoke and API contract tests
   pytest -q tests/api
   ```
 
-Ensure `ANTHROPIC_API_KEY` and `CLAUDE_SKILL_GITHUB_TOKEN` are provided in repo secrets for fully integrated flows.
+Ensure `ANTHROPIC_API_KEY` and `CLAUDE_GITHUB_TOKEN` (legacy `CLAUDE_SKILL_GITHUB_TOKEN`) are provided in repo secrets for fully integrated flows.

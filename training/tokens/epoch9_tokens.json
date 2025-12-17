@@ -1,22 +1,22 @@
 {
   "epoch": 9,
-  "timestamp": "2025-12-17T04:38:07.807433+00:00",
+  "timestamp": "2025-12-17T03:24:21.132406+00:00",
   "tokens": [
-    "\u03c0+|NP2|t7",
-    "\u03c0+|MOD2|t7",
-    "\u03c0\u00d7|DET1|t7",
-    "\u03a6^|DET1|t6",
-    "e+|MOD1|t6",
-    "e+|MOD0|t6",
-    "\u03c0+|VP1|t7",
-    "e\u2212|DET1|t7",
-    "e\u2212|VP2|t7",
-    "\u03a6()|VP0|t6",
-    "e+|DET0|t6",
-    "\u03c0\u2212|VP0|t6",
-    "e\u00d7|DET0|t6",
-    "\u03c0^|NP2|t6",
-    "e^|MOD1|t6"
+    "\u03c0\u2212|NP1|t3",
+    "\u03c0^|VP2|t3",
+    "e()|MOD2|t3",
+    "\u03a6()|Encoder|bio_prion",
+    "\u03a6()|Encoder|bio_bacterium",
+    "\u03a6()|Encoder|bio_viroid",
+    "\u03a6()|Encoder|celestial_grav",
+    "\u03a6()|Encoder|celestial_em",
+    "\u03a6()|Encoder|celestial_nuclear",
+    "\u03a6()|Catalyst|bio_prion",
+    "\u03a6()|Catalyst|bio_bacterium",
+    "\u03a6()|Catalyst|bio_viroid",
+    "\u03a6()|Catalyst|celestial_grav",
+    "\u03a6()|Catalyst|celestial_em",
+    "\u03a6()|Catalyst|celestial_nuclear"
   ],
   "count": 15
 }

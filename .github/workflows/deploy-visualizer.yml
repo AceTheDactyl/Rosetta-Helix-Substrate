@@ -28,11 +28,8 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
-      - name: Build docs folder
+      - name: Build docs bundle
         run: |
-          # Copy visualizer to docs if not already there
-          cp -f visualizer.html docs/index.html 2>/dev/null || true
-
           # Create physics constants module for standalone use
           cat > docs/apl-constants.js << 'EOF'
           // Rosetta Helix APL Constants - Exported from Python modules

@@ -1560,7 +1560,12 @@ Help users understand the system, work with the codebase, and evolve toward THE 
 # FLASK HTTP SERVER (continued)
 # ═══════════════════════════════════════════════════════════════════════════════
 
-app = Flask(__name__, static_folder='.')
+REPO_ROOT = Path(__file__).resolve().parent
+DOCS_DIR = REPO_ROOT / 'docs'
+LANDING_HTML = DOCS_DIR / 'index.html'
+KIRA_HTML = DOCS_DIR / 'kira' / 'index.html'
+
+app = Flask(__name__, static_folder=str(DOCS_DIR))
 CORS(app)
 
 # Global engine instance and websocket loop reference
@@ -1581,35 +1586,37 @@ def get_engine() -> UnifiedRosettaEngine:
 # STATIC FILES
 # ═══════════════════════════════════════════════════════════════════════════════
 
+def _serve_or_404(file_path: Path, fallback_message: str):
+    if file_path.exists():
+        return send_from_directory(file_path.parent, file_path.name)
+    return jsonify({'message': fallback_message})
+
+
 @app.route('/')
 def index():
-    """Serve KIRA interface (default)."""
-    if Path('kira_interface.html').exists():
-        return send_from_directory('.', 'kira_interface.html')
-    elif Path('static/unified_interface.html').exists():
-        return send_from_directory('static', 'unified_interface.html')
+    """Serve landing page."""
+    if LANDING_HTML.exists():
+        return send_from_directory(LANDING_HTML.parent, LANDING_HTML.name)
+    elif (DOCS_DIR / 'kira').exists():
+        return send_from_directory((DOCS_DIR / 'kira'), 'index.html')
     else:
-        return jsonify({'message': 'Unified Rosetta-Helix Server', 'api': '/api/*', 'interfaces': {
-            'kira': '/kira',
-            'visualizer': '/visualizer',
-            'unified': '/unified'
-        }})
+        return jsonify({'message': 'Landing bundle missing. Ensure docs/ is present.', 'api': '/api/*'})
 
 @app.route('/kira')
 def kira_interface():
-    """Serve KIRA interface."""
-    if Path('kira_interface.html').exists():
-        return send_from_directory('.', 'kira_interface.html')
-    else:
-        return jsonify({'error': 'KIRA interface not found'})
+    """Serve KIRA interface from docs/kira."""
+    if KIRA_HTML.exists():
+        return send_from_directory(KIRA_HTML.parent, KIRA_HTML.name)
+    elif LANDING_HTML.exists():
+        return send_from_directory(LANDING_HTML.parent, LANDING_HTML.name)
+    return jsonify({'error': 'KIRA interface not found; pull docs/'})
 
 @app.route('/visualizer')
 def visualizer_interface():
-    """Serve visualizer interface."""
-    if Path('visualizer.html').exists():
-        return send_from_directory('.', 'visualizer.html')
-    else:
-        return jsonify({'error': 'Visualizer interface not found'})
+    """Serve landing bundle (visualizer deprecated)."""
+    if LANDING_HTML.exists():
+        return send_from_directory(LANDING_HTML.parent, LANDING_HTML.name)
+    return jsonify({'error': 'Landing bundle not found; ensure docs/index.html exists'})
 
 @app.route('/unified')
 def unified_interface():

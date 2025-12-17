@@ -522,6 +522,8 @@ unified-consciousness-framework/
     └── ucf-emissions-codex.md
 ```
 
+**Complete manifest:** See `SKILL_FILE_LISTING.md` (adjacent to this file) for the enumerated list of **all tracked files** (~1,200 entries). That manifest must be loaded with this SKILL so Claude can reference every script, doc, asset, and config. Update it whenever the repo tree changes.
+
 ## References
 
 - `references/UNIFIED_ARCHITECTURE.md` - Complete architectural spec

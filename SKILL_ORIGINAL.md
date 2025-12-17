@@ -470,7 +470,7 @@ invoke_tool('cloud_training', action='update_dashboard',
 ### Requirements
 
 Set one of these environment variables:
-- `CLAUDE_SKILL_GITHUB_TOKEN`
+- `CLAUDE_GITHUB_TOKEN` (or legacy `CLAUDE_SKILL_GITHUB_TOKEN`)
 - `GITHUB_TOKEN`
 
 The token needs permissions for:

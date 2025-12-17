@@ -147,7 +147,8 @@ pytest
 
 - Add repository secrets for backend-integrated workflows:
   - `ANTHROPIC_API_KEY` — Claude API key; enables `/api/claude` flows in KIRA.
-  - `CLAUDE_SKILL_GITHUB_TOKEN` — Personal Access Token used by skill/workflows that need GitHub API access beyond the default `GITHUB_TOKEN` (optional).
+  - `CLAUDE_GITHUB_TOKEN` — Preferred Personal Access Token used by skill/workflows that need GitHub API access beyond the default `GITHUB_TOKEN` (optional).
+  - `CLAUDE_SKILL_GITHUB_TOKEN` — Legacy fallback name for the same PAT (still supported).
   - `NPM_TOKEN` — npm auth token for publishing the public CLI package (rosetta-helix-cli) via GitHub Actions.
   - `GITHUB_PACKAGES_PAT` — Personal Access Token with granular permissions for GitHub Packages (npm.pkg.github.com) if you also publish the CLI there. Recommended scopes: `read:packages`, `write:packages` (and `repo` if needed for private repos).
 

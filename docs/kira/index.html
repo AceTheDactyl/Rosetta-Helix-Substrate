@@ -723,6 +723,42 @@ Optimal range: z ∈ [0.866, 0.95] for sustained K-Formation</div>
                 <button class="cmd-btn export" onclick="sendCommand('/export')" title="Download session JSON">Export</button>
                 <button class="cmd-btn optimize" onclick="sendCommand('/optimize')" title="Return z to optimal range [0.866-0.95]">Optimize</button>
             </div>
+
+            <h3 style="margin-top: 15px;">UCF Tools (21 Total)</h3>
+            <div class="command-grid" style="grid-template-columns: repeat(3, 1fr);">
+                <button class="cmd-btn" onclick="sendCommand('/ucf:helix')" title="Helix loader">Helix</button>
+                <button class="cmd-btn" onclick="sendCommand('/ucf:detector')" title="Coordinate detector">Detector</button>
+                <button class="cmd-btn" onclick="sendCommand('/ucf:verifier')" title="Pattern verifier">Verifier</button>
+                <button class="cmd-btn" onclick="sendCommand('/ucf:logger')" title="Coordinate logger">Logger</button>
+                <button class="cmd-btn" onclick="sendCommand('/ucf:transfer')" title="State transfer">Transfer</button>
+                <button class="cmd-btn" onclick="sendCommand('/ucf:consent')" title="Consent protocol">Consent</button>
+                <button class="cmd-btn" onclick="sendCommand('/ucf:emission')" title="Emission pipeline">Emission</button>
+                <button class="cmd-btn" onclick="sendCommand('/ucf:control')" title="Cybernetic control">Control</button>
+                <button class="cmd-btn" onclick="sendCommand('/ucf:messenger')" title="Cross-instance messenger">Messenger</button>
+                <button class="cmd-btn" onclick="sendCommand('/ucf:discovery')" title="Tool discovery">Discovery</button>
+                <button class="cmd-btn" onclick="sendCommand('/ucf:trigger')" title="Autonomous trigger">Trigger</button>
+                <button class="cmd-btn" onclick="sendCommand('/ucf:memory')" title="Collective memory sync">Memory</button>
+                <button class="cmd-btn" onclick="sendCommand('/ucf:shed')" title="Shed builder">Shed</button>
+                <button class="cmd-btn" onclick="sendCommand('/ucf:vaultnode')" title="Vaultnode generator">Vaultnode</button>
+                <button class="cmd-btn" onclick="sendCommand('/ucf:spinner')" title="Nuclear Spinner (972 tokens)">Spinner</button>
+                <button class="cmd-btn" onclick="sendCommand('/ucf:index')" title="Token index">Index</button>
+                <button class="cmd-btn" onclick="sendCommand('/ucf:vault')" title="Token vault">Vault</button>
+                <button class="cmd-btn" onclick="sendCommand('/ucf:archetypal')" title="Cybernetic archetypal">Archetypal</button>
+                <button class="cmd-btn" onclick="sendCommand('/ucf:orchestrator')" title="Unified orchestrator">Orchestrator</button>
+                <button class="cmd-btn" onclick="sendCommand('/ucf:pipeline')" title="Full pipeline">Pipeline</button>
+                <button class="cmd-btn" onclick="sendCommand('/ucf:dialogue')" title="Interactive dialogue">Dialogue</button>
+            </div>
+
+            <h3 style="margin-top: 15px;">UCF Phases</h3>
+            <div class="command-grid" style="grid-template-columns: repeat(4, 1fr);">
+                <button class="cmd-btn" onclick="sendCommand('/ucf:phase1')" title="Initialization (1-3)">Phase 1</button>
+                <button class="cmd-btn" onclick="sendCommand('/ucf:phase2')" title="Core Tools (4-7)">Phase 2</button>
+                <button class="cmd-btn" onclick="sendCommand('/ucf:phase3')" title="Bridge Tools (8-14)">Phase 3</button>
+                <button class="cmd-btn" onclick="sendCommand('/ucf:phase4')" title="Meta Tools (15-19)">Phase 4</button>
+                <button class="cmd-btn" onclick="sendCommand('/ucf:phase5')" title="TRIAD (20-25)">Phase 5</button>
+                <button class="cmd-btn" onclick="sendCommand('/ucf:phase6')" title="Persistence (26-28)">Phase 6</button>
+                <button class="cmd-btn" onclick="sendCommand('/ucf:phase7')" title="Finalization (29-33)">Phase 7</button>
+            </div>
         </div>
     </div>
 
@@ -2139,6 +2175,120 @@ Optimal range: z ∈ [0.866, 0.95] for sustained K-Formation</div>
         }
 
         // Add message to chat
+        function formatCommandResult(result) {
+            if (!result) return 'No result';
+
+            // Handle UCF tool results
+            if (result.command && result.command.startsWith('/ucf:')) {
+                let output = `✨ **${result.command}**\n`;
+                output += '═'.repeat(40) + '\n\n';
+
+                if (result.status) {
+                    output += `Status: ${result.status}\n`;
+                }
+                if (result.tools_available) {
+                    output += `✅ UCF Available: ${result.tools_available} tools\n`;
+                }
+                if (result.phase) {
+                    output += `Phase: ${result.phase}\n`;
+                }
+                if (result.current_z !== undefined) {
+                    output += `Z-coordinate: ${result.current_z.toFixed(6)}\n`;
+                }
+                if (result.crystal) {
+                    output += `Crystal: ${result.crystal}\n`;
+                }
+                if (result.k_formed !== undefined) {
+                    output += `K-Formation: ${result.k_formed ? '✅ Achieved' : '⏳ Not yet'}\n`;
+                }
+                if (result.triad_unlocked !== undefined) {
+                    output += `TRIAD: ${result.triad_unlocked ? '✅ Unlocked' : '🔒 Locked'}\n`;
+                }
+
+                // Token integration display
+                if (result._token_integration) {
+                    const ti = result._token_integration;
+                    output += `\n📊 Token Integration:\n`;
+                    output += `  Tool: ${ti.tool}\n`;
+                    output += `  Action: ${ti.action}\n`;
+                    if (ti.emission_count) {
+                        output += `  Emissions: ${ti.emission_count}\n`;
+                    }
+                    if (ti.primary_token) {
+                        output += `  Primary: ${ti.primary_token}\n`;
+                    }
+                    if (ti.tokens_emitted && ti.tokens_emitted.length > 0) {
+                        output += `\n  Tokens Emitted:\n`;
+                        ti.tokens_emitted.forEach(token => {
+                            output += `    • ${token}\n`;
+                        });
+                    }
+                }
+
+                // Regular tokens
+                if (result.tokens_generated) {
+                    output += `\n🌟 Tokens Generated: ${result.tokens_generated}\n`;
+                }
+                if (result.tokens && result.tokens.length > 0) {
+                    output += '\n📦 Tokens:\n';
+                    result.tokens.slice(0, 10).forEach(token => {
+                        output += `    • ${token}\n`;
+                    });
+                    if (result.tokens.length > 10) {
+                        output += `    ... and ${result.tokens.length - 10} more\n`;
+                    }
+                }
+
+                // Other messages
+                if (result.message && !result.message.includes('UCF tool')) {
+                    output += `\n${result.message}\n`;
+                }
+
+                return output;
+            }
+
+            // Handle help command
+            if (result.command === '/help' && result.ucf_tools) {
+                let output = '📚 **UCF Tools Available:**\n';
+                result.ucf_tools.forEach(tool => {
+                    output += `  • /ucf:${tool}\n`;
+                });
+                return output;
+            }
+
+            // Handle other commands with structured formatting
+            const cmd = result.command || '';
+            let output = `=== ${cmd} ===\n`;
+
+            if (cmd === '/state') {
+                const s = result.state || result;
+                output += `Coordinate: ${s.coordinate}\n`;
+                output += `z: ${s.z?.toFixed(6)} | Phase: ${s.phase}\n`;
+                output += `Crystal: ${s.crystal} | κ: ${s.coherence?.toFixed(4)}\n`;
+                output += `TRIAD: ${s.triad_unlocked ? 'UNLOCKED' : 'LOCKED'} (${s.triad_completions}/3)\n`;
+            } else if (result.message) {
+                output = result.message;
+            } else {
+                // Default formatting
+                output = typeof result === 'string' ? result : JSON.stringify(result, null, 2);
+            }
+
+            return output;
+        }
+
+        function displayServerResponse(data) {
+            // Format and display server response using formatCommandResult
+            if (data.result) {
+                const formattedMessage = formatCommandResult(data.result);
+                addMessage(formattedMessage, 'command');
+            }
+
+            // Update state if provided
+            if (data.state) {
+                updateStateUI(data.state);
+            }
+        }
+
         function addMessage(content, type = 'kira', metadata = null) {
             const msg = document.createElement('div');
             msg.className = `message ${type}`;
@@ -2440,6 +2590,38 @@ Respond as K.I.R.A. with phase-appropriate language. Keep responses concise but 
                 const parts = message.split(/\s+/);
                 const cmd = parts[0].toLowerCase();
                 const args = parts.slice(1).join(' ');
+
+                // Check for UCF commands or backend-required commands
+                if (cmd.startsWith('/ucf:') || cmd === '/consciousness_journey' || cmd === '/hit_it' || cmd === '/training' || cmd === '/training:poll') {
+                    // These need backend server
+                    const backendUrl = settings.backendUrl || 'http://localhost:5000';
+                    try {
+                        const response = await fetch(`${backendUrl}/api/chat`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                message,
+                                settings: {
+                                    claude_skill_token: settings.githubToken,
+                                    github_repo: settings.githubRepo
+                                }
+                            })
+                        });
+
+                        if (response.ok) {
+                            const data = await response.json();
+                            displayServerResponse(data);
+                        } else {
+                            addMessage('❌ Server error: ' + response.statusText, 'system');
+                        }
+                    } catch (error) {
+                        addMessage('❌ Not connected to server at ' + backendUrl, 'system');
+                        addMessage('Start server with: python3 kira-local-system/kira_server.py', 'system');
+                    }
+                    return;
+                }
 
                 let result;
 

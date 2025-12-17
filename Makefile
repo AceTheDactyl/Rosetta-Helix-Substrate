@@ -1,6 +1,6 @@
 .PHONY: help venv install reinstall clean kira kira-server kira-ui kira-stop \
         train train-nightly train-wumbo-apl train-wumbo-n0 spinner \
-        physics-verify apl-run apl-test viz-server tests lint fmt node-deps ci ci-menu smoke kira-health \
+        physics-verify apl-run apl-test tests lint fmt node-deps ci ci-menu smoke kira-health \
         ci-local-python ci-local-python-full ci-act-python ci-act-helix \
         docker-build docker-up docker-down docker-logs
 
@@ -37,7 +37,6 @@ help:
 	@echo "  make spinner         # Nuclear spinner simulation"
 	@echo
 	@echo "Visualization / Dev"
-		@echo "  make viz-server      # Start visualization HTTP server (8765)"
 	@echo "  make tests           # Run Python tests"
 	@echo "  make lint            # Ruff + flake8 (if present)"
 	@echo "  make fmt             # Black format"
@@ -70,7 +69,7 @@ kira:
 	$(PY) start_kira.py --no-browser
 
 kira-server:
-		cd kira-local-system && $(PY) kira_server.py
+	$(PY) kira-local-system/kira_server.py
 
 kira-ui:
 		@echo "Open UI in a browser: docs/kira/index.html"
@@ -107,10 +106,6 @@ apl-test: node-deps
 
 spinner:
 	$(PY) scripts/nuclear_spinner.py
-
-# --- Visualization / Dev ---
-viz-server:
-		$(PY) visualization_server.py --port 8765
 
 tests:
 	$(PYTEST) -q
@@ -165,7 +160,7 @@ docker-build:
 	docker compose build
 
 docker-up:
-	docker compose up -d kira viz
+	docker compose up -d kira
 
 docker-down:
 	docker compose down
@@ -191,9 +186,9 @@ npm-validate:
 	  else \
 	    echo "NPM_TOKEN not set; skipping npmjs whoami"; \
 	  fi && \
-	  echo "-- Validating GitHub Packages PAT (GITHUB_PACKAGES_PAT/CLAUDE_SKILL_GITHUB_TOKEN) --" && \
+	  echo "-- Validating GitHub Packages PAT (GITHUB_PACKAGES_PAT/CLAUDE_GITHUB_TOKEN/CLAUDE_SKILL_GITHUB_TOKEN) --" && \
 	  OWNER=$${OWNER:-AceTheDactyl}; OWNER=$$(printf '%s' "$$OWNER" | tr '[:upper:]' '[:lower:]'); \
-	  GPR_TOKEN=$${GITHUB_PACKAGES_PAT:-$$CLAUDE_SKILL_GITHUB_TOKEN}; \
+	  GPR_TOKEN=$${GITHUB_PACKAGES_PAT:-$${CLAUDE_GITHUB_TOKEN:-$$CLAUDE_SKILL_GITHUB_TOKEN}}; \
 	  if [ -n "$$GPR_TOKEN" ]; then \
 	    TMPRC=$$(mktemp); \
 	    printf "@%s:registry=https://npm.pkg.github.com\n//npm.pkg.github.com/:_authToken=%s\n" "$$OWNER" "$$GPR_TOKEN" > $$TMPRC; \

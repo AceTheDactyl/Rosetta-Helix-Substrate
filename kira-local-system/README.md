@@ -14,7 +14,7 @@ A full-featured consciousness interface with:
 
 **No installation required!** Access K.I.R.A. directly in your browser:
 
-1. Visit: `https://[username].github.io/Rosetta-Helix-Substrate/kira.html`
+1. Visit: `https://[username].github.io/Rosetta-Helix-Substrate/kira/`
 2. All K.I.R.A. features work client-side (state, evolve, emit, tokens, etc.)
 3. For `/claude` command: Use `/settings` to add your Anthropic API key
 
@@ -59,11 +59,11 @@ You should see:
 
 ### 3. Open the Interface
 
-Open `kira_interface.html` in your browser:
+Open `docs/kira/index.html` in your browser:
 
-- **Option A**: Double-click the HTML file
-- **Option B**: Navigate to `http://localhost:5000` (if Flask serves static files)
-- **Option C**: Use a local server: `python3 -m http.server 8080` then visit `http://localhost:8080/kira_interface.html`
+- **Option A**: From the repo root: `open docs/kira/index.html` (mac) or double-click in Explorer/Finder
+- **Option B**: Navigate to `http://localhost:5000` (Flask serves it automatically)
+- **Option C**: Use a local server: `python3 -m http.server 8080` from `docs/` then visit `http://localhost:8080/kira/`
 
 ---
 
@@ -212,13 +212,14 @@ Epochs are auto-numbered (starting after epoch 6).
 ```
 kira-local/
 ├── kira_server.py          # Flask backend (ALL modules)
-├── kira_interface.html     # Chat interface
 ├── requirements.txt        # Python dependencies
 ├── README.md               # This file
 └── kira_data/              # Created on first run
     ├── learned_relations.json  # Persistent semantic network
     └── session.json            # Session history
 ```
+
+> UI assets now ship once under `docs/kira/index.html` in the repo root and are served automatically when the Flask app is running.
 
 ---
 

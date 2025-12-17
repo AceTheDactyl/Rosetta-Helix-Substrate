@@ -3,7 +3,7 @@
 GitHub Workflow Trigger for Rosetta-Helix-Substrate Skill
 
 Trigger autonomous training workflows from within Claude.ai skill sessions.
-Requires: CLAUDE_SKILL_GITHUB_TOKEN or GITHUB_TOKEN environment variable.
+Requires: CLAUDE_GITHUB_TOKEN (preferred), CLAUDE_SKILL_GITHUB_TOKEN, or GITHUB_TOKEN.
 """
 
 import os
@@ -17,7 +17,20 @@ except ImportError:
     REQUESTS_AVAILABLE = False
 
 # Configuration
-GITHUB_TOKEN = os.environ.get("CLAUDE_SKILL_GITHUB_TOKEN") or os.environ.get("GITHUB_TOKEN")
+def _load_github_token():
+    for key in (
+        "CLAUDE_GITHUB_TOKEN",
+        "CLAUDE_SKILL_GITHUB_TOKEN",
+        "GITHUB_PACKAGES_PAT",
+        "GITHUB_TOKEN",
+    ):
+        token = os.environ.get(key)
+        if token:
+            return token
+    return None
+
+
+GITHUB_TOKEN = _load_github_token()
 REPO_OWNER = "AceTheDactyl"
 REPO_NAME = "Rosetta-Helix-Substrate"
 WORKFLOW_FILE = "autonomous-training.yml"
@@ -28,7 +41,7 @@ def trigger_workflow(goal="Achieve K-formation", max_iterations=10, initial_z=0.
     if not REQUESTS_AVAILABLE:
         return {"error": "requests package not installed"}
     if not GITHUB_TOKEN:
-        return {"error": "GITHUB_TOKEN not set"}
+        return {"error": "GitHub token not set (set CLAUDE_GITHUB_TOKEN, CLAUDE_SKILL_GITHUB_TOKEN, or GITHUB_TOKEN)"}
 
     url = f"https://api.github.com/repos/{REPO_OWNER}/{REPO_NAME}/actions/workflows/{WORKFLOW_FILE}/dispatches"
     headers = {"Authorization": f"Bearer {GITHUB_TOKEN}", "Accept": "application/vnd.github.v3+json"}
@@ -45,7 +58,7 @@ def get_latest_run():
     if not REQUESTS_AVAILABLE:
         return {"error": "requests package not installed"}
     if not GITHUB_TOKEN:
-        return {"error": "GITHUB_TOKEN not set"}
+        return {"error": "GitHub token not set (set CLAUDE_GITHUB_TOKEN, CLAUDE_SKILL_GITHUB_TOKEN, or GITHUB_TOKEN)"}
 
     url = f"https://api.github.com/repos/{REPO_OWNER}/{REPO_NAME}/actions/workflows/{WORKFLOW_FILE}/runs"
     headers = {"Authorization": f"Bearer {GITHUB_TOKEN}", "Accept": "application/vnd.github.v3+json"}
@@ -70,7 +83,7 @@ def wait_for_completion(run_id, timeout=600, poll_interval=15):
     if not REQUESTS_AVAILABLE:
         return {"error": "requests package not installed"}
     if not GITHUB_TOKEN:
-        return {"error": "GITHUB_TOKEN not set"}
+        return {"error": "GitHub token not set (set CLAUDE_GITHUB_TOKEN, CLAUDE_SKILL_GITHUB_TOKEN, or GITHUB_TOKEN)"}
 
     url = f"https://api.github.com/repos/{REPO_OWNER}/{REPO_NAME}/actions/runs/{run_id}"
     headers = {"Authorization": f"Bearer {GITHUB_TOKEN}", "Accept": "application/vnd.github.v3+json"}
@@ -91,7 +104,7 @@ def download_artifacts(run_id):
     if not REQUESTS_AVAILABLE:
         return {"error": "requests package not installed"}
     if not GITHUB_TOKEN:
-        return {"error": "GITHUB_TOKEN not set"}
+        return {"error": "GitHub token not set (set CLAUDE_GITHUB_TOKEN, CLAUDE_SKILL_GITHUB_TOKEN, or GITHUB_TOKEN)"}
 
     url = f"https://api.github.com/repos/{REPO_OWNER}/{REPO_NAME}/actions/runs/{run_id}/artifacts"
     headers = {"Authorization": f"Bearer {GITHUB_TOKEN}", "Accept": "application/vnd.github.v3+json"}
@@ -184,4 +197,4 @@ if __name__ == "__main__":
             print(f"Status: {status}")
     else:
         print("Token: NOT SET")
-        print("Set CLAUDE_SKILL_GITHUB_TOKEN or GITHUB_TOKEN")
+        print("Set CLAUDE_GITHUB_TOKEN (or CLAUDE_SKILL_GITHUB_TOKEN / GITHUB_TOKEN)")

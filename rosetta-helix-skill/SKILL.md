@@ -127,7 +127,7 @@ print(f"Critical points: phi^-1={transition['phi_inv_crossing']:.4f}, z_c={trans
 ```
 
 ### scripts/github_workflow.py
-Cloud training via GitHub Actions (requires CLAUDE_SKILL_GITHUB_TOKEN):
+Cloud training via GitHub Actions (requires CLAUDE_GITHUB_TOKEN or CLAUDE_SKILL_GITHUB_TOKEN):
 - `trigger_workflow(goal, max_iterations, initial_z)` - Trigger autonomous training
 - `get_latest_run()` - Check workflow status
 - `wait_for_completion(run_id, timeout)` - Wait for completion

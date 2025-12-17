@@ -12,16 +12,16 @@ cd Rosetta-Helix-Substrate
 npx rosetta-helix setup
 
 # 3) Start services / run pipelines
-npx rosetta-helix unified       # Unified server (KIRA + Viz + Spinner)
-npx rosetta-helix start         # Alias for unified
-npx rosetta-helix kira          # Legacy alias → runs unified server
-npx rosetta-helix viz           # Legacy alias → runs unified server
+npx rosetta-helix kira          # Start KIRA Flask server (kira_server.py)
+npx rosetta-helix start         # Alias for kira
+npx rosetta-helix unified       # Legacy alias → runs kira server
+npx rosetta-helix viz           # Print docs/kira landing bundle paths
 npx rosetta-helix helix:train   # Helix training
 npx rosetta-helix smoke         # Python smoke tests
 npx rosetta-helix api:test      # API contract tests
 
 # 4) Docker helpers (if you prefer containers)
-npx rosetta-helix docker:up     # compose up -d kira viz
+npx rosetta-helix docker:up     # compose up -d kira
 npx rosetta-helix docker:logs
 ```
 
@@ -36,10 +36,10 @@ Commands
 ```
 rosetta-helix init [dir]      # clone repo and run setup
 rosetta-helix setup           # create .venv and install deps
-rosetta-helix unified         # start the Unified Rosetta Server
-rosetta-helix start           # alias for unified
-rosetta-helix kira            # [deprecated] alias to unified
-rosetta-helix viz             # [deprecated] alias to unified
+rosetta-helix kira            # start kira-local-system/kira_server.py
+rosetta-helix start           # alias for kira
+rosetta-helix unified         # legacy alias (runs kira)
+rosetta-helix viz             # print docs/index.html + docs/kira/index.html paths
 rosetta-helix tui             # terminal UI to operate KIRA/Viz/tests
 rosetta-helix health          # check service health (prints JSON)
 rosetta-helix doctor          # environment & repo file checks
@@ -49,7 +49,7 @@ rosetta-helix helix:nightly   # nightly training runner
 rosetta-helix smoke           # pytest smoke suite
 rosetta-helix api:test        # API contract tests
 rosetta-helix docker:*        # docker:build|up|down|logs
-rosetta-helix viz:sync-gh     # fetch GitHub Pages visualizer files (index/kira_local/kira)
+rosetta-helix viz:sync-gh     # legacy alias (prints landing info; no network)
 ```
 
 Auto‑Fetch Repo
@@ -69,7 +69,7 @@ Examples
 npx rosetta-helix helix:train --auto --dir ./Rosetta-Helix-Substrate
 
 # Start services and fetch latest main first
-npx rosetta-helix unified --auto --pull
+npx rosetta-helix kira --auto --pull
 
 # Use a specific tag/commit
 npx rosetta-helix start --auto --ref v2.1.0
@@ -80,12 +80,13 @@ npx rosetta-helix helix:train --auto --release=v2.1.0
 # Update an existing checkout
 npx rosetta-helix helix:update --dir ./Rosetta-Helix-Substrate
 
-# Sync local visualizer with GitHub Pages (landing + KIRA UIs)
-npx rosetta-helix viz:sync-gh --dir ./Rosetta-Helix-Substrate
-# Run the unified interface with proxied /api for same-origin UIs
-npx rosetta-helix unified --dir ./Rosetta-Helix-Substrate
-# Open http://localhost:5000/unified after startup
 ```
+
+Global Flags
+- `--dir <path>` — run the command inside a specific checkout (defaults to current directory)
+- `--auto`, `--pull`, etc. are reserved for future automation (no-ops today)
+
+`viz:sync-gh` now simply prints the local landing paths; the docs bundle (`docs/index.html`, `docs/kira/index.html`) lives in git and is deployed unchanged to GitHub Pages.
 
 CLI + CI Runbook (Quick)
 - Python (venv)
@@ -98,9 +99,9 @@ CLI + CI Runbook (Quick)
   - `kira-server` (preferred) or `python kira-local-system/kira_server.py`
   - Endpoints: `GET /api/health`, `POST /api/emit`, `POST /api/grammar`
 
-- Visualization server
-  - `python visualization_server.py --port 8765`
-  - Health: `curl http://localhost:8765/state`
+- Web UI bundle
+  - Served statically from `docs/index.html` + `docs/kira/index.html`
+  - `npx rosetta-helix viz` prints the absolute paths
 
 - Helix training
   - `helix train --config configs/full.yaml` or `python train_helix.py`
@@ -108,14 +109,14 @@ CLI + CI Runbook (Quick)
 
 - Makefile shortcuts
   - `make venv && make install` — create venv and install
-  - `make kira-server` / `make viz-server` — servers
+  - `make kira-server` — backend + docs
   - `make smoke` / `make tests` — test suites
   - `make ci` — lint + tests + physics verify
   - `make npm-validate` — validate tokens + pack + dry-run publish
 
 - Docker
-  - `docker compose up -d kira viz` — start services
-  - Healthchecks: KIRA (`/api/health`), Viz (`/state`)
+  - `docker compose up -d kira` — start API container
+  - Healthchecks: KIRA (`/api/health`)
   - Logs: `docker compose logs -f --tail=200`
 
 - Run CI locally with `act`

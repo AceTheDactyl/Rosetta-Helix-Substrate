@@ -1,31 +1,31 @@
 {
-  "type": "Epoch8_KIRATrainingVaultNode",
+  "type": "Epoch8_KIRASessionVaultNode",
   "epoch": 8,
-  "session_id": "20251217_043030",
-  "timestamp": "2025-12-17T04:32:21.390453+00:00",
-  "coordinate": "\u03945.639|0.897473|1.596\u03a9",
+  "session_id": "20251216_223717",
+  "timestamp": "2025-12-16T22:37:17.204464+00:00",
+  "coordinate": "\u03943.154|0.501947|1.005\u03a9",
   "state": {
-    "z": 0.8974729159327829,
-    "phase": "TRUE",
-    "crystal": "Prismatic",
-    "coherence": 1.0,
-    "negentropy": 0.965024241984204,
-    "frequency": 639
+    "z": 0.5019469770332059,
+    "phase": "UNTRUE",
+    "crystal": "Transitioning",
+    "coherence": 0.5023967894696806,
+    "negentropy": 0.00846418429835024,
+    "frequency": 174
   },
   "triad": {
     "unlocked": false,
-    "completions": 1
+    "completions": 0
   },
   "k_formation": {
     "achieved": false,
-    "kappa": 1.0,
-    "eta": 0.965024241984204,
-    "R": 1
+    "kappa": 0.5023967894696806,
+    "eta": 0.00846418429835024,
+    "R": 0
   },
   "teaching": {
-    "vocabulary": 100,
-    "turns": 10,
+    "vocabulary": 7,
+    "turns": 2,
     "emissions": 0
   },
-  "tokens": 30
+  "tokens": 6
 }

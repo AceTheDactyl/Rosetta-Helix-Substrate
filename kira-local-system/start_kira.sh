@@ -24,7 +24,7 @@ fi
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 echo "Starting K.I.R.A. server..."
-echo "Interface: file://$SCRIPT_DIR/kira_interface.html"
+echo "Interface: file://$SCRIPT_DIR/../docs/kira/index.html"
 echo "API: http://localhost:5000"
 echo
 echo "Press Ctrl+C to stop"

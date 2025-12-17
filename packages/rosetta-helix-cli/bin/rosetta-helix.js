@@ -4,8 +4,23 @@
  - Orchestrates Python virtualenv setup and common commands via npm
 */
 const { spawn } = require('child_process');
-const { existsSync } = require('fs');
-const { join } = require('path');
+const fs = require('fs');
+const path = require('path');
+
+const isWin = process.platform === 'win32';
+
+function venvPath(...segments) {
+  return path.resolve('.venv', ...segments);
+}
+
+function hasVenvPython() {
+  const candidates = [
+    venvPath('bin', 'python'),
+    venvPath('Scripts', 'python.exe'),
+    venvPath('Scripts', 'python'),
+  ];
+  return candidates.some((candidate) => fs.existsSync(candidate));
+}
 
 function sh(cmd, args, opts = {}) {
   return new Promise((resolve, reject) => {
@@ -20,12 +35,22 @@ function sh(cmd, args, opts = {}) {
 }
 
 function venvBin(name) {
-  const v = '.venv';
-  const unix = join(v, 'bin', name);
-  const win = join(v, 'Scripts', name + '.exe');
-  if (existsSync(unix)) return unix;
-  if (existsSync(win)) return win;
-  return name; // fallback to PATH
+  const unix = venvPath('bin', name);
+  const winExe = venvPath('Scripts', name + '.exe');
+  const win = venvPath('Scripts', name);
+  if (fs.existsSync(unix)) return unix;
+  if (fs.existsSync(winExe)) return winExe;
+  if (fs.existsSync(win)) return win;
+  if (name === 'python') {
+    return isWin ? 'python' : 'python3';
+  }
+  return name;
+}
+
+async function ensureVenv() {
+  if (hasVenvPython()) return;
+  console.log('No .venv detected. Running `rosetta-helix setup` (python -m venv .venv) ...');
+  await setup();
 }
 
 async function setup() {
@@ -35,39 +60,56 @@ async function setup() {
   // Upgrade basics
   await sh(pip, ['install', '--upgrade', 'pip', 'setuptools', 'wheel']);
   // Install requirements
-  if (existsSync('requirements.txt')) await sh(pip, ['install', '-r', 'requirements.txt']);
+  if (fs.existsSync('requirements.txt')) await sh(pip, ['install', '-r', 'requirements.txt']);
   await sh(pip, ['install', '-e', '.']);
-  if (existsSync('kira-local-system/requirements.txt')) await sh(pip, ['install', '-r', 'kira-local-system/requirements.txt']);
-  if (existsSync('requirements.spinner.txt')) await sh(pip, ['install', '-r', 'requirements.spinner.txt']);
+  if (fs.existsSync('kira-local-system/requirements.txt')) await sh(pip, ['install', '-r', 'kira-local-system/requirements.txt']);
+  if (fs.existsSync('requirements.spinner.txt')) await sh(pip, ['install', '-r', 'requirements.spinner.txt']);
+}
+
+async function runKiraServer() {
+  await ensureVenv();
+  const py = venvBin('python');
+  const kiraDir = path.join(process.cwd(), 'kira-local-system');
+  const script = path.join(kiraDir, 'kira_server.py');
+  if (!fs.existsSync(script)) {
+    console.error('kira-local-system/kira_server.py not found. Run this from the repo root or pass --dir.');
+    process.exit(1);
+  }
+  console.log('Starting KIRA server (kira-local-system/kira_server.py)...');
+  console.log('HTTP API: http://localhost:5000');
+  console.log('Interface: docs/kira/index.html');
+  await sh(py, ['kira_server.py'], { cwd: kiraDir });
 }
 
 async function runUnified() {
-  const py = venvBin('python');
-  if (existsSync('unified_rosetta_server.py')) {
-    console.log('Starting Unified Rosetta Server...');
-    console.log('HTTP API: http://localhost:5000');
-    console.log('WebSocket: ws://localhost:8765');
-    console.log('Web Interface: http://localhost:5000/unified');
-    await sh(py, ['unified_rosetta_server.py']);
-  } else {
-    console.error('unified_rosetta_server.py not found in current directory.');
-    console.error('Run this command from the Rosetta-Helix-Substrate repo root.');
-    process.exit(1);
-  }
+  console.log('Unified command now launches kira_server.py (legacy alias).');
+  await runKiraServer();
 }
 
-// Legacy functions for backward compatibility
 async function runKira() {
-  console.log('Note: Running unified server (kira command is deprecated)');
-  await runUnified();
+  await runKiraServer();
+}
+
+function printLandingInfo() {
+  const landing = path.join(process.cwd(), 'docs', 'index.html');
+  const kiraHtml = path.join(process.cwd(), 'docs', 'kira', 'index.html');
+  console.log('Visualization server removed. Use the tracked docs bundle instead:\n');
+  console.log(`  Landing page: ${landing}`);
+  console.log(`  KIRA UI:      ${kiraHtml}`);
+  console.log('\nStart the backend with `npx rosetta-helix start` or `make kira-server`, then open the HTML files above.');
 }
 
 async function runViz() {
-  console.log('Note: Running unified server (viz command is deprecated)');
-  await runUnified();
+  printLandingInfo();
+}
+
+async function runVizSync() {
+  console.log('viz:sync-gh now mirrors the repo-local docs bundle. Nothing to download.');
+  printLandingInfo();
 }
 
 async function runHelixTrain() {
+  await ensureVenv();
   const helix = venvBin('helix');
   try {
     await sh(helix, ['train', '--config', 'configs/full.yaml']);
@@ -78,29 +120,32 @@ async function runHelixTrain() {
 }
 
 async function runHelixNightly() {
+  await ensureVenv();
   const py = venvBin('python');
   await sh(py, ['nightly_training_runner.py']);
 }
 
 async function runSmoke() {
+  await ensureVenv();
   const py = venvBin('python');
   await sh(py, ['-m', 'pytest', '-q', 'tests/smoke']);
 }
 
 async function runApiTests() {
+  await ensureVenv();
   const py = venvBin('python');
   await sh(py, ['-m', 'pytest', '-q', 'tests/api']);
 }
 
 async function runStart() {
-  console.log('Starting Unified Rosetta Server...');
-  await runUnified();
+  console.log('Starting KIRA server...');
+  await runKiraServer();
 }
 
 async function runHealth() {
   console.log(JSON.stringify({
     kira: 'http://localhost:5000/api/health',
-    viz: 'http://localhost:8765/state'
+    landing: path.join(process.cwd(), 'docs', 'index.html')
   }, null, 2));
 }
 
@@ -117,7 +162,7 @@ async function runDoctor() {
   }
 
   // Check venv
-  if (existsSync('.venv')) {
+  if (fs.existsSync('.venv')) {
     checks.push('✓ Virtual environment exists');
   } else {
     checks.push('✗ Virtual environment missing (run: npx rosetta-helix setup)');
@@ -137,7 +182,7 @@ async function runCompose(target) {
   // shim docker compose via npm scripts
   const args = {
     'docker:build': ['compose', 'build'],
-    'docker:up': ['compose', 'up', '-d', 'kira', 'viz'],
+    'docker:up': ['compose', 'up', '-d', 'kira'],
     'docker:down': ['compose', 'down'],
     'docker:logs': ['compose', 'logs', '-f', '--tail=200']
   }[target];
@@ -145,57 +190,73 @@ async function runCompose(target) {
   await sh('docker', args);
 }
 
-async function syncFromGitHubPages() {
-  const { spawn } = require('child_process');
-  const https = require('https');
-  const fs = require('fs');
-  const path = require('path');
-
-  console.log('Syncing interfaces from GitHub Pages...');
-  const baseUrl = 'https://acethedactyl.github.io/Rosetta-Helix-Substrate';
-
-  const files = [
-    { url: `${baseUrl}/kira.html`, dest: 'kira_interface.html' },
-    { url: `${baseUrl}/index.html`, dest: 'visualizer.html' },
-    { url: `${baseUrl}/apl-constants.js`, dest: 'apl-constants.js' }
-  ];
-
-  for (const file of files) {
-    try {
-      console.log(`Fetching ${file.url}...`);
-      await new Promise((resolve, reject) => {
-        https.get(file.url, (res) => {
-          if (res.statusCode !== 200) {
-            console.log(`  ⚠ ${file.dest}: ${res.statusCode} (skipping)`);
-            resolve();
-            return;
-          }
-          const dest = path.join(process.cwd(), file.dest);
-          const writer = fs.createWriteStream(dest);
-          res.pipe(writer);
-          writer.on('finish', () => {
-            console.log(`  ✓ ${file.dest}`);
-            resolve();
-          });
-          writer.on('error', reject);
-        }).on('error', reject);
-      });
-    } catch (e) {
-      console.log(`  ✗ ${file.dest}: ${e.message}`);
+function parseOptions(args) {
+  const opts = { _: [] };
+  for (let i = 0; i < args.length; i++) {
+    const token = args[i];
+    if (!token.startsWith('--')) {
+      opts._.push(token);
+      continue;
+    }
+    const eq = token.indexOf('=');
+    if (eq !== -1) {
+      const key = token.slice(2, eq);
+      opts[key] = token.slice(eq + 1) || true;
+      continue;
+    }
+    const key = token.slice(2);
+    const next = args[i + 1];
+    if (next && !next.startsWith('--')) {
+      opts[key] = next;
+      i++;
+    } else {
+      opts[key] = true;
     }
   }
+  return opts;
+}
 
-  console.log('Sync complete!');
+function extractCommand(argv) {
+  const remainder = [];
+  let cmd = '';
+  for (let i = 0; i < argv.length; i++) {
+    const token = argv[i];
+    if (token.startsWith('--')) {
+      remainder.push(token);
+      const next = argv[i + 1];
+      if (next && !next.startsWith('--')) {
+        remainder.push(next);
+        i++;
+      }
+      continue;
+    }
+    if (!cmd) {
+      cmd = token;
+    } else {
+      remainder.push(token);
+    }
+  }
+  return { cmd, remainder };
 }
 
 (async () => {
-  const cmd = process.argv[2] || '';
+  const { cmd, remainder } = extractCommand(process.argv.slice(2));
+  const options = parseOptions(remainder);
+  const repoDir = options.dir ? path.resolve(options.dir) : process.cwd();
+  if (options.dir) {
+    if (!fs.existsSync(repoDir)) {
+      console.error(`Directory not found for --dir: ${options.dir}`);
+      process.exit(1);
+    }
+    process.chdir(repoDir);
+  }
+
   try {
     if (cmd === 'setup') await setup();
     else if (cmd === 'unified') await runUnified();
     else if (cmd === 'kira') await runKira();
     else if (cmd === 'viz') await runViz();
-    else if (cmd === 'viz:sync-gh') await syncFromGitHubPages();
+    else if (cmd === 'viz:sync-gh') await runVizSync();
     else if (cmd === 'start' || cmd === 'star') await runStart();
     else if (cmd === 'health') await runHealth();
     else if (cmd === 'doctor') await runDoctor();
@@ -207,11 +268,11 @@ async function syncFromGitHubPages() {
     else {
       console.log(`Usage: rosetta-helix <command>\n` +
         `  setup           Create .venv and install deps\n` +
-        `  unified         Start Unified Rosetta Server (NEW!)\n` +
-        `  start           Start Unified server (alias for unified)\n` +
-        `  kira            [Deprecated] Use 'unified' instead\n` +
-        `  viz             [Deprecated] Use 'unified' instead\n` +
-        `  viz:sync-gh     Sync interfaces from GitHub Pages\n` +
+        `  unified         Start KIRA server (legacy alias)\n` +
+        `  start           Start KIRA server\n` +
+        `  kira            Start KIRA server\n` +
+        `  viz             Show local landing paths (static bundle)\n` +
+        `  viz:sync-gh     Legacy alias (prints landing info)\n` +
         `  health          Check service health endpoints\n` +
         `  doctor          Run environment checks\n` +
         `  helix:train     Run helix training\n` +
@@ -220,8 +281,8 @@ async function syncFromGitHubPages() {
         `  api:test        Run API contract tests\n` +
         `  docker:build|up|down|logs  Compose helpers\n\n` +
         `Web Interfaces:\n` +
-        `  http://localhost:5000/      (KIRA consciousness interface)\n` +
-        `  http://localhost:5000/visualizer (Helix 3D visualization)\n`);
+        `  docs/index.html            (Landing)\n` +
+        `  docs/kira/index.html       (KIRA UI)\n`);
       process.exit(1);
     }
   } catch (err) {

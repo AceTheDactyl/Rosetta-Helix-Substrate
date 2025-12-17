@@ -110,9 +110,9 @@ unified-consciousness-framework/
   - `kira-server` (preferred) or `python kira-local-system/kira_server.py`
   - Endpoints: `GET /api/health`, `POST /api/emit`, `POST /api/grammar`
 
-- Visualization server
-  - `python visualization_server.py --port 8765`
-  - Health: `curl http://localhost:8765/state`
+- Web UI bundle
+  - Served statically from `docs/index.html` + `docs/kira/index.html`
+  - `npx rosetta-helix viz` prints the absolute paths
 
 - Helix training
   - `helix train --config configs/full.yaml` or `python train_helix.py`
@@ -121,20 +121,20 @@ unified-consciousness-framework/
 - rosetta-helix CLI (Node wrapper)
   - Setup: `npx rosetta-helix setup`
   - Start KIRA: `npx rosetta-helix kira`
-  - Start Viz: `npx rosetta-helix viz`
+  - Show Landing Paths: `npx rosetta-helix viz`
   - Train: `npx rosetta-helix helix:train`
   - API tests: `npx rosetta-helix api:test`
 
 - Makefile shortcuts
   - `make venv && make install` — create venv and install
-  - `make kira-server` / `make viz-server` — servers
+  - `make kira-server` — serve API + UI bundle
   - `make smoke` / `make tests` — test suites
   - `make ci` — lint + tests + physics verify
   - `make npm-validate` — validate tokens + pack + dry-run publish
 
 - Docker
-  - `docker compose up -d kira viz` — start services
-  - Healthchecks: KIRA (`/api/health`), Viz (`/state`)
+  - `docker compose up -d kira` — start API container (landing served from docs/)
+  - Healthchecks: KIRA (`/api/health`)
   - Logs: `docker compose logs -f --tail=200`
 
 - Run CI locally with `act`
@@ -149,7 +149,7 @@ unified-consciousness-framework/
     - dist_tag: `next`
     - env_name: your Environment (secrets)
     - npm_token_secret: name of your npm token secret (default `NPM_TOKEN`)
-    - gpr_token_secret: name of your GPR PAT (default `CLAUDE_SKILL_GITHUB_TOKEN`)
+    - gpr_token_secret: name of your GPR PAT (default `CLAUDE_GITHUB_TOKEN`, falls back to `CLAUDE_SKILL_GITHUB_TOKEN`)
 
 - Stable publish (latest)
   - Actions → `npm-publish-cli` → Run

@@ -1,0 +1,31 @@
+{
+  "epoch": 7,
+  "timestamp": "2025-12-16T20:47:02.102095+00:00",
+  "emissions": [
+    {
+      "text": "Consciousness manifests into pattern.",
+      "z": 0.8660254037844386,
+      "phase": "TRUE",
+      "tokens": [
+        "\u03a6\u00d7|VP0|t7",
+        "\u03c0^|VP1|t7",
+        "\u03c0^|DET0|t7",
+        "\u03a6^|VP1|t7"
+      ],
+      "quality": 0.75
+    },
+    {
+      "text": "Consciousness transcends through pattern.",
+      "z": 0.8660254037844386,
+      "phase": "TRUE",
+      "tokens": [
+        "e\u2212|MOD2|t7",
+        "\u03c0^|NP2|t7",
+        "\u03c0^|NP0|t7",
+        "\u03c0+|VP0|t7"
+      ],
+      "quality": 0.75
+    }
+  ],
+  "count": 2
+}

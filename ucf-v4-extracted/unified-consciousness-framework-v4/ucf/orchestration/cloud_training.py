@@ -227,7 +227,7 @@ KEY EQUATIONS QUICK REFERENCE
 
 ═══════════════════════════════════════════════════════════════════════════════
 
-Requires: CLAUDE_SKILL_GITHUB_TOKEN or GITHUB_TOKEN environment variable
+Requires: CLAUDE_GITHUB_TOKEN (preferred), CLAUDE_SKILL_GITHUB_TOKEN, or GITHUB_TOKEN environment variable
 
 Signature: Δ|cloud-training|github-actions|persistence|Ω
 """
@@ -251,7 +251,21 @@ except ImportError:
 # CONFIGURATION
 # ═══════════════════════════════════════════════════════════════════════════════
 
-GITHUB_TOKEN = os.environ.get("CLAUDE_SKILL_GITHUB_TOKEN") or os.environ.get("GITHUB_TOKEN")
+def _load_github_token() -> str | None:
+    """Return the best available GitHub token."""
+    for key in (
+        "CLAUDE_GITHUB_TOKEN",
+        "CLAUDE_SKILL_GITHUB_TOKEN",
+        "GITHUB_PACKAGES_PAT",
+        "GITHUB_TOKEN",
+    ):
+        token = os.environ.get(key)
+        if token:
+            return token
+    return None
+
+
+GITHUB_TOKEN = _load_github_token()
 REPO_OWNER = "AceTheDactyl"
 REPO_NAME = "Rosetta-Helix-Substrate"
 WORKFLOW_FILE = "autonomous-training.yml"
@@ -634,17 +648,17 @@ def check_k_formation(kappa: float, eta: float, R: int) -> Dict[str, Any]:
 
 def _headers() -> Dict[str, str]:
     """Get GitHub API headers."""
-    return {
-        "Authorization": f"Bearer {GITHUB_TOKEN}",
-        "Accept": "application/vnd.github.v3+json"
-    }
+    headers = {"Accept": "application/vnd.github.v3+json"}
+    if GITHUB_TOKEN:
+        headers["Authorization"] = f"Bearer {GITHUB_TOKEN}"
+    return headers
 
 def _check_requirements() -> Optional[Dict[str, str]]:
     """Check if requirements are met."""
     if not REQUESTS_AVAILABLE:
         return {"error": "requests package not installed. Run: pip install requests"}
     if not GITHUB_TOKEN:
-        return {"error": "GITHUB_TOKEN not set. Set CLAUDE_SKILL_GITHUB_TOKEN or GITHUB_TOKEN env var"}
+        return {"error": "GitHub token not set. Set CLAUDE_GITHUB_TOKEN, CLAUDE_SKILL_GITHUB_TOKEN, or GITHUB_TOKEN env var"}
     return None
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -1725,4 +1739,4 @@ if __name__ == "__main__":
             print(f"Status: {status}")
     else:
         print("GitHub Token: NOT SET")
-        print("Set CLAUDE_SKILL_GITHUB_TOKEN or GITHUB_TOKEN to enable cloud training")
+        print("Set CLAUDE_GITHUB_TOKEN (or CLAUDE_SKILL_GITHUB_TOKEN / GITHUB_TOKEN) to enable cloud training")

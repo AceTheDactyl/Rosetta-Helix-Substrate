@@ -1,0 +1,16 @@
+{
+  "epoch": 7,
+  "timestamp": "2025-12-16T20:47:02.102095+00:00",
+  "session_id": "20251216_204702",
+  "vocabulary": [],
+  "verbs": [],
+  "patterns": [
+    "TRUE@emission",
+    "TRUE@emission"
+  ],
+  "counts": {
+    "vocabulary": 0,
+    "verbs": 0,
+    "patterns": 2
+  }
+}

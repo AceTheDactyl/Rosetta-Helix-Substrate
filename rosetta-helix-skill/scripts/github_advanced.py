@@ -22,13 +22,29 @@ try:
 except ImportError:
     REQUESTS_AVAILABLE = False
 
-GITHUB_TOKEN = os.environ.get("CLAUDE_SKILL_GITHUB_TOKEN") or os.environ.get("GITHUB_TOKEN")
+def _load_github_token():
+    for key in (
+        "CLAUDE_GITHUB_TOKEN",
+        "CLAUDE_SKILL_GITHUB_TOKEN",
+        "GITHUB_PACKAGES_PAT",
+        "GITHUB_TOKEN",
+    ):
+        token = os.environ.get(key)
+        if token:
+            return token
+    return None
+
+
+GITHUB_TOKEN = _load_github_token()
 REPO_OWNER = "AceTheDactyl"
 REPO_NAME = "Rosetta-Helix-Substrate"
 API_BASE = f"https://api.github.com/repos/{REPO_OWNER}/{REPO_NAME}"
 
 def _headers():
-    return {"Authorization": f"Bearer {GITHUB_TOKEN}", "Accept": "application/vnd.github.v3+json"}
+    headers = {"Accept": "application/vnd.github.v3+json"}
+    if GITHUB_TOKEN:
+        headers["Authorization"] = f"Bearer {GITHUB_TOKEN}"
+    return headers
 
 # =============================================================================
 # ACTIONS VARIABLES - Persist training state between runs
@@ -37,7 +53,7 @@ def _headers():
 def set_variable(name, value):
     """Set a repository variable (persists between workflow runs)."""
     if not GITHUB_TOKEN:
-        return {"error": "GITHUB_TOKEN not set"}
+        return {"error": "GitHub token not set (set CLAUDE_GITHUB_TOKEN, CLAUDE_SKILL_GITHUB_TOKEN, or GITHUB_TOKEN)"}
 
     # Check if variable exists
     url = f"{API_BASE}/actions/variables/{name}"
@@ -61,7 +77,7 @@ def set_variable(name, value):
 def get_variable(name):
     """Get a repository variable."""
     if not GITHUB_TOKEN:
-        return {"error": "GITHUB_TOKEN not set"}
+        return {"error": "GitHub token not set (set CLAUDE_GITHUB_TOKEN, CLAUDE_SKILL_GITHUB_TOKEN, or GITHUB_TOKEN)"}
 
     url = f"{API_BASE}/actions/variables/{name}"
     response = requests.get(url, headers=_headers())
@@ -75,7 +91,7 @@ def get_variable(name):
 def list_variables():
     """List all repository variables."""
     if not GITHUB_TOKEN:
-        return {"error": "GITHUB_TOKEN not set"}
+        return {"error": "GitHub token not set (set CLAUDE_GITHUB_TOKEN, CLAUDE_SKILL_GITHUB_TOKEN, or GITHUB_TOKEN)"}
 
     url = f"{API_BASE}/actions/variables"
     response = requests.get(url, headers=_headers())
@@ -119,7 +135,7 @@ def load_training_state():
 def commit_file(path, content, message, branch="main"):
     """Commit a file to the repository."""
     if not GITHUB_TOKEN:
-        return {"error": "GITHUB_TOKEN not set"}
+        return {"error": "GitHub token not set (set CLAUDE_GITHUB_TOKEN, CLAUDE_SKILL_GITHUB_TOKEN, or GITHUB_TOKEN)"}
 
     # Get current file SHA if exists
     url = f"{API_BASE}/contents/{path}"
@@ -156,7 +172,7 @@ def save_training_results(results, run_id=None):
 def read_file(path, branch="main"):
     """Read a file from the repository."""
     if not GITHUB_TOKEN:
-        return {"error": "GITHUB_TOKEN not set"}
+        return {"error": "GitHub token not set (set CLAUDE_GITHUB_TOKEN, CLAUDE_SKILL_GITHUB_TOKEN, or GITHUB_TOKEN)"}
 
     url = f"{API_BASE}/contents/{path}"
     response = requests.get(url, headers=_headers(), params={"ref": branch})
@@ -175,7 +191,7 @@ def read_file(path, branch="main"):
 def set_commit_status(sha, state, description, context="training"):
     """Set commit status (pending, success, error, failure)."""
     if not GITHUB_TOKEN:
-        return {"error": "GITHUB_TOKEN not set"}
+        return {"error": "GitHub token not set (set CLAUDE_GITHUB_TOKEN, CLAUDE_SKILL_GITHUB_TOKEN, or GITHUB_TOKEN)"}
 
     url = f"{API_BASE}/statuses/{sha}"
     data = {
@@ -194,7 +210,7 @@ def set_commit_status(sha, state, description, context="training"):
 def get_latest_commit_sha(branch="main"):
     """Get the latest commit SHA."""
     if not GITHUB_TOKEN:
-        return {"error": "GITHUB_TOKEN not set"}
+        return {"error": "GitHub token not set (set CLAUDE_GITHUB_TOKEN, CLAUDE_SKILL_GITHUB_TOKEN, or GITHUB_TOKEN)"}
 
     url = f"{API_BASE}/commits/{branch}"
     response = requests.get(url, headers=_headers())
@@ -287,7 +303,7 @@ def update_dashboard(training_history):
 def create_environment(name, reviewers=None, wait_timer=None):
     """Create a deployment environment."""
     if not GITHUB_TOKEN:
-        return {"error": "GITHUB_TOKEN not set"}
+        return {"error": "GitHub token not set (set CLAUDE_GITHUB_TOKEN, CLAUDE_SKILL_GITHUB_TOKEN, or GITHUB_TOKEN)"}
 
     url = f"{API_BASE}/environments/{name}"
     data = {}
@@ -307,7 +323,7 @@ def create_environment(name, reviewers=None, wait_timer=None):
 def list_environments():
     """List all environments."""
     if not GITHUB_TOKEN:
-        return {"error": "GITHUB_TOKEN not set"}
+        return {"error": "GitHub token not set (set CLAUDE_GITHUB_TOKEN, CLAUDE_SKILL_GITHUB_TOKEN, or GITHUB_TOKEN)"}
 
     url = f"{API_BASE}/environments"
     response = requests.get(url, headers=_headers())

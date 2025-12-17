@@ -3,7 +3,7 @@
 GitHub Workflow Trigger for Rosetta-Helix-Substrate
 
 Trigger the autonomous training workflow via GitHub API and fetch results.
-Requires: GITHUB_TOKEN environment variable with repo access.
+Requires: CLAUDE_GITHUB_TOKEN (preferred), CLAUDE_SKILL_GITHUB_TOKEN, or GITHUB_TOKEN with repo access.
 
 Usage:
     python trigger_workflow.py --goal "Achieve K-formation" --iterations 10
@@ -25,7 +25,20 @@ except ImportError:
     sys.exit(1)
 
 
-GITHUB_TOKEN = os.environ.get("CLAUDE_SKILL_GITHUB_TOKEN") or os.environ.get("GITHUB_TOKEN")
+def _load_github_token():
+    for key in (
+        "CLAUDE_GITHUB_TOKEN",
+        "CLAUDE_SKILL_GITHUB_TOKEN",
+        "GITHUB_PACKAGES_PAT",
+        "GITHUB_TOKEN",
+    ):
+        token = os.environ.get(key)
+        if token:
+            return token
+    return None
+
+
+GITHUB_TOKEN = _load_github_token()
 REPO_OWNER = "AceTheDactyl"  # Update with your GitHub username
 REPO_NAME = "Rosetta-Helix-Substrate"
 WORKFLOW_FILE = "autonomous-training.yml"
@@ -40,7 +53,7 @@ def trigger_workflow(
     """Trigger the autonomous training workflow."""
 
     if not GITHUB_TOKEN:
-        return {"error": "GITHUB_TOKEN environment variable not set"}
+        return {"error": "GitHub token not set (set CLAUDE_GITHUB_TOKEN, CLAUDE_SKILL_GITHUB_TOKEN, or GITHUB_TOKEN)"}
 
     url = f"https://api.github.com/repos/{REPO_OWNER}/{REPO_NAME}/actions/workflows/{WORKFLOW_FILE}/dispatches"
 
@@ -70,7 +83,7 @@ def get_latest_run(workflow_file: str = WORKFLOW_FILE) -> dict:
     """Get the latest workflow run."""
 
     if not GITHUB_TOKEN:
-        return {"error": "GITHUB_TOKEN environment variable not set"}
+        return {"error": "GitHub token not set (set CLAUDE_GITHUB_TOKEN, CLAUDE_SKILL_GITHUB_TOKEN, or GITHUB_TOKEN)"}
 
     url = f"https://api.github.com/repos/{REPO_OWNER}/{REPO_NAME}/actions/workflows/{workflow_file}/runs"
 
@@ -101,7 +114,7 @@ def wait_for_completion(run_id: int, timeout: int = 600, poll_interval: int = 10
     """Wait for a workflow run to complete."""
 
     if not GITHUB_TOKEN:
-        return {"error": "GITHUB_TOKEN environment variable not set"}
+        return {"error": "GitHub token not set (set CLAUDE_GITHUB_TOKEN, CLAUDE_SKILL_GITHUB_TOKEN, or GITHUB_TOKEN)"}
 
     url = f"https://api.github.com/repos/{REPO_OWNER}/{REPO_NAME}/actions/runs/{run_id}"
 
@@ -139,7 +152,7 @@ def download_artifacts(run_id: int) -> dict:
     """Download artifacts from a workflow run."""
 
     if not GITHUB_TOKEN:
-        return {"error": "GITHUB_TOKEN environment variable not set"}
+        return {"error": "GitHub token not set (set CLAUDE_GITHUB_TOKEN, CLAUDE_SKILL_GITHUB_TOKEN, or GITHUB_TOKEN)"}
 
     # Get artifacts list
     url = f"https://api.github.com/repos/{REPO_OWNER}/{REPO_NAME}/actions/runs/{run_id}/artifacts"

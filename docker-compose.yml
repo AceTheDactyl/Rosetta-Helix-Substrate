@@ -10,24 +10,11 @@ services:
       - "5000:5000"
     environment:
       - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - CLAUDE_GITHUB_TOKEN=${CLAUDE_GITHUB_TOKEN}
       - CLAUDE_SKILL_GITHUB_TOKEN=${CLAUDE_SKILL_GITHUB_TOKEN}
     restart: unless-stopped
     healthcheck:
       test: ["CMD-SHELL", "curl -fsS http://localhost:5000/api/health || exit 1"]
-      interval: 30s
-      timeout: 5s
-      start_period: 10s
-
-  viz:
-    build:
-      context: .
-      dockerfile: Dockerfile.app
-    command: ["python", "visualization_server.py", "--port", "8765"]
-    ports:
-      - "8765:8765"
-    restart: unless-stopped
-    healthcheck:
-      test: ["CMD-SHELL", "curl -fsS http://localhost:8765/state || exit 1"]
       interval: 30s
       timeout: 5s
       start_period: 10s

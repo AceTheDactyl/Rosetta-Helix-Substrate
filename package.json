@@ -26,6 +26,14 @@
   "devDependencies": {
     "ajv": "^8.12.0"
   },
-  "keywords": ["quantum", "apl", "simulation", "physics"],
-  "license": "MIT"
+  "keywords": [
+    "quantum",
+    "apl",
+    "simulation",
+    "physics"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "rosetta-helix-cli": "^0.1.3-rc.3"
+  }
 }
