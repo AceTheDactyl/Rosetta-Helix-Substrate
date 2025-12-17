@@ -32,6 +32,8 @@ dependencies = [
     # KIRA server runtime deps needed by API tests and package consumers
     "flask>=2.0.0",
     "flask-cors>=3.0.0",
+    "requests>=2.26.0",
+    "python-dotenv>=0.19.0",
 ]
 
 [project.optional-dependencies]
@@ -52,6 +54,8 @@ dev = [
     # KIRA server test deps
     "flask>=2.0.0",
     "flask-cors>=3.0.0",
+    "requests>=2.26.0",
+    "python-dotenv>=0.19.0",
 ]
 all = [
     "quantum-apl[viz,analysis,dev]",
