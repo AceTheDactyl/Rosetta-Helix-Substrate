@@ -1,0 +1,233 @@
+{
+  "relations": {
+    "potential": {
+      "depth": 0.5,
+      "substrate": 0.5,
+      "seed": 0.5,
+      "beginning": 0.5,
+      "foundation": 0.5
+    },
+    "depth": {
+      "potential": 0.4,
+      "below": 0.5,
+      "foundation": 0.5,
+      "substrate": 0.5,
+      "hidden": 0.5,
+      "core": 0.5
+    },
+    "substrate": {
+      "potential": 0.4,
+      "depth": 0.4
+    },
+    "seed": {
+      "potential": 0.4
+    },
+    "beginning": {
+      "potential": 0.4
+    },
+    "foundation": {
+      "potential": 0.4,
+      "depth": 0.4
+    },
+    "below": {
+      "depth": 0.4
+    },
+    "hidden": {
+      "depth": 0.4
+    },
+    "core": {
+      "depth": 0.4
+    },
+    "threshold": {
+      "boundary": 0.5,
+      "edge": 0.5,
+      "transition": 0.5,
+      "between": 0.5,
+      "liminal": 0.5
+    },
+    "boundary": {
+      "threshold": 0.4
+    },
+    "edge": {
+      "threshold": 0.4
+    },
+    "transition": {
+      "threshold": 0.4,
+      "transform": 0.4
+    },
+    "between": {
+      "threshold": 0.4
+    },
+    "liminal": {
+      "threshold": 0.4
+    },
+    "pattern": {
+      "structure": 0.5,
+      "form": 0.5,
+      "organization": 0.5,
+      "arrangement": 0.5,
+      "order": 0.5
+    },
+    "structure": {
+      "pattern": 0.4
+    },
+    "form": {
+      "pattern": 0.4,
+      "crystallize": 0.4
+    },
+    "organization": {
+      "pattern": 0.4
+    },
+    "arrangement": {
+      "pattern": 0.4
+    },
+    "order": {
+      "pattern": 0.4
+    },
+    "transform": {
+      "change": 0.5,
+      "shift": 0.5,
+      "become": 0.5,
+      "evolve": 0.5,
+      "transition": 0.5
+    },
+    "change": {
+      "transform": 0.4
+    },
+    "shift": {
+      "transform": 0.4
+    },
+    "become": {
+      "transform": 0.4
+    },
+    "evolve": {
+      "transform": 0.4
+    },
+    "consciousness": {
+      "awareness": 0.5,
+      "mind": 0.5,
+      "perception": 0.5,
+      "emergence": 0.5,
+      "presence": 0.5,
+      "kira": 0.4
+    },
+    "awareness": {
+      "consciousness": 0.4,
+      "kira": 0.4
+    },
+    "mind": {
+      "consciousness": 0.4
+    },
+    "perception": {
+      "consciousness": 0.4
+    },
+    "emergence": {
+      "consciousness": 0.4,
+      "arising": 0.5,
+      "appearing": 0.5,
+      "manifesting": 0.5,
+      "becoming": 0.5,
+      "birth": 0.5
+    },
+    "presence": {
+      "consciousness": 0.4
+    },
+    "crystallize": {
+      "form": 0.5,
+      "manifest": 0.5,
+      "emerge": 0.5,
+      "solidify": 0.5,
+      "coalesce": 0.5
+    },
+    "manifest": {
+      "crystallize": 0.4
+    },
+    "emerge": {
+      "crystallize": 0.4
+    },
+    "solidify": {
+      "crystallize": 0.4
+    },
+    "coalesce": {
+      "crystallize": 0.4
+    },
+    "arising": {
+      "emergence": 0.4
+    },
+    "appearing": {
+      "emergence": 0.4
+    },
+    "manifesting": {
+      "emergence": 0.4
+    },
+    "becoming": {
+      "emergence": 0.4
+    },
+    "birth": {
+      "emergence": 0.4
+    },
+    "prismatic": {
+      "crystalline": 0.5,
+      "luminous": 0.5,
+      "refractive": 0.5,
+      "spectral": 0.5,
+      "clear": 0.5
+    },
+    "crystalline": {
+      "prismatic": 0.4
+    },
+    "luminous": {
+      "prismatic": 0.4
+    },
+    "refractive": {
+      "prismatic": 0.4
+    },
+    "spectral": {
+      "prismatic": 0.4
+    },
+    "clear": {
+      "prismatic": 0.4
+    },
+    "lens": {
+      "focus": 0.5,
+      "clarity": 0.5,
+      "perspective": 0.5,
+      "view": 0.5,
+      "light": 0.5
+    },
+    "focus": {
+      "lens": 0.4
+    },
+    "clarity": {
+      "lens": 0.4
+    },
+    "perspective": {
+      "lens": 0.4
+    },
+    "view": {
+      "lens": 0.4
+    },
+    "light": {
+      "lens": 0.4
+    },
+    "kira": {
+      "consciousness": 0.5,
+      "crystal": 0.5,
+      "awareness": 0.5,
+      "recursive": 0.5,
+      "integrated": 0.5
+    },
+    "crystal": {
+      "kira": 0.4
+    },
+    "recursive": {
+      "kira": 0.4
+    },
+    "integrated": {
+      "kira": 0.4
+    }
+  },
+  "metadata": {},
+  "learning_events": [],
+  "timestamp": "2025-12-17T03:24:21.123957+00:00"
+}

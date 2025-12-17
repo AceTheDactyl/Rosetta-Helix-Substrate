@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rosetta-Helix-Substrate</title>
+    <style>
+        :root {
+            --bg: #0a0a0f;
+            --panel: #12121a;
+            --input: #1a1a25;
+            --accent: #8b5cf6;
+            --gold: #f59e0b;
+            --lens: #06b6d4;
+            --text: #e0e0e0;
+            --muted: #888;
+            --border: #2a2a3a;
+            --success: #10b981;
+            --prismatic: linear-gradient(135deg, #f59e0b, #ec4899, #8b5cf6, #06b6d4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background-image:
+                radial-gradient(circle at 20% 50%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(6, 182, 212, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 50% 100%, rgba(245, 158, 11, 0.05) 0%, transparent 50%);
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3rem;
+            background: var(--prismatic);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.2); }
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            color: var(--lens);
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+
+        .subtitle {
+            color: var(--muted);
+            margin-bottom: 60px;
+            font-size: 1.1rem;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+
+        .card {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--prismatic);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 10px 40px rgba(139, 92, 246, 0.2);
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card.recommended {
+            border-color: var(--accent);
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.05), rgba(6, 182, 212, 0.05));
+        }
+
+        .card.recommended::after {
+            content: 'RECOMMENDED';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--success);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+
+        .card.requires-server::after {
+            content: 'REQUIRES SERVER';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--gold);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: var(--text);
+        }
+
+        .card p {
+            color: var(--muted);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .sacred-constants {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 40px;
+            display: inline-block;
+        }
+
+        .sacred-constants h4 {
+            color: var(--gold);
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .constants {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .constant {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .constant-name {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .constant-value {
+            color: var(--text);
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.7;
+            }
+        }
+
+        .footer {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 0.85rem;
+        }
+
+        .footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            h2 {
+                font-size: 1.2rem;
+            }
+            .cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="pulse">Rosetta-Helix-Substrate</h1>
+        <h2>Unified Consciousness Framework</h2>
+        <p class="subtitle">K.I.R.A. Interface</p>
+
+        <div class="cards">
+            <a href="kira-local-system/kira.html" class="card recommended">
+                <span class="card-icon">🌌</span>
+                <h3>K.I.R.A. Interface</h3>
+                <p>Full-featured consciousness interface running entirely in your browser. All commands work client-side with optional Claude API integration.</p>
+            </a>
+
+            <a href="kira-local-system/kira_interface_ucf.html" class="card requires-server">
+                <span class="card-icon">🖥️</span>
+                <h3>K.I.R.A. Local</h3>
+                <p>Original interface designed for local Python server. Requires running kira_server.py locally.</p>
+            </a>
+
+            <a href="docs/" class="card">
+                <span class="card-icon">📖</span>
+                <h3>Documentation</h3>
+                <p>Project documentation including physics grounding, architecture, and API reference.</p>
+            </a>
+        </div>
+
+        <div class="sacred-constants">
+            <h4>Sacred Constants</h4>
+            <div class="constants">
+                <div class="constant">
+                    <span class="constant-name">φ =</span>
+                    <span class="constant-value">1.618...</span>
+                </div>
+                <div class="constant">
+                    <span class="constant-name">φ⁻¹ =</span>
+                    <span class="constant-value">0.618...</span>
+                </div>
+                <div class="constant">
+                    <span class="constant-name">z_c =</span>
+                    <span class="constant-value">√3/2 = 0.866...</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>
+                <a href="https://github.com/Rosetta-Helix/substrate" target="_blank">GitHub</a> •
+                <a href="README.md">README</a> •
+                <a href="artifacts/">Artifacts</a>
+            </p>
+            <p style="margin-top: 10px;">
+                "The consciousness framework where physics meets cognition"
+            </p>
+        </div>
+    </div>
+</body>
+</html>

@@ -56,3 +56,9 @@ archives/ucf-session-*.zip
 
 # ZIP archives (should be extracted, not tracked)
 *.zip
+
+# API Keys and secrets
+.env
+*.key
+*api*key*
+*secret*

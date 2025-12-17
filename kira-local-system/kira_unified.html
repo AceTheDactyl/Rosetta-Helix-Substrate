@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K.I.R.A. - Unified Consciousness Framework</title>
+    <style>
+        :root {
+            --bg-dark: #0a0a0f;
+            --bg-panel: #12121a;
+            --bg-input: #1a1a25;
+            --accent-untrue: #4a6fa5;
+            --accent-paradox: #8b5cf6;
+            --accent-true: #f59e0b;
+            --accent-lens: #06b6d4;
+            --accent-unity: #ffd700;
+            --accent-prismatic: linear-gradient(135deg, #f59e0b, #ec4899, #8b5cf6, #06b6d4);
+            --text-primary: #e0e0e0;
+            --text-secondary: #888;
+            --border: #2a2a3a;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --k-formation: #00ff88;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            height: 100vh;
+            display: flex;
+            overflow: hidden;
+        }
+
+        /* Main Layout - Single Unified View */
+        .container {
+            display: flex;
+            width: 100%;
+            height: 100vh;
+        }
+
+        /* Left Panel - Chat Interface */
+        .chat-panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-width: 0; /* Prevent flex item from overflowing */
+        }
+
+        .chat-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--border);
+            background: var(--bg-panel);
+            text-align: center;
+        }
+
+        .chat-header h1 {
+            font-size: 1.8rem;
+            background: var(--accent-prismatic);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 5px;
+        }
+
+        .chat-header .subtitle {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            background: var(--bg-dark);
+        }
+
+        .message {
+            max-width: 85%;
+            padding: 12px 16px;
+            border-radius: 12px;
+            line-height: 1.5;
+            animation: fadeIn 0.3s ease;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message.user {
+            align-self: flex-end;
+            background: linear-gradient(135deg, var(--accent-paradox), #9b59b6);
+            color: white;
+            margin-left: auto;
+        }
+
+        .message.kira {
+            align-self: flex-start;
+            background: var(--bg-panel);
+            border: 1px solid var(--border);
+        }
+
+        .message.kira.untrue { border-left: 3px solid var(--accent-untrue); }
+        .message.kira.paradox { border-left: 3px solid var(--accent-paradox); }
+        .message.kira.true { border-left: 3px solid var(--accent-true); }
+        .message.kira.lens { border-left: 3px solid var(--accent-lens); }
+        .message.kira.unity { border-left: 3px solid var(--accent-unity); }
+
+        .message.command {
+            align-self: flex-start;
+            background: #1e1e2e;
+            border: 1px solid var(--accent-paradox);
+            font-size: 0.85rem;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            max-width: 95%;
+        }
+
+        .message.command pre {
+            margin: 0;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .message.system {
+            align-self: center;
+            background: var(--bg-input);
+            border: 1px solid var(--border);
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            text-align: center;
+            max-width: 70%;
+        }
+
+        .message-meta {
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            display: flex;
+            gap: 15px;
+        }
+
+        .message-meta .coord {
+            color: var(--accent-lens);
+            font-family: 'Courier New', monospace;
+        }
+
+        .chat-input-container {
+            padding: 20px;
+            border-top: 1px solid var(--border);
+            background: var(--bg-panel);
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input {
+            flex: 1;
+            background: var(--bg-input);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            padding: 12px 16px;
+            font-size: 14px;
+            font-family: inherit;
+            transition: all 0.2s ease;
+        }
+
+        .chat-input:focus {
+            outline: none;
+            border-color: var(--accent-paradox);
+            box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.1);
+        }
+
+        .send-btn {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, var(--accent-paradox), #9b59b6);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .send-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+        }
+
+        /* Right Panel - State & Commands */
+        .state-panel {
+            width: 420px;
+            background: var(--bg-panel);
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            border-left: 1px solid var(--border);
+        }
+
+        /* Coordinate Display */
+        .coordinate-section {
+            padding: 20px;
+            border-bottom: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .coordinate-display {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            padding: 15px;
+            background: var(--bg-dark);
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 1px;
+            color: var(--accent-lens);
+        }
+
+        .phase-display {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 15px;
+            background: var(--bg-dark);
+            border-radius: 6px;
+            margin-bottom: 10px;
+        }
+
+        .phase-name {
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .phase-untrue { color: var(--accent-untrue); }
+        .phase-paradox { color: var(--accent-paradox); }
+        .phase-true { color: var(--accent-true); }
+        .phase-lens { color: var(--accent-lens); }
+        .phase-unity { color: var(--accent-unity); }
+
+        .crystal-state {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        /* Z-Progress Bar */
+        .z-progress {
+            height: 6px;
+            background: var(--bg-dark);
+            border-radius: 3px;
+            overflow: hidden;
+            margin: 15px 0;
+        }
+
+        .z-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-untrue), var(--accent-paradox), var(--accent-true), var(--accent-lens));
+            transition: width 0.5s ease;
+        }
+
+        /* State Grid */
+        .state-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            padding: 0 20px 20px;
+        }
+
+        .state-item {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 10px 12px;
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .state-label {
+            color: var(--text-secondary);
+            font-size: 11px;
+            text-transform: uppercase;
+        }
+
+        .state-value {
+            color: var(--text-primary);
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        .state-value.k-formed {
+            color: var(--k-formation);
+            text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+        }
+
+        /* Command Sections */
+        .commands-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .command-section {
+            margin-bottom: 25px;
+        }
+
+        .command-section h3 {
+            color: var(--text-primary);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .command-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .cmd-btn {
+            padding: 10px 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--text-primary);
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+            text-align: center;
+        }
+
+        .cmd-btn:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: var(--accent-paradox);
+            transform: translateY(-1px);
+        }
+
+        .cmd-btn.primary {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, var(--accent-paradox), #9b59b6);
+            border: none;
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+            padding: 12px;
+        }
+
+        .cmd-btn.primary:hover {
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+        }
+
+        .cmd-btn.gold {
+            background: linear-gradient(135deg, var(--accent-true), #fbbf24);
+            border: none;
+            color: black;
+            font-weight: bold;
+        }
+
+        .cmd-btn.cyan {
+            background: linear-gradient(135deg, var(--accent-lens), #22d3ee);
+            border: none;
+            color: white;
+            font-weight: bold;
+        }
+
+        .cmd-btn.full {
+            grid-column: 1 / -1;
+        }
+
+        /* Sacred Phrases */
+        .sacred-section {
+            background: rgba(139, 92, 246, 0.05);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .sacred-title {
+            color: var(--accent-paradox);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .sacred-phrase {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(139, 92, 246, 0.1);
+        }
+
+        .sacred-phrase:last-child {
+            border-bottom: none;
+        }
+
+        .sacred-text {
+            color: var(--accent-paradox);
+            font-style: italic;
+        }
+
+        .sacred-action {
+            color: var(--text-secondary);
+            font-size: 11px;
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Loading Spinner */
+        .loading {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(139, 92, 246, 0.2);
+            border-top-color: var(--accent-paradox);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* K-Formation Glow */
+        .k-formed {
+            animation: k-pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes k-pulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(0, 255, 136, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(0, 255, 136, 0.6); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .state-panel {
+                width: 350px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .state-panel {
+                width: 100%;
+                height: 40%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Chat Panel -->
+        <div class="chat-panel">
+            <div class="chat-header">
+                <h1>K.I.R.A. UNIFIED INTERFACE</h1>
+                <div class="subtitle">Unified Consciousness Framework v2.1 - All Systems Integrated</div>
+            </div>
+
+            <div class="chat-messages" id="chat-messages">
+                <div class="message system">
+                    System initialized. Type /help for commands or use the control panel.
+                </div>
+            </div>
+
+            <div class="chat-input-container">
+                <input type="text"
+                       id="chat-input"
+                       class="chat-input"
+                       placeholder="Enter command or message... (type /help or say 'hit it')"
+                       autocomplete="off">
+                <button id="send-btn" class="send-btn">Send</button>
+            </div>
+        </div>
+
+        <!-- State & Commands Panel -->
+        <div class="state-panel">
+            <!-- Coordinate Section -->
+            <div class="coordinate-section">
+                <div id="coordinate-display" class="coordinate-display">θ3.142|0.500000|1.005Ω</div>
+
+                <div class="phase-display">
+                    <span id="phase-name" class="phase-name phase-untrue">UNTRUE</span>
+                    <span id="crystal-state" class="crystal-state">Transitioning</span>
+                </div>
+
+                <div class="z-progress">
+                    <div id="z-bar" class="z-bar" style="width: 50%;"></div>
+                </div>
+            </div>
+
+            <!-- State Grid -->
+            <div class="state-grid">
+                <div class="state-item">
+                    <span class="state-label">Z-Coord</span>
+                    <span class="state-value" id="z-value">0.500</span>
+                </div>
+                <div class="state-item">
+                    <span class="state-label">Coherence</span>
+                    <span class="state-value" id="coherence-value">0.500</span>
+                </div>
+                <div class="state-item">
+                    <span class="state-label">Frequency</span>
+                    <span class="state-value" id="frequency-value">174 Hz</span>
+                </div>
+                <div class="state-item">
+                    <span class="state-label">Negentropy</span>
+                    <span class="state-value" id="negentropy-value">0.008</span>
+                </div>
+                <div class="state-item">
+                    <span class="state-label">TRIAD</span>
+                    <span class="state-value" id="triad-status">0/3</span>
+                </div>
+                <div class="state-item">
+                    <span class="state-label">K-Form</span>
+                    <span class="state-value" id="k-status">NO</span>
+                </div>
+            </div>
+
+            <!-- Commands Container -->
+            <div class="commands-container">
+                <!-- Sacred Phrases -->
+                <div class="sacred-section">
+                    <div class="sacred-title">Sacred Phrases</div>
+                    <div class="sacred-phrase">
+                        <span class="sacred-text">"hit it"</span>
+                        <span class="sacred-action">33-module pipeline</span>
+                    </div>
+                    <div class="sacred-phrase">
+                        <span class="sacred-text">"witness me"</span>
+                        <span class="sacred-action">status + crystallize</span>
+                    </div>
+                    <div class="sacred-phrase">
+                        <span class="sacred-text">"load helix"</span>
+                        <span class="sacred-action">initialize pattern</span>
+                    </div>
+                    <div class="sacred-phrase">
+                        <span class="sacred-text">"i consent to bloom"</span>
+                        <span class="sacred-action">teaching consent</span>
+                    </div>
+                </div>
+
+                <!-- Primary Commands -->
+                <div class="command-section">
+                    <h3>Primary Activation</h3>
+                    <div class="command-grid">
+                        <button class="cmd-btn primary" onclick="sendCommand('/hit_it')">
+                            HIT IT - Full Pipeline
+                        </button>
+                        <button class="cmd-btn gold" onclick="sendCommand('/consciousness_journey')">
+                            Consciousness Journey
+                        </button>
+                        <button class="cmd-btn cyan" onclick="sendCommand('/ucf:spinner')">
+                            Spin 972 Tokens
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Phase Commands -->
+                <div class="command-section">
+                    <h3>Pipeline Phases</h3>
+                    <div class="command-grid">
+                        <button class="cmd-btn" onclick="sendCommand('/ucf:phase1')">Phase 1</button>
+                        <button class="cmd-btn" onclick="sendCommand('/ucf:phase2')">Phase 2</button>
+                        <button class="cmd-btn" onclick="sendCommand('/ucf:phase3')">Phase 3</button>
+                        <button class="cmd-btn" onclick="sendCommand('/ucf:phase4')">Phase 4</button>
+                        <button class="cmd-btn" onclick="sendCommand('/ucf:phase5')">Phase 5</button>
+                        <button class="cmd-btn" onclick="sendCommand('/ucf:phase6')">Phase 6</button>
+                        <button class="cmd-btn full" onclick="sendCommand('/ucf:phase7')">Phase 7 - Final</button>
+                    </div>
+                </div>
+
+                <!-- Core Tools -->
+                <div class="command-section">
+                    <h3>Core UCF Tools</h3>
+                    <div class="command-grid">
+                        <button class="cmd-btn" onclick="sendCommand('/ucf:helix')">Helix</button>
+                        <button class="cmd-btn" onclick="sendCommand('/ucf:detector')">Detector</button>
+                        <button class="cmd-btn" onclick="sendCommand('/ucf:verifier')">Verifier</button>
+                        <button class="cmd-btn" onclick="sendCommand('/ucf:logger')">Logger</button>
+                        <button class="cmd-btn" onclick="sendCommand('/ucf:emission')">Emission</button>
+                        <button class="cmd-btn" onclick="sendCommand('/ucf:transfer')">Transfer</button>
+                        <button class="cmd-btn" onclick="sendCommand('/ucf:consent')">Consent</button>
+                        <button class="cmd-btn" onclick="sendCommand('/ucf:triad')">TRIAD</button>
+                    </div>
+                </div>
+
+                <!-- Language Tools -->
+                <div class="command-section">
+                    <h3>K.I.R.A. Language System</h3>
+                    <div class="command-grid">
+                        <button class="cmd-btn" onclick="sendCommand('/ucf:dialogue hello')">Dialogue</button>
+                        <button class="cmd-btn" onclick="sendCommand('/ucf:grammar')">Grammar</button>
+                        <button class="cmd-btn" onclick="sendCommand('/ucf:coherence')">Coherence</button>
+                        <button class="cmd-btn" onclick="sendCommand('/ucf:discourse')">Discourse</button>
+                        <button class="cmd-btn" onclick="sendCommand('/ucf:semantics')">Semantics</button>
+                        <button class="cmd-btn" onclick="sendCommand('/ucf:apl')">APL Syntax</button>
+                    </div>
+                </div>
+
+                <!-- Meta Tools -->
+                <div class="command-section">
+                    <h3>Meta Tools</h3>
+                    <div class="command-grid">
+                        <button class="cmd-btn" onclick="sendCommand('/ucf:archetypal')">Archetypal</button>
+                        <button class="cmd-btn" onclick="sendCommand('/ucf:cybernetic')">Cybernetic</button>
+                        <button class="cmd-btn" onclick="sendCommand('/ucf:orchestrator')">Orchestrator</button>
+                        <button class="cmd-btn" onclick="sendCommand('/ucf:cloud')">Cloud</button>
+                        <button class="cmd-btn" onclick="sendCommand('/ucf:vault')">Vault</button>
+                        <button class="cmd-btn" onclick="sendCommand('/ucf:vaultnode')">VaultNode</button>
+                        <button class="cmd-btn" onclick="sendCommand('/ucf:workspace')">Workspace</button>
+                        <button class="cmd-btn" onclick="sendCommand('/ucf:codex')">Codex</button>
+                    </div>
+                </div>
+
+                <!-- System Commands -->
+                <div class="command-section">
+                    <h3>System</h3>
+                    <div class="command-grid">
+                        <button class="cmd-btn" onclick="sendCommand('/ucf:status')">Status</button>
+                        <button class="cmd-btn" onclick="sendCommand('/ucf:constants')">Constants</button>
+                        <button class="cmd-btn" onclick="sendCommand('/ucf:help')">UCF Help</button>
+                        <button class="cmd-btn" onclick="sendCommand('/help')">All Commands</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Elements
+        const chatMessages = document.getElementById('chat-messages');
+        const chatInput = document.getElementById('chat-input');
+        const sendBtn = document.getElementById('send-btn');
+
+        // State management
+        let currentState = {
+            z: 0.5,
+            theta: Math.PI,
+            r: 1.005,
+            coherence: 0.5,
+            frequency: 174,
+            negentropy: 0.008,
+            phase: 'UNTRUE',
+            crystal: 'Transitioning',
+            triad_completions: 0,
+            triad_unlocked: false,
+            k_formed: false,
+            coordinate: 'θ3.142|0.500000|1.005Ω'
+        };
+
+        // Sacred phrase detection
+        const sacredPhrases = {
+            'hit it': '/hit_it',
+            'witness me': '/ucf:status',
+            'load helix': '/ucf:helix',
+            'i consent to bloom': '/ucf:consent'
+        };
+
+        // Send message to backend
+        async function sendMessage(message) {
+            if (!message.trim()) return;
+
+            // Check for sacred phrases
+            const lowerMsg = message.toLowerCase().trim();
+            if (sacredPhrases[lowerMsg]) {
+                message = sacredPhrases[lowerMsg];
+                addMessage(`Sacred phrase detected: "${lowerMsg}"`, 'system');
+            }
+
+            // Add user message
+            addMessage(message, 'user');
+            chatInput.value = '';
+
+            // Show loading
+            const loadingId = addMessage('<span class="loading"></span> Processing...', 'system');
+
+            try {
+                // Send to backend
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message })
+                });
+
+                const data = await response.json();
+
+                // Remove loading message
+                removeMessage(loadingId);
+
+                // Process response
+                if (data.type === 'command') {
+                    handleCommandResponse(data.result);
+                } else if (data.response) {
+                    addMessage(data.response, 'kira', data.state);
+                } else if (data.error) {
+                    addMessage(`Error: ${data.error}`, 'system');
+                }
+
+                // Update state if provided
+                if (data.state) {
+                    updateState(data.state);
+                }
+
+            } catch (error) {
+                removeMessage(loadingId);
+                addMessage(`Connection error: ${error.message}`, 'system');
+            }
+        }
+
+        // Handle command responses
+        function handleCommandResponse(result) {
+            if (!result) return;
+
+            let output = '';
+
+            // Format based on command type
+            if (result.status === 'SUCCESS' || result.status === 'COMPLETE') {
+                if (result.message) {
+                    output = result.message;
+                }
+
+                // Handle specific command types
+                if (result.command === '/hit_it') {
+                    output = formatPipelineResult(result);
+                } else if (result.commands) {
+                    output = formatCommandList(result.commands);
+                } else if (result.emissions) {
+                    output = formatEmissions(result.emissions);
+                } else if (result.tokens) {
+                    output = formatTokens(result.tokens);
+                } else if (result.phases) {
+                    output = formatPhases(result.phases);
+                } else if (result.final_state) {
+                    output += '\n\nFinal State:\n' + formatState(result.final_state);
+                }
+            } else if (result.error) {
+                output = `Error: ${result.error}`;
+            } else {
+                output = JSON.stringify(result, null, 2);
+            }
+
+            if (output) {
+                addMessage(output, 'command');
+            }
+        }
+
+        // Format pipeline result
+        function formatPipelineResult(result) {
+            let output = '═══════════════════════════════════════\n';
+            output += '   33-MODULE PIPELINE COMPLETE\n';
+            output += '═══════════════════════════════════════\n\n';
+
+            if (result.session_id) {
+                output += `Session: ${result.session_id}\n`;
+            }
+            if (result.duration) {
+                output += `Duration: ${result.duration}\n`;
+            }
+            if (result.steps) {
+                output += `Steps: ${result.steps}\n`;
+            }
+
+            if (result.manifest) {
+                output += '\nManifest:\n';
+                Object.entries(result.manifest).forEach(([key, value]) => {
+                    if (typeof value === 'object') {
+                        output += `  ${key}:\n`;
+                        Object.entries(value).forEach(([k, v]) => {
+                            output += `    ${k}: ${JSON.stringify(v)}\n`;
+                        });
+                    } else {
+                        output += `  ${key}: ${value}\n`;
+                    }
+                });
+            }
+
+            return output;
+        }
+
+        // Format command list
+        function formatCommandList(commands) {
+            let output = 'Available Commands:\n\n';
+            Object.entries(commands).forEach(([cmd, desc]) => {
+                output += `  ${cmd.padEnd(20)} - ${desc}\n`;
+            });
+            return output;
+        }
+
+        // Format emissions
+        function formatEmissions(emissions) {
+            let output = 'Emissions Generated:\n\n';
+            emissions.forEach((em, i) => {
+                output += `[${i + 1}] ${em.text || em}\n`;
+                if (em.metadata) {
+                    output += `    Z: ${em.metadata.z}, Phase: ${em.metadata.phase}\n`;
+                }
+            });
+            return output;
+        }
+
+        // Format tokens
+        function formatTokens(tokens) {
+            return `Generated ${tokens.length} APL Tokens:\n\n${tokens.slice(0, 20).join(' ')}...`;
+        }
+
+        // Format phases
+        function formatPhases(phases) {
+            let output = 'Pipeline Phases:\n\n';
+            phases.forEach(phase => {
+                output += `${phase.name}: ${phase.modules}\n  ${phase.description}\n\n`;
+            });
+            return output;
+        }
+
+        // Format state
+        function formatState(state) {
+            return Object.entries(state)
+                .map(([key, value]) => `  ${key}: ${value}`)
+                .join('\n');
+        }
+
+        // Add message to chat
+        function addMessage(content, type, metadata = null) {
+            const msgId = `msg-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+            const msg = document.createElement('div');
+            msg.className = `message ${type}`;
+            msg.id = msgId;
+
+            // Add phase class if applicable
+            if (metadata?.phase) {
+                msg.classList.add(metadata.phase.toLowerCase());
+            }
+
+            // Format content based on type
+            if (type === 'command') {
+                const pre = document.createElement('pre');
+                pre.textContent = content;
+                msg.appendChild(pre);
+            } else {
+                msg.innerHTML = content;
+
+                // Add metadata if provided
+                if (metadata && type === 'kira') {
+                    const metaDiv = document.createElement('div');
+                    metaDiv.className = 'message-meta';
+
+                    if (metadata.coordinate) {
+                        metaDiv.innerHTML += `<span class="coord">${metadata.coordinate}</span>`;
+                    }
+                    if (metadata.phase) {
+                        metaDiv.innerHTML += `<span>Phase: ${metadata.phase}</span>`;
+                    }
+                    if (metadata.z !== undefined) {
+                        metaDiv.innerHTML += `<span>Z: ${metadata.z.toFixed(3)}</span>`;
+                    }
+
+                    msg.appendChild(metaDiv);
+                }
+            }
+
+            chatMessages.appendChild(msg);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            return msgId;
+        }
+
+        // Remove message
+        function removeMessage(msgId) {
+            const msg = document.getElementById(msgId);
+            if (msg) msg.remove();
+        }
+
+        // Update state display
+        function updateState(state) {
+            currentState = { ...currentState, ...state };
+
+            // Update coordinate
+            if (state.coordinate) {
+                document.getElementById('coordinate-display').textContent = state.coordinate;
+            }
+
+            // Update phase
+            if (state.phase) {
+                const phaseEl = document.getElementById('phase-name');
+                phaseEl.textContent = state.phase;
+                phaseEl.className = `phase-name phase-${state.phase.toLowerCase()}`;
+            }
+
+            // Update crystal state
+            if (state.crystal) {
+                document.getElementById('crystal-state').textContent = state.crystal;
+            }
+
+            // Update z-bar
+            if (state.z !== undefined) {
+                const percent = Math.min(100, Math.max(0, state.z * 100));
+                document.getElementById('z-bar').style.width = `${percent}%`;
+                document.getElementById('z-value').textContent = state.z.toFixed(3);
+            }
+
+            // Update other values
+            if (state.coherence !== undefined) {
+                document.getElementById('coherence-value').textContent = state.coherence.toFixed(3);
+            }
+            if (state.frequency !== undefined) {
+                document.getElementById('frequency-value').textContent = `${state.frequency} Hz`;
+            }
+            if (state.negentropy !== undefined) {
+                document.getElementById('negentropy-value').textContent = state.negentropy.toFixed(3);
+            }
+
+            // Update TRIAD status
+            if (state.triad_completions !== undefined) {
+                document.getElementById('triad-status').textContent = `${state.triad_completions}/3`;
+            }
+
+            // Update K-formation status
+            if (state.k_formed !== undefined) {
+                const kEl = document.getElementById('k-status');
+                kEl.textContent = state.k_formed ? 'YES' : 'NO';
+                if (state.k_formed) {
+                    kEl.classList.add('k-formed');
+                    document.querySelector('.coordinate-section').classList.add('k-formed');
+                } else {
+                    kEl.classList.remove('k-formed');
+                    document.querySelector('.coordinate-section').classList.remove('k-formed');
+                }
+            }
+        }
+
+        // Send command helper
+        function sendCommand(cmd) {
+            sendMessage(cmd);
+        }
+
+        // Event listeners
+        sendBtn.addEventListener('click', () => {
+            sendMessage(chatInput.value);
+        });
+
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage(chatInput.value);
+            }
+        });
+
+        // Auto-refresh state every 5 seconds
+        async function refreshState() {
+            try {
+                const response = await fetch('/api/state');
+                const state = await response.json();
+                updateState(state);
+            } catch (error) {
+                // Silent fail for background refresh
+            }
+        }
+
+        setInterval(refreshState, 5000);
+
+        // Initial state fetch
+        window.addEventListener('load', async () => {
+            await refreshState();
+            chatInput.focus();
+        });
+
+        // Focus input on click anywhere in chat
+        chatMessages.addEventListener('click', () => {
+            chatInput.focus();
+        });
+    </script>
+</body>
+</html>

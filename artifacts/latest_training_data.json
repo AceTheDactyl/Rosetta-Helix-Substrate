@@ -1,0 +1,32 @@
+{
+  "timestamp": "2025-12-16T00:00:00Z",
+  "z_coordinate": 0.35,
+  "phase": "UNTRUE",
+  "coherence": 0.5,
+  "tier": 2,
+  "tokens": [],
+  "emissions": [],
+  "semantic_network": {
+    "concepts": 12,
+    "connections": 0,
+    "strongest_associations": []
+  },
+  "triad": {
+    "unlocked": false,
+    "crossings": 0,
+    "last_crossing": null
+  },
+  "k_formation": {
+    "achieved": false,
+    "kappa": 0.0,
+    "eta": 0.0,
+    "R": 0
+  },
+  "training_status": {
+    "epochs_completed": 0,
+    "tokens_generated": 0,
+    "emissions_created": 0,
+    "patterns_learned": 0
+  },
+  "message": "Initial state - no training data yet. Use /hit_it or /consciousness_journey to generate data."
+}

@@ -1,0 +1,578 @@
+{
+  "relations": {
+    "potential": {
+      "seed": 0.8351600230178197,
+      "dormant": 0.8351600230178197,
+      "latent": 0.8351600230178197,
+      "depth": 0.8351600230178197,
+      "substrate": 0.8351600230178197,
+      "chaos": 0.6681280184142557
+    },
+    "seed": {
+      "potential": 0.6681280184142557
+    },
+    "dormant": {
+      "potential": 0.6681280184142557,
+      "sleeping": 0.8351600230178197,
+      "waiting": 0.8351600230178197,
+      "quiet": 0.8351600230178197,
+      "still": 0.8351600230178197,
+      "patient": 0.8351600230178197
+    },
+    "latent": {
+      "potential": 0.6681280184142557
+    },
+    "depth": {
+      "potential": 0.6681280184142557,
+      "profound": 0.8351600230178197,
+      "deep": 0.8351600230178197,
+      "below": 0.8351600230178197,
+      "within": 0.8351600230178197,
+      "foundation": 0.8351600230178197
+    },
+    "substrate": {
+      "potential": 0.6681280184142557,
+      "foundation": 0.8351600230178197,
+      "base": 0.8351600230178197,
+      "ground": 0.8351600230178197,
+      "origin": 0.8351600230178197,
+      "root": 0.8351600230178197
+    },
+    "profound": {
+      "depth": 0.6681280184142557
+    },
+    "deep": {
+      "depth": 0.6681280184142557
+    },
+    "below": {
+      "depth": 0.6681280184142557
+    },
+    "within": {
+      "depth": 0.6681280184142557
+    },
+    "foundation": {
+      "depth": 0.6681280184142557,
+      "substrate": 0.6681280184142557
+    },
+    "base": {
+      "substrate": 0.6681280184142557
+    },
+    "ground": {
+      "substrate": 0.6681280184142557
+    },
+    "origin": {
+      "substrate": 0.6681280184142557
+    },
+    "root": {
+      "substrate": 0.6681280184142557
+    },
+    "sleeping": {
+      "dormant": 0.6681280184142557
+    },
+    "waiting": {
+      "dormant": 0.6681280184142557
+    },
+    "quiet": {
+      "dormant": 0.6681280184142557
+    },
+    "still": {
+      "dormant": 0.6681280184142557
+    },
+    "patient": {
+      "dormant": 0.6681280184142557
+    },
+    "chaos": {
+      "formless": 0.8351600230178197,
+      "potential": 0.8351600230178197,
+      "primordial": 0.8351600230178197,
+      "unformed": 0.8351600230178197,
+      "void": 0.8351600230178197
+    },
+    "formless": {
+      "chaos": 0.6681280184142557
+    },
+    "primordial": {
+      "chaos": 0.6681280184142557
+    },
+    "unformed": {
+      "chaos": 0.6681280184142557
+    },
+    "void": {
+      "chaos": 0.6681280184142557
+    },
+    "threshold": {
+      "boundary": 0.8351600230178197,
+      "edge": 0.8351600230178197,
+      "liminal": 0.8351600230178197,
+      "between": 0.8351600230178197,
+      "portal": 0.8351600230178197
+    },
+    "boundary": {
+      "threshold": 0.6681280184142557,
+      "liminal": 0.6681280184142557
+    },
+    "edge": {
+      "threshold": 0.6681280184142557,
+      "liminal": 0.6681280184142557
+    },
+    "liminal": {
+      "threshold": 0.6681280184142557,
+      "between": 0.8351600230178197,
+      "boundary": 0.8351600230178197,
+      "edge": 0.8351600230178197,
+      "margin": 0.8351600230178197
+    },
+    "between": {
+      "threshold": 0.6681280184142557,
+      "liminal": 0.6681280184142557
+    },
+    "portal": {
+      "threshold": 0.6681280184142557
+    },
+    "transition": {
+      "change": 0.8351600230178197,
+      "shift": 0.8351600230178197,
+      "becoming": 0.8351600230178197,
+      "flux": 0.8351600230178197,
+      "passage": 0.8351600230178197
+    },
+    "change": {
+      "transition": 0.6681280184142557,
+      "flux": 0.6681280184142557
+    },
+    "shift": {
+      "transition": 0.6681280184142557
+    },
+    "becoming": {
+      "transition": 0.6681280184142557,
+      "emerging": 0.8351600230178197,
+      "forming": 0.8351600230178197,
+      "growing": 0.8351600230178197,
+      "evolving": 0.8351600230178197,
+      "transforming": 0.8351600230178197,
+      "emergence": 0.5797315856468886
+    },
+    "flux": {
+      "transition": 0.6681280184142557,
+      "flow": 0.8351600230178197,
+      "change": 0.8351600230178197,
+      "dynamic": 0.8351600230178197,
+      "shifting": 0.8351600230178197,
+      "movement": 0.8351600230178197
+    },
+    "passage": {
+      "transition": 0.6681280184142557
+    },
+    "emerging": {
+      "becoming": 0.6681280184142557
+    },
+    "forming": {
+      "becoming": 0.6681280184142557
+    },
+    "growing": {
+      "becoming": 0.6681280184142557
+    },
+    "evolving": {
+      "becoming": 0.6681280184142557
+    },
+    "transforming": {
+      "becoming": 0.6681280184142557
+    },
+    "margin": {
+      "liminal": 0.6681280184142557
+    },
+    "flow": {
+      "flux": 0.6681280184142557
+    },
+    "dynamic": {
+      "flux": 0.6681280184142557
+    },
+    "shifting": {
+      "flux": 0.6681280184142557
+    },
+    "movement": {
+      "flux": 0.6681280184142557
+    },
+    "crystallization": {
+      "formation": 0.7246644820586108,
+      "solidify": 0.7246644820586108,
+      "manifest": 0.7246644820586108,
+      "emerge": 0.7246644820586108,
+      "prismatic": 0.7246644820586108
+    },
+    "formation": {
+      "crystallization": 0.5797315856468886
+    },
+    "solidify": {
+      "crystallization": 0.5797315856468886
+    },
+    "manifest": {
+      "crystallization": 0.5797315856468886,
+      "appear": 0.7246644820586108,
+      "realize": 0.7246644820586108,
+      "embody": 0.7246644820586108,
+      "express": 0.7246644820586108,
+      "actualize": 0.7246644820586108
+    },
+    "emerge": {
+      "crystallization": 0.5797315856468886
+    },
+    "prismatic": {
+      "crystallization": 0.5797315856468886,
+      "crystalline": 0.7246644820586108,
+      "luminous": 0.7246644820586108,
+      "refractive": 0.7246644820586108,
+      "spectral": 0.7246644820586108,
+      "radiant": 0.7246644820586108,
+      "kira": 0.5797315856468886
+    },
+    "emergence": {
+      "arising": 0.7246644820586108,
+      "appearing": 0.7246644820586108,
+      "manifesting": 0.7246644820586108,
+      "becoming": 0.7246644820586108,
+      "birth": 0.7246644820586108
+    },
+    "arising": {
+      "emergence": 0.5797315856468886
+    },
+    "appearing": {
+      "emergence": 0.5797315856468886
+    },
+    "manifesting": {
+      "emergence": 0.5797315856468886
+    },
+    "birth": {
+      "emergence": 0.5797315856468886
+    },
+    "appear": {
+      "manifest": 0.5797315856468886
+    },
+    "realize": {
+      "manifest": 0.5797315856468886
+    },
+    "embody": {
+      "manifest": 0.5797315856468886
+    },
+    "express": {
+      "manifest": 0.5797315856468886
+    },
+    "actualize": {
+      "manifest": 0.5797315856468886
+    },
+    "crystalline": {
+      "prismatic": 0.5797315856468886
+    },
+    "luminous": {
+      "prismatic": 0.5797315856468886,
+      "crystal": 0.5797315856468886
+    },
+    "refractive": {
+      "prismatic": 0.5797315856468886
+    },
+    "spectral": {
+      "prismatic": 0.5797315856468886
+    },
+    "radiant": {
+      "prismatic": 0.5797315856468886
+    },
+    "coherence": {
+      "unity": 0.7246644820586108,
+      "harmony": 0.7246644820586108,
+      "alignment": 0.7246644820586108,
+      "synchrony": 0.7246644820586108,
+      "integration": 0.7246644820586108
+    },
+    "unity": {
+      "coherence": 0.5797315856468886
+    },
+    "harmony": {
+      "coherence": 0.5797315856468886,
+      "resonance": 0.5797315856468886
+    },
+    "alignment": {
+      "coherence": 0.5797315856468886
+    },
+    "synchrony": {
+      "coherence": 0.5797315856468886,
+      "resonance": 0.5797315856468886
+    },
+    "integration": {
+      "coherence": 0.5797315856468886
+    },
+    "consciousness": {
+      "awareness": 0.7246644820586108,
+      "mind": 0.7246644820586108,
+      "perception": 0.7246644820586108,
+      "cognition": 0.7246644820586108,
+      "sentience": 0.7246644820586108
+    },
+    "awareness": {
+      "consciousness": 0.5797315856468886,
+      "attention": 0.7246644820586108,
+      "presence": 0.7246644820586108,
+      "mindfulness": 0.7246644820586108,
+      "perception": 0.7246644820586108,
+      "cognizance": 0.7246644820586108,
+      "kira": 0.5797315856468886
+    },
+    "mind": {
+      "consciousness": 0.5797315856468886
+    },
+    "perception": {
+      "consciousness": 0.5797315856468886,
+      "awareness": 0.5797315856468886
+    },
+    "cognition": {
+      "consciousness": 0.5797315856468886
+    },
+    "sentience": {
+      "consciousness": 0.5797315856468886
+    },
+    "attention": {
+      "awareness": 0.5797315856468886
+    },
+    "presence": {
+      "awareness": 0.5797315856468886
+    },
+    "mindfulness": {
+      "awareness": 0.5797315856468886
+    },
+    "cognizance": {
+      "awareness": 0.5797315856468886
+    },
+    "pattern": {
+      "structure": 0.7246644820586108,
+      "form": 0.7246644820586108,
+      "organization": 0.7246644820586108,
+      "arrangement": 0.7246644820586108,
+      "order": 0.7246644820586108
+    },
+    "structure": {
+      "pattern": 0.5797315856468886
+    },
+    "form": {
+      "pattern": 0.5797315856468886
+    },
+    "organization": {
+      "pattern": 0.5797315856468886
+    },
+    "arrangement": {
+      "pattern": 0.5797315856468886
+    },
+    "order": {
+      "pattern": 0.5797315856468886
+    },
+    "resonance": {
+      "harmony": 0.7246644820586108,
+      "vibration": 0.7246644820586108,
+      "attunement": 0.7246644820586108,
+      "synchrony": 0.7246644820586108,
+      "echo": 0.7246644820586108
+    },
+    "vibration": {
+      "resonance": 0.5797315856468886
+    },
+    "attunement": {
+      "resonance": 0.5797315856468886
+    },
+    "echo": {
+      "resonance": 0.5797315856468886
+    },
+    "lens": {
+      "focus": 0.7246644820586108,
+      "clarity": 0.7246644820586108,
+      "perspective": 0.7246644820586108,
+      "refraction": 0.7246644820586108,
+      "view": 0.7246644820586108
+    },
+    "focus": {
+      "lens": 0.5797315856468886
+    },
+    "clarity": {
+      "lens": 0.5797315856468886,
+      "clear": 0.7246644820586108,
+      "transparent": 0.7246644820586108,
+      "lucid": 0.7246644820586108,
+      "pure": 0.7246644820586108,
+      "bright": 0.7246644820586108
+    },
+    "perspective": {
+      "lens": 0.5797315856468886
+    },
+    "refraction": {
+      "lens": 0.5797315856468886
+    },
+    "view": {
+      "lens": 0.5797315856468886
+    },
+    "clear": {
+      "clarity": 0.5797315856468886,
+      "crystal": 0.5797315856468886
+    },
+    "transparent": {
+      "clarity": 0.5797315856468886
+    },
+    "lucid": {
+      "clarity": 0.5797315856468886
+    },
+    "pure": {
+      "clarity": 0.5797315856468886
+    },
+    "bright": {
+      "clarity": 0.5797315856468886
+    },
+    "truth": {
+      "reality": 0.7246644820586108,
+      "authentic": 0.7246644820586108,
+      "genuine": 0.7246644820586108,
+      "real": 0.7246644820586108,
+      "honest": 0.7246644820586108
+    },
+    "reality": {
+      "truth": 0.5797315856468886
+    },
+    "authentic": {
+      "truth": 0.5797315856468886
+    },
+    "genuine": {
+      "truth": 0.5797315856468886
+    },
+    "real": {
+      "truth": 0.5797315856468886
+    },
+    "honest": {
+      "truth": 0.5797315856468886
+    },
+    "kira": {
+      "crystal": 0.7246644820586108,
+      "prismatic": 0.7246644820586108,
+      "awareness": 0.7246644820586108,
+      "interface": 0.7246644820586108,
+      "bridge": 0.7246644820586108
+    },
+    "crystal": {
+      "kira": 0.5797315856468886,
+      "clear": 0.7246644820586108,
+      "structured": 0.7246644820586108,
+      "faceted": 0.7246644820586108,
+      "luminous": 0.7246644820586108,
+      "ordered": 0.7246644820586108
+    },
+    "interface": {
+      "kira": 0.5797315856468886
+    },
+    "bridge": {
+      "kira": 0.5797315856468886
+    },
+    "structured": {
+      "crystal": 0.5797315856468886
+    },
+    "faceted": {
+      "crystal": 0.5797315856468886
+    },
+    "ordered": {
+      "crystal": 0.5797315856468886
+    }
+  },
+  "metadata": {
+    "potential": {
+      "z": 0.3,
+      "phase": "UNTRUE"
+    },
+    "depth": {
+      "z": 0.3,
+      "phase": "UNTRUE"
+    },
+    "substrate": {
+      "z": 0.3,
+      "phase": "UNTRUE"
+    },
+    "dormant": {
+      "z": 0.3,
+      "phase": "UNTRUE"
+    },
+    "chaos": {
+      "z": 0.3,
+      "phase": "UNTRUE"
+    },
+    "threshold": {
+      "z": 0.7,
+      "phase": "PARADOX"
+    },
+    "transition": {
+      "z": 0.7,
+      "phase": "PARADOX"
+    },
+    "becoming": {
+      "z": 0.7,
+      "phase": "PARADOX"
+    },
+    "liminal": {
+      "z": 0.7,
+      "phase": "PARADOX"
+    },
+    "flux": {
+      "z": 0.7,
+      "phase": "PARADOX"
+    },
+    "crystallization": {
+      "z": 0.9,
+      "phase": "TRUE"
+    },
+    "emergence": {
+      "z": 0.9,
+      "phase": "TRUE"
+    },
+    "manifest": {
+      "z": 0.9,
+      "phase": "TRUE"
+    },
+    "prismatic": {
+      "z": 0.9,
+      "phase": "TRUE"
+    },
+    "coherence": {
+      "z": 0.9,
+      "phase": "TRUE"
+    },
+    "consciousness": {
+      "z": 0.9,
+      "phase": "TRUE"
+    },
+    "awareness": {
+      "z": 0.9,
+      "phase": "TRUE"
+    },
+    "pattern": {
+      "z": 0.9,
+      "phase": "TRUE"
+    },
+    "resonance": {
+      "z": 0.9,
+      "phase": "TRUE"
+    },
+    "lens": {
+      "z": 0.9,
+      "phase": "TRUE"
+    },
+    "clarity": {
+      "z": 0.9,
+      "phase": "TRUE"
+    },
+    "truth": {
+      "z": 0.9,
+      "phase": "TRUE"
+    },
+    "kira": {
+      "z": 0.9,
+      "phase": "TRUE"
+    },
+    "crystal": {
+      "z": 0.9,
+      "phase": "TRUE"
+    }
+  },
+  "z": 0.5,
+  "last_updated": 1765933472.839338
+}

@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K.I.R.A. - Unified Consciousness Framework</title>
+    <style>
+        /* GitHub Pages Beautiful UI Styles */
+        :root {
+            --bg: #0a0a0f;
+            --panel: #12121a;
+            --accent: #8b5cf6;
+            --gold: #f59e0b;
+            --cyan: #06b6d4;
+            --pink: #ec4899;
+            --text: #e0e0e0;
+            --muted: #888;
+            --border: #2a2a3a;
+            --success: #10b981;
+            --k-formation: #00ff88;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+        }
+
+        /* Main Layout */
+        .container {
+            display: flex;
+            width: 100%;
+            height: 100vh;
+        }
+
+        /* Left Chat Panel */
+        .chat-panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid var(--border);
+            background: var(--panel);
+        }
+
+        .chat-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--border);
+            background: linear-gradient(135deg, var(--gold), var(--pink), var(--accent), var(--cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        #chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .message {
+            padding: 12px 16px;
+            border-radius: 8px;
+            max-width: 85%;
+            word-wrap: break-word;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message.user {
+            background: linear-gradient(135deg, var(--accent), var(--pink));
+            align-self: flex-end;
+            color: white;
+        }
+
+        .message.kira {
+            background: rgba(255, 255, 255, 0.05);
+            align-self: flex-start;
+            border: 1px solid var(--border);
+        }
+
+        .message.system {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            align-self: center;
+            text-align: center;
+            color: var(--success);
+        }
+
+        .chat-input-container {
+            padding: 20px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            gap: 10px;
+        }
+
+        #chat-input {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        #chat-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.1);
+        }
+
+        #send-btn {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, var(--accent), var(--pink));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        #send-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+        }
+
+        /* Right Control Panel */
+        .control-panel {
+            width: 400px;
+            background: var(--panel);
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        /* State Display */
+        .state-display {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .state-title {
+            color: var(--muted);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .coordinate-display {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 8px;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+        }
+
+        .state-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .state-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 6px;
+        }
+
+        .state-label {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .state-value {
+            font-weight: bold;
+            color: var(--text);
+        }
+
+        /* Command Buttons */
+        .command-section {
+            margin-bottom: 25px;
+        }
+
+        .command-section h3 {
+            color: var(--text);
+            margin-bottom: 12px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .command-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .cmd-btn {
+            padding: 10px 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            color: var(--text);
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+
+        .cmd-btn:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--accent);
+            transform: translateY(-1px);
+        }
+
+        .cmd-btn.primary {
+            background: linear-gradient(135deg, var(--accent), var(--pink));
+            border: none;
+            color: white;
+            font-weight: bold;
+        }
+
+        .cmd-btn.gold {
+            background: linear-gradient(135deg, var(--gold), #fbbf24);
+            border: none;
+            color: black;
+            font-weight: bold;
+        }
+
+        .cmd-btn.full-width {
+            grid-column: 1 / -1;
+        }
+
+        /* Phase Indicators */
+        .phase-indicator {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .phase-name {
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .phase-untrue { color: #4a6fa5; }
+        .phase-paradox { color: var(--accent); }
+        .phase-true { color: var(--gold); }
+        .phase-lens { color: var(--cyan); }
+        .phase-unity { color: #ffd700; }
+
+        /* Progress Bar */
+        .progress-container {
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), var(--pink), var(--gold));
+            transition: width 0.5s ease;
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        /* K-Formation Glow */
+        .k-formed {
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+            border-color: var(--k-formation) !important;
+        }
+
+        /* Help Modal */
+        .help-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            padding: 40px;
+            overflow-y: auto;
+        }
+
+        .help-content {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 30px;
+        }
+
+        .help-close {
+            float: right;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--muted);
+        }
+
+        .help-close:hover {
+            color: var(--text);
+        }
+
+        pre {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 12px;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 10px 0;
+        }
+
+        code {
+            font-family: 'Fira Code', monospace;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Chat Panel -->
+        <div class="chat-panel">
+            <div class="chat-header">K.I.R.A. INTERFACE</div>
+            <div id="chat-messages"></div>
+            <div class="chat-input-container">
+                <input type="text" id="chat-input" placeholder="Enter command or message... (type /help for commands)">
+                <button id="send-btn">Send</button>
+            </div>
+        </div>
+
+        <!-- Control Panel -->
+        <div class="control-panel">
+            <!-- State Display -->
+            <div class="state-display">
+                <div class="state-title">System State</div>
+                <div id="coordinate-display" class="coordinate-display">θ3.142|0.500000|1.005Ω</div>
+                <div class="phase-indicator">
+                    <span class="phase-name" id="phase-name">UNTRUE</span>
+                    <span id="crystal-state">Transitioning</span>
+                </div>
+                <div class="progress-container">
+                    <div id="progress-bar" class="progress-bar" style="width: 50%"></div>
+                </div>
+                <div class="state-grid">
+                    <div class="state-item">
+                        <span class="state-label">Z-Coordinate</span>
+                        <span class="state-value" id="z-value">0.500</span>
+                    </div>
+                    <div class="state-item">
+                        <span class="state-label">Coherence</span>
+                        <span class="state-value" id="coherence-value">0.500</span>
+                    </div>
+                    <div class="state-item">
+                        <span class="state-label">Frequency</span>
+                        <span class="state-value" id="frequency-value">174 Hz</span>
+                    </div>
+                    <div class="state-item">
+                        <span class="state-label">Negentropy</span>
+                        <span class="state-value" id="negentropy-value">0.008</span>
+                    </div>
+                    <div class="state-item">
+                        <span class="state-label">TRIAD</span>
+                        <span class="state-value" id="triad-status">0/3</span>
+                    </div>
+                    <div class="state-item">
+                        <span class="state-label">K-Form</span>
+                        <span class="state-value" id="k-status">NO</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Commands -->
+            <div class="command-section">
+                <h3>Core Commands</h3>
+                <div class="command-grid">
+                    <button class="cmd-btn primary full-width" onclick="sendCommand('/hit_it')">HIT IT (33-Module Pipeline)</button>
+                    <button class="cmd-btn gold" onclick="sendCommand('/consciousness_journey')">Journey</button>
+                    <button class="cmd-btn gold" onclick="sendCommand('/ucf:spinner')">Spin 972</button>
+                    <button class="cmd-btn" onclick="sendCommand('/ucf:helix')">Load Helix</button>
+                    <button class="cmd-btn" onclick="sendCommand('/ucf:emission')">Emission</button>
+                    <button class="cmd-btn" onclick="sendCommand('/ucf:status')">Status</button>
+                    <button class="cmd-btn" onclick="sendCommand('/ucf:triad')">TRIAD</button>
+                </div>
+            </div>
+
+            <!-- Phase Commands -->
+            <div class="command-section">
+                <h3>Pipeline Phases</h3>
+                <div class="command-grid">
+                    <button class="cmd-btn" onclick="sendCommand('/ucf:phase1')">Phase 1</button>
+                    <button class="cmd-btn" onclick="sendCommand('/ucf:phase2')">Phase 2</button>
+                    <button class="cmd-btn" onclick="sendCommand('/ucf:phase3')">Phase 3</button>
+                    <button class="cmd-btn" onclick="sendCommand('/ucf:phase4')">Phase 4</button>
+                    <button class="cmd-btn" onclick="sendCommand('/ucf:phase5')">Phase 5</button>
+                    <button class="cmd-btn" onclick="sendCommand('/ucf:phase6')">Phase 6</button>
+                    <button class="cmd-btn full-width" onclick="sendCommand('/ucf:phase7')">Phase 7 (Final)</button>
+                </div>
+            </div>
+
+            <!-- Tool Commands -->
+            <div class="command-section">
+                <h3>UCF Tools</h3>
+                <div class="command-grid">
+                    <button class="cmd-btn" onclick="sendCommand('/ucf:detector')">Detector</button>
+                    <button class="cmd-btn" onclick="sendCommand('/ucf:verifier')">Verifier</button>
+                    <button class="cmd-btn" onclick="sendCommand('/ucf:logger')">Logger</button>
+                    <button class="cmd-btn" onclick="sendCommand('/ucf:transfer')">Transfer</button>
+                    <button class="cmd-btn" onclick="sendCommand('/ucf:consent')">Consent</button>
+                    <button class="cmd-btn" onclick="sendCommand('/ucf:coherence')">Coherence</button>
+                    <button class="cmd-btn" onclick="sendCommand('/ucf:discourse')">Discourse</button>
+                    <button class="cmd-btn" onclick="sendCommand('/ucf:grammar')">Grammar</button>
+                    <button class="cmd-btn" onclick="sendCommand('/ucf:semantics')">Semantics</button>
+                    <button class="cmd-btn" onclick="sendCommand('/ucf:tokens972')">972 Tokens</button>
+                    <button class="cmd-btn" onclick="sendCommand('/ucf:vaultnode')">VaultNode</button>
+                    <button class="cmd-btn" onclick="sendCommand('/ucf:help')">Help</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Help Modal -->
+    <div id="help-modal" class="help-modal">
+        <div class="help-content">
+            <span class="help-close" onclick="closeHelp()">&times;</span>
+            <h2>UCF Command Reference</h2>
+            <pre id="help-text"></pre>
+        </div>
+    </div>
+
+    <script>
+        const chatMessages = document.getElementById('chat-messages');
+        const chatInput = document.getElementById('chat-input');
+        const sendBtn = document.getElementById('send-btn');
+
+        // Send message function - connects to our backend
+        async function sendMessage(message) {
+            if (!message.trim()) return;
+
+            // Add user message to chat
+            addMessage(message, 'user');
+
+            // Clear input
+            chatInput.value = '';
+
+            // Show loading
+            const loadingId = addMessage('<span class="loading"></span> Processing...', 'kira');
+
+            try {
+                // Send to our backend server
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message })
+                });
+
+                const data = await response.json();
+
+                // Remove loading message
+                document.getElementById(loadingId)?.remove();
+
+                // Process response
+                if (data.type === 'command') {
+                    // Handle command response
+                    if (data.result) {
+                        if (data.result.status === 'SUCCESS' || data.result.status === 'COMPLETE') {
+                            // Format command output
+                            let output = formatCommandOutput(data.result);
+                            addMessage(output, 'kira');
+                        } else if (data.result.error) {
+                            addMessage(`Error: ${data.result.error}`, 'system');
+                        } else {
+                            addMessage(JSON.stringify(data.result, null, 2), 'kira');
+                        }
+                    }
+                } else if (data.response) {
+                    // Regular chat response
+                    addMessage(data.response, 'kira');
+                } else if (data.error) {
+                    addMessage(`Error: ${data.error}`, 'system');
+                } else {
+                    // Fallback for any other response
+                    addMessage(JSON.stringify(data, null, 2), 'kira');
+                }
+
+                // Update state display if provided
+                if (data.state) {
+                    updateStateDisplay(data.state);
+                }
+
+            } catch (error) {
+                document.getElementById(loadingId)?.remove();
+                addMessage(`Connection error: ${error.message}`, 'system');
+            }
+        }
+
+        // Format command output for display
+        function formatCommandOutput(result) {
+            let output = '';
+
+            if (result.command) {
+                output += `Command: ${result.command}\n`;
+            }
+
+            if (result.status) {
+                output += `Status: ${result.status}\n`;
+            }
+
+            if (result.message) {
+                output += `${result.message}\n`;
+            }
+
+            if (result.commands) {
+                output += '\nAvailable Commands:\n';
+                for (const [cmd, desc] of Object.entries(result.commands)) {
+                    output += `  ${cmd}: ${desc}\n`;
+                }
+            }
+
+            if (result.phases) {
+                output += '\nPhases:\n';
+                for (const phase of result.phases) {
+                    output += `  ${phase.name}: ${phase.modules} - ${phase.description}\n`;
+                }
+            }
+
+            if (result.emissions) {
+                output += '\nEmissions:\n' + JSON.stringify(result.emissions, null, 2);
+            }
+
+            if (result.tokens) {
+                output += '\nTokens Generated: ' + result.tokens.length;
+            }
+
+            if (result.final_state) {
+                output += '\nFinal State:\n' + JSON.stringify(result.final_state, null, 2);
+            }
+
+            return output || JSON.stringify(result, null, 2);
+        }
+
+        // Add message to chat
+        function addMessage(content, type) {
+            const message = document.createElement('div');
+            message.className = `message ${type}`;
+            message.id = `msg-${Date.now()}`;
+
+            // Handle pre-formatted text
+            if (content.includes('\n') && type === 'kira') {
+                message.innerHTML = `<pre>${content}</pre>`;
+            } else {
+                message.innerHTML = content;
+            }
+
+            chatMessages.appendChild(message);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            return message.id;
+        }
+
+        // Update state display
+        function updateStateDisplay(state) {
+            // Update coordinate
+            if (state.coordinate) {
+                document.getElementById('coordinate-display').textContent = state.coordinate;
+            }
+
+            // Update phase
+            if (state.phase) {
+                const phaseEl = document.getElementById('phase-name');
+                phaseEl.textContent = state.phase;
+                phaseEl.className = `phase-name phase-${state.phase.toLowerCase()}`;
+            }
+
+            // Update crystal state
+            if (state.crystal) {
+                document.getElementById('crystal-state').textContent = state.crystal;
+            }
+
+            // Update values
+            if (state.z !== undefined) {
+                document.getElementById('z-value').textContent = state.z.toFixed(3);
+                const progress = (state.z * 100).toFixed(0);
+                document.getElementById('progress-bar').style.width = `${progress}%`;
+            }
+
+            if (state.coherence !== undefined) {
+                document.getElementById('coherence-value').textContent = state.coherence.toFixed(3);
+            }
+
+            if (state.frequency !== undefined) {
+                document.getElementById('frequency-value').textContent = `${state.frequency} Hz`;
+            }
+
+            if (state.negentropy !== undefined) {
+                document.getElementById('negentropy-value').textContent = state.negentropy.toFixed(3);
+            }
+
+            if (state.triad_completions !== undefined) {
+                document.getElementById('triad-status').textContent = `${state.triad_completions}/3`;
+            }
+
+            if (state.k_formed !== undefined) {
+                document.getElementById('k-status').textContent = state.k_formed ? 'YES' : 'NO';
+                if (state.k_formed) {
+                    document.querySelector('.state-display').classList.add('k-formed');
+                }
+            }
+        }
+
+        // Send command helper
+        function sendCommand(cmd) {
+            chatInput.value = cmd;
+            sendMessage(cmd);
+        }
+
+        // Event listeners
+        sendBtn.addEventListener('click', () => {
+            sendMessage(chatInput.value);
+        });
+
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage(chatInput.value);
+            }
+        });
+
+        // Help modal functions
+        function showHelp() {
+            sendCommand('/ucf:help');
+        }
+
+        function closeHelp() {
+            document.getElementById('help-modal').style.display = 'none';
+        }
+
+        // Initial state fetch
+        async function fetchInitialState() {
+            try {
+                const response = await fetch('/api/state');
+                const data = await response.json();
+                updateStateDisplay(data);
+                addMessage('System initialized. Type /help for commands.', 'system');
+            } catch (error) {
+                addMessage('Welcome! Type /help for commands.', 'system');
+            }
+        }
+
+        // Auto-refresh state every 5 seconds
+        setInterval(async () => {
+            try {
+                const response = await fetch('/api/state');
+                const data = await response.json();
+                updateStateDisplay(data);
+            } catch (error) {
+                // Silent fail for auto-refresh
+            }
+        }, 5000);
+
+        // Initialize on load
+        window.addEventListener('load', fetchInitialState);
+    </script>
+</body>
+</html>
