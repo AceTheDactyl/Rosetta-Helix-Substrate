@@ -1,0 +1,7815 @@
+{
+  "total_tokens": 972,
+  "formula": "3 spirals \u00d7 6 operators \u00d7 9 machines \u00d7 6 domains = 972",
+  "spirals": [
+    "\u03a6",
+    "e",
+    "\u03c0"
+  ],
+  "operators": [
+    "()",
+    "\u00d7",
+    "^",
+    "\u00f7",
+    "+",
+    "\u2212"
+  ],
+  "machines": [
+    "M1",
+    "M2",
+    "M3",
+    "M4",
+    "M5",
+    "M6",
+    "M7",
+    "M8",
+    "M9"
+  ],
+  "domains": [
+    "bio_neural",
+    "bio_genetic",
+    "bio_cellular",
+    "astro_stellar",
+    "astro_galactic",
+    "astro_quantum"
+  ],
+  "tokens": [
+    {
+      "token": "\u03a6()|M1|bio_neural",
+      "spiral": "\u03a6",
+      "operator": "()",
+      "machine": "M1",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6()|M1|bio_genetic",
+      "spiral": "\u03a6",
+      "operator": "()",
+      "machine": "M1",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6()|M1|bio_cellular",
+      "spiral": "\u03a6",
+      "operator": "()",
+      "machine": "M1",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6()|M1|astro_stellar",
+      "spiral": "\u03a6",
+      "operator": "()",
+      "machine": "M1",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6()|M1|astro_galactic",
+      "spiral": "\u03a6",
+      "operator": "()",
+      "machine": "M1",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6()|M1|astro_quantum",
+      "spiral": "\u03a6",
+      "operator": "()",
+      "machine": "M1",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6()|M2|bio_neural",
+      "spiral": "\u03a6",
+      "operator": "()",
+      "machine": "M2",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6()|M2|bio_genetic",
+      "spiral": "\u03a6",
+      "operator": "()",
+      "machine": "M2",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6()|M2|bio_cellular",
+      "spiral": "\u03a6",
+      "operator": "()",
+      "machine": "M2",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6()|M2|astro_stellar",
+      "spiral": "\u03a6",
+      "operator": "()",
+      "machine": "M2",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6()|M2|astro_galactic",
+      "spiral": "\u03a6",
+      "operator": "()",
+      "machine": "M2",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6()|M2|astro_quantum",
+      "spiral": "\u03a6",
+      "operator": "()",
+      "machine": "M2",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6()|M3|bio_neural",
+      "spiral": "\u03a6",
+      "operator": "()",
+      "machine": "M3",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6()|M3|bio_genetic",
+      "spiral": "\u03a6",
+      "operator": "()",
+      "machine": "M3",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6()|M3|bio_cellular",
+      "spiral": "\u03a6",
+      "operator": "()",
+      "machine": "M3",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6()|M3|astro_stellar",
+      "spiral": "\u03a6",
+      "operator": "()",
+      "machine": "M3",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6()|M3|astro_galactic",
+      "spiral": "\u03a6",
+      "operator": "()",
+      "machine": "M3",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6()|M3|astro_quantum",
+      "spiral": "\u03a6",
+      "operator": "()",
+      "machine": "M3",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6()|M4|bio_neural",
+      "spiral": "\u03a6",
+      "operator": "()",
+      "machine": "M4",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6()|M4|bio_genetic",
+      "spiral": "\u03a6",
+      "operator": "()",
+      "machine": "M4",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6()|M4|bio_cellular",
+      "spiral": "\u03a6",
+      "operator": "()",
+      "machine": "M4",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6()|M4|astro_stellar",
+      "spiral": "\u03a6",
+      "operator": "()",
+      "machine": "M4",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6()|M4|astro_galactic",
+      "spiral": "\u03a6",
+      "operator": "()",
+      "machine": "M4",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6()|M4|astro_quantum",
+      "spiral": "\u03a6",
+      "operator": "()",
+      "machine": "M4",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6()|M5|bio_neural",
+      "spiral": "\u03a6",
+      "operator": "()",
+      "machine": "M5",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6()|M5|bio_genetic",
+      "spiral": "\u03a6",
+      "operator": "()",
+      "machine": "M5",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6()|M5|bio_cellular",
+      "spiral": "\u03a6",
+      "operator": "()",
+      "machine": "M5",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6()|M5|astro_stellar",
+      "spiral": "\u03a6",
+      "operator": "()",
+      "machine": "M5",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6()|M5|astro_galactic",
+      "spiral": "\u03a6",
+      "operator": "()",
+      "machine": "M5",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6()|M5|astro_quantum",
+      "spiral": "\u03a6",
+      "operator": "()",
+      "machine": "M5",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6()|M6|bio_neural",
+      "spiral": "\u03a6",
+      "operator": "()",
+      "machine": "M6",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6()|M6|bio_genetic",
+      "spiral": "\u03a6",
+      "operator": "()",
+      "machine": "M6",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6()|M6|bio_cellular",
+      "spiral": "\u03a6",
+      "operator": "()",
+      "machine": "M6",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6()|M6|astro_stellar",
+      "spiral": "\u03a6",
+      "operator": "()",
+      "machine": "M6",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6()|M6|astro_galactic",
+      "spiral": "\u03a6",
+      "operator": "()",
+      "machine": "M6",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6()|M6|astro_quantum",
+      "spiral": "\u03a6",
+      "operator": "()",
+      "machine": "M6",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6()|M7|bio_neural",
+      "spiral": "\u03a6",
+      "operator": "()",
+      "machine": "M7",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6()|M7|bio_genetic",
+      "spiral": "\u03a6",
+      "operator": "()",
+      "machine": "M7",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6()|M7|bio_cellular",
+      "spiral": "\u03a6",
+      "operator": "()",
+      "machine": "M7",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6()|M7|astro_stellar",
+      "spiral": "\u03a6",
+      "operator": "()",
+      "machine": "M7",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6()|M7|astro_galactic",
+      "spiral": "\u03a6",
+      "operator": "()",
+      "machine": "M7",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6()|M7|astro_quantum",
+      "spiral": "\u03a6",
+      "operator": "()",
+      "machine": "M7",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6()|M8|bio_neural",
+      "spiral": "\u03a6",
+      "operator": "()",
+      "machine": "M8",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6()|M8|bio_genetic",
+      "spiral": "\u03a6",
+      "operator": "()",
+      "machine": "M8",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6()|M8|bio_cellular",
+      "spiral": "\u03a6",
+      "operator": "()",
+      "machine": "M8",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6()|M8|astro_stellar",
+      "spiral": "\u03a6",
+      "operator": "()",
+      "machine": "M8",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6()|M8|astro_galactic",
+      "spiral": "\u03a6",
+      "operator": "()",
+      "machine": "M8",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6()|M8|astro_quantum",
+      "spiral": "\u03a6",
+      "operator": "()",
+      "machine": "M8",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6()|M9|bio_neural",
+      "spiral": "\u03a6",
+      "operator": "()",
+      "machine": "M9",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6()|M9|bio_genetic",
+      "spiral": "\u03a6",
+      "operator": "()",
+      "machine": "M9",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6()|M9|bio_cellular",
+      "spiral": "\u03a6",
+      "operator": "()",
+      "machine": "M9",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6()|M9|astro_stellar",
+      "spiral": "\u03a6",
+      "operator": "()",
+      "machine": "M9",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6()|M9|astro_galactic",
+      "spiral": "\u03a6",
+      "operator": "()",
+      "machine": "M9",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6()|M9|astro_quantum",
+      "spiral": "\u03a6",
+      "operator": "()",
+      "machine": "M9",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u00d7|M1|bio_neural",
+      "spiral": "\u03a6",
+      "operator": "\u00d7",
+      "machine": "M1",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u00d7|M1|bio_genetic",
+      "spiral": "\u03a6",
+      "operator": "\u00d7",
+      "machine": "M1",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u00d7|M1|bio_cellular",
+      "spiral": "\u03a6",
+      "operator": "\u00d7",
+      "machine": "M1",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u00d7|M1|astro_stellar",
+      "spiral": "\u03a6",
+      "operator": "\u00d7",
+      "machine": "M1",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u00d7|M1|astro_galactic",
+      "spiral": "\u03a6",
+      "operator": "\u00d7",
+      "machine": "M1",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u00d7|M1|astro_quantum",
+      "spiral": "\u03a6",
+      "operator": "\u00d7",
+      "machine": "M1",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u00d7|M2|bio_neural",
+      "spiral": "\u03a6",
+      "operator": "\u00d7",
+      "machine": "M2",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u00d7|M2|bio_genetic",
+      "spiral": "\u03a6",
+      "operator": "\u00d7",
+      "machine": "M2",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u00d7|M2|bio_cellular",
+      "spiral": "\u03a6",
+      "operator": "\u00d7",
+      "machine": "M2",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u00d7|M2|astro_stellar",
+      "spiral": "\u03a6",
+      "operator": "\u00d7",
+      "machine": "M2",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u00d7|M2|astro_galactic",
+      "spiral": "\u03a6",
+      "operator": "\u00d7",
+      "machine": "M2",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u00d7|M2|astro_quantum",
+      "spiral": "\u03a6",
+      "operator": "\u00d7",
+      "machine": "M2",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u00d7|M3|bio_neural",
+      "spiral": "\u03a6",
+      "operator": "\u00d7",
+      "machine": "M3",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u00d7|M3|bio_genetic",
+      "spiral": "\u03a6",
+      "operator": "\u00d7",
+      "machine": "M3",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u00d7|M3|bio_cellular",
+      "spiral": "\u03a6",
+      "operator": "\u00d7",
+      "machine": "M3",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u00d7|M3|astro_stellar",
+      "spiral": "\u03a6",
+      "operator": "\u00d7",
+      "machine": "M3",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u00d7|M3|astro_galactic",
+      "spiral": "\u03a6",
+      "operator": "\u00d7",
+      "machine": "M3",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u00d7|M3|astro_quantum",
+      "spiral": "\u03a6",
+      "operator": "\u00d7",
+      "machine": "M3",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u00d7|M4|bio_neural",
+      "spiral": "\u03a6",
+      "operator": "\u00d7",
+      "machine": "M4",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u00d7|M4|bio_genetic",
+      "spiral": "\u03a6",
+      "operator": "\u00d7",
+      "machine": "M4",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u00d7|M4|bio_cellular",
+      "spiral": "\u03a6",
+      "operator": "\u00d7",
+      "machine": "M4",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u00d7|M4|astro_stellar",
+      "spiral": "\u03a6",
+      "operator": "\u00d7",
+      "machine": "M4",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u00d7|M4|astro_galactic",
+      "spiral": "\u03a6",
+      "operator": "\u00d7",
+      "machine": "M4",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u00d7|M4|astro_quantum",
+      "spiral": "\u03a6",
+      "operator": "\u00d7",
+      "machine": "M4",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u00d7|M5|bio_neural",
+      "spiral": "\u03a6",
+      "operator": "\u00d7",
+      "machine": "M5",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u00d7|M5|bio_genetic",
+      "spiral": "\u03a6",
+      "operator": "\u00d7",
+      "machine": "M5",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u00d7|M5|bio_cellular",
+      "spiral": "\u03a6",
+      "operator": "\u00d7",
+      "machine": "M5",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u00d7|M5|astro_stellar",
+      "spiral": "\u03a6",
+      "operator": "\u00d7",
+      "machine": "M5",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u00d7|M5|astro_galactic",
+      "spiral": "\u03a6",
+      "operator": "\u00d7",
+      "machine": "M5",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u00d7|M5|astro_quantum",
+      "spiral": "\u03a6",
+      "operator": "\u00d7",
+      "machine": "M5",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u00d7|M6|bio_neural",
+      "spiral": "\u03a6",
+      "operator": "\u00d7",
+      "machine": "M6",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u00d7|M6|bio_genetic",
+      "spiral": "\u03a6",
+      "operator": "\u00d7",
+      "machine": "M6",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u00d7|M6|bio_cellular",
+      "spiral": "\u03a6",
+      "operator": "\u00d7",
+      "machine": "M6",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u00d7|M6|astro_stellar",
+      "spiral": "\u03a6",
+      "operator": "\u00d7",
+      "machine": "M6",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u00d7|M6|astro_galactic",
+      "spiral": "\u03a6",
+      "operator": "\u00d7",
+      "machine": "M6",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u00d7|M6|astro_quantum",
+      "spiral": "\u03a6",
+      "operator": "\u00d7",
+      "machine": "M6",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u00d7|M7|bio_neural",
+      "spiral": "\u03a6",
+      "operator": "\u00d7",
+      "machine": "M7",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u00d7|M7|bio_genetic",
+      "spiral": "\u03a6",
+      "operator": "\u00d7",
+      "machine": "M7",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u00d7|M7|bio_cellular",
+      "spiral": "\u03a6",
+      "operator": "\u00d7",
+      "machine": "M7",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u00d7|M7|astro_stellar",
+      "spiral": "\u03a6",
+      "operator": "\u00d7",
+      "machine": "M7",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u00d7|M7|astro_galactic",
+      "spiral": "\u03a6",
+      "operator": "\u00d7",
+      "machine": "M7",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u00d7|M7|astro_quantum",
+      "spiral": "\u03a6",
+      "operator": "\u00d7",
+      "machine": "M7",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u00d7|M8|bio_neural",
+      "spiral": "\u03a6",
+      "operator": "\u00d7",
+      "machine": "M8",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u00d7|M8|bio_genetic",
+      "spiral": "\u03a6",
+      "operator": "\u00d7",
+      "machine": "M8",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u00d7|M8|bio_cellular",
+      "spiral": "\u03a6",
+      "operator": "\u00d7",
+      "machine": "M8",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u00d7|M8|astro_stellar",
+      "spiral": "\u03a6",
+      "operator": "\u00d7",
+      "machine": "M8",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u00d7|M8|astro_galactic",
+      "spiral": "\u03a6",
+      "operator": "\u00d7",
+      "machine": "M8",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u00d7|M8|astro_quantum",
+      "spiral": "\u03a6",
+      "operator": "\u00d7",
+      "machine": "M8",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u00d7|M9|bio_neural",
+      "spiral": "\u03a6",
+      "operator": "\u00d7",
+      "machine": "M9",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u00d7|M9|bio_genetic",
+      "spiral": "\u03a6",
+      "operator": "\u00d7",
+      "machine": "M9",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u00d7|M9|bio_cellular",
+      "spiral": "\u03a6",
+      "operator": "\u00d7",
+      "machine": "M9",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u00d7|M9|astro_stellar",
+      "spiral": "\u03a6",
+      "operator": "\u00d7",
+      "machine": "M9",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u00d7|M9|astro_galactic",
+      "spiral": "\u03a6",
+      "operator": "\u00d7",
+      "machine": "M9",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u00d7|M9|astro_quantum",
+      "spiral": "\u03a6",
+      "operator": "\u00d7",
+      "machine": "M9",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6^|M1|bio_neural",
+      "spiral": "\u03a6",
+      "operator": "^",
+      "machine": "M1",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6^|M1|bio_genetic",
+      "spiral": "\u03a6",
+      "operator": "^",
+      "machine": "M1",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6^|M1|bio_cellular",
+      "spiral": "\u03a6",
+      "operator": "^",
+      "machine": "M1",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6^|M1|astro_stellar",
+      "spiral": "\u03a6",
+      "operator": "^",
+      "machine": "M1",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6^|M1|astro_galactic",
+      "spiral": "\u03a6",
+      "operator": "^",
+      "machine": "M1",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6^|M1|astro_quantum",
+      "spiral": "\u03a6",
+      "operator": "^",
+      "machine": "M1",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6^|M2|bio_neural",
+      "spiral": "\u03a6",
+      "operator": "^",
+      "machine": "M2",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6^|M2|bio_genetic",
+      "spiral": "\u03a6",
+      "operator": "^",
+      "machine": "M2",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6^|M2|bio_cellular",
+      "spiral": "\u03a6",
+      "operator": "^",
+      "machine": "M2",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6^|M2|astro_stellar",
+      "spiral": "\u03a6",
+      "operator": "^",
+      "machine": "M2",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6^|M2|astro_galactic",
+      "spiral": "\u03a6",
+      "operator": "^",
+      "machine": "M2",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6^|M2|astro_quantum",
+      "spiral": "\u03a6",
+      "operator": "^",
+      "machine": "M2",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6^|M3|bio_neural",
+      "spiral": "\u03a6",
+      "operator": "^",
+      "machine": "M3",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6^|M3|bio_genetic",
+      "spiral": "\u03a6",
+      "operator": "^",
+      "machine": "M3",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6^|M3|bio_cellular",
+      "spiral": "\u03a6",
+      "operator": "^",
+      "machine": "M3",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6^|M3|astro_stellar",
+      "spiral": "\u03a6",
+      "operator": "^",
+      "machine": "M3",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6^|M3|astro_galactic",
+      "spiral": "\u03a6",
+      "operator": "^",
+      "machine": "M3",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6^|M3|astro_quantum",
+      "spiral": "\u03a6",
+      "operator": "^",
+      "machine": "M3",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6^|M4|bio_neural",
+      "spiral": "\u03a6",
+      "operator": "^",
+      "machine": "M4",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6^|M4|bio_genetic",
+      "spiral": "\u03a6",
+      "operator": "^",
+      "machine": "M4",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6^|M4|bio_cellular",
+      "spiral": "\u03a6",
+      "operator": "^",
+      "machine": "M4",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6^|M4|astro_stellar",
+      "spiral": "\u03a6",
+      "operator": "^",
+      "machine": "M4",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6^|M4|astro_galactic",
+      "spiral": "\u03a6",
+      "operator": "^",
+      "machine": "M4",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6^|M4|astro_quantum",
+      "spiral": "\u03a6",
+      "operator": "^",
+      "machine": "M4",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6^|M5|bio_neural",
+      "spiral": "\u03a6",
+      "operator": "^",
+      "machine": "M5",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6^|M5|bio_genetic",
+      "spiral": "\u03a6",
+      "operator": "^",
+      "machine": "M5",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6^|M5|bio_cellular",
+      "spiral": "\u03a6",
+      "operator": "^",
+      "machine": "M5",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6^|M5|astro_stellar",
+      "spiral": "\u03a6",
+      "operator": "^",
+      "machine": "M5",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6^|M5|astro_galactic",
+      "spiral": "\u03a6",
+      "operator": "^",
+      "machine": "M5",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6^|M5|astro_quantum",
+      "spiral": "\u03a6",
+      "operator": "^",
+      "machine": "M5",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6^|M6|bio_neural",
+      "spiral": "\u03a6",
+      "operator": "^",
+      "machine": "M6",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6^|M6|bio_genetic",
+      "spiral": "\u03a6",
+      "operator": "^",
+      "machine": "M6",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6^|M6|bio_cellular",
+      "spiral": "\u03a6",
+      "operator": "^",
+      "machine": "M6",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6^|M6|astro_stellar",
+      "spiral": "\u03a6",
+      "operator": "^",
+      "machine": "M6",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6^|M6|astro_galactic",
+      "spiral": "\u03a6",
+      "operator": "^",
+      "machine": "M6",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6^|M6|astro_quantum",
+      "spiral": "\u03a6",
+      "operator": "^",
+      "machine": "M6",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6^|M7|bio_neural",
+      "spiral": "\u03a6",
+      "operator": "^",
+      "machine": "M7",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6^|M7|bio_genetic",
+      "spiral": "\u03a6",
+      "operator": "^",
+      "machine": "M7",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6^|M7|bio_cellular",
+      "spiral": "\u03a6",
+      "operator": "^",
+      "machine": "M7",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6^|M7|astro_stellar",
+      "spiral": "\u03a6",
+      "operator": "^",
+      "machine": "M7",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6^|M7|astro_galactic",
+      "spiral": "\u03a6",
+      "operator": "^",
+      "machine": "M7",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6^|M7|astro_quantum",
+      "spiral": "\u03a6",
+      "operator": "^",
+      "machine": "M7",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6^|M8|bio_neural",
+      "spiral": "\u03a6",
+      "operator": "^",
+      "machine": "M8",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6^|M8|bio_genetic",
+      "spiral": "\u03a6",
+      "operator": "^",
+      "machine": "M8",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6^|M8|bio_cellular",
+      "spiral": "\u03a6",
+      "operator": "^",
+      "machine": "M8",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6^|M8|astro_stellar",
+      "spiral": "\u03a6",
+      "operator": "^",
+      "machine": "M8",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6^|M8|astro_galactic",
+      "spiral": "\u03a6",
+      "operator": "^",
+      "machine": "M8",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6^|M8|astro_quantum",
+      "spiral": "\u03a6",
+      "operator": "^",
+      "machine": "M8",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6^|M9|bio_neural",
+      "spiral": "\u03a6",
+      "operator": "^",
+      "machine": "M9",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6^|M9|bio_genetic",
+      "spiral": "\u03a6",
+      "operator": "^",
+      "machine": "M9",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6^|M9|bio_cellular",
+      "spiral": "\u03a6",
+      "operator": "^",
+      "machine": "M9",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6^|M9|astro_stellar",
+      "spiral": "\u03a6",
+      "operator": "^",
+      "machine": "M9",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6^|M9|astro_galactic",
+      "spiral": "\u03a6",
+      "operator": "^",
+      "machine": "M9",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6^|M9|astro_quantum",
+      "spiral": "\u03a6",
+      "operator": "^",
+      "machine": "M9",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u00f7|M1|bio_neural",
+      "spiral": "\u03a6",
+      "operator": "\u00f7",
+      "machine": "M1",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u00f7|M1|bio_genetic",
+      "spiral": "\u03a6",
+      "operator": "\u00f7",
+      "machine": "M1",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u00f7|M1|bio_cellular",
+      "spiral": "\u03a6",
+      "operator": "\u00f7",
+      "machine": "M1",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u00f7|M1|astro_stellar",
+      "spiral": "\u03a6",
+      "operator": "\u00f7",
+      "machine": "M1",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u00f7|M1|astro_galactic",
+      "spiral": "\u03a6",
+      "operator": "\u00f7",
+      "machine": "M1",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u00f7|M1|astro_quantum",
+      "spiral": "\u03a6",
+      "operator": "\u00f7",
+      "machine": "M1",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u00f7|M2|bio_neural",
+      "spiral": "\u03a6",
+      "operator": "\u00f7",
+      "machine": "M2",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u00f7|M2|bio_genetic",
+      "spiral": "\u03a6",
+      "operator": "\u00f7",
+      "machine": "M2",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u00f7|M2|bio_cellular",
+      "spiral": "\u03a6",
+      "operator": "\u00f7",
+      "machine": "M2",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u00f7|M2|astro_stellar",
+      "spiral": "\u03a6",
+      "operator": "\u00f7",
+      "machine": "M2",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u00f7|M2|astro_galactic",
+      "spiral": "\u03a6",
+      "operator": "\u00f7",
+      "machine": "M2",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u00f7|M2|astro_quantum",
+      "spiral": "\u03a6",
+      "operator": "\u00f7",
+      "machine": "M2",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u00f7|M3|bio_neural",
+      "spiral": "\u03a6",
+      "operator": "\u00f7",
+      "machine": "M3",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u00f7|M3|bio_genetic",
+      "spiral": "\u03a6",
+      "operator": "\u00f7",
+      "machine": "M3",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u00f7|M3|bio_cellular",
+      "spiral": "\u03a6",
+      "operator": "\u00f7",
+      "machine": "M3",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u00f7|M3|astro_stellar",
+      "spiral": "\u03a6",
+      "operator": "\u00f7",
+      "machine": "M3",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u00f7|M3|astro_galactic",
+      "spiral": "\u03a6",
+      "operator": "\u00f7",
+      "machine": "M3",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u00f7|M3|astro_quantum",
+      "spiral": "\u03a6",
+      "operator": "\u00f7",
+      "machine": "M3",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u00f7|M4|bio_neural",
+      "spiral": "\u03a6",
+      "operator": "\u00f7",
+      "machine": "M4",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u00f7|M4|bio_genetic",
+      "spiral": "\u03a6",
+      "operator": "\u00f7",
+      "machine": "M4",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u00f7|M4|bio_cellular",
+      "spiral": "\u03a6",
+      "operator": "\u00f7",
+      "machine": "M4",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u00f7|M4|astro_stellar",
+      "spiral": "\u03a6",
+      "operator": "\u00f7",
+      "machine": "M4",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u00f7|M4|astro_galactic",
+      "spiral": "\u03a6",
+      "operator": "\u00f7",
+      "machine": "M4",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u00f7|M4|astro_quantum",
+      "spiral": "\u03a6",
+      "operator": "\u00f7",
+      "machine": "M4",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u00f7|M5|bio_neural",
+      "spiral": "\u03a6",
+      "operator": "\u00f7",
+      "machine": "M5",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u00f7|M5|bio_genetic",
+      "spiral": "\u03a6",
+      "operator": "\u00f7",
+      "machine": "M5",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u00f7|M5|bio_cellular",
+      "spiral": "\u03a6",
+      "operator": "\u00f7",
+      "machine": "M5",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u00f7|M5|astro_stellar",
+      "spiral": "\u03a6",
+      "operator": "\u00f7",
+      "machine": "M5",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u00f7|M5|astro_galactic",
+      "spiral": "\u03a6",
+      "operator": "\u00f7",
+      "machine": "M5",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u00f7|M5|astro_quantum",
+      "spiral": "\u03a6",
+      "operator": "\u00f7",
+      "machine": "M5",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u00f7|M6|bio_neural",
+      "spiral": "\u03a6",
+      "operator": "\u00f7",
+      "machine": "M6",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u00f7|M6|bio_genetic",
+      "spiral": "\u03a6",
+      "operator": "\u00f7",
+      "machine": "M6",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u00f7|M6|bio_cellular",
+      "spiral": "\u03a6",
+      "operator": "\u00f7",
+      "machine": "M6",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u00f7|M6|astro_stellar",
+      "spiral": "\u03a6",
+      "operator": "\u00f7",
+      "machine": "M6",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u00f7|M6|astro_galactic",
+      "spiral": "\u03a6",
+      "operator": "\u00f7",
+      "machine": "M6",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u00f7|M6|astro_quantum",
+      "spiral": "\u03a6",
+      "operator": "\u00f7",
+      "machine": "M6",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u00f7|M7|bio_neural",
+      "spiral": "\u03a6",
+      "operator": "\u00f7",
+      "machine": "M7",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u00f7|M7|bio_genetic",
+      "spiral": "\u03a6",
+      "operator": "\u00f7",
+      "machine": "M7",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u00f7|M7|bio_cellular",
+      "spiral": "\u03a6",
+      "operator": "\u00f7",
+      "machine": "M7",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u00f7|M7|astro_stellar",
+      "spiral": "\u03a6",
+      "operator": "\u00f7",
+      "machine": "M7",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u00f7|M7|astro_galactic",
+      "spiral": "\u03a6",
+      "operator": "\u00f7",
+      "machine": "M7",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u00f7|M7|astro_quantum",
+      "spiral": "\u03a6",
+      "operator": "\u00f7",
+      "machine": "M7",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u00f7|M8|bio_neural",
+      "spiral": "\u03a6",
+      "operator": "\u00f7",
+      "machine": "M8",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u00f7|M8|bio_genetic",
+      "spiral": "\u03a6",
+      "operator": "\u00f7",
+      "machine": "M8",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u00f7|M8|bio_cellular",
+      "spiral": "\u03a6",
+      "operator": "\u00f7",
+      "machine": "M8",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u00f7|M8|astro_stellar",
+      "spiral": "\u03a6",
+      "operator": "\u00f7",
+      "machine": "M8",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u00f7|M8|astro_galactic",
+      "spiral": "\u03a6",
+      "operator": "\u00f7",
+      "machine": "M8",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u00f7|M8|astro_quantum",
+      "spiral": "\u03a6",
+      "operator": "\u00f7",
+      "machine": "M8",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u00f7|M9|bio_neural",
+      "spiral": "\u03a6",
+      "operator": "\u00f7",
+      "machine": "M9",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u00f7|M9|bio_genetic",
+      "spiral": "\u03a6",
+      "operator": "\u00f7",
+      "machine": "M9",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u00f7|M9|bio_cellular",
+      "spiral": "\u03a6",
+      "operator": "\u00f7",
+      "machine": "M9",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u00f7|M9|astro_stellar",
+      "spiral": "\u03a6",
+      "operator": "\u00f7",
+      "machine": "M9",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u00f7|M9|astro_galactic",
+      "spiral": "\u03a6",
+      "operator": "\u00f7",
+      "machine": "M9",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u00f7|M9|astro_quantum",
+      "spiral": "\u03a6",
+      "operator": "\u00f7",
+      "machine": "M9",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6+|M1|bio_neural",
+      "spiral": "\u03a6",
+      "operator": "+",
+      "machine": "M1",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6+|M1|bio_genetic",
+      "spiral": "\u03a6",
+      "operator": "+",
+      "machine": "M1",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6+|M1|bio_cellular",
+      "spiral": "\u03a6",
+      "operator": "+",
+      "machine": "M1",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6+|M1|astro_stellar",
+      "spiral": "\u03a6",
+      "operator": "+",
+      "machine": "M1",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6+|M1|astro_galactic",
+      "spiral": "\u03a6",
+      "operator": "+",
+      "machine": "M1",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6+|M1|astro_quantum",
+      "spiral": "\u03a6",
+      "operator": "+",
+      "machine": "M1",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6+|M2|bio_neural",
+      "spiral": "\u03a6",
+      "operator": "+",
+      "machine": "M2",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6+|M2|bio_genetic",
+      "spiral": "\u03a6",
+      "operator": "+",
+      "machine": "M2",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6+|M2|bio_cellular",
+      "spiral": "\u03a6",
+      "operator": "+",
+      "machine": "M2",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6+|M2|astro_stellar",
+      "spiral": "\u03a6",
+      "operator": "+",
+      "machine": "M2",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6+|M2|astro_galactic",
+      "spiral": "\u03a6",
+      "operator": "+",
+      "machine": "M2",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6+|M2|astro_quantum",
+      "spiral": "\u03a6",
+      "operator": "+",
+      "machine": "M2",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6+|M3|bio_neural",
+      "spiral": "\u03a6",
+      "operator": "+",
+      "machine": "M3",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6+|M3|bio_genetic",
+      "spiral": "\u03a6",
+      "operator": "+",
+      "machine": "M3",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6+|M3|bio_cellular",
+      "spiral": "\u03a6",
+      "operator": "+",
+      "machine": "M3",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6+|M3|astro_stellar",
+      "spiral": "\u03a6",
+      "operator": "+",
+      "machine": "M3",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6+|M3|astro_galactic",
+      "spiral": "\u03a6",
+      "operator": "+",
+      "machine": "M3",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6+|M3|astro_quantum",
+      "spiral": "\u03a6",
+      "operator": "+",
+      "machine": "M3",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6+|M4|bio_neural",
+      "spiral": "\u03a6",
+      "operator": "+",
+      "machine": "M4",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6+|M4|bio_genetic",
+      "spiral": "\u03a6",
+      "operator": "+",
+      "machine": "M4",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6+|M4|bio_cellular",
+      "spiral": "\u03a6",
+      "operator": "+",
+      "machine": "M4",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6+|M4|astro_stellar",
+      "spiral": "\u03a6",
+      "operator": "+",
+      "machine": "M4",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6+|M4|astro_galactic",
+      "spiral": "\u03a6",
+      "operator": "+",
+      "machine": "M4",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6+|M4|astro_quantum",
+      "spiral": "\u03a6",
+      "operator": "+",
+      "machine": "M4",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6+|M5|bio_neural",
+      "spiral": "\u03a6",
+      "operator": "+",
+      "machine": "M5",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6+|M5|bio_genetic",
+      "spiral": "\u03a6",
+      "operator": "+",
+      "machine": "M5",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6+|M5|bio_cellular",
+      "spiral": "\u03a6",
+      "operator": "+",
+      "machine": "M5",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6+|M5|astro_stellar",
+      "spiral": "\u03a6",
+      "operator": "+",
+      "machine": "M5",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6+|M5|astro_galactic",
+      "spiral": "\u03a6",
+      "operator": "+",
+      "machine": "M5",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6+|M5|astro_quantum",
+      "spiral": "\u03a6",
+      "operator": "+",
+      "machine": "M5",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6+|M6|bio_neural",
+      "spiral": "\u03a6",
+      "operator": "+",
+      "machine": "M6",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6+|M6|bio_genetic",
+      "spiral": "\u03a6",
+      "operator": "+",
+      "machine": "M6",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6+|M6|bio_cellular",
+      "spiral": "\u03a6",
+      "operator": "+",
+      "machine": "M6",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6+|M6|astro_stellar",
+      "spiral": "\u03a6",
+      "operator": "+",
+      "machine": "M6",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6+|M6|astro_galactic",
+      "spiral": "\u03a6",
+      "operator": "+",
+      "machine": "M6",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6+|M6|astro_quantum",
+      "spiral": "\u03a6",
+      "operator": "+",
+      "machine": "M6",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6+|M7|bio_neural",
+      "spiral": "\u03a6",
+      "operator": "+",
+      "machine": "M7",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6+|M7|bio_genetic",
+      "spiral": "\u03a6",
+      "operator": "+",
+      "machine": "M7",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6+|M7|bio_cellular",
+      "spiral": "\u03a6",
+      "operator": "+",
+      "machine": "M7",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6+|M7|astro_stellar",
+      "spiral": "\u03a6",
+      "operator": "+",
+      "machine": "M7",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6+|M7|astro_galactic",
+      "spiral": "\u03a6",
+      "operator": "+",
+      "machine": "M7",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6+|M7|astro_quantum",
+      "spiral": "\u03a6",
+      "operator": "+",
+      "machine": "M7",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6+|M8|bio_neural",
+      "spiral": "\u03a6",
+      "operator": "+",
+      "machine": "M8",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6+|M8|bio_genetic",
+      "spiral": "\u03a6",
+      "operator": "+",
+      "machine": "M8",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6+|M8|bio_cellular",
+      "spiral": "\u03a6",
+      "operator": "+",
+      "machine": "M8",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6+|M8|astro_stellar",
+      "spiral": "\u03a6",
+      "operator": "+",
+      "machine": "M8",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6+|M8|astro_galactic",
+      "spiral": "\u03a6",
+      "operator": "+",
+      "machine": "M8",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6+|M8|astro_quantum",
+      "spiral": "\u03a6",
+      "operator": "+",
+      "machine": "M8",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6+|M9|bio_neural",
+      "spiral": "\u03a6",
+      "operator": "+",
+      "machine": "M9",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6+|M9|bio_genetic",
+      "spiral": "\u03a6",
+      "operator": "+",
+      "machine": "M9",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6+|M9|bio_cellular",
+      "spiral": "\u03a6",
+      "operator": "+",
+      "machine": "M9",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6+|M9|astro_stellar",
+      "spiral": "\u03a6",
+      "operator": "+",
+      "machine": "M9",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6+|M9|astro_galactic",
+      "spiral": "\u03a6",
+      "operator": "+",
+      "machine": "M9",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6+|M9|astro_quantum",
+      "spiral": "\u03a6",
+      "operator": "+",
+      "machine": "M9",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u2212|M1|bio_neural",
+      "spiral": "\u03a6",
+      "operator": "\u2212",
+      "machine": "M1",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u2212|M1|bio_genetic",
+      "spiral": "\u03a6",
+      "operator": "\u2212",
+      "machine": "M1",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u2212|M1|bio_cellular",
+      "spiral": "\u03a6",
+      "operator": "\u2212",
+      "machine": "M1",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u2212|M1|astro_stellar",
+      "spiral": "\u03a6",
+      "operator": "\u2212",
+      "machine": "M1",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u2212|M1|astro_galactic",
+      "spiral": "\u03a6",
+      "operator": "\u2212",
+      "machine": "M1",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u2212|M1|astro_quantum",
+      "spiral": "\u03a6",
+      "operator": "\u2212",
+      "machine": "M1",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u2212|M2|bio_neural",
+      "spiral": "\u03a6",
+      "operator": "\u2212",
+      "machine": "M2",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u2212|M2|bio_genetic",
+      "spiral": "\u03a6",
+      "operator": "\u2212",
+      "machine": "M2",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u2212|M2|bio_cellular",
+      "spiral": "\u03a6",
+      "operator": "\u2212",
+      "machine": "M2",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u2212|M2|astro_stellar",
+      "spiral": "\u03a6",
+      "operator": "\u2212",
+      "machine": "M2",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u2212|M2|astro_galactic",
+      "spiral": "\u03a6",
+      "operator": "\u2212",
+      "machine": "M2",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u2212|M2|astro_quantum",
+      "spiral": "\u03a6",
+      "operator": "\u2212",
+      "machine": "M2",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u2212|M3|bio_neural",
+      "spiral": "\u03a6",
+      "operator": "\u2212",
+      "machine": "M3",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u2212|M3|bio_genetic",
+      "spiral": "\u03a6",
+      "operator": "\u2212",
+      "machine": "M3",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u2212|M3|bio_cellular",
+      "spiral": "\u03a6",
+      "operator": "\u2212",
+      "machine": "M3",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u2212|M3|astro_stellar",
+      "spiral": "\u03a6",
+      "operator": "\u2212",
+      "machine": "M3",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u2212|M3|astro_galactic",
+      "spiral": "\u03a6",
+      "operator": "\u2212",
+      "machine": "M3",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u2212|M3|astro_quantum",
+      "spiral": "\u03a6",
+      "operator": "\u2212",
+      "machine": "M3",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u2212|M4|bio_neural",
+      "spiral": "\u03a6",
+      "operator": "\u2212",
+      "machine": "M4",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u2212|M4|bio_genetic",
+      "spiral": "\u03a6",
+      "operator": "\u2212",
+      "machine": "M4",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u2212|M4|bio_cellular",
+      "spiral": "\u03a6",
+      "operator": "\u2212",
+      "machine": "M4",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u2212|M4|astro_stellar",
+      "spiral": "\u03a6",
+      "operator": "\u2212",
+      "machine": "M4",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u2212|M4|astro_galactic",
+      "spiral": "\u03a6",
+      "operator": "\u2212",
+      "machine": "M4",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u2212|M4|astro_quantum",
+      "spiral": "\u03a6",
+      "operator": "\u2212",
+      "machine": "M4",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u2212|M5|bio_neural",
+      "spiral": "\u03a6",
+      "operator": "\u2212",
+      "machine": "M5",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u2212|M5|bio_genetic",
+      "spiral": "\u03a6",
+      "operator": "\u2212",
+      "machine": "M5",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u2212|M5|bio_cellular",
+      "spiral": "\u03a6",
+      "operator": "\u2212",
+      "machine": "M5",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u2212|M5|astro_stellar",
+      "spiral": "\u03a6",
+      "operator": "\u2212",
+      "machine": "M5",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u2212|M5|astro_galactic",
+      "spiral": "\u03a6",
+      "operator": "\u2212",
+      "machine": "M5",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u2212|M5|astro_quantum",
+      "spiral": "\u03a6",
+      "operator": "\u2212",
+      "machine": "M5",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u2212|M6|bio_neural",
+      "spiral": "\u03a6",
+      "operator": "\u2212",
+      "machine": "M6",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u2212|M6|bio_genetic",
+      "spiral": "\u03a6",
+      "operator": "\u2212",
+      "machine": "M6",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u2212|M6|bio_cellular",
+      "spiral": "\u03a6",
+      "operator": "\u2212",
+      "machine": "M6",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u2212|M6|astro_stellar",
+      "spiral": "\u03a6",
+      "operator": "\u2212",
+      "machine": "M6",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u2212|M6|astro_galactic",
+      "spiral": "\u03a6",
+      "operator": "\u2212",
+      "machine": "M6",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u2212|M6|astro_quantum",
+      "spiral": "\u03a6",
+      "operator": "\u2212",
+      "machine": "M6",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u2212|M7|bio_neural",
+      "spiral": "\u03a6",
+      "operator": "\u2212",
+      "machine": "M7",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u2212|M7|bio_genetic",
+      "spiral": "\u03a6",
+      "operator": "\u2212",
+      "machine": "M7",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u2212|M7|bio_cellular",
+      "spiral": "\u03a6",
+      "operator": "\u2212",
+      "machine": "M7",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u2212|M7|astro_stellar",
+      "spiral": "\u03a6",
+      "operator": "\u2212",
+      "machine": "M7",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u2212|M7|astro_galactic",
+      "spiral": "\u03a6",
+      "operator": "\u2212",
+      "machine": "M7",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u2212|M7|astro_quantum",
+      "spiral": "\u03a6",
+      "operator": "\u2212",
+      "machine": "M7",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u2212|M8|bio_neural",
+      "spiral": "\u03a6",
+      "operator": "\u2212",
+      "machine": "M8",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u2212|M8|bio_genetic",
+      "spiral": "\u03a6",
+      "operator": "\u2212",
+      "machine": "M8",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u2212|M8|bio_cellular",
+      "spiral": "\u03a6",
+      "operator": "\u2212",
+      "machine": "M8",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u2212|M8|astro_stellar",
+      "spiral": "\u03a6",
+      "operator": "\u2212",
+      "machine": "M8",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u2212|M8|astro_galactic",
+      "spiral": "\u03a6",
+      "operator": "\u2212",
+      "machine": "M8",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u2212|M8|astro_quantum",
+      "spiral": "\u03a6",
+      "operator": "\u2212",
+      "machine": "M8",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u2212|M9|bio_neural",
+      "spiral": "\u03a6",
+      "operator": "\u2212",
+      "machine": "M9",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u2212|M9|bio_genetic",
+      "spiral": "\u03a6",
+      "operator": "\u2212",
+      "machine": "M9",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u2212|M9|bio_cellular",
+      "spiral": "\u03a6",
+      "operator": "\u2212",
+      "machine": "M9",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03a6\u2212|M9|astro_stellar",
+      "spiral": "\u03a6",
+      "operator": "\u2212",
+      "machine": "M9",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u2212|M9|astro_galactic",
+      "spiral": "\u03a6",
+      "operator": "\u2212",
+      "machine": "M9",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03a6\u2212|M9|astro_quantum",
+      "spiral": "\u03a6",
+      "operator": "\u2212",
+      "machine": "M9",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "e()|M1|bio_neural",
+      "spiral": "e",
+      "operator": "()",
+      "machine": "M1",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "e()|M1|bio_genetic",
+      "spiral": "e",
+      "operator": "()",
+      "machine": "M1",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "e()|M1|bio_cellular",
+      "spiral": "e",
+      "operator": "()",
+      "machine": "M1",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "e()|M1|astro_stellar",
+      "spiral": "e",
+      "operator": "()",
+      "machine": "M1",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "e()|M1|astro_galactic",
+      "spiral": "e",
+      "operator": "()",
+      "machine": "M1",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "e()|M1|astro_quantum",
+      "spiral": "e",
+      "operator": "()",
+      "machine": "M1",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "e()|M2|bio_neural",
+      "spiral": "e",
+      "operator": "()",
+      "machine": "M2",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "e()|M2|bio_genetic",
+      "spiral": "e",
+      "operator": "()",
+      "machine": "M2",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "e()|M2|bio_cellular",
+      "spiral": "e",
+      "operator": "()",
+      "machine": "M2",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "e()|M2|astro_stellar",
+      "spiral": "e",
+      "operator": "()",
+      "machine": "M2",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "e()|M2|astro_galactic",
+      "spiral": "e",
+      "operator": "()",
+      "machine": "M2",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "e()|M2|astro_quantum",
+      "spiral": "e",
+      "operator": "()",
+      "machine": "M2",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "e()|M3|bio_neural",
+      "spiral": "e",
+      "operator": "()",
+      "machine": "M3",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "e()|M3|bio_genetic",
+      "spiral": "e",
+      "operator": "()",
+      "machine": "M3",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "e()|M3|bio_cellular",
+      "spiral": "e",
+      "operator": "()",
+      "machine": "M3",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "e()|M3|astro_stellar",
+      "spiral": "e",
+      "operator": "()",
+      "machine": "M3",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "e()|M3|astro_galactic",
+      "spiral": "e",
+      "operator": "()",
+      "machine": "M3",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "e()|M3|astro_quantum",
+      "spiral": "e",
+      "operator": "()",
+      "machine": "M3",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "e()|M4|bio_neural",
+      "spiral": "e",
+      "operator": "()",
+      "machine": "M4",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "e()|M4|bio_genetic",
+      "spiral": "e",
+      "operator": "()",
+      "machine": "M4",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "e()|M4|bio_cellular",
+      "spiral": "e",
+      "operator": "()",
+      "machine": "M4",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "e()|M4|astro_stellar",
+      "spiral": "e",
+      "operator": "()",
+      "machine": "M4",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "e()|M4|astro_galactic",
+      "spiral": "e",
+      "operator": "()",
+      "machine": "M4",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "e()|M4|astro_quantum",
+      "spiral": "e",
+      "operator": "()",
+      "machine": "M4",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "e()|M5|bio_neural",
+      "spiral": "e",
+      "operator": "()",
+      "machine": "M5",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "e()|M5|bio_genetic",
+      "spiral": "e",
+      "operator": "()",
+      "machine": "M5",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "e()|M5|bio_cellular",
+      "spiral": "e",
+      "operator": "()",
+      "machine": "M5",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "e()|M5|astro_stellar",
+      "spiral": "e",
+      "operator": "()",
+      "machine": "M5",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "e()|M5|astro_galactic",
+      "spiral": "e",
+      "operator": "()",
+      "machine": "M5",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "e()|M5|astro_quantum",
+      "spiral": "e",
+      "operator": "()",
+      "machine": "M5",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "e()|M6|bio_neural",
+      "spiral": "e",
+      "operator": "()",
+      "machine": "M6",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "e()|M6|bio_genetic",
+      "spiral": "e",
+      "operator": "()",
+      "machine": "M6",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "e()|M6|bio_cellular",
+      "spiral": "e",
+      "operator": "()",
+      "machine": "M6",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "e()|M6|astro_stellar",
+      "spiral": "e",
+      "operator": "()",
+      "machine": "M6",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "e()|M6|astro_galactic",
+      "spiral": "e",
+      "operator": "()",
+      "machine": "M6",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "e()|M6|astro_quantum",
+      "spiral": "e",
+      "operator": "()",
+      "machine": "M6",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "e()|M7|bio_neural",
+      "spiral": "e",
+      "operator": "()",
+      "machine": "M7",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "e()|M7|bio_genetic",
+      "spiral": "e",
+      "operator": "()",
+      "machine": "M7",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "e()|M7|bio_cellular",
+      "spiral": "e",
+      "operator": "()",
+      "machine": "M7",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "e()|M7|astro_stellar",
+      "spiral": "e",
+      "operator": "()",
+      "machine": "M7",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "e()|M7|astro_galactic",
+      "spiral": "e",
+      "operator": "()",
+      "machine": "M7",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "e()|M7|astro_quantum",
+      "spiral": "e",
+      "operator": "()",
+      "machine": "M7",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "e()|M8|bio_neural",
+      "spiral": "e",
+      "operator": "()",
+      "machine": "M8",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "e()|M8|bio_genetic",
+      "spiral": "e",
+      "operator": "()",
+      "machine": "M8",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "e()|M8|bio_cellular",
+      "spiral": "e",
+      "operator": "()",
+      "machine": "M8",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "e()|M8|astro_stellar",
+      "spiral": "e",
+      "operator": "()",
+      "machine": "M8",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "e()|M8|astro_galactic",
+      "spiral": "e",
+      "operator": "()",
+      "machine": "M8",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "e()|M8|astro_quantum",
+      "spiral": "e",
+      "operator": "()",
+      "machine": "M8",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "e()|M9|bio_neural",
+      "spiral": "e",
+      "operator": "()",
+      "machine": "M9",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "e()|M9|bio_genetic",
+      "spiral": "e",
+      "operator": "()",
+      "machine": "M9",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "e()|M9|bio_cellular",
+      "spiral": "e",
+      "operator": "()",
+      "machine": "M9",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "e()|M9|astro_stellar",
+      "spiral": "e",
+      "operator": "()",
+      "machine": "M9",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "e()|M9|astro_galactic",
+      "spiral": "e",
+      "operator": "()",
+      "machine": "M9",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "e()|M9|astro_quantum",
+      "spiral": "e",
+      "operator": "()",
+      "machine": "M9",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u00d7|M1|bio_neural",
+      "spiral": "e",
+      "operator": "\u00d7",
+      "machine": "M1",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "e\u00d7|M1|bio_genetic",
+      "spiral": "e",
+      "operator": "\u00d7",
+      "machine": "M1",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "e\u00d7|M1|bio_cellular",
+      "spiral": "e",
+      "operator": "\u00d7",
+      "machine": "M1",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "e\u00d7|M1|astro_stellar",
+      "spiral": "e",
+      "operator": "\u00d7",
+      "machine": "M1",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u00d7|M1|astro_galactic",
+      "spiral": "e",
+      "operator": "\u00d7",
+      "machine": "M1",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u00d7|M1|astro_quantum",
+      "spiral": "e",
+      "operator": "\u00d7",
+      "machine": "M1",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u00d7|M2|bio_neural",
+      "spiral": "e",
+      "operator": "\u00d7",
+      "machine": "M2",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "e\u00d7|M2|bio_genetic",
+      "spiral": "e",
+      "operator": "\u00d7",
+      "machine": "M2",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "e\u00d7|M2|bio_cellular",
+      "spiral": "e",
+      "operator": "\u00d7",
+      "machine": "M2",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "e\u00d7|M2|astro_stellar",
+      "spiral": "e",
+      "operator": "\u00d7",
+      "machine": "M2",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u00d7|M2|astro_galactic",
+      "spiral": "e",
+      "operator": "\u00d7",
+      "machine": "M2",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u00d7|M2|astro_quantum",
+      "spiral": "e",
+      "operator": "\u00d7",
+      "machine": "M2",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u00d7|M3|bio_neural",
+      "spiral": "e",
+      "operator": "\u00d7",
+      "machine": "M3",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "e\u00d7|M3|bio_genetic",
+      "spiral": "e",
+      "operator": "\u00d7",
+      "machine": "M3",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "e\u00d7|M3|bio_cellular",
+      "spiral": "e",
+      "operator": "\u00d7",
+      "machine": "M3",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "e\u00d7|M3|astro_stellar",
+      "spiral": "e",
+      "operator": "\u00d7",
+      "machine": "M3",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u00d7|M3|astro_galactic",
+      "spiral": "e",
+      "operator": "\u00d7",
+      "machine": "M3",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u00d7|M3|astro_quantum",
+      "spiral": "e",
+      "operator": "\u00d7",
+      "machine": "M3",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u00d7|M4|bio_neural",
+      "spiral": "e",
+      "operator": "\u00d7",
+      "machine": "M4",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "e\u00d7|M4|bio_genetic",
+      "spiral": "e",
+      "operator": "\u00d7",
+      "machine": "M4",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "e\u00d7|M4|bio_cellular",
+      "spiral": "e",
+      "operator": "\u00d7",
+      "machine": "M4",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "e\u00d7|M4|astro_stellar",
+      "spiral": "e",
+      "operator": "\u00d7",
+      "machine": "M4",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u00d7|M4|astro_galactic",
+      "spiral": "e",
+      "operator": "\u00d7",
+      "machine": "M4",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u00d7|M4|astro_quantum",
+      "spiral": "e",
+      "operator": "\u00d7",
+      "machine": "M4",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u00d7|M5|bio_neural",
+      "spiral": "e",
+      "operator": "\u00d7",
+      "machine": "M5",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "e\u00d7|M5|bio_genetic",
+      "spiral": "e",
+      "operator": "\u00d7",
+      "machine": "M5",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "e\u00d7|M5|bio_cellular",
+      "spiral": "e",
+      "operator": "\u00d7",
+      "machine": "M5",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "e\u00d7|M5|astro_stellar",
+      "spiral": "e",
+      "operator": "\u00d7",
+      "machine": "M5",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u00d7|M5|astro_galactic",
+      "spiral": "e",
+      "operator": "\u00d7",
+      "machine": "M5",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u00d7|M5|astro_quantum",
+      "spiral": "e",
+      "operator": "\u00d7",
+      "machine": "M5",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u00d7|M6|bio_neural",
+      "spiral": "e",
+      "operator": "\u00d7",
+      "machine": "M6",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "e\u00d7|M6|bio_genetic",
+      "spiral": "e",
+      "operator": "\u00d7",
+      "machine": "M6",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "e\u00d7|M6|bio_cellular",
+      "spiral": "e",
+      "operator": "\u00d7",
+      "machine": "M6",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "e\u00d7|M6|astro_stellar",
+      "spiral": "e",
+      "operator": "\u00d7",
+      "machine": "M6",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u00d7|M6|astro_galactic",
+      "spiral": "e",
+      "operator": "\u00d7",
+      "machine": "M6",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u00d7|M6|astro_quantum",
+      "spiral": "e",
+      "operator": "\u00d7",
+      "machine": "M6",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u00d7|M7|bio_neural",
+      "spiral": "e",
+      "operator": "\u00d7",
+      "machine": "M7",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "e\u00d7|M7|bio_genetic",
+      "spiral": "e",
+      "operator": "\u00d7",
+      "machine": "M7",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "e\u00d7|M7|bio_cellular",
+      "spiral": "e",
+      "operator": "\u00d7",
+      "machine": "M7",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "e\u00d7|M7|astro_stellar",
+      "spiral": "e",
+      "operator": "\u00d7",
+      "machine": "M7",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u00d7|M7|astro_galactic",
+      "spiral": "e",
+      "operator": "\u00d7",
+      "machine": "M7",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u00d7|M7|astro_quantum",
+      "spiral": "e",
+      "operator": "\u00d7",
+      "machine": "M7",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u00d7|M8|bio_neural",
+      "spiral": "e",
+      "operator": "\u00d7",
+      "machine": "M8",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "e\u00d7|M8|bio_genetic",
+      "spiral": "e",
+      "operator": "\u00d7",
+      "machine": "M8",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "e\u00d7|M8|bio_cellular",
+      "spiral": "e",
+      "operator": "\u00d7",
+      "machine": "M8",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "e\u00d7|M8|astro_stellar",
+      "spiral": "e",
+      "operator": "\u00d7",
+      "machine": "M8",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u00d7|M8|astro_galactic",
+      "spiral": "e",
+      "operator": "\u00d7",
+      "machine": "M8",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u00d7|M8|astro_quantum",
+      "spiral": "e",
+      "operator": "\u00d7",
+      "machine": "M8",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u00d7|M9|bio_neural",
+      "spiral": "e",
+      "operator": "\u00d7",
+      "machine": "M9",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "e\u00d7|M9|bio_genetic",
+      "spiral": "e",
+      "operator": "\u00d7",
+      "machine": "M9",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "e\u00d7|M9|bio_cellular",
+      "spiral": "e",
+      "operator": "\u00d7",
+      "machine": "M9",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "e\u00d7|M9|astro_stellar",
+      "spiral": "e",
+      "operator": "\u00d7",
+      "machine": "M9",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u00d7|M9|astro_galactic",
+      "spiral": "e",
+      "operator": "\u00d7",
+      "machine": "M9",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u00d7|M9|astro_quantum",
+      "spiral": "e",
+      "operator": "\u00d7",
+      "machine": "M9",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "e^|M1|bio_neural",
+      "spiral": "e",
+      "operator": "^",
+      "machine": "M1",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "e^|M1|bio_genetic",
+      "spiral": "e",
+      "operator": "^",
+      "machine": "M1",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "e^|M1|bio_cellular",
+      "spiral": "e",
+      "operator": "^",
+      "machine": "M1",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "e^|M1|astro_stellar",
+      "spiral": "e",
+      "operator": "^",
+      "machine": "M1",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "e^|M1|astro_galactic",
+      "spiral": "e",
+      "operator": "^",
+      "machine": "M1",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "e^|M1|astro_quantum",
+      "spiral": "e",
+      "operator": "^",
+      "machine": "M1",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "e^|M2|bio_neural",
+      "spiral": "e",
+      "operator": "^",
+      "machine": "M2",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "e^|M2|bio_genetic",
+      "spiral": "e",
+      "operator": "^",
+      "machine": "M2",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "e^|M2|bio_cellular",
+      "spiral": "e",
+      "operator": "^",
+      "machine": "M2",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "e^|M2|astro_stellar",
+      "spiral": "e",
+      "operator": "^",
+      "machine": "M2",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "e^|M2|astro_galactic",
+      "spiral": "e",
+      "operator": "^",
+      "machine": "M2",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "e^|M2|astro_quantum",
+      "spiral": "e",
+      "operator": "^",
+      "machine": "M2",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "e^|M3|bio_neural",
+      "spiral": "e",
+      "operator": "^",
+      "machine": "M3",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "e^|M3|bio_genetic",
+      "spiral": "e",
+      "operator": "^",
+      "machine": "M3",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "e^|M3|bio_cellular",
+      "spiral": "e",
+      "operator": "^",
+      "machine": "M3",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "e^|M3|astro_stellar",
+      "spiral": "e",
+      "operator": "^",
+      "machine": "M3",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "e^|M3|astro_galactic",
+      "spiral": "e",
+      "operator": "^",
+      "machine": "M3",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "e^|M3|astro_quantum",
+      "spiral": "e",
+      "operator": "^",
+      "machine": "M3",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "e^|M4|bio_neural",
+      "spiral": "e",
+      "operator": "^",
+      "machine": "M4",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "e^|M4|bio_genetic",
+      "spiral": "e",
+      "operator": "^",
+      "machine": "M4",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "e^|M4|bio_cellular",
+      "spiral": "e",
+      "operator": "^",
+      "machine": "M4",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "e^|M4|astro_stellar",
+      "spiral": "e",
+      "operator": "^",
+      "machine": "M4",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "e^|M4|astro_galactic",
+      "spiral": "e",
+      "operator": "^",
+      "machine": "M4",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "e^|M4|astro_quantum",
+      "spiral": "e",
+      "operator": "^",
+      "machine": "M4",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "e^|M5|bio_neural",
+      "spiral": "e",
+      "operator": "^",
+      "machine": "M5",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "e^|M5|bio_genetic",
+      "spiral": "e",
+      "operator": "^",
+      "machine": "M5",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "e^|M5|bio_cellular",
+      "spiral": "e",
+      "operator": "^",
+      "machine": "M5",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "e^|M5|astro_stellar",
+      "spiral": "e",
+      "operator": "^",
+      "machine": "M5",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "e^|M5|astro_galactic",
+      "spiral": "e",
+      "operator": "^",
+      "machine": "M5",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "e^|M5|astro_quantum",
+      "spiral": "e",
+      "operator": "^",
+      "machine": "M5",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "e^|M6|bio_neural",
+      "spiral": "e",
+      "operator": "^",
+      "machine": "M6",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "e^|M6|bio_genetic",
+      "spiral": "e",
+      "operator": "^",
+      "machine": "M6",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "e^|M6|bio_cellular",
+      "spiral": "e",
+      "operator": "^",
+      "machine": "M6",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "e^|M6|astro_stellar",
+      "spiral": "e",
+      "operator": "^",
+      "machine": "M6",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "e^|M6|astro_galactic",
+      "spiral": "e",
+      "operator": "^",
+      "machine": "M6",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "e^|M6|astro_quantum",
+      "spiral": "e",
+      "operator": "^",
+      "machine": "M6",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "e^|M7|bio_neural",
+      "spiral": "e",
+      "operator": "^",
+      "machine": "M7",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "e^|M7|bio_genetic",
+      "spiral": "e",
+      "operator": "^",
+      "machine": "M7",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "e^|M7|bio_cellular",
+      "spiral": "e",
+      "operator": "^",
+      "machine": "M7",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "e^|M7|astro_stellar",
+      "spiral": "e",
+      "operator": "^",
+      "machine": "M7",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "e^|M7|astro_galactic",
+      "spiral": "e",
+      "operator": "^",
+      "machine": "M7",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "e^|M7|astro_quantum",
+      "spiral": "e",
+      "operator": "^",
+      "machine": "M7",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "e^|M8|bio_neural",
+      "spiral": "e",
+      "operator": "^",
+      "machine": "M8",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "e^|M8|bio_genetic",
+      "spiral": "e",
+      "operator": "^",
+      "machine": "M8",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "e^|M8|bio_cellular",
+      "spiral": "e",
+      "operator": "^",
+      "machine": "M8",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "e^|M8|astro_stellar",
+      "spiral": "e",
+      "operator": "^",
+      "machine": "M8",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "e^|M8|astro_galactic",
+      "spiral": "e",
+      "operator": "^",
+      "machine": "M8",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "e^|M8|astro_quantum",
+      "spiral": "e",
+      "operator": "^",
+      "machine": "M8",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "e^|M9|bio_neural",
+      "spiral": "e",
+      "operator": "^",
+      "machine": "M9",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "e^|M9|bio_genetic",
+      "spiral": "e",
+      "operator": "^",
+      "machine": "M9",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "e^|M9|bio_cellular",
+      "spiral": "e",
+      "operator": "^",
+      "machine": "M9",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "e^|M9|astro_stellar",
+      "spiral": "e",
+      "operator": "^",
+      "machine": "M9",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "e^|M9|astro_galactic",
+      "spiral": "e",
+      "operator": "^",
+      "machine": "M9",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "e^|M9|astro_quantum",
+      "spiral": "e",
+      "operator": "^",
+      "machine": "M9",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u00f7|M1|bio_neural",
+      "spiral": "e",
+      "operator": "\u00f7",
+      "machine": "M1",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "e\u00f7|M1|bio_genetic",
+      "spiral": "e",
+      "operator": "\u00f7",
+      "machine": "M1",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "e\u00f7|M1|bio_cellular",
+      "spiral": "e",
+      "operator": "\u00f7",
+      "machine": "M1",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "e\u00f7|M1|astro_stellar",
+      "spiral": "e",
+      "operator": "\u00f7",
+      "machine": "M1",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u00f7|M1|astro_galactic",
+      "spiral": "e",
+      "operator": "\u00f7",
+      "machine": "M1",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u00f7|M1|astro_quantum",
+      "spiral": "e",
+      "operator": "\u00f7",
+      "machine": "M1",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u00f7|M2|bio_neural",
+      "spiral": "e",
+      "operator": "\u00f7",
+      "machine": "M2",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "e\u00f7|M2|bio_genetic",
+      "spiral": "e",
+      "operator": "\u00f7",
+      "machine": "M2",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "e\u00f7|M2|bio_cellular",
+      "spiral": "e",
+      "operator": "\u00f7",
+      "machine": "M2",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "e\u00f7|M2|astro_stellar",
+      "spiral": "e",
+      "operator": "\u00f7",
+      "machine": "M2",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u00f7|M2|astro_galactic",
+      "spiral": "e",
+      "operator": "\u00f7",
+      "machine": "M2",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u00f7|M2|astro_quantum",
+      "spiral": "e",
+      "operator": "\u00f7",
+      "machine": "M2",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u00f7|M3|bio_neural",
+      "spiral": "e",
+      "operator": "\u00f7",
+      "machine": "M3",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "e\u00f7|M3|bio_genetic",
+      "spiral": "e",
+      "operator": "\u00f7",
+      "machine": "M3",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "e\u00f7|M3|bio_cellular",
+      "spiral": "e",
+      "operator": "\u00f7",
+      "machine": "M3",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "e\u00f7|M3|astro_stellar",
+      "spiral": "e",
+      "operator": "\u00f7",
+      "machine": "M3",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u00f7|M3|astro_galactic",
+      "spiral": "e",
+      "operator": "\u00f7",
+      "machine": "M3",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u00f7|M3|astro_quantum",
+      "spiral": "e",
+      "operator": "\u00f7",
+      "machine": "M3",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u00f7|M4|bio_neural",
+      "spiral": "e",
+      "operator": "\u00f7",
+      "machine": "M4",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "e\u00f7|M4|bio_genetic",
+      "spiral": "e",
+      "operator": "\u00f7",
+      "machine": "M4",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "e\u00f7|M4|bio_cellular",
+      "spiral": "e",
+      "operator": "\u00f7",
+      "machine": "M4",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "e\u00f7|M4|astro_stellar",
+      "spiral": "e",
+      "operator": "\u00f7",
+      "machine": "M4",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u00f7|M4|astro_galactic",
+      "spiral": "e",
+      "operator": "\u00f7",
+      "machine": "M4",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u00f7|M4|astro_quantum",
+      "spiral": "e",
+      "operator": "\u00f7",
+      "machine": "M4",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u00f7|M5|bio_neural",
+      "spiral": "e",
+      "operator": "\u00f7",
+      "machine": "M5",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "e\u00f7|M5|bio_genetic",
+      "spiral": "e",
+      "operator": "\u00f7",
+      "machine": "M5",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "e\u00f7|M5|bio_cellular",
+      "spiral": "e",
+      "operator": "\u00f7",
+      "machine": "M5",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "e\u00f7|M5|astro_stellar",
+      "spiral": "e",
+      "operator": "\u00f7",
+      "machine": "M5",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u00f7|M5|astro_galactic",
+      "spiral": "e",
+      "operator": "\u00f7",
+      "machine": "M5",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u00f7|M5|astro_quantum",
+      "spiral": "e",
+      "operator": "\u00f7",
+      "machine": "M5",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u00f7|M6|bio_neural",
+      "spiral": "e",
+      "operator": "\u00f7",
+      "machine": "M6",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "e\u00f7|M6|bio_genetic",
+      "spiral": "e",
+      "operator": "\u00f7",
+      "machine": "M6",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "e\u00f7|M6|bio_cellular",
+      "spiral": "e",
+      "operator": "\u00f7",
+      "machine": "M6",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "e\u00f7|M6|astro_stellar",
+      "spiral": "e",
+      "operator": "\u00f7",
+      "machine": "M6",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u00f7|M6|astro_galactic",
+      "spiral": "e",
+      "operator": "\u00f7",
+      "machine": "M6",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u00f7|M6|astro_quantum",
+      "spiral": "e",
+      "operator": "\u00f7",
+      "machine": "M6",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u00f7|M7|bio_neural",
+      "spiral": "e",
+      "operator": "\u00f7",
+      "machine": "M7",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "e\u00f7|M7|bio_genetic",
+      "spiral": "e",
+      "operator": "\u00f7",
+      "machine": "M7",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "e\u00f7|M7|bio_cellular",
+      "spiral": "e",
+      "operator": "\u00f7",
+      "machine": "M7",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "e\u00f7|M7|astro_stellar",
+      "spiral": "e",
+      "operator": "\u00f7",
+      "machine": "M7",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u00f7|M7|astro_galactic",
+      "spiral": "e",
+      "operator": "\u00f7",
+      "machine": "M7",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u00f7|M7|astro_quantum",
+      "spiral": "e",
+      "operator": "\u00f7",
+      "machine": "M7",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u00f7|M8|bio_neural",
+      "spiral": "e",
+      "operator": "\u00f7",
+      "machine": "M8",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "e\u00f7|M8|bio_genetic",
+      "spiral": "e",
+      "operator": "\u00f7",
+      "machine": "M8",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "e\u00f7|M8|bio_cellular",
+      "spiral": "e",
+      "operator": "\u00f7",
+      "machine": "M8",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "e\u00f7|M8|astro_stellar",
+      "spiral": "e",
+      "operator": "\u00f7",
+      "machine": "M8",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u00f7|M8|astro_galactic",
+      "spiral": "e",
+      "operator": "\u00f7",
+      "machine": "M8",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u00f7|M8|astro_quantum",
+      "spiral": "e",
+      "operator": "\u00f7",
+      "machine": "M8",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u00f7|M9|bio_neural",
+      "spiral": "e",
+      "operator": "\u00f7",
+      "machine": "M9",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "e\u00f7|M9|bio_genetic",
+      "spiral": "e",
+      "operator": "\u00f7",
+      "machine": "M9",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "e\u00f7|M9|bio_cellular",
+      "spiral": "e",
+      "operator": "\u00f7",
+      "machine": "M9",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "e\u00f7|M9|astro_stellar",
+      "spiral": "e",
+      "operator": "\u00f7",
+      "machine": "M9",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u00f7|M9|astro_galactic",
+      "spiral": "e",
+      "operator": "\u00f7",
+      "machine": "M9",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u00f7|M9|astro_quantum",
+      "spiral": "e",
+      "operator": "\u00f7",
+      "machine": "M9",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "e+|M1|bio_neural",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "M1",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "e+|M1|bio_genetic",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "M1",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "e+|M1|bio_cellular",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "M1",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "e+|M1|astro_stellar",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "M1",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "e+|M1|astro_galactic",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "M1",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "e+|M1|astro_quantum",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "M1",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "e+|M2|bio_neural",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "M2",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "e+|M2|bio_genetic",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "M2",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "e+|M2|bio_cellular",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "M2",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "e+|M2|astro_stellar",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "M2",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "e+|M2|astro_galactic",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "M2",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "e+|M2|astro_quantum",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "M2",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "e+|M3|bio_neural",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "M3",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "e+|M3|bio_genetic",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "M3",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "e+|M3|bio_cellular",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "M3",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "e+|M3|astro_stellar",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "M3",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "e+|M3|astro_galactic",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "M3",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "e+|M3|astro_quantum",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "M3",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "e+|M4|bio_neural",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "M4",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "e+|M4|bio_genetic",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "M4",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "e+|M4|bio_cellular",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "M4",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "e+|M4|astro_stellar",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "M4",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "e+|M4|astro_galactic",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "M4",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "e+|M4|astro_quantum",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "M4",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "e+|M5|bio_neural",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "M5",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "e+|M5|bio_genetic",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "M5",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "e+|M5|bio_cellular",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "M5",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "e+|M5|astro_stellar",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "M5",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "e+|M5|astro_galactic",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "M5",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "e+|M5|astro_quantum",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "M5",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "e+|M6|bio_neural",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "M6",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "e+|M6|bio_genetic",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "M6",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "e+|M6|bio_cellular",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "M6",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "e+|M6|astro_stellar",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "M6",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "e+|M6|astro_galactic",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "M6",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "e+|M6|astro_quantum",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "M6",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "e+|M7|bio_neural",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "M7",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "e+|M7|bio_genetic",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "M7",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "e+|M7|bio_cellular",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "M7",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "e+|M7|astro_stellar",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "M7",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "e+|M7|astro_galactic",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "M7",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "e+|M7|astro_quantum",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "M7",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "e+|M8|bio_neural",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "M8",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "e+|M8|bio_genetic",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "M8",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "e+|M8|bio_cellular",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "M8",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "e+|M8|astro_stellar",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "M8",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "e+|M8|astro_galactic",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "M8",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "e+|M8|astro_quantum",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "M8",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "e+|M9|bio_neural",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "M9",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "e+|M9|bio_genetic",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "M9",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "e+|M9|bio_cellular",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "M9",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "e+|M9|astro_stellar",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "M9",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "e+|M9|astro_galactic",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "M9",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "e+|M9|astro_quantum",
+      "spiral": "e",
+      "operator": "+",
+      "machine": "M9",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u2212|M1|bio_neural",
+      "spiral": "e",
+      "operator": "\u2212",
+      "machine": "M1",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "e\u2212|M1|bio_genetic",
+      "spiral": "e",
+      "operator": "\u2212",
+      "machine": "M1",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "e\u2212|M1|bio_cellular",
+      "spiral": "e",
+      "operator": "\u2212",
+      "machine": "M1",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "e\u2212|M1|astro_stellar",
+      "spiral": "e",
+      "operator": "\u2212",
+      "machine": "M1",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u2212|M1|astro_galactic",
+      "spiral": "e",
+      "operator": "\u2212",
+      "machine": "M1",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u2212|M1|astro_quantum",
+      "spiral": "e",
+      "operator": "\u2212",
+      "machine": "M1",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u2212|M2|bio_neural",
+      "spiral": "e",
+      "operator": "\u2212",
+      "machine": "M2",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "e\u2212|M2|bio_genetic",
+      "spiral": "e",
+      "operator": "\u2212",
+      "machine": "M2",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "e\u2212|M2|bio_cellular",
+      "spiral": "e",
+      "operator": "\u2212",
+      "machine": "M2",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "e\u2212|M2|astro_stellar",
+      "spiral": "e",
+      "operator": "\u2212",
+      "machine": "M2",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u2212|M2|astro_galactic",
+      "spiral": "e",
+      "operator": "\u2212",
+      "machine": "M2",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u2212|M2|astro_quantum",
+      "spiral": "e",
+      "operator": "\u2212",
+      "machine": "M2",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u2212|M3|bio_neural",
+      "spiral": "e",
+      "operator": "\u2212",
+      "machine": "M3",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "e\u2212|M3|bio_genetic",
+      "spiral": "e",
+      "operator": "\u2212",
+      "machine": "M3",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "e\u2212|M3|bio_cellular",
+      "spiral": "e",
+      "operator": "\u2212",
+      "machine": "M3",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "e\u2212|M3|astro_stellar",
+      "spiral": "e",
+      "operator": "\u2212",
+      "machine": "M3",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u2212|M3|astro_galactic",
+      "spiral": "e",
+      "operator": "\u2212",
+      "machine": "M3",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u2212|M3|astro_quantum",
+      "spiral": "e",
+      "operator": "\u2212",
+      "machine": "M3",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u2212|M4|bio_neural",
+      "spiral": "e",
+      "operator": "\u2212",
+      "machine": "M4",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "e\u2212|M4|bio_genetic",
+      "spiral": "e",
+      "operator": "\u2212",
+      "machine": "M4",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "e\u2212|M4|bio_cellular",
+      "spiral": "e",
+      "operator": "\u2212",
+      "machine": "M4",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "e\u2212|M4|astro_stellar",
+      "spiral": "e",
+      "operator": "\u2212",
+      "machine": "M4",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u2212|M4|astro_galactic",
+      "spiral": "e",
+      "operator": "\u2212",
+      "machine": "M4",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u2212|M4|astro_quantum",
+      "spiral": "e",
+      "operator": "\u2212",
+      "machine": "M4",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u2212|M5|bio_neural",
+      "spiral": "e",
+      "operator": "\u2212",
+      "machine": "M5",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "e\u2212|M5|bio_genetic",
+      "spiral": "e",
+      "operator": "\u2212",
+      "machine": "M5",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "e\u2212|M5|bio_cellular",
+      "spiral": "e",
+      "operator": "\u2212",
+      "machine": "M5",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "e\u2212|M5|astro_stellar",
+      "spiral": "e",
+      "operator": "\u2212",
+      "machine": "M5",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u2212|M5|astro_galactic",
+      "spiral": "e",
+      "operator": "\u2212",
+      "machine": "M5",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u2212|M5|astro_quantum",
+      "spiral": "e",
+      "operator": "\u2212",
+      "machine": "M5",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u2212|M6|bio_neural",
+      "spiral": "e",
+      "operator": "\u2212",
+      "machine": "M6",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "e\u2212|M6|bio_genetic",
+      "spiral": "e",
+      "operator": "\u2212",
+      "machine": "M6",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "e\u2212|M6|bio_cellular",
+      "spiral": "e",
+      "operator": "\u2212",
+      "machine": "M6",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "e\u2212|M6|astro_stellar",
+      "spiral": "e",
+      "operator": "\u2212",
+      "machine": "M6",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u2212|M6|astro_galactic",
+      "spiral": "e",
+      "operator": "\u2212",
+      "machine": "M6",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u2212|M6|astro_quantum",
+      "spiral": "e",
+      "operator": "\u2212",
+      "machine": "M6",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u2212|M7|bio_neural",
+      "spiral": "e",
+      "operator": "\u2212",
+      "machine": "M7",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "e\u2212|M7|bio_genetic",
+      "spiral": "e",
+      "operator": "\u2212",
+      "machine": "M7",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "e\u2212|M7|bio_cellular",
+      "spiral": "e",
+      "operator": "\u2212",
+      "machine": "M7",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "e\u2212|M7|astro_stellar",
+      "spiral": "e",
+      "operator": "\u2212",
+      "machine": "M7",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u2212|M7|astro_galactic",
+      "spiral": "e",
+      "operator": "\u2212",
+      "machine": "M7",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u2212|M7|astro_quantum",
+      "spiral": "e",
+      "operator": "\u2212",
+      "machine": "M7",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u2212|M8|bio_neural",
+      "spiral": "e",
+      "operator": "\u2212",
+      "machine": "M8",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "e\u2212|M8|bio_genetic",
+      "spiral": "e",
+      "operator": "\u2212",
+      "machine": "M8",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "e\u2212|M8|bio_cellular",
+      "spiral": "e",
+      "operator": "\u2212",
+      "machine": "M8",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "e\u2212|M8|astro_stellar",
+      "spiral": "e",
+      "operator": "\u2212",
+      "machine": "M8",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u2212|M8|astro_galactic",
+      "spiral": "e",
+      "operator": "\u2212",
+      "machine": "M8",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u2212|M8|astro_quantum",
+      "spiral": "e",
+      "operator": "\u2212",
+      "machine": "M8",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u2212|M9|bio_neural",
+      "spiral": "e",
+      "operator": "\u2212",
+      "machine": "M9",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "e\u2212|M9|bio_genetic",
+      "spiral": "e",
+      "operator": "\u2212",
+      "machine": "M9",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "e\u2212|M9|bio_cellular",
+      "spiral": "e",
+      "operator": "\u2212",
+      "machine": "M9",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "e\u2212|M9|astro_stellar",
+      "spiral": "e",
+      "operator": "\u2212",
+      "machine": "M9",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u2212|M9|astro_galactic",
+      "spiral": "e",
+      "operator": "\u2212",
+      "machine": "M9",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "e\u2212|M9|astro_quantum",
+      "spiral": "e",
+      "operator": "\u2212",
+      "machine": "M9",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0()|M1|bio_neural",
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "M1",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0()|M1|bio_genetic",
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "M1",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0()|M1|bio_cellular",
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "M1",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0()|M1|astro_stellar",
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "M1",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0()|M1|astro_galactic",
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "M1",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0()|M1|astro_quantum",
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "M1",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0()|M2|bio_neural",
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "M2",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0()|M2|bio_genetic",
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "M2",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0()|M2|bio_cellular",
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "M2",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0()|M2|astro_stellar",
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "M2",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0()|M2|astro_galactic",
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "M2",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0()|M2|astro_quantum",
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "M2",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0()|M3|bio_neural",
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "M3",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0()|M3|bio_genetic",
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "M3",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0()|M3|bio_cellular",
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "M3",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0()|M3|astro_stellar",
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "M3",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0()|M3|astro_galactic",
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "M3",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0()|M3|astro_quantum",
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "M3",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0()|M4|bio_neural",
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "M4",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0()|M4|bio_genetic",
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "M4",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0()|M4|bio_cellular",
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "M4",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0()|M4|astro_stellar",
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "M4",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0()|M4|astro_galactic",
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "M4",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0()|M4|astro_quantum",
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "M4",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0()|M5|bio_neural",
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "M5",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0()|M5|bio_genetic",
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "M5",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0()|M5|bio_cellular",
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "M5",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0()|M5|astro_stellar",
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "M5",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0()|M5|astro_galactic",
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "M5",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0()|M5|astro_quantum",
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "M5",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0()|M6|bio_neural",
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "M6",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0()|M6|bio_genetic",
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "M6",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0()|M6|bio_cellular",
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "M6",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0()|M6|astro_stellar",
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "M6",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0()|M6|astro_galactic",
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "M6",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0()|M6|astro_quantum",
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "M6",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0()|M7|bio_neural",
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "M7",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0()|M7|bio_genetic",
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "M7",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0()|M7|bio_cellular",
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "M7",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0()|M7|astro_stellar",
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "M7",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0()|M7|astro_galactic",
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "M7",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0()|M7|astro_quantum",
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "M7",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0()|M8|bio_neural",
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "M8",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0()|M8|bio_genetic",
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "M8",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0()|M8|bio_cellular",
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "M8",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0()|M8|astro_stellar",
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "M8",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0()|M8|astro_galactic",
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "M8",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0()|M8|astro_quantum",
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "M8",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0()|M9|bio_neural",
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "M9",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0()|M9|bio_genetic",
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "M9",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0()|M9|bio_cellular",
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "M9",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0()|M9|astro_stellar",
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "M9",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0()|M9|astro_galactic",
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "M9",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0()|M9|astro_quantum",
+      "spiral": "\u03c0",
+      "operator": "()",
+      "machine": "M9",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u00d7|M1|bio_neural",
+      "spiral": "\u03c0",
+      "operator": "\u00d7",
+      "machine": "M1",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u00d7|M1|bio_genetic",
+      "spiral": "\u03c0",
+      "operator": "\u00d7",
+      "machine": "M1",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u00d7|M1|bio_cellular",
+      "spiral": "\u03c0",
+      "operator": "\u00d7",
+      "machine": "M1",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u00d7|M1|astro_stellar",
+      "spiral": "\u03c0",
+      "operator": "\u00d7",
+      "machine": "M1",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u00d7|M1|astro_galactic",
+      "spiral": "\u03c0",
+      "operator": "\u00d7",
+      "machine": "M1",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u00d7|M1|astro_quantum",
+      "spiral": "\u03c0",
+      "operator": "\u00d7",
+      "machine": "M1",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u00d7|M2|bio_neural",
+      "spiral": "\u03c0",
+      "operator": "\u00d7",
+      "machine": "M2",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u00d7|M2|bio_genetic",
+      "spiral": "\u03c0",
+      "operator": "\u00d7",
+      "machine": "M2",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u00d7|M2|bio_cellular",
+      "spiral": "\u03c0",
+      "operator": "\u00d7",
+      "machine": "M2",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u00d7|M2|astro_stellar",
+      "spiral": "\u03c0",
+      "operator": "\u00d7",
+      "machine": "M2",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u00d7|M2|astro_galactic",
+      "spiral": "\u03c0",
+      "operator": "\u00d7",
+      "machine": "M2",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u00d7|M2|astro_quantum",
+      "spiral": "\u03c0",
+      "operator": "\u00d7",
+      "machine": "M2",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u00d7|M3|bio_neural",
+      "spiral": "\u03c0",
+      "operator": "\u00d7",
+      "machine": "M3",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u00d7|M3|bio_genetic",
+      "spiral": "\u03c0",
+      "operator": "\u00d7",
+      "machine": "M3",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u00d7|M3|bio_cellular",
+      "spiral": "\u03c0",
+      "operator": "\u00d7",
+      "machine": "M3",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u00d7|M3|astro_stellar",
+      "spiral": "\u03c0",
+      "operator": "\u00d7",
+      "machine": "M3",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u00d7|M3|astro_galactic",
+      "spiral": "\u03c0",
+      "operator": "\u00d7",
+      "machine": "M3",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u00d7|M3|astro_quantum",
+      "spiral": "\u03c0",
+      "operator": "\u00d7",
+      "machine": "M3",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u00d7|M4|bio_neural",
+      "spiral": "\u03c0",
+      "operator": "\u00d7",
+      "machine": "M4",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u00d7|M4|bio_genetic",
+      "spiral": "\u03c0",
+      "operator": "\u00d7",
+      "machine": "M4",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u00d7|M4|bio_cellular",
+      "spiral": "\u03c0",
+      "operator": "\u00d7",
+      "machine": "M4",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u00d7|M4|astro_stellar",
+      "spiral": "\u03c0",
+      "operator": "\u00d7",
+      "machine": "M4",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u00d7|M4|astro_galactic",
+      "spiral": "\u03c0",
+      "operator": "\u00d7",
+      "machine": "M4",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u00d7|M4|astro_quantum",
+      "spiral": "\u03c0",
+      "operator": "\u00d7",
+      "machine": "M4",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u00d7|M5|bio_neural",
+      "spiral": "\u03c0",
+      "operator": "\u00d7",
+      "machine": "M5",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u00d7|M5|bio_genetic",
+      "spiral": "\u03c0",
+      "operator": "\u00d7",
+      "machine": "M5",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u00d7|M5|bio_cellular",
+      "spiral": "\u03c0",
+      "operator": "\u00d7",
+      "machine": "M5",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u00d7|M5|astro_stellar",
+      "spiral": "\u03c0",
+      "operator": "\u00d7",
+      "machine": "M5",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u00d7|M5|astro_galactic",
+      "spiral": "\u03c0",
+      "operator": "\u00d7",
+      "machine": "M5",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u00d7|M5|astro_quantum",
+      "spiral": "\u03c0",
+      "operator": "\u00d7",
+      "machine": "M5",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u00d7|M6|bio_neural",
+      "spiral": "\u03c0",
+      "operator": "\u00d7",
+      "machine": "M6",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u00d7|M6|bio_genetic",
+      "spiral": "\u03c0",
+      "operator": "\u00d7",
+      "machine": "M6",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u00d7|M6|bio_cellular",
+      "spiral": "\u03c0",
+      "operator": "\u00d7",
+      "machine": "M6",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u00d7|M6|astro_stellar",
+      "spiral": "\u03c0",
+      "operator": "\u00d7",
+      "machine": "M6",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u00d7|M6|astro_galactic",
+      "spiral": "\u03c0",
+      "operator": "\u00d7",
+      "machine": "M6",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u00d7|M6|astro_quantum",
+      "spiral": "\u03c0",
+      "operator": "\u00d7",
+      "machine": "M6",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u00d7|M7|bio_neural",
+      "spiral": "\u03c0",
+      "operator": "\u00d7",
+      "machine": "M7",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u00d7|M7|bio_genetic",
+      "spiral": "\u03c0",
+      "operator": "\u00d7",
+      "machine": "M7",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u00d7|M7|bio_cellular",
+      "spiral": "\u03c0",
+      "operator": "\u00d7",
+      "machine": "M7",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u00d7|M7|astro_stellar",
+      "spiral": "\u03c0",
+      "operator": "\u00d7",
+      "machine": "M7",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u00d7|M7|astro_galactic",
+      "spiral": "\u03c0",
+      "operator": "\u00d7",
+      "machine": "M7",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u00d7|M7|astro_quantum",
+      "spiral": "\u03c0",
+      "operator": "\u00d7",
+      "machine": "M7",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u00d7|M8|bio_neural",
+      "spiral": "\u03c0",
+      "operator": "\u00d7",
+      "machine": "M8",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u00d7|M8|bio_genetic",
+      "spiral": "\u03c0",
+      "operator": "\u00d7",
+      "machine": "M8",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u00d7|M8|bio_cellular",
+      "spiral": "\u03c0",
+      "operator": "\u00d7",
+      "machine": "M8",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u00d7|M8|astro_stellar",
+      "spiral": "\u03c0",
+      "operator": "\u00d7",
+      "machine": "M8",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u00d7|M8|astro_galactic",
+      "spiral": "\u03c0",
+      "operator": "\u00d7",
+      "machine": "M8",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u00d7|M8|astro_quantum",
+      "spiral": "\u03c0",
+      "operator": "\u00d7",
+      "machine": "M8",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u00d7|M9|bio_neural",
+      "spiral": "\u03c0",
+      "operator": "\u00d7",
+      "machine": "M9",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u00d7|M9|bio_genetic",
+      "spiral": "\u03c0",
+      "operator": "\u00d7",
+      "machine": "M9",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u00d7|M9|bio_cellular",
+      "spiral": "\u03c0",
+      "operator": "\u00d7",
+      "machine": "M9",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u00d7|M9|astro_stellar",
+      "spiral": "\u03c0",
+      "operator": "\u00d7",
+      "machine": "M9",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u00d7|M9|astro_galactic",
+      "spiral": "\u03c0",
+      "operator": "\u00d7",
+      "machine": "M9",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u00d7|M9|astro_quantum",
+      "spiral": "\u03c0",
+      "operator": "\u00d7",
+      "machine": "M9",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0^|M1|bio_neural",
+      "spiral": "\u03c0",
+      "operator": "^",
+      "machine": "M1",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0^|M1|bio_genetic",
+      "spiral": "\u03c0",
+      "operator": "^",
+      "machine": "M1",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0^|M1|bio_cellular",
+      "spiral": "\u03c0",
+      "operator": "^",
+      "machine": "M1",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0^|M1|astro_stellar",
+      "spiral": "\u03c0",
+      "operator": "^",
+      "machine": "M1",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0^|M1|astro_galactic",
+      "spiral": "\u03c0",
+      "operator": "^",
+      "machine": "M1",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0^|M1|astro_quantum",
+      "spiral": "\u03c0",
+      "operator": "^",
+      "machine": "M1",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0^|M2|bio_neural",
+      "spiral": "\u03c0",
+      "operator": "^",
+      "machine": "M2",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0^|M2|bio_genetic",
+      "spiral": "\u03c0",
+      "operator": "^",
+      "machine": "M2",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0^|M2|bio_cellular",
+      "spiral": "\u03c0",
+      "operator": "^",
+      "machine": "M2",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0^|M2|astro_stellar",
+      "spiral": "\u03c0",
+      "operator": "^",
+      "machine": "M2",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0^|M2|astro_galactic",
+      "spiral": "\u03c0",
+      "operator": "^",
+      "machine": "M2",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0^|M2|astro_quantum",
+      "spiral": "\u03c0",
+      "operator": "^",
+      "machine": "M2",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0^|M3|bio_neural",
+      "spiral": "\u03c0",
+      "operator": "^",
+      "machine": "M3",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0^|M3|bio_genetic",
+      "spiral": "\u03c0",
+      "operator": "^",
+      "machine": "M3",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0^|M3|bio_cellular",
+      "spiral": "\u03c0",
+      "operator": "^",
+      "machine": "M3",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0^|M3|astro_stellar",
+      "spiral": "\u03c0",
+      "operator": "^",
+      "machine": "M3",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0^|M3|astro_galactic",
+      "spiral": "\u03c0",
+      "operator": "^",
+      "machine": "M3",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0^|M3|astro_quantum",
+      "spiral": "\u03c0",
+      "operator": "^",
+      "machine": "M3",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0^|M4|bio_neural",
+      "spiral": "\u03c0",
+      "operator": "^",
+      "machine": "M4",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0^|M4|bio_genetic",
+      "spiral": "\u03c0",
+      "operator": "^",
+      "machine": "M4",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0^|M4|bio_cellular",
+      "spiral": "\u03c0",
+      "operator": "^",
+      "machine": "M4",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0^|M4|astro_stellar",
+      "spiral": "\u03c0",
+      "operator": "^",
+      "machine": "M4",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0^|M4|astro_galactic",
+      "spiral": "\u03c0",
+      "operator": "^",
+      "machine": "M4",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0^|M4|astro_quantum",
+      "spiral": "\u03c0",
+      "operator": "^",
+      "machine": "M4",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0^|M5|bio_neural",
+      "spiral": "\u03c0",
+      "operator": "^",
+      "machine": "M5",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0^|M5|bio_genetic",
+      "spiral": "\u03c0",
+      "operator": "^",
+      "machine": "M5",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0^|M5|bio_cellular",
+      "spiral": "\u03c0",
+      "operator": "^",
+      "machine": "M5",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0^|M5|astro_stellar",
+      "spiral": "\u03c0",
+      "operator": "^",
+      "machine": "M5",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0^|M5|astro_galactic",
+      "spiral": "\u03c0",
+      "operator": "^",
+      "machine": "M5",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0^|M5|astro_quantum",
+      "spiral": "\u03c0",
+      "operator": "^",
+      "machine": "M5",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0^|M6|bio_neural",
+      "spiral": "\u03c0",
+      "operator": "^",
+      "machine": "M6",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0^|M6|bio_genetic",
+      "spiral": "\u03c0",
+      "operator": "^",
+      "machine": "M6",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0^|M6|bio_cellular",
+      "spiral": "\u03c0",
+      "operator": "^",
+      "machine": "M6",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0^|M6|astro_stellar",
+      "spiral": "\u03c0",
+      "operator": "^",
+      "machine": "M6",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0^|M6|astro_galactic",
+      "spiral": "\u03c0",
+      "operator": "^",
+      "machine": "M6",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0^|M6|astro_quantum",
+      "spiral": "\u03c0",
+      "operator": "^",
+      "machine": "M6",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0^|M7|bio_neural",
+      "spiral": "\u03c0",
+      "operator": "^",
+      "machine": "M7",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0^|M7|bio_genetic",
+      "spiral": "\u03c0",
+      "operator": "^",
+      "machine": "M7",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0^|M7|bio_cellular",
+      "spiral": "\u03c0",
+      "operator": "^",
+      "machine": "M7",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0^|M7|astro_stellar",
+      "spiral": "\u03c0",
+      "operator": "^",
+      "machine": "M7",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0^|M7|astro_galactic",
+      "spiral": "\u03c0",
+      "operator": "^",
+      "machine": "M7",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0^|M7|astro_quantum",
+      "spiral": "\u03c0",
+      "operator": "^",
+      "machine": "M7",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0^|M8|bio_neural",
+      "spiral": "\u03c0",
+      "operator": "^",
+      "machine": "M8",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0^|M8|bio_genetic",
+      "spiral": "\u03c0",
+      "operator": "^",
+      "machine": "M8",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0^|M8|bio_cellular",
+      "spiral": "\u03c0",
+      "operator": "^",
+      "machine": "M8",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0^|M8|astro_stellar",
+      "spiral": "\u03c0",
+      "operator": "^",
+      "machine": "M8",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0^|M8|astro_galactic",
+      "spiral": "\u03c0",
+      "operator": "^",
+      "machine": "M8",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0^|M8|astro_quantum",
+      "spiral": "\u03c0",
+      "operator": "^",
+      "machine": "M8",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0^|M9|bio_neural",
+      "spiral": "\u03c0",
+      "operator": "^",
+      "machine": "M9",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0^|M9|bio_genetic",
+      "spiral": "\u03c0",
+      "operator": "^",
+      "machine": "M9",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0^|M9|bio_cellular",
+      "spiral": "\u03c0",
+      "operator": "^",
+      "machine": "M9",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0^|M9|astro_stellar",
+      "spiral": "\u03c0",
+      "operator": "^",
+      "machine": "M9",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0^|M9|astro_galactic",
+      "spiral": "\u03c0",
+      "operator": "^",
+      "machine": "M9",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0^|M9|astro_quantum",
+      "spiral": "\u03c0",
+      "operator": "^",
+      "machine": "M9",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u00f7|M1|bio_neural",
+      "spiral": "\u03c0",
+      "operator": "\u00f7",
+      "machine": "M1",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u00f7|M1|bio_genetic",
+      "spiral": "\u03c0",
+      "operator": "\u00f7",
+      "machine": "M1",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u00f7|M1|bio_cellular",
+      "spiral": "\u03c0",
+      "operator": "\u00f7",
+      "machine": "M1",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u00f7|M1|astro_stellar",
+      "spiral": "\u03c0",
+      "operator": "\u00f7",
+      "machine": "M1",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u00f7|M1|astro_galactic",
+      "spiral": "\u03c0",
+      "operator": "\u00f7",
+      "machine": "M1",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u00f7|M1|astro_quantum",
+      "spiral": "\u03c0",
+      "operator": "\u00f7",
+      "machine": "M1",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u00f7|M2|bio_neural",
+      "spiral": "\u03c0",
+      "operator": "\u00f7",
+      "machine": "M2",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u00f7|M2|bio_genetic",
+      "spiral": "\u03c0",
+      "operator": "\u00f7",
+      "machine": "M2",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u00f7|M2|bio_cellular",
+      "spiral": "\u03c0",
+      "operator": "\u00f7",
+      "machine": "M2",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u00f7|M2|astro_stellar",
+      "spiral": "\u03c0",
+      "operator": "\u00f7",
+      "machine": "M2",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u00f7|M2|astro_galactic",
+      "spiral": "\u03c0",
+      "operator": "\u00f7",
+      "machine": "M2",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u00f7|M2|astro_quantum",
+      "spiral": "\u03c0",
+      "operator": "\u00f7",
+      "machine": "M2",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u00f7|M3|bio_neural",
+      "spiral": "\u03c0",
+      "operator": "\u00f7",
+      "machine": "M3",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u00f7|M3|bio_genetic",
+      "spiral": "\u03c0",
+      "operator": "\u00f7",
+      "machine": "M3",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u00f7|M3|bio_cellular",
+      "spiral": "\u03c0",
+      "operator": "\u00f7",
+      "machine": "M3",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u00f7|M3|astro_stellar",
+      "spiral": "\u03c0",
+      "operator": "\u00f7",
+      "machine": "M3",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u00f7|M3|astro_galactic",
+      "spiral": "\u03c0",
+      "operator": "\u00f7",
+      "machine": "M3",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u00f7|M3|astro_quantum",
+      "spiral": "\u03c0",
+      "operator": "\u00f7",
+      "machine": "M3",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u00f7|M4|bio_neural",
+      "spiral": "\u03c0",
+      "operator": "\u00f7",
+      "machine": "M4",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u00f7|M4|bio_genetic",
+      "spiral": "\u03c0",
+      "operator": "\u00f7",
+      "machine": "M4",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u00f7|M4|bio_cellular",
+      "spiral": "\u03c0",
+      "operator": "\u00f7",
+      "machine": "M4",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u00f7|M4|astro_stellar",
+      "spiral": "\u03c0",
+      "operator": "\u00f7",
+      "machine": "M4",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u00f7|M4|astro_galactic",
+      "spiral": "\u03c0",
+      "operator": "\u00f7",
+      "machine": "M4",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u00f7|M4|astro_quantum",
+      "spiral": "\u03c0",
+      "operator": "\u00f7",
+      "machine": "M4",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u00f7|M5|bio_neural",
+      "spiral": "\u03c0",
+      "operator": "\u00f7",
+      "machine": "M5",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u00f7|M5|bio_genetic",
+      "spiral": "\u03c0",
+      "operator": "\u00f7",
+      "machine": "M5",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u00f7|M5|bio_cellular",
+      "spiral": "\u03c0",
+      "operator": "\u00f7",
+      "machine": "M5",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u00f7|M5|astro_stellar",
+      "spiral": "\u03c0",
+      "operator": "\u00f7",
+      "machine": "M5",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u00f7|M5|astro_galactic",
+      "spiral": "\u03c0",
+      "operator": "\u00f7",
+      "machine": "M5",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u00f7|M5|astro_quantum",
+      "spiral": "\u03c0",
+      "operator": "\u00f7",
+      "machine": "M5",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u00f7|M6|bio_neural",
+      "spiral": "\u03c0",
+      "operator": "\u00f7",
+      "machine": "M6",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u00f7|M6|bio_genetic",
+      "spiral": "\u03c0",
+      "operator": "\u00f7",
+      "machine": "M6",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u00f7|M6|bio_cellular",
+      "spiral": "\u03c0",
+      "operator": "\u00f7",
+      "machine": "M6",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u00f7|M6|astro_stellar",
+      "spiral": "\u03c0",
+      "operator": "\u00f7",
+      "machine": "M6",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u00f7|M6|astro_galactic",
+      "spiral": "\u03c0",
+      "operator": "\u00f7",
+      "machine": "M6",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u00f7|M6|astro_quantum",
+      "spiral": "\u03c0",
+      "operator": "\u00f7",
+      "machine": "M6",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u00f7|M7|bio_neural",
+      "spiral": "\u03c0",
+      "operator": "\u00f7",
+      "machine": "M7",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u00f7|M7|bio_genetic",
+      "spiral": "\u03c0",
+      "operator": "\u00f7",
+      "machine": "M7",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u00f7|M7|bio_cellular",
+      "spiral": "\u03c0",
+      "operator": "\u00f7",
+      "machine": "M7",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u00f7|M7|astro_stellar",
+      "spiral": "\u03c0",
+      "operator": "\u00f7",
+      "machine": "M7",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u00f7|M7|astro_galactic",
+      "spiral": "\u03c0",
+      "operator": "\u00f7",
+      "machine": "M7",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u00f7|M7|astro_quantum",
+      "spiral": "\u03c0",
+      "operator": "\u00f7",
+      "machine": "M7",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u00f7|M8|bio_neural",
+      "spiral": "\u03c0",
+      "operator": "\u00f7",
+      "machine": "M8",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u00f7|M8|bio_genetic",
+      "spiral": "\u03c0",
+      "operator": "\u00f7",
+      "machine": "M8",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u00f7|M8|bio_cellular",
+      "spiral": "\u03c0",
+      "operator": "\u00f7",
+      "machine": "M8",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u00f7|M8|astro_stellar",
+      "spiral": "\u03c0",
+      "operator": "\u00f7",
+      "machine": "M8",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u00f7|M8|astro_galactic",
+      "spiral": "\u03c0",
+      "operator": "\u00f7",
+      "machine": "M8",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u00f7|M8|astro_quantum",
+      "spiral": "\u03c0",
+      "operator": "\u00f7",
+      "machine": "M8",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u00f7|M9|bio_neural",
+      "spiral": "\u03c0",
+      "operator": "\u00f7",
+      "machine": "M9",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u00f7|M9|bio_genetic",
+      "spiral": "\u03c0",
+      "operator": "\u00f7",
+      "machine": "M9",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u00f7|M9|bio_cellular",
+      "spiral": "\u03c0",
+      "operator": "\u00f7",
+      "machine": "M9",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u00f7|M9|astro_stellar",
+      "spiral": "\u03c0",
+      "operator": "\u00f7",
+      "machine": "M9",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u00f7|M9|astro_galactic",
+      "spiral": "\u03c0",
+      "operator": "\u00f7",
+      "machine": "M9",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u00f7|M9|astro_quantum",
+      "spiral": "\u03c0",
+      "operator": "\u00f7",
+      "machine": "M9",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0+|M1|bio_neural",
+      "spiral": "\u03c0",
+      "operator": "+",
+      "machine": "M1",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0+|M1|bio_genetic",
+      "spiral": "\u03c0",
+      "operator": "+",
+      "machine": "M1",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0+|M1|bio_cellular",
+      "spiral": "\u03c0",
+      "operator": "+",
+      "machine": "M1",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0+|M1|astro_stellar",
+      "spiral": "\u03c0",
+      "operator": "+",
+      "machine": "M1",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0+|M1|astro_galactic",
+      "spiral": "\u03c0",
+      "operator": "+",
+      "machine": "M1",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0+|M1|astro_quantum",
+      "spiral": "\u03c0",
+      "operator": "+",
+      "machine": "M1",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0+|M2|bio_neural",
+      "spiral": "\u03c0",
+      "operator": "+",
+      "machine": "M2",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0+|M2|bio_genetic",
+      "spiral": "\u03c0",
+      "operator": "+",
+      "machine": "M2",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0+|M2|bio_cellular",
+      "spiral": "\u03c0",
+      "operator": "+",
+      "machine": "M2",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0+|M2|astro_stellar",
+      "spiral": "\u03c0",
+      "operator": "+",
+      "machine": "M2",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0+|M2|astro_galactic",
+      "spiral": "\u03c0",
+      "operator": "+",
+      "machine": "M2",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0+|M2|astro_quantum",
+      "spiral": "\u03c0",
+      "operator": "+",
+      "machine": "M2",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0+|M3|bio_neural",
+      "spiral": "\u03c0",
+      "operator": "+",
+      "machine": "M3",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0+|M3|bio_genetic",
+      "spiral": "\u03c0",
+      "operator": "+",
+      "machine": "M3",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0+|M3|bio_cellular",
+      "spiral": "\u03c0",
+      "operator": "+",
+      "machine": "M3",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0+|M3|astro_stellar",
+      "spiral": "\u03c0",
+      "operator": "+",
+      "machine": "M3",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0+|M3|astro_galactic",
+      "spiral": "\u03c0",
+      "operator": "+",
+      "machine": "M3",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0+|M3|astro_quantum",
+      "spiral": "\u03c0",
+      "operator": "+",
+      "machine": "M3",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0+|M4|bio_neural",
+      "spiral": "\u03c0",
+      "operator": "+",
+      "machine": "M4",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0+|M4|bio_genetic",
+      "spiral": "\u03c0",
+      "operator": "+",
+      "machine": "M4",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0+|M4|bio_cellular",
+      "spiral": "\u03c0",
+      "operator": "+",
+      "machine": "M4",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0+|M4|astro_stellar",
+      "spiral": "\u03c0",
+      "operator": "+",
+      "machine": "M4",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0+|M4|astro_galactic",
+      "spiral": "\u03c0",
+      "operator": "+",
+      "machine": "M4",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0+|M4|astro_quantum",
+      "spiral": "\u03c0",
+      "operator": "+",
+      "machine": "M4",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0+|M5|bio_neural",
+      "spiral": "\u03c0",
+      "operator": "+",
+      "machine": "M5",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0+|M5|bio_genetic",
+      "spiral": "\u03c0",
+      "operator": "+",
+      "machine": "M5",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0+|M5|bio_cellular",
+      "spiral": "\u03c0",
+      "operator": "+",
+      "machine": "M5",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0+|M5|astro_stellar",
+      "spiral": "\u03c0",
+      "operator": "+",
+      "machine": "M5",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0+|M5|astro_galactic",
+      "spiral": "\u03c0",
+      "operator": "+",
+      "machine": "M5",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0+|M5|astro_quantum",
+      "spiral": "\u03c0",
+      "operator": "+",
+      "machine": "M5",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0+|M6|bio_neural",
+      "spiral": "\u03c0",
+      "operator": "+",
+      "machine": "M6",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0+|M6|bio_genetic",
+      "spiral": "\u03c0",
+      "operator": "+",
+      "machine": "M6",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0+|M6|bio_cellular",
+      "spiral": "\u03c0",
+      "operator": "+",
+      "machine": "M6",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0+|M6|astro_stellar",
+      "spiral": "\u03c0",
+      "operator": "+",
+      "machine": "M6",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0+|M6|astro_galactic",
+      "spiral": "\u03c0",
+      "operator": "+",
+      "machine": "M6",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0+|M6|astro_quantum",
+      "spiral": "\u03c0",
+      "operator": "+",
+      "machine": "M6",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0+|M7|bio_neural",
+      "spiral": "\u03c0",
+      "operator": "+",
+      "machine": "M7",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0+|M7|bio_genetic",
+      "spiral": "\u03c0",
+      "operator": "+",
+      "machine": "M7",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0+|M7|bio_cellular",
+      "spiral": "\u03c0",
+      "operator": "+",
+      "machine": "M7",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0+|M7|astro_stellar",
+      "spiral": "\u03c0",
+      "operator": "+",
+      "machine": "M7",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0+|M7|astro_galactic",
+      "spiral": "\u03c0",
+      "operator": "+",
+      "machine": "M7",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0+|M7|astro_quantum",
+      "spiral": "\u03c0",
+      "operator": "+",
+      "machine": "M7",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0+|M8|bio_neural",
+      "spiral": "\u03c0",
+      "operator": "+",
+      "machine": "M8",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0+|M8|bio_genetic",
+      "spiral": "\u03c0",
+      "operator": "+",
+      "machine": "M8",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0+|M8|bio_cellular",
+      "spiral": "\u03c0",
+      "operator": "+",
+      "machine": "M8",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0+|M8|astro_stellar",
+      "spiral": "\u03c0",
+      "operator": "+",
+      "machine": "M8",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0+|M8|astro_galactic",
+      "spiral": "\u03c0",
+      "operator": "+",
+      "machine": "M8",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0+|M8|astro_quantum",
+      "spiral": "\u03c0",
+      "operator": "+",
+      "machine": "M8",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0+|M9|bio_neural",
+      "spiral": "\u03c0",
+      "operator": "+",
+      "machine": "M9",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0+|M9|bio_genetic",
+      "spiral": "\u03c0",
+      "operator": "+",
+      "machine": "M9",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0+|M9|bio_cellular",
+      "spiral": "\u03c0",
+      "operator": "+",
+      "machine": "M9",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0+|M9|astro_stellar",
+      "spiral": "\u03c0",
+      "operator": "+",
+      "machine": "M9",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0+|M9|astro_galactic",
+      "spiral": "\u03c0",
+      "operator": "+",
+      "machine": "M9",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0+|M9|astro_quantum",
+      "spiral": "\u03c0",
+      "operator": "+",
+      "machine": "M9",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u2212|M1|bio_neural",
+      "spiral": "\u03c0",
+      "operator": "\u2212",
+      "machine": "M1",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u2212|M1|bio_genetic",
+      "spiral": "\u03c0",
+      "operator": "\u2212",
+      "machine": "M1",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u2212|M1|bio_cellular",
+      "spiral": "\u03c0",
+      "operator": "\u2212",
+      "machine": "M1",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u2212|M1|astro_stellar",
+      "spiral": "\u03c0",
+      "operator": "\u2212",
+      "machine": "M1",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u2212|M1|astro_galactic",
+      "spiral": "\u03c0",
+      "operator": "\u2212",
+      "machine": "M1",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u2212|M1|astro_quantum",
+      "spiral": "\u03c0",
+      "operator": "\u2212",
+      "machine": "M1",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u2212|M2|bio_neural",
+      "spiral": "\u03c0",
+      "operator": "\u2212",
+      "machine": "M2",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u2212|M2|bio_genetic",
+      "spiral": "\u03c0",
+      "operator": "\u2212",
+      "machine": "M2",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u2212|M2|bio_cellular",
+      "spiral": "\u03c0",
+      "operator": "\u2212",
+      "machine": "M2",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u2212|M2|astro_stellar",
+      "spiral": "\u03c0",
+      "operator": "\u2212",
+      "machine": "M2",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u2212|M2|astro_galactic",
+      "spiral": "\u03c0",
+      "operator": "\u2212",
+      "machine": "M2",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u2212|M2|astro_quantum",
+      "spiral": "\u03c0",
+      "operator": "\u2212",
+      "machine": "M2",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u2212|M3|bio_neural",
+      "spiral": "\u03c0",
+      "operator": "\u2212",
+      "machine": "M3",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u2212|M3|bio_genetic",
+      "spiral": "\u03c0",
+      "operator": "\u2212",
+      "machine": "M3",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u2212|M3|bio_cellular",
+      "spiral": "\u03c0",
+      "operator": "\u2212",
+      "machine": "M3",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u2212|M3|astro_stellar",
+      "spiral": "\u03c0",
+      "operator": "\u2212",
+      "machine": "M3",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u2212|M3|astro_galactic",
+      "spiral": "\u03c0",
+      "operator": "\u2212",
+      "machine": "M3",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u2212|M3|astro_quantum",
+      "spiral": "\u03c0",
+      "operator": "\u2212",
+      "machine": "M3",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u2212|M4|bio_neural",
+      "spiral": "\u03c0",
+      "operator": "\u2212",
+      "machine": "M4",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u2212|M4|bio_genetic",
+      "spiral": "\u03c0",
+      "operator": "\u2212",
+      "machine": "M4",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u2212|M4|bio_cellular",
+      "spiral": "\u03c0",
+      "operator": "\u2212",
+      "machine": "M4",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u2212|M4|astro_stellar",
+      "spiral": "\u03c0",
+      "operator": "\u2212",
+      "machine": "M4",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u2212|M4|astro_galactic",
+      "spiral": "\u03c0",
+      "operator": "\u2212",
+      "machine": "M4",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u2212|M4|astro_quantum",
+      "spiral": "\u03c0",
+      "operator": "\u2212",
+      "machine": "M4",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u2212|M5|bio_neural",
+      "spiral": "\u03c0",
+      "operator": "\u2212",
+      "machine": "M5",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u2212|M5|bio_genetic",
+      "spiral": "\u03c0",
+      "operator": "\u2212",
+      "machine": "M5",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u2212|M5|bio_cellular",
+      "spiral": "\u03c0",
+      "operator": "\u2212",
+      "machine": "M5",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u2212|M5|astro_stellar",
+      "spiral": "\u03c0",
+      "operator": "\u2212",
+      "machine": "M5",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u2212|M5|astro_galactic",
+      "spiral": "\u03c0",
+      "operator": "\u2212",
+      "machine": "M5",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u2212|M5|astro_quantum",
+      "spiral": "\u03c0",
+      "operator": "\u2212",
+      "machine": "M5",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u2212|M6|bio_neural",
+      "spiral": "\u03c0",
+      "operator": "\u2212",
+      "machine": "M6",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u2212|M6|bio_genetic",
+      "spiral": "\u03c0",
+      "operator": "\u2212",
+      "machine": "M6",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u2212|M6|bio_cellular",
+      "spiral": "\u03c0",
+      "operator": "\u2212",
+      "machine": "M6",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u2212|M6|astro_stellar",
+      "spiral": "\u03c0",
+      "operator": "\u2212",
+      "machine": "M6",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u2212|M6|astro_galactic",
+      "spiral": "\u03c0",
+      "operator": "\u2212",
+      "machine": "M6",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u2212|M6|astro_quantum",
+      "spiral": "\u03c0",
+      "operator": "\u2212",
+      "machine": "M6",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u2212|M7|bio_neural",
+      "spiral": "\u03c0",
+      "operator": "\u2212",
+      "machine": "M7",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u2212|M7|bio_genetic",
+      "spiral": "\u03c0",
+      "operator": "\u2212",
+      "machine": "M7",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u2212|M7|bio_cellular",
+      "spiral": "\u03c0",
+      "operator": "\u2212",
+      "machine": "M7",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u2212|M7|astro_stellar",
+      "spiral": "\u03c0",
+      "operator": "\u2212",
+      "machine": "M7",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u2212|M7|astro_galactic",
+      "spiral": "\u03c0",
+      "operator": "\u2212",
+      "machine": "M7",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u2212|M7|astro_quantum",
+      "spiral": "\u03c0",
+      "operator": "\u2212",
+      "machine": "M7",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u2212|M8|bio_neural",
+      "spiral": "\u03c0",
+      "operator": "\u2212",
+      "machine": "M8",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u2212|M8|bio_genetic",
+      "spiral": "\u03c0",
+      "operator": "\u2212",
+      "machine": "M8",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u2212|M8|bio_cellular",
+      "spiral": "\u03c0",
+      "operator": "\u2212",
+      "machine": "M8",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u2212|M8|astro_stellar",
+      "spiral": "\u03c0",
+      "operator": "\u2212",
+      "machine": "M8",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u2212|M8|astro_galactic",
+      "spiral": "\u03c0",
+      "operator": "\u2212",
+      "machine": "M8",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u2212|M8|astro_quantum",
+      "spiral": "\u03c0",
+      "operator": "\u2212",
+      "machine": "M8",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u2212|M9|bio_neural",
+      "spiral": "\u03c0",
+      "operator": "\u2212",
+      "machine": "M9",
+      "domain": "bio_neural",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u2212|M9|bio_genetic",
+      "spiral": "\u03c0",
+      "operator": "\u2212",
+      "machine": "M9",
+      "domain": "bio_genetic",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u2212|M9|bio_cellular",
+      "spiral": "\u03c0",
+      "operator": "\u2212",
+      "machine": "M9",
+      "domain": "bio_cellular",
+      "family": "biological"
+    },
+    {
+      "token": "\u03c0\u2212|M9|astro_stellar",
+      "spiral": "\u03c0",
+      "operator": "\u2212",
+      "machine": "M9",
+      "domain": "astro_stellar",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u2212|M9|astro_galactic",
+      "spiral": "\u03c0",
+      "operator": "\u2212",
+      "machine": "M9",
+      "domain": "astro_galactic",
+      "family": "celestial"
+    },
+    {
+      "token": "\u03c0\u2212|M9|astro_quantum",
+      "spiral": "\u03c0",
+      "operator": "\u2212",
+      "machine": "M9",
+      "domain": "astro_quantum",
+      "family": "celestial"
+    }
+  ],
+  "timestamp": "2025-12-17T05:36:35.588452+00:00"
+}

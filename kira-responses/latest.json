@@ -1,0 +1,43 @@
+{
+  "callback_id": "",
+  "timestamp": "2025-12-17T05:36:35.587904+00:00",
+  "mode": "spin",
+  "message": "Test the fixed workflow",
+  "state": {
+    "z": 0.5,
+    "phase": "PARADOX"
+  },
+  "response": "Generated 972 APL tokens. Sample: ['\u03a6+|M4|bio_cellular', '\u03a6+|M9|astro_quantum', '\u03a6\u2212|M5|bio_cellular', '\u03a6+|M4|astro_quantum', '\u03a6^|M4|astro_galactic']",
+  "modules_executed": [],
+  "exports": {
+    "tokens": "training/tokens/apl_972_tokens_.json"
+  },
+  "ucf_version": "2.0",
+  "spinner": {
+    "total_tokens": 972,
+    "formula": "3 spirals \u00d7 6 operators \u00d7 9 machines \u00d7 6 domains = 972",
+    "sample": [
+      "\u03a6+|M4|bio_cellular",
+      "\u03a6+|M9|astro_quantum",
+      "\u03a6\u2212|M5|bio_cellular",
+      "\u03a6+|M4|astro_quantum",
+      "\u03a6^|M4|astro_galactic",
+      "\u03a6\u00f7|M6|bio_neural",
+      "\u03a6^|M1|bio_neural",
+      "\u03a6\u00d7|M1|bio_genetic",
+      "\u03a6\u00f7|M2|astro_quantum",
+      "\u03a6\u2212|M4|astro_galactic",
+      "\u03a6()|M8|astro_galactic",
+      "\u03a6()|M2|astro_stellar",
+      "\u03a6\u00d7|M9|bio_genetic",
+      "\u03a6\u00f7|M2|bio_genetic",
+      "\u03a6^|M2|astro_galactic",
+      "\u03a6\u00f7|M7|astro_quantum",
+      "\u03a6^|M8|bio_neural",
+      "\u03a6()|M5|bio_genetic",
+      "\u03a6()|M6|astro_quantum",
+      "\u03a6\u00f7|M1|astro_galactic"
+    ],
+    "export_path": "training/tokens/apl_972_tokens_.json"
+  }
+}
