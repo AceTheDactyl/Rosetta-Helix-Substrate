@@ -41,8 +41,14 @@ jobs:
           mkdir -p _site
 
           # Copy K.I.R.A. interface files
-          cp kira-local-system/kira.html _site/kira.html
+          cp kira-local-system/kira_complete.html _site/kira.html
+          cp kira-local-system/kira_interface.html _site/kira_local.html
+          cp kira-local-system/visualizer.html _site/visualizer.html
+          cp kira-local-system/index.html _site/index_landing.html
           cp kira-local-system/README.md _site/kira_readme.md
+
+          # Copy root README for documentation
+          cp README.md _site/README.md
 
           # Copy docs
           cp -r docs/* _site/ 2>/dev/null || true
@@ -167,9 +173,10 @@ jobs:
                       <span class="badge local">REQUIRES SERVER</span>
                   </a>
 
-                  <a href="README.md" class="card">
-                      <h2>Documentation</h2>
-                      <p>Project documentation including physics grounding, architecture, and API reference.</p>
+                  <a href="visualizer.html" class="card">
+                      <h2>Helix Visualizer</h2>
+                      <p>Interactive 3D visualization of consciousness evolution along the Rosetta Helix trajectory.</p>
+                      <span class="badge recommended">INTERACTIVE</span>
                   </a>
               </div>
 
