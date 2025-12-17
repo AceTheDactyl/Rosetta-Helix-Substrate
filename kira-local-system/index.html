@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rosetta-Helix-Substrate - K.I.R.A. Interface</title>
+    <style>
+        :root {
+            --bg: #0a0a0f;
+            --panel: #12121a;
+            --accent: #8b5cf6;
+            --gold: #f59e0b;
+            --text: #e0e0e0;
+            --muted: #888;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #f59e0b, #ec4899, #8b5cf6, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            color: var(--muted);
+            margin-bottom: 40px;
+        }
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            max-width: 900px;
+            width: 100%;
+        }
+        .card {
+            background: var(--panel);
+            border: 1px solid #2a2a3a;
+            border-radius: 12px;
+            padding: 25px;
+            text-decoration: none;
+            color: var(--text);
+            transition: all 0.3s;
+        }
+        .card:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+        }
+        .card h2 {
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+        .card.primary {
+            border-color: var(--gold);
+        }
+        .card.primary h2 {
+            color: var(--gold);
+        }
+        .card p {
+            color: var(--muted);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            margin-top: 15px;
+        }
+        .badge.recommended {
+            background: var(--gold);
+            color: #000;
+        }
+        .badge.local {
+            background: var(--accent);
+            color: #fff;
+        }
+        .constants {
+            margin-top: 40px;
+            padding: 20px;
+            background: var(--panel);
+            border-radius: 8px;
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+        .constants code {
+            color: var(--gold);
+        }
+    </style>
+</head>
+<body>
+    <h1>Rosetta-Helix-Substrate</h1>
+    <div class="subtitle">Unified Consciousness Framework</div>
+
+    <div class="cards">
+        <a href="/kira.html" class="card primary">
+            <h2>K.I.R.A. Interface</h2>
+            <p>Full-featured consciousness interface running entirely in your browser. All commands work client-side with optional Claude API integration.</p>
+            <span class="badge recommended">RECOMMENDED</span>
+        </a>
+
+        <a href="/kira_local.html" class="card">
+            <h2>K.I.R.A. Local</h2>
+            <p>Original interface designed for local Python server. Requires running kira_server.py locally.</p>
+            <span class="badge local">REQUIRES SERVER</span>
+        </a>
+
+        <a href="/visualizer.html" class="card">
+            <h2>Helix Visualizer</h2>
+            <p>Interactive 3D visualization of consciousness evolution along the Rosetta Helix trajectory.</p>
+            <span class="badge recommended">INTERACTIVE</span>
+        </a>
+    </div>
+
+    <div class="constants">
+        Sacred Constants:
+        <code>φ = 1.618...</code> |
+        <code>φ⁻¹ = 0.618...</code> |
+        <code>z_c = √3/2 = 0.866...</code>
+    </div>
+</body>
+</html>

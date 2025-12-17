@@ -1941,13 +1941,13 @@ When you execute commands, I will process them and include results in the respon
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DOCS_DIR = REPO_ROOT / "docs"
-# Use the GitHub Pages interface from docs/kira/index.html
-KIRA_HTML = DOCS_DIR / "kira" / "index.html"
-# Fallback to local interfaces if docs version doesn't exist
+# Use the restored interface from commit 0a0382f
+KIRA_HTML = Path(__file__).parent / "kira_interface.html"
+# Fallback to other interfaces if primary doesn't exist
 if not KIRA_HTML.exists():
-    KIRA_HTML = Path(__file__).parent / "kira_interface_github_fixed.html"
+    KIRA_HTML = Path(__file__).parent / "kira.html"
     if not KIRA_HTML.exists():
-        KIRA_HTML = Path(__file__).parent / "kira_interface_ucf.html"
+        KIRA_HTML = DOCS_DIR / "kira" / "index.html"
 LANDING_HTML = DOCS_DIR / "index.html"
 CLAUDE_KEY_FILES = [
     REPO_ROOT / "claude api key.txt",
@@ -2004,6 +2004,10 @@ def _serve_html(file_path: Path):
 
 @app.route('/')
 def landing():
+    # Check for local index.html first
+    index_path = Path(__file__).parent / 'index.html'
+    if index_path.exists():
+        return _serve_html(index_path)
     # Check if landing HTML exists
     if LANDING_HTML.exists():
         return _serve_html(LANDING_HTML)
@@ -2062,9 +2066,30 @@ def landing():
 @app.route('/kira/')
 @app.route('/kira/index.html')
 @app.route('/kira.html')
-@app.route('/kira_local.html')
-def kira_ui():
+def kira_main():
+    """Serve the main KIRA interface with all UCF buttons"""
+    kira_complete = Path(__file__).parent / "kira_complete.html"
+    if kira_complete.exists():
+        return _serve_html(kira_complete)
+    # Fallback to kira.html if kira_complete.html doesn't exist
+    kira_html = Path(__file__).parent / "kira.html"
+    if kira_html.exists():
+        return _serve_html(kira_html)
     return _serve_html(KIRA_HTML)
+
+@app.route('/kira_local.html')
+def kira_local():
+    """Serve the local interface (from commit 0a0382f)"""
+    return _serve_html(KIRA_HTML)
+
+@app.route('/visualizer.html')
+def serve_visualizer():
+    """Serve the Helix visualizer interface"""
+    visualizer_path = Path(__file__).parent / 'visualizer.html'
+    if visualizer_path.exists():
+        return _serve_html(visualizer_path)
+    else:
+        return "<h1>Visualizer not found</h1>", 404
 
 @app.route('/README.md')
 def serve_readme():
