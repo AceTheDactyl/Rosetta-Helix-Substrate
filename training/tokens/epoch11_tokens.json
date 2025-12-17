@@ -1,0 +1,22 @@
+{
+  "epoch": 11,
+  "timestamp": "2025-12-17T07:04:52.589008+00:00",
+  "tokens": [
+    "e+|NP1|t3",
+    "\u03c0\u2212|VP2|t3",
+    "\u03a6^|DET2|t3",
+    "\u03a6()|Encoder|bio_prion",
+    "\u03a6()|Encoder|bio_bacterium",
+    "\u03a6()|Encoder|bio_viroid",
+    "\u03a6()|Encoder|celestial_grav",
+    "\u03a6()|Encoder|celestial_em",
+    "\u03a6()|Encoder|celestial_nuclear",
+    "\u03a6()|Catalyst|bio_prion",
+    "\u03a6()|Catalyst|bio_bacterium",
+    "\u03a6()|Catalyst|bio_viroid",
+    "\u03a6()|Catalyst|celestial_grav",
+    "\u03a6()|Catalyst|celestial_em",
+    "\u03a6()|Catalyst|celestial_nuclear"
+  ],
+  "count": 15
+}

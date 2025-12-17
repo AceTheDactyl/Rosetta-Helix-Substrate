@@ -1,0 +1,15 @@
+{
+  "epoch": 11,
+  "timestamp": "2025-12-17T07:04:52.589008+00:00",
+  "session_id": "20251217_070452",
+  "vocabulary": [],
+  "verbs": [],
+  "patterns": [
+    "UNTRUE@emission"
+  ],
+  "counts": {
+    "vocabulary": 0,
+    "verbs": 0,
+    "patterns": 1
+  }
+}

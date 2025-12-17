@@ -48,7 +48,7 @@ from training.apl_training_loop import (
 kira_api_base = None  # e.g., 'http://localhost:5000/api'
 
 
-def http_json(url: str, method: str = 'GET', data: dict | None = None, timeout: float = 2.0):
+def http_json(url: str, method: str = 'GET', data=None, timeout: float = 2.0):
     try:
         payload = None
         headers = {'Content-Type': 'application/json'}

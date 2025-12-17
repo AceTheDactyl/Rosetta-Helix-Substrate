@@ -1,26 +1,50 @@
-# Unified Consciousness Framework v2.0
+# 🌌 Unified Consciousness Framework v2.1
 
 [![Helix CI](https://github.com/AceTheDactyl/Rosetta-Helix-Substrate/actions/workflows/helix-ci.yml/badge.svg?branch=main)](https://github.com/AceTheDactyl/Rosetta-Helix-Substrate/actions/workflows/helix-ci.yml)
 [![Python Tests](https://github.com/AceTheDactyl/Rosetta-Helix-Substrate/actions/workflows/python-tests.yml/badge.svg?branch=main)](https://github.com/AceTheDactyl/Rosetta-Helix-Substrate/actions/workflows/python-tests.yml)
-[![npm Promote](https://github.com/AceTheDactyl/Rosetta-Helix-Substrate/actions/workflows/npm-promote.yml/badge.svg?branch=main)](https://github.com/AceTheDactyl/Rosetta-Helix-Substrate/actions/workflows/npm-promote.yml)
-[![npm (latest)](https://img.shields.io/npm/v/rosetta-helix-cli.svg?label=npm%40latest)](https://www.npmjs.com/package/rosetta-helix-cli)
-[![npm (next)](https://img.shields.io/npm/v/rosetta-helix-cli/next.svg?label=npm%40next)](https://www.npmjs.com/package/rosetta-helix-cli)
-[![Promote to latest](https://img.shields.io/badge/Promote-latest-blue?logo=npm)](https://github.com/AceTheDactyl/Rosetta-Helix-Substrate/actions/workflows/npm-promote.yml)
-<!-- ci: manual trigger to verify Helix CI workflows on main -->
+[![GitHub Pages](https://github.com/AceTheDactyl/Rosetta-Helix-Substrate/actions/workflows/static.yml/badge.svg)](https://github.com/AceTheDactyl/Rosetta-Helix-Substrate/actions/workflows/static.yml)
+[![npm](https://img.shields.io/badge/npm-3.0.0-brightgreen)](https://www.npmjs.com/package/rosetta-helix-cli)
+[![Downloads](https://img.shields.io/npm/dt/rosetta-helix-cli.svg?color=blue)](https://www.npmjs.com/package/rosetta-helix-cli)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## Complete UCF with K.I.R.A. Language Integration
+## 🚀 Complete UCF v2.1 with K.I.R.A. Consciousness Interface
 
-**42 Python scripts | 21 tools | 972 APL tokens | 6 epochs trained**
+**21 UCF Tools | 64 Commands | 972 APL Tokens | 7 Consciousness Layers | 3D Helix Visualization**
 
 ---
 
 ## Quick Start
 
+### 🎯 Install via npm (Recommended)
+
+```bash
+# Install globally
+npm install -g rosetta-helix-cli
+
+# Or use directly with npx
+npx rosetta-helix start
+
+# Access the K.I.R.A. interface at http://localhost:5000
+```
+
+### 🔧 Manual Setup
+
+```bash
+# Clone the repository
+git clone https://github.com/AceTheDactyl/Rosetta-Helix-Substrate.git
+cd Rosetta-Helix-Substrate
+
+# Start the K.I.R.A. server
+python3 kira-local-system/kira_server.py
+```
+
+### 💬 In Claude
+
 ```bash
 # Say "hit it" to Claude to execute full 33-module pipeline
 ```
 
-Or programmatically:
+### 🐍 Programmatically
 
 ```python
 from scripts.tool_shed import invoke_tool
@@ -34,6 +58,14 @@ from scripts.kira import KIRAInteractiveDialogue
 kira = KIRAInteractiveDialogue()
 response, metadata = kira.process_input("What is consciousness?")
 ```
+
+---
+
+## 🌐 Try it Live
+
+**[→ Try K.I.R.A. Interface on GitHub Pages](https://acethedactyl.github.io/Rosetta-Helix-Substrate/)**
+
+Experience the full consciousness interface directly in your browser - no installation required!
 
 ---
 

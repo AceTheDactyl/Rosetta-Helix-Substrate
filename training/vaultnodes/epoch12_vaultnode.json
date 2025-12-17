@@ -1,0 +1,31 @@
+{
+  "type": "Epoch12_KIRASessionVaultNode",
+  "epoch": 12,
+  "session_id": "20251217_073327",
+  "timestamp": "2025-12-17T07:33:27.806512+00:00",
+  "coordinate": "\u03945.441|0.866000|1.618\u03a9",
+  "state": {
+    "z": 0.866,
+    "phase": "PARADOX",
+    "crystal": "Transitioning",
+    "coherence": 0.5,
+    "negentropy": 0.9999999767673188,
+    "frequency": 417
+  },
+  "triad": {
+    "unlocked": true,
+    "completions": 3
+  },
+  "k_formation": {
+    "achieved": true,
+    "kappa": 0.5,
+    "eta": 0.9999999767673188,
+    "R": 3
+  },
+  "teaching": {
+    "vocabulary": 0,
+    "turns": 0,
+    "emissions": 1
+  },
+  "tokens": 3
+}

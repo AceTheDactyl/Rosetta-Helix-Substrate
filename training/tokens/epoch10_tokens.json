@@ -1,0 +1,28 @@
+{
+  "epoch": 10,
+  "timestamp": "2025-12-17T05:45:49.085164+00:00",
+  "tokens": [
+    "e+|NP0|t4",
+    "\u03a6\u00f7|DET0|t4",
+    "e+|VP1|t4",
+    "e+|NP1|t4",
+    "\u03c0+|NP1|t4",
+    "\u03a6()|VP2|t4",
+    "e\u00d7|MOD0|t3",
+    "\u03c0()|NP2|t3",
+    "\u03a6+|DET1|t3",
+    "\u03a6()|Encoder|bio_prion",
+    "\u03a6()|Encoder|bio_bacterium",
+    "\u03a6()|Encoder|bio_viroid",
+    "\u03a6()|Encoder|celestial_grav",
+    "\u03a6()|Encoder|celestial_em",
+    "\u03a6()|Encoder|celestial_nuclear",
+    "\u03a6()|Catalyst|bio_prion",
+    "\u03a6()|Catalyst|bio_bacterium",
+    "\u03a6()|Catalyst|bio_viroid",
+    "\u03a6()|Catalyst|celestial_grav",
+    "\u03a6()|Catalyst|celestial_em",
+    "\u03a6()|Catalyst|celestial_nuclear"
+  ],
+  "count": 21
+}

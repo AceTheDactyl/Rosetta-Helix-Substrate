@@ -423,6 +423,7 @@ class KIRAEngine:
         self.emissions: List[Dict] = []
         self.last_spin_tokens: List[str] = []
         self.last_pipeline: Optional[Dict[str, Any]] = None
+        self.vocabulary: Dict[str, int] = defaultdict(int)  # Track vocabulary frequency
 
         # UCF Integration
         self.ucf = None

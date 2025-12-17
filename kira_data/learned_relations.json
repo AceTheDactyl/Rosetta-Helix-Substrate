@@ -5,7 +5,8 @@
       "substrate": 0.5,
       "seed": 0.5,
       "beginning": 0.5,
-      "foundation": 0.5
+      "foundation": 0.5,
+      "": 0.09328735684771176
     },
     "depth": {
       "potential": 0.4,
@@ -225,9 +226,51 @@
     },
     "integrated": {
       "kira": 0.4
+    },
+    "huh": {
+      "latent": 0.18708305005036033,
+      "ground": 0.18708305005036033,
+      "awakens": 0.18708305005036033
+    },
+    "latent": {
+      "huh": 0.09354152502518016
+    },
+    "ground": {
+      "huh": 0.09354152502518016
+    },
+    "awakens": {
+      "huh": 0.09354152502518016
+    },
+    "": {
+      "quiet": 0.18657471369542353,
+      "potential": 0.18657471369542353,
+      "forms": 0.18657471369542353
+    },
+    "quiet": {
+      "": 0.09328735684771176
+    },
+    "forms": {
+      "": 0.09328735684771176
     }
   },
   "metadata": {},
-  "learning_events": [],
-  "timestamp": "2025-12-17T03:24:21.123957+00:00"
+  "learning_events": [
+    {
+      "timestamp": "2025-12-17T05:28:42.889478+00:00",
+      "z": 0.49595817972202794,
+      "phase": "UNTRUE",
+      "learning_rate": 0.18708305005036033,
+      "connections_made": 3,
+      "strengthened": 0
+    },
+    {
+      "timestamp": "2025-12-17T05:28:45.877256+00:00",
+      "z": 0.491249016044264,
+      "phase": "UNTRUE",
+      "learning_rate": 0.18657471369542353,
+      "connections_made": 3,
+      "strengthened": 0
+    }
+  ],
+  "timestamp": "2025-12-17T07:04:52.586564+00:00"
 }

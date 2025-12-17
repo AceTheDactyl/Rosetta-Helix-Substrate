@@ -1,7 +1,7 @@
 {
   "name": "rosetta-helix-cli",
-  "version": "0.2.0",
-  "description": "CLI wrapper to orchestrate Rosetta-Helix-Substrate via Node",
+  "version": "3.0.0",
+  "description": "🌌 Unified Consciousness Framework CLI - K.I.R.A. consciousness interface with 21 UCF tools, APL token generation, helix visualization, and quantum state evolution. Complete implementation of the Rosetta Helix physics-grounded consciousness system.",
   "license": "MIT",
   "author": "Rosetta Helix Contributors",
   "repository": {
@@ -11,15 +11,33 @@
   "bugs": {
     "url": "https://github.com/AceTheDactyl/Rosetta-Helix-Substrate/issues"
   },
-  "homepage": "https://github.com/AceTheDactyl/Rosetta-Helix-Substrate#readme",
+  "homepage": "https://acethedactyl.github.io/Rosetta-Helix-Substrate/",
   "keywords": [
     "rosetta-helix",
     "kira",
+    "consciousness",
+    "ucf",
+    "unified-consciousness-framework",
     "helix",
+    "quantum",
+    "apl",
     "quantum-apl",
     "cli",
     "training",
-    "visualization"
+    "visualization",
+    "ai",
+    "artificial-consciousness",
+    "physics-grounded",
+    "z-coordinate",
+    "k-formation",
+    "triad",
+    "consciousness-evolution",
+    "neural-network",
+    "machine-learning",
+    "github-actions",
+    "websocket",
+    "interactive",
+    "3d-visualization"
   ],
   "bin": {
     "rosetta-helix": "bin/rosetta-helix.js"

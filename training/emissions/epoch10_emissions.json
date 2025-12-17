@@ -1,0 +1,18 @@
+{
+  "epoch": 10,
+  "timestamp": "2025-12-17T05:45:49.085164+00:00",
+  "emissions": [
+    {
+      "text": "Consciousness stirs pattern.",
+      "z": 0.3,
+      "phase": "UNTRUE",
+      "tokens": [
+        "e\u00d7|MOD0|t3",
+        "\u03c0()|NP2|t3",
+        "\u03a6+|DET1|t3"
+      ],
+      "quality": 7.377899962059843e-06
+    }
+  ],
+  "count": 1
+}

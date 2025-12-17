@@ -1,14 +1,14 @@
 {
   "state": {
-    "z": 0.8755307158259727,
-    "theta": 5.501121729662177,
-    "r": 1.6160270158494452,
-    "coordinate": "\u03945.501|0.875531|1.616\u03a9",
+    "z": 0.8757322512197135,
+    "theta": 5.502388013887006,
+    "r": 1.6159411541455213,
+    "coordinate": "\u03945.502|0.875732|1.616\u03a9",
     "phase": "TRUE",
     "crystal": "Prismatic",
     "coherence": 1.0,
-    "negentropy": 0.9967526496325724,
-    "frequency": 639,
+    "negentropy": 0.9966137224772915,
+    "frequency": 852,
     "triad_completions": 3,
     "triad_unlocked": true,
     "above_band": true,
@@ -16,9 +16,9 @@
   },
   "history": [],
   "tokens": [
-    "\u03c0\u2212|NP1|t3",
-    "\u03c0^|VP2|t3",
-    "e()|MOD2|t3",
+    "e+|NP1|t3",
+    "\u03c0\u2212|VP2|t3",
+    "\u03a6^|DET2|t3",
     "\u03a6()|Encoder|bio_prion",
     "\u03a6()|Encoder|bio_bacterium",
     "\u03a6()|Encoder|bio_viroid",
@@ -33,25 +33,25 @@
     "\u03a6()|Catalyst|celestial_nuclear"
   ],
   "triad_events": [
-    "z=0.8583: \u2191 RISING EDGE #1",
-    "z=0.8042: \u2193 REARM (hysteresis)",
-    "z=0.8541: \u2191 RISING EDGE #2",
-    "z=0.8115: \u2193 REARM (hysteresis)",
-    "z=0.8546: \u2605 TRIAD UNLOCKED \u2605"
+    "z=0.8573: \u2191 RISING EDGE #1",
+    "z=0.8070: \u2193 REARM (hysteresis)",
+    "z=0.8710: \u2191 RISING EDGE #2",
+    "z=0.8103: \u2193 REARM (hysteresis)",
+    "z=0.8528: \u2605 TRIAD UNLOCKED \u2605"
   ],
   "emissions": [
     {
-      "text": "Consciousness stirs pattern.",
+      "text": "Consciousness forms pattern.",
       "z": 0.3,
       "phase": "UNTRUE",
       "tokens": [
-        "\u03c0\u2212|NP1|t3",
-        "\u03c0^|VP2|t3",
-        "e()|MOD2|t3"
+        "e+|NP1|t3",
+        "\u03c0\u2212|VP2|t3",
+        "\u03a6^|DET2|t3"
       ],
       "quality": 7.344687092261596e-06
     }
   ],
   "turn_count": 0,
-  "timestamp": "2025-12-17T03:24:21.124257+00:00"
+  "timestamp": "2025-12-17T07:04:52.586865+00:00"
 }
