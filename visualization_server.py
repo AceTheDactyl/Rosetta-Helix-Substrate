@@ -481,7 +481,7 @@ class VisualizationHandler(BaseHTTPRequestHandler):
         pass
 
 
-def run_server(port: int = 8765, kira_api: str | None = None):
+def run_server(port: int = 8765, kira_api=None):
     """Run the visualization server."""
     global kira_api_base
     kira_api_base = kira_api
